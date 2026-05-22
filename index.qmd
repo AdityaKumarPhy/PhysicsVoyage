@@ -1,7 +1,62 @@
 ---
-title: "Welcome"
+title: "Welcome!"
+description-meta: "Quarto Academic Website Template adapted by Dr. Gang He"
+image: "https://avatars.githubusercontent.com/u/219771298?v=4"
+image-shape: round
+page-navigation: true
+toc: false
+#sidebar: false
+page-layout: full
+
+about:
+  id: hero-heading
+  template: trestles
+  image-width: 70%
+  links:
+    - icon: github
+      text: Github
+      href: https://www.github.com/AdityaKumarPhy
+      target: _blank
+    - icon: envelope
+      text: E-mail
+      href: mailto:adityakumarphy@protonmail.com    
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/adityakumarphy
+      target: _blank
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/@PhysicsVoyage     
+      target: _blank 
+
 ---
 
-This is a Quarto website.
+:::{#hero-heading}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+I'm a [Quarto Academeic Website Template](https://github.com/drganghe/quarto-academic-website-template) adapted by [Dr. Gang He](http://drganghe.github.io).
+
+I'm a template that you can fork to build your own website with easy adaptation and deployment.
+
+I can automatically generate a neat publication list from an Excel file and enabling categories and filters.
+
+Check [README.md](https://github.com/drganghe/quarto-academic-website-template/blob/main/README.md) for more detailed instructions.
+
+## Experience
+
+- Researcher, Univerisity
+
+## Education
+
+- PhD, Univerisity
+
+:::
+
+
+<!-- Delete the following section and delete corresponding lines in the yaml part to remove the recent posts -->
+## Recent Posts
+Check out the latest &nbsp;[Papers](posts.qmd#category=paper)&nbsp;, &nbsp;[News](posts.qmd#category=news)&nbsp;, &nbsp;[Events](posts.qmd#category=event)&nbsp;, and &nbsp;[More »](/posts.qmd)
+
+:::{#recent-posts}
+:::
+
+<p align="right">[All Posts »](/posts.qmd)</p>

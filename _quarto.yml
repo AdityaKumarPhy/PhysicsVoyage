@@ -12,9 +12,9 @@ website:
         text: About
       - href: courses.qmd
         text: Course 
-      - href: projects.qmd
+      - href: project.qmd
         text: Projects
-      - href: posts.qmd
+      - href: blog.qmd
         text: Blog
   sidebar:
     - contents: posts.qmd # Creates a blog listing sidebar
