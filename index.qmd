@@ -1,62 +1,228 @@
 ---
-title: "Welcome!"
-description-meta: "Quarto Academic Website Template adapted by Dr. Gang He"
-image: "https://avatars.githubusercontent.com/u/219771298?v=4"
-image-shape: round
-page-navigation: true
-toc: false
-#sidebar: false
+title: ""
 page-layout: full
-
-about:
-  id: hero-heading
-  template: trestles
-  image-width: 70%
-  links:
-    - icon: github
-      text: Github
-      href: https://www.github.com/AdityaKumarPhy
-      target: _blank
-    - icon: envelope
-      text: E-mail
-      href: mailto:adityakumarphy@protonmail.com    
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com/adityakumarphy
-      target: _blank
-    - icon: youtube
-      text: YouTube
-      href: https://www.youtube.com/@PhysicsVoyage     
-      target: _blank 
-
+toc: false
 ---
 
-:::{#hero-heading}
+<!-- 
+======================================================================
+  HERO SECTION
+  This section takes up the full screen height (min-height: 100vh).
+  It uses a two-column grid:
+    - Left column: Image and links (g-col-md-4)
+    - Right column: Welcome text and CTA buttons (g-col-md-8)
+====================================================================== 
+-->
 
-I'm a [Quarto Academeic Website Template](https://github.com/drganghe/quarto-academic-website-template) adapted by [Dr. Gang He](http://drganghe.github.io).
+::: {.container-fluid .d-flex .flex-column .justify-content-center style="min-height: 100vh;"}
 
-I'm a template that you can fork to build your own website with easy adaptation and deployment.
+::: {.grid .align-items-center}
 
-I can automatically generate a neat publication list from an Excel file and enabling categories and filters.
+<!-- LEFT COLUMN: Profile Image & Links -->
+::: {.g-col-12 .g-col-md-4 .text-center}
 
-Check [README.md](https://github.com/drganghe/quarto-academic-website-template/blob/main/README.md) for more detailed instructions.
+<!-- Your Photo: Replace the URL with your actual image path -->
+<a href="/about.html">
+![](https://avatars.githubusercontent.com/u/219771298?v=4){ width="300" height="300" style="object-fit: cover;"}
+</a>
 
-## Experience
 
-- Researcher, Univerisity
+<div class="card-body text-center">
+  <h3 class="name">Aditya Kumar</h3>
+  <p class="subtitle">MSc Physics | IIT</p>
+</div>
 
-## Education
+<br>
 
-- PhD, Univerisity
+<!-- Social Links: Using Bootstrap buttons inline -->
+<div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+  [<i class="bi bi-envelope"></i> Email](mailto:adityakumarphy@protonmail.com){.btn .btn-outline-warning .btn-sm}
+  [<i class="bi bi-github"></i> GitHub](https://github.com/AdityaKumarPhy){.btn .btn-outline-dark .btn-sm target="_blank"}
+  [<i class="bi bi-youtube"></i> YouTube](https://www.youtube.com/@PhysicsVoyage){.btn .btn-outline-danger .btn-sm target="_blank"}
+  [<i class="bi bi-linkedin"></i> LinkedIn](https://linkedin.com/in/adityakumarphy){.btn .btn-outline-info .btn-sm target="_blank"}
+</div>
+:::
+
+<!-- RIGHT COLUMN: Welcome Text & Call to Action -->
+::: {.g-col-12 .g-col-md-8}
+
+# Welcome to [Physics Voyage]{.smallcaps}
+
+I'm a [physicist]{.underline} in training, documenting the voyage through quantum mechanics, many-body theory, and the code that makes the cosmos computable.
+
+This site is my open notebook — structured courses, project write-ups, and a blog that goes deeper than the textbook. No hand-waving. Everything built from first principles, mistakes included.
+
+<br>
+
+<!-- Action Buttons -->
+[Read the Blog](blog.qmd){.btn .btn-outline-success .me-2}
+[About Me](about.qmd){.btn .btn-outline-info .me-2}
+[Courses](courses.qmd){.btn .btn-outline-secondary}
+
+<br><br><br>
+
+<!-- Scroll Hint -->
+<span class="text-muted">↓ Scroll down for courses, latest posts & projects</span>
+
+
+:::
+
+:::
+
+:::
+
+<!-- 
+======================================================================
+  COURSES SECTION
+  This section appears after scrolling down.
+  It is a 3-column grid (g-col-md-4 for each item).
+====================================================================== 
+-->
+
+<hr>
+
+## Courses
+
+::: {.grid}
+
+<!-- Course Card 1 -->
+::: {.g-col-12 .g-col-md-4}
+::: {.card .h-100}
+::: {.card-header}
+**Computational Physics** <span class="badge bg-success float-end">Active</span>
+:::
+::: {.card-body}
+Building numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.
+
+<br>
+[Start →](courses.qmd){.btn .btn-sm .btn-dark .mt-2}
+:::
+:::
+:::
+
+<!-- Course Card 2 -->
+::: {.g-col-12 .g-col-md-4}
+::: {.card .h-100}
+::: {.card-header}
+**Quantum Mechanics I** <span class="badge bg-secondary float-end">Upcoming</span>
+:::
+::: {.card-body}
+From the postulates to perturbation theory. Every derivation done properly — for students who want the full mathematical story.
+
+<br>
+[Coming soon](courses.qmd){.btn .btn-sm .btn-outline-dark .mt-2}
+:::
+:::
+:::
+
+<!-- Course Card 3 -->
+::: {.g-col-12 .g-col-md-4}
+::: {.card .h-100}
+::: {.card-header}
+**Many-Body Physics** <span class="badge bg-secondary float-end">Upcoming</span>
+:::
+::: {.card-body}
+Second quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.
+
+<br>
+[Coming soon](courses.qmd){.btn .btn-sm .btn-outline-dark .mt-2}
+:::
+:::
+:::
+
+:::
+
+<!-- 
+======================================================================
+  FEATURED SECTION
+  Another 3-column grid for Blog, Projects, and YouTube.
+====================================================================== 
+-->
+
+<hr>
+
+## Featured
+
+::: {.grid}
+
+<!-- Column 1: Blog Posts (Newest to Oldest) -->
+::: {.g-col-12 .g-col-md-4}
+#### Latest Posts
+
+<!-- Post 1 -->
+::: {.card .mb-3}
+::: {.card-body}
+**[Introduction to Computational Physics](Blog/Intro_Comp_Physics/index.qmd){.stretched-link .text-decoration-none .text-reset}**
+
+<small class="text-muted">May 22, 2026</small><br>
+<span class="badge bg-dark">Computational</span>
+<span class="badge bg-secondary">Python</span>
+<span class="badge bg-secondary">Beginner</span>
+
+<div class="mt-2 text-muted" style="font-size: 0.9em;">
+What is computational physics and how do you actually start?
+</div>
+:::
+:::
+
+<!-- You can copy the card above to add more posts -->
+
+[All posts →](blog.qmd){.btn .btn-sm .btn-outline-dark}
+:::
+
+<!-- Column 2: Projects (WIP / Finished / Planned) -->
+::: {.g-col-12 .g-col-md-4}
+#### Projects
+
+<!-- Project 1 (WIP) -->
+::: {.card .mb-3}
+::: {.card-body}
+<span class="badge bg-warning text-dark mb-2">In Progress</span><br>
+**[Exact Diagonalisation Solver](project.qmd){.stretched-link .text-decoration-none .text-reset}**
+
+<div class="mt-1 text-muted" style="font-size: 0.9em;">
+Full ED solver for spin chains in Python — energy spectra and entanglement entropy from scratch.
+</div>
+:::
+:::
+
+<!-- Project 2 (Planned) -->
+::: {.card .mb-3}
+::: {.card-body}
+<span class="badge bg-secondary mb-2">Planned</span><br>
+**[DMRG Implementation](project.qmd){.stretched-link .text-decoration-none .text-reset}**
+
+<div class="mt-1 text-muted" style="font-size: 0.9em;">
+Density Matrix Renormalisation Group — after ED is solid.
+</div>
+:::
+:::
+
+<!-- Under Construction placeholder -->
+<!--
+::: {.callout-note appearance="minimal"}
+🚧 **Projects under construction.** Check back soon.
+:::
+-->
+
+[All projects →](project.qmd){.btn .btn-sm .btn-outline-dark}
+:::
+
+<!-- Column 3: YouTube Embed -->
+::: {.g-col-12 .g-col-md-4}
+#### ▶ Latest Video
+
+<div class="ratio ratio-16x9 mb-2">
+  <iframe 
+    src="https://www.youtube.com/embed/O2aCxsek7bo" 
+    title="YouTube video" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+:::
 
 :::
 
 
-<!-- Delete the following section and delete corresponding lines in the yaml part to remove the recent posts -->
-## Recent Posts
-Check out the latest &nbsp;[Papers](posts.qmd#category=paper)&nbsp;, &nbsp;[News](posts.qmd#category=news)&nbsp;, &nbsp;[Events](posts.qmd#category=event)&nbsp;, and &nbsp;[More »](/posts.qmd)
 
-:::{#recent-posts}
-:::
-
-<p align="right">[All Posts »](/posts.qmd)</p>

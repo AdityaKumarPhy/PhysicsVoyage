@@ -5,17 +5,18 @@ project:
 website:
   title: "Physics Voyage"
   navbar:
-    left:
+    right:
       - href: index.qmd
         text: Home
-      - href: about.qmd
-        text: About
+      - href: blog.qmd
+        text: Blog          
       - href: courses.qmd
         text: Course 
       - href: project.qmd
         text: Projects
-      - href: blog.qmd
-        text: Blog
+      - href: about.qmd
+        text: About
+  reader-mode: true
   sidebar:
     - contents: posts.qmd # Creates a blog listing sidebar
       title: Recent Posts
@@ -25,9 +26,14 @@ website:
 
 format:
   html:
-    theme: sketchy
+    respect-user-color-scheme: true
+    theme:
+      light: sketchy
+      dark: [sketchy, sketchy-dark.scss]
+    highlight-style:
+      light: github
+      dark: dracula
     css: styles.css
     toc: true
-
 
 

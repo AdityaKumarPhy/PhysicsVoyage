@@ -1,0 +1,17 @@
+---
+title: "Courses"
+subtitle: "Interactive tutorials and lessons"
+title-block-banner: true
+---
+
+## Course 1: Computational Physics
+::: {.grid}
+::: {.g-col-12 .g-col-md-3}
+<!-- Add an image here once you have one: ![Course thumbnail](Files/Images/comp-physics.jpg) -->
+:::
+
+::: {.g-col-12 .g-col-md-9}
+**Status:** Upcoming  
+Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.
+:::
+:::

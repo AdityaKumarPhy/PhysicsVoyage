@@ -5,4 +5,10 @@
 freeze: true
 
 # Enable banner style title blocks
-title-block-banner: false
+title-block-banner: True
+website:
+  back-to-top-navigation: true
+
+format:
+  html:
+    include-in-header: progress-bar.html

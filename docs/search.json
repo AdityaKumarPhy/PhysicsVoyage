@@ -1,31 +1,66 @@
 [
   {
+    "objectID": "courses.html",
+    "href": "courses.html",
+    "title": "Courses",
+    "section": "",
+    "text": "Status: Upcoming\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students."
+  },
+  {
+    "objectID": "courses.html#course-1-computational-physics",
+    "href": "courses.html#course-1-computational-physics",
+    "title": "Courses",
+    "section": "",
+    "text": "Status: Upcoming\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students."
+  },
+  {
+    "objectID": "Projects/DMRG/index.html",
+    "href": "Projects/DMRG/index.html",
+    "title": "DMRG Implementation",
+    "section": "",
+    "text": "DMRG Implementation\nProject details coming soon…"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome!",
+    "title": "Welcome to Physics Voyage",
     "section": "",
-    "text": "Github\n  \n  \n    \n     E-mail\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     YouTube\n  \n\n  \n  \nI’m a Quarto Academeic Website Template adapted by Dr. Gang He.\nI’m a template that you can fork to build your own website with easy adaptation and deployment.\nI can automatically generate a neat publication list from an Excel file and enabling categories and filters.\nCheck README.md for more detailed instructions.\n\n\n\nResearcher, Univerisity\n\n\n\n\n\nPhD, Univerisity"
+    "text": "MSc Physics | IIT\n\n\n\n\n\n Email  GitHub  YouTube  LinkedIn\n\n\n\n\n\nI’m a physicist in training, documenting the voyage through quantum mechanics, many-body theory, and the code that makes the cosmos computable.\nThis site is my open notebook — structured courses, project write-ups, and a blog that goes deeper than the textbook. No hand-waving. Everything built from first principles, mistakes included.\n\n\nRead the Blog About Me Courses\n\n\n↓ Scroll down for courses, latest posts & projects"
   },
   {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Welcome!",
-    "section": "",
-    "text": "Researcher, Univerisity"
+    "objectID": "index.html#courses",
+    "href": "index.html#courses",
+    "title": "Welcome to Physics Voyage",
+    "section": "Courses",
+    "text": "Courses\n\n\n\n\n\nComputational Physics Active\n\n\nBuilding numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.\n Start →\n\n\n\n\n\n\n\nQuantum Mechanics I Upcoming\n\n\nFrom the postulates to perturbation theory. Every derivation done properly — for students who want the full mathematical story.\n Coming soon\n\n\n\n\n\n\n\nMany-Body Physics Upcoming\n\n\nSecond quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.\n Coming soon"
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Welcome!",
-    "section": "",
-    "text": "PhD, Univerisity"
+    "objectID": "index.html#featured",
+    "href": "index.html#featured",
+    "title": "Welcome to Physics Voyage",
+    "section": "Featured",
+    "text": "Featured\n\n\n\nLatest Posts\n\n\n\nIntroduction to Computational Physics\nMay 22, 2026 Computational Python Beginner\n\nWhat is computational physics and how do you actually start?\n\n\n\n\nAll posts →\n\n\n\nProjects\n\n\n\nIn Progress Exact Diagonalisation Solver\n\nFull ED solver for spin chains in Python — energy spectra and entanglement entropy from scratch.\n\n\n\n\n\n\nPlanned DMRG Implementation\n\nDensity Matrix Renormalisation Group — after ED is solid.\n\n\n\n\n\nAll projects →\n\n\n\n▶ Latest Video"
   },
   {
-    "objectID": "index.html#recent-posts",
-    "href": "index.html#recent-posts",
-    "title": "Welcome!",
-    "section": "Recent Posts",
-    "text": "Recent Posts\nCheck out the latest  Papers ,  News ,  Events , and  More »\n\n\n\n\nAll Posts »"
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Featured Projects",
+    "section": "",
+    "text": "Detailed case studies of what you’re building right now."
+  },
+  {
+    "objectID": "project.html#active-development",
+    "href": "project.html#active-development",
+    "title": "Featured Projects",
+    "section": "",
+    "text": "Detailed case studies of what you’re building right now."
+  },
+  {
+    "objectID": "project.html#open-source-contributions",
+    "href": "project.html#open-source-contributions",
+    "title": "Featured Projects",
+    "section": "Open Source Contributions",
+    "text": "Open Source Contributions\nSummaries of public tools, applications, or script setups."
   },
   {
     "objectID": "about.html",
@@ -33,5 +68,75 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html",
+    "href": "Blog/Intro_Comp_Physics/index.html",
+    "title": "Introduction to Computational Physics",
+    "section": "",
+    "text": "Physics has always had two engines: theory and experiment. Theory gives us equations — Maxwell’s equations, the Schrödinger equation, the Einstein field equations. Experiment tells us whether those equations describe reality.\nFor most of human history, that was enough. You derived an equation, solved it analytically, made a prediction, tested it. The workflow was clean.\nThen the problems got harder.\nThe Schrödinger equation for a single hydrogen atom has an exact analytical solution. The Schrödinger equation for two electrons — helium — already requires approximations. For ten electrons? Forget closed forms. For the \\(10^{23}\\) electrons in a piece of copper? The exact wavefunction of that system lives in a Hilbert space so vast that writing it down would require more information than atoms in the observable universe.\nThis is where computational physics enters the picture. It is the third engine — the one that fills the gap between “we have an equation” and “we can’t solve it analytically.”"
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#why-does-computational-physics-exist",
+    "href": "Blog/Intro_Comp_Physics/index.html#why-does-computational-physics-exist",
+    "title": "Introduction to Computational Physics",
+    "section": "",
+    "text": "Physics has always had two engines: theory and experiment. Theory gives us equations — Maxwell’s equations, the Schrödinger equation, the Einstein field equations. Experiment tells us whether those equations describe reality.\nFor most of human history, that was enough. You derived an equation, solved it analytically, made a prediction, tested it. The workflow was clean.\nThen the problems got harder.\nThe Schrödinger equation for a single hydrogen atom has an exact analytical solution. The Schrödinger equation for two electrons — helium — already requires approximations. For ten electrons? Forget closed forms. For the \\(10^{23}\\) electrons in a piece of copper? The exact wavefunction of that system lives in a Hilbert space so vast that writing it down would require more information than atoms in the observable universe.\nThis is where computational physics enters the picture. It is the third engine — the one that fills the gap between “we have an equation” and “we can’t solve it analytically.”"
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#what-computational-physics-actually-is",
+    "href": "Blog/Intro_Comp_Physics/index.html#what-computational-physics-actually-is",
+    "title": "Introduction to Computational Physics",
+    "section": "What Computational Physics Actually Is",
+    "text": "What Computational Physics Actually Is\nComputational physics is not just “physics done on a computer.” It is a discipline with its own methods, its own aesthetics, its own failure modes.\nAt its core, it is about discretisation — taking the continuous language of physics (differential equations, integrals, infinite Hilbert spaces) and translating it into a finite set of numbers that a machine can manipulate.\nConsider the simplest example. The heat equation:\n\\[\\frac{\\partial T}{\\partial t} = \\alpha \\frac{\\partial^2 T}{\\partial x^2}\\]\nThis describes how temperature \\(T\\) spreads through a rod over time. Analytically, we can solve it for simple boundary conditions. But for a rod with complicated geometry, weird materials, or time-varying boundaries? Analytically intractable.\nComputationally, we discretise the rod into a grid of points \\(x_0, x_1, \\ldots, x_N\\), and the time into steps \\(t_0, t_1, \\ldots, t_M\\). Then we replace the derivatives with finite differences:\n\\[\\frac{\\partial^2 T}{\\partial x^2} \\approx \\frac{T(x+h) - 2T(x) + T(x-h)}{h^2}\\]\nNow instead of a differential equation, we have an algebraic update rule — something a computer can apply millions of times per second.\nThat replacement — continuous → discrete, differential → algebraic — is the fundamental act of computational physics."
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#the-four-pillars",
+    "href": "Blog/Intro_Comp_Physics/index.html#the-four-pillars",
+    "title": "Introduction to Computational Physics",
+    "section": "The Four Pillars",
+    "text": "The Four Pillars\nMost of computational physics sits on four broad methods:\n\n1. Finite Difference & Finite Element Methods (FDM / FEM)\nFor differential equations on grids. This is how we simulate fluid flow, heat transfer, electromagnetic fields in complex geometries, and elastic materials. The idea is always the same: discretise space (and time), replace derivatives with differences, iterate.\n\n\n2. Molecular Dynamics (MD)\nFor systems of interacting particles. We apply Newton’s second law to every particle at every timestep: \\(\\mathbf{F} = m\\mathbf{a}\\), update positions and velocities. This is how we simulate proteins folding, materials fracturing, plasmas evolving.\n\n\n3. Monte Carlo Methods\nFor problems where the answer is an integral over an enormous space, and exact methods are impossible. Instead of integrating everywhere, we sample randomly — and the law of large numbers guarantees we converge to the right answer. Monte Carlo is how we compute path integrals in quantum field theory, study phase transitions, and price financial derivatives.\n\n\n4. Matrix / Linear Algebra Methods\nFor quantum mechanics especially. The Hamiltonian \\(\\hat{H}\\) of a quantum system is a matrix (or an operator that we represent as one). Finding energy levels means diagonalising that matrix. For small systems we do this exactly — this is exact diagonalisation (ED). For large systems we use approximate methods: Lanczos algorithms, DMRG, tensor networks."
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#a-first-example-the-harmonic-oscillator",
+    "href": "Blog/Intro_Comp_Physics/index.html#a-first-example-the-harmonic-oscillator",
+    "title": "Introduction to Computational Physics",
+    "section": "A First Example: The Harmonic Oscillator",
+    "text": "A First Example: The Harmonic Oscillator\nLet’s make this concrete. The harmonic oscillator — a mass on a spring — has the equation of motion:\n\\[\\frac{d^2 x}{dt^2} = -\\omega^2 x\\]\nWe know the analytic solution: \\(x(t) = A\\cos(\\omega t + \\phi)\\). But let’s solve it numerically anyway, to see the method.\nWe convert the second-order ODE into two first-order ODEs:\n\\[\\frac{dx}{dt} = v, \\qquad \\frac{dv}{dt} = -\\omega^2 x\\]\nThen we use the Euler method — the simplest possible numerical integrator:\n\\[x_{n+1} = x_n + v_n \\cdot \\Delta t\\] \\[v_{n+1} = v_n - \\omega^2 x_n \\cdot \\Delta t\\]\nIn Python:\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Parameters\nomega = 2 * np.pi   # angular frequency (1 Hz oscillation)\ndt    = 0.01        # timestep — smaller = more accurate\nT     = 5.0         # total simulation time in seconds\nsteps = int(T / dt)\n\n# Initial conditions\nx = 1.0   # initial position (amplitude = 1)\nv = 0.0   # starting from rest\n\n# Storage arrays\nx_vals = np.zeros(steps)\nt_vals = np.linspace(0, T, steps)\n\n# Euler integration loop\nfor i in range(steps):\n    x_vals[i] = x           # record current position\n    x_new = x + v * dt      # update position\n    v_new = v - omega**2 * x * dt   # update velocity\n    x, v  = x_new, v_new    # advance state\n\n# Analytical solution for comparison\nx_exact = np.cos(omega * t_vals)\n\n# Plot\nplt.figure(figsize=(10, 4))\nplt.plot(t_vals, x_vals,  label='Euler (numerical)', linewidth=2)\nplt.plot(t_vals, x_exact, label='Exact solution',    linewidth=2, linestyle='--')\nplt.xlabel('Time (s)')\nplt.ylabel('Position x(t)')\nplt.title('Harmonic Oscillator — Euler vs Exact')\nplt.legend()\nplt.tight_layout()\nplt.show()\nRun this and you’ll immediately see a problem: the Euler solution slowly drifts away from the exact answer. The amplitude grows over time — the oscillator appears to gain energy from nowhere.\nThis is not a bug in your code. It is a fundamental property of the Euler method: it does not conserve energy. For oscillatory systems, this is catastrophic.\nThe fix? Use a symplectic integrator — the simplest one is called the Symplectic Euler (or Euler-Cromer) method. The only change is that you use the updated velocity when computing the new position:\n# Symplectic Euler — just swap the order of updates\nv_new = v - omega**2 * x * dt   # update velocity FIRST\nx_new = x + v_new * dt           # use NEW velocity for position\nThis tiny reordering makes the method energy-conserving over long times. The physics is now correct."
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#why-this-matters-the-bigger-picture",
+    "href": "Blog/Intro_Comp_Physics/index.html#why-this-matters-the-bigger-picture",
+    "title": "Introduction to Computational Physics",
+    "section": "Why This Matters: The Bigger Picture",
+    "text": "Why This Matters: The Bigger Picture\nThe harmonic oscillator example teaches something much deeper than numerics. It shows that the choice of algorithm is a physics choice, not just a software engineering choice.\nDifferent integrators preserve different things: - Euler preserves nothing (energy drifts) - Symplectic Euler preserves a modified Hamiltonian (energy stays bounded) - Runge-Kutta 4 is more accurate per step but still not symplectic - Verlet / leapfrog are symplectic and time-reversible — used in molecular dynamics\nWhen you choose an algorithm, you are choosing which physical properties your simulation will respect. Get it wrong and your results are fiction — plausible-looking, reproducible fiction.\nThis is what distinguishes computational physics from computational numerics. We are not just solving equations. We are trying to faithfully represent physical systems, and that requires physical understanding at every step."
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#what-comes-next",
+    "href": "Blog/Intro_Comp_Physics/index.html#what-comes-next",
+    "title": "Introduction to Computational Physics",
+    "section": "What Comes Next",
+    "text": "What Comes Next\nThis post is the beginning of a series I’m calling Code and Quanta — a public working log of learning computational physics from the ground up. No library shortcuts, no black boxes. Everything built from the first principles of the problem.\nUpcoming topics in this series:\n\n\n\n\n\n\n\nPost\nTopic\n\n\n\n\n2\nThe Laplacian on a Grid — finite difference PDE solver\n\n\n3\nExact Diagonalisation of the Ising model\n\n\n4\nMonte Carlo integration and the Metropolis algorithm\n\n\n5\nThe Lanczos algorithm — finding ground states of large Hamiltonians\n\n\n\nEach post will include working Python code, derivations of the key equations, and honest commentary on what went wrong before it went right.\nIf you spot an error, disagree with an interpretation, or have a better algorithm — leave a comment or reach out directly. This notebook is public precisely because I expect to be corrected."
+  },
+  {
+    "objectID": "Blog/Intro_Comp_Physics/index.html#further-reading",
+    "href": "Blog/Intro_Comp_Physics/index.html#further-reading",
+    "title": "Introduction to Computational Physics",
+    "section": "Further Reading",
+    "text": "Further Reading\nFor those who want to go deeper right now:\n\nNumerical Recipes (Press et al.) — the classic reference for numerical methods in science\nComputational Physics by Nicholas Giordano & Hisao Nakanishi — a gentle, physics-first introduction\nQuantum Many-Body Physics by Naoki Kawashima — for where this series is eventually heading\nThe SciPy documentation — particularly scipy.integrate and scipy.linalg\n\n\nThis is post 1 of the Code and Quanta series. All code in this series is MIT licensed."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Introduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "Projects/ED_Solver/index.html",
+    "href": "Projects/ED_Solver/index.html",
+    "title": "Exact Diagonalisation Solver",
+    "section": "",
+    "text": "Exact Diagonalisation Solver\nProject details coming soon…"
   }
 ]

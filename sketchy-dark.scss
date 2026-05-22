@@ -1,0 +1,74 @@
+/*-- scss:defaults --*/
+$body-bg: #222222 !default;
+$body-color: #eeeeee !default;
+$gray-100: #1a1a1a !default;
+$gray-200: #2a2a2a !default;
+$gray-300: #444444 !default;
+$gray-800: #cccccc !default;
+$gray-900: #eeeeee !default;
+
+$primary: #aaaaaa !default;
+$secondary: #444444 !default;
+
+// Make links a clear, vibrant light blue for dark mode
+$link-color: #66b2ff !default;
+
+/*-- scss:rules --*/
+body {
+  background-color: #222222;
+  color: #eeeeee;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: #ffffff;
+}
+
+.card {
+  background-color: #333333;
+  border-color: #aaaaaa;
+}
+
+.card-header {
+  background-color: #444444;
+  border-bottom-color: #aaaaaa;
+}
+
+// Fix navbar specifically
+.navbar, .navbar-expand-lg {
+  background-color: #2b2b2b !important;
+  border-bottom: 2px solid #555555 !important;
+}
+
+.btn-outline-dark {
+  color: #eeeeee;
+  border-color: #eeeeee;
+}
+
+.btn-outline-dark:hover {
+  background-color: #eeeeee;
+  color: #222222;
+}
+
+.btn-dark {
+  background-color: #eeeeee;
+  color: #222222;
+  border-color: #eeeeee;
+}
+
+hr {
+  border-color: #aaaaaa;
+  opacity: 0.5;
+}
+
+.border-end {
+  border-color: #aaaaaa !important;
+}
+
+.text-dark {
+  color: #eeeeee !important;
+}
+
+.badge.bg-dark {
+  background-color: #eeeeee !important;
+  color: #222222 !important;
+}

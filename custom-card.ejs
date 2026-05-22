@@ -1,0 +1,45 @@
+<% for (const item of items) { %>
+<div class="card mb-3">
+  <div class="card-body">
+    <!-- Handle Project Status Badges if they exist in categories -->
+    <% 
+      let isProject = false;
+      if (item.categories) {
+        if (item.categories.includes("In Progress")) {
+          isProject = true;
+          %><span class="badge bg-warning text-dark mb-2">In Progress</span><br><%
+        } else if (item.categories.includes("Planned")) {
+          isProject = true;
+          %><span class="badge bg-secondary mb-2">Planned</span><br><%
+        } else if (item.categories.includes("Completed")) {
+          isProject = true;
+          %><span class="badge bg-success mb-2">Completed</span><br><%
+        }
+      }
+    %>
+
+    <h6 class="card-title mb-1">
+      <a href="<%- item.path %>" class="stretched-link text-decoration-none text-reset">
+        <%= item.title %>
+      </a>
+    </h6>
+    
+    <% if (item.date) { %>
+      <small class="text-muted"><%= item.date %></small><br>
+    <% } %>
+    
+    <!-- Handle Standard Blog Tags -->
+    <% if (item.categories && !isProject) { %>
+      <% for (let i = 0; i < item.categories.length; i++) { %>
+        <span class="badge <%= i === 0 ? 'bg-dark' : 'bg-secondary' %>"><%= item.categories[i] %></span>
+      <% } %>
+    <% } %>
+    
+    <% if (item.description) { %>
+      <div class="mt-2 text-muted" style="font-size: 0.9em;">
+        <%= item.description %>
+      </div>
+    <% } %>
+  </div>
+</div>
+<% } %>

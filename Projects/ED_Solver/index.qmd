@@ -1,0 +1,10 @@
+---
+title: "Exact Diagonalisation Solver"
+description: "Full ED solver for spin chains in Python — energy spectra and entanglement entropy from scratch."
+date: "2026-05-22"
+categories: ["In Progress", "Python", "Physics"]
+---
+
+# Exact Diagonalisation Solver
+
+Project details coming soon...

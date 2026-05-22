@@ -1,1 +1,38 @@
-/* css styles */
+/* 
+  Make inline links (in paragraphs and lists) look like small clickable boxes 
+  to improve visibility in both light and dark modes.
+*/
+
+p a:not(.btn):not(.stretched-link), 
+li a:not(.btn):not(.nav-link):not(.stretched-link) {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  margin: 0 0.1em;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+p a:not(.btn):not(.stretched-link):hover, 
+li a:not(.btn):not(.nav-link):not(.stretched-link):hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Dark mode overrides using Bootstrap's data attribute */
+[data-bs-theme="dark"] p a:not(.btn):not(.stretched-link), 
+[data-bs-theme="dark"] li a:not(.btn):not(.nav-link):not(.stretched-link) {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-bs-theme="dark"] p a:not(.btn):not(.stretched-link):hover, 
+[data-bs-theme="dark"] li a:not(.btn):not(.nav-link):not(.stretched-link):hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+

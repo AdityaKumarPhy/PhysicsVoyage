@@ -1,0 +1,191 @@
+---
+title: "Introduction to Computational Physics"
+description: "What is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation."
+author: "Aditya Kumar"
+date: "2026-05-22"
+categories: [Computational Physics, Beginner, Python]
+image: "thumbnail.png"
+draft: false
+toc: true
+---
+
+## Why Does Computational Physics Exist?
+
+Physics has always had two engines: **theory** and **experiment**. Theory gives us equations — Maxwell's equations, the Schrödinger equation, the Einstein field equations. Experiment tells us whether those equations describe reality.
+
+For most of human history, that was enough. You derived an equation, solved it analytically, made a prediction, tested it. The workflow was clean.
+
+Then the problems got harder.
+
+The Schrödinger equation for a single hydrogen atom has an exact analytical solution. The Schrödinger equation for two electrons — helium — already requires approximations. For ten electrons? Forget closed forms. For the $10^{23}$ electrons in a piece of copper? The exact wavefunction of that system lives in a Hilbert space so vast that writing it down would require more information than atoms in the observable universe.
+
+This is where **computational physics** enters the picture. It is the third engine — the one that fills the gap between "we have an equation" and "we can't solve it analytically."
+
+---
+
+## What Computational Physics Actually Is
+
+Computational physics is not just "physics done on a computer." It is a discipline with its own methods, its own aesthetics, its own failure modes.
+
+At its core, it is about **discretisation** — taking the continuous language of physics (differential equations, integrals, infinite Hilbert spaces) and translating it into a finite set of numbers that a machine can manipulate.
+
+Consider the simplest example. The heat equation:
+
+$$\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}$$
+
+This describes how temperature $T$ spreads through a rod over time. Analytically, we can solve it for simple boundary conditions. But for a rod with complicated geometry, weird materials, or time-varying boundaries? Analytically intractable.
+
+Computationally, we **discretise** the rod into a grid of points $x_0, x_1, \ldots, x_N$, and the time into steps $t_0, t_1, \ldots, t_M$. Then we replace the derivatives with finite differences:
+
+$$\frac{\partial^2 T}{\partial x^2} \approx \frac{T(x+h) - 2T(x) + T(x-h)}{h^2}$$
+
+Now instead of a differential equation, we have an algebraic update rule — something a computer can apply millions of times per second.
+
+That replacement — continuous → discrete, differential → algebraic — is the fundamental act of computational physics.
+
+---
+
+## The Four Pillars
+
+Most of computational physics sits on four broad methods:
+
+### 1. Finite Difference & Finite Element Methods (FDM / FEM)
+
+For differential equations on grids. This is how we simulate fluid flow, heat transfer, electromagnetic fields in complex geometries, and elastic materials. The idea is always the same: discretise space (and time), replace derivatives with differences, iterate.
+
+### 2. Molecular Dynamics (MD)
+
+For systems of interacting particles. We apply Newton's second law to every particle at every timestep: $\mathbf{F} = m\mathbf{a}$, update positions and velocities. This is how we simulate proteins folding, materials fracturing, plasmas evolving.
+
+### 3. Monte Carlo Methods
+
+For problems where the answer is an integral over an enormous space, and exact methods are impossible. Instead of integrating everywhere, we sample randomly — and the law of large numbers guarantees we converge to the right answer. Monte Carlo is how we compute path integrals in quantum field theory, study phase transitions, and price financial derivatives.
+
+### 4. Matrix / Linear Algebra Methods
+
+For quantum mechanics especially. The Hamiltonian $\hat{H}$ of a quantum system is a matrix (or an operator that we represent as one). Finding energy levels means diagonalising that matrix. For small systems we do this exactly — this is **exact diagonalisation (ED)**. For large systems we use approximate methods: Lanczos algorithms, DMRG, tensor networks.
+
+---
+
+## A First Example: The Harmonic Oscillator
+
+Let's make this concrete. The harmonic oscillator — a mass on a spring — has the equation of motion:
+
+$$\frac{d^2 x}{dt^2} = -\omega^2 x$$
+
+We know the analytic solution: $x(t) = A\cos(\omega t + \phi)$. But let's solve it numerically anyway, to see the method.
+
+We convert the second-order ODE into two first-order ODEs:
+
+$$\frac{dx}{dt} = v, \qquad \frac{dv}{dt} = -\omega^2 x$$
+
+Then we use the **Euler method** — the simplest possible numerical integrator:
+
+$$x_{n+1} = x_n + v_n \cdot \Delta t$$
+$$v_{n+1} = v_n - \omega^2 x_n \cdot \Delta t$$
+
+In Python:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+omega = 2 * np.pi   # angular frequency (1 Hz oscillation)
+dt    = 0.01        # timestep — smaller = more accurate
+T     = 5.0         # total simulation time in seconds
+steps = int(T / dt)
+
+# Initial conditions
+x = 1.0   # initial position (amplitude = 1)
+v = 0.0   # starting from rest
+
+# Storage arrays
+x_vals = np.zeros(steps)
+t_vals = np.linspace(0, T, steps)
+
+# Euler integration loop
+for i in range(steps):
+    x_vals[i] = x           # record current position
+    x_new = x + v * dt      # update position
+    v_new = v - omega**2 * x * dt   # update velocity
+    x, v  = x_new, v_new    # advance state
+
+# Analytical solution for comparison
+x_exact = np.cos(omega * t_vals)
+
+# Plot
+plt.figure(figsize=(10, 4))
+plt.plot(t_vals, x_vals,  label='Euler (numerical)', linewidth=2)
+plt.plot(t_vals, x_exact, label='Exact solution',    linewidth=2, linestyle='--')
+plt.xlabel('Time (s)')
+plt.ylabel('Position x(t)')
+plt.title('Harmonic Oscillator — Euler vs Exact')
+plt.legend()
+plt.tight_layout()
+plt.show()
+```
+
+Run this and you'll immediately see a problem: the Euler solution slowly **drifts away** from the exact answer. The amplitude grows over time — the oscillator appears to gain energy from nowhere.
+
+This is not a bug in your code. It is a fundamental property of the Euler method: it does **not** conserve energy. For oscillatory systems, this is catastrophic.
+
+The fix? Use a **symplectic integrator** — the simplest one is called the **Symplectic Euler** (or Euler-Cromer) method. The only change is that you use the *updated* velocity when computing the new position:
+
+```python
+# Symplectic Euler — just swap the order of updates
+v_new = v - omega**2 * x * dt   # update velocity FIRST
+x_new = x + v_new * dt           # use NEW velocity for position
+```
+
+This tiny reordering makes the method energy-conserving over long times. The physics is now correct.
+
+---
+
+## Why This Matters: The Bigger Picture
+
+The harmonic oscillator example teaches something much deeper than numerics. It shows that **the choice of algorithm is a physics choice**, not just a software engineering choice.
+
+Different integrators preserve different things:
+- Euler preserves nothing (energy drifts)
+- Symplectic Euler preserves a *modified* Hamiltonian (energy stays bounded)
+- Runge-Kutta 4 is more accurate per step but still not symplectic
+- Verlet / leapfrog are symplectic and time-reversible — used in molecular dynamics
+
+When you choose an algorithm, you are choosing which physical properties your simulation will respect. Get it wrong and your results are fiction — plausible-looking, reproducible fiction.
+
+This is what distinguishes computational physics from computational numerics. We are not just solving equations. We are trying to faithfully represent physical systems, and that requires physical understanding at every step.
+
+---
+
+## What Comes Next
+
+This post is the beginning of a series I'm calling *Code and Quanta* — a public working log of learning computational physics from the ground up. No library shortcuts, no black boxes. Everything built from the first principles of the problem.
+
+Upcoming topics in this series:
+
+| Post | Topic |
+|------|-------|
+| 2 | The Laplacian on a Grid — finite difference PDE solver |
+| 3 | Exact Diagonalisation of the Ising model |
+| 4 | Monte Carlo integration and the Metropolis algorithm |
+| 5 | The Lanczos algorithm — finding ground states of large Hamiltonians |
+
+Each post will include working Python code, derivations of the key equations, and honest commentary on what went wrong before it went right.
+
+If you spot an error, disagree with an interpretation, or have a better algorithm — leave a comment or reach out directly. This notebook is public precisely because I expect to be corrected.
+
+---
+
+## Further Reading
+
+For those who want to go deeper right now:
+
+- **Numerical Recipes** (Press et al.) — the classic reference for numerical methods in science
+- **Computational Physics** by Nicholas Giordano & Hisao Nakanishi — a gentle, physics-first introduction
+- **Quantum Many-Body Physics** by Naoki Kawashima — for where this series is eventually heading
+- The [SciPy documentation](https://docs.scipy.org) — particularly `scipy.integrate` and `scipy.linalg`
+
+---
+
+*This is post 1 of the Code and Quanta series. All code in this series is MIT licensed.*

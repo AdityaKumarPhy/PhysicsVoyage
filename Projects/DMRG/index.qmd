@@ -1,0 +1,10 @@
+---
+title: "DMRG Implementation"
+description: "Density Matrix Renormalisation Group — after ED is solid."
+date: "2026-05-21"
+categories: ["Planned", "Physics"]
+---
+
+# DMRG Implementation
+
+Project details coming soon...
