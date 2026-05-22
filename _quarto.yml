@@ -1,17 +1,31 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "."
+  title: "Physics Voyage"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - href: courses.qmd
+        text: Course 
+      - href: projects.qmd
+        text: Projects
+      - href: posts.qmd
+        text: Blog
+  sidebar:
+    - contents: posts.qmd # Creates a blog listing sidebar
+      title: Recent Posts
+  #  - exclude:
+   #   - projects.qmd # Hides the projects page from navigation
+
 
 format:
   html:
-    theme: cosmo
+    theme: sketchy
     css: styles.css
     toc: true
 
