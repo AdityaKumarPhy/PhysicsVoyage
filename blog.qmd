@@ -1,11 +1,31 @@
 ---
 title: "Blog"
-listing:
-  contents: Blog
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
 page-layout: full
+listing:
+  - id: list-view
+    contents: Blog
+    sort: "date desc"
+    type: default
+    categories: true
+    sort-ui: true
+    filter-ui: true
+  - id: grid-view
+    contents: Blog
+    sort: "date desc"
+    type: grid
+    categories: true
+    sort-ui: true
+    filter-ui: true
 ---
+
+::: {.panel-tabset}
+## List View
+
+::: {#list-view}
+:::
+
+## Grid View
+
+::: {#grid-view}
+:::
+:::

@@ -4,7 +4,7 @@ description: "What is computational physics, why it matters, and how to start th
 author: "Aditya Kumar"
 date: "2026-05-22"
 categories: [Computational Physics, Beginner, Python]
-image: "thumbnail.png"
+image: "https://placehold.co/600x400/222222/FFFFFF?text=Computational+Physics"
 draft: false
 toc: true
 ---

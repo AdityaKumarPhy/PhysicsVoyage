@@ -3,8 +3,7 @@ title: "Featured Projects"
 page-layout: full
 ---
 
-## active Development
-Detailed case studies of what you're building right now.
-
-## Open Source Contributions
-Summaries of public tools, applications, or script setups.
+::: {.callout-note}
+## 🚧 Coming Soon
+Detailed case studies of what I'm building, and summaries of open source contributions will be posted here. Check back soon!
+:::

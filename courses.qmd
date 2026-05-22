@@ -1,17 +1,31 @@
 ---
 title: "Courses"
-subtitle: "Interactive tutorials and lessons"
-title-block-banner: true
+page-layout: full
+listing:
+  - id: list-view
+    contents: Courses
+    sort: "date desc"
+    type: default
+    categories: true
+    sort-ui: true
+    filter-ui: true
+  - id: grid-view
+    contents: Courses
+    sort: "date desc"
+    type: grid
+    categories: true
+    sort-ui: true
+    filter-ui: true
 ---
 
-## Course 1: Computational Physics
-::: {.grid}
-::: {.g-col-12 .g-col-md-3}
-<!-- Add an image here once you have one: ![Course thumbnail](Files/Images/comp-physics.jpg) -->
+::: {.panel-tabset}
+## List View
+
+::: {#list-view}
 :::
 
-::: {.g-col-12 .g-col-md-9}
-**Status:** Upcoming  
-Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.
+## Grid View
+
+::: {#grid-view}
 :::
 :::

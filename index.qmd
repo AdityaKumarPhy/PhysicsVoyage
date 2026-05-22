@@ -174,36 +174,10 @@ What is computational physics and how do you actually start?
 ::: {.g-col-12 .g-col-md-4}
 #### Projects
 
-<!-- Project 1 (WIP) -->
-::: {.card .mb-3}
-::: {.card-body}
-<span class="badge bg-warning text-dark mb-2">In Progress</span><br>
-**[Exact Diagonalisation Solver](project.qmd){.stretched-link .text-decoration-none .text-reset}**
-
-<div class="mt-1 text-muted" style="font-size: 0.9em;">
-Full ED solver for spin chains in Python — energy spectra and entanglement entropy from scratch.
-</div>
+::: {.callout-note}
+## 🚧 Coming Soon
+My project portfolio is currently under construction. Please check back later!
 :::
-:::
-
-<!-- Project 2 (Planned) -->
-::: {.card .mb-3}
-::: {.card-body}
-<span class="badge bg-secondary mb-2">Planned</span><br>
-**[DMRG Implementation](project.qmd){.stretched-link .text-decoration-none .text-reset}**
-
-<div class="mt-1 text-muted" style="font-size: 0.9em;">
-Density Matrix Renormalisation Group — after ED is solid.
-</div>
-:::
-:::
-
-<!-- Under Construction placeholder -->
-<!--
-::: {.callout-note appearance="minimal"}
-🚧 **Projects under construction.** Check back soon.
-:::
--->
 
 [All projects →](project.qmd){.btn .btn-sm .btn-outline-dark}
 :::

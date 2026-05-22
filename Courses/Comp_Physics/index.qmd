@@ -1,0 +1,10 @@
+---
+title: "Computational Physics Course"
+description: "Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students."
+author: "Aditya Kumar"
+date: "2026-06-01"
+categories: [Physics, Upcoming]
+image: "https://placehold.co/600x400/222222/FFFFFF?text=Course+1"
+---
+
+Welcome to the upcoming Computational Physics course! More details will be posted here soon.

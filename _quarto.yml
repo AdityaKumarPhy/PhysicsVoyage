@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Physics Voyage"
+  search: true
   navbar:
     right:
       - href: index.qmd
