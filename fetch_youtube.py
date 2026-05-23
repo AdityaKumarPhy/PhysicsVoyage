@@ -1,6 +1,7 @@
 import os
 import json
 import urllib.request
+import time
 
 def load_env():
     env_vars = {}
@@ -13,6 +14,15 @@ def load_env():
     return env_vars
 
 def main():
+    # Cache check to preserve daily API quota limit (10,000 units)
+    # 12 hours = 43200 seconds
+    cache_file = 'youtube-data.json'
+    if os.path.exists(cache_file):
+        file_age = time.time() - os.path.getmtime(cache_file)
+        if file_age < 43200:
+            print(f"Using cached {cache_file} (last updated {int(file_age/60)} minutes ago) to preserve YouTube API quota.")
+            return
+
     env = load_env()
     api_key = env.get('YOUTUBE_API_KEY')
     channel_id = env.get('YOUTUBE_CHANNEL_ID')

@@ -258,8 +258,8 @@ My project portfolio is currently under construction. Please check back later!
 document.addEventListener("DOMContentLoaded", function() {
   async function fetchYouTubeData() {
     try {
-      // Fetch the statically generated JSON file
-      const response = await fetch("/youtube-data.json");
+      // Fetch the statically generated JSON file using relative path to support subpath hosting
+      const response = await fetch("youtube-data.json");
       if (!response.ok) {
         throw new Error("Could not load youtube-data.json");
       }
