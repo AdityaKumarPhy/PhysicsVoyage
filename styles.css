@@ -172,3 +172,41 @@ li a:not(.btn):not(.nav-link):not(.stretched-link):hover {
 [data-bs-theme="dark"] #newsletter-submit:hover {
   background-color: #0d6efd;
 }
+
+/* 
+  Global Hover Micro-Animations 
+  Add smooth pop-up and sketchy offset shadow transitions to cards, buttons, and links.
+*/
+
+/* 1. Card / Box hover effect (Sketchy shadow pop-up) */
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
+}
+
+/* 2. Button hover effect (Sketchy shadow pop-up) */
+.btn {
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background-color 0.15s ease, color 0.15s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px var(--bs-body-color, #212529) !important;
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+/* 3. Link pop-up & underline transition */
+p a:not(.btn):not(.nav-link):not(.stretched-link),
+li a:not(.btn):not(.nav-link):not(.stretched-link) {
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+p a:not(.btn):not(.nav-link):not(.stretched-link):hover,
+li a:not(.btn):not(.nav-link):not(.stretched-link):hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}

@@ -38,4 +38,6 @@ format:
       dark: dracula
     css: styles.css
     toc: true
-    include-after-body: newsletter-popup.html
+    include-after-body:
+      - newsletter-popup.html
+      - back-to-top.html

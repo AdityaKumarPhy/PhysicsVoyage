@@ -32,7 +32,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "List ViewGrid View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\nAditya Kumar\n\n\nMay 22, 2026\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Grid ViewList View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\nAditya Kumar\n\n\nMay 22, 2026\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Blog/Intro_Comp_Physics/index.html",
@@ -89,5 +89,19 @@
     "title": "Introduction to Computational Physics",
     "section": "Further Reading",
     "text": "Further Reading\nFor those who want to go deeper right now:\n\nNumerical Recipes (Press et al.) — the classic reference for numerical methods in science\nComputational Physics by Nicholas Giordano & Hisao Nakanishi — a gentle, physics-first introduction\nQuantum Many-Body Physics by Naoki Kawashima — for where this series is eventually heading\nThe SciPy documentation — particularly scipy.integrate and scipy.linalg\n\n\nThis is post 1 of the Code and Quanta series. All code in this series is MIT licensed."
+  },
+  {
+    "objectID": "courses.html",
+    "href": "courses.html",
+    "title": "Courses",
+    "section": "",
+    "text": "Grid ViewList View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nComputational Physics Course\n\n\n\nPhysics\n\n\nUpcoming\n\n\n\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.\n\n\n\nAditya Kumar\n\n\nJun 1, 2026\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nComputational Physics Course\n\n\n\n\n\n\nPhysics\n\n\nUpcoming\n\n\n\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.\n\n\n\n\n\nJun 1, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Featured Projects",
+    "section": "",
+    "text": "🚧 Coming Soon\n\n\n\nDetailed case studies of what I’m building, and summaries of open source contributions will be posted here. Check back soon!"
   }
 ]

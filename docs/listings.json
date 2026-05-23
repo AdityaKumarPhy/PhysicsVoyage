@@ -4,5 +4,11 @@
     "items": [
       "/Blog/Intro_Comp_Physics/index.html"
     ]
+  },
+  {
+    "listing": "/courses.html",
+    "items": [
+      "/Courses/Comp_Physics/index.html"
+    ]
   }
 ]

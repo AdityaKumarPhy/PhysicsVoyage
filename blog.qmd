@@ -19,13 +19,13 @@ listing:
 ---
 
 ::: {.panel-tabset}
-## List View
-
-::: {#list-view}
-:::
-
 ## Grid View
 
 ::: {#grid-view}
+:::
+
+## List View
+
+::: {#list-view}
 :::
 :::
