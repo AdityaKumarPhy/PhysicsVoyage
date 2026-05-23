@@ -19,7 +19,7 @@ toc: false
 ::: {.grid .align-items-center}
 
 <!-- LEFT COLUMN: Profile Image & Links -->
-::: {.g-col-12 .g-col-md-4 .text-center}
+::: {.g-col-12 .g-col-lg-4 .text-center}
 
 <!-- Your Photo: Replace the URL with your actual image path -->
 <a href="/about.html">
@@ -44,7 +44,7 @@ toc: false
 :::
 
 <!-- RIGHT COLUMN: Welcome Text & Call to Action -->
-::: {.g-col-12 .g-col-md-8}
+::: {.g-col-12 .g-col-lg-8}
 
 # Welcome to [Physics Voyage]{.smallcaps}
 
@@ -86,7 +86,7 @@ This site is my open notebook — structured courses, project write-ups, and a b
 ::: {.grid}
 
 <!-- Course Card 1 -->
-::: {.g-col-12 .g-col-md-4}
+::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
 **Computational Physics** <span class="badge bg-success float-end">Active</span>
@@ -95,13 +95,13 @@ This site is my open notebook — structured courses, project write-ups, and a b
 Building numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.
 
 <br>
-[Start →](courses.qmd){.btn .btn-sm .btn-dark .mt-2}
+[Start →](courses.qmd){.btn .btn-success .btn-outlined-success .mt-2}
 :::
 :::
 :::
 
 <!-- Course Card 2 -->
-::: {.g-col-12 .g-col-md-4}
+::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
 **Quantum Mechanics I** <span class="badge bg-secondary float-end">Upcoming</span>
@@ -116,7 +116,7 @@ From the postulates to perturbation theory. Every derivation done properly — f
 :::
 
 <!-- Course Card 3 -->
-::: {.g-col-12 .g-col-md-4}
+::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
 **Many-Body Physics** <span class="badge bg-secondary float-end">Upcoming</span>
@@ -146,7 +146,7 @@ Second quantisation, Hubbard models, tensor networks. The course I wish existed 
 ::: {.grid}
 
 <!-- Column 1: Blog Posts (Newest to Oldest) -->
-::: {.g-col-12 .g-col-md-4}
+::: {.g-col-12 .g-col-lg-6}
 #### Latest Posts
 
 <!-- Post 1 -->
@@ -171,7 +171,7 @@ What is computational physics and how do you actually start?
 :::
 
 <!-- Column 2: Projects (WIP / Finished / Planned) -->
-::: {.g-col-12 .g-col-md-4}
+::: {.g-col-12 .g-col-lg-6}
 #### Projects
 
 ::: {.callout-note}
@@ -182,21 +182,108 @@ My project portfolio is currently under construction. Please check back later!
 [All projects →](project.qmd){.btn .btn-sm .btn-outline-dark}
 :::
 
-<!-- Column 3: YouTube Embed -->
-::: {.g-col-12 .g-col-md-4}
-#### ▶ Latest Video
+:::
 
-<div class="ratio ratio-16x9 mb-2">
+<hr>
+
+## YouTube Highlights
+
+::: {.grid}
+
+<!-- Card 1: Latest Video -->
+::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
+::: {.card .h-100}
+::: {.card-header}
+**1. Latest Video**
+:::
+::: {.card-body .text-center}
+<div class="ratio ratio-16x9 mb-3">
   <iframe 
-    src="https://www.youtube.com/embed/O2aCxsek7bo" 
-    title="YouTube video" 
+    id="youtube-latest-iframe"
+    src="" 
+    title="Latest YouTube video" 
     allowfullscreen>
   </iframe>
 </div>
+**<a id="youtube-latest-title" href="#" class="text-decoration-none text-reset" target="_blank">Loading latest video...</a>**
+:::
+:::
+:::
 
+<!-- Card 2: Popular Video -->
+::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
+::: {.card .h-100}
+::: {.card-header}
+**2. Most Popular Video**
+:::
+::: {.card-body .text-center}
+<div class="ratio ratio-16x9 mb-3">
+  <iframe 
+    id="youtube-popular-iframe"
+    src="" 
+    title="Popular YouTube video" 
+    allowfullscreen>
+  </iframe>
+</div>
+**<a id="youtube-popular-title" href="#" class="text-decoration-none text-reset" target="_blank">Loading popular video...</a>**
+:::
+:::
+:::
+
+<!-- Card 3: Custom Playlist -->
+::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
+::: {.card .h-100}
+::: {.card-header}
+**3. Popular Series**
+:::
+::: {.card-body .text-center}
+<div class="ratio ratio-16x9 mb-3">
+  <iframe 
+    id="youtube-playlist-iframe"
+    src="https://www.youtube.com/embed/videoseries?list=PLop6Jl0vDlQ2s-PH_6pTDR8lcYRucsF4E" 
+    title="Popular Series" 
+    allowfullscreen>
+  </iframe>
+</div>
+**<a href="https://www.youtube.com/playlist?list=PLop6Jl0vDlQ2s-PH_6pTDR8lcYRucsF4E" class="text-decoration-none text-reset" target="_blank">View Playlist on YouTube</a>**
+<br>
+
+:::
+:::
 :::
 
 :::
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  async function fetchYouTubeData() {
+    try {
+      // Fetch the statically generated JSON file
+      const response = await fetch("/youtube-data.json");
+      if (!response.ok) {
+        throw new Error("Could not load youtube-data.json");
+      }
+      const data = await response.json();
+      
+      // Latest Video
+      document.getElementById("youtube-latest-iframe").src = `https://www.youtube.com/embed/${data.latest.id}`;
+      const latestLink = document.getElementById("youtube-latest-title");
+      latestLink.href = `https://www.youtube.com/watch?v=${data.latest.id}`;
+      latestLink.textContent = data.latest.title;
 
+      // Popular Video
+      document.getElementById("youtube-popular-iframe").src = `https://www.youtube.com/embed/${data.popular.id}`;
+      const popularLink = document.getElementById("youtube-popular-title");
+      popularLink.href = `https://www.youtube.com/watch?v=${data.popular.id}`;
+      popularLink.textContent = data.popular.title;
+      
+    } catch (error) {
+      console.error("Error fetching YouTube data:", error);
+      document.getElementById("youtube-latest-title").textContent = "Video unavailable";
+      document.getElementById("youtube-popular-title").textContent = "Video unavailable";
+    }
+  }
 
+  fetchYouTubeData();
+});
+</script>

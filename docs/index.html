@@ -144,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="container-fluid d-flex flex-column justify-content-center" style="min-height: 100vh;">
 <div class="grid align-items-center">
 <!-- LEFT COLUMN: Profile Image & Links -->
-<div class="g-col-12 g-col-md-4 text-center">
+<div class="g-col-12 g-col-lg-4 text-center">
 <!-- Your Photo: Replace the URL with your actual image path -->
 <p><a href="./about.html"> <img src="https://avatars.githubusercontent.com/u/219771298?v=4.png" style="object-fit: cover;" width="300" height="300"> </a></p>
 <div class="card-body text-center">
@@ -162,7 +162,7 @@ MSc Physics | IIT
 </div>
 </div>
 <!-- RIGHT COLUMN: Welcome Text & Call to Action -->
-<section id="welcome-to-physics-voyage" class="level1 g-col-12 g-col-md-8">
+<section id="welcome-to-physics-voyage" class="level1 g-col-12 g-col-lg-8">
 <h1>Welcome to <span class="smallcaps">Physics Voyage</span></h1>
 <p>I’m a <u>physicist</u> in training, documenting the voyage through quantum mechanics, many-body theory, and the code that makes the cosmos computable.</p>
 <p>This site is my open notebook — structured courses, project write-ups, and a blog that goes deeper than the textbook. No hand-waving. Everything built from first principles, mistakes included.</p>
@@ -187,19 +187,19 @@ MSc Physics | IIT
 <h2 class="anchored" data-anchor-id="courses">Courses</h2>
 <div class="grid">
 <!-- Course Card 1 -->
-<div class="g-col-12 g-col-md-4">
+<div class="g-col-12 g-col-sm-6 g-col-lg-4">
 <div class="card h-100">
 <div class="card-header">
 <p><strong>Computational Physics</strong> <span class="badge bg-success float-end">Active</span></p>
 </div>
 <div class="card-body">
 <p>Building numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.</p>
-<p><br> <a href="./courses.html" class="btn btn-sm btn-dark mt-2">Start →</a></p>
+<p><br> <a href="./courses.html" class="btn btn-success btn-outlined-success mt-2">Start →</a></p>
 </div>
 </div>
 </div>
 <!-- Course Card 2 -->
-<div class="g-col-12 g-col-md-4">
+<div class="g-col-12 g-col-sm-6 g-col-lg-4">
 <div class="card h-100">
 <div class="card-header">
 <p><strong>Quantum Mechanics I</strong> <span class="badge bg-secondary float-end">Upcoming</span></p>
@@ -211,7 +211,7 @@ MSc Physics | IIT
 </div>
 </div>
 <!-- Course Card 3 -->
-<div class="g-col-12 g-col-md-4">
+<div class="g-col-12 g-col-sm-6 g-col-lg-4">
 <div class="card h-100">
 <div class="card-header">
 <p><strong>Many-Body Physics</strong> <span class="badge bg-secondary float-end">Upcoming</span></p>
@@ -235,7 +235,7 @@ MSc Physics | IIT
 <h2 class="anchored" data-anchor-id="featured">Featured</h2>
 <div class="grid">
 <!-- Column 1: Blog Posts (Newest to Oldest) -->
-<section id="latest-posts" class="level4 g-col-12 g-col-md-4">
+<section id="latest-posts" class="level4 g-col-12 g-col-lg-6">
 <h4 class="anchored" data-anchor-id="latest-posts">Latest Posts</h4>
 <!-- Post 1 -->
 <div class="card mb-3">
@@ -251,7 +251,7 @@ MSc Physics | IIT
 <p><a href="./blog.html" class="btn btn-sm btn-outline-dark">All posts →</a></p>
 </section>
 <!-- Column 2: Projects (WIP / Finished / Planned) -->
-<section id="projects" class="level4 g-col-12 g-col-md-4">
+<section id="projects" class="level4 g-col-12 g-col-lg-6">
 <h4 class="anchored" data-anchor-id="projects">Projects</h4>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -268,19 +268,178 @@ MSc Physics | IIT
 </div>
 <p><a href="./project.html" class="btn btn-sm btn-outline-dark">All projects →</a></p>
 </section>
-<!-- Column 3: YouTube Embed -->
-<section id="latest-video" class="level4 g-col-12 g-col-md-4">
-<h4 class="anchored" data-anchor-id="latest-video">▶ Latest Video</h4>
-<div class="ratio ratio-16x9 mb-2">
-<p><iframe src="https://www.youtube.com/embed/O2aCxsek7bo" title="YouTube video" allowfullscreen=""> </iframe></p>
 </div>
+<hr>
 </section>
+<section id="youtube-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="youtube-highlights">YouTube Highlights</h2>
+<div class="grid">
+<!-- Card 1: Latest Video -->
+<div class="g-col-12 g-col-sm-6 g-col-lg-4">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>1. Latest Video</strong></p>
 </div>
+<div class="card-body text-center">
+<div class="ratio ratio-16x9 mb-3">
+<p><iframe id="youtube-latest-iframe" src="" title="Latest YouTube video" allowfullscreen=""> </iframe></p>
+</div>
+<p><strong><a id="youtube-latest-title" href="#" class="text-decoration-none text-reset" target="_blank">Loading latest video…</a></strong></p>
+</div>
+</div>
+</div>
+<!-- Card 2: Popular Video -->
+<div class="g-col-12 g-col-sm-6 g-col-lg-4">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>2. Most Popular Video</strong></p>
+</div>
+<div class="card-body text-center">
+<div class="ratio ratio-16x9 mb-3">
+<p><iframe id="youtube-popular-iframe" src="" title="Popular YouTube video" allowfullscreen=""> </iframe></p>
+</div>
+<p><strong><a id="youtube-popular-title" href="#" class="text-decoration-none text-reset" target="_blank">Loading popular video…</a></strong></p>
+</div>
+</div>
+</div>
+<!-- Card 3: Custom Playlist -->
+<div class="g-col-12 g-col-sm-6 g-col-lg-4">
+<div class="card h-100">
+<div class="card-header">
+<p><strong>3. Popular Series</strong></p>
+</div>
+<div class="card-body text-center">
+<div class="ratio ratio-16x9 mb-3">
+<p><iframe id="youtube-playlist-iframe" src="https://www.youtube.com/embed/videoseries?list=PLop6Jl0vDlQ2s-PH_6pTDR8lcYRucsF4E" title="Popular Series" allowfullscreen=""> </iframe></p>
+</div>
+<p><strong><a href="https://www.youtube.com/playlist?list=PLop6Jl0vDlQ2s-PH_6pTDR8lcYRucsF4E" class="text-decoration-none text-reset" target="_blank">View Playlist on YouTube</a></strong> <br></p>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  async function fetchYouTubeData() {
+    try {
+      // Fetch the statically generated JSON file
+      const response = await fetch("/youtube-data.json");
+      if (!response.ok) {
+        throw new Error("Could not load youtube-data.json");
+      }
+      const data = await response.json();
+      
+      // Latest Video
+      document.getElementById("youtube-latest-iframe").src = `https://www.youtube.com/embed/${data.latest.id}`;
+      const latestLink = document.getElementById("youtube-latest-title");
+      latestLink.href = `https://www.youtube.com/watch?v=${data.latest.id}`;
+      latestLink.textContent = data.latest.title;
+
+      // Popular Video
+      document.getElementById("youtube-popular-iframe").src = `https://www.youtube.com/embed/${data.popular.id}`;
+      const popularLink = document.getElementById("youtube-popular-title");
+      popularLink.href = `https://www.youtube.com/watch?v=${data.popular.id}`;
+      popularLink.textContent = data.popular.title;
+      
+    } catch (error) {
+      console.error("Error fetching YouTube data:", error);
+      document.getElementById("youtube-latest-title").textContent = "Video unavailable";
+      document.getElementById("youtube-popular-title").textContent = "Video unavailable";
+    }
+  }
+
+  fetchYouTubeData();
+});
+</script>
 
 
 </section>
 
 </main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -835,6 +994,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

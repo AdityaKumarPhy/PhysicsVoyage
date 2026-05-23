@@ -1,11 +1,5 @@
 [
   {
-    "listing": "/courses.html",
-    "items": [
-      "/Courses/Comp_Physics/index.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/Blog/Intro_Comp_Physics/index.html"

@@ -36,3 +36,139 @@ li a:not(.btn):not(.nav-link):not(.stretched-link):hover {
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+/* Newsletter Popup Styles */
+.newsletter-modal {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsletter-modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.newsletter-modal-content {
+  background-color: #fdfdfd;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform 0.4s ease;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+[data-bs-theme="dark"] .newsletter-modal-content {
+  background-color: #222;
+  color: #eee;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.newsletter-modal.show .newsletter-modal-content {
+  transform: translateY(0);
+}
+
+.newsletter-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.newsletter-close:hover {
+  color: #333;
+}
+
+[data-bs-theme="dark"] .newsletter-close:hover {
+  color: #ccc;
+}
+
+.newsletter-header h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.newsletter-header p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+[data-bs-theme="dark"] .newsletter-header p {
+  color: #aaa;
+}
+
+#newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#newsletter-email {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.2s ease;
+}
+
+[data-bs-theme="dark"] #newsletter-email {
+  background-color: #333;
+  border-color: #555;
+  color: #eee;
+}
+
+#newsletter-email:focus {
+  border-color: #0d6efd;
+}
+
+[data-bs-theme="dark"] #newsletter-email:focus {
+  border-color: #3d8bfd;
+}
+
+#newsletter-submit {
+  padding: 12px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#newsletter-submit:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-1px);
+}
+
+[data-bs-theme="dark"] #newsletter-submit {
+  background-color: #3d8bfd;
+}
+
+[data-bs-theme="dark"] #newsletter-submit:hover {
+  background-color: #0d6efd;
+}

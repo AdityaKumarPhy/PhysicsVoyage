@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "courses.html",
-    "href": "courses.html",
-    "title": "Courses",
-    "section": "",
-    "text": "List ViewGrid View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nComputational Physics Course\n\n\n\n\n\n\nPhysics\n\n\nUpcoming\n\n\n\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.\n\n\n\n\n\nJun 1, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nComputational Physics Course\n\n\n\nPhysics\n\n\nUpcoming\n\n\n\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.\n\n\n\nAditya Kumar\n\n\nJun 1, 2026\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Projects/DMRG/index.html",
-    "href": "Projects/DMRG/index.html",
-    "title": "DMRG Implementation",
-    "section": "",
-    "text": "DMRG Implementation\nProject details coming soon…"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome to Physics Voyage",
@@ -32,28 +18,21 @@
     "href": "index.html#featured",
     "title": "Welcome to Physics Voyage",
     "section": "Featured",
-    "text": "Featured\n\n\n\nLatest Posts\n\n\n\nIntroduction to Computational Physics\nMay 22, 2026 Computational Python Beginner\n\nWhat is computational physics and how do you actually start?\n\n\n\n\nAll posts →\n\n\n\nProjects\n\n\n\n\n\n\n🚧 Coming Soon\n\n\n\nMy project portfolio is currently under construction. Please check back later!\n\n\nAll projects →\n\n\n\n▶ Latest Video"
+    "text": "Featured\n\n\n\nLatest Posts\n\n\n\nIntroduction to Computational Physics\nMay 22, 2026 Computational Python Beginner\n\nWhat is computational physics and how do you actually start?\n\n\n\n\nAll posts →\n\n\n\nProjects\n\n\n\n\n\n\n🚧 Coming Soon\n\n\n\nMy project portfolio is currently under construction. Please check back later!\n\n\nAll projects →"
   },
   {
-    "objectID": "Courses/Comp_Physics/index.html",
-    "href": "Courses/Comp_Physics/index.html",
-    "title": "Computational Physics Course",
-    "section": "",
-    "text": "Welcome to the upcoming Computational Physics course! More details will be posted here soon."
+    "objectID": "index.html#youtube-highlights",
+    "href": "index.html#youtube-highlights",
+    "title": "Welcome to Physics Voyage",
+    "section": "YouTube Highlights",
+    "text": "YouTube Highlights\n\n\n\n\n\n1. Latest Video\n\n\n\n \n\nLoading latest video…\n\n\n\n\n\n\n\n2. Most Popular Video\n\n\n\n \n\nLoading popular video…\n\n\n\n\n\n\n\n3. Popular Series\n\n\n\n \n\nView Playlist on YouTube"
   },
   {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "Featured Projects",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
     "section": "",
-    "text": "🚧 Coming Soon\n\n\n\nDetailed case studies of what I’m building, and summaries of open source contributions will be posted here. Check back soon!"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "text": "List ViewGrid View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\nAditya Kumar\n\n\nMay 22, 2026\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Blog/Intro_Comp_Physics/index.html",
@@ -110,19 +89,5 @@
     "title": "Introduction to Computational Physics",
     "section": "Further Reading",
     "text": "Further Reading\nFor those who want to go deeper right now:\n\nNumerical Recipes (Press et al.) — the classic reference for numerical methods in science\nComputational Physics by Nicholas Giordano & Hisao Nakanishi — a gentle, physics-first introduction\nQuantum Many-Body Physics by Naoki Kawashima — for where this series is eventually heading\nThe SciPy documentation — particularly scipy.integrate and scipy.linalg\n\n\nThis is post 1 of the Code and Quanta series. All code in this series is MIT licensed."
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
-    "section": "",
-    "text": "List ViewGrid View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\nAditya Kumar\n\n\nMay 22, 2026\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "Projects/ED_Solver/index.html",
-    "href": "Projects/ED_Solver/index.html",
-    "title": "Exact Diagonalisation Solver",
-    "section": "",
-    "text": "Exact Diagonalisation Solver\nProject details coming soon…"
   }
 ]

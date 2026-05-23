@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  pre-render: python3 fetch_youtube.py
+  resources:
+    - youtube-data.json
 
 website:
   title: "Physics Voyage"
@@ -21,9 +24,8 @@ website:
   sidebar:
     - contents: posts.qmd # Creates a blog listing sidebar
       title: Recent Posts
-  #  - exclude:
-   #   - projects.qmd # Hides the projects page from navigation
-
+  page-footer:
+    center: "© 2026 Physics Voyage"
 
 format:
   html:
@@ -36,5 +38,4 @@ format:
       dark: dracula
     css: styles.css
     toc: true
-
-
+    include-after-body: newsletter-popup.html
