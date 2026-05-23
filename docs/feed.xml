@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Physics Voyage</title>
+<link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/feed.html</link>
+<atom:link href="https://adityakumarphy.github.io/PhysicsVoyage.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.4.555</generator>
+<lastBuildDate>Thu, 21 May 2026 18:30:00 GMT</lastBuildDate>
+<item>
+  <title>Introduction to Computational Physics</title>
+  <dc:creator>Aditya Kumar</dc:creator>
+  <link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Intro_Comp_Physics/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="why-does-computational-physics-exist" class="level2">
+<h2 class="anchored" data-anchor-id="why-does-computational-physics-exist">Why Does Computational Physics Exist?</h2>
+<p>Physics has always had two engines: <strong>theory</strong> and <strong>experiment</strong>. Theory gives us equations — Maxwell’s equations, the Schrödinger equation, the Einstein field equations. Experiment tells us whether those equations describe reality.</p>
+<p>For most of human history, that was enough. You derived an equation, solved it analytically, made a prediction, tested it. The workflow was clean.</p>
+<p>Then the problems got harder.</p>
+<p>The Schrödinger equation for a single hydrogen atom has an exact analytical solution. The Schrödinger equation for two electrons — helium — already requires approximations. For ten electrons? Forget closed forms. For the <img src="https://latex.codecogs.com/png.latex?10%5E%7B23%7D"> electrons in a piece of copper? The exact wavefunction of that system lives in a Hilbert space so vast that writing it down would require more information than atoms in the observable universe.</p>
+<p>This is where <strong>computational physics</strong> enters the picture. It is the third engine — the one that fills the gap between “we have an equation” and “we can’t solve it analytically.”</p>
+<hr>
+</section>
+<section id="what-computational-physics-actually-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-computational-physics-actually-is">What Computational Physics Actually Is</h2>
+<p>Computational physics is not just “physics done on a computer.” It is a discipline with its own methods, its own aesthetics, its own failure modes.</p>
+<p>At its core, it is about <strong>discretisation</strong> — taking the continuous language of physics (differential equations, integrals, infinite Hilbert spaces) and translating it into a finite set of numbers that a machine can manipulate.</p>
+<p>Consider the simplest example. The heat equation:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cpartial%20T%7D%7B%5Cpartial%20t%7D%20=%20%5Calpha%20%5Cfrac%7B%5Cpartial%5E2%20T%7D%7B%5Cpartial%20x%5E2%7D"></p>
+<p>This describes how temperature <img src="https://latex.codecogs.com/png.latex?T"> spreads through a rod over time. Analytically, we can solve it for simple boundary conditions. But for a rod with complicated geometry, weird materials, or time-varying boundaries? Analytically intractable.</p>
+<p>Computationally, we <strong>discretise</strong> the rod into a grid of points <img src="https://latex.codecogs.com/png.latex?x_0,%20x_1,%20%5Cldots,%20x_N">, and the time into steps <img src="https://latex.codecogs.com/png.latex?t_0,%20t_1,%20%5Cldots,%20t_M">. Then we replace the derivatives with finite differences:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cpartial%5E2%20T%7D%7B%5Cpartial%20x%5E2%7D%20%5Capprox%20%5Cfrac%7BT(x+h)%20-%202T(x)%20+%20T(x-h)%7D%7Bh%5E2%7D"></p>
+<p>Now instead of a differential equation, we have an algebraic update rule — something a computer can apply millions of times per second.</p>
+<p>That replacement — continuous → discrete, differential → algebraic — is the fundamental act of computational physics.</p>
+<hr>
+</section>
+<section id="the-four-pillars" class="level2">
+<h2 class="anchored" data-anchor-id="the-four-pillars">The Four Pillars</h2>
+<p>Most of computational physics sits on four broad methods:</p>
+<section id="finite-difference-finite-element-methods-fdm-fem" class="level3">
+<h3 class="anchored" data-anchor-id="finite-difference-finite-element-methods-fdm-fem">1. Finite Difference &amp; Finite Element Methods (FDM / FEM)</h3>
+<p>For differential equations on grids. This is how we simulate fluid flow, heat transfer, electromagnetic fields in complex geometries, and elastic materials. The idea is always the same: discretise space (and time), replace derivatives with differences, iterate.</p>
+</section>
+<section id="molecular-dynamics-md" class="level3">
+<h3 class="anchored" data-anchor-id="molecular-dynamics-md">2. Molecular Dynamics (MD)</h3>
+<p>For systems of interacting particles. We apply Newton’s second law to every particle at every timestep: <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BF%7D%20=%20m%5Cmathbf%7Ba%7D">, update positions and velocities. This is how we simulate proteins folding, materials fracturing, plasmas evolving.</p>
+</section>
+<section id="monte-carlo-methods" class="level3">
+<h3 class="anchored" data-anchor-id="monte-carlo-methods">3. Monte Carlo Methods</h3>
+<p>For problems where the answer is an integral over an enormous space, and exact methods are impossible. Instead of integrating everywhere, we sample randomly — and the law of large numbers guarantees we converge to the right answer. Monte Carlo is how we compute path integrals in quantum field theory, study phase transitions, and price financial derivatives.</p>
+</section>
+<section id="matrix-linear-algebra-methods" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-linear-algebra-methods">4. Matrix / Linear Algebra Methods</h3>
+<p>For quantum mechanics especially. The Hamiltonian <img src="https://latex.codecogs.com/png.latex?%5Chat%7BH%7D"> of a quantum system is a matrix (or an operator that we represent as one). Finding energy levels means diagonalising that matrix. For small systems we do this exactly — this is <strong>exact diagonalisation (ED)</strong>. For large systems we use approximate methods: Lanczos algorithms, DMRG, tensor networks.</p>
+<hr>
+</section>
+</section>
+<section id="a-first-example-the-harmonic-oscillator" class="level2">
+<h2 class="anchored" data-anchor-id="a-first-example-the-harmonic-oscillator">A First Example: The Harmonic Oscillator</h2>
+<p>Let’s make this concrete. The harmonic oscillator — a mass on a spring — has the equation of motion:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bd%5E2%20x%7D%7Bdt%5E2%7D%20=%20-%5Comega%5E2%20x"></p>
+<p>We know the analytic solution: <img src="https://latex.codecogs.com/png.latex?x(t)%20=%20A%5Ccos(%5Comega%20t%20+%20%5Cphi)">. But let’s solve it numerically anyway, to see the method.</p>
+<p>We convert the second-order ODE into two first-order ODEs:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cfrac%7Bdx%7D%7Bdt%7D%20=%20v,%20%5Cqquad%20%5Cfrac%7Bdv%7D%7Bdt%7D%20=%20-%5Comega%5E2%20x"></p>
+<p>Then we use the <strong>Euler method</strong> — the simplest possible numerical integrator:</p>
+<p><img src="https://latex.codecogs.com/png.latex?x_%7Bn+1%7D%20=%20x_n%20+%20v_n%20%5Ccdot%20%5CDelta%20t"> <img src="https://latex.codecogs.com/png.latex?v_%7Bn+1%7D%20=%20v_n%20-%20%5Comega%5E2%20x_n%20%5Ccdot%20%5CDelta%20t"></p>
+<p>In Python:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Parameters</span></span>
+<span id="cb1-5">omega <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> np.pi   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># angular frequency (1 Hz oscillation)</span></span>
+<span id="cb1-6">dt    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span>        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># timestep — smaller = more accurate</span></span>
+<span id="cb1-7">T     <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span>         <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># total simulation time in seconds</span></span>
+<span id="cb1-8">steps <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> dt)</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initial conditions</span></span>
+<span id="cb1-11">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># initial position (amplitude = 1)</span></span>
+<span id="cb1-12">v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># starting from rest</span></span>
+<span id="cb1-13"></span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Storage arrays</span></span>
+<span id="cb1-15">x_vals <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.zeros(steps)</span>
+<span id="cb1-16">t_vals <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.linspace(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, T, steps)</span>
+<span id="cb1-17"></span>
+<span id="cb1-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Euler integration loop</span></span>
+<span id="cb1-19"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(steps):</span>
+<span id="cb1-20">    x_vals[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x           <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># record current position</span></span>
+<span id="cb1-21">    x_new <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> dt      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># update position</span></span>
+<span id="cb1-22">    v_new <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> omega<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> dt   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># update velocity</span></span>
+<span id="cb1-23">    x, v  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x_new, v_new    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># advance state</span></span>
+<span id="cb1-24"></span>
+<span id="cb1-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Analytical solution for comparison</span></span>
+<span id="cb1-26">x_exact <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.cos(omega <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> t_vals)</span>
+<span id="cb1-27"></span>
+<span id="cb1-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot</span></span>
+<span id="cb1-29">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>))</span>
+<span id="cb1-30">plt.plot(t_vals, x_vals,  label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Euler (numerical)'</span>, linewidth<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-31">plt.plot(t_vals, x_exact, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Exact solution'</span>,    linewidth<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, linestyle<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'--'</span>)</span>
+<span id="cb1-32">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Time (s)'</span>)</span>
+<span id="cb1-33">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Position x(t)'</span>)</span>
+<span id="cb1-34">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Harmonic Oscillator — Euler vs Exact'</span>)</span>
+<span id="cb1-35">plt.legend()</span>
+<span id="cb1-36">plt.tight_layout()</span>
+<span id="cb1-37">plt.show()</span></code></pre></div>
+<p>Run this and you’ll immediately see a problem: the Euler solution slowly <strong>drifts away</strong> from the exact answer. The amplitude grows over time — the oscillator appears to gain energy from nowhere.</p>
+<p>This is not a bug in your code. It is a fundamental property of the Euler method: it does <strong>not</strong> conserve energy. For oscillatory systems, this is catastrophic.</p>
+<p>The fix? Use a <strong>symplectic integrator</strong> — the simplest one is called the <strong>Symplectic Euler</strong> (or Euler-Cromer) method. The only change is that you use the <em>updated</em> velocity when computing the new position:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Symplectic Euler — just swap the order of updates</span></span>
+<span id="cb2-2">v_new <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> omega<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> dt   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># update velocity FIRST</span></span>
+<span id="cb2-3">x_new <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> v_new <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> dt           <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># use NEW velocity for position</span></span></code></pre></div>
+<p>This tiny reordering makes the method energy-conserving over long times. The physics is now correct.</p>
+<hr>
+</section>
+<section id="why-this-matters-the-bigger-picture" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-the-bigger-picture">Why This Matters: The Bigger Picture</h2>
+<p>The harmonic oscillator example teaches something much deeper than numerics. It shows that <strong>the choice of algorithm is a physics choice</strong>, not just a software engineering choice.</p>
+<p>Different integrators preserve different things: - Euler preserves nothing (energy drifts) - Symplectic Euler preserves a <em>modified</em> Hamiltonian (energy stays bounded) - Runge-Kutta 4 is more accurate per step but still not symplectic - Verlet / leapfrog are symplectic and time-reversible — used in molecular dynamics</p>
+<p>When you choose an algorithm, you are choosing which physical properties your simulation will respect. Get it wrong and your results are fiction — plausible-looking, reproducible fiction.</p>
+<p>This is what distinguishes computational physics from computational numerics. We are not just solving equations. We are trying to faithfully represent physical systems, and that requires physical understanding at every step.</p>
+<hr>
+</section>
+<section id="what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next">What Comes Next</h2>
+<p>This post is the beginning of a series I’m calling <em>Code and Quanta</em> — a public working log of learning computational physics from the ground up. No library shortcuts, no black boxes. Everything built from the first principles of the problem.</p>
+<p>Upcoming topics in this series:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Post</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>The Laplacian on a Grid — finite difference PDE solver</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Exact Diagonalisation of the Ising model</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Monte Carlo integration and the Metropolis algorithm</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>The Lanczos algorithm — finding ground states of large Hamiltonians</td>
+</tr>
+</tbody>
+</table>
+<p>Each post will include working Python code, derivations of the key equations, and honest commentary on what went wrong before it went right.</p>
+<p>If you spot an error, disagree with an interpretation, or have a better algorithm — leave a comment or reach out directly. This notebook is public precisely because I expect to be corrected.</p>
+<hr>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further Reading</h2>
+<p>For those who want to go deeper right now:</p>
+<ul>
+<li><strong>Numerical Recipes</strong> (Press et al.) — the classic reference for numerical methods in science</li>
+<li><strong>Computational Physics</strong> by Nicholas Giordano &amp; Hisao Nakanishi — a gentle, physics-first introduction</li>
+<li><strong>Quantum Many-Body Physics</strong> by Naoki Kawashima — for where this series is eventually heading</li>
+<li>The <a href="https://docs.scipy.org">SciPy documentation</a> — particularly <code>scipy.integrate</code> and <code>scipy.linalg</code></li>
+</ul>
+<hr>
+<p><em>This is post 1 of the Code and Quanta series. All code in this series is MIT licensed.</em></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Computational Physics</category>
+  <category>Beginner</category>
+  <category>Python</category>
+  <guid>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Intro_Comp_Physics/</guid>
+  <pubDate>Thu, 21 May 2026 18:30:00 GMT</pubDate>
+  <media:content url="https://placehold.co/600x400/222222/FFFFFF?text=Computational+Physics" medium="image"/>
+</item>
+</channel>
+</rss>

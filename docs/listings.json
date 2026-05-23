@@ -1,14 +1,20 @@
 [
   {
+    "listing": "/courses.html",
+    "items": [
+      "/Courses/Comp_Physics/index.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/Blog/Intro_Comp_Physics/index.html"
     ]
   },
   {
-    "listing": "/courses.html",
+    "listing": "/feed.html",
     "items": [
-      "/Courses/Comp_Physics/index.html"
+      "/Blog/Intro_Comp_Physics/index.html"
     ]
   }
 ]

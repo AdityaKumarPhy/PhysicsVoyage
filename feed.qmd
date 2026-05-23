@@ -1,0 +1,9 @@
+---
+title: "Physics Voyage Feed"
+search: false
+listing:
+  contents: Blog
+  sort: "date desc"
+  type: default
+  feed: true
+---
