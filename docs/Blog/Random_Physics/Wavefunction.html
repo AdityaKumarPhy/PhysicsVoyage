@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-25">
+<meta name="description" content="Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, Dirac notation, and time evolution of superposed quantum states.">
 
-<title>Physics Voyage</title>
+<title>Physics Voyage - Computational Quantum Mechanics: Infinite Potential Well</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,6 +103,35 @@ document.addEventListener("scroll", function() {
 });
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 
@@ -155,11 +187,58 @@ document.addEventListener("scroll", function() {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Computational Quantum Mechanics: Infinite Potential Well</h1>
+                  <div>
+        <div class="description">
+          Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, Dirac notation, and time evolution of superposed quantum states.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Quantum Mechanics</div>
+                <div class="quarto-category">Computational Physics</div>
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">Infinite Potential Well</div>
+                <div class="quarto-category">Quantum Computing</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aditya Kumar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 25, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link active" data-scroll-target="#problem-statement">Problem Statement</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -168,7 +247,29 @@ document.addEventListener("scroll", function() {
 
 
 
+<section id="problem-statement" class="level1">
+<h1>Problem Statement</h1>
+<p>A particle of mass <span class="math inline">\(m\)</span> moves freely inside a one-dimensional infinite potential well of length <span class="math inline">\(a\)</span>. t time <span class="math inline">\(t=0\)</span>, the particle has the initial wavefunction</p>
+<p><span class="math display">\[
+\psi(x,0)=
+\frac{A}{\sqrt a}\sin\left(\frac{\pi x}{a}\right)
++
+\sqrt{\frac{3}{5a}}
+\sin\left(\frac{3\pi x}{a}\right)
++
+\frac{1}{\sqrt{5a}}
+\sin\left(\frac{5\pi x}{a}\right)
+\]</span></p>
+<p>where <span class="math inline">\(A\)</span> is a real constant.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ol type="1">
+<li>Zettili, <em>Quantum Mechanics: Concepts and Applications</em></li>
+</ol>
 
+
+</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

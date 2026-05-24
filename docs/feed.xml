@@ -10,7 +10,42 @@
 <atom:link href="https://adityakumarphy.github.io/PhysicsVoyage.github.io/feed.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Thu, 21 May 2026 18:30:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 24 May 2026 18:30:00 GMT</lastBuildDate>
+<item>
+  <title>Computational Quantum Mechanics: Infinite Potential Well</title>
+  <dc:creator>Aditya Kumar</dc:creator>
+  <link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/Wavefunction.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="problem-statement" class="level1">
+<h1>Problem Statement</h1>
+<p>A particle of mass <img src="https://latex.codecogs.com/png.latex?m"> moves freely inside a one-dimensional infinite potential well of length <img src="https://latex.codecogs.com/png.latex?a">. t time <img src="https://latex.codecogs.com/png.latex?t=0">, the particle has the initial wavefunction</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cpsi(x,0)=%0A%5Cfrac%7BA%7D%7B%5Csqrt%20a%7D%5Csin%5Cleft(%5Cfrac%7B%5Cpi%20x%7D%7Ba%7D%5Cright)%0A+%0A%5Csqrt%7B%5Cfrac%7B3%7D%7B5a%7D%7D%0A%5Csin%5Cleft(%5Cfrac%7B3%5Cpi%20x%7D%7Ba%7D%5Cright)%0A+%0A%5Cfrac%7B1%7D%7B%5Csqrt%7B5a%7D%7D%0A%5Csin%5Cleft(%5Cfrac%7B5%5Cpi%20x%7D%7Ba%7D%5Cright)%0A"></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?A"> is a real constant.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ol type="1">
+<li>Zettili, <em>Quantum Mechanics: Concepts and Applications</em></li>
+</ol>
+
+
+</section>
+
+ ]]></description>
+  <category>Quantum Mechanics</category>
+  <category>Computational Physics</category>
+  <category>Python</category>
+  <category>Infinite Potential Well</category>
+  <category>Quantum Computing</category>
+  <guid>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/Wavefunction.html</guid>
+  <pubDate>Sun, 24 May 2026 18:30:00 GMT</pubDate>
+  <media:content url="https://i.pinimg.com/736x/cb/39/bf/cb39bf481101baef608d641a1afe62bb.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Introduction to Computational Physics</title>
   <dc:creator>Aditya Kumar</dc:creator>
