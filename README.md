@@ -1,1 +1,5 @@
-# PhysicsVoyage.github.io
+# Physics Voyage
+
+A personal website and blog dedicated to physics, academics, and projects.
+
+🌍 **Website:** [https://PhysicsVoyage.github.io](https://PhysicsVoyage.github.io)
