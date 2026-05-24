@@ -29,7 +29,7 @@ toc: false
 
 <div class="card-body text-center">
   <h3 class="name">Aditya Kumar</h3>
-  <p class="subtitle">MSc Physics | IIT</p>
+  <p class="subtitle">MSc Physics </p>
 </div>
 
 <br>
