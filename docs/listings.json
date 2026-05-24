@@ -8,13 +8,15 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/Blog/Intro_Comp_Physics/index.html"
+      "/Blog/Random_Physics/Wavefunction.html",
+      "/Blog/Subjects/Intro_Comp_Physics/index.html"
     ]
   },
   {
     "listing": "/feed.html",
     "items": [
-      "/Blog/Intro_Comp_Physics/index.html"
+      "/Blog/Random_Physics/Wavefunction.html",
+      "/Blog/Subjects/Intro_Comp_Physics/index.html"
     ]
   }
 ]

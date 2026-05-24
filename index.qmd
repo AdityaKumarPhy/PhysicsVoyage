@@ -28,7 +28,7 @@ toc: false
 
 
 <div class="card-body text-center">
-  <h3 class="name">Aditya Kumar</h3>
+  <h3 class="name">[Aditya Kumar]{.smallcaps}</h3>
   <p class="subtitle">MSc Physics</p>
 </div>
 
@@ -152,7 +152,7 @@ Second quantisation, Hubbard models, tensor networks. The course I wish existed 
 <!-- Post 1 -->
 ::: {.card .mb-3}
 ::: {.card-body}
-**[Introduction to Computational Physics](Blog/Intro_Comp_Physics/index.qmd){.stretched-link .text-decoration-none .text-reset}**
+**[Introduction to Computational Physics](Blog/Subjects/Intro_Comp_Physics/index.qmd){.stretched-link .text-decoration-none .text-reset}**
 
 <small class="text-muted">May 22, 2026</small><br>
 <span class="badge bg-dark">Computational</span>

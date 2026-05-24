@@ -14,7 +14,7 @@
 <item>
   <title>Introduction to Computational Physics</title>
   <dc:creator>Aditya Kumar</dc:creator>
-  <link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Intro_Comp_Physics/</link>
+  <link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Subjects/Intro_Comp_Physics/</link>
   <description><![CDATA[ 
 
 
@@ -345,9 +345,9 @@ font-style: inherit;"># use NEW velocity for position</span></span></code></pre>
   <category>Computational Physics</category>
   <category>Beginner</category>
   <category>Python</category>
-  <guid>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Intro_Comp_Physics/</guid>
+  <guid>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Subjects/Intro_Comp_Physics/</guid>
   <pubDate>Thu, 21 May 2026 18:30:00 GMT</pubDate>
-  <media:content url="https://placehold.co/600x400/222222/FFFFFF?text=Computational+Physics" medium="image"/>
+  <media:content url="https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Subjects/Intro_Comp_Physics/Blog/Subjects/Intro_Comp_Physics/cover.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

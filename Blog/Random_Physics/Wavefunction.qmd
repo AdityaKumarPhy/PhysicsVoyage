@@ -1,0 +1,167 @@
+---
+title: "Computational Quantum Mechanics: Infinite Potential Well"
+author: "Aditya Kumar"
+date: today
+date-format: long
+description: >
+  Solving the infinite potential well problem using both analytical
+  and computational methods in Python. This project explores
+  normalization, quantum measurements, expectation values,
+  Dirac notation, and time evolution of superposed quantum states.
+
+categories:
+  - Quantum Mechanics
+  - Computational Physics
+  - Python
+  - Infinite Potential Well
+  - Quantum Computing
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: true
+    theme: sketchy
+    number-sections: true
+    smooth-scroll: true
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+jupyter: python3
+
+editor: visual
+---
+
+# Introduction
+
+Write your introduction here.
+
+---
+
+# Problem Statement
+
+A particle of mass $m$ moves freely inside a one-dimensional infinite potential well of length $a$.
+
+The normalized energy eigenfunctions are:
+
+$$
+\phi_n(x)=\sqrt{\frac{2}{a}}
+\sin\left(\frac{n\pi x}{a}\right)
+$$
+
+with corresponding energy eigenvalues:
+
+$$
+E_n=\frac{n^2\pi^2\hbar^2}{2ma^2}
+$$
+
+At time $t=0$, the particle has the initial wavefunction
+
+$$
+\psi(x,0)=
+\frac{A}{\sqrt a}\sin\left(\frac{\pi x}{a}\right)
++
+\sqrt{\frac{3}{5a}}
+\sin\left(\frac{3\pi x}{a}\right)
++
+\frac{1}{\sqrt{5a}}
+\sin\left(\frac{5\pi x}{a}\right)
+$$
+
+where $A$ is a real constant.
+
+---
+
+# Part A — Normalization
+
+## Theory
+
+Write your theory here.
+
+## Analytical Solution
+
+Write your derivation here.
+
+## Computational Solution
+
+```python
+# Write your Python code here
+```
+
+---
+
+# Part B — Energy Measurements
+
+## Theory
+
+Write your explanation here.
+
+## Analytical Solution
+
+Write your derivation here.
+
+## Computational Solution
+
+```python
+# Write your Python code here
+```
+
+---
+
+# Part C — Time Evolution
+
+## Theory
+
+Write your explanation here.
+
+## Time-Dependent Wavefunction
+
+$$
+\psi(x,t)
+=
+\sum_n c_n \phi_n(x)e^{-iE_nt/\hbar}
+$$
+
+## Computational Simulation
+
+```python
+# Write your Python simulation here
+```
+
+---
+
+# Visualization
+
+## Real Part of the Wavefunction
+
+```python
+# Plot Re[psi(x,t)]
+```
+
+## Imaginary Part of the Wavefunction
+
+```python
+# Plot Im[psi(x,t)]
+```
+
+## Probability Density
+
+```python
+# Plot |psi(x,t)|^2
+```
+
+---
+
+# Conclusion
+
+Write your conclusion here.
+
+---
+
+# References
+
+1. Zettili, *Quantum Mechanics: Concepts and Applications*
