@@ -10,7 +10,7 @@ image: "https://i.pinimg.com/736x/cb/39/bf/cb39bf481101baef608d641a1afe62bb.jpg"
 execute:
   echo: true
   warning: false
-code-fold: show
+code-fold: true
 code-tools: false
 ---
 

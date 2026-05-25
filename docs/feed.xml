@@ -64,8 +64,8 @@
 </section>
 <section id="computational-solution" class="level3">
 <h3 class="anchored" data-anchor-id="computational-solution">Computational Solution</h3>
-<div id="29819d75" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
+<div id="4ece44b6" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
@@ -517,8 +517,8 @@ Understanding the Graph
 </section>
 <section id="computational-solution-1" class="level3">
 <h3 class="anchored" data-anchor-id="computational-solution-1">Computational Solution</h3>
-<div id="f324edf6" class="cell" data-execution_count="2">
-<details open="" class="code-fold">
+<div id="07afab9c" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -962,8 +962,8 @@ Explore different times
 <p>Change the value of <code>t_in_T1</code> below to see <img src="https://latex.codecogs.com/png.latex?%7C%5Cpsi(x,t)%7C%5E2"> at different moments. The value is in units of <img src="https://latex.codecogs.com/png.latex?T_1%20=%202%5Cpi%5Chbar/E_1">.</p>
 </div>
 </div>
-<div id="f560bae2" class="cell" data-execution_count="3">
-<details open="" class="code-fold">
+<div id="3dbe8818" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1395,8 +1395,8 @@ font-style: inherit;">1.02</span>)</span>
 </div>
 </div>
 </div>
-<div id="087590f1" class="cell" data-execution_count="4">
-<details open="" class="code-fold">
+<div id="bc51a8cf" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
 background-color: null;

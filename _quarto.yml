@@ -8,6 +8,7 @@ project:
 website:
   title: "Physics Voyage"
   site-url: "https://adityakumarphy.github.io/PhysicsVoyage.github.io/"
+  favicon: assets/favicon.pnf
   search: true
   navbar:
     right:

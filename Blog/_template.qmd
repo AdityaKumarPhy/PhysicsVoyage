@@ -1,0 +1,12 @@
+---
+title: "Post Title Here"
+description: "A short summary of what this blog post is about."
+author: "Aditya Kumar"
+date: "2026-05-25" # Update this to the current date
+categories: [Physics, Computational] # Add relevant tags
+draft: false # Set to true if you want to keep it as a draft
+format:
+  html:
+    code-fold: true # Collapses code blocks by default (users can expand to view)
+---
+

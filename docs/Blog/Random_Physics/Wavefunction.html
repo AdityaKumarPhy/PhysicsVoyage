@@ -67,6 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.pnf" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,30 +146,44 @@ document.addEventListener("DOMContentLoaded", function() {
   watermark.textContent = "Physics Voyage";
   document.body.appendChild(watermark);
 
-  // Add print button to the title metadata block
-  const titleMeta = document.querySelector(".quarto-title-meta");
-  if (titleMeta) {
-    const metaItem = document.createElement("div");
-    metaItem.className = "pdf-download-meta-item";
-
-    const heading = document.createElement("div");
-    heading.className = "quarto-title-meta-heading";
-    heading.textContent = "Download";
-
-    const contents = document.createElement("div");
-    contents.className = "quarto-title-meta-contents";
-
-    const p = document.createElement("p");
+  // Add print button right next to the published date if it exists
+  const dateElement = document.querySelector(".quarto-title-meta-contents .date");
+  if (dateElement) {
     const btn = document.createElement("button");
-    btn.className = "btn btn-outline-secondary btn-sm";
+    btn.className = "btn btn-outline-secondary btn-sm ms-3";
+    btn.style.display = "inline-flex";
+    btn.style.alignItems = "center";
+    btn.style.gap = "5px";
+    btn.style.verticalAlign = "middle";
     btn.onclick = function() { window.print(); };
     btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
+    dateElement.appendChild(btn);
+  } else {
+    // Fallback: append as a separate metadata item if no date is found
+    const titleMeta = document.querySelector(".quarto-title-meta");
+    if (titleMeta) {
+      const metaItem = document.createElement("div");
+      metaItem.className = "pdf-download-meta-item";
 
-    p.appendChild(btn);
-    contents.appendChild(p);
-    metaItem.appendChild(heading);
-    metaItem.appendChild(contents);
-    titleMeta.appendChild(metaItem);
+      const heading = document.createElement("div");
+      heading.className = "quarto-title-meta-heading";
+      heading.textContent = "Download";
+
+      const contents = document.createElement("div");
+      contents.className = "quarto-title-meta-contents";
+
+      const p = document.createElement("p");
+      const btn = document.createElement("button");
+      btn.className = "btn btn-outline-secondary btn-sm";
+      btn.onclick = function() { window.print(); };
+      btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
+
+      p.appendChild(btn);
+      contents.appendChild(p);
+      metaItem.appendChild(heading);
+      metaItem.appendChild(contents);
+      titleMeta.appendChild(metaItem);
+    }
   }
 });
 </script>
@@ -409,8 +424,8 @@ A = \sqrt{\frac{6}{5}}
 </section>
 <section id="computational-solution" class="level3">
 <h3 class="anchored" data-anchor-id="computational-solution">Computational Solution</h3>
-<div id="29819d75" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
+<div id="4ece44b6" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -568,8 +583,8 @@ Understanding the Graph
 </section>
 <section id="computational-solution-1" class="level3">
 <h3 class="anchored" data-anchor-id="computational-solution-1">Computational Solution</h3>
-<div id="f324edf6" class="cell" data-execution_count="2">
-<details open="" class="code-fold">
+<div id="07afab9c" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Part B: Energy measurements ---</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -693,8 +708,8 @@ Explore different times
 <p>Change the value of <code>t_in_T1</code> below to see <span class="math inline">\(|\psi(x,t)|^2\)</span> at different moments. The value is in units of <span class="math inline">\(T_1 = 2\pi\hbar/E_1\)</span>.</p>
 </div>
 </div>
-<div id="f560bae2" class="cell" data-execution_count="3">
-<details open="" class="code-fold">
+<div id="3dbe8818" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Parameters ---</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>E1 <span class="op">=</span> (np.pi<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> hbar<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> m <span class="op">*</span> a<span class="op">**</span><span class="dv">2</span>)</span>
@@ -762,8 +777,8 @@ Explore different times
 </div>
 </div>
 </div>
-<div id="087590f1" class="cell" data-execution_count="4">
-<details open="" class="code-fold">
+<div id="bc51a8cf" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Bonus: Animated time sweep ---</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots |psi(x,t)|^2 for t from 0 to T1 in 200 steps to show the "breathing"</span></span>
