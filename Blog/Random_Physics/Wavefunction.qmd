@@ -2,33 +2,464 @@
 title: "Computational Quantum Mechanics: Infinite Potential Well"
 author: "Aditya Kumar"
 date: "2026-05-25"
-description: "Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, Dirac notation, and time evolution of superposed quantum states."
-categories: ["Quantum Mechanics", "Computational Physics", "Python", "Infinite Potential Well", "Quantum Computing"]
+description: "Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, and time evolution of superposed quantum states."
+categories: ["Quantum Mechanics", "Computational Physics", "Python", "Infinite Potential Well"]
 draft: false
 toc: true
 image: "https://i.pinimg.com/736x/cb/39/bf/cb39bf481101baef608d641a1afe62bb.jpg"
+execute:
+  echo: true
+  warning: false
+code-fold: show
+code-tools: false
 ---
 
+## Problem Statement
 
-# Problem Statement
-
-A particle of mass $m$ moves freely inside a one-dimensional infinite potential well of length $a$. t time $t=0$, the particle has the initial wavefunction
+A particle of mass $m$ moves freely inside a **one-dimensional infinite potential well** of length $a$. The potential is:
 
 $$
-\psi(x,0)=
-\frac{A}{\sqrt a}\sin\left(\frac{\pi x}{a}\right)
-+
-\sqrt{\frac{3}{5a}}
-\sin\left(\frac{3\pi x}{a}\right)
-+
-\frac{1}{\sqrt{5a}}
-\sin\left(\frac{5\pi x}{a}\right)
+V(x) = \begin{cases} 0 & 0 \leq x \leq a \\ \infty & \text{otherwise} \end{cases}
 $$
 
-where $A$ is a real constant.
+The normalized energy eigenfunctions are:
 
-1. Find $A$ so that $\psi(x,0)$ is normalized 
+$$
+\phi_n(x) = \sqrt{\frac{2}{a}}\sin\!\left(\frac{n\pi x}{a}\right), \qquad n = 1, 2, 3, \ldots
+$$
 
-# References
+with energy eigenvalues:
 
-1. Zettili, *Quantum Mechanics: Concepts and Applications*
+$$
+E_n = \frac{n^2 \pi^2 \hbar^2}{2ma^2}
+$$
+
+At time $t = 0$, the particle has the wavefunction:
+
+$$
+\psi(x,0) = \frac{A}{\sqrt{a}}\sin\!\left(\frac{\pi x}{a}\right)
++ \sqrt{\frac{3}{5a}}\sin\!\left(\frac{3\pi x}{a}\right)
++ \frac{1}{\sqrt{5a}}\sin\!\left(\frac{5\pi x}{a}\right)
+$$
+
+where $A$ is a real constant. **We are asked to:**
+
+1. Find $A$ so that $\psi(x,0)$ is normalized.
+2. Find all possible energy measurement outcomes, their probabilities, and the average energy $\langle E \rangle$.
+3. Find the wavefunction $\psi(x,t)$ at any later time $t$.
+
+---
+
+## Part A — Normalization
+
+### Analytical Solution
+
+The first step is to **rewrite $\psi(x,0)$ in terms of the orthonormal eigenfunctions** $\phi_n(x)$.
+
+Recall that $\phi_n(x) = \sqrt{\tfrac{2}{a}}\sin\!\left(\tfrac{n\pi x}{a}\right)$. We factor this into each term:
+
+**Term 1:**
+$$
+\frac{A}{\sqrt{a}}\sin\!\left(\frac{\pi x}{a}\right)
+= A \cdot \frac{1}{\sqrt{2}} \cdot \underbrace{\sqrt{\frac{2}{a}}\sin\!\left(\frac{\pi x}{a}\right)}_{\phi_1(x)}
+= \frac{A}{\sqrt{2}}\,\phi_1(x)
+$$
+
+**Term 2:**
+$$
+\sqrt{\frac{3}{5a}}\sin\!\left(\frac{3\pi x}{a}\right)
+= \sqrt{\frac{3}{5}} \cdot \frac{1}{\sqrt{2}} \cdot \underbrace{\sqrt{\frac{2}{a}}\sin\!\left(\frac{3\pi x}{a}\right)}_{\phi_3(x)}
+= \sqrt{\frac{3}{10}}\,\phi_3(x)
+$$
+
+**Term 3:**
+$$
+\frac{1}{\sqrt{5a}}\sin\!\left(\frac{5\pi x}{a}\right)
+= \frac{1}{\sqrt{5}} \cdot \frac{1}{\sqrt{2}} \cdot \underbrace{\sqrt{\frac{2}{a}}\sin\!\left(\frac{5\pi x}{a}\right)}_{\phi_5(x)}
+= \frac{1}{\sqrt{10}}\,\phi_5(x)
+$$
+
+So the state written cleanly in the eigenbasis is:
+
+$$
+|\psi(0)\rangle = \frac{A}{\sqrt{2}}\,|\phi_1\rangle + \sqrt{\frac{3}{10}}\,|\phi_3\rangle + \frac{1}{\sqrt{10}}\,|\phi_5\rangle
+$$
+
+The coefficients are:
+
+$$
+c_1 = \frac{A}{\sqrt{2}}, \qquad c_3 = \sqrt{\frac{3}{10}}, \qquad c_5 = \frac{1}{\sqrt{10}}
+$$
+
+**Normalization condition:** The orthonormality of the eigenfunctions means $\langle\phi_m|\phi_n\rangle = \delta_{mn}$, so:
+
+$$
+\langle\psi|\psi\rangle = |c_1|^2 + |c_3|^2 + |c_5|^2 = 1
+$$
+
+Substituting:
+
+$$
+\frac{A^2}{2} + \frac{3}{10} + \frac{1}{10} = 1
+$$
+
+$$
+\frac{A^2}{2} + \frac{4}{10} = 1 \implies \frac{A^2}{2} = \frac{6}{10} = \frac{3}{5}
+$$
+
+::: {.answer-box}
+$$
+A = \sqrt{\frac{6}{5}}
+$$
+:::
+
+With this, $c_1 = \sqrt{3/5}$, and we can verify: $\tfrac{3}{5} + \tfrac{3}{10} + \tfrac{1}{10} = 1$
+
+### Computational Solution
+
+```{python}
+#| fig-cap: "The initial wavefunction $\\psi(x,0)$ (black) as a superposition of the first three odd eigenstates (colored dashed lines)."
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import quad
+
+# --- Parameters ---
+hbar = 1.0
+m    = 1.0
+a    = 1.0
+
+# Eigenfunctions
+def phi(n, x, a=1.0):
+    return np.sqrt(2/a) * np.sin(n * np.pi * x / a)
+
+# The wavefunction with unknown A
+def psi0(x, A):
+    return (A / np.sqrt(a)) * np.sin(np.pi * x / a) \
+         + np.sqrt(3 / (5*a)) * np.sin(3 * np.pi * x / a) \
+         + (1 / np.sqrt(5*a)) * np.sin(5 * np.pi * x / a)
+
+# Numerical normalization integral
+def norm_integral(A):
+    result, _ = quad(lambda x: psi0(x, A)**2, 0, a)
+    return result
+
+A_analytical = np.sqrt(6/5)
+norm_check = norm_integral(A_analytical)
+
+print(f"Analytical A = sqrt(6/5) = {A_analytical:.6f}")
+print(f"Normalization check: integral |psi|^2 dx = {norm_check:.8f}  (should be 1.0)")
+
+# Extract coefficients
+c1 = A_analytical / np.sqrt(2)
+c3 = np.sqrt(3/10)
+c5 = 1 / np.sqrt(10)
+print(f"\nCoefficients:  c1 = {c1:.6f},  c3 = {c3:.6f},  c5 = {c5:.6f}")
+print(f"Sum of |cn|^2  = {c1**2 + c3**2 + c5**2:.8f}  (should be 1.0)")
+
+# --- Plot psi(x,0) and the three components ---
+x = np.linspace(0, a, 500)
+
+fig, ax = plt.subplots(figsize=(9, 4))
+ax.plot(x, psi0(x, A_analytical), 'k-',  lw=2.5, label=r'$\psi(x,0)$')
+ax.plot(x, c1 * phi(1, x),        '--',  lw=1.5, label=r'$c_1\phi_1$')
+ax.plot(x, c3 * phi(3, x),        '--',  lw=1.5, label=r'$c_3\phi_3$')
+ax.plot(x, c5 * phi(5, x),        '--',  lw=1.5, label=r'$c_5\phi_5$')
+ax.set_xlabel('x / a')
+ax.set_ylabel(r'$\psi(x,0)$')
+ax.set_title('Initial Wavefunction and its Eigenfunction Components')
+ax.legend()
+ax.grid(alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+::: {.callout-note}
+## Understanding the Graph
+* The solid black line shows how the total wavefunction is built by adding the three individual states (dashed lines).
+* The ground state ($\phi_1$) provides the main shape, while $\phi_3$ and $\phi_5$ add the extra wiggles.
+* Because the function is normalized, the total area under the black curve squared is exactly 1.
+:::
+
+---
+
+## Part B — Energy Measurements
+
+### Analytical Solution
+
+In quantum mechanics, the **Born rule** states that if we measure energy on a state
+
+$$
+|\psi\rangle = \sum_n c_n |\phi_n\rangle
+$$
+
+the probability of getting the result $E_n$ is $P(E_n) = |c_n|^2$.
+
+Our state has three contributions, so only **three energy values** are possible:
+
+| Eigenstate | Energy $E_n$ | Coefficient $c_n$ | Probability $P_n = |c_n|^2$ |
+|:---:|:---|:---:|:---:|
+| $\phi_1$ | $E_1 = \dfrac{\pi^2\hbar^2}{2ma^2}$ | $\sqrt{3/5}$ | $3/5 = 0.6$ |
+| $\phi_3$ | $E_3 = \dfrac{9\pi^2\hbar^2}{2ma^2} = 9E_1$ | $\sqrt{3/10}$ | $3/10 = 0.3$ |
+| $\phi_5$ | $E_5 = \dfrac{25\pi^2\hbar^2}{2ma^2} = 25E_1$ | $1/\sqrt{10}$ | $1/10 = 0.1$ |
+
+**Verification:** $P_1 + P_3 + P_5 = 0.6 + 0.3 + 0.1 = 1$
+
+**Average (expectation value) of energy:**
+
+$$
+\langle E \rangle = \sum_n |c_n|^2 E_n = P_1 E_1 + P_3 E_3 + P_5 E_5
+$$
+
+$$
+\langle E \rangle = \frac{3}{5}E_1 + \frac{3}{10}(9E_1) + \frac{1}{10}(25E_1)
+$$
+
+$$
+= E_1\left(\frac{3}{5} + \frac{27}{10} + \frac{25}{10}\right)
+= E_1\left(\frac{6}{10} + \frac{27}{10} + \frac{25}{10}\right)
+= E_1 \cdot \frac{58}{10}
+$$
+
+::: {.answer-box}
+$$
+\langle E \rangle = \frac{29}{5}\,E_1 = \frac{29\pi^2\hbar^2}{10\,ma^2}
+$$
+:::
+
+### Computational Solution
+
+```{python}
+#| fig-cap: "Probability of measuring each energy eigenvalue for the given state."
+# --- Part B: Energy measurements ---
+
+E1 = (np.pi**2 * hbar**2) / (2 * m * a**2)  # Ground state energy
+
+energies = {
+    'n=1 (E1)':   (1,  E1,     c1**2),
+    'n=3 (9E1)':  (3,  9*E1,   c3**2),
+    'n=5 (25E1)': (5,  25*E1,  c5**2),
+}
+
+print("=" * 55)
+print(f"{'State':<12} {'Energy':>12}  {'Probability':>12}")
+print("=" * 55)
+for label, (n, E, P) in energies.items():
+    print(f"  {label:<10}  {E:>12.6f}  {P:>12.6f}")
+print("-" * 55)
+
+E_avg = sum(P * E for _, (n, E, P) in energies.items())
+E_avg_analytical = 29 * E1 / 5
+
+print(f"  {'<E> (numerical)':<22} {E_avg:.6f}")
+print(f"  {'<E> (29/5 x E1)':<22} {E_avg_analytical:.6f}")
+print("=" * 55)
+
+# Bar chart of probabilities
+fig, ax = plt.subplots(figsize=(6, 4))
+ns     = [1, 3, 5]
+probs  = [c1**2, c3**2, c5**2]
+labels = [r'$E_1$', r'$9E_1$', r'$25E_1$']
+
+bars = ax.bar(labels, probs, color=['#4C72B0','#DD8452','#55A868'], width=0.4, edgecolor='k')
+for bar, p in zip(bars, probs):
+    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
+            f'{p:.2f}', ha='center', va='bottom', fontsize=11, fontweight='bold')
+
+ax.axhline(1, color='gray', lw=0.8, ls='--', alpha=0.5)
+ax.set_ylim(0, 1.1)
+ax.set_xlabel('Energy Eigenvalue')
+ax.set_ylabel('Probability')
+ax.set_title('Probability of Each Energy Measurement Outcome')
+ax.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+## Part C — Time Evolution
+
+### Analytical Solution
+
+In quantum mechanics, time evolution is governed by the **Time-Dependent Schrodinger Equation (TDSE)**:
+
+$$
+i\hbar\frac{\partial}{\partial t}|\psi(t)\rangle = \hat{H}|\psi(t)\rangle
+$$
+
+When a state is expanded in energy eigenfunctions, each eigenfunction simply picks up a **phase factor** $e^{-iE_n t/\hbar}$:
+
+$$
+\psi(x,t) = \sum_n c_n\,\phi_n(x)\,e^{-iE_n t/\hbar}
+$$
+
+For our state, this gives:
+
+::: {.answer-box}
+$$
+\psi(x,t) = \sqrt{\frac{3}{5}}\,\phi_1(x)\,e^{-iE_1 t/\hbar}
+           + \sqrt{\frac{3}{10}}\,\phi_3(x)\,e^{-9iE_1 t/\hbar}
+           + \frac{1}{\sqrt{10}}\,\phi_5(x)\,e^{-25iE_1 t/\hbar}
+$$
+:::
+
+where $E_1 = \dfrac{\pi^2\hbar^2}{2ma^2}$.
+
+The **probability density** at time $t$ is:
+
+$$
+|\psi(x,t)|^2 = \left|\sum_n c_n\,\phi_n(x)\,e^{-iE_n t/\hbar}\right|^2
+$$
+
+Expanding the squared modulus introduces **interference terms** that oscillate in time:
+
+$$
+|\psi(x,t)|^2 = |c_1|^2|\phi_1|^2 + |c_3|^2|\phi_3|^2 + |c_5|^2|\phi_5|^2
+$$
+$$
++ 2\,\text{Re}\!\left[c_1^*c_3\,\phi_1\phi_3\,e^{-i(E_3-E_1)t/\hbar}\right]
++ 2\,\text{Re}\!\left[c_1^*c_5\,\phi_1\phi_5\,e^{-i(E_5-E_1)t/\hbar}\right]
++ 2\,\text{Re}\!\left[c_3^*c_5\,\phi_3\phi_5\,e^{-i(E_5-E_3)t/\hbar}\right]
+$$
+
+This shows that the probability density **breathes and shifts in time** — the quantum state is alive even though the energy probabilities never change.
+
+The characteristic **oscillation period** between levels $m$ and $n$ is:
+
+$$
+T_{mn} = \frac{2\pi\hbar}{|E_m - E_n|}
+$$
+
+### Computational Solution — Time Evolution Visualisation
+
+::: {.callout-note}
+## Explore different times
+Change the value of `t_in_T1` below to see $|\psi(x,t)|^2$ at different moments. The value is in units of $T_1 = 2\pi\hbar/E_1$.
+:::
+
+```{python}
+#| fig-cap: "Probability density and real/imaginary parts of the wavefunction at time $t = 0.25 T_1$."
+# --- Parameters ---
+E1 = (np.pi**2 * hbar**2) / (2 * m * a**2)
+T1 = 2 * np.pi * hbar / E1   # Natural period of ground state
+
+def phi_n(n, x):
+    return np.sqrt(2/a) * np.sin(n * np.pi * x / a)
+
+def psi_t(x, t):
+    """Full time-dependent wavefunction (complex)."""
+    c1 = np.sqrt(3/5)
+    c3 = np.sqrt(3/10)
+    c5 = 1 / np.sqrt(10)
+    return (c1 * phi_n(1, x) * np.exp(-1j * E1     * t / hbar)
+          + c3 * phi_n(3, x) * np.exp(-1j * 9*E1   * t / hbar)
+          + c5 * phi_n(5, x) * np.exp(-1j * 25*E1  * t / hbar))
+
+# =========================================================
+# Change this value to explore different times
+# =========================================================
+t_in_T1 = 0.25    # time in units of T1
+t = t_in_T1 * T1
+# =========================================================
+
+x = np.linspace(0, a, 1000)
+Psi_t  = psi_t(x, t)
+prob_t = np.abs(Psi_t)**2
+prob_0 = np.abs(psi_t(x, 0))**2
+
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+# Left: Probability density
+ax = axes[0]
+ax.plot(x, prob_0, 'k--', lw=1.5, alpha=0.5, label=r'$|\psi(x,0)|^2$  (reference)')
+ax.plot(x, prob_t, 'b-',  lw=2.5, label=rf'$|\psi(x,t)|^2$  at $t = {t_in_T1:.3f}\,T_1$')
+ax.fill_between(x, prob_t, alpha=0.15, color='blue')
+ax.set_xlabel('x / a', fontsize=12)
+ax.set_ylabel(r'$|\psi(x,t)|^2$', fontsize=12)
+ax.set_title(rf'Probability Density at $t = {t_in_T1:.3f}\,T_1$', fontsize=13)
+ax.legend(fontsize=10)
+ax.grid(alpha=0.3)
+
+# Right: Real and imaginary parts of psi(x,t)
+ax2 = axes[1]
+ax2.plot(x, np.real(Psi_t), 'royalblue', lw=2, label=r'Re$[\psi(x,t)]$')
+ax2.plot(x, np.imag(Psi_t), 'crimson',   lw=2, label=r'Im$[\psi(x,t)]$')
+ax2.axhline(0, color='k', lw=0.8)
+ax2.set_xlabel('x / a', fontsize=12)
+ax2.set_ylabel(r'$\psi(x,t)$', fontsize=12)
+ax2.set_title(rf'Real \& Imaginary Parts at $t = {t_in_T1:.3f}\,T_1$', fontsize=13)
+ax2.legend(fontsize=10)
+ax2.grid(alpha=0.3)
+
+plt.suptitle(rf'Time Evolution of Infinite Well Superposition — $t = {t_in_T1:.3f}\,T_1$',
+             fontsize=13, fontweight='bold', y=1.02)
+plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#| fig-cap: "Animated sweep showing the time evolution of the probability density from $t=0$ to $t=T_1$."
+# --- Bonus: Animated time sweep ---
+# Plots |psi(x,t)|^2 for t from 0 to T1 in 200 steps to show the "breathing"
+
+times = np.linspace(0, T1, 200)
+x     = np.linspace(0, a, 500)
+
+fig, ax = plt.subplots(figsize=(9, 4))
+cmap = plt.cm.plasma
+
+for i, t_val in enumerate(times):
+    color = cmap(i / len(times))
+    ax.plot(x, np.abs(psi_t(x, t_val))**2, color=color, lw=0.8, alpha=0.6)
+
+# Overlay t=0 and t=T1/2 prominently
+ax.plot(x, np.abs(psi_t(x, 0))**2,      'white', lw=2.5, label=r'$t=0$')
+ax.plot(x, np.abs(psi_t(x, T1/2))**2,   'yellow', lw=2.5, linestyle='--', label=r'$t=T_1/2$')
+ax.plot(x, np.abs(psi_t(x, T1))**2,     'cyan',   lw=2.5, linestyle=':', label=r'$t=T_1$')
+
+ax.set_facecolor('#0d0d0d')
+fig.patch.set_facecolor('#0d0d0d')
+ax.tick_params(colors='white')
+ax.xaxis.label.set_color('white')
+ax.yaxis.label.set_color('white')
+ax.title.set_color('white')
+for spine in ax.spines.values():
+    spine.set_edgecolor('white')
+
+ax.set_xlabel('x / a', fontsize=12)
+ax.set_ylabel(r'$|\psi(x,t)|^2$', fontsize=12)
+ax.set_title(r'Time Evolution of Probability Density ($0 \to T_1$)', fontsize=13)
+ax.legend(fontsize=10, facecolor='#1a1a1a', labelcolor='white')
+ax.grid(alpha=0.2)
+plt.tight_layout()
+plt.show()
+```
+
+::: {.callout-tip title="What's happening in these graphs?"}
+- **Taking a Snapshot:** The first graph acts like a camera taking a picture at a specific time. It shows what the wave looks like at that exact moment.
+- **Time-Lapse Motion:** The second graph shows the wave changing over a full time cycle. The different colors show the wave at different times.
+- **The "Breathing" Effect:** Notice how the wave sloshes back and forth! This happens because the different simple waves that make up the total wave are vibrating at different speeds, causing them to interfere with each other.
+:::
+
+---
+
+## Summary
+
+| | Part A | Part B | Part C |
+|:---|:---:|:---:|:---:|
+| **Goal** | Normalize $\psi$ | Energy measurements | Time evolution |
+| **Key tool** | Orthonormality of $\phi_n$ | Born rule $P_n = \|c_n\|^2$ | Phase factors $e^{-iE_n t/\hbar}$ |
+| **Result** | $A = \sqrt{6/5}$ | $\langle E \rangle = 29E_1/5$ | $\psi(x,t)$ oscillates, $P_n$ constant |
+
+::: {.callout-important}
+## Key Physical Insight
+Even though the probability of measuring each energy **never changes** (energy probabilities are stationary), the probability density $|\psi(x,t)|^2$ **does change in time** due to interference between the different eigenstates. The particle's position is genuinely time-dependent, even in a stationary potential.
+:::
+
+---
+
+## References
+
+1. Zettili, N. *Quantum Mechanics: Concepts and Applications*, 2nd ed. Wiley, 2009.
+2. Griffiths, D.J. *Introduction to Quantum Mechanics*, 3rd ed. Cambridge, 2018.
+

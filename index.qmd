@@ -2,6 +2,13 @@
 title: ""
 page-layout: full
 toc: false
+listing:
+  - id: latest-posts-carousel
+    contents: Blog
+    sort: "date desc"
+    type: default
+    max-items: 3
+    fields: [title, date, description, categories, path]
 ---
 
 <!-- 
@@ -135,7 +142,6 @@ Second quantisation, Hubbard models, tensor networks. The course I wish existed 
 <!-- 
 ======================================================================
   FEATURED SECTION
-  Another 3-column grid for Blog, Projects, and YouTube.
 ====================================================================== 
 -->
 
@@ -149,23 +155,27 @@ Second quantisation, Hubbard models, tensor networks. The course I wish existed 
 ::: {.g-col-12 .g-col-lg-6}
 #### Latest Posts
 
-<!-- Post 1 -->
-::: {.card .mb-3}
-::: {.card-body}
-**[Introduction to Computational Physics](Blog/Subjects/Intro_Comp_Physics/index.qmd){.stretched-link .text-decoration-none .text-reset}**
+<style>
+.blog-card-clickable:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18) !important;
+  transform: translateY(-3px) !important;
+}
+.blog-card-clickable:focus {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
+}
+</style>
 
-<small class="text-muted">May 22, 2026</small><br>
-<span class="badge bg-dark">Computational</span>
-<span class="badge bg-secondary">Python</span>
-<span class="badge bg-secondary">Beginner</span>
-
-<div class="mt-2 text-muted" style="font-size: 0.9em;">
-What is computational physics and how do you actually start?
+<!-- Auto-built JS carousel -->
+<div id="posts-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="min-height:120px">
+  <div class="carousel-inner" id="posts-carousel-inner"></div>
 </div>
-:::
-:::
 
-<!-- You can copy the card above to add more posts -->
+<!-- Hidden Quarto listing source -->
+<div style="display:none">
+::: {#latest-posts-carousel}
+:::
+</div>
 
 [All posts →](blog.qmd){.btn .btn-sm .btn-outline-dark}
 :::
@@ -259,9 +269,9 @@ document.addEventListener("DOMContentLoaded", function() {
   async function fetchYouTubeData() {
     try {
       // Fetch the statically generated JSON file using relative path to support subpath hosting
-      const response = await fetch("youtube-data.json");
+      const response = await fetch("assets/scripts/youtube-data.json");
       if (!response.ok) {
-        throw new Error("Could not load youtube-data.json");
+        throw new Error("Could not load assets/scripts/youtube-data.json");
       }
       const data = await response.json();
       
@@ -285,5 +295,74 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   fetchYouTubeData();
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Wait for Quarto listing to be populated
+  function buildCarousel() {
+    const listingEl = document.querySelector('#listing-latest-posts-carousel');
+    if (!listingEl) return;
+
+    // Grab all rendered post cards from the hidden listing
+    const cards = listingEl.querySelectorAll('.quarto-post');
+    const inner = document.getElementById('posts-carousel-inner');
+    if (!inner || cards.length === 0) return;
+
+    inner.innerHTML = ''; // clear placeholder
+
+    cards.forEach((card, i) => {
+      // Extract data from the Quarto listing card
+      const titleEl   = card.querySelector('.listing-title a') || card.querySelector('a');
+      const dateEl    = card.querySelector('.listing-date');
+      const descEl    = card.querySelector('.listing-description');
+      const catEls    = card.querySelectorAll('.listing-category');
+
+      const title    = titleEl   ? titleEl.textContent.trim()    : '';
+      const href     = titleEl   ? titleEl.getAttribute('href')  : '#';
+      const date     = dateEl    ? dateEl.textContent.trim()     : '';
+      const desc     = descEl    ? descEl.textContent.trim()     : '';
+
+      let badges = '';
+      catEls.forEach((cat, j) => {
+        const cls = j === 0 ? 'bg-dark' : 'bg-secondary';
+        badges += `<span class="badge ${cls} me-1">${cat.textContent.trim()}</span>`;
+      });
+
+      const item = document.createElement('div');
+      item.className = 'carousel-item' + (i === 0 ? ' active' : '');
+      item.innerHTML = `
+        <div class="card mb-3 blog-card-clickable" data-href="${href}" role="button" tabindex="0"
+             style="cursor:pointer; transition: box-shadow 0.2s, transform 0.2s;"
+             onclick="window.location.href='${href}'">
+          <div class="card-body">
+            <h6 class="card-title mb-1">
+              <span class="text-decoration-none text-reset fw-semibold">${title}</span>
+            </h6>
+            ${date ? `<small class="text-muted">${date}</small><br>` : ''}
+            <div class="mt-1">${badges}</div>
+            ${desc ? `<div class="mt-2 text-muted" style="font-size:0.9em;">${desc}</div>` : ''}
+            <div class="mt-2" style="font-size:0.82em; color:#6c757d;">Click to read &rarr;</div>
+          </div>
+        </div>`;
+
+      // Keyboard accessibility: Enter key also navigates
+      item.querySelector('.blog-card-clickable').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          window.location.href = href;
+        }
+      });
+
+      inner.appendChild(item);
+    });
+  }
+
+  // Quarto fires this event when listings are loaded
+  if (window['quarto-listing-loaded']) {
+    window.addEventListener('quarto-listing-loaded', buildCarousel);
+  }
+  // Fallback: try after a short delay
+  setTimeout(buildCarousel, 600);
 });
 </script>

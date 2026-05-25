@@ -16,7 +16,7 @@ def load_env():
 def main():
     # Cache check to preserve daily API quota limit (10,000 units)
     # 12 hours = 43200 seconds
-    cache_file = 'youtube-data.json'
+    cache_file = 'assets/scripts/youtube-data.json'
     if os.path.exists(cache_file):
         file_age = time.time() - os.path.getmtime(cache_file)
         if file_age < 43200:
@@ -58,10 +58,10 @@ def main():
         # it's best to write it into the docs/ directory or root? 
         # If we write to root, Quarto might ignore it unless it's in resources.
         # Let's write it to root and also include it in index.qmd Javascript properly.
-        with open('youtube-data.json', 'w') as f:
+        with open('assets/scripts/youtube-data.json', 'w') as f:
             json.dump(video_data, f, indent=2)
             
-        print("Successfully fetched YouTube data and saved to youtube-data.json")
+        print("Successfully fetched YouTube data and saved to assets/scripts/youtube-data.json")
 
     except Exception as e:
         print(f"Error fetching YouTube data: {e}")

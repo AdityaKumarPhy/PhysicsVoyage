@@ -13,6 +13,13 @@
     ]
   },
   {
+    "listing": "/index.html",
+    "items": [
+      "/Blog/Random_Physics/Wavefunction.html",
+      "/Blog/Subjects/Intro_Comp_Physics/index.html"
+    ]
+  },
+  {
     "listing": "/feed.html",
     "items": [
       "/Blog/Random_Physics/Wavefunction.html",

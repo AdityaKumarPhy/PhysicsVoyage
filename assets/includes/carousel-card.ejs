@@ -1,0 +1,49 @@
+<div id="latestPostsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+  <div class="carousel-inner">
+    <% for (let i = 0; i < items.length; i++) { const item = items[i]; %>
+    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+      <div class="card mb-3">
+        <div class="card-body">
+          <% 
+            let isProject = false;
+            if (item.categories) {
+              if (item.categories.includes("In Progress")) {
+                isProject = true;
+                %><span class="badge bg-warning text-dark mb-2">In Progress</span><br><%
+              } else if (item.categories.includes("Planned")) {
+                isProject = true;
+                %><span class="badge bg-secondary mb-2">Planned</span><br><%
+              } else if (item.categories.includes("Completed")) {
+                isProject = true;
+                %><span class="badge bg-success mb-2">Completed</span><br><%
+              }
+            }
+          %>
+
+          <h6 class="card-title mb-1">
+            <a href="<%- item.path %>" class="stretched-link text-decoration-none text-reset">
+              <%= item.title %>
+            </a>
+          </h6>
+          
+          <% if (item.date) { %>
+            <small class="text-muted"><%= item.date %></small><br>
+          <% } %>
+          
+          <% if (item.categories && !isProject) { %>
+            <% for (let j = 0; j < item.categories.length; j++) { %>
+              <span class="badge <%= j === 0 ? 'bg-dark' : 'bg-secondary' %>"><%= item.categories[j] %></span>
+            <% } %>
+          <% } %>
+          
+          <% if (item.description) { %>
+            <div class="mt-2 text-muted" style="font-size: 0.9em;">
+              <%= item.description %>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>

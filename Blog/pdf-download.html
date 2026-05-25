@@ -1,0 +1,36 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Add hyperlinked watermark for print
+  const watermark = document.createElement("a");
+  watermark.href = window.location.href; // Links back to the specific blog
+  watermark.className = "print-watermark";
+  watermark.textContent = "Physics Voyage";
+  document.body.appendChild(watermark);
+
+  // Add print button to the title metadata block
+  const titleMeta = document.querySelector(".quarto-title-meta");
+  if (titleMeta) {
+    const metaItem = document.createElement("div");
+    metaItem.className = "pdf-download-meta-item";
+
+    const heading = document.createElement("div");
+    heading.className = "quarto-title-meta-heading";
+    heading.textContent = "Download";
+
+    const contents = document.createElement("div");
+    contents.className = "quarto-title-meta-contents";
+
+    const p = document.createElement("p");
+    const btn = document.createElement("button");
+    btn.className = "btn btn-outline-secondary btn-sm";
+    btn.onclick = function() { window.print(); };
+    btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
+
+    p.appendChild(btn);
+    contents.appendChild(p);
+    metaItem.appendChild(heading);
+    metaItem.appendChild(contents);
+    titleMeta.appendChild(metaItem);
+  }
+});
+</script>

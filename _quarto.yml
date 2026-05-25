@@ -1,9 +1,9 @@
 project:
   type: website
   output-dir: docs
-  pre-render: python3 fetch_youtube.py
+  pre-render: python3 assets/scripts/fetch_youtube.py
   resources:
-    - youtube-data.json
+    - assets/scripts/youtube-data.json
 
 website:
   title: "Physics Voyage"
@@ -33,12 +33,12 @@ format:
     respect-user-color-scheme: true
     theme:
       light: sketchy
-      dark: [sketchy, sketchy-dark.scss]
+      dark: [sketchy, assets/styles/sketchy-dark.scss]
     highlight-style:
       light: github
       dark: dracula
-    css: styles.css
+    css: assets/styles/styles.css
     toc: true
     include-after-body:
-      - newsletter-popup.html
-      - back-to-top.html
+      - assets/includes/newsletter-popup.html
+      - assets/includes/back-to-top.html

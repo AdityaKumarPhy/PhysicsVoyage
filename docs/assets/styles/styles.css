@@ -210,3 +210,97 @@ li a:not(.btn):not(.nav-link):not(.stretched-link):hover {
   transform: translateY(-2px);
   box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
 }
+
+/* Fix plot visibility in dark mode */
+[data-bs-theme="dark"] .cell-output-display img,
+[data-bs-theme="dark"] figure img {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Fix text output cell visibility in dark mode */
+[data-bs-theme="dark"] .cell-output-stdout pre {
+  background-color: #1e1e24 !important;
+  color: #f8f9fa !important;
+  border: 1px solid #495057 !important;
+}
+
+/* Answer Box with Pastel Effect and Tick */
+.answer-box {
+  position: relative;
+  background-color: #f0fdf4; /* Pastel green */
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 15px 20px 15px 45px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.answer-box::before {
+  content: "✓"; 
+  font-family: system-ui, -apple-system, sans-serif;
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+[data-bs-theme="dark"] .answer-box {
+  background-color: #064e3b;
+  border-color: #065f46;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+[data-bs-theme="dark"] .answer-box::before {
+  color: #34d399;
+}
+
+/* Print Styles for PDF Download with Watermark */
+/* Print Styles for PDF Download with Watermark */
+.print-watermark {
+  display: none;
+}
+
+@media print {
+  /* Remove browser headers and footers by setting margin to 0 */
+  @page {
+    margin: 0;
+  }
+  body {
+    padding: 1.5cm; /* Add padding back to the body to prevent content from hitting the edges */
+  }
+
+  .print-watermark {
+    display: flex !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-30deg);
+    font-size: 5.5rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+    text-decoration: none;
+    pointer-events: auto; /* Allow clicking the link in the PDF */
+  }
+  
+  /* Hide non-essential elements when printing */
+  .navbar, .sidebar, .page-footer, .pyrun-btn, button, #reading-progress-container {
+    display: none !important;
+  }
+  
+  /* Make sure background colors and shadows are printed if supported */
+  .answer-box {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}

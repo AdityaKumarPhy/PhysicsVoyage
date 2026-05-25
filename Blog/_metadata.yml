@@ -11,4 +11,6 @@ website:
 
 format:
   html:
-    include-in-header: progress-bar.html
+    include-in-header: 
+      - progress-bar.html
+      - pdf-download.html
