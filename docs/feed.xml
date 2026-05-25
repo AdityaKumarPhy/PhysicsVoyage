@@ -20,66 +20,167 @@
 
 
 
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png" class="img-fluid figure-img"></p>
-<figcaption>Quantum Harmonic Oscillator</figcaption>
-</figure>
-</div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
+<blockquote class="blockquote">
+<p>You Will Learn</p>
+</blockquote>
+<table class="table table-hover">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Analytical Methods</th>
-<th style="text-align: left;">Computational Methods</th>
+<tr>
+<th scope="col">
+S.No.
+</th>
+<th scope="col">
+Analytical Methods
+</th>
+<th scope="col">
+Computational Methods
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">• Operator Algebra (<img src="https://latex.codecogs.com/png.latex?%5Chat%7Ba%7D">, <img src="https://latex.codecogs.com/png.latex?%5Chat%7Ba%7D%5E%5Cdagger">)</td>
-<td style="text-align: left;">• <strong>Libraries:</strong> Python, NumPy, SciPy, Matplotlib</td>
+<tr class="table-active">
+<th scope="row">
+1
+</th>
+<td>
+Operator Algebra (<img src="https://latex.codecogs.com/png.latex?%5Chat%7Ba%7D">, <img src="https://latex.codecogs.com/png.latex?%5Chat%7Ba%7D%5E%5Cdagger">)
+</td>
+<td>
+<strong>Libraries:</strong> Python, NumPy, SciPy, Matplotlib
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">• Hermite Polynomials &amp; Special Functions</td>
-<td style="text-align: left;">• Matrix Diagonalization</td>
+<tr>
+<th scope="row">
+2
+</th>
+<td>
+Hermite Polynomials &amp; Special Functions
+</td>
+<td>
+Matrix Diagonalization
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">• WKB Approximation</td>
-<td style="text-align: left;">• Finite Difference Method (FDM)</td>
+<tr class="table-primary">
+<th scope="row">
+3
+</th>
+<td>
+WKB Approximation
+</td>
+<td>
+Finite Difference Method (FDM)
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">• Eigenfunction Expansion</td>
-<td style="text-align: left;">• Shooting Method</td>
+<tr class="table-secondary">
+<th scope="row">
+4
+</th>
+<td>
+Eigenfunction Expansion
+</td>
+<td>
+Shooting Method
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">• Gaussian Integrals &amp; Error Functions</td>
-<td style="text-align: left;">• Runge-Kutta Methods (RK4)</td>
+<tr class="table-success">
+<th scope="row">
+5
+</th>
+<td>
+Gaussian Integrals &amp; Error Functions
+</td>
+<td>
+Runge-Kutta Methods (RK4)
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">• Dirac Notation Manipulation</td>
-<td style="text-align: left;">• Crank-Nicolson Scheme</td>
+<tr class="table-danger">
+<th scope="row">
+6
+</th>
+<td>
+Dirac Notation Manipulation
+</td>
+<td>
+Crank-Nicolson Scheme
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">• Fourier Transforms (Momentum Space)</td>
-<td style="text-align: left;">• Root-Finding (Newton-Raphson, Bisection)</td>
+<tr class="table-warning">
+<th scope="row">
+7
+</th>
+<td>
+Fourier Transforms (Momentum Space)
+</td>
+<td>
+Root-Finding (Newton-Raphson, Bisection)
+</td>
 </tr>
 </tbody>
 </table>
 <section id="problem-1-the-truncated-parabola-in-a-harmonic-oscillator" class="level3">
 <h3 class="anchored" data-anchor-id="problem-1-the-truncated-parabola-in-a-harmonic-oscillator">Problem 1: The Truncated Parabola in a Harmonic Oscillator</h3>
 <p>Consider a particle of mass <img src="https://latex.codecogs.com/png.latex?m"> subject to a one-dimensional quantum harmonic oscillator potential: <img src="https://latex.codecogs.com/png.latex?V(x)=%5Cfrac%7B1%7D%7B2%7Dm%5Comega%5E2x%5E2"> At time <img src="https://latex.codecogs.com/png.latex?t=0">, the particle is prepared in the initial state: <img src="https://latex.codecogs.com/png.latex?%5Cpsi(x,0)=%5Cbegin%7Bcases%7DN(A-Bx%5E2)&amp;%5Ctext%7Bfor%20%7Dx%5E2%5Cle%5Cfrac%7BA%7D%7BB%7D%5C%5C0&amp;%5Ctext%7Bfor%20%7Dx%5E2%3E%5Cfrac%7BA%7D%7BB%7D%5Cend%7Bcases%7D"> where <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> are positive real constants, and <img src="https://latex.codecogs.com/png.latex?N"> is the normalization constant.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Determine the normalization constant <img src="https://latex.codecogs.com/png.latex?N">.</label></li>
+<li><label><input type="checkbox">Calculate the probability of finding the particle in the energy eigenstates <img src="https://latex.codecogs.com/png.latex?E_n">.</label></li>
+<li><label><input type="checkbox">Write down the expression for the time-evolved wave function <img src="https://latex.codecogs.com/png.latex?%5Cpsi(x,t)">.</label></li>
+</ul>
+</div>
+</div>
+<hr>
 </section>
 <section id="problem-2-the-shifted-and-squeezed-gaussian" class="level3">
 <h3 class="anchored" data-anchor-id="problem-2-the-shifted-and-squeezed-gaussian">Problem 2: The Shifted and Squeezed Gaussian</h3>
 <p>A particle of mass <img src="https://latex.codecogs.com/png.latex?m"> in a harmonic oscillator potential <img src="https://latex.codecogs.com/png.latex?V(x)=%5Cfrac%7B1%7D%7B2%7Dm%5Comega%5E2x%5E2"> is initially prepared in a Gaussian wave packet given by: <img src="https://latex.codecogs.com/png.latex?%5Cpsi(x,0)=Ne%5E%7B-%5Cfrac%7B(x-x_0)%5E2%7D%7B2a%5E2%7D%7D"> where <img src="https://latex.codecogs.com/png.latex?x_0"> is an initial spatial shift, <img src="https://latex.codecogs.com/png.latex?a"> is the initial width of the wave packet, and <img src="https://latex.codecogs.com/png.latex?a%5Cneq%5Csqrt%7B%5Chbar/m%5Comega%7D"> (which is the natural width of the oscillator ground state).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Determine the time evolution of the wave packet, <img src="https://latex.codecogs.com/png.latex?%5Cpsi(x,t)">.</label></li>
+<li><label><input type="checkbox">Calculate the expectation values of position <img src="https://latex.codecogs.com/png.latex?%5Clangle%20x%5Crangle(t)"> and momentum <img src="https://latex.codecogs.com/png.latex?%5Clangle%20p%5Crangle(t)">.</label></li>
+<li><label><input type="checkbox">Determine the uncertainty in position <img src="https://latex.codecogs.com/png.latex?%5CDelta%20x(t)"> and show how the wave packet width oscillates or “breathes” over time.</label></li>
+</ul>
+</div>
+</div>
+<hr>
 </section>
 <section id="problem-3-tunneling-in-the-quartic-double-well" class="level3">
 <h3 class="anchored" data-anchor-id="problem-3-tunneling-in-the-quartic-double-well">Problem 3: Tunneling in the Quartic Double Well</h3>
 <p>A particle of mass <img src="https://latex.codecogs.com/png.latex?m"> moves in a one-dimensional quartic double-well potential described by: <img src="https://latex.codecogs.com/png.latex?V(x)=-%5Cfrac%7B1%7D%7B2%7D%5Calpha%20x%5E2+%5Cbeta%20x%5E4"> where <img src="https://latex.codecogs.com/png.latex?%5Calpha"> and <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> are positive constants.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Find the exact energy eigenvalues for the ground state (<img src="https://latex.codecogs.com/png.latex?E_0">) and the first excited state (<img src="https://latex.codecogs.com/png.latex?E_1">) using computational methods.</label></li>
+<li><label><input type="checkbox">Calculate the energy splitting <img src="https://latex.codecogs.com/png.latex?%5CDelta%20E=E_1-E_0">.</label></li>
+<li><label><input type="checkbox">Determine the tunneling time <img src="https://latex.codecogs.com/png.latex?%5Ctau%5Cpropto%5Cfrac%7B%5Chbar%7D%7B%5CDelta%20E%7D"> for a particle initially localized in the right well to tunnel to the left well.</label></li>
+</ul>
+</div>
+</div>
 
 
 </section>
@@ -99,7 +200,6 @@
   <dc:creator>Aditya Kumar</dc:creator>
   <link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/Wavefunction.html</link>
   <description><![CDATA[ 
-
 
 
 
@@ -1794,7 +1894,6 @@ Key Physical Insight
   <dc:creator>Aditya Kumar</dc:creator>
   <link>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Subjects/Intro_Comp_Physics/</link>
   <description><![CDATA[ 
-
 
 
 

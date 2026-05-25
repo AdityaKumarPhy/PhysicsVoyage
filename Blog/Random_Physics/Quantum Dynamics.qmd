@@ -13,13 +13,12 @@ format:
         warning: false
     code-fold: true # Collapses code blocks by default (users can expand to view)
 ---
-![Quantum Harmonic Oscillator](https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png)
-
+> You Will Learn 
 
 <table class="table table-hover">
   <thead>
     <tr>
-     
+     <th scope="col">S.No.</th>
       <th scope="col">Analytical Methods</th>
       <th scope="col">Computational Methods</th>
     </tr>
@@ -70,12 +69,37 @@ At time $t=0$, the particle is prepared in the initial state:
 $$\psi(x,0)=\begin{cases}N(A-Bx^2)&\text{for }x^2\le\frac{A}{B}\\0&\text{for }x^2>\frac{A}{B}\end{cases}$$
 where $A$ and $B$ are positive real constants, and $N$ is the normalization constant.
 
+::: {.callout-note}
+## Tasks
+- [ ] Determine the normalization constant $N$.
+- [ ] Calculate the probability of finding the particle in the energy eigenstates $E_n$.
+- [ ] Write down the expression for the time-evolved wave function $\psi(x,t)$.
+:::
+
+----
+
 ### Problem 2: The Shifted and Squeezed Gaussian
 A particle of mass $m$ in a harmonic oscillator potential $V(x)=\frac{1}{2}m\omega^2x^2$ is initially prepared in a Gaussian wave packet given by:
 $$\psi(x,0)=Ne^{-\frac{(x-x_0)^2}{2a^2}}$$
 where $x_0$ is an initial spatial shift, $a$ is the initial width of the wave packet, and $a\neq\sqrt{\hbar/m\omega}$ (which is the natural width of the oscillator ground state).
 
+::: {.callout-note}
+## Tasks
+- [ ] Determine the time evolution of the wave packet, $\psi(x,t)$.
+- [ ] Calculate the expectation values of position $\langle x\rangle(t)$ and momentum $\langle p\rangle(t)$.
+- [ ] Determine the uncertainty in position $\Delta x(t)$ and show how the wave packet width oscillates or "breathes" over time.
+:::
+
+----
+
 ### Problem 3: Tunneling in the Quartic Double Well
 A particle of mass $m$ moves in a one-dimensional quartic double-well potential described by:
 $$V(x)=-\frac{1}{2}\alpha x^2+\beta x^4$$
 where $\alpha$ and $\beta$ are positive constants.
+
+::: {.callout-note}
+## Tasks
+- [ ] Find the exact energy eigenvalues for the ground state ($E_0$) and the first excited state ($E_1$) using computational methods.
+- [ ] Calculate the energy splitting $\Delta E=E_1-E_0$.
+- [ ] Determine the tunneling time $\tau\propto\frac{\hbar}{\Delta E}$ for a particle initially localized in the right well to tunnel to the left well.
+:::

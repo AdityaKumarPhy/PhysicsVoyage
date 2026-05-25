@@ -5,12 +5,15 @@
 freeze: true
 
 # Enable banner style title blocks
-title-block-banner: True
+title-block-banner: false
 website:
   back-to-top-navigation: true
 
 format:
   html:
+    template-partials:
+      - partials/title-block.html
     include-in-header: 
       - progress-bar.html
-      - pdf-download.html
+    include-after-body:
+      - recommended-blogs.html

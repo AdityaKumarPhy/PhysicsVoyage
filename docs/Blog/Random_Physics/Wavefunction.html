@@ -137,56 +137,6 @@ document.addEventListener("scroll", function() {
   }
 });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Add hyperlinked watermark for print
-  const watermark = document.createElement("a");
-  watermark.href = window.location.href; // Links back to the specific blog
-  watermark.className = "print-watermark";
-  watermark.textContent = "Physics Voyage";
-  document.body.appendChild(watermark);
-
-  // Add print button right next to the published date if it exists
-  const dateElement = document.querySelector(".quarto-title-meta-contents .date");
-  if (dateElement) {
-    const btn = document.createElement("button");
-    btn.className = "btn btn-outline-secondary btn-sm ms-3";
-    btn.style.display = "inline-flex";
-    btn.style.alignItems = "center";
-    btn.style.gap = "5px";
-    btn.style.verticalAlign = "middle";
-    btn.onclick = function() { window.print(); };
-    btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
-    dateElement.appendChild(btn);
-  } else {
-    // Fallback: append as a separate metadata item if no date is found
-    const titleMeta = document.querySelector(".quarto-title-meta");
-    if (titleMeta) {
-      const metaItem = document.createElement("div");
-      metaItem.className = "pdf-download-meta-item";
-
-      const heading = document.createElement("div");
-      heading.className = "quarto-title-meta-heading";
-      heading.textContent = "Download";
-
-      const contents = document.createElement("div");
-      contents.className = "quarto-title-meta-contents";
-
-      const p = document.createElement("p");
-      const btn = document.createElement("button");
-      btn.className = "btn btn-outline-secondary btn-sm";
-      btn.onclick = function() { window.print(); };
-      btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
-
-      p.appendChild(btn);
-      contents.appendChild(p);
-      metaItem.appendChild(heading);
-      metaItem.appendChild(contents);
-      titleMeta.appendChild(metaItem);
-    }
-  }
-});
-</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -224,7 +174,7 @@ window.Quarto = {
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -272,46 +222,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Computational Quantum Mechanics: Infinite Potential Well</h1>
-                  <div>
-        <div class="description">
-          Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, and time evolution of superposed quantum states.
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">Quantum Mechanics</div>
-                <div class="quarto-category">Computational Physics</div>
-                <div class="quarto-category">Python</div>
-                <div class="quarto-category">Infinite Potential Well</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Aditya Kumar </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">May 25, 2026</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -341,10 +252,203 @@ window.Quarto = {
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Computational Quantum Mechanics: Infinite Potential Well</h1>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, and time evolution of superposed quantum states.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Computational Physics</div>
+            <div class="quarto-category">Python</div>
+            <div class="quarto-category">Infinite Potential Well</div>
+          </div>
+      </div>
 
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
 
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">May 25, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+    <div class="featured-image-container">
+    <img src="https://i.pinimg.com/736x/cb/39/bf/cb39bf481101baef608d641a1afe62bb.jpg" alt="Featured image for Computational Quantum Mechanics: Infinite Potential Well">
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
 
 
 <section id="problem-statement" class="level2">
@@ -1061,6 +1165,158 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
+});
+</script>
+<style>
+.recommended-blogs-wrapper {
+  margin-top: 4rem;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(76, 114, 176, 0.05) 0%, rgba(85, 168, 104, 0.05) 100%);
+  border-left: 4px solid #4C72B0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  display: none; /* hidden until loaded */
+  transition: all 0.3s ease;
+}
+.recommended-blogs-wrapper:hover {
+  box-shadow: 0 6px 25px rgba(0,0,0,0.04);
+}
+.recommended-blogs-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #4C72B0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.recommended-blogs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.recommended-blog-item a {
+  text-decoration: none;
+  color: var(--bs-body-color, #333);
+  font-weight: 500;
+  font-size: 1.05rem;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.4);
+}
+.dark-mode .recommended-blog-item a {
+  color: var(--bs-body-color, #ddd);
+  background: rgba(255,255,255,0.03);
+}
+.recommended-blog-item a:hover {
+  background: rgba(76, 114, 176, 0.1);
+  color: #4C72B0;
+  transform: translateX(5px);
+}
+.dark-mode .recommended-blogs-wrapper {
+  background: linear-gradient(145deg, rgba(76, 114, 176, 0.1) 0%, rgba(85, 168, 104, 0.1) 100%);
+}
+</style>
+
+<div id="recommended-blogs" class="recommended-blogs-wrapper">
+  <h3 class="recommended-blogs-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg>
+    Read Next
+  </h3>
+  <ul id="recommended-blogs-list" class="recommended-blogs-list">
+  </ul>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Only run if we are inside a blog post
+  if (!window.location.pathname.includes('/Blog/') || window.location.pathname.endsWith('/index.html')) {
+    return;
+  }
+
+  // Identify root URL dynamically
+  const searchScript = document.querySelector('script[src*="quarto-search.js"]');
+  let rootUrl = "/";
+  if (searchScript) {
+    const src = searchScript.getAttribute("src");
+    if (src) {
+      rootUrl = src.split('site_libs')[0];
+    }
+  }
+
+  fetch(rootUrl + 'search.json')
+    .then(response => response.json())
+    .then(data => {
+      const currentPath = window.location.pathname;
+      const blogPosts = new Map();
+      let currentPostText = "";
+
+      // Gather unique posts
+      data.forEach(item => {
+        if (item.href && item.href.startsWith('Blog/') && item.section === "") {
+          if (currentPath.endsWith("/" + item.href) || currentPath.endsWith(item.href)) {
+            currentPostText = item.text || "";
+          } else {
+            blogPosts.set(item.href, item);
+          }
+        }
+      });
+
+      let uniquePosts = Array.from(blogPosts.values());
+      
+      if (uniquePosts.length > 0) {
+        // Simple word overlap similarity for categories/topics
+        const getWords = (str) => new Set(str.toLowerCase().match(/\b[a-z]{4,}\b/g) || []);
+        const currentWords = getWords(currentPostText);
+
+        uniquePosts.forEach(post => {
+          const postWords = getWords(post.text || "");
+          let overlap = 0;
+          postWords.forEach(word => { if (currentWords.has(word)) overlap++; });
+          // Add a tiny random factor so ties are broken unpredictably
+          post.similarityScore = overlap + Math.random();
+        });
+
+        // Sort by similarity and take top 3
+        uniquePosts.sort((a, b) => b.similarityScore - a.similarityScore);
+        const selected = uniquePosts.slice(0, 3);
+        
+        const listContainer = document.getElementById('recommended-blogs-list');
+        selected.forEach(post => {
+          const li = document.createElement('li');
+          li.className = 'recommended-blog-item';
+          const a = document.createElement('a');
+          
+          a.href = rootUrl + post.href;
+          a.textContent = post.title;
+          
+          li.appendChild(a);
+          listContainer.appendChild(li);
+        });
+        
+        // Show the widget
+        const isDarkMode = document.body.classList.contains('quarto-dark') || document.documentElement.classList.contains('quarto-dark') || document.body.dataset.quartoTheme === 'dark';
+        const wrapper = document.getElementById('recommended-blogs');
+        if(isDarkMode) wrapper.classList.add('dark-mode');
+        wrapper.style.display = 'block';
+
+        // Listen for Quarto theme toggle
+        window.document.addEventListener('quarto-color-scheme-toggle', function(e) {
+            if (e.detail.colorScheme === 'dark') {
+                wrapper.classList.add('dark-mode');
+            } else {
+                wrapper.classList.remove('dark-mode');
+            }
+        });
+      }
+    })
+    .catch(err => console.error("Error loading recommended blogs:", err));
 });
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
