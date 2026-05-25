@@ -105,41 +105,6 @@
     "text": "A particle of mass \\(m\\) moves freely inside a one-dimensional infinite potential well of length \\(a\\). The potential is:\n\\[\nV(x) = \\begin{cases} 0 & 0 \\leq x \\leq a \\\\ \\infty & \\text{otherwise} \\end{cases}\n\\]\nThe normalized energy eigenfunctions are:\n\\[\n\\phi_n(x) = \\sqrt{\\frac{2}{a}}\\sin\\!\\left(\\frac{n\\pi x}{a}\\right), \\qquad n = 1, 2, 3, \\ldots\n\\]\nwith energy eigenvalues:\n\\[\nE_n = \\frac{n^2 \\pi^2 \\hbar^2}{2ma^2}\n\\]\nAt time \\(t = 0\\), the particle has the wavefunction:\n\\[\n\\psi(x,0) = \\frac{A}{\\sqrt{a}}\\sin\\!\\left(\\frac{\\pi x}{a}\\right)\n+ \\sqrt{\\frac{3}{5a}}\\sin\\!\\left(\\frac{3\\pi x}{a}\\right)\n+ \\frac{1}{\\sqrt{5a}}\\sin\\!\\left(\\frac{5\\pi x}{a}\\right)\n\\]\nwhere \\(A\\) is a real constant. We are asked to:\n\nFind \\(A\\) so that \\(\\psi(x,0)\\) is normalized.\nFind all possible energy measurement outcomes, their probabilities, and the average energy \\(\\langle E \\rangle\\).\nFind the wavefunction \\(\\psi(x,t)\\) at any later time \\(t\\)."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to Physics Voyage",
-    "section": "",
-    "text": "MSc Physics\n\n\n\n\n\n Email  GitHub  YouTube  LinkedIn\n\n\n\n\n\nI’m a physicist in training, documenting the voyage through quantum mechanics, many-body theory, and the code that makes the cosmos computable.\nThis site is my open notebook — structured courses, project write-ups, and a blog that goes deeper than the textbook. No hand-waving. Everything built from first principles, mistakes included.\n\n\nRead the Blog About Me Courses\n\n\n↓ Scroll down for courses, latest posts & projects"
-  },
-  {
-    "objectID": "index.html#courses",
-    "href": "index.html#courses",
-    "title": "Welcome to Physics Voyage",
-    "section": "Courses",
-    "text": "Courses\n\n\n\n\n\nComputational Physics Active\n\n\nBuilding numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.\n Start →\n\n\n\n\n\n\n\nQuantum Mechanics I Upcoming\n\n\nFrom the postulates to perturbation theory. Every derivation done properly — for students who want the full mathematical story.\n Coming soon\n\n\n\n\n\n\n\nMany-Body Physics Upcoming\n\n\nSecond quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.\n Coming soon"
-  },
-  {
-    "objectID": "index.html#featured",
-    "href": "index.html#featured",
-    "title": "Welcome to Physics Voyage",
-    "section": "Featured",
-    "text": "Featured\n\n\n\nLatest Posts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nComputational Quantum Mechanics: Infinite Potential Well\n\n\n\n\n\n\nQuantum Mechanics\n\n\nComputational Physics\n\n\nPython\n\n\nInfinite Potential Well\n\n\n\nSolving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, and time evolution of superposed quantum states.\n\n\n\n\n\nMay 25, 2026\n\n\n/Blog/Random_Physics/Wavefunction.qmd\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\n/Blog/Subjects/Intro_Comp_Physics/index.qmd\n\n\n\n\n\n\nNo matching items\n\n\n\nAll posts →\n\n\n\nProjects\n\n\n\n\n\n\n🚧 Coming Soon\n\n\n\nMy project portfolio is currently under construction. Please check back later!\n\n\nAll projects →"
-  },
-  {
-    "objectID": "index.html#youtube-highlights",
-    "href": "index.html#youtube-highlights",
-    "title": "Welcome to Physics Voyage",
-    "section": "YouTube Highlights",
-    "text": "YouTube Highlights\n\n\n\n\n\n1. Latest Video\n\n\n\n \n\nLoading latest video…\n\n\n\n\n\n\n\n2. Most Popular Video\n\n\n\n \n\nLoading popular video…\n\n\n\n\n\n\n\n3. Popular Series\n\n\n\n \n\nView Playlist on YouTube"
-  },
-  {
-    "objectID": "Projects/ED_Solver/index.html",
-    "href": "Projects/ED_Solver/index.html",
-    "title": "Exact Diagonalisation Solver",
-    "section": "",
-    "text": "Exact Diagonalisation Solver\nProject details coming soon…"
-  },
-  {
     "objectID": "Blog/Random_Physics/Wavefunction.html#problem-statement",
     "href": "Blog/Random_Physics/Wavefunction.html#problem-statement",
     "title": "Computational Quantum Mechanics: Infinite Potential Well",
@@ -180,5 +145,40 @@
     "title": "Computational Quantum Mechanics: Infinite Potential Well",
     "section": "References",
     "text": "References\n\nZettili, N. Quantum Mechanics: Concepts and Applications, 2nd ed. Wiley, 2009.\nGriffiths, D.J. Introduction to Quantum Mechanics, 3rd ed. Cambridge, 2018."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Physics Voyage",
+    "section": "",
+    "text": "MSc Physics\n\n\n\n\n\n Email  GitHub  YouTube  LinkedIn\n\n\n\n\n\nI’m a physicist in training, documenting the voyage through quantum mechanics, many-body theory, and the code that makes the cosmos computable.\nThis site is my open notebook — structured courses, project write-ups, and a blog that goes deeper than the textbook. No hand-waving. Everything built from first principles, mistakes included.\n\n\nRead the Blog About Me Courses\n\n\n↓ Scroll down for courses, latest posts & projects"
+  },
+  {
+    "objectID": "index.html#courses",
+    "href": "index.html#courses",
+    "title": "Welcome to Physics Voyage",
+    "section": "Courses",
+    "text": "Courses\n\n\n\n\n\nComputational Physics Active\n\n\nBuilding numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.\n Start →\n\n\n\n\n\n\n\nQuantum Mechanics I Upcoming\n\n\nFrom the postulates to perturbation theory. Every derivation done properly — for students who want the full mathematical story.\n Coming soon\n\n\n\n\n\n\n\nMany-Body Physics Upcoming\n\n\nSecond quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.\n Coming soon"
+  },
+  {
+    "objectID": "index.html#featured",
+    "href": "index.html#featured",
+    "title": "Welcome to Physics Voyage",
+    "section": "Featured",
+    "text": "Featured\n\n\n\nLatest Posts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nComputational Quantum Mechanics: Infinite Potential Well\n\n\n\n\n\n\nQuantum Mechanics\n\n\nComputational Physics\n\n\nPython\n\n\nInfinite Potential Well\n\n\n\nSolving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, and time evolution of superposed quantum states.\n\n\n\n\n\nMay 25, 2026\n\n\n/Blog/Random_Physics/Wavefunction.qmd\n\n\n\n\n\n\n\nIntroduction to Computational Physics\n\n\n\n\n\n\nComputational Physics\n\n\nBeginner\n\n\nPython\n\n\n\nWhat is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.\n\n\n\n\n\nMay 22, 2026\n\n\n/Blog/Subjects/Intro_Comp_Physics/index.qmd\n\n\n\n\n\n\nNo matching items\n\n\n\nAll posts →\n\n\n\nProjects\n\n\n\n\n\n\n🚧 Coming Soon\n\n\n\nMy project portfolio is currently under construction. Please check back later!\n\n\nAll projects →"
+  },
+  {
+    "objectID": "index.html#youtube-highlights",
+    "href": "index.html#youtube-highlights",
+    "title": "Welcome to Physics Voyage",
+    "section": "YouTube Highlights",
+    "text": "YouTube Highlights\n\n\n\n\n\n1. Latest Video\n\n\n\n \n\nLoading latest video…\n\n\n\n\n\n\n\n2. Most Popular Video\n\n\n\n \n\nLoading popular video…\n\n\n\n\n\n\n\n3. Popular Series\n\n\n\n \n\nView Playlist on YouTube"
+  },
+  {
+    "objectID": "Projects/ED_Solver/index.html",
+    "href": "Projects/ED_Solver/index.html",
+    "title": "Exact Diagonalisation Solver",
+    "section": "",
+    "text": "Exact Diagonalisation Solver\nProject details coming soon…"
   }
 ]
