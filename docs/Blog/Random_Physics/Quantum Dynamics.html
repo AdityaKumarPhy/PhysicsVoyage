@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-05-21">
-<meta name="description" content="Density Matrix Renormalisation Group — after ED is solid.">
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-25">
+<meta name="description" content="Master time evolution in quantum mechanics. Learn to solve the harmonic oscillator and double-well tunneling using both analytical math and computational Python.">
 
-<title>Physics Voyage - DMRG Implementation</title>
+<title>Physics Voyage - Quantum Dynamics: Analytical &amp; Computational Solutions in Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,15 +70,127 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
 
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Add hyperlinked watermark for print
+  const watermark = document.createElement("a");
+  watermark.href = window.location.href; // Links back to the specific blog
+  watermark.className = "print-watermark";
+  watermark.textContent = "Physics Voyage";
+  document.body.appendChild(watermark);
+
+  // Add print button right next to the published date if it exists
+  const dateElement = document.querySelector(".quarto-title-meta-contents .date");
+  if (dateElement) {
+    const btn = document.createElement("button");
+    btn.className = "btn btn-outline-secondary btn-sm ms-3";
+    btn.style.display = "inline-flex";
+    btn.style.alignItems = "center";
+    btn.style.gap = "5px";
+    btn.style.verticalAlign = "middle";
+    btn.onclick = function() { window.print(); };
+    btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
+    dateElement.appendChild(btn);
+  } else {
+    // Fallback: append as a separate metadata item if no date is found
+    const titleMeta = document.querySelector(".quarto-title-meta");
+    if (titleMeta) {
+      const metaItem = document.createElement("div");
+      metaItem.className = "pdf-download-meta-item";
+
+      const heading = document.createElement("div");
+      heading.className = "quarto-title-meta-heading";
+      heading.textContent = "Download";
+
+      const contents = document.createElement("div");
+      contents.className = "quarto-title-meta-contents";
+
+      const p = document.createElement("p");
+      const btn = document.createElement("button");
+      btn.className = "btn btn-outline-secondary btn-sm";
+      btn.onclick = function() { window.print(); };
+      btn.innerHTML = '<i class="bi bi-file-earmark-pdf"></i> PDF';
+
+      p.appendChild(btn);
+      contents.appendChild(p);
+      metaItem.appendChild(heading);
+      metaItem.appendChild(contents);
+      titleMeta.appendChild(metaItem);
+    }
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/styles/styles.css">
-</head>
 
-<body class="nav-fixed">
+
+
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -125,7 +238,47 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Quantum Dynamics: Analytical &amp; Computational Solutions in Python</h1>
+                  <div>
+        <div class="description">
+          Master time evolution in quantum mechanics. Learn to solve the harmonic oscillator and double-well tunneling using both analytical math and computational Python.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Quantum Physics</div>
+                <div class="quarto-category">Computational Physics</div>
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">Advanced</div>
+                <div class="quarto-category">Harmonic Oscillator</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aditya Kumar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 25, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -133,50 +286,127 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dmrg-implementation" id="toc-dmrg-implementation" class="nav-link active" data-scroll-target="#dmrg-implementation">DMRG Implementation</a></li>
+  <li><a href="#problem-1-the-truncated-parabola-in-a-harmonic-oscillator" id="toc-problem-1-the-truncated-parabola-in-a-harmonic-oscillator" class="nav-link active" data-scroll-target="#problem-1-the-truncated-parabola-in-a-harmonic-oscillator">Problem 1: The Truncated Parabola in a Harmonic Oscillator</a></li>
+  <li><a href="#problem-2-the-shifted-and-squeezed-gaussian" id="toc-problem-2-the-shifted-and-squeezed-gaussian" class="nav-link" data-scroll-target="#problem-2-the-shifted-and-squeezed-gaussian">Problem 2: The Shifted and Squeezed Gaussian</a></li>
+  <li><a href="#problem-3-tunneling-in-the-quartic-double-well" id="toc-problem-3-tunneling-in-the-quartic-double-well" class="nav-link" data-scroll-target="#problem-3-tunneling-in-the-quartic-double-well">Problem 3: Tunneling in the Quartic Double Well</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">DMRG Implementation</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Planned</div>
-    <div class="quarto-category">Physics</div>
-  </div>
-  </div>
 
-<div>
-  <div class="description">
-    Density Matrix Renormalisation Group — after ED is solid.
-  </div>
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png" class="img-fluid figure-img"></p>
+<figcaption>Quantum Harmonic Oscillator</figcaption>
+</figure>
 </div>
-
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 21, 2026</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="dmrg-implementation" class="level1">
-<h1>DMRG Implementation</h1>
-<p>Project details coming soon…</p>
+<table class="table table-hover">
+<thead>
+<tr>
+<th scope="col">
+Analytical Methods
+</th>
+<th scope="col">
+Computational Methods
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-active">
+<th scope="row">
+1
+</th>
+<td>
+Operator Algebra (<span class="math inline">\(\hat{a}\)</span>, <span class="math inline">\(\hat{a}^\dagger\)</span>)
+</td>
+<td>
+<strong>Libraries:</strong> Python, NumPy, SciPy, Matplotlib
+</td>
+</tr>
+<tr>
+<th scope="row">
+2
+</th>
+<td>
+Hermite Polynomials &amp; Special Functions
+</td>
+<td>
+Matrix Diagonalization
+</td>
+</tr>
+<tr class="table-primary">
+<th scope="row">
+3
+</th>
+<td>
+WKB Approximation
+</td>
+<td>
+Finite Difference Method (FDM)
+</td>
+</tr>
+<tr class="table-secondary">
+<th scope="row">
+4
+</th>
+<td>
+Eigenfunction Expansion
+</td>
+<td>
+Shooting Method
+</td>
+</tr>
+<tr class="table-success">
+<th scope="row">
+5
+</th>
+<td>
+Gaussian Integrals &amp; Error Functions
+</td>
+<td>
+Runge-Kutta Methods (RK4)
+</td>
+</tr>
+<tr class="table-danger">
+<th scope="row">
+6
+</th>
+<td>
+Dirac Notation Manipulation
+</td>
+<td>
+Crank-Nicolson Scheme
+</td>
+</tr>
+<tr class="table-warning">
+<th scope="row">
+7
+</th>
+<td>
+Fourier Transforms (Momentum Space)
+</td>
+<td>
+Root-Finding (Newton-Raphson, Bisection)
+</td>
+</tr>
+</tbody>
+</table>
+<section id="problem-1-the-truncated-parabola-in-a-harmonic-oscillator" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-the-truncated-parabola-in-a-harmonic-oscillator">Problem 1: The Truncated Parabola in a Harmonic Oscillator</h3>
+<p>Consider a particle of mass <span class="math inline">\(m\)</span> subject to a one-dimensional quantum harmonic oscillator potential: <span class="math display">\[V(x)=\frac{1}{2}m\omega^2x^2\]</span> At time <span class="math inline">\(t=0\)</span>, the particle is prepared in the initial state: <span class="math display">\[\psi(x,0)=\begin{cases}N(A-Bx^2)&amp;\text{for }x^2\le\frac{A}{B}\\0&amp;\text{for }x^2&gt;\frac{A}{B}\end{cases}\]</span> where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are positive real constants, and <span class="math inline">\(N\)</span> is the normalization constant.</p>
+</section>
+<section id="problem-2-the-shifted-and-squeezed-gaussian" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-the-shifted-and-squeezed-gaussian">Problem 2: The Shifted and Squeezed Gaussian</h3>
+<p>A particle of mass <span class="math inline">\(m\)</span> in a harmonic oscillator potential <span class="math inline">\(V(x)=\frac{1}{2}m\omega^2x^2\)</span> is initially prepared in a Gaussian wave packet given by: <span class="math display">\[\psi(x,0)=Ne^{-\frac{(x-x_0)^2}{2a^2}}\]</span> where <span class="math inline">\(x_0\)</span> is an initial spatial shift, <span class="math inline">\(a\)</span> is the initial width of the wave packet, and <span class="math inline">\(a\neq\sqrt{\hbar/m\omega}\)</span> (which is the natural width of the oscillator ground state).</p>
+</section>
+<section id="problem-3-tunneling-in-the-quartic-double-well" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-tunneling-in-the-quartic-double-well">Problem 3: Tunneling in the Quartic Double Well</h3>
+<p>A particle of mass <span class="math inline">\(m\)</span> moves in a one-dimensional quartic double-well potential described by: <span class="math display">\[V(x)=-\frac{1}{2}\alpha x^2+\beta x^4\]</span> where <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are positive constants.</p>
 
 
 </section>

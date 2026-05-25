@@ -1,7 +1,7 @@
 ---
 title: "Computational Quantum Mechanics: Infinite Potential Well"
 author: "Aditya Kumar"
-date: "2026-05-25"
+date: "2026-05-25T10:00:00"
 description: "Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation values, and time evolution of superposed quantum states."
 categories: ["Quantum Mechanics", "Computational Physics", "Python", "Infinite Potential Well"]
 draft: false
@@ -11,7 +11,8 @@ execute:
   echo: true
   warning: false
 code-fold: true
-code-tools: false
+html:
+    code-tools: true
 ---
 
 ## Problem Statement

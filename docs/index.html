@@ -309,17 +309,68 @@ MSc Physics
 </style>
 <!-- Auto-built JS carousel -->
 <div id="posts-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="min-height:120px">
-<div id="posts-carousel-inner" class="carousel-inner">
-
-</div>
+  <div class="carousel-inner" id="posts-carousel-inner"></div>
+  
+  <!-- Controls & All Posts Button -->
+  <div class="d-flex justify-content-between align-items-center mt-2">
+    <a href="blog.html" class="btn btn-sm btn-outline-info">All posts →</a>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline-primary" type="button" data-bs-target="#posts-carousel" data-bs-slide="prev">
+        ← Prev
+      </button>
+      <button class="btn btn-sm btn-outline-dark" type="button" data-bs-target="#posts-carousel" data-bs-slide="next">
+        Next →
+      </button>
+    </div>
+  </div>
 </div>
 <!-- Hidden Quarto listing source -->
 <div style="display:none">
 <div id="listing-latest-posts-carousel" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Quantum Mechanics,Computational Physics,Python,Infinite Potential Well" data-listing-date-sort="1779647400000" data-listing-file-modified-sort="1779687685467" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1745">
+<div class="quarto-post image-right" data-index="0" data-categories="Quantum Physics,Computational Physics,Python,Advanced,Harmonic Oscillator" data-listing-date-sort="1779712200000" data-listing-file-modified-sort="1779717024373" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390">
 <div class="body">
 <h3 class="no-anchor listing-title" data-anchor-id="latest-posts">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">Quantum Dynamics: Analytical &amp; Computational Solutions in Python</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Quantum Physics'); return false;">
+Quantum Physics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Computational Physics'); return false;">
+Computational Physics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Advanced'); return false;">
+Advanced
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Harmonic Oscillator'); return false;">
+Harmonic Oscillator
+</div>
+</div>
+<div class="listing-description">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">Master time evolution in quantum mechanics. Learn to solve the harmonic oscillator and double-well tunneling using both analytical math and computational Python.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">
+<div class="listing-date">
+May 25, 2026
+</div>
+<div class="metadata-value listing-path">
+/Blog/Random_Physics/Quantum Dynamics.qmd
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Computational Physics,Python,Infinite Potential Well" data-listing-date-sort="1779683400000" data-listing-file-modified-sort="1779716216536" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1745">
+<div class="body">
+<h3 class="no-anchor listing-title">
 <a href="./Blog/Random_Physics/Wavefunction.html" class="no-external">Computational Quantum Mechanics: Infinite Potential Well</a>
 </h3>
 <div class="listing-subtitle">
@@ -354,7 +405,7 @@ May 25, 2026
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Computational Physics,Beginner,Python" data-listing-date-sort="1779388200000" data-listing-file-modified-sort="1779641308715" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1341">
+<div class="quarto-post image-right" data-index="2" data-categories="Computational Physics,Beginner,Python" data-listing-date-sort="1779388200000" data-listing-file-modified-sort="1779709262596" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1341">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./Blog/Subjects/Intro_Comp_Physics/index.html" class="no-external">Introduction to Computational Physics</a>
@@ -394,7 +445,6 @@ No matching items
 </div>
 </div>
 </div>
-<p><a href="./blog.html" class="btn btn-sm btn-outline-dark">All posts →</a></p>
 </section>
 <!-- Column 2: Projects (WIP / Finished / Planned) -->
 <section id="projects" class="level4 g-col-12 g-col-lg-6">
@@ -535,12 +585,12 @@ document.addEventListener("DOMContentLoaded", function () {
              style="cursor:pointer; transition: box-shadow 0.2s, transform 0.2s;"
              onclick="window.location.href='${href}'">
           <div class="card-body">
-            <h6 class="card-title mb-1">
+            <h6 class="card-title mb-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               <span class="text-decoration-none text-reset fw-semibold">${title}</span>
             </h6>
             ${date ? `<small class="text-muted">${date}</small><br>` : ''}
-            <div class="mt-1">${badges}</div>
-            ${desc ? `<div class="mt-2 text-muted" style="font-size:0.9em;">${desc}</div>` : ''}
+            <div class="mt-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-bottom: 2px;">${badges}</div>
+            ${desc ? `<div class="mt-2 text-muted" style="font-size:0.9em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${desc}</div>` : ''}
             <div class="mt-2" style="font-size:0.82em; color:#6c757d;">Click to read &rarr;</div>
           </div>
         </div>`;

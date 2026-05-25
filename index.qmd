@@ -166,18 +166,31 @@ Second quantisation, Hubbard models, tensor networks. The course I wish existed 
 }
 </style>
 
+```{=html}
 <!-- Auto-built JS carousel -->
 <div id="posts-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="min-height:120px">
   <div class="carousel-inner" id="posts-carousel-inner"></div>
+  
+  <!-- Controls & All Posts Button -->
+  <div class="d-flex justify-content-between align-items-center mt-2">
+    <a href="blog.html" class="btn btn-sm btn-outline-info">All posts &rarr;</a>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline-primary" type="button" data-bs-target="#posts-carousel" data-bs-slide="prev">
+        &larr; Prev
+      </button>
+      <button class="btn btn-sm btn-outline-dark" type="button" data-bs-target="#posts-carousel" data-bs-slide="next">
+        Next &rarr;
+      </button>
+    </div>
+  </div>
 </div>
+```
 
 <!-- Hidden Quarto listing source -->
 <div style="display:none">
 ::: {#latest-posts-carousel}
 :::
 </div>
-
-[All posts →](blog.qmd){.btn .btn-sm .btn-outline-dark}
 :::
 
 <!-- Column 2: Projects (WIP / Finished / Planned) -->
@@ -337,12 +350,12 @@ document.addEventListener("DOMContentLoaded", function () {
              style="cursor:pointer; transition: box-shadow 0.2s, transform 0.2s;"
              onclick="window.location.href='${href}'">
           <div class="card-body">
-            <h6 class="card-title mb-1">
+            <h6 class="card-title mb-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               <span class="text-decoration-none text-reset fw-semibold">${title}</span>
             </h6>
             ${date ? `<small class="text-muted">${date}</small><br>` : ''}
-            <div class="mt-1">${badges}</div>
-            ${desc ? `<div class="mt-2 text-muted" style="font-size:0.9em;">${desc}</div>` : ''}
+            <div class="mt-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-bottom: 2px;">${badges}</div>
+            ${desc ? `<div class="mt-2 text-muted" style="font-size:0.9em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${desc}</div>` : ''}
             <div class="mt-2" style="font-size:0.82em; color:#6c757d;">Click to read &rarr;</div>
           </div>
         </div>`;

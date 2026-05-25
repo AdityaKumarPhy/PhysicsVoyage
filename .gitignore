@@ -1,2 +1,8 @@
 /.quarto/
 .env
+/.local_image_backup/
+
+# Cloudinary Media Drop Zone — all files are uploaded to Cloudinary & backed up locally
+# Only the cache (which holds Cloudinary URLs) is committed to git
+/assets/Media/*
+!/assets/Media/.cloudinary_cache.json

@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
@@ -216,7 +216,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Beginner">Beginner <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Computational Physics">Computational Physics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Infinite Potential Well">Infinite Potential Well <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Advanced">Advanced <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Beginner">Beginner <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Computational Physics">Computational Physics <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Harmonic Oscillator">Harmonic Oscillator <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Infinite Potential Well">Infinite Potential Well <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Quantum Physics">Quantum Physics <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -253,15 +253,6 @@ window.Quarto = {
          <option value="listing-title" data-direction="asc">
           Title
         </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
      </select>
   </div>
     <div class="input-group input-group-sm quarto-listing-filter">
@@ -270,7 +261,21 @@ window.Quarto = {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Quantum Mechanics,Computational Physics,Python,Infinite Potential Well" data-listing-date-sort="1779647400000" data-listing-file-modified-sort="1779687685467" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1745">
+<div class="g-col-1" data-index="0" data-categories="Quantum Physics,Computational Physics,Python,Advanced,Harmonic Oscillator" data-listing-date-sort="1779712200000" data-listing-file-modified-sort="1779717024373" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Quantum Dynamics: Analytical &amp; Computational Solutions in Python
+</h5>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Quantum Mechanics,Computational Physics,Python,Infinite Potential Well" data-listing-date-sort="1779683400000" data-listing-file-modified-sort="1779716216536" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1745">
 <a href="./Blog/Random_Physics/Wavefunction.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -280,67 +285,20 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 Computational Quantum Mechanics: Infinite Potential Well
 </h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Computational Physics'); return false;">
-Computational Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Infinite Potential Well'); return false;">
-Infinite Potential Well
-</div>
-</div>
-<div class="card-text listing-description">
-Solving the infinite potential well problem using both analytical and computational methods in Python. This project explores normalization, quantum measurements, expectation…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Aditya Kumar
-</div>
-<div class="listing-date">
-May 25, 2026
-</div>
-</div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Computational Physics,Beginner,Python" data-listing-date-sort="1779388200000" data-listing-file-modified-sort="1779641308715" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1341">
+<div class="g-col-1" data-index="2" data-categories="Computational Physics,Beginner,Python" data-listing-date-sort="1779388200000" data-listing-file-modified-sort="1779709262596" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1341">
 <a href="./Blog/Subjects/Intro_Comp_Physics/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img src="./Blog/Subjects/Intro_Comp_Physics/Blog/Subjects/Intro_Comp_Physics/cover.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779709261/Github%20Blog/cover.jpg" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Introduction to Computational Physics
 </h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Computational Physics'); return false;">
-Computational Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Beginner'); return false;">
-Beginner
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-</div>
-<div class="card-text listing-description">
-What is computational physics, why it matters, and how to start thinking like a computational physicist — from pencil-and-paper problems to numerical simulation.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Aditya Kumar
-</div>
-<div class="listing-date">
-May 22, 2026
-</div>
-</div>
 </div>
 </div>
 </a>
@@ -379,7 +337,52 @@ No matching items
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Quantum Mechanics,Computational Physics,Python,Infinite Potential Well" data-listing-date-sort="1779647400000" data-listing-file-modified-sort="1779687685467" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1745">
+<div class="quarto-post image-right" data-index="0" data-categories="Quantum Physics,Computational Physics,Python,Advanced,Harmonic Oscillator" data-listing-date-sort="1779712200000" data-listing-file-modified-sort="1779717024373" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390">
+<div class="thumbnail">
+<p><a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external"></a></p><a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png" class="thumbnail-image"></p>
+</a><p><a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">Quantum Dynamics: Analytical &amp; Computational Solutions in Python</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Quantum Physics'); return false;">
+Quantum Physics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Computational Physics'); return false;">
+Computational Physics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Advanced'); return false;">
+Advanced
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Harmonic Oscillator'); return false;">
+Harmonic Oscillator
+</div>
+</div>
+<div class="listing-description">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">Master time evolution in quantum mechanics. Learn to solve the harmonic oscillator and double-well tunneling using both analytical math and computational Python.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./Blog/Random_Physics/Quantum Dynamics.html" class="no-external">
+<div class="listing-date">
+May 25, 2026
+</div>
+<div class="listing-author">
+Aditya Kumar
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Computational Physics,Python,Infinite Potential Well" data-listing-date-sort="1779683400000" data-listing-file-modified-sort="1779716216536" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1745">
 <div class="thumbnail">
 <p><a href="./Blog/Random_Physics/Wavefunction.html" class="no-external"></a></p><a href="./Blog/Random_Physics/Wavefunction.html" class="no-external">
 <p><img src="https://i.pinimg.com/736x/cb/39/bf/cb39bf481101baef608d641a1afe62bb.jpg" class="thumbnail-image"></p>
@@ -421,10 +424,10 @@ Aditya Kumar
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Computational Physics,Beginner,Python" data-listing-date-sort="1779388200000" data-listing-file-modified-sort="1779641308715" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1341">
+<div class="quarto-post image-right" data-index="2" data-categories="Computational Physics,Beginner,Python" data-listing-date-sort="1779388200000" data-listing-file-modified-sort="1779709262596" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1341">
 <div class="thumbnail">
 <p><a href="./Blog/Subjects/Intro_Comp_Physics/index.html" class="no-external"></a></p><a href="./Blog/Subjects/Intro_Comp_Physics/index.html" class="no-external">
-<p><img src="./Blog/Subjects/Intro_Comp_Physics/Blog/Subjects/Intro_Comp_Physics/cover.jpg" class="thumbnail-image"></p>
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779709261/Github%20Blog/cover.jpg" class="thumbnail-image"></p>
 </a><p><a href="./Blog/Subjects/Intro_Comp_Physics/index.html" class="no-external"></a></p>
 </div>
 <div class="body">

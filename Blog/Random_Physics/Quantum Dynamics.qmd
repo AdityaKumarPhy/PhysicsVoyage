@@ -1,0 +1,81 @@
+---
+title: "Quantum Dynamics: Analytical & Computational Solutions in Python"
+description: "Master time evolution in quantum mechanics. Learn to solve the harmonic oscillator and double-well tunneling using both analytical math and computational Python."
+author: "Aditya Kumar"
+date: "2026-05-25T18:00:00" # Update this to the current date and time
+categories: [Quantum Physics, Computational Physics, Python, Advanced, Harmonic Oscillator] # Add relevant tags
+draft: false # Set to true if you want to keep it as a draft
+image: "https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png"
+format:
+  html:
+    execute:
+        echo: true
+        warning: false
+    code-fold: true # Collapses code blocks by default (users can expand to view)
+---
+![Quantum Harmonic Oscillator](https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png)
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+     
+      <th scope="col">Analytical Methods</th>
+      <th scope="col">Computational Methods</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active">
+      <th scope="row">1</th>
+      <td>Operator Algebra ($\hat{a}$, $\hat{a}^\dagger$)</td>
+      <td><strong>Libraries:</strong> Python, NumPy, SciPy, Matplotlib</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Hermite Polynomials & Special Functions</td>
+      <td>Matrix Diagonalization</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">3</th>
+      <td>WKB Approximation</td>
+      <td>Finite Difference Method (FDM)</td>
+    </tr>
+    <tr class="table-secondary">
+      <th scope="row">4</th>
+      <td>Eigenfunction Expansion</td>
+      <td>Shooting Method</td>
+    </tr>
+    <tr class="table-success">
+      <th scope="row">5</th>
+      <td>Gaussian Integrals & Error Functions</td>
+      <td>Runge-Kutta Methods (RK4)</td>
+    </tr>
+    <tr class="table-danger">
+      <th scope="row">6</th>
+      <td>Dirac Notation Manipulation</td>
+      <td>Crank-Nicolson Scheme</td>
+    </tr>
+    <tr class="table-warning">
+      <th scope="row">7</th>
+      <td>Fourier Transforms (Momentum Space)</td>
+      <td>Root-Finding (Newton-Raphson, Bisection)</td>
+    </tr>
+  </tbody>
+</table>
+
+### Problem 1: The Truncated Parabola in a Harmonic Oscillator
+Consider a particle of mass $m$ subject to a one-dimensional quantum harmonic oscillator potential:
+$$V(x)=\frac{1}{2}m\omega^2x^2$$
+At time $t=0$, the particle is prepared in the initial state:
+$$\psi(x,0)=\begin{cases}N(A-Bx^2)&\text{for }x^2\le\frac{A}{B}\\0&\text{for }x^2>\frac{A}{B}\end{cases}$$
+where $A$ and $B$ are positive real constants, and $N$ is the normalization constant.
+
+### Problem 2: The Shifted and Squeezed Gaussian
+A particle of mass $m$ in a harmonic oscillator potential $V(x)=\frac{1}{2}m\omega^2x^2$ is initially prepared in a Gaussian wave packet given by:
+$$\psi(x,0)=Ne^{-\frac{(x-x_0)^2}{2a^2}}$$
+where $x_0$ is an initial spatial shift, $a$ is the initial width of the wave packet, and $a\neq\sqrt{\hbar/m\omega}$ (which is the natural width of the oscillator ground state).
+
+### Problem 3: Tunneling in the Quartic Double Well
+A particle of mass $m$ moves in a one-dimensional quartic double-well potential described by:
+$$V(x)=-\frac{1}{2}\alpha x^2+\beta x^4$$
+where $\alpha$ and $\beta$ are positive constants.

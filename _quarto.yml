@@ -1,7 +1,10 @@
 project:
   type: website
   output-dir: docs
-  pre-render: python3 assets/scripts/fetch_youtube.py
+  pre-render:
+    - python3 assets/scripts/fetch_youtube.py
+    - python3 assets/scripts/cloudinary_sync.py
+    - python3 assets/scripts/cloudinary_uploader.py
   resources:
     - assets/scripts/youtube-data.json
 

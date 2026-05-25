@@ -13,9 +13,10 @@ listing:
     contents: Blog
     sort: "date desc"
     type: grid
-    categories: true
+    categories: false
     sort-ui: true
     filter-ui: true
+    fields: [image, title]
 ---
 
 ::: {.panel-tabset}
