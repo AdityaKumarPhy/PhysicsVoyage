@@ -17,3 +17,6 @@ format:
       - progress-bar.html
     include-after-body:
       - recommended-blogs.html
+    highlight-style:
+      light: github
+      dark: dracula
