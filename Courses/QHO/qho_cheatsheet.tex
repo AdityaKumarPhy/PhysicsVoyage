@@ -1,0 +1,655 @@
+% ============================================================
+%  Quantum Harmonic Oscillator — Complete Cheat Sheet
+%  Compile with: pdflatex or XeLaTeX on Overleaf
+%  Author : Aditya Kumar | Physics Voyage
+%  Sources: Shankar (Ch.7), Cohen-Tannoudji (Ch.V), Griffiths (§2.3)
+% ============================================================
+
+\documentclass[9pt,landscape]{article}
+
+% ── Page geometry ────────────────────────────────────────────────────────────
+\usepackage[
+  a4paper, landscape,
+  top=4mm, bottom=5mm,
+  left=4mm, right=4mm
+]{geometry}
+
+% ── Core packages ────────────────────────────────────────────────────────────
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{physics}          % \ket, \bra, \braket, \comm, \abs, \norm …
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+\usepackage{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=violet!70!black}
+
+% ── Spacing ──────────────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{3.5mm}
+\setlength{\columnseprule}{0.3pt}
+\setlength\columnseprulecolor{\color{gray!30}}
+
+% ── Colours ──────────────────────────────────────────────────────────────────
+\definecolor{deepviolet}{HTML}{3b0764}
+\definecolor{violet}{HTML}{6d28d9}
+\definecolor{lightviolet}{HTML}{ede9fe}
+\definecolor{midviolet}{HTML}{7c3aed}
+\definecolor{deepgreen}{HTML}{064e3b}
+\definecolor{green}{HTML}{059669}
+\definecolor{lightgreen}{HTML}{d1fae5}
+\definecolor{deepblue}{HTML}{0c4a6e}
+\definecolor{blue}{HTML}{0284c7}
+\definecolor{lightblue}{HTML}{e0f2fe}
+\definecolor{deepgold}{HTML}{78350f}
+\definecolor{gold}{HTML}{d97706}
+\definecolor{lightgold}{HTML}{fef3c7}
+\definecolor{deepred}{HTML}{7f1d1d}
+\definecolor{rose}{HTML}{e11d48}
+\definecolor{lightrose}{HTML}{ffe4e6}
+\definecolor{darkbg}{HTML}{1e1b4b}
+\definecolor{coolgray}{HTML}{f1f5f9}
+\definecolor{bordergray}{HTML}{cbd5e1}
+
+% ── Font sizes ───────────────────────────────────────────────────────────────
+\renewcommand{\normalsize}{\fontsize{7.2pt}{9.2pt}\selectfont}
+\normalsize
+
+% ── tcolorbox styles ─────────────────────────────────────────────────────────
+
+% Section header box (full-width, dark bg)
+\tcbset{
+  sectionbox/.style={
+    enhanced, colback=deepviolet, colframe=deepviolet,
+    coltext=white, fonttitle=\bfseries\small,
+    boxrule=0pt, arc=3pt,
+    left=3pt, right=3pt, top=2pt, bottom=2pt,
+    before skip=4pt, after skip=3pt,
+  }
+}
+
+% Key result box — violet
+\tcbset{
+  keybox/.style={
+    enhanced, colback=lightviolet, colframe=midviolet,
+    boxrule=0.7pt, arc=3pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=2pt, after skip=2pt,
+  }
+}
+
+% Green box — coherent states
+\tcbset{
+  greenbox/.style={
+    enhanced, colback=lightgreen, colframe=green,
+    boxrule=0.7pt, arc=3pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=2pt, after skip=2pt,
+  }
+}
+
+% Blue box — squeezed states
+\tcbset{
+  bluebox/.style={
+    enhanced, colback=lightblue, colframe=blue,
+    boxrule=0.7pt, arc=3pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=2pt, after skip=2pt,
+  }
+}
+
+% Gold box — notes / virial / turning pts
+\tcbset{
+  goldbox/.style={
+    enhanced, colback=lightgold, colframe=gold,
+    boxrule=0.7pt, arc=3pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=2pt, after skip=2pt,
+  }
+}
+
+% Rose box — uncertainty / SQL
+\tcbset{
+  rosebox/.style={
+    enhanced, colback=lightrose, colframe=rose,
+    boxrule=0.7pt, arc=3pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    before skip=2pt, after skip=2pt,
+  }
+}
+
+% ── Macros ───────────────────────────────────────────────────────────────────
+\newcommand{\A}{\hat{a}}
+\newcommand{\Ad}{\hat{a}^{\dagger}}
+\newcommand{\N}{\hat{N}}
+\newcommand{\x}{\hat{x}}
+\newcommand{\p}{\hat{p}}
+\newcommand{\H}{\hat{H}}
+\newcommand{\D}[1]{\hat{D}(#1)}
+\newcommand{\Sq}[1]{\hat{S}(#1)}
+\newcommand{\xz}{x_0}                     % oscillator length
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand{\ii}{i}                        % imaginary unit
+\newcommand{\sub}[1]{{\color{midviolet}\textbf{#1}}}
+\newcommand{\ssep}{\vspace{2pt}\hrule height 0.2pt\vspace{2pt}}
+
+% Subsection style
+\newcommand{\mysec}[1]{%
+  \vspace{3pt}%
+  {\color{midviolet}\rule{\linewidth}{0.6pt}}\\[-1pt]%
+  {\bfseries\color{deepviolet}\small #1}\\[0.5pt]%
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+% ─────────────────────────────────────────────────────────────────────────────
+
+% ══════════════════════════════════════════════════════════════════════════════
+% TITLE
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{tcolorbox}[
+  enhanced, colback=darkbg, colframe=midviolet,
+  boxrule=1pt, arc=5pt,
+  left=6pt, right=6pt, top=3pt, bottom=3pt,
+  before skip=0pt, after skip=4pt
+]
+  \begin{center}
+    {\large\bfseries\color{white} Quantum Harmonic Oscillator \quad%
+    {\color{violet!60!white}\normalsize\textit{Complete Cheat Sheet}}}\\[2pt]
+    {\footnotesize\color{gray!60!white}
+      Physics Voyage $\cdot$ Aditya Kumar $\quad|\quad$
+      Shankar (Ch.\,7) $\cdot$ Cohen-Tannoudji (Ch.\,V \& Compl.\,GV) $\cdot$ Griffiths (§2.3)}
+  \end{center}
+\end{tcolorbox}
+
+% ══════════════════════════════════════════════════════════════════════════════
+% FOUR-COLUMN BODY
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{multicols}{4}
+
+% ────────────────────────────────────────────────────────────────────────────
+%  COLUMN 1:  Fundamentals  +  Ladder Operators
+% ────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[sectionbox]
+  \centering ❶\; FUNDAMENTALS
+\end{tcolorbox}
+
+\mysec{Why the QHO?}
+Every smooth potential $V(x)$ near a stable equilibrium $x_e$:
+\[
+  V(x) \approx V(x_e) + \tfrac{1}{2}V''(x_e)(x-x_e)^2
+\]
+$\Rightarrow$ SHO with $\omega = \sqrt{V''(x_e)/m}$.\\
+\emph{The QHO is the universal first approximation.}
+
+\mysec{Canonical Quantization}
+Classical observables $\to$ Hermitian operators:
+\[
+  \bigl[\x,\,\p\bigr] = i\hbar \mathbf{1}
+\]
+Position rep: $\p = -i\hbar\,\partial_x$
+
+\mysec{The Hamiltonian — Three Forms}
+\begin{tcolorbox}[keybox]
+\[
+\begin{aligned}
+  \H &= \frac{\p^2}{2m} + \frac{1}{2}m\omega^2\x^2 \\[3pt]
+     &= \hbar\omega\!\left(\N + \half\right) \\[3pt]
+     &= \hbar\omega\!\left(\Ad\A + \half\right)
+\end{aligned}
+\]
+\end{tcolorbox}
+
+\mysec{Energy Eigenvalues}
+\begin{tcolorbox}[keybox]
+\[
+  \boxed{E_n = \hbar\omega\!\left(n+\half\right),\quad n=0,1,2,\ldots}
+\]
+\textbf{Zero-point energy:} $E_0 = \tfrac{1}{2}\hbar\omega$ (never zero!)\\
+\textbf{Level spacing:} $\Delta E = \hbar\omega$
+\end{tcolorbox}
+
+\mysec{Natural Scales}
+\[
+  \xz = \sqrt{\frac{\hbar}{m\omega}}\quad(\text{oscillator length})
+  \qquad p_0 = \frac{\hbar}{\xz} = \sqrt{m\omega\hbar}
+\]
+Dimensionless position: $\xi = x/\xz$
+
+\begin{tcolorbox}[goldbox]
+\textbf{Virial Theorem:}
+$\langle T\rangle_n = \langle V\rangle_n = \tfrac{1}{2}E_n$
+\end{tcolorbox}
+
+% ---
+\begin{tcolorbox}[sectionbox]
+  \centering ❷\; LADDER OPERATORS
+\end{tcolorbox}
+
+\mysec{Definitions}
+\begin{tcolorbox}[keybox]
+\begin{align*}
+  \A  &= \sqrt{\frac{m\omega}{2\hbar}}\!\left(\x + \frac{i\p}{m\omega}\right)\\[4pt]
+  \Ad &= \sqrt{\frac{m\omega}{2\hbar}}\!\left(\x - \frac{i\p}{m\omega}\right)
+\end{align*}
+\end{tcolorbox}
+
+\mysec{Inverse Relations}
+\[
+  \x = \frac{\xz}{\sqrt{2}}\bigl(\A+\Ad\bigr),\qquad
+  \p = \frac{i\hbar}{\sqrt{2}\,\xz}\bigl(\Ad-\A\bigr)
+\]
+
+\mysec{Number Operator}
+$\N = \Ad\A$,\quad $\N\ket{n}=n\ket{n}$,\quad $n\in\mathbb{N}_0$
+
+\mysec{Fundamental Commutators}
+\begin{tcolorbox}[keybox]
+\begin{alignat*}{2}
+  &\bigl[\A,\,\Ad\bigr] = 1 \quad &
+  &\bigl[\N,\,\A\bigr] = -\A \\
+  &\bigl[\N,\,\Ad\bigr] = +\Ad \quad &
+  &\bigl[\H,\,\A\bigr] = -\hbar\omega\A \\
+  &\bigl[\H,\,\Ad\bigr] = +\hbar\omega\Ad
+\end{alignat*}
+\end{tcolorbox}
+
+\mysec{Action on Fock States $\ket{n}$}
+\begin{tcolorbox}[keybox]
+\begin{align*}
+  \A\ket{n}  &= \sqrt{n}\;\ket{n-1} \\
+  \Ad\ket{n} &= \sqrt{n+1}\;\ket{n+1} \\
+  \ket{n}    &= \frac{(\Ad)^n}{\sqrt{n!}}\ket{0} \\
+  \A\ket{0}  &= 0 \quad\text{(ground state condition)}
+\end{align*}
+\end{tcolorbox}
+
+\mysec{Matrix Elements}
+\[
+  \mel{m}{\x}{n} = \frac{\xz}{\sqrt{2}}\Bigl(\sqrt{n}\,\delta_{m,n-1}+\sqrt{n+1}\,\delta_{m,n+1}\Bigr)
+\]
+\[
+  \mel{n}{\x^2}{n} = \xz^2\!\left(n+\half\right),\quad
+  \mel{n}{\p^2}{n} = \frac{\hbar^2}{\xz^2}\!\left(n+\half\right)
+\]
+\[
+  \mel{n}{\x^4}{n} = \frac{3\xz^4}{2}\!\left(2n^2+2n+1\right)
+\]
+
+% ────────────────────────────────────────────────────────────────────────────
+%  COLUMN 2:  Wavefunctions  +  Time Evolution
+% ────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[sectionbox]
+  \centering ❸\; WAVEFUNCTIONS
+\end{tcolorbox}
+
+\mysec{General Formula}
+\begin{tcolorbox}[keybox]
+\[
+  \psi_n(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{\!\!1/4}
+              \frac{H_n(\xi)}{\sqrt{2^n\,n!}}\,e^{-\xi^2/2},\quad \xi=\frac{x}{\xz}
+\]
+\end{tcolorbox}
+
+\mysec{Ground State (must memorise!)}
+\[
+  \psi_0(x) = \bigl(\pi\xz^2\bigr)^{-1/4}\exp\!\left(-\frac{x^2}{2\xz^2}\right)
+\]
+Generated by: $\A\psi_0 = 0 \;\Rightarrow\; \psi_0' = -(\xi/\xz)\psi_0$
+
+\mysec{Hermite Polynomials $H_n(\xi)$}
+\begin{center}
+{\footnotesize
+\begin{tabular}{@{}r@{\;=\;}l@{\quad}r@{\;=\;}l@{}}
+$H_0$ & $1$           & $H_1$ & $2\xi$ \\
+$H_2$ & $4\xi^2-2$    & $H_3$ & $8\xi^3-12\xi$ \\
+$H_4$ & $16\xi^4-48\xi^2+12$ & $H_5$ & $32\xi^5-160\xi^3+120\xi$
+\end{tabular}}
+\end{center}
+\textbf{Rodrigues:} $H_n(\xi)=(-1)^n e^{\xi^2}\dfrac{d^n}{d\xi^n}e^{-\xi^2}$\\[2pt]
+\textbf{Recurrence:} $H_{n+1}=2\xi H_n - 2nH_{n-1}$\\
+\textbf{Derivative:} $H_n'(\xi)=2nH_{n-1}(\xi)$\\
+\textbf{Orthogonality:}
+$\displaystyle\int_{-\infty}^{\infty}H_m H_n e^{-\xi^2}d\xi = 2^n n!\sqrt{\pi}\,\delta_{mn}$
+
+\mysec{Properties of $\psi_n$}
+\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=0pt]
+  \item \textbf{Parity:} $\psi_n(-x)=(-1)^n\psi_n(x)$
+  \item \textbf{Nodes:} exactly $n$ zeros
+  \item \textbf{Orthonormality:} $\int\psi_m^*\psi_n\,dx=\delta_{mn}$
+  \item \textbf{Completeness:} $\sum_n\psi_n^*(x')\psi_n(x)=\delta(x-x')$
+\end{itemize}
+
+\mysec{Expectation Values in $\ket{n}$}
+\[
+  \langle\x\rangle=0,\quad\langle\p\rangle=0
+\]
+\[
+  \langle\x^2\rangle=\xz^2\!\left(n+\half\right),\quad
+  \langle\p^2\rangle=\frac{\hbar^2}{\xz^2}\!\left(n+\half\right)
+\]
+\begin{tcolorbox}[rosebox]
+\textbf{Uncertainty:}\;
+$\Delta x\,\Delta p = \hbar\!\left(n+\half\right)\geq\dfrac{\hbar}{2}$\;
+(saturated only at $n=0$)
+\end{tcolorbox}
+
+\mysec{Classical Turning Points \& Tunnelling}
+\[
+  x_{\pm} = \pm\sqrt{2n+1}\;\xz
+\]
+Probability of finding particle \emph{outside} classical region for $n=0$:
+\[
+  P_{\rm tunnel} = 1-\operatorname{erf}(1)\approx 15.7\%
+\]
+
+% ---
+\begin{tcolorbox}[sectionbox]
+  \centering ❹\; TIME EVOLUTION
+\end{tcolorbox}
+
+\mysec{Energy Eigenstates}
+\[
+  \ket{n,t} = e^{-i\omega(n+1/2)t}\ket{n}
+\]
+\[
+  \ket{\Psi(t)} = \sum_n c_n\,e^{-i\omega(n+1/2)t}\ket{n}
+\]
+\begin{tcolorbox}[goldbox]
+\textbf{Full quantum revival:}\; $T = 2\pi/\omega$\\
+$|\Psi(T)\rangle = e^{-i\pi}\,|\Psi(0)\rangle$ (global phase only)
+\end{tcolorbox}
+
+\mysec{Time Evolution Operator}
+\[
+  \hat{U}(t) = e^{-i\H t/\hbar} = e^{-i\omega t(\N+1/2)}
+\]
+\[
+  \hat{U}(t)\,\A\,\hat{U}^\dagger(t) = e^{-i\omega t}\A
+\]
+
+\mysec{Heisenberg Picture}
+\begin{tcolorbox}[keybox]
+\begin{align*}
+  \A(t) &= e^{-i\omega t}\A(0)\\
+  \Ad(t) &= e^{+i\omega t}\Ad(0)\\
+  \x(t) &= \xz\cos\omega t\;\x(0) + \frac{\sin\omega t}{m\omega}\,\p(0)\\
+  \p(t) &= -m\omega\xz\sin\omega t\;\x(0) + \cos\omega t\;\p(0)
+\end{align*}
+\end{tcolorbox}
+
+\mysec{Ehrenfest's Theorem}
+\begin{tcolorbox}[greenbox]
+\[
+  \frac{d\langle\x\rangle}{dt}=\frac{\langle\p\rangle}{m},\qquad
+  \frac{d\langle\p\rangle}{dt}=-m\omega^2\langle\x\rangle
+\]
+\[
+  \Rightarrow\quad\frac{d^2\langle\x\rangle}{dt^2} = -\omega^2\langle\x\rangle
+\]
+\emph{Quantum averages obey classical equations — for any state!}
+\end{tcolorbox}
+
+\mysec{Wigner Quasi-Probability Function}
+\[
+  W(x,p) = \frac{1}{\pi\hbar}\!\int_{-\infty}^{\infty}\!\psi^*(x{+}y)\psi(x{-}y)\,e^{2ipy/\hbar}dy
+\]
+\textbf{Marginals:}\;
+$\int W\,dp = |\psi(x)|^2$,\quad $\int W\,dx = |\tilde\psi(p)|^2$\\
+\textbf{Ground state:}
+\[
+  W_0(x,p) = \frac{1}{\pi\hbar}\exp\!\left(-\frac{x^2}{\xz^2}-\frac{p^2\xz^2}{\hbar^2}\right)
+\]
+$W$ can be negative $\Rightarrow$ signature of non-classicality\\
+Fock state $\ket{n}$: $W_n$ shows $n$ rings, $W$ negative in parts.
+
+% ────────────────────────────────────────────────────────────────────────────
+%  COLUMN 3:  Coherent States
+% ────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[sectionbox]
+  \centering ❺\; COHERENT STATES
+\end{tcolorbox}
+
+\mysec{Three Equivalent Definitions}
+\begin{tcolorbox}[greenbox]
+\begin{enumerate}[leftmargin=*, itemsep=2pt, topsep=0pt, label=\textbf{\arabic*.}]
+  \item Eigenstate of $\A$:\; $\A\ket{\alpha}=\alpha\ket{\alpha},\;\alpha\in\mathbb{C}$
+  \item Displaced vacuum:\; $\ket{\alpha}=\D{\alpha}\ket{0}$
+  \item Min.\ uncertainty state with $\langle\x\rangle\neq 0$ or $\langle\p\rangle\neq 0$
+\end{enumerate}
+\end{tcolorbox}
+
+\mysec{Displacement Operator}
+\begin{tcolorbox}[greenbox]
+\[
+  \D{\alpha} = e^{\alpha\Ad-\alpha^*\A}
+             = e^{-|\alpha|^2/2}\,e^{\alpha\Ad}\,e^{-\alpha^*\A}
+\]
+\textbf{BCH lemma} (since $[\A,\Ad]=1$):\\[2pt]
+$\D{\alpha}\D{\beta} = e^{(\alpha\beta^*-\alpha^*\beta)/2}\D{\alpha+\beta}$\\[2pt]
+$\D{\alpha}^\dagger\A\D{\alpha} = \A+\alpha$\\
+$\D{\alpha}^\dagger\Ad\D{\alpha} = \Ad+\alpha^*$
+\end{tcolorbox}
+
+\mysec{Fock-Space Expansion}
+\begin{tcolorbox}[greenbox]
+\[
+  \ket{\alpha} = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\]
+\end{tcolorbox}
+
+\mysec{Expectation Values \& Uncertainties}
+\[
+  \langle\x\rangle = \sqrt{2}\,\xz\,\mathrm{Re}(\alpha),\qquad
+  \langle\p\rangle = \frac{\sqrt{2}\,\hbar}{\xz}\,\mathrm{Im}(\alpha)
+\]
+\begin{tcolorbox}[greenbox]
+\[
+  \Delta x = \frac{\xz}{\sqrt{2}},\quad
+  \Delta p = \frac{\hbar}{\sqrt{2}\,\xz},\quad
+  \boxed{\Delta x\,\Delta p = \frac{\hbar}{2}}
+\]
+\emph{Saturates Heisenberg bound for every $\alpha$!}
+\end{tcolorbox}
+
+\mysec{Photon Statistics}
+\[
+  P(n)=\bra{n}\ket{\alpha}\bra{\alpha}\ket{n}
+      = e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}\quad\text{(Poisson)}
+\]
+\[
+  \langle\N\rangle = |\alpha|^2,\quad
+  (\Delta N)^2 = |\alpha|^2,\quad
+  \text{Mandel }Q = 0
+\]
+
+\mysec{Time Evolution}
+\begin{tcolorbox}[greenbox]
+\[
+  \hat{U}(t)\ket{\alpha} = e^{-i\omega t/2}\,\ket{\alpha e^{-i\omega t}}
+\]
+$\Rightarrow$ \emph{Coherent state stays coherent!}\\
+$\alpha(t) = \alpha\,e^{-i\omega t}$ rotates in phase space at frequency $\omega$.\\[2pt]
+$\langle\x\rangle(t) = \sqrt{2}\,\xz|\alpha|\cos(\omega t-\phi_\alpha)$\\
+$\langle\p\rangle(t) = -\sqrt{2}\,\hbar|\alpha|/\xz\cdot\sin(\omega t-\phi_\alpha)$
+\end{tcolorbox}
+
+\mysec{Inner Product \& Over-Completeness}
+\[
+  \braket{\beta}{\alpha} = \exp\!\left(-\tfrac{|\alpha|^2+|\beta|^2}{2}+\beta^*\alpha\right)
+  \;\Rightarrow\;
+  |\braket{\beta}{\alpha}|^2 = e^{-|\alpha-\beta|^2}
+\]
+\[
+  \frac{1}{\pi}\int_{\mathbb{C}}\ket{\alpha}\bra{\alpha}\,d^2\alpha = \hat{I}
+  \quad\text{(over-complete, non-orthogonal)}
+\]
+
+\mysec{Physical Realisation}
+\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=0pt]
+  \item Single-mode laser field (after phase stabilisation)
+  \item Output of an ideal linear amplifier
+  \item Classical field limit of QED: $|\alpha|\gg 1$
+\end{itemize}
+
+% ────────────────────────────────────────────────────────────────────────────
+%  COLUMN 4:  Squeezed States + Identities + LIGO + Table
+% ────────────────────────────────────────────────────────────────────────────
+
+\begin{tcolorbox}[sectionbox]
+  \centering ❻\; SQUEEZED STATES
+\end{tcolorbox}
+
+\mysec{Motivation: Beyond the SQL}
+Standard Quantum Limit (coherent state): $\Delta x_{\rm SQL}=\xz/\sqrt{2}$\\
+\emph{Idea}: squeeze $\Delta x$ below SQL at the cost of $\Delta p\uparrow$, while keeping $\Delta x\,\Delta p=\hbar/2$.
+
+\mysec{Quadrature Operators}
+\[
+  \hat{X}_1=\tfrac{1}{2}(\A+\Ad),\quad \hat{X}_2=\tfrac{1}{2i}(\A-\Ad)
+\]
+\[
+  [\hat{X}_1,\hat{X}_2]=\tfrac{i}{2},\quad \Delta X_1\,\Delta X_2\geq\tfrac{1}{4}
+\]
+Coherent state: $\Delta X_1=\Delta X_2=\tfrac{1}{2}$
+
+\mysec{Squeeze Operator}
+\begin{tcolorbox}[bluebox]
+\[
+  \Sq{\xi}=\exp\!\left(\frac{\xi^*\A^2-\xi\Ad{}^2}{2}\right),\quad \xi=r\,e^{i\theta}
+\]
+$r\geq 0$: squeezing strength;\; $\theta$: squeezing angle\\
+$\Sq{\xi}^\dagger=\Sq{-\xi}=\Sq{\xi}^{-1}$\; (unitary)
+\end{tcolorbox}
+
+\mysec{Bogoliubov Transformation (real $r$)}
+\begin{tcolorbox}[bluebox]
+\begin{align*}
+  \Sq{r}^\dagger\,\A\,\Sq{r}   &= \A\cosh r - \Ad\sinh r \equiv \hat{b}\\
+  \Sq{r}^\dagger\,\Ad\,\Sq{r}  &= \Ad\cosh r - \A\sinh r \equiv \hat{b}^\dagger\\
+  &[\hat{b},\hat{b}^\dagger]=1\;\checkmark
+\end{align*}
+\end{tcolorbox}
+
+\mysec{Squeezed Vacuum $\ket{0,r}\equiv\Sq{r}\ket{0}$}
+\begin{tcolorbox}[bluebox]
+\[
+  \Delta x = \frac{\xz\,e^{-r}}{\sqrt{2}}\;\color{blue}{\downarrow}\,,\quad
+  \Delta p = \frac{\hbar\,e^{+r}}{\sqrt{2}\,\xz}\;\color{rose}{\uparrow}\,,\quad
+  \Delta x\,\Delta p=\frac{\hbar}{2}
+\]
+\[
+  \langle\N\rangle = \sinh^2 r,\quad (\Delta N)^2 = \tfrac{1}{2}\sinh^2 2r
+\]
+\end{tcolorbox}
+Fock expansion (only \emph{even} terms!):
+\[
+  \ket{0,r} = \frac{1}{\sqrt{\cosh r}}\sum_{n=0}^{\infty}
+  \frac{(-1)^n\sqrt{(2n)!}}{2^n\,n!}(\tanh r)^n\ket{2n}
+\]
+
+\mysec{Squeezed Coherent State}
+\[
+  \ket{\alpha,\xi} = \D{\alpha}\Sq{\xi}\ket{0}
+\]
+Wigner function: Gaussian \emph{ellipse} centred at $(\langle\x\rangle,\langle\p\rangle)$, tilted by $\theta/2$. Always positive for squeezed coherent states.\\
+Mandel $Q < 0\;\Rightarrow$ sub-Poissonian (non-classical photon statistics).
+
+\mysec{LIGO: Squeezing in Action}
+\begin{tcolorbox}[bluebox]
+LIGO measures gravitational-wave phase via $\hat{X}_2$.\\[2pt]
+\textbf{Coherent light:} $\Delta X_2 = \tfrac{1}{2}$ (shot noise floor)\\
+\textbf{Phase-squeezed:} $\Delta X_2 \to \tfrac{1}{2}e^{-r}$\\[2pt]
+SNR improvement $\propto e^r$\\
+Advanced LIGO O3 (2019--20): $r\approx 0.5$--$1.0\;\Leftrightarrow\;$4--9\,dB\\
+$\Rightarrow\sim$50\% increase in detection volume.
+\end{tcolorbox}
+
+% ---
+\begin{tcolorbox}[sectionbox]
+  \centering ❼\; KEY IDENTITIES \& TOOLS
+\end{tcolorbox}
+
+\mysec{BCH Lemma}
+If $[A,[A,B]]=[B,[A,B]]=0$:\quad $e^{A+B}=e^A e^B e^{-[A,B]/2}$\\
+General: $e^A B e^{-A}=B+[A,B]+\tfrac{1}{2!}[A,[A,B]]+\cdots$
+
+\mysec{Gaussian Integrals}
+\[
+  \int_{-\infty}^{\infty}e^{-\alpha x^2}dx=\sqrt{\frac{\pi}{\alpha}},\qquad
+  \int_{-\infty}^{\infty}x^{2n}e^{-\alpha x^2}dx=\frac{(2n-1)!!}{(2\alpha)^n}\sqrt{\frac{\pi}{\alpha}}
+\]
+
+\mysec{Useful Commutator Identities}
+\[
+  [\hat{A},\hat{B}\hat{C}]=[\hat{A},\hat{B}]\hat{C}+\hat{B}[\hat{A},\hat{C}]
+\]
+\[
+  [\hat{A},f(\hat{B})]=[\hat{A},\hat{B}]\,f'(\hat{B})\quad\text{(if $[\hat{A},[\hat{A},\hat{B}]]=0$)}
+\]
+
+\mysec{Uncertainty Relations}
+\begin{tcolorbox}[rosebox]
+\[
+  \Delta x\,\Delta p\geq\frac{\hbar}{2},\quad
+  \Delta N\,\Delta\phi\geq\frac{1}{2},\quad
+  \Delta E\,\Delta t\geq\frac{\hbar}{2}
+\]
+Robertson: $\Delta A\,\Delta B\geq\tfrac{1}{2}|\langle[\hat{A},\hat{B}]\rangle|$
+\end{tcolorbox}
+
+% ---
+\begin{tcolorbox}[sectionbox]
+  \centering ❽\; COMPARISON TABLE
+\end{tcolorbox}
+
+\vspace{2pt}
+\begin{center}
+\resizebox{\linewidth}{!}{%
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\rowcolor{deepviolet!90}
+\textcolor{white}{\textbf{Property}} & \textcolor{white}{\textbf{Fock $\ket{n}$}} & \textcolor{white}{\textbf{Coherent $\ket{\alpha}$}} & \textcolor{white}{\textbf{Squeezed $\ket{\alpha,r}$}}\\
+\midrule
+\rowcolor{lightviolet!40}
+$\langle\x\rangle$ & $0$ & $\sqrt{2}\xz\mathrm{Re}\alpha$ & $\sqrt{2}\xz\mathrm{Re}\alpha$ \\
+$\Delta x$ & $\xz\sqrt{n+\half}$ & $\xz/\sqrt{2}$ & $\xz e^{-r}/\sqrt{2}$ \\
+\rowcolor{lightviolet!40}
+$\Delta p$ & $\frac{\hbar}{\xz}\sqrt{n+\half}$ & $\frac{\hbar}{\sqrt{2}\xz}$ & $\frac{\hbar e^r}{\sqrt{2}\xz}$ \\
+$\Delta x\Delta p$ & $\hbar(n+\half)$ & $\hbar/2$ & $\hbar/2$ \\
+\rowcolor{lightviolet!40}
+$\langle\N\rangle$ & $n$ & $|\alpha|^2$ & $|\alpha|^2+\sinh^2 r$ \\
+$P(n)$ & $\delta_{nn_0}$ & Poisson & sub-Poisson \\
+\rowcolor{lightviolet!40}
+Mandel $Q$ & $-1$ & $0$ & $<0$ \\
+Wigner $W$ & rings, $W<0$ & circular Gauss & elliptic Gauss \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+\vspace{3pt}
+{\footnotesize\color{gray!70!black}
+\textbf{Sources:} Shankar Ch.~7 $\cdot$ C-T Vol.\,1 Ch.\,V \& Compl.\,GV $\cdot$ Griffiths §2.3 $\cdot$ Walls \& Milburn \textit{Quantum Optics}\\
+\href{https://adityakumarphy.github.io/PhysicsVoyage.github.io/}{\textbf{Physics Voyage}} $\to$ Courses $\to$ Quantum Harmonic Oscillator}
+
+\end{multicols}
+
+\end{document}

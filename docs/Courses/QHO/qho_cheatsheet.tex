@@ -1,0 +1,418 @@
+\documentclass[10pt,landscape,a4paper]{article}
+
+% ─── Packages ────────────────────────────────────────────────────────────────
+\usepackage[landscape,top=0.6cm,bottom=0.6cm,left=0.7cm,right=0.7cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{physics}         % \ket, \bra, \braket, \comm, etc.
+\usepackage{hyperref}
+
+% ─── Colors ───────────────────────────────────────────────────────────────────
+\definecolor{deepviolet}{RGB}{76,29,149}
+\definecolor{violet}{RGB}{109,40,217}
+\definecolor{lightviolet}{RGB}{237,233,254}
+\definecolor{deepgreen}{RGB}{6,78,59}
+\definecolor{deepblue}{RGB}{12,74,110}
+\definecolor{lightblue}{RGB}{224,242,254}
+\definecolor{deepred}{RGB}{124,45,18}
+\definecolor{gold}{RGB}{161,98,7}
+\definecolor{lightgold}{RGB}{254,249,195}
+\definecolor{lightgreen}{RGB}{220,252,231}
+\definecolor{gray1}{RGB}{248,250,252}
+\definecolor{gray2}{RGB}{226,232,240}
+
+% ─── Layout ───────────────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlength{\columnsep}{6pt}
+
+% ─── Section Styling ──────────────────────────────────────────────────────────
+\titleformat{\section}[block]{\normalfont\bfseries\small\color{white}\centering}{}{0pt}{%
+  \colorbox{deepviolet}{\makebox[\linewidth-2\fboxsep][c]{#1}}%
+}[\vspace{1pt}]
+\titlespacing{\section}{0pt}{4pt}{2pt}
+
+\titleformat{\subsection}[block]{\normalfont\bfseries\footnotesize\color{deepviolet}}{}{0pt}{$\blacktriangleright$~}
+\titlespacing{\subsection}{0pt}{3pt}{1pt}
+
+% ─── Box Environments ─────────────────────────────────────────────────────────
+\newmdenv[
+  backgroundcolor=lightviolet,
+  linecolor=deepviolet,
+  linewidth=1pt,
+  innertopmargin=3pt, innerbottommargin=3pt,
+  innerleftmargin=4pt, innerrightmargin=4pt,
+  skipabove=3pt, skipbelow=3pt,
+  roundcorner=3pt
+]{keybox}
+
+\newmdenv[
+  backgroundcolor=lightgreen,
+  linecolor=deepgreen,
+  linewidth=1pt,
+  innertopmargin=3pt, innerbottommargin=3pt,
+  innerleftmargin=4pt, innerrightmargin=4pt,
+  skipabove=3pt, skipbelow=3pt,
+  roundcorner=3pt
+]{coherentbox}
+
+\newmdenv[
+  backgroundcolor=lightblue,
+  linecolor=deepblue,
+  linewidth=1pt,
+  innertopmargin=3pt, innerbottommargin=3pt,
+  innerleftmargin=4pt, innerrightmargin=4pt,
+  skipabove=3pt, skipbelow=3pt,
+  roundcorner=3pt
+]{squeezedbox}
+
+\newmdenv[
+  backgroundcolor=lightgold,
+  linecolor=gold,
+  linewidth=1pt,
+  innertopmargin=3pt, innerbottommargin=3pt,
+  innerleftmargin=4pt, innerrightmargin=4pt,
+  skipabove=3pt, skipbelow=3pt,
+  roundcorner=3pt
+]{notebox}
+
+% ─── Math Shortcuts ───────────────────────────────────────────────────────────
+\newcommand{\aop}{\hat{a}}
+\newcommand{\adop}{\hat{a}^{\dagger}}
+\newcommand{\Nop}{\hat{N}}
+\newcommand{\Hop}{\hat{H}}
+\newcommand{\xop}{\hat{x}}
+\newcommand{\pop}{\hat{p}}
+\newcommand{\Dop}[1]{\hat{D}(#1)}
+\newcommand{\Sop}[1]{\hat{S}(#1)}
+\newcommand{\xzero}{x_0}
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand{\nn}{\nonumber}
+
+% ─── Font Size ────────────────────────────────────────────────────────────────
+\renewcommand{\normalsize}{\fontsize{7.5pt}{9.5pt}\selectfont}
+\normalsize
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\begin{center}
+{\large\bfseries\color{deepviolet} Quantum Harmonic Oscillator — Complete Cheat Sheet}\\[1pt]
+{\small\color{gray!60!black} Physics Voyage $\cdot$ Aditya Kumar $\cdot$ Sources: Shankar, Cohen-Tannoudji, Griffiths}
+\end{center}
+\vspace{2pt}
+\hrule height 1pt
+\vspace{4pt}
+
+\begin{multicols}{4}
+
+% ════════════════════════════════════════════════
+\section{FUNDAMENTALS}
+% ════════════════════════════════════════════════
+
+\subsection{Canonical Quantization}
+$\xop \to \xop,\; \pop \to \pop$\\
+$[\xop,\pop] = i\hbar$\\
+Position rep: $\pop = -i\hbar\,\partial_x$
+
+\subsection{The Hamiltonian}
+\begin{keybox}
+$\Hop = \dfrac{\pop^2}{2m} + \dfrac{1}{2}m\omega^2\xop^2$\\[3pt]
+$= \hbar\omega\!\left(\Nop + \half\right)$\\[3pt]
+$= \hbar\omega\!\left(\adop\aop + \half\right)$
+\end{keybox}
+
+\subsection{Energy Eigenvalues}
+\begin{keybox}
+$E_n = \hbar\omega\!\left(n + \half\right),\quad n=0,1,2,\ldots$
+
+\medskip
+Zero-point energy: $E_0 = \tfrac{1}{2}\hbar\omega$\\
+Level spacing: $\Delta E = \hbar\omega$
+\end{keybox}
+
+\subsection{Natural Length Scale}
+$\xzero = \sqrt{\dfrac{\hbar}{m\omega}}$ (oscillator length)\\[2pt]
+$\xi = x/\xzero$ (dimensionless position)
+
+\vspace{3pt}
+\begin{notebox}
+\textbf{Virial Theorem:}\\
+$\langle T\rangle_n = \langle V\rangle_n = \tfrac{1}{2}E_n$
+\end{notebox}
+
+% ════════════════════════════════════════════════
+\section{LADDER OPERATORS}
+% ════════════════════════════════════════════════
+
+\subsection{Definitions}
+\begin{keybox}
+$\aop = \sqrt{\dfrac{m\omega}{2\hbar}}\!\left(\xop + \dfrac{i\pop}{m\omega}\right)$\\[4pt]
+$\adop = \sqrt{\dfrac{m\omega}{2\hbar}}\!\left(\xop - \dfrac{i\pop}{m\omega}\right)$
+\end{keybox}
+
+\subsection{Inverse Relations}
+$\xop = \dfrac{\xzero}{\sqrt{2}}(\aop+\adop)$\\[4pt]
+$\pop = \dfrac{i\hbar}{\sqrt{2}\,\xzero}(\adop-\aop)$
+
+\subsection{Number Operator}
+$\Nop = \adop\aop$,\quad $\Nop\ket{n} = n\ket{n}$
+
+\subsection{Commutators}
+\begin{keybox}
+$[\aop,\adop] = 1$\\[2pt]
+$[\Nop,\aop] = -\aop$,\quad $[\Nop,\adop] = \adop$\\[2pt]
+$[\Hop,\aop] = -\hbar\omega\,\aop$\\[2pt]
+$[\Hop,\adop] = +\hbar\omega\,\adop$
+\end{keybox}
+
+\subsection{Action on Fock States}
+\begin{keybox}
+$\aop\ket{n} = \sqrt{n}\,\ket{n-1}$\\[3pt]
+$\adop\ket{n} = \sqrt{n+1}\,\ket{n+1}$\\[3pt]
+$\ket{n} = \dfrac{(\adop)^n}{\sqrt{n!}}\ket{0}$\\[3pt]
+$\aop\ket{0} = 0$ \quad (ground state)
+\end{keybox}
+
+\subsection{Matrix Elements}
+$\bra{m}\xop\ket{n} = \dfrac{\xzero}{\sqrt{2}}\!\left(\sqrt{n}\,\delta_{m,n-1}+\sqrt{n{+}1}\,\delta_{m,n+1}\right)$\\[3pt]
+$\bra{n}\xop^2\ket{n} = \xzero^2\!\left(n+\half\right)$\\[3pt]
+$\bra{n}\pop^2\ket{n} = \dfrac{\hbar^2}{\xzero^2}\!\left(n+\half\right)$
+
+% ════════════════════════════════════════════════
+\section{WAVEFUNCTIONS}
+% ════════════════════════════════════════════════
+
+\subsection{General Formula}
+\begin{keybox}
+$\psi_n(x) = \!\left(\!\dfrac{m\omega}{\pi\hbar}\!\right)^{\!1/4}\!\dfrac{H_n(\xi)}{\sqrt{2^n n!}}\,e^{-\xi^2/2}$
+\end{keybox}
+
+\subsection{Explicit Ground State}
+$\psi_0(x) = \left(\pi\xzero^2\right)^{-1/4}\!e^{-x^2/2\xzero^2}$
+
+\textit{(Gaussian — minimum uncertainty)}
+
+\subsection{Hermite Polynomials $H_n(\xi)$}
+\begin{tabular}{ll}
+$H_0 = 1$ & $H_1 = 2\xi$ \\
+$H_2 = 4\xi^2-2$ & $H_3 = 8\xi^3-12\xi$ \\
+$H_4 = 16\xi^4-48\xi^2+12$ &
+\end{tabular}\\[2pt]
+Recurrence: $H_{n+1} = 2\xi H_n - 2nH_{n-1}$\\
+Rodrigues: $H_n = (-1)^n e^{\xi^2}\partial_\xi^n e^{-\xi^2}$\\
+Derivative: $H_n' = 2nH_{n-1}$
+
+\subsection{Properties of $\psi_n$}
+- Parity: $\psi_n(-x) = (-1)^n\psi_n(x)$\\
+- Nodes: exactly $n$ zeros\\
+- Orthonormality: $\int\psi_m^*\psi_n\,dx = \delta_{mn}$
+
+\subsection{Expectation Values in $\ket{n}$}
+$\langle\xop\rangle = 0,\quad\langle\pop\rangle = 0$\\[2pt]
+$\langle\xop^2\rangle = (n+\half)\xzero^2$\\[2pt]
+$\Delta x = \xzero\sqrt{n+\half}$\\[2pt]
+$\Delta x\,\Delta p = (n+\half)\hbar \geq \tfrac{\hbar}{2}$
+
+\subsection{Classical Turning Points}
+$x_\pm = \pm\sqrt{2n+1}\;\xzero$\\[2pt]
+Tunneling prob (ground state): $\approx 15.7\%$
+
+% ════════════════════════════════════════════════
+\section{TIME EVOLUTION}
+% ════════════════════════════════════════════════
+
+\subsection{Schrödinger Picture}
+$\ket{n,t} = e^{-i\omega(n+1/2)t}\ket{n}$\\[3pt]
+$\ket{\Psi(t)} = \displaystyle\sum_n c_n e^{-i\omega(n+1/2)t}\ket{n}$\\[3pt]
+Period of full revival: $T = 2\pi/\omega$
+
+\subsection{Time Evolution Operator}
+$\hat{U}(t) = e^{-i\Hop t/\hbar}$\\[2pt]
+$\hat{U}(t)\aop\hat{U}^\dagger(t) = e^{-i\omega t}\aop$
+
+\subsection{Heisenberg Picture}
+$\aop(t) = e^{-i\omega t}\aop(0)$\\[2pt]
+$\adop(t) = e^{+i\omega t}\adop(0)$\\[3pt]
+$\xop(t) = \xzero\cos\omega t\,\xop(0) + \dfrac{\sin\omega t}{m\omega}\pop(0)$
+
+\subsection{Ehrenfest's Theorem}
+\begin{keybox}
+$\dfrac{d}{dt}\langle\xop\rangle = \dfrac{\langle\pop\rangle}{m}$\\[4pt]
+$\dfrac{d}{dt}\langle\pop\rangle = -m\omega^2\langle\xop\rangle$\\[4pt]
+$\Rightarrow\dfrac{d^2}{dt^2}\langle\xop\rangle = -\omega^2\langle\xop\rangle$
+\end{keybox}
+\textit{Valid for any quantum state!}
+
+\subsection{Wigner Function}
+$W(x,p) = \dfrac{1}{\pi\hbar}\!\int\!\psi^*(x{+}y)\psi(x{-}y)e^{2ipy/\hbar}dy$\\[2pt]
+- Marginals give $|\psi(x)|^2$, $|\phi(p)|^2$\\
+- Can be negative (non-classical signature)\\
+Ground state: $W_0 = \frac{1}{\pi\hbar}e^{-x^2/\xzero^2-p^2\xzero^2/\hbar^2}$
+
+% ════════════════════════════════════════════════
+\section{COHERENT STATES}
+% ════════════════════════════════════════════════
+
+\subsection{Definition}
+\begin{coherentbox}
+$\aop\ket{\alpha} = \alpha\ket{\alpha},\quad\alpha\in\mathbb{C}$
+\end{coherentbox}
+
+\subsection{Fock Expansion}
+\begin{coherentbox}
+$\ket{\alpha} = e^{-|\alpha|^2/2}\displaystyle\sum_{n=0}^{\infty}\dfrac{\alpha^n}{\sqrt{n!}}\ket{n}$
+\end{coherentbox}
+
+\subsection{Displacement Operator}
+$\Dop{\alpha} = e^{\alpha\adop - \alpha^*\aop}$\\[2pt]
+$= e^{-|\alpha|^2/2}e^{\alpha\adop}e^{-\alpha^*\aop}$\quad (BCH)\\[2pt]
+$\ket{\alpha} = \Dop{\alpha}\ket{0}$\\[2pt]
+$\Dop{\alpha}^\dagger\aop\Dop{\alpha} = \aop + \alpha$
+
+\subsection{Expectation Values}
+$\langle\xop\rangle = \sqrt{2}\,\xzero\,\text{Re}(\alpha)$\\[2pt]
+$\langle\pop\rangle = \dfrac{\sqrt{2}\,\hbar}{\xzero}\,\text{Im}(\alpha)$\\[2pt]
+\begin{coherentbox}
+$\Delta x = \dfrac{\xzero}{\sqrt{2}},\quad \Delta p = \dfrac{\hbar}{\sqrt{2}\,\xzero}$\\[3pt]
+$\Delta x\,\Delta p = \dfrac{\hbar}{2}$ \textbf{(minimum!)}
+\end{coherentbox}
+
+\subsection{Photon Number}
+$P(n) = e^{-|\alpha|^2}\dfrac{|\alpha|^{2n}}{n!}$ \textbf{(Poisson)}\\[2pt]
+$\bar{n} = \langle\Nop\rangle = |\alpha|^2,\quad\Delta N = |\alpha|$\\[2pt]
+Mandel $Q = 0$ (coherent = classical boundary)
+
+\subsection{Time Evolution}
+\begin{coherentbox}
+$\hat{U}(t)\ket{\alpha} = e^{-i\omega t/2}\ket{\alpha e^{-i\omega t}}$\\[2pt]
+\textit{Stays coherent! $\alpha\to\alpha e^{-i\omega t}$}
+\end{coherentbox}
+
+\subsection{Overlaps \& Completeness}
+$|\braket{\beta|\alpha}|^2 = e^{-|\alpha-\beta|^2}$\\[2pt]
+$\dfrac{1}{\pi}\!\int\ket{\alpha}\bra{\alpha}\,d^2\alpha = \hat{I}$ \textit{(over-complete)}
+
+% ════════════════════════════════════════════════
+\section{SQUEEZED STATES}
+% ════════════════════════════════════════════════
+
+\subsection{Quadrature Operators}
+$\hat{X}_1 = \dfrac{\aop+\adop}{2},\quad\hat{X}_2 = \dfrac{\aop-\adop}{2i}$\\[2pt]
+$[\hat{X}_1,\hat{X}_2] = \dfrac{i}{2},\quad\Delta X_1\Delta X_2\geq\dfrac{1}{4}$\\[2pt]
+Coherent: $\Delta X_1 = \Delta X_2 = \dfrac{1}{2}$
+
+\subsection{Squeeze Operator}
+\begin{squeezedbox}
+$\Sop{\xi} = \exp\!\left(\dfrac{\xi^*\aop^2 - \xi\adop{}^2}{2}\right),\quad\xi=re^{i\theta}$
+\end{squeezedbox}
+
+$\Sop{\xi}^\dagger = \Sop{-\xi} = \Sop{\xi}^{-1}$
+
+\subsection{Bogoliubov Transformation}
+$\Sop{r}^\dagger\aop\Sop{r} = \aop\cosh r - \adop\sinh r$\\[2pt]
+$\Sop{r}^\dagger\adop\Sop{r} = \adop\cosh r - \aop\sinh r$\\[2pt]
+New ops satisfy $[\hat{b},\hat{b}^\dagger] = 1$ ✓
+
+\subsection{Squeezed Vacuum}
+$\ket{0,r} = \Sop{r}\ket{0}$\\[2pt]
+\begin{squeezedbox}
+$\Delta x = \dfrac{\xzero}{\sqrt{2}}e^{-r},\quad\Delta p = \dfrac{\hbar}{\sqrt{2}\,\xzero}e^{+r}$\\[3pt]
+$\Delta x\,\Delta p = \dfrac{\hbar}{2}$ \textbf{(still minimum!)}\\[3pt]
+$\langle\Nop\rangle = \sinh^2 r$
+\end{squeezedbox}
+
+Fock expansion (only even $n$):\\
+$\ket{0,r} = \dfrac{1}{\sqrt{\cosh r}}\displaystyle\sum_n \dfrac{(-\tanh r)^n\sqrt{(2n)!}}{2^n n!}\ket{2n}$
+
+\subsection{Squeezed Coherent State}
+$\ket{\alpha,\xi} = \Dop{\alpha}\Sop{\xi}\ket{0}$\\[2pt]
+For real $r$: $\Delta x = \tfrac{\xzero}{\sqrt{2}}e^{-r}$, $\Delta p = \tfrac{\hbar}{\sqrt{2}\xzero}e^{r}$\\[2pt]
+Mandel $Q < 0$ → \textbf{sub-Poissonian (non-classical)}
+
+\subsection{Wigner Function (Squeezed)}
+Gaussian ellipse in phase space:\\
+$W = \dfrac{1}{\pi\hbar}\exp\!\!\left[-\dfrac{(x-\bar{x})^2e^{2r}}{\xzero^2} - \dfrac{(p-\bar{p})^2\xzero^2 e^{-2r}}{\hbar^2}\right]$
+
+% ════════════════════════════════════════════════
+\section{KEY IDENTITIES \& MISC}
+% ════════════════════════════════════════════════
+
+\subsection{BCH Lemma}
+If $[A,[A,B]] = [B,[A,B]] = 0$:\\
+$e^{A+B} = e^A e^B e^{-[A,B]/2}$
+
+\subsection{Useful Gaussian Integrals}
+$\int_{-\infty}^{\infty} e^{-\alpha x^2}dx = \sqrt{\pi/\alpha}$\\[2pt]
+$\int_{-\infty}^{\infty} x^{2n}e^{-x^2}dx = \dfrac{(2n-1)!!}{2^n}\sqrt{\pi}$
+
+\subsection{Hermite Orthogonality}
+$\int_{-\infty}^{\infty} H_m H_n e^{-\xi^2}d\xi = 2^n n!\sqrt{\pi}\,\delta_{mn}$
+
+\subsection{Uncertainty Relations}
+Heisenberg: $\Delta x\,\Delta p \geq \hbar/2$\\
+Number-phase: $\Delta N\,\Delta\phi \geq 1/2$\\
+Time-energy: $\Delta E\,\Delta t \geq \hbar/2$
+
+\subsection{Standard Quantum Limit (SQL)}
+For coherent state: $\Delta x_{\text{SQL}} = \xzero/\sqrt{2}$\\
+Squeezed: $\Delta x < \Delta x_{\text{SQL}}$ at cost of $\Delta p \uparrow$
+
+\subsection{LIGO Application}
+Phase-squeezed vacuum at dark port:\\
+$\Delta X_2 \to \Delta X_2\,e^{-r}$ \quad (reduces shot noise)\\
+SNR improvement $\propto e^r$\\
+Advanced LIGO O3: $r\approx 0.5$--$1.0$ ($\sim$4--9 dB)
+
+% ════════════════════════════════════════════════
+\section{QUICK REFERENCE TABLE}
+% ════════════════════════════════════════════════
+
+\begin{tabular}{@{}p{2.1cm}p{1.5cm}p{1.5cm}@{}}
+\toprule
+\textbf{Property} & \textbf{Fock $\ket{n}$} & \textbf{Coherent $\ket{\alpha}$}\\
+\midrule
+$\langle\xop\rangle$ & $0$ & $\sqrt{2}\xzero\text{Re}\alpha$\\
+$\Delta x$ & $\xzero\sqrt{n+\half}$ & $\xzero/\sqrt{2}$\\
+$\Delta x\Delta p$ & $(n+\half)\hbar$ & $\hbar/2$\\
+$\langle N\rangle$ & $n$ & $|\alpha|^2$\\
+$P(n)$ & $\delta_{nn}$ & Poisson\\
+Wigner $W$ & rings, neg.\ & Gauss, pos.\ \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\begin{tabular}{@{}p{2.1cm}p{2.5cm}@{}}
+\toprule
+\textbf{Property} & \textbf{Squeezed $\ket{\alpha,r}$}\\
+\midrule
+$\Delta x$ & $\xzero e^{-r}/\sqrt{2}$\\
+$\Delta p$ & $\hbar e^{r}/\sqrt{2}\xzero$\\
+$\Delta x\Delta p$ & $\hbar/2$\\
+$\langle N\rangle_{\text{vac}}$ & $\sinh^2 r$\\
+$P(n)$ & sub-Poisson\\
+Wigner $W$ & Gauss ellipse, pos.\ \\
+\bottomrule
+\end{tabular}
+
+\end{multicols}
+
+\vspace{2pt}
+\hrule height 0.5pt
+\vspace{2pt}
+{\centering\footnotesize\color{gray!70!black}
+Physics Voyage $\cdot$ \href{https://adityakumarphy.github.io/PhysicsVoyage.github.io/}{adityakumarphy.github.io/PhysicsVoyage.github.io} $\cdot$ 
+Aditya Kumar $\cdot$ Sources: Shankar (2nd ed.), Cohen-Tannoudji Vol.~1\&2, Griffiths (3rd ed.), Walls \& Milburn\\
+}
+
+\end{document}

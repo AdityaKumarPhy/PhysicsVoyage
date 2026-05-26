@@ -1,0 +1,335 @@
+---
+title: "Module 4: Wavefunctions and Hermite Polynomials"
+subtitle: "Seeing the Quantum Oscillator"
+description: "We explore the position-space wavefunctions of the QHO in depth — their shapes, nodes, parity, and physical interpretation. We compute expectation values and verify the uncertainty principle. Classical-quantum comparison."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
+}
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.result-box p { color: #c4b5fd; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+```
+
+[← Module 3](03_ladder_operators.qmd) | [↑ Course Index](index.qmd) | [Module 5 →](05_time_evolution.qmd)
+
+---
+
+## Getting the Ground State Wavefunction from Ladder Operators {#sec-ground}
+
+In Module 3, we found that the ground state satisfies:
+
+$$
+\hat{a}|0\rangle = 0
+$$
+
+In the position representation, $|0\rangle \to \psi_0(x)$, and the annihilation operator becomes:
+
+$$
+\hat{a} = \sqrt{\frac{m\omega}{2\hbar}}\left(x + \frac{\hbar}{m\omega}\frac{d}{dx}\right)
+$$
+
+The condition $\hat{a}\psi_0 = 0$ gives:
+
+$$
+\left(x + \frac{\hbar}{m\omega}\frac{d}{dx}\right)\psi_0(x) = 0
+$$
+
+This is a simple first-order ODE:
+
+$$
+\frac{d\psi_0}{dx} = -\frac{m\omega}{\hbar} x\, \psi_0
+$$
+
+Separating variables and integrating:
+
+$$
+\ln\psi_0 = -\frac{m\omega}{2\hbar}x^2 + C \quad \Rightarrow \quad \psi_0(x) = A\, e^{-m\omega x^2/2\hbar}
+$$
+
+Normalizing using $\int_{-\infty}^{\infty}e^{-\alpha x^2}dx = \sqrt{\pi/\alpha}$ with $\alpha = m\omega/\hbar$:
+
+$$
+\boxed{\psi_0(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\!\left(-\frac{m\omega}{2\hbar}x^2\right)}
+$$
+
+The ground state is a **Gaussian**. This is the unique minimum-uncertainty state.
+
+---
+
+## Generating All Wavefunctions {#sec-all-states}
+
+Using $|n\rangle = \frac{(\hat{a}^\dagger)^n}{\sqrt{n!}}|0\rangle$ and translating to position space:
+
+$$
+\psi_n(x) = \frac{1}{\sqrt{2^n\, n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right) e^{-m\omega x^2/2\hbar}
+$$
+
+Using the oscillator length $x_0 = \sqrt{\hbar/m\omega}$ and $\xi = x/x_0$:
+
+$$
+\boxed{\psi_n(\xi) = \frac{1}{\sqrt{2^n\, n!\,\sqrt{\pi}\,x_0}}\, H_n(\xi)\, e^{-\xi^2/2}}
+$$
+
+### The First Five Wavefunctions Explicitly
+
+$$
+\psi_0 = \frac{1}{(\pi x_0^2)^{1/4}}\, e^{-\xi^2/2}
+$$
+
+$$
+\psi_1 = \frac{1}{(\pi x_0^2)^{1/4}}\sqrt{2}\,\xi\, e^{-\xi^2/2}
+$$
+
+$$
+\psi_2 = \frac{1}{(\pi x_0^2)^{1/4}}\frac{1}{\sqrt{2}}\,(2\xi^2 - 1)\, e^{-\xi^2/2}
+$$
+
+$$
+\psi_3 = \frac{1}{(\pi x_0^2)^{1/4}}\frac{1}{\sqrt{3}}\,(2\xi^3 - 3\xi)\, e^{-\xi^2/2}
+$$
+
+$$
+\psi_4 = \frac{1}{(\pi x_0^2)^{1/4}}\frac{1}{2\sqrt{6}}\,(4\xi^4 - 12\xi^2 + 3)\, e^{-\xi^2/2}
+$$
+
+---
+
+## Physical Properties of the Wavefunctions {#sec-properties}
+
+### Number of Nodes
+
+$\psi_n(x)$ has exactly **$n$ nodes** (zeros). This is the *node theorem* for bound states:
+
+- $\psi_0$: 0 nodes (the Gaussian never crosses zero)
+- $\psi_1$: 1 node (crosses zero once at $x = 0$)
+- $\psi_2$: 2 nodes
+- $\psi_n$: exactly $n$ nodes
+
+Higher-energy states have more rapid oscillations — they "fit more waves" into the potential well.
+
+### Parity
+
+$$
+\psi_n(-x) = (-1)^n \psi_n(x)
+$$
+
+- Even $n$: **even parity** (symmetric about $x = 0$)
+- Odd $n$: **odd parity** (antisymmetric about $x = 0$)
+
+This is a consequence of the symmetric potential $V(-x) = V(x)$.
+
+### Orthonormality
+
+$$
+\int_{-\infty}^{\infty} \psi_m^*(x)\psi_n(x)\,dx = \delta_{mn}
+$$
+
+This follows from the Hermite polynomial orthogonality:
+$$
+\int_{-\infty}^{\infty} H_m(\xi)\, H_n(\xi)\, e^{-\xi^2}\, d\xi = 2^n\, n!\, \sqrt{\pi}\, \delta_{mn}
+$$
+
+### Completeness
+
+The wavefunctions form a **complete** set:
+$$
+\sum_{n=0}^{\infty} \psi_n^*(x')\psi_n(x) = \delta(x - x')
+$$
+
+This means any square-integrable function can be expanded in the $\psi_n$'s.
+
+---
+
+## Classical Turning Points and Quantum Tunneling {#sec-tunneling}
+
+The classical turning points for energy $E_n = (n + \frac{1}{2})\hbar\omega$ are where $V(x) = E_n$:
+
+$$
+\frac{1}{2}m\omega^2 x_{\pm}^2 = \left(n + \frac{1}{2}\right)\hbar\omega
+\quad \Rightarrow \quad x_{\pm} = \pm\sqrt{2n+1}\, x_0
+$$
+
+Classically, the particle cannot exist beyond $x_{\pm}$. But quantum mechanically, the wavefunction extends into the classically forbidden region!
+
+The probability of finding the particle outside the classical turning points is:
+
+$$
+P_{\text{tunnel}} = \int_{|x|>x_+}|\psi_n(x)|^2\,dx
+$$
+
+For the ground state $n = 0$, $x_+ = x_0$:
+
+$$
+P_{\text{tunnel},0} = 2\int_{x_0}^{\infty}|\psi_0(x)|^2\,dx = \text{erfc}(1/\sqrt{2}) \approx 15.7\%
+$$
+
+About **16%** of the time, the ground-state particle is found in the classically forbidden region!
+
+::: {.callout-intuition}
+This is quantum tunneling — the particle "borrows" energy from the uncertainty principle to penetrate the classically forbidden region. This phenomenon is responsible for:
+- **Nuclear fusion** in stars (particles tunnel through the Coulomb barrier)
+- **Scanning tunneling microscopy** (STM)
+- **Alpha decay** of radioactive nuclei
+:::
+
+---
+
+## Expectation Values in Energy Eigenstates {#sec-expectation}
+
+Using ladder operators (from Module 3):
+
+| Quantity | Value in $|n\rangle$ |
+|----------|---------------------|
+| $\langle\hat{x}\rangle$ | $0$ |
+| $\langle\hat{p}\rangle$ | $0$ |
+| $\langle\hat{x}^2\rangle$ | $(n + \frac{1}{2})\,x_0^2 = (n + \frac{1}{2})\frac{\hbar}{m\omega}$ |
+| $\langle\hat{p}^2\rangle$ | $(n + \frac{1}{2})\,\frac{\hbar^2}{x_0^2} = (n + \frac{1}{2})m\hbar\omega$ |
+| $\langle V\rangle$ | $\frac{1}{2}E_n$ |
+| $\langle T\rangle$ | $\frac{1}{2}E_n$ |
+| $\Delta x$ | $x_0\sqrt{n + \frac{1}{2}}$ |
+| $\Delta p$ | $\frac{\hbar}{x_0}\sqrt{n + \frac{1}{2}}$ |
+| $\Delta x\,\Delta p$ | $(n + \frac{1}{2})\hbar$ |
+
+::: {.callout-note}
+## The Virial Theorem for the QHO
+$\langle T\rangle = \langle V\rangle = \frac{1}{2}E_n$. This is the quantum version of the classical virial theorem. On average, kinetic and potential energies are equal in the QHO.
+:::
+
+---
+
+## Momentum-Space Wavefunctions {#sec-momentum}
+
+The Fourier transform of $\psi_n(x)$ gives the momentum-space wavefunction $\phi_n(p)$:
+
+$$
+\phi_n(p) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-ipx/\hbar}\psi_n(x)\,dx
+$$
+
+A beautiful result: the momentum-space wavefunctions have the **same form** as the position-space ones!
+
+$$
+\phi_n(p) = \frac{(-i)^n}{(m\omega\pi\hbar)^{1/4}\sqrt{2^n n!}}\, H_n\!\left(\frac{p}{\sqrt{m\omega\hbar}}\right) e^{-p^2/2m\omega\hbar}
+$$
+
+The momentum-space wavefunctions are also Hermite-Gaussian, with the same Gaussian envelope. This is a special property of the harmonic oscillator — its Hamiltonian is symmetric between $x$ and $p$.
+
+---
+
+## Hermite Polynomial Reference Table {#sec-hermite}
+
+| $n$ | $H_n(\xi)$ | Parity |
+|-----|------------|--------|
+| 0 | $1$ | Even |
+| 1 | $2\xi$ | Odd |
+| 2 | $4\xi^2 - 2$ | Even |
+| 3 | $8\xi^3 - 12\xi$ | Odd |
+| 4 | $16\xi^4 - 48\xi^2 + 12$ | Even |
+| 5 | $32\xi^5 - 160\xi^3 + 120\xi$ | Odd |
+
+**Recurrence relation**: $H_{n+1} = 2\xi H_n - 2n H_{n-1}$
+
+**Derivative**: $H_n' = 2n H_{n-1}$
+
+**Rodrigues formula**: $H_n(\xi) = (-1)^n e^{\xi^2}\frac{d^n}{d\xi^n}e^{-\xi^2}$
+
+---
+
+## The Classical-Quantum Correspondence {#sec-correspondence}
+
+For large $n$, quantum mechanics must reproduce classical results. Let's check:
+
+**Classical probability**: For a classical oscillator with amplitude $A = x_+$, the particle spends most time at the turning points (where it's slow). The classical probability density is:
+
+$$
+P_{\text{cl}}(x) = \frac{1}{\pi\sqrt{A^2 - x^2}}, \quad |x| < A
+$$
+
+**Quantum probability**: $|\psi_n(x)|^2$ oscillates rapidly for large $n$.
+
+The **coarse-grained** (average) quantum probability distribution for large $n$ approaches $P_{\text{cl}}(x)$. You can verify this numerically by plotting $|\psi_{20}(x)|^2$ — the rapid oscillations average out to the classical distribution.
+
+This is the **Bohr correspondence principle**: quantum mechanics must agree with classical mechanics in the limit of large quantum numbers.
+
+---
+
+::: {.checkpoint}
+**Before moving on, make sure you can:**
+
+1. Derive $\psi_0(x)$ by solving $\hat{a}\psi_0 = 0$ as a first-order ODE.
+2. Write $\psi_1(x)$ by applying $\hat{a}^\dagger$ to $\psi_0$.
+3. State the number of nodes, parity, and normalization of $\psi_n$.
+4. Compute $\langle\hat{x}^2\rangle$ and $\langle\hat{p}^2\rangle$ in $|n\rangle$ using ladder operators.
+5. Verify the virial theorem $\langle T\rangle = \langle V\rangle = E_n/2$.
+6. Estimate the tunneling probability for the ground state.
+
+**Conceptual question**: Why is $\langle\hat{x}\rangle = 0$ for all energy eigenstates? What does this tell you about the symmetry of the potential?
+:::
+
+---
+
+::: {.nav-buttons}
+[← Module 3: Ladder Operators](03_ladder_operators.qmd){.btn .btn-outline-secondary}
+[Next: Module 5 — Time Evolution →](05_time_evolution.qmd){.btn .btn-success}
+:::

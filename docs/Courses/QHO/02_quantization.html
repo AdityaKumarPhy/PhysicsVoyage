@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="We promote the classical harmonic oscillator to quantum mechanics via canonical quantization. We solve the Schrödinger equation analytically using Hermite polynomials and discover quantized energies and zero-point energy.">
 
-<title>Physics Voyage - Courses</title>
+<title>Physics Voyage - Module 2: Quantizing the Oscillator</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,63 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-list-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-list-view'] = new List('listing-list-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-grid-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-grid-view'] = new List('listing-grid-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -157,7 +101,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/styles/styles.css">
+<link rel="stylesheet" href="../../assets/styles/styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -167,7 +111,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Physics Voyage</span>
     </a>
   </div>
@@ -178,23 +122,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./courses.html" aria-current="page"> 
+    <a class="nav-link" href="../../courses.html"> 
 <span class="menu-text">Course</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
+    <a class="nav-link" href="../../project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -211,7 +155,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -219,23 +163,68 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#physics-courses" id="toc-physics-courses" class="nav-link active" data-scroll-target="#physics-courses">🎓 Physics Courses</a></li>
+  <li><a href="#sec-canonical" id="toc-sec-canonical" class="nav-link active" data-scroll-target="#sec-canonical"><span class="header-section-number">1</span> The Recipe: Canonical Quantization</a>
+  <ul class="collapse">
+  <li><a href="#the-commutation-relation-what-does-it-mean" id="toc-the-commutation-relation-what-does-it-mean" class="nav-link" data-scroll-target="#the-commutation-relation-what-does-it-mean"><span class="header-section-number">1.1</span> The Commutation Relation: What Does It Mean?</a></li>
+  </ul></li>
+  <li><a href="#sec-schrodinger" id="toc-sec-schrodinger" class="nav-link" data-scroll-target="#sec-schrodinger"><span class="header-section-number">2</span> The Quantum Hamiltonian and Schrödinger Equation</a></li>
+  <li><a href="#sec-analytic" id="toc-sec-analytic" class="nav-link" data-scroll-target="#sec-analytic"><span class="header-section-number">3</span> Solving the TISE: The Analytic Method</a>
+  <ul class="collapse">
+  <li><a href="#dimensional-analysis-natural-units" id="toc-dimensional-analysis-natural-units" class="nav-link" data-scroll-target="#dimensional-analysis-natural-units"><span class="header-section-number">3.1</span> Dimensional Analysis: Natural Units</a></li>
+  <li><a href="#asymptotic-behavior-for-large-xi" id="toc-asymptotic-behavior-for-large-xi" class="nav-link" data-scroll-target="#asymptotic-behavior-for-large-xi"><span class="header-section-number">3.2</span> Asymptotic Behavior for Large <span class="math inline">\(\xi\)</span></a></li>
+  <li><a href="#the-hermite-differential-equation" id="toc-the-hermite-differential-equation" class="nav-link" data-scroll-target="#the-hermite-differential-equation"><span class="header-section-number">3.3</span> The Hermite Differential Equation</a></li>
+  <li><a href="#power-series-solution" id="toc-power-series-solution" class="nav-link" data-scroll-target="#power-series-solution"><span class="header-section-number">3.4</span> Power Series Solution</a></li>
+  <li><a href="#the-quantization-condition" id="toc-the-quantization-condition" class="nav-link" data-scroll-target="#the-quantization-condition"><span class="header-section-number">3.5</span> The Quantization Condition</a></li>
+  </ul></li>
+  <li><a href="#sec-spectrum" id="toc-sec-spectrum" class="nav-link" data-scroll-target="#sec-spectrum"><span class="header-section-number">4</span> The Energy Spectrum: Key Features</a>
+  <ul class="collapse">
+  <li><a href="#zero-point-energy" id="toc-zero-point-energy" class="nav-link" data-scroll-target="#zero-point-energy"><span class="header-section-number">4.1</span> Zero-Point Energy</a></li>
+  <li><a href="#equally-spaced-levels" id="toc-equally-spaced-levels" class="nav-link" data-scroll-target="#equally-spaced-levels"><span class="header-section-number">4.2</span> Equally Spaced Levels</a></li>
+  </ul></li>
+  <li><a href="#sec-hermite" id="toc-sec-hermite" class="nav-link" data-scroll-target="#sec-hermite"><span class="header-section-number">5</span> The Hermite Polynomials</a></li>
+  <li><a href="#sec-wavefunctions" id="toc-sec-wavefunctions" class="nav-link" data-scroll-target="#sec-wavefunctions"><span class="header-section-number">6</span> The Normalized Wavefunctions</a>
+  <ul class="collapse">
+  <li><a href="#orthonormality" id="toc-orthonormality" class="nav-link" data-scroll-target="#orthonormality"><span class="header-section-number">6.1</span> Orthonormality</a></li>
+  </ul></li>
+  <li><a href="#sec-comparison" id="toc-sec-comparison" class="nav-link" data-scroll-target="#sec-comparison"><span class="header-section-number">7</span> Comparison: Classical vs.&nbsp;Quantum</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Active">Active <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Physics">Physics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Upcoming">Upcoming <span class="quarto-category-count">(2)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Courses</h1>
+<h1 class="title">Module 2: Quantizing the Oscillator</h1>
+<p class="subtitle lead">From Classical Springs to Quantum Operators</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Quantum Mechanics</div>
+    <div class="quarto-category">QHO Course</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We promote the classical harmonic oscillator to quantum mechanics via canonical quantization. We solve the Schrödinger equation analytically using Hermite polynomials and discover quantized energies and zero-point energy.
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
 
-<div class="quarto-title-meta column-page-left">
-
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Kumar </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -246,252 +235,388 @@ window.Quarto = {
 
 
 <style>
-/* ── Page Header ─────────────────────────────────────── */
-.courses-page-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-  border-radius: 16px;
-  padding: 2.2rem 2.5rem;
-  color: white;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(167,139,250,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
 }
-.courses-page-header h2 {
-  color: #c4b5fd;
-  margin: 0 0 0.4rem;
-  font-size: 1.5rem;
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
   font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
 }
-.courses-page-header p {
-  color: #ddd6fe;
-  margin: 0;
-  font-size: 0.95rem;
-  max-width: 560px;
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
 }
-
-/* ── Grid item hover (matches blog) ─────────────────── */
-#grid-view .quarto-grid-item {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--bs-border-color, #dee2e6) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
 }
-#grid-view .quarto-grid-item .thumbnail-image,
-#grid-view .quarto-grid-item .card-img-top {
-  aspect-ratio: 16 / 9 !important;
-  object-fit: cover !important;
-  width: 100% !important;
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item .listing-title {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-
-/* ── List item hover (matches blog) ─────────────────── */
-#list-view .quarto-post {
+.result-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
   border-radius: 10px;
-  padding: 0.8rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
 }
-#list-view .quarto-post:hover {
-  background: rgba(124,58,237,0.04);
-  transform: translateX(4px);
+.result-box p { color: #c4b5fd; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
 }
 </style>
-<div class="courses-page-header">
-<section id="physics-courses" class="level2">
-<h2 class="anchored" data-anchor-id="physics-courses">🎓 Physics Courses</h2>
-<p>Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.</p>
+<p><a href="../../Courses/QHO/01_why_oscillators.html">← Module 1</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/03_ladder_operators.html">Module 3 →</a></p>
+<hr>
+<section id="sec-canonical" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-canonical"><span class="header-section-number">1</span> The Recipe: Canonical Quantization</h2>
+<p>In Module 1, we saw that the classical harmonic oscillator has Hamiltonian:</p>
+<p><span class="math display">\[
+H_{\text{classical}} = \frac{p^2}{2m} + \frac{1}{2}m\omega^2 x^2
+\]</span></p>
+<p>where <span class="math inline">\(x\)</span> is position and <span class="math inline">\(p = m\dot{x}\)</span> is momentum.</p>
+<p>The procedure of <strong>canonical quantization</strong> is the recipe for turning a classical system into a quantum one:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Canonical Quantization Rules
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Promote</strong> classical variables to operators: <span class="math inline">\(x \to \hat{x}\)</span>, <span class="math inline">\(p \to \hat{p}\)</span></li>
+<li><strong>Impose</strong> the canonical commutation relation: <span class="math display">\[[\hat{x},\, \hat{p}] = i\hbar\]</span></li>
+<li>The Hamiltonian becomes an <strong>operator</strong>: <span class="math inline">\(\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2\)</span></li>
+<li>The state of the system is a <strong>wavefunction</strong> <span class="math inline">\(\psi(x,t)\)</span> obeying the <strong>Schrödinger equation</strong>: <span class="math display">\[i\hbar\frac{\partial\psi}{\partial t} = \hat{H}\psi\]</span></li>
+</ol>
+</div>
+</div>
+<p>This is the postulate of quantum mechanics — we cannot derive it from classical mechanics. But it works spectacularly well for every physical system we’ve ever tested.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, Chapter 4; Griffiths Section 2.3; Cohen-Tannoudji Vol. 1, Chapter II.</p>
+</blockquote>
+<section id="the-commutation-relation-what-does-it-mean" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="the-commutation-relation-what-does-it-mean"><span class="header-section-number">1.1</span> The Commutation Relation: What Does It Mean?</h3>
+<p>The classical Poisson bracket <span class="math inline">\(\{x, p\}_{\text{PB}} = 1\)</span> gets promoted to <span class="math inline">\([\hat{x}, \hat{p}] = i\hbar\)</span>.</p>
+<p>In the <strong>position representation</strong> (the most common choice), we represent: <span class="math display">\[
+\hat{x} \to x \quad \text{(multiply by } x\text{)}, \qquad \hat{p} \to -i\hbar\frac{d}{dx}
+\]</span></p>
+<p>Let’s verify the commutator:</p>
+<div class="derivation-box">
+<p><strong>Verification of <span class="math inline">\([\hat{x}, \hat{p}] = i\hbar\)</span>:</strong></p>
+<p>Apply <span class="math inline">\([\hat{x}, \hat{p}]\)</span> to an arbitrary function <span class="math inline">\(f(x)\)</span>:</p>
+<p><span class="math display">\[
+[\hat{x}, \hat{p}]f = \hat{x}(\hat{p}f) - \hat{p}(\hat{x}f)
+= x\left(-i\hbar\frac{df}{dx}\right) - \left(-i\hbar\right)\frac{d(xf)}{dx}
+\]</span></p>
+<p><span class="math display">\[
+= -i\hbar x f' + i\hbar\left(f + xf'\right) = i\hbar f
+\]</span></p>
+<p>Since this holds for any <span class="math inline">\(f(x)\)</span>, we have <span class="math inline">\([\hat{x}, \hat{p}] = i\hbar\)</span>. ✓</p>
+</div>
+<hr>
 </section>
+</section>
+<section id="sec-schrodinger" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-schrodinger"><span class="header-section-number">2</span> The Quantum Hamiltonian and Schrödinger Equation</h2>
+<p>The quantum Hamiltonian for the harmonic oscillator is:</p>
+<p><span class="math display">\[
+\hat{H} = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + \frac{1}{2}m\omega^2 x^2
+\]</span></p>
+<p>For <strong>stationary states</strong> (energy eigenstates), we seek solutions <span class="math inline">\(\psi_n(x)\)</span> such that:</p>
+<p><span class="math display">\[
+\hat{H}\psi_n = E_n \psi_n
+\]</span></p>
+<p>This gives the <strong>time-independent Schrödinger equation</strong> (TISE):</p>
+<p><span class="math display">\[
+\boxed{-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + \frac{1}{2}m\omega^2 x^2\psi = E\psi}
+\]</span></p>
+<p>Our job: find all <span class="math inline">\(E\)</span> values for which this equation has normalizable solutions.</p>
+<hr>
+</section>
+<section id="sec-analytic" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-analytic"><span class="header-section-number">3</span> Solving the TISE: The Analytic Method</h2>
+<section id="dimensional-analysis-natural-units" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="dimensional-analysis-natural-units"><span class="header-section-number">3.1</span> Dimensional Analysis: Natural Units</h3>
+<p>Before solving, let’s introduce natural dimensionless variables. The problem has two natural scales:</p>
+<ul>
+<li><strong>Length scale</strong>: <span class="math inline">\(x_0 = \sqrt{\dfrac{\hbar}{m\omega}}\)</span> (called the <em>oscillator length</em> or <em>zero-point length</em>)</li>
+<li><strong>Energy scale</strong>: <span class="math inline">\(\hbar\omega\)</span></li>
+</ul>
+<p>Define the dimensionless variable: <span class="math display">\[
+\xi = \frac{x}{x_0} = x\sqrt{\frac{m\omega}{\hbar}}
+\]</span></p>
+<p>And the dimensionless energy: <span class="math display">\[
+\varepsilon = \frac{2E}{\hbar\omega}
+\]</span></p>
+<p>The TISE becomes: <span class="math display">\[
+\frac{d^2\psi}{d\xi^2} + (\varepsilon - \xi^2)\psi = 0
+\]</span></p>
+<div class="callout-intuition">
+<p>The oscillator length <span class="math inline">\(x_0 = \sqrt{\hbar/m\omega}\)</span> sets the <strong>quantum scale of fluctuations</strong>. For a typical molecule like <span class="math inline">\(\text{N}_2\)</span> with <span class="math inline">\(\omega \sim 10^{14}\)</span> rad/s, <span class="math inline">\(x_0 \sim 10^{-11}\)</span> m — this is the scale of quantum vibrations around the bond length.</p>
 </div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Grid View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">List View</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="listing-grid-view" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-grid-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-grid-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+</section>
+<section id="asymptotic-behavior-for-large-xi" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="asymptotic-behavior-for-large-xi"><span class="header-section-number">3.2</span> Asymptotic Behavior for Large <span class="math inline">\(\xi\)</span></h3>
+<p>For <span class="math inline">\(|\xi| \to \infty\)</span>, the equation becomes <span class="math inline">\(\frac{d^2\psi}{d\xi^2} \approx \xi^2\psi\)</span>.</p>
+<p>The two independent solutions are <span class="math inline">\(\psi \sim e^{+\xi^2/2}\)</span> (diverges, unphysical) and <span class="math inline">\(\psi \sim e^{-\xi^2/2}\)</span> (decays, physical).</p>
+<p>So we write: <span class="math display">\[
+\psi(\xi) = h(\xi)\, e^{-\xi^2/2}
+\]</span></p>
+<p>where <span class="math inline">\(h(\xi)\)</span> is a function that grows <em>more slowly</em> than <span class="math inline">\(e^{\xi^2/2}\)</span>.</p>
+</section>
+<section id="the-hermite-differential-equation" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="the-hermite-differential-equation"><span class="header-section-number">3.3</span> The Hermite Differential Equation</h3>
+<p>Substituting <span class="math inline">\(\psi = h e^{-\xi^2/2}\)</span> into the TISE:</p>
+<div class="derivation-box">
+<p><strong>Substitution:</strong></p>
+<p><span class="math display">\[\frac{d\psi}{d\xi} = h'e^{-\xi^2/2} - \xi h e^{-\xi^2/2}\]</span></p>
+<p><span class="math display">\[\frac{d^2\psi}{d\xi^2} = h''e^{-\xi^2/2} - 2\xi h'e^{-\xi^2/2} + (\xi^2 - 1)he^{-\xi^2/2}\]</span></p>
+<p>Plugging into <span class="math inline">\(\psi'' + (\varepsilon - \xi^2)\psi = 0\)</span> and dividing by <span class="math inline">\(e^{-\xi^2/2}\)</span>:</p>
+<p><span class="math display">\[h'' - 2\xi h' + (\varepsilon - 1)h = 0\]</span></p>
+<p>This is the <strong>Hermite differential equation</strong> with parameter <span class="math inline">\(\lambda = \varepsilon - 1\)</span>.</p>
 </div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<a href="./Courses/Comp_Physics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Computational Physics Course
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
+</section>
+<section id="power-series-solution" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="power-series-solution"><span class="header-section-number">3.4</span> Power Series Solution</h3>
+<p>Try <span class="math inline">\(h(\xi) = \sum_{j=0}^{\infty} a_j \xi^j\)</span>. Substituting:</p>
+<p><span class="math display">\[
+\sum_{j=0}^{\infty}\left[(j+2)(j+1)a_{j+2} - 2ja_j + (\varepsilon - 1)a_j\right]\xi^j = 0
+\]</span></p>
+<p>Each coefficient must vanish, giving the <strong>recursion relation</strong>:</p>
+<p><span class="math display">\[
+\boxed{a_{j+2} = \frac{2j + 1 - \varepsilon}{(j+1)(j+2)}\, a_j}
+\]</span></p>
+</section>
+<section id="the-quantization-condition" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="the-quantization-condition"><span class="header-section-number">3.5</span> The Quantization Condition</h3>
+<p>For large <span class="math inline">\(j\)</span>, if the series doesn’t terminate, <span class="math inline">\(a_{j+2}/a_j \to 2/j\)</span>, which makes <span class="math inline">\(h(\xi) \sim e^{\xi^2}\)</span> — causing <span class="math inline">\(\psi \sim e^{\xi^2/2}\)</span>, which is not normalizable.</p>
+<p><strong>The series must terminate.</strong> This happens when <span class="math inline">\(2j + 1 - \varepsilon = 0\)</span> for some non-negative integer <span class="math inline">\(j = n\)</span>:</p>
+<p><span class="math display">\[
+\varepsilon = 2n + 1 \quad \Longrightarrow \quad \frac{2E}{\hbar\omega} = 2n + 1
+\]</span></p>
+<p><span class="math display">\[
+\boxed{E_n = \left(n + \frac{1}{2}\right)\hbar\omega, \qquad n = 0, 1, 2, 3, \ldots}
+\]</span></p>
+<div class="result-box">
+<p><strong>The Energy Spectrum of the Quantum Harmonic Oscillator</strong></p>
+<p><span class="math display">\[E_n = \hbar\omega\!\left(n + \tfrac{1}{2}\right), \quad n = 0, 1, 2, 3, \ldots\]</span></p>
+<p>Energy is <strong>quantized</strong> in steps of <span class="math inline">\(\hbar\omega\)</span>. The spectrum is <strong>equally spaced</strong>!</p>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
+<hr>
+</section>
+</section>
+<section id="sec-spectrum" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-spectrum"><span class="header-section-number">4</span> The Energy Spectrum: Key Features</h2>
+<section id="zero-point-energy" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="zero-point-energy"><span class="header-section-number">4.1</span> Zero-Point Energy</h3>
+<p>The lowest energy state is <span class="math inline">\(n = 0\)</span>:</p>
+<p><span class="math display">\[
+E_0 = \frac{1}{2}\hbar\omega
+\]</span></p>
+<p>This is <strong>non-zero!</strong> Unlike the classical oscillator (which can have zero energy), the quantum oscillator always has at least this energy. This is the <strong>zero-point energy</strong> (ZPE).</p>
+<div class="callout-intuition">
+<p><strong>Why zero-point energy?</strong> The uncertainty principle demands that we cannot simultaneously know position and momentum exactly. If the oscillator were at rest at <span class="math inline">\(x = 0\)</span> with <span class="math inline">\(p = 0\)</span>, that would violate <span class="math inline">\(\Delta x\, \Delta p \geq \hbar/2\)</span>. The zero-point energy is the quantum price of the uncertainty principle.</p>
 </div>
+<p><strong>Physical manifestations of zero-point energy:</strong></p>
+<ul>
+<li><strong>Liquid helium</strong> never freezes at atmospheric pressure (even at <span class="math inline">\(T = 0\)</span>) — the ZPE keeps it liquid</li>
+<li><strong>Casimir effect</strong> — two uncharged metal plates attract due to vacuum fluctuations</li>
+<li><strong>Lamb shift</strong> — small but measurable correction to hydrogen energy levels</li>
+</ul>
+</section>
+<section id="equally-spaced-levels" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="equally-spaced-levels"><span class="header-section-number">4.2</span> Equally Spaced Levels</h3>
+<p>The levels <span class="math inline">\(E_0, E_1, E_2, \ldots\)</span> are equally spaced with spacing <span class="math inline">\(\hbar\omega\)</span>. This is why:</p>
+<ul>
+<li>Diatomic molecules absorb/emit light at harmonics of <span class="math inline">\(\omega\)</span></li>
+<li>A photon of energy <span class="math inline">\(\hbar\omega\)</span> can excite the oscillator from <span class="math inline">\(n\)</span> to <span class="math inline">\(n+1\)</span></li>
+<li>Laser light at frequency <span class="math inline">\(\omega\)</span> can be resonantly absorbed</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="sec-hermite" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-hermite"><span class="header-section-number">5</span> The Hermite Polynomials</h2>
+<p>When the series terminates at <span class="math inline">\(j = n\)</span>, <span class="math inline">\(h(\xi)\)</span> becomes the <strong>Hermite polynomial</strong> <span class="math inline">\(H_n(\xi)\)</span>:</p>
+<p><span class="math display">\[
+H_0(\xi) = 1
+\]</span> <span class="math display">\[
+H_1(\xi) = 2\xi
+\]</span> <span class="math display">\[
+H_2(\xi) = 4\xi^2 - 2
+\]</span> <span class="math display">\[
+H_3(\xi) = 8\xi^3 - 12\xi
+\]</span> <span class="math display">\[
+H_4(\xi) = 16\xi^4 - 48\xi^2 + 12
+\]</span></p>
+<p><strong>Rodrigues formula:</strong> <span class="math display">\[
+H_n(\xi) = (-1)^n e^{\xi^2}\frac{d^n}{d\xi^n}e^{-\xi^2}
+\]</span></p>
+<p><strong>Generating function:</strong> <span class="math display">\[
+e^{2\xi t - t^2} = \sum_{n=0}^{\infty} \frac{H_n(\xi)}{n!}\, t^n
+\]</span></p>
+<p><strong>Recurrence relation:</strong> <span class="math display">\[
+H_{n+1}(\xi) = 2\xi H_n(\xi) - 2n H_{n-1}(\xi)
+\]</span></p>
+<p><strong>Parity:</strong> <span class="math inline">\(H_n(-\xi) = (-1)^n H_n(\xi)\)</span> — so even <span class="math inline">\(n\)</span> gives even functions, odd <span class="math inline">\(n\)</span> gives odd functions.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Griffiths Section 2.3; Shankar Section 7.3.</p>
+</blockquote>
+<hr>
+</section>
+<section id="sec-wavefunctions" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-wavefunctions"><span class="header-section-number">6</span> The Normalized Wavefunctions</h2>
+<p>Normalizing <span class="math inline">\(\psi_n = A_n H_n(\xi)e^{-\xi^2/2}\)</span> using <span class="math inline">\(\int_{-\infty}^{\infty}H_n^2 e^{-\xi^2}d\xi = 2^n n!\sqrt{\pi}\)</span>:</p>
+<p><span class="math display">\[
+\boxed{\psi_n(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \frac{1}{\sqrt{2^n n!}} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right) e^{-m\omega x^2/2\hbar}}
+\]</span></p>
+<p>Let’s write out the first few explicitly (using <span class="math inline">\(x_0 = \sqrt{\hbar/m\omega}\)</span> and <span class="math inline">\(\xi = x/x_0\)</span>):</p>
+<p><span class="math display">\[
+\psi_0(x) = \left(\frac{1}{\pi x_0^2}\right)^{1/4} e^{-x^2/2x_0^2}
+\]</span></p>
+<p><span class="math display">\[
+\psi_1(x) = \left(\frac{1}{\pi x_0^2}\right)^{1/4} \sqrt{2}\,\frac{x}{x_0}\, e^{-x^2/2x_0^2}
+\]</span></p>
+<p><span class="math display">\[
+\psi_2(x) = \left(\frac{1}{\pi x_0^2}\right)^{1/4} \frac{1}{\sqrt{2}}\left(2\frac{x^2}{x_0^2} - 1\right) e^{-x^2/2x_0^2}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<a href="./Courses/QHO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Quantum Harmonic Oscillator
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="listing-list-view" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-list-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-list-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p><a href="./Courses/Comp_Physics/index.html" class="no-external">
-<p><img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image"></p>
-</a><p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Computational Physics Course</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/Comp_Physics/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<div class="thumbnail">
-<p><a href="./Courses/QHO/index.html" class="no-external"></a></p><a href="./Courses/QHO/index.html" class="no-external">
-<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image"></p>
-</a><p><a href="./Courses/QHO/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/QHO/index.html" class="no-external">Quantum Harmonic Oscillator</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/QHO/index.html" class="no-external">From Classical Springs to Squeezed Light</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/QHO/index.html" class="no-external">A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/QHO/index.html" class="no-external">
-<div class="listing-date">
-May 26, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
+<div class="callout-title-container flex-fill">
+Parity of the Wavefunctions
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\(\psi_n(-x) = (-1)^n \psi_n(x)\)</span></li>
+<li>Even <span class="math inline">\(n\)</span>: <strong>even</strong> wavefunctions</li>
+<li>Odd <span class="math inline">\(n\)</span>: <strong>odd</strong> wavefunctions</li>
+<li>This follows from the parity of <span class="math inline">\(H_n\)</span> and the symmetry of <span class="math inline">\(V(x) = V(-x)\)</span>.</li>
+</ul>
 </div>
+</div>
+<section id="orthonormality" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="orthonormality"><span class="header-section-number">6.1</span> Orthonormality</h3>
+<p>The energy eigenstates form a <strong>complete orthonormal set</strong>:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} \psi_m^*(x)\psi_n(x)\,dx = \delta_{mn}
+\]</span></p>
+<p>This means: - <span class="math inline">\(m = n\)</span>: <span class="math inline">\(\int|\psi_n|^2\,dx = 1\)</span> (normalized) - <span class="math inline">\(m \neq n\)</span>: <span class="math inline">\(\int\psi_m^*\psi_n\,dx = 0\)</span> (orthogonal)</p>
+<p>Any quantum state can be written as <span class="math inline">\(\psi(x) = \sum_n c_n \psi_n(x)\)</span> with <span class="math inline">\(\sum_n |c_n|^2 = 1\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-comparison" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-comparison"><span class="header-section-number">7</span> Comparison: Classical vs.&nbsp;Quantum</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 42%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Classical Oscillator</th>
+<th>Quantum Oscillator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Allowed energies</td>
+<td>Any <span class="math inline">\(E \geq 0\)</span></td>
+<td><span class="math inline">\(E_n = (n+\frac{1}{2})\hbar\omega\)</span> only</td>
+</tr>
+<tr class="even">
+<td>Ground state energy</td>
+<td><span class="math inline">\(E = 0\)</span> (at rest)</td>
+<td><span class="math inline">\(E_0 = \frac{1}{2}\hbar\omega \neq 0\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ground state position</td>
+<td><span class="math inline">\(x = 0\)</span> (definite)</td>
+<td><span class="math inline">\(\langle x\rangle = 0\)</span>, <span class="math inline">\(\langle x^2\rangle = x_0^2/2\)</span></td>
+</tr>
+<tr class="even">
+<td>Level spacing</td>
+<td>Continuous</td>
+<td>Equal spacing <span class="math inline">\(\hbar\omega\)</span></td>
+</tr>
+<tr class="odd">
+<td>Tunneling</td>
+<td>Cannot go past turning points</td>
+<td>Exponentially small probability beyond</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Classical Limit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At large <span class="math inline">\(n\)</span>, <span class="math inline">\(E_n \approx n\hbar\omega \gg \hbar\omega\)</span>, and the quantum energy spacing <span class="math inline">\(\hbar\omega\)</span> becomes negligible compared to <span class="math inline">\(E_n\)</span>. The energy spectrum looks continuous — <strong>this is the classical limit</strong>.</p>
+<p>Also, for large <span class="math inline">\(n\)</span>, <span class="math inline">\(|\psi_n(x)|^2\)</span> oscillates rapidly and its envelope matches the classical probability distribution <span class="math inline">\(P_{\text{cl}}(x) \propto 1/\sqrt{A^2 - x^2}\)</span> (where <span class="math inline">\(A\)</span> is the classical turning point). This is the <strong>Bohr correspondence principle</strong> in action.</p>
+</div>
+</div>
+<hr>
+<div class="checkpoint">
+<p><strong>Before moving on, make sure you can:</strong></p>
+<ol type="1">
+<li>State the canonical quantization rules and write down <span class="math inline">\(\hat{H}\)</span> for the QHO.</li>
+<li>Write down the TISE for the QHO and explain why solutions must terminate.</li>
+<li>State the energy eigenvalues <span class="math inline">\(E_n = (n + \frac{1}{2})\hbar\omega\)</span> and <strong>explain</strong> why <span class="math inline">\(n=0\)</span> still has energy.</li>
+<li>Write <span class="math inline">\(\psi_0(x)\)</span> and <span class="math inline">\(\psi_1(x)\)</span> from memory.</li>
+<li>What is the parity of <span class="math inline">\(\psi_n\)</span>?</li>
+</ol>
+<p><strong>A deep question</strong>: The Hermite polynomial <span class="math inline">\(H_n\)</span> has exactly <span class="math inline">\(n\)</span> nodes (zeros). Why? <em>(Hint: think about the node theorem for bound-state wavefunctions and the fact that higher eigenstates are orthogonal to lower ones.)</em></p>
+</div>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/QHO/01_why_oscillators.html" class="btn btn-outline-secondary">← Module 1: Why Oscillators?</a> <a href="../../Courses/QHO/03_ladder_operators.html" class="btn btn-success">Next: Module 3 — Ladder Operators →</a></p>
 </div>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

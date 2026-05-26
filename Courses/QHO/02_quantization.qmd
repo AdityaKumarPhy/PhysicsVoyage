@@ -1,0 +1,413 @@
+---
+title: "Module 2: Quantizing the Oscillator"
+subtitle: "From Classical Springs to Quantum Operators"
+description: "We promote the classical harmonic oscillator to quantum mechanics via canonical quantization. We solve the Schrödinger equation analytically using Hermite polynomials and discover quantized energies and zero-point energy."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
+}
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.result-box p { color: #c4b5fd; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+```
+
+[← Module 1](01_why_oscillators.qmd) | [↑ Course Index](index.qmd) | [Module 3 →](03_ladder_operators.qmd)
+
+---
+
+## The Recipe: Canonical Quantization {#sec-canonical}
+
+In Module 1, we saw that the classical harmonic oscillator has Hamiltonian:
+
+$$
+H_{\text{classical}} = \frac{p^2}{2m} + \frac{1}{2}m\omega^2 x^2
+$$
+
+where $x$ is position and $p = m\dot{x}$ is momentum.
+
+The procedure of **canonical quantization** is the recipe for turning a classical system into a quantum one:
+
+::: {.callout-note}
+## The Canonical Quantization Rules
+
+1. **Promote** classical variables to operators: $x \to \hat{x}$, $p \to \hat{p}$
+2. **Impose** the canonical commutation relation:
+$$[\hat{x},\, \hat{p}] = i\hbar$$
+3. The Hamiltonian becomes an **operator**: $\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2$
+4. The state of the system is a **wavefunction** $\psi(x,t)$ obeying the **Schrödinger equation**:
+$$i\hbar\frac{\partial\psi}{\partial t} = \hat{H}\psi$$
+:::
+
+This is the postulate of quantum mechanics — we cannot derive it from classical mechanics. But it works spectacularly well for every physical system we've ever tested.
+
+> **Textbook reference**: Shankar, Chapter 4; Griffiths Section 2.3; Cohen-Tannoudji Vol. 1, Chapter II.
+
+### The Commutation Relation: What Does It Mean?
+
+The classical Poisson bracket $\{x, p\}_{\text{PB}} = 1$ gets promoted to $[\hat{x}, \hat{p}] = i\hbar$.
+
+In the **position representation** (the most common choice), we represent:
+$$
+\hat{x} \to x \quad \text{(multiply by } x\text{)}, \qquad \hat{p} \to -i\hbar\frac{d}{dx}
+$$
+
+Let's verify the commutator:
+
+::: {.derivation-box}
+**Verification of $[\hat{x}, \hat{p}] = i\hbar$:**
+
+Apply $[\hat{x}, \hat{p}]$ to an arbitrary function $f(x)$:
+
+$$
+[\hat{x}, \hat{p}]f = \hat{x}(\hat{p}f) - \hat{p}(\hat{x}f)
+= x\left(-i\hbar\frac{df}{dx}\right) - \left(-i\hbar\right)\frac{d(xf)}{dx}
+$$
+
+$$
+= -i\hbar x f' + i\hbar\left(f + xf'\right) = i\hbar f
+$$
+
+Since this holds for any $f(x)$, we have $[\hat{x}, \hat{p}] = i\hbar$. ✓
+:::
+
+---
+
+## The Quantum Hamiltonian and Schrödinger Equation {#sec-schrodinger}
+
+The quantum Hamiltonian for the harmonic oscillator is:
+
+$$
+\hat{H} = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + \frac{1}{2}m\omega^2 x^2
+$$
+
+For **stationary states** (energy eigenstates), we seek solutions $\psi_n(x)$ such that:
+
+$$
+\hat{H}\psi_n = E_n \psi_n
+$$
+
+This gives the **time-independent Schrödinger equation** (TISE):
+
+$$
+\boxed{-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + \frac{1}{2}m\omega^2 x^2\psi = E\psi}
+$$
+
+Our job: find all $E$ values for which this equation has normalizable solutions.
+
+---
+
+## Solving the TISE: The Analytic Method {#sec-analytic}
+
+### Dimensional Analysis: Natural Units
+
+Before solving, let's introduce natural dimensionless variables. The problem has two natural scales:
+
+- **Length scale**: $x_0 = \sqrt{\dfrac{\hbar}{m\omega}}$ (called the *oscillator length* or *zero-point length*)
+- **Energy scale**: $\hbar\omega$
+
+Define the dimensionless variable:
+$$
+\xi = \frac{x}{x_0} = x\sqrt{\frac{m\omega}{\hbar}}
+$$
+
+And the dimensionless energy:
+$$
+\varepsilon = \frac{2E}{\hbar\omega}
+$$
+
+The TISE becomes:
+$$
+\frac{d^2\psi}{d\xi^2} + (\varepsilon - \xi^2)\psi = 0
+$$
+
+::: {.callout-intuition}
+The oscillator length $x_0 = \sqrt{\hbar/m\omega}$ sets the **quantum scale of fluctuations**. For a typical molecule like $\text{N}_2$ with $\omega \sim 10^{14}$ rad/s, $x_0 \sim 10^{-11}$ m — this is the scale of quantum vibrations around the bond length.
+:::
+
+### Asymptotic Behavior for Large $\xi$
+
+For $|\xi| \to \infty$, the equation becomes $\frac{d^2\psi}{d\xi^2} \approx \xi^2\psi$.
+
+The two independent solutions are $\psi \sim e^{+\xi^2/2}$ (diverges, unphysical) and $\psi \sim e^{-\xi^2/2}$ (decays, physical).
+
+So we write:
+$$
+\psi(\xi) = h(\xi)\, e^{-\xi^2/2}
+$$
+
+where $h(\xi)$ is a function that grows *more slowly* than $e^{\xi^2/2}$.
+
+### The Hermite Differential Equation
+
+Substituting $\psi = h e^{-\xi^2/2}$ into the TISE:
+
+::: {.derivation-box}
+**Substitution:**
+
+$$\frac{d\psi}{d\xi} = h'e^{-\xi^2/2} - \xi h e^{-\xi^2/2}$$
+
+$$\frac{d^2\psi}{d\xi^2} = h''e^{-\xi^2/2} - 2\xi h'e^{-\xi^2/2} + (\xi^2 - 1)he^{-\xi^2/2}$$
+
+Plugging into $\psi'' + (\varepsilon - \xi^2)\psi = 0$ and dividing by $e^{-\xi^2/2}$:
+
+$$h'' - 2\xi h' + (\varepsilon - 1)h = 0$$
+
+This is the **Hermite differential equation** with parameter $\lambda = \varepsilon - 1$.
+:::
+
+### Power Series Solution
+
+Try $h(\xi) = \sum_{j=0}^{\infty} a_j \xi^j$. Substituting:
+
+$$
+\sum_{j=0}^{\infty}\left[(j+2)(j+1)a_{j+2} - 2ja_j + (\varepsilon - 1)a_j\right]\xi^j = 0
+$$
+
+Each coefficient must vanish, giving the **recursion relation**:
+
+$$
+\boxed{a_{j+2} = \frac{2j + 1 - \varepsilon}{(j+1)(j+2)}\, a_j}
+$$
+
+### The Quantization Condition
+
+For large $j$, if the series doesn't terminate, $a_{j+2}/a_j \to 2/j$, which makes $h(\xi) \sim e^{\xi^2}$ — causing $\psi \sim e^{\xi^2/2}$, which is not normalizable.
+
+**The series must terminate.** This happens when $2j + 1 - \varepsilon = 0$ for some non-negative integer $j = n$:
+
+$$
+\varepsilon = 2n + 1 \quad \Longrightarrow \quad \frac{2E}{\hbar\omega} = 2n + 1
+$$
+
+$$
+\boxed{E_n = \left(n + \frac{1}{2}\right)\hbar\omega, \qquad n = 0, 1, 2, 3, \ldots}
+$$
+
+::: {.result-box}
+**The Energy Spectrum of the Quantum Harmonic Oscillator**
+
+$$E_n = \hbar\omega\!\left(n + \tfrac{1}{2}\right), \quad n = 0, 1, 2, 3, \ldots$$
+
+Energy is **quantized** in steps of $\hbar\omega$. The spectrum is **equally spaced**!
+:::
+
+---
+
+## The Energy Spectrum: Key Features {#sec-spectrum}
+
+### Zero-Point Energy
+
+The lowest energy state is $n = 0$:
+
+$$
+E_0 = \frac{1}{2}\hbar\omega
+$$
+
+This is **non-zero!** Unlike the classical oscillator (which can have zero energy), the quantum oscillator always has at least this energy. This is the **zero-point energy** (ZPE).
+
+::: {.callout-intuition}
+**Why zero-point energy?** The uncertainty principle demands that we cannot simultaneously know position and momentum exactly. If the oscillator were at rest at $x = 0$ with $p = 0$, that would violate $\Delta x\, \Delta p \geq \hbar/2$. The zero-point energy is the quantum price of the uncertainty principle.
+:::
+
+**Physical manifestations of zero-point energy:**
+
+- **Liquid helium** never freezes at atmospheric pressure (even at $T = 0$) — the ZPE keeps it liquid
+- **Casimir effect** — two uncharged metal plates attract due to vacuum fluctuations
+- **Lamb shift** — small but measurable correction to hydrogen energy levels
+
+### Equally Spaced Levels
+
+The levels $E_0, E_1, E_2, \ldots$ are equally spaced with spacing $\hbar\omega$. This is why:
+
+- Diatomic molecules absorb/emit light at harmonics of $\omega$
+- A photon of energy $\hbar\omega$ can excite the oscillator from $n$ to $n+1$
+- Laser light at frequency $\omega$ can be resonantly absorbed
+
+---
+
+## The Hermite Polynomials {#sec-hermite}
+
+When the series terminates at $j = n$, $h(\xi)$ becomes the **Hermite polynomial** $H_n(\xi)$:
+
+$$
+H_0(\xi) = 1
+$$
+$$
+H_1(\xi) = 2\xi
+$$
+$$
+H_2(\xi) = 4\xi^2 - 2
+$$
+$$
+H_3(\xi) = 8\xi^3 - 12\xi
+$$
+$$
+H_4(\xi) = 16\xi^4 - 48\xi^2 + 12
+$$
+
+**Rodrigues formula:**
+$$
+H_n(\xi) = (-1)^n e^{\xi^2}\frac{d^n}{d\xi^n}e^{-\xi^2}
+$$
+
+**Generating function:**
+$$
+e^{2\xi t - t^2} = \sum_{n=0}^{\infty} \frac{H_n(\xi)}{n!}\, t^n
+$$
+
+**Recurrence relation:**
+$$
+H_{n+1}(\xi) = 2\xi H_n(\xi) - 2n H_{n-1}(\xi)
+$$
+
+**Parity:** $H_n(-\xi) = (-1)^n H_n(\xi)$ — so even $n$ gives even functions, odd $n$ gives odd functions.
+
+> **Textbook reference**: Griffiths Section 2.3; Shankar Section 7.3.
+
+---
+
+## The Normalized Wavefunctions {#sec-wavefunctions}
+
+Normalizing $\psi_n = A_n H_n(\xi)e^{-\xi^2/2}$ using $\int_{-\infty}^{\infty}H_n^2 e^{-\xi^2}d\xi = 2^n n!\sqrt{\pi}$:
+
+$$
+\boxed{\psi_n(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \frac{1}{\sqrt{2^n n!}} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right) e^{-m\omega x^2/2\hbar}}
+$$
+
+Let's write out the first few explicitly (using $x_0 = \sqrt{\hbar/m\omega}$ and $\xi = x/x_0$):
+
+$$
+\psi_0(x) = \left(\frac{1}{\pi x_0^2}\right)^{1/4} e^{-x^2/2x_0^2}
+$$
+
+$$
+\psi_1(x) = \left(\frac{1}{\pi x_0^2}\right)^{1/4} \sqrt{2}\,\frac{x}{x_0}\, e^{-x^2/2x_0^2}
+$$
+
+$$
+\psi_2(x) = \left(\frac{1}{\pi x_0^2}\right)^{1/4} \frac{1}{\sqrt{2}}\left(2\frac{x^2}{x_0^2} - 1\right) e^{-x^2/2x_0^2}
+$$
+
+::: {.callout-note}
+## Parity of the Wavefunctions
+- $\psi_n(-x) = (-1)^n \psi_n(x)$
+- Even $n$: **even** wavefunctions
+- Odd $n$: **odd** wavefunctions
+- This follows from the parity of $H_n$ and the symmetry of $V(x) = V(-x)$.
+:::
+
+### Orthonormality
+
+The energy eigenstates form a **complete orthonormal set**:
+
+$$
+\int_{-\infty}^{\infty} \psi_m^*(x)\psi_n(x)\,dx = \delta_{mn}
+$$
+
+This means:
+- $m = n$: $\int|\psi_n|^2\,dx = 1$ (normalized)
+- $m \neq n$: $\int\psi_m^*\psi_n\,dx = 0$ (orthogonal)
+
+Any quantum state can be written as $\psi(x) = \sum_n c_n \psi_n(x)$ with $\sum_n |c_n|^2 = 1$.
+
+---
+
+## Comparison: Classical vs. Quantum {#sec-comparison}
+
+| Property | Classical Oscillator | Quantum Oscillator |
+|----------|---------------------|-------------------|
+| Allowed energies | Any $E \geq 0$ | $E_n = (n+\frac{1}{2})\hbar\omega$ only |
+| Ground state energy | $E = 0$ (at rest) | $E_0 = \frac{1}{2}\hbar\omega \neq 0$ |
+| Ground state position | $x = 0$ (definite) | $\langle x\rangle = 0$, $\langle x^2\rangle = x_0^2/2$ |
+| Level spacing | Continuous | Equal spacing $\hbar\omega$ |
+| Tunneling | Cannot go past turning points | Exponentially small probability beyond |
+
+::: {.callout-warning}
+## The Classical Limit
+At large $n$, $E_n \approx n\hbar\omega \gg \hbar\omega$, and the quantum energy spacing $\hbar\omega$ becomes negligible compared to $E_n$. The energy spectrum looks continuous — **this is the classical limit**.
+
+Also, for large $n$, $|\psi_n(x)|^2$ oscillates rapidly and its envelope matches the classical probability distribution $P_{\text{cl}}(x) \propto 1/\sqrt{A^2 - x^2}$ (where $A$ is the classical turning point). This is the **Bohr correspondence principle** in action.
+:::
+
+---
+
+::: {.checkpoint}
+**Before moving on, make sure you can:**
+
+1. State the canonical quantization rules and write down $\hat{H}$ for the QHO.
+2. Write down the TISE for the QHO and explain why solutions must terminate.
+3. State the energy eigenvalues $E_n = (n + \frac{1}{2})\hbar\omega$ and **explain** why $n=0$ still has energy.
+4. Write $\psi_0(x)$ and $\psi_1(x)$ from memory.
+5. What is the parity of $\psi_n$?
+
+**A deep question**: The Hermite polynomial $H_n$ has exactly $n$ nodes (zeros). Why?
+*(Hint: think about the node theorem for bound-state wavefunctions and the fact that higher eigenstates are orthogonal to lower ones.)*
+:::
+
+---
+
+::: {.nav-buttons}
+[← Module 1: Why Oscillators?](01_why_oscillators.qmd){.btn .btn-outline-secondary}
+[Next: Module 3 — Ladder Operators →](03_ladder_operators.qmd){.btn .btn-success}
+:::

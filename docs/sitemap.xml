@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/courses.html</loc>
-    <lastmod>2026-05-23T00:28:29.061Z</lastmod>
+    <lastmod>2026-05-26T14:00:11.019Z</lastmod>
   </url>
   <url>
     <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/blog.html</loc>
@@ -54,10 +54,46 @@
   </url>
   <url>
     <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/index.html</loc>
-    <lastmod>2026-05-25T14:20:55.314Z</lastmod>
+    <lastmod>2026-05-26T13:43:13.357Z</lastmod>
   </url>
   <url>
     <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/feed.html</loc>
     <lastmod>2026-05-23T01:15:36.454Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/index.html</loc>
+    <lastmod>2026-05-26T14:24:22.210Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/03_ladder_operators.html</loc>
+    <lastmod>2026-05-26T07:25:56.438Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/02_quantization.html</loc>
+    <lastmod>2026-05-26T07:24:31.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/05_time_evolution.html</loc>
+    <lastmod>2026-05-26T07:28:12.727Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/07_squeezed_states.html</loc>
+    <lastmod>2026-05-26T07:31:02.396Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/01_why_oscillators.html</loc>
+    <lastmod>2026-05-26T07:23:11.236Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/04_wavefunctions.html</loc>
+    <lastmod>2026-05-26T07:27:00.263Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/06_coherent_states.html</loc>
+    <lastmod>2026-05-26T07:29:35.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/08_cheatsheet.html</loc>
+    <lastmod>2026-05-26T07:32:07.843Z</lastmod>
   </url>
 </urlset>

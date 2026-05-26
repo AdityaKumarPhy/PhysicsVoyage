@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="We construct and explore coherent states — the eigenstates of the annihilation operator. These minimum-uncertainty wavepackets behave most classically, oscillate without spreading, and are the quantum states of laser light. Drawn from Shankar Ch. 7, Cohen-Tannoudji, and Glauber’s Nobel Prize work.">
 
-<title>Physics Voyage - Courses</title>
+<title>Physics Voyage - Module 6: Coherent States</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,63 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-list-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-list-view'] = new List('listing-list-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-grid-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-grid-view'] = new List('listing-grid-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -157,7 +101,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/styles/styles.css">
+<link rel="stylesheet" href="../../assets/styles/styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -167,7 +111,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Physics Voyage</span>
     </a>
   </div>
@@ -178,23 +122,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./courses.html" aria-current="page"> 
+    <a class="nav-link" href="../../courses.html"> 
 <span class="menu-text">Course</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
+    <a class="nav-link" href="../../project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -211,7 +155,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -219,23 +163,62 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#physics-courses" id="toc-physics-courses" class="nav-link active" data-scroll-target="#physics-courses">🎓 Physics Courses</a></li>
+  <li><a href="#sec-motivation" id="toc-sec-motivation" class="nav-link active" data-scroll-target="#sec-motivation"><span class="header-section-number">1</span> Motivation: What is the Most Classical Quantum State?</a></li>
+  <li><a href="#sec-definition" id="toc-sec-definition" class="nav-link" data-scroll-target="#sec-definition"><span class="header-section-number">2</span> Definition: Eigenstates of <span class="math inline">\(\hat{a}\)</span></a></li>
+  <li><a href="#sec-fock-expansion" id="toc-sec-fock-expansion" class="nav-link" data-scroll-target="#sec-fock-expansion"><span class="header-section-number">3</span> Expanding Coherent States in the Fock Basis</a></li>
+  <li><a href="#sec-displacement" id="toc-sec-displacement" class="nav-link" data-scroll-target="#sec-displacement"><span class="header-section-number">4</span> The Displacement Operator</a></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties"><span class="header-section-number">5</span> Physical Properties of Coherent States</a>
+  <ul class="collapse">
+  <li><a href="#expectation-values" id="toc-expectation-values" class="nav-link" data-scroll-target="#expectation-values"><span class="header-section-number">5.1</span> Expectation Values</a></li>
+  <li><a href="#minimum-uncertainty" id="toc-minimum-uncertainty" class="nav-link" data-scroll-target="#minimum-uncertainty"><span class="header-section-number">5.2</span> Minimum Uncertainty</a></li>
+  </ul></li>
+  <li><a href="#sec-time-evolution" id="toc-sec-time-evolution" class="nav-link" data-scroll-target="#sec-time-evolution"><span class="header-section-number">6</span> Time Evolution of Coherent States</a></li>
+  <li><a href="#sec-photon-number" id="toc-sec-photon-number" class="nav-link" data-scroll-target="#sec-photon-number"><span class="header-section-number">7</span> Photon Number Distribution</a></li>
+  <li><a href="#sec-non-orthogonal" id="toc-sec-non-orthogonal" class="nav-link" data-scroll-target="#sec-non-orthogonal"><span class="header-section-number">8</span> Non-Orthogonality of Coherent States</a>
+  <ul class="collapse">
+  <li><a href="#over-completeness" id="toc-over-completeness" class="nav-link" data-scroll-target="#over-completeness"><span class="header-section-number">8.1</span> Over-Completeness</a></li>
+  </ul></li>
+  <li><a href="#sec-phase-space" id="toc-sec-phase-space" class="nav-link" data-scroll-target="#sec-phase-space"><span class="header-section-number">9</span> Phase Space Picture: The Wigner Function of Coherent States</a></li>
+  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">10</span> Summary: Properties of Coherent States</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Active">Active <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Physics">Physics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Upcoming">Upcoming <span class="quarto-category-count">(2)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Courses</h1>
+<h1 class="title">Module 6: Coherent States</h1>
+<p class="subtitle lead">The Most Classical Quantum States</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Quantum Mechanics</div>
+    <div class="quarto-category">QHO Course</div>
+    <div class="quarto-category">Quantum Optics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We construct and explore coherent states — the eigenstates of the annihilation operator. These minimum-uncertainty wavepackets behave most classically, oscillate without spreading, and are the quantum states of laser light. Drawn from Shankar Ch. 7, Cohen-Tannoudji, and Glauber’s Nobel Prize work.
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
 
-<div class="quarto-title-meta column-page-left">
-
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Kumar </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -246,252 +229,364 @@ window.Quarto = {
 
 
 <style>
-/* ── Page Header ─────────────────────────────────────── */
-.courses-page-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-  border-radius: 16px;
-  padding: 2.2rem 2.5rem;
-  color: white;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(167,139,250,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
 }
-.courses-page-header h2 {
-  color: #c4b5fd;
-  margin: 0 0 0.4rem;
-  font-size: 1.5rem;
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
   font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
 }
-.courses-page-header p {
-  color: #ddd6fe;
-  margin: 0;
-  font-size: 0.95rem;
-  max-width: 560px;
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
 }
-
-/* ── Grid item hover (matches blog) ─────────────────── */
-#grid-view .quarto-grid-item {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--bs-border-color, #dee2e6) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
 }
-#grid-view .quarto-grid-item .thumbnail-image,
-#grid-view .quarto-grid-item .card-img-top {
-  aspect-ratio: 16 / 9 !important;
-  object-fit: cover !important;
-  width: 100% !important;
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item .listing-title {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-
-/* ── List item hover (matches blog) ─────────────────── */
-#list-view .quarto-post {
+.result-box {
+  background: linear-gradient(135deg, #065f46 0%, #064e3b 100%);
+  color: white;
   border-radius: 10px;
-  padding: 0.8rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
 }
-#list-view .quarto-post:hover {
-  background: rgba(124,58,237,0.04);
-  transform: translateX(4px);
+.result-box p { color: #a7f3d0; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
 }
 </style>
-<div class="courses-page-header">
-<section id="physics-courses" class="level2">
-<h2 class="anchored" data-anchor-id="physics-courses">🎓 Physics Courses</h2>
-<p>Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.</p>
+<p><a href="../../Courses/QHO/05_time_evolution.html">← Module 5</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/07_squeezed_states.html">Module 7 →</a></p>
+<hr>
+<section id="sec-motivation" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-motivation"><span class="header-section-number">1</span> Motivation: What is the Most Classical Quantum State?</h2>
+<p>The energy eigenstates <span class="math inline">\(|n\rangle\)</span> are weird. For any <span class="math inline">\(n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\langle\hat{x}\rangle = 0\)</span> always (no displacement)</li>
+<li>The probability density is spread out and has nodes</li>
+<li>Nothing seems to oscillate in time</li>
+</ul>
+<p>But a real classical oscillator has a definite amplitude and phase. What quantum state most closely resembles a classical oscillating particle?</p>
+<p>The answer is the <strong>coherent state</strong>, introduced by Roy Glauber in 1963 (for which he received the 2005 Nobel Prize in Physics).</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, Exercise 7.4.9; Cohen-Tannoudji Vol. 1, Complement GV; Griffiths Problem 3.35.</p>
+</blockquote>
+<hr>
 </section>
+<section id="sec-definition" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-definition"><span class="header-section-number">2</span> Definition: Eigenstates of <span class="math inline">\(\hat{a}\)</span></h2>
+<p>A <strong>coherent state</strong> <span class="math inline">\(|\alpha\rangle\)</span> is defined as an eigenstate of the annihilation operator:</p>
+<p><span class="math display">\[
+\boxed{\hat{a}|\alpha\rangle = \alpha|\alpha\rangle}
+\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is a complex number: <span class="math inline">\(\alpha = |\alpha|e^{i\theta} \in \mathbb{C}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Grid View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">List View</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="listing-grid-view" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-grid-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-grid-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<a href="./Courses/Comp_Physics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Computational Physics Course
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
+<div class="callout-title-container flex-fill">
+Why <span class="math inline">\(\hat{a}\)</span> and Not <span class="math inline">\(\hat{a}^\dagger\)</span>?
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\hat{a}^\dagger\)</span> has <strong>no eigenvalues</strong> — there is no normalizable state that satisfies <span class="math inline">\(\hat{a}^\dagger|\beta\rangle = \beta|\beta\rangle\)</span>. (Proof: <span class="math inline">\(\hat{a}^\dagger\)</span> raises <span class="math inline">\(n\)</span> without bound, so the series never terminates.)</p>
+<p>But <span class="math inline">\(\hat{a}\)</span> does have eigenvalues — any complex number <span class="math inline">\(\alpha\)</span> works. The ground state <span class="math inline">\(|0\rangle\)</span> is the special case <span class="math inline">\(\alpha = 0\)</span>.</p>
 </div>
 </div>
-</a>
+<hr>
+</section>
+<section id="sec-fock-expansion" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-fock-expansion"><span class="header-section-number">3</span> Expanding Coherent States in the Fock Basis</h2>
+<p>Let’s write <span class="math inline">\(|\alpha\rangle = \sum_{n=0}^{\infty} c_n|n\rangle\)</span> and apply <span class="math inline">\(\hat{a}|\alpha\rangle = \alpha|\alpha\rangle\)</span>:</p>
+<div class="derivation-box">
+<p><span class="math display">\[
+\hat{a}|\alpha\rangle = \sum_n c_n \hat{a}|n\rangle = \sum_n c_n \sqrt{n}|n-1\rangle = \alpha\sum_n c_n|n\rangle
+\]</span></p>
+<p>Shifting index <span class="math inline">\(n \to n+1\)</span> on the left:</p>
+<p><span class="math display">\[
+\sum_n c_{n+1}\sqrt{n+1}|n\rangle = \alpha\sum_n c_n|n\rangle
+\]</span></p>
+<p>Matching term by term: <span class="math inline">\(c_{n+1}\sqrt{n+1} = \alpha c_n\)</span></p>
+<p><strong>Recursion</strong>: <span class="math inline">\(c_{n+1} = \frac{\alpha}{\sqrt{n+1}}c_n\)</span></p>
+<p><strong>Solution</strong>: <span class="math inline">\(c_n = \frac{\alpha^n}{\sqrt{n!}}c_0\)</span></p>
+<p><strong>Normalizing</strong>: <span class="math inline">\(\sum_n|c_n|^2 = |c_0|^2\sum_n\frac{|\alpha|^{2n}}{n!} = |c_0|^2 e^{|\alpha|^2} = 1\)</span></p>
+<p>So <span class="math inline">\(|c_0|^2 = e^{-|\alpha|^2}\)</span> and <span class="math inline">\(c_n = e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}\)</span>.</p>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<a href="./Courses/QHO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Quantum Harmonic Oscillator
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
+<p><span class="math display">\[
+\boxed{|\alpha\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}|n\rangle}
+\]</span></p>
+<p>This is one of the most important equations in quantum optics!</p>
+<hr>
+</section>
+<section id="sec-displacement" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-displacement"><span class="header-section-number">4</span> The Displacement Operator</h2>
+<p>An elegant way to construct coherent states: define the <strong>displacement operator</strong>:</p>
+<p><span class="math display">\[
+\hat{D}(\alpha) = e^{\alpha\hat{a}^\dagger - \alpha^*\hat{a}}
+\]</span></p>
+<p><strong>Claim</strong>: <span class="math inline">\(|\alpha\rangle = \hat{D}(\alpha)|0\rangle\)</span></p>
+<div class="derivation-box">
+<p><strong>Proof using Baker-Campbell-Hausdorff (BCH) lemma:</strong></p>
+<p>Since <span class="math inline">\([\alpha\hat{a}^\dagger, -\alpha^*\hat{a}] = |\alpha|^2[\hat{a}^\dagger, \hat{a}] = -|\alpha|^2\)</span> (a c-number), BCH gives:</p>
+<p><span class="math display">\[
+\hat{D}(\alpha) = e^{\alpha\hat{a}^\dagger - \alpha^*\hat{a}} = e^{-|\alpha|^2/2} e^{\alpha\hat{a}^\dagger} e^{-\alpha^*\hat{a}}
+\]</span></p>
+<p>Applying to <span class="math inline">\(|0\rangle\)</span>: <span class="math inline">\(e^{-\alpha^*\hat{a}}|0\rangle = |0\rangle\)</span> (since <span class="math inline">\(\hat{a}|0\rangle = 0\)</span>)</p>
+<p><span class="math display">\[
+\hat{D}(\alpha)|0\rangle = e^{-|\alpha|^2/2}e^{\alpha\hat{a}^\dagger}|0\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{(\alpha\hat{a}^\dagger)^n}{n!}|0\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}|n\rangle = |\alpha\rangle\ ✓
+\]</span></p>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
+<p>The displacement operator <strong>displaces</strong> the ground state to a coherent state:</p>
+<p><span class="math display">\[
+|\alpha\rangle = \hat{D}(\alpha)|0\rangle
+\]</span></p>
+<p>Properties of <span class="math inline">\(\hat{D}(\alpha)\)</span>:</p>
+<ul>
+<li><strong>Unitary</strong>: <span class="math inline">\(\hat{D}^\dagger(\alpha) = \hat{D}(-\alpha) = \hat{D}^{-1}(\alpha)\)</span></li>
+<li><strong>Displacement of <span class="math inline">\(\hat{a}\)</span></strong>: <span class="math inline">\(\hat{D}^\dagger(\alpha)\hat{a}\hat{D}(\alpha) = \hat{a} + \alpha\)</span></li>
+<li><strong>Product</strong>: <span class="math inline">\(\hat{D}(\alpha)\hat{D}(\beta) = e^{(\alpha\beta^* - \alpha^*\beta)/2}\hat{D}(\alpha + \beta)\)</span></li>
+</ul>
+<hr>
+</section>
+<section id="sec-properties" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-properties"><span class="header-section-number">5</span> Physical Properties of Coherent States</h2>
+<section id="expectation-values" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="expectation-values"><span class="header-section-number">5.1</span> Expectation Values</h3>
+<p><span class="math display">\[
+\langle\alpha|\hat{a}|\alpha\rangle = \alpha, \quad \langle\alpha|\hat{a}^\dagger|\alpha\rangle = \alpha^*
+\]</span></p>
+<p>Therefore: <span class="math display">\[
+\langle\hat{x}\rangle = \frac{x_0}{\sqrt{2}}\langle\hat{a} + \hat{a}^\dagger\rangle = \frac{x_0}{\sqrt{2}}(\alpha + \alpha^*) = x_0\sqrt{2}\,\text{Re}(\alpha)
+\]</span></p>
+<p><span class="math display">\[
+\langle\hat{p}\rangle = \frac{i\hbar}{\sqrt{2}x_0}\langle\hat{a}^\dagger - \hat{a}\rangle = \frac{\sqrt{2}\hbar}{x_0}\,\text{Im}(\alpha)
+\]</span></p>
+<p>Writing <span class="math inline">\(\alpha = |\alpha|e^{i\phi}\)</span>:</p>
+<p><span class="math display">\[
+\langle\hat{x}\rangle = \sqrt{2}x_0|\alpha|\cos\phi, \qquad \langle\hat{p}\rangle = \sqrt{2}\frac{\hbar}{x_0}|\alpha|\sin\phi
+\]</span></p>
+</section>
+<section id="minimum-uncertainty" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="minimum-uncertainty"><span class="header-section-number">5.2</span> Minimum Uncertainty</h3>
+<p>The uncertainties in a coherent state:</p>
+<p><span class="math display">\[
+(\Delta x)^2 = \langle\hat{x}^2\rangle - \langle\hat{x}\rangle^2 = \frac{x_0^2}{2}
+\]</span></p>
+<p><span class="math display">\[
+(\Delta p)^2 = \langle\hat{p}^2\rangle - \langle\hat{p}\rangle^2 = \frac{\hbar^2}{2x_0^2}
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\Delta x\,\Delta p = \frac{x_0}{{\sqrt{2}}}\cdot\frac{\hbar}{\sqrt{2}x_0} = \frac{\hbar}{2}
+\]</span></p>
+<div class="result-box">
+<p><strong>Coherent states saturate the uncertainty principle:</strong> <span class="math display">\[\Delta x\,\Delta p = \frac{\hbar}{2}\]</span></p>
+<p>This is the same as the ground state <span class="math inline">\(|0\rangle\)</span>, which is a special case (<span class="math inline">\(\alpha = 0\)</span>) of a coherent state! All coherent states are <strong>minimum uncertainty states</strong>.</p>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
+<hr>
+</section>
+</section>
+<section id="sec-time-evolution" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-time-evolution"><span class="header-section-number">6</span> Time Evolution of Coherent States</h2>
+<div class="derivation-box">
+<p><strong>Computing <span class="math inline">\(|\alpha(t)\rangle = \hat{U}(t)|\alpha\rangle\)</span>:</strong></p>
+<p><span class="math display">\[
+\hat{U}(t)|\alpha\rangle = e^{-i\omega t/2}\sum_n e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}e^{-in\omega t}|n\rangle
+\]</span></p>
+<p><span class="math display">\[
+= e^{-i\omega t/2}\sum_n e^{-|\alpha|^2/2}\frac{(\alpha e^{-i\omega t})^n}{\sqrt{n!}}|n\rangle
+\]</span></p>
+<p><span class="math display">\[
+= e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle
+\]</span></p>
 </div>
+<p><span class="math display">\[
+\boxed{\hat{U}(t)|\alpha\rangle = e^{-i\omega t/2}|\alpha(t)\rangle, \quad \alpha(t) = \alpha e^{-i\omega t}}
+\]</span></p>
+<p>A coherent state <strong>remains a coherent state</strong> under time evolution — only the parameter <span class="math inline">\(\alpha\)</span> rotates in the complex plane at frequency <span class="math inline">\(\omega\)</span>.</p>
+<p>The expectation value of position:</p>
+<p><span class="math display">\[
+\langle\hat{x}\rangle(t) = \sqrt{2}x_0|\alpha|\cos(\omega t - \phi) = A\cos(\omega t - \phi)
+\]</span></p>
+<p>This is <strong>exactly classical motion</strong>! The coherent state oscillates without spreading, with amplitude <span class="math inline">\(A = \sqrt{2}x_0|\alpha|\)</span> and phase <span class="math inline">\(\phi = \arg(\alpha)\)</span>.</p>
+<hr>
+</section>
+<section id="sec-photon-number" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-photon-number"><span class="header-section-number">7</span> Photon Number Distribution</h2>
+<p>The probability of finding <span class="math inline">\(n\)</span> quanta in state <span class="math inline">\(|\alpha\rangle\)</span>:</p>
+<p><span class="math display">\[
+P(n) = |\langle n|\alpha\rangle|^2 = e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}
+\]</span></p>
+<p>This is a <strong>Poisson distribution</strong> with mean <span class="math inline">\(\bar{n} = |\alpha|^2\)</span>:</p>
+<p><span class="math display">\[
+\boxed{P(n) = e^{-\bar{n}}\frac{\bar{n}^n}{n!}, \quad \bar{n} = |\alpha|^2 = \langle\hat{N}\rangle}
+\]</span></p>
+<p>Properties of the Poisson distribution: - Mean: <span class="math inline">\(\langle\hat{N}\rangle = |\alpha|^2\)</span> - Variance: <span class="math inline">\(\langle(\Delta N)^2\rangle = |\alpha|^2 = \langle\hat{N}\rangle\)</span> - Standard deviation: <span class="math inline">\(\Delta N = |\alpha|\)</span></p>
+<p>The <strong>Mandel Q parameter</strong> (measure of sub/super-Poissonian statistics):</p>
+<p><span class="math display">\[
+Q = \frac{\langle(\Delta N)^2\rangle - \langle N\rangle}{\langle N\rangle} = 0 \quad \text{for coherent states}
+\]</span></p>
+<p>Coherent states have <strong>Poissonian</strong> statistics — they are on the boundary between classical and non-classical light.</p>
+<div class="callout-intuition">
+<p><strong>Laser light</strong> is well-described by a coherent state. When you count photons from a laser, you get Poisson statistics — meaning the arrivals are random and uncorrelated. This is the minimal randomness imposed by quantum mechanics on the field amplitude.</p>
+<p>Sub-Poissonian (<span class="math inline">\(Q &lt; 0\)</span>) statistics would indicate <strong>squeezed light</strong> (non-classical) — the topic of Module 7!</p>
 </div>
+<hr>
+</section>
+<section id="sec-non-orthogonal" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-non-orthogonal"><span class="header-section-number">8</span> Non-Orthogonality of Coherent States</h2>
+<p>Unlike Fock states, coherent states are <strong>not orthogonal</strong>:</p>
+<p><span class="math display">\[
+\langle\beta|\alpha\rangle = e^{-|\alpha|^2/2 - |\beta|^2/2 + \beta^*\alpha}
+\]</span></p>
+<p><span class="math display">\[
+|\langle\beta|\alpha\rangle|^2 = e^{-|\alpha - \beta|^2}
+\]</span></p>
+<p>Two coherent states with <span class="math inline">\(|\alpha - \beta| \gg 1\)</span> are approximately orthogonal. Two with <span class="math inline">\(|\alpha - \beta| \ll 1\)</span> are nearly identical.</p>
+<p>This makes sense physically: coherent states with very different amplitudes or phases are distinguishable, while those with nearly equal <span class="math inline">\(\alpha\)</span> are hard to tell apart.</p>
+<section id="over-completeness" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="over-completeness"><span class="header-section-number">8.1</span> Over-Completeness</h3>
+<p>Despite being non-orthogonal, coherent states form an <strong>over-complete</strong> basis:</p>
+<p><span class="math display">\[
+\frac{1}{\pi}\int |\alpha\rangle\langle\alpha|\, d^2\alpha = \hat{I}
+\]</span></p>
+<p>where <span class="math inline">\(d^2\alpha = d\,\text{Re}(\alpha)\,d\,\text{Im}(\alpha)\)</span> is the integration measure over the complex plane.</p>
+<p>This resolution of identity (over-completeness relation) is fundamental to the <strong>Glauber-Sudarshan P-representation</strong> of quantum optics.</p>
+<hr>
+</section>
+</section>
+<section id="sec-phase-space" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-phase-space"><span class="header-section-number">9</span> Phase Space Picture: The Wigner Function of Coherent States</h2>
+<p>The Wigner function of a coherent state <span class="math inline">\(|\alpha\rangle\)</span>:</p>
+<p><span class="math display">\[
+W_\alpha(x,p) = \frac{1}{\pi\hbar}\exp\!\left(-\frac{(x - \langle\hat{x}\rangle)^2}{x_0^2} - \frac{(p - \langle\hat{p}\rangle)^2\,x_0^2}{\hbar^2}\right)
+\]</span></p>
+<p>This is a <strong>Gaussian centered at <span class="math inline">\((\langle\hat{x}\rangle, \langle\hat{p}\rangle)\)</span></strong> with:</p>
+<ul>
+<li>Width in <span class="math inline">\(x\)</span>: <span class="math inline">\(\Delta x = x_0/\sqrt{2}\)</span></li>
+<li>Width in <span class="math inline">\(p\)</span>: <span class="math inline">\(\Delta p = \hbar/\sqrt{2}x_0\)</span></li>
+<li>Phase-space area: <span class="math inline">\(\pi\Delta x\,\Delta p = \pi\hbar/2\)</span> (minimum area, Planck’s constant/2)</li>
+</ul>
+<p><strong>Time evolution</strong> of the Wigner function: the Gaussian blob translates around an <strong>ellipse</strong> (circular for <span class="math inline">\(m=1\)</span>, <span class="math inline">\(\omega=1\)</span>) in phase space — exactly the classical orbit!</p>
+<p>This is the phase-space picture of why coherent states are the most classical quantum states: their Wigner function looks like a classical phase-space distribution, and it moves classically.</p>
+<hr>
+</section>
+<section id="sec-summary" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">10</span> Summary: Properties of Coherent States</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 58%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eigenvalue of <span class="math inline">\(\hat{a}\)</span></td>
+<td><span class="math inline">\(\hat{a}|\alpha\rangle = \alpha|\alpha\rangle\)</span></td>
+</tr>
+<tr class="even">
+<td>Fock-state expansion</td>
+<td><span class="math inline">\(|\alpha\rangle = e^{-|\alpha|^2/2}\sum_n\frac{\alpha^n}{\sqrt{n!}}|n\rangle\)</span></td>
+</tr>
+<tr class="odd">
+<td>Generated by</td>
+<td><span class="math inline">\(|\alpha\rangle = \hat{D}(\alpha)|0\rangle\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\langle\hat{x}\rangle\)</span></td>
+<td><span class="math inline">\(\sqrt{2}x_0\,\text{Re}(\alpha)\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\langle\hat{p}\rangle\)</span></td>
+<td><span class="math inline">\(\sqrt{2}\hbar x_0^{-1}\,\text{Im}(\alpha)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta x\)</span></td>
+<td><span class="math inline">\(x_0/\sqrt{2}\)</span> (independent of <span class="math inline">\(\alpha\)</span>!)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta p\)</span></td>
+<td><span class="math inline">\(\hbar/\sqrt{2}x_0\)</span> (independent of <span class="math inline">\(\alpha\)</span>!)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta x\,\Delta p\)</span></td>
+<td><span class="math inline">\(\hbar/2\)</span> (minimum uncertainty)</td>
+</tr>
+<tr class="odd">
+<td>Mean photon number</td>
+<td><span class="math inline">\(\bar{n} = |\alpha|^2\)</span></td>
+</tr>
+<tr class="even">
+<td>Photon number distribution</td>
+<td>Poisson: <span class="math inline">\(P(n) = e^{-\bar{n}}\bar{n}^n/n!\)</span></td>
+</tr>
+<tr class="odd">
+<td>Time evolution</td>
+<td><span class="math inline">\(|\alpha(t)\rangle = e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle\)</span></td>
+</tr>
+<tr class="even">
+<td>Orthogonality</td>
+<td>Non-orthogonal: <span class="math inline">\(|\langle\beta|\alpha\rangle|^2 = e^{-|\alpha-\beta|^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="checkpoint">
+<p><strong>Before moving on, make sure you can:</strong></p>
+<ol type="1">
+<li>Define a coherent state as an eigenstate of <span class="math inline">\(\hat{a}\)</span> with eigenvalue <span class="math inline">\(\alpha\)</span>.</li>
+<li>Derive the Fock-state expansion <span class="math inline">\(|\alpha\rangle = e^{-|\alpha|^2/2}\sum_n \frac{\alpha^n}{\sqrt{n!}}|n\rangle\)</span>.</li>
+<li>Prove that <span class="math inline">\(\Delta x\,\Delta p = \hbar/2\)</span> for all coherent states.</li>
+<li>Show that time evolution sends <span class="math inline">\(|\alpha\rangle \to e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle\)</span>.</li>
+<li>Derive the Poisson distribution <span class="math inline">\(P(n) = e^{-|\alpha|^2}|\alpha|^{2n}/n!\)</span>.</li>
+<li>Explain the physical meaning of <span class="math inline">\(|\alpha|\)</span> and <span class="math inline">\(\arg(\alpha)\)</span> in terms of classical amplitude and phase.</li>
+</ol>
+<p><strong>Conceptual</strong>: Why do coherent states not violate the uncertainty principle, even though they look classical?</p>
 </div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="listing-list-view" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-list-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-list-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p><a href="./Courses/Comp_Physics/index.html" class="no-external">
-<p><img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image"></p>
-</a><p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Computational Physics Course</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/Comp_Physics/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<div class="thumbnail">
-<p><a href="./Courses/QHO/index.html" class="no-external"></a></p><a href="./Courses/QHO/index.html" class="no-external">
-<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image"></p>
-</a><p><a href="./Courses/QHO/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/QHO/index.html" class="no-external">Quantum Harmonic Oscillator</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/QHO/index.html" class="no-external">From Classical Springs to Squeezed Light</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/QHO/index.html" class="no-external">A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/QHO/index.html" class="no-external">
-<div class="listing-date">
-May 26, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-</div>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/QHO/05_time_evolution.html" class="btn btn-outline-secondary">← Module 5: Time Evolution</a> <a href="../../Courses/QHO/07_squeezed_states.html" class="btn btn-success">Next: Module 7 — Squeezed States →</a></p>
 </div>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

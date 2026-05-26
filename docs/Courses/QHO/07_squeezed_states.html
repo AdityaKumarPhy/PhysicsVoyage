@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="Squeezed states reduce noise in one quadrature below the coherent state limit at the expense of increased noise in the conjugate quadrature. We derive the squeeze operator, study squeezed vacuum and coherent squeezed states, and explore their revolutionary applications in gravitational wave detection at LIGO.">
+
+<title>Physics Voyage - Module 7: Squeezed States</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Course</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-sql" id="toc-sec-sql" class="nav-link active" data-scroll-target="#sec-sql"><span class="header-section-number">1</span> The Standard Quantum Limit</a></li>
+  <li><a href="#sec-squeeze" id="toc-sec-squeeze" class="nav-link" data-scroll-target="#sec-squeeze"><span class="header-section-number">2</span> The Squeeze Operator</a>
+  <ul class="collapse">
+  <li><a href="#quadrature-operators" id="toc-quadrature-operators" class="nav-link" data-scroll-target="#quadrature-operators"><span class="header-section-number">2.1</span> Quadrature Operators</a></li>
+  <li><a href="#defining-the-squeeze-operator" id="toc-defining-the-squeeze-operator" class="nav-link" data-scroll-target="#defining-the-squeeze-operator"><span class="header-section-number">2.2</span> Defining the Squeeze Operator</a></li>
+  <li><a href="#action-on-quadratures" id="toc-action-on-quadratures" class="nav-link" data-scroll-target="#action-on-quadratures"><span class="header-section-number">2.3</span> Action on Quadratures</a></li>
+  </ul></li>
+  <li><a href="#sec-squeezed-vacuum" id="toc-sec-squeezed-vacuum" class="nav-link" data-scroll-target="#sec-squeezed-vacuum"><span class="header-section-number">3</span> The Squeezed Vacuum State</a>
+  <ul class="collapse">
+  <li><a href="#fock-state-expansion-of-squeezed-vacuum" id="toc-fock-state-expansion-of-squeezed-vacuum" class="nav-link" data-scroll-target="#fock-state-expansion-of-squeezed-vacuum"><span class="header-section-number">3.1</span> Fock-State Expansion of Squeezed Vacuum</a></li>
+  </ul></li>
+  <li><a href="#sec-squeezed-coherent" id="toc-sec-squeezed-coherent" class="nav-link" data-scroll-target="#sec-squeezed-coherent"><span class="header-section-number">4</span> Squeezed Coherent States</a></li>
+  <li><a href="#sec-wigner" id="toc-sec-wigner" class="nav-link" data-scroll-target="#sec-wigner"><span class="header-section-number">5</span> Phase Space Picture: The Squeezed Wigner Function</a></li>
+  <li><a href="#sec-statistics" id="toc-sec-statistics" class="nav-link" data-scroll-target="#sec-statistics"><span class="header-section-number">6</span> Photon Number Statistics of Squeezed States</a></li>
+  <li><a href="#sec-bogoliubov" id="toc-sec-bogoliubov" class="nav-link" data-scroll-target="#sec-bogoliubov"><span class="header-section-number">7</span> The Bogoliubov Transformation</a></li>
+  <li><a href="#sec-ligo" id="toc-sec-ligo" class="nav-link" data-scroll-target="#sec-ligo"><span class="header-section-number">8</span> Applications: LIGO and Gravitational Wave Detection</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-description" id="toc-mathematical-description" class="nav-link" data-scroll-target="#mathematical-description"><span class="header-section-number">8.1</span> Mathematical Description</a></li>
+  </ul></li>
+  <li><a href="#sec-applications" id="toc-sec-applications" class="nav-link" data-scroll-target="#sec-applications"><span class="header-section-number">9</span> Other Applications of Squeezed States</a>
+  <ul class="collapse">
+  <li><a href="#quantum-communication" id="toc-quantum-communication" class="nav-link" data-scroll-target="#quantum-communication"><span class="header-section-number">9.1</span> Quantum Communication</a></li>
+  <li><a href="#quantum-computing" id="toc-quantum-computing" class="nav-link" data-scroll-target="#quantum-computing"><span class="header-section-number">9.2</span> Quantum Computing</a></li>
+  <li><a href="#precision-measurement" id="toc-precision-measurement" class="nav-link" data-scroll-target="#precision-measurement"><span class="header-section-number">9.3</span> Precision Measurement</a></li>
+  </ul></li>
+  <li><a href="#sec-comparison" id="toc-sec-comparison" class="nav-link" data-scroll-target="#sec-comparison"><span class="header-section-number">10</span> Comparison: Coherent vs.&nbsp;Squeezed States</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Module 7: Squeezed States</h1>
+<p class="subtitle lead">Beyond the Standard Quantum Limit</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Quantum Mechanics</div>
+    <div class="quarto-category">QHO Course</div>
+    <div class="quarto-category">Quantum Optics</div>
+    <div class="quarto-category">LIGO</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Squeezed states reduce noise in one quadrature below the coherent state limit at the expense of increased noise in the conjugate quadrature. We derive the squeeze operator, study squeezed vacuum and coherent squeezed states, and explore their revolutionary applications in gravitational wave detection at LIGO.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Kumar </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
+}
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.result-box p { color: #fed7aa; margin-bottom: 0; }
+.ligo-box {
+  background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.ligo-box h4 { color: #7dd3fc; margin-top: 0; }
+.ligo-box p { color: #bae6fd; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+<p><a href="../../Courses/QHO/06_coherent_states.html">← Module 6</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/08_cheatsheet.html">Module 8 →</a></p>
+<hr>
+<section id="sec-sql" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-sql"><span class="header-section-number">1</span> The Standard Quantum Limit</h2>
+<p>In Module 6, we found that coherent states saturate the Heisenberg uncertainty principle:</p>
+<p><span class="math display">\[
+\Delta x\,\Delta p = \frac{\hbar}{2}, \quad \text{with } \Delta x = \frac{x_0}{\sqrt{2}},\; \Delta p = \frac{\hbar}{\sqrt{2}x_0}
+\]</span></p>
+<p>The noise is <strong>symmetric</strong> — equal uncertainty in <span class="math inline">\(x\)</span> and <span class="math inline">\(p\)</span> (in natural units). This symmetric minimum-uncertainty state defines the <strong>Standard Quantum Limit (SQL)</strong>.</p>
+<p>But the uncertainty principle only requires the <em>product</em> <span class="math inline">\(\Delta x\,\Delta p \geq \hbar/2\)</span>. There is no constraint on the <em>individual</em> uncertainties!</p>
+<p><strong>Could we make a state with <span class="math inline">\(\Delta x &lt; x_0/\sqrt{2}\)</span> (sub-SQL position noise)?</strong></p>
+<p>Yes — at the cost of <span class="math inline">\(\Delta p &gt; \hbar/\sqrt{2}x_0\)</span> (super-SQL momentum noise). The product still satisfies <span class="math inline">\(\Delta x\,\Delta p \geq \hbar/2\)</span>. Such states are called <strong>squeezed states</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Cohen-Tannoudji, <em>Photons and Atoms</em>, Chapter 5; Walls &amp; Milburn, <em>Quantum Optics</em> (the definitive quantum optics textbook).</p>
+</blockquote>
+<hr>
+</section>
+<section id="sec-squeeze" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-squeeze"><span class="header-section-number">2</span> The Squeeze Operator</h2>
+<section id="quadrature-operators" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="quadrature-operators"><span class="header-section-number">2.1</span> Quadrature Operators</h3>
+<p>First, let’s define the <strong>quadrature operators</strong> (dimensionless position and momentum):</p>
+<p><span class="math display">\[
+\hat{X}_1 = \frac{\hat{a} + \hat{a}^\dagger}{2}, \qquad \hat{X}_2 = \frac{\hat{a} - \hat{a}^\dagger}{2i}
+\]</span></p>
+<p>These satisfy <span class="math inline">\([\hat{X}_1, \hat{X}_2] = \frac{i}{2}\)</span>, giving <span class="math inline">\(\Delta X_1\,\Delta X_2 \geq \frac{1}{4}\)</span>.</p>
+<p>For a coherent state: <span class="math inline">\(\Delta X_1 = \Delta X_2 = \frac{1}{2}\)</span> (equal noise).</p>
+</section>
+<section id="defining-the-squeeze-operator" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="defining-the-squeeze-operator"><span class="header-section-number">2.2</span> Defining the Squeeze Operator</h3>
+<p>The <strong>squeeze operator</strong> is:</p>
+<p><span class="math display">\[
+\hat{S}(\xi) = \exp\!\left(\frac{1}{2}\xi^*\hat{a}^2 - \frac{1}{2}\xi\hat{a}^{\dagger 2}\right), \quad \xi = r e^{i\theta} \in \mathbb{C}
+\]</span></p>
+<p>where <span class="math inline">\(r \geq 0\)</span> is the <strong>squeezing parameter</strong> and <span class="math inline">\(\theta\)</span> is the <strong>squeezing angle</strong>.</p>
+<p><strong>Properties of <span class="math inline">\(\hat{S}(\xi)\)</span></strong>:</p>
+<ul>
+<li>Unitary: <span class="math inline">\(\hat{S}^\dagger = \hat{S}^{-1} = \hat{S}(-\xi)\)</span></li>
+<li><span class="math inline">\(\hat{S}^\dagger(\xi)\hat{a}\hat{S}(\xi) = \hat{a}\cosh r - \hat{a}^\dagger e^{i\theta}\sinh r\)</span> (Bogoliubov transformation)</li>
+<li><span class="math inline">\(\hat{S}^\dagger(\xi)\hat{a}^\dagger\hat{S}(\xi) = \hat{a}^\dagger\cosh r - \hat{a}\,e^{-i\theta}\sinh r\)</span></li>
+</ul>
+</section>
+<section id="action-on-quadratures" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="action-on-quadratures"><span class="header-section-number">2.3</span> Action on Quadratures</h3>
+<p>For <span class="math inline">\(\theta = 0\)</span> (real squeezing, <span class="math inline">\(\xi = r\)</span>):</p>
+<p><span class="math display">\[
+\hat{S}^\dagger(r)\hat{X}_1\hat{S}(r) = e^{-r}\hat{X}_1, \qquad \hat{S}^\dagger(r)\hat{X}_2\hat{S}(r) = e^{+r}\hat{X}_2
+\]</span></p>
+<p>The squeeze operator <strong>contracts</strong> one quadrature by <span class="math inline">\(e^{-r}\)</span> and <strong>expands</strong> the other by <span class="math inline">\(e^{+r}\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="sec-squeezed-vacuum" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-squeezed-vacuum"><span class="header-section-number">3</span> The Squeezed Vacuum State</h2>
+<p>The simplest squeezed state is the <strong>squeezed vacuum</strong>:</p>
+<p><span class="math display">\[
+|0, \xi\rangle = \hat{S}(\xi)|0\rangle
+\]</span></p>
+<p>For real <span class="math inline">\(\xi = r\)</span>, the uncertainties are:</p>
+<p><span class="math display">\[
+\Delta X_1 = \frac{e^{-r}}{2}, \qquad \Delta X_2 = \frac{e^{+r}}{2}
+\]</span></p>
+<p><span class="math display">\[
+\Delta X_1\,\Delta X_2 = \frac{1}{4} \quad \checkmark \text{ (saturates uncertainty principle)}
+\]</span></p>
+<p>In terms of position:</p>
+<p><span class="math display">\[
+\boxed{\Delta x = \frac{x_0}{\sqrt{2}}e^{-r}, \qquad \Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r}}
+\]</span></p>
+<p>For <span class="math inline">\(r &gt; 0\)</span>: position uncertainty <strong>below</strong> the SQL! Momentum uncertainty above the SQL.</p>
+<div class="result-box">
+<p><strong>Squeezed vacuum properties (real squeezing <span class="math inline">\(\xi = r\)</span>):</strong></p>
+<p><span class="math display">\[\Delta x = \frac{x_0}{\sqrt{2}}e^{-r} &lt; \frac{x_0}{\sqrt{2}}, \quad \Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r} &gt; \frac{\hbar}{\sqrt{2}x_0}\]</span></p>
+<p><span class="math display">\[\Delta x\,\Delta p = \frac{\hbar}{2} \text{ (minimum uncertainty maintained)}\]</span></p>
+</div>
+<section id="fock-state-expansion-of-squeezed-vacuum" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="fock-state-expansion-of-squeezed-vacuum"><span class="header-section-number">3.1</span> Fock-State Expansion of Squeezed Vacuum</h3>
+<p>The squeezed vacuum contains only <strong>even</strong> photon numbers:</p>
+<p><span class="math display">\[
+|0, r\rangle = \frac{1}{\sqrt{\cosh r}}\sum_{n=0}^{\infty}(-1)^n\frac{\sqrt{(2n)!}}{2^n n!}(\tanh r)^n |2n\rangle
+\]</span></p>
+<p>This makes physical sense: the squeeze operator <span class="math inline">\(\hat{S} \propto e^{\hat{a}^{\dagger 2}/2}\)</span> creates pairs of photons.</p>
+<p><strong>Mean photon number</strong> of the squeezed vacuum:</p>
+<p><span class="math display">\[
+\langle\hat{N}\rangle = \sinh^2 r
+\]</span></p>
+<p>Even the “vacuum” contains photons when squeezed!</p>
+<hr>
+</section>
+</section>
+<section id="sec-squeezed-coherent" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-squeezed-coherent"><span class="header-section-number">4</span> Squeezed Coherent States</h2>
+<p>The most general Gaussian state is a <strong>squeezed coherent state</strong>:</p>
+<p><span class="math display">\[
+|\alpha, \xi\rangle = \hat{D}(\alpha)\hat{S}(\xi)|0\rangle
+\]</span></p>
+<p>This state has:</p>
+<p><span class="math display">\[
+\langle\hat{x}\rangle = \sqrt{2}x_0\,\text{Re}(\alpha), \qquad \langle\hat{p}\rangle = \frac{\sqrt{2}\hbar}{x_0}\,\text{Im}(\alpha)
+\]</span></p>
+<p><span class="math display">\[
+\Delta x = \frac{x_0}{\sqrt{2}}\sqrt{\cosh 2r - \sinh 2r\cos\theta}
+\]</span></p>
+<p><span class="math display">\[
+\Delta p = \frac{\hbar}{\sqrt{2}x_0}\sqrt{\cosh 2r + \sinh 2r\cos\theta}
+\]</span></p>
+<p>For <span class="math inline">\(\theta = 0\)</span>: <span class="math inline">\(\Delta x = \frac{x_0}{\sqrt{2}}e^{-r}\)</span>, <span class="math inline">\(\Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r}\)</span> (position-squeezed).</p>
+<p>For <span class="math inline">\(\theta = \pi\)</span>: <span class="math inline">\(\Delta x = \frac{x_0}{\sqrt{2}}e^{+r}\)</span>, <span class="math inline">\(\Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{-r}\)</span> (momentum-squeezed).</p>
+<hr>
+</section>
+<section id="sec-wigner" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-wigner"><span class="header-section-number">5</span> Phase Space Picture: The Squeezed Wigner Function</h2>
+<p>The Wigner function of a squeezed state <span class="math inline">\(|\alpha, r\rangle\)</span> (real <span class="math inline">\(r\)</span>):</p>
+<p><span class="math display">\[
+W(x,p) = \frac{1}{\pi\hbar}\exp\!\left(-\frac{(x - \langle\hat{x}\rangle)^2 e^{2r}}{x_0^2} - \frac{(p - \langle\hat{p}\rangle)^2 x_0^2 e^{-2r}}{\hbar^2}\right)
+\]</span></p>
+<p>This is a <strong>Gaussian ellipse</strong> in phase space:</p>
+<ul>
+<li>Narrow in <span class="math inline">\(x\)</span> (by factor <span class="math inline">\(e^{-r}\)</span>) → position-squeezed</li>
+<li>Wide in <span class="math inline">\(p\)</span> (by factor <span class="math inline">\(e^{+r}\)</span>) → momentum uncertainty increased</li>
+</ul>
+<div class="callout-intuition">
+<p><strong>Phase space picture</strong>: A coherent state is a circular Gaussian disk. The squeeze operator <strong>deforms</strong> this disk into an ellipse, keeping its area constant (since <span class="math inline">\(\Delta x\,\Delta p = \hbar/2\)</span> is preserved). The orientation of the ellipse is controlled by the squeezing angle <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<p><strong>Time evolution of squeezed states</strong>: The ellipse rotates in phase space at frequency <span class="math inline">\(\omega\)</span>. When the squeezed axis aligns with the <span class="math inline">\(x\)</span>-direction, position noise is minimized; when it aligns with <span class="math inline">\(p\)</span>, momentum noise is minimized. The noise oscillates at <span class="math inline">\(2\omega\)</span>!</p>
+<hr>
+</section>
+<section id="sec-statistics" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-statistics"><span class="header-section-number">6</span> Photon Number Statistics of Squeezed States</h2>
+<p>The photon number distribution <span class="math inline">\(P(n) = |\langle n|\alpha, r\rangle|^2\)</span> for a squeezed state is:</p>
+<ul>
+<li><strong>Sub-Poissonian</strong> (<span class="math inline">\(\Delta N &lt; \sqrt{\bar{n}}\)</span>) for certain parameter ranges</li>
+<li><strong>Super-Poissonian</strong> (<span class="math inline">\(\Delta N &gt; \sqrt{\bar{n}}\)</span>) for other ranges</li>
+<li>Oscillatory (non-zero only for even <span class="math inline">\(n\)</span> for the squeezed vacuum)</li>
+</ul>
+<p><strong>Mandel Q parameter</strong>:</p>
+<p><span class="math display">\[
+Q = \frac{\langle(\Delta N)^2\rangle - \langle N\rangle}{\langle N\rangle}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Q = 0\)</span>: Poisson (coherent state, classical limit)</li>
+<li><span class="math inline">\(Q &lt; 0\)</span>: Sub-Poissonian (<strong>non-classical</strong>, squeezed)</li>
+<li><span class="math inline">\(Q &gt; 0\)</span>: Super-Poissonian (thermal light, classical)</li>
+</ul>
+<p>Sub-Poissonian statistics is a <strong>non-classical signature</strong> — it cannot be produced by any classical light source.</p>
+<hr>
+</section>
+<section id="sec-bogoliubov" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-bogoliubov"><span class="header-section-number">7</span> The Bogoliubov Transformation</h2>
+<p>The transformation of ladder operators by <span class="math inline">\(\hat{S}(r)\)</span> is a <strong>Bogoliubov transformation</strong>:</p>
+<p><span class="math display">\[
+\hat{b} = \hat{S}^\dagger(r)\hat{a}\hat{S}(r) = \hat{a}\cosh r - \hat{a}^\dagger\sinh r
+\]</span></p>
+<p><span class="math display">\[
+\hat{b}^\dagger = \hat{S}^\dagger(r)\hat{a}^\dagger\hat{S}(r) = \hat{a}^\dagger\cosh r - \hat{a}\sinh r
+\]</span></p>
+<p>The new operators <span class="math inline">\(\hat{b}\)</span>, <span class="math inline">\(\hat{b}^\dagger\)</span> satisfy <span class="math inline">\([\hat{b}, \hat{b}^\dagger] = 1\)</span> (the same as <span class="math inline">\(\hat{a}\)</span>).</p>
+<p>The squeezed vacuum <span class="math inline">\(|0,r\rangle\)</span> is the vacuum of the <span class="math inline">\(\hat{b}\)</span> operators:</p>
+<p><span class="math display">\[
+\hat{b}|0,r\rangle = 0
+\]</span></p>
+<p>This is the same mathematical structure as the <strong>Bogoliubov transformation in superconductivity</strong> (BCS theory) and <strong>quantum field theory in curved spacetime</strong> (Unruh effect, Hawking radiation)!</p>
+<hr>
+</section>
+<section id="sec-ligo" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-ligo"><span class="header-section-number">8</span> Applications: LIGO and Gravitational Wave Detection</h2>
+<section id="ligo-how-squeezed-light-makes-history" class="level4 ligo-box" data-number="8.0.1">
+<h4 data-number="8.0.1" class="anchored" data-anchor-id="ligo-how-squeezed-light-makes-history"><span class="header-section-number">8.0.1</span> 🔭 LIGO: How Squeezed Light Makes History</h4>
+<p>On September 14, 2015, LIGO detected gravitational waves for the first time — a signal lasting 0.2 seconds from two merging black holes 1.3 billion light-years away. The length change measured was <span class="math inline">\(\Delta L \sim 10^{-18}\)</span> m, smaller than a proton.</p>
+<p><strong>The quantum noise problem</strong>: LIGO measures length changes via laser interferometry. The optical path length difference shifts the interference fringe. But the vacuum fluctuations entering the dark port of the beamsplitter add quantum noise — <strong>shot noise</strong> — that limits sensitivity.</p>
+<p>Shot noise power spectral density: <span class="math inline">\(S_{\text{shot}} \propto 1/P_{\text{laser}}\)</span> (decreases with power)</p>
+<p>Radiation pressure noise: <span class="math inline">\(S_{\text{RP}} \propto P_{\text{laser}}\)</span> (increases with power)</p>
+<p>These are conjugate — making one smaller makes the other larger. The product is set by the uncertainty principle: the <strong>Standard Quantum Limit (SQL)</strong>.</p>
+<p><strong>How squeezed light helps</strong>: By injecting <strong>phase-squeezed vacuum</strong> into the dark port of LIGO, the phase noise (affecting the signal) is reduced below the shot noise limit. The price is increased amplitude noise, which is less important at LIGO’s signal frequencies.</p>
+<p>Since 2019 (Advanced LIGO O3), LIGO has been using <strong>50 dB squeezing</strong> (factor of <span class="math inline">\(e^{5}\)</span> noise reduction), improving its range by 50%.</p>
+<p><strong>Squeezing parameters</strong>: The squeezing parameter used is <span class="math inline">\(r \approx 0.5\)</span>–<span class="math inline">\(1.0\)</span>, corresponding to 4–9 dB of noise reduction.</p>
+</section>
+<section id="mathematical-description" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="mathematical-description"><span class="header-section-number">8.1</span> Mathematical Description</h3>
+<p>LIGO measures the phase quadrature <span class="math inline">\(\hat{X}_2\)</span>. The quantum noise in <span class="math inline">\(\hat{X}_2\)</span> for a coherent vacuum input is <span class="math inline">\(\Delta X_2 = 1/2\)</span>.</p>
+<p>With phase-squeezed injection: <span class="math inline">\(\Delta X_2 = \frac{1}{2}e^{-r}\)</span></p>
+<p>The <strong>signal-to-noise ratio</strong> improvement: <span class="math inline">\(\text{SNR} \to \text{SNR} \times e^r\)</span></p>
+<p>For <span class="math inline">\(r = 1\)</span> (<span class="math inline">\(\approx 8.7\)</span> dB squeezing): SNR improves by factor <span class="math inline">\(e \approx 2.7\)</span>.</p>
+<p>This translates directly to <strong>more observable gravitational wave events</strong> per unit time.</p>
+<hr>
+</section>
+</section>
+<section id="sec-applications" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-applications"><span class="header-section-number">9</span> Other Applications of Squeezed States</h2>
+<section id="quantum-communication" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="quantum-communication"><span class="header-section-number">9.1</span> Quantum Communication</h3>
+<ul>
+<li><strong>Continuous-variable quantum key distribution</strong> (CV-QKD)</li>
+<li>Squeezed states of the microwave field in circuit QED</li>
+<li><strong>Quantum teleportation</strong> of continuous variables (demonstrated by Furusawa et al., 1998)</li>
+</ul>
+</section>
+<section id="quantum-computing" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="quantum-computing"><span class="header-section-number">9.2</span> Quantum Computing</h3>
+<ul>
+<li><strong>Gaussian boson sampling</strong> — a quantum computational advantage protocol</li>
+<li>Squeezed states are resources for <strong>measurement-based quantum computing</strong></li>
+</ul>
+</section>
+<section id="precision-measurement" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="precision-measurement"><span class="header-section-number">9.3</span> Precision Measurement</h3>
+<ul>
+<li>Atomic clocks and magnetometers</li>
+<li><strong>Spin squeezing</strong> in atomic systems (analog of optical squeezing for atomic spin)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="sec-comparison" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-comparison"><span class="header-section-number">10</span> Comparison: Coherent vs.&nbsp;Squeezed States</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 35%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Coherent <span class="math inline">\(|\alpha\rangle\)</span></th>
+<th>Position-Squeezed <span class="math inline">\(|\alpha,r\rangle\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\Delta x\)</span></td>
+<td><span class="math inline">\(x_0/\sqrt{2}\)</span></td>
+<td><span class="math inline">\(x_0 e^{-r}/\sqrt{2}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta p\)</span></td>
+<td><span class="math inline">\(\hbar/\sqrt{2}x_0\)</span></td>
+<td><span class="math inline">\(\hbar e^r/\sqrt{2}x_0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta x\,\Delta p\)</span></td>
+<td><span class="math inline">\(\hbar/2\)</span></td>
+<td><span class="math inline">\(\hbar/2\)</span></td>
+</tr>
+<tr class="even">
+<td>Wigner function</td>
+<td>Circular Gaussian</td>
+<td>Elliptical Gaussian</td>
+</tr>
+<tr class="odd">
+<td>Photon statistics</td>
+<td>Poisson</td>
+<td>Sub-Poissonian (in some regimes)</td>
+</tr>
+<tr class="even">
+<td>Mandel Q</td>
+<td>0</td>
+<td><span class="math inline">\(&lt; 0\)</span> (typically)</td>
+</tr>
+<tr class="odd">
+<td>Classical analog</td>
+<td>Yes</td>
+<td>Partially</td>
+</tr>
+<tr class="even">
+<td>Generation</td>
+<td>Laser</td>
+<td>Optical Parametric Oscillator (OPO)</td>
+</tr>
+</tbody>
+</table>
+<div class="checkpoint">
+<p><strong>Before moving on, make sure you can:</strong></p>
+<ol type="1">
+<li>Define the squeeze operator <span class="math inline">\(\hat{S}(\xi)\)</span> and explain what it does to quadrature uncertainties.</li>
+<li>Show that <span class="math inline">\(\hat{S}(r)\)</span> reduces <span class="math inline">\(\Delta x\)</span> by <span class="math inline">\(e^{-r}\)</span> while increasing <span class="math inline">\(\Delta p\)</span> by <span class="math inline">\(e^r\)</span>.</li>
+<li>Show that squeezing still satisfies <span class="math inline">\(\Delta x\,\Delta p = \hbar/2\)</span> (minimum uncertainty).</li>
+<li>Write the Bogoliubov transformation and show <span class="math inline">\([\hat{b}, \hat{b}^\dagger] = 1\)</span>.</li>
+<li>Explain in one paragraph how squeezed light improves LIGO sensitivity.</li>
+<li>What is the Mandel Q parameter and why is <span class="math inline">\(Q &lt; 0\)</span> a non-classical signature?</li>
+</ol>
+<p><strong>Advanced challenge</strong>: Compute <span class="math inline">\(\langle\hat{N}\rangle\)</span> for the squeezed vacuum <span class="math inline">\(\hat{S}(r)|0\rangle\)</span> using the Bogoliubov transformation.</p>
+</div>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/QHO/06_coherent_states.html" class="btn btn-outline-secondary">← Module 6: Coherent States</a> <a href="../../Courses/QHO/08_cheatsheet.html" class="btn btn-success">Next: Module 8 — Summary &amp; Cheat Sheet →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/adityakumarphy\.github\.io\/PhysicsVoyage\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

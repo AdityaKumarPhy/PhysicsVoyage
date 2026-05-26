@@ -1,0 +1,383 @@
+---
+title: "Module 7: Squeezed States"
+subtitle: "Beyond the Standard Quantum Limit"
+description: "Squeezed states reduce noise in one quadrature below the coherent state limit at the expense of increased noise in the conjugate quadrature. We derive the squeeze operator, study squeezed vacuum and coherent squeezed states, and explore their revolutionary applications in gravitational wave detection at LIGO."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course, Quantum Optics, LIGO]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
+}
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.result-box p { color: #fed7aa; margin-bottom: 0; }
+.ligo-box {
+  background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.ligo-box h4 { color: #7dd3fc; margin-top: 0; }
+.ligo-box p { color: #bae6fd; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+```
+
+[← Module 6](06_coherent_states.qmd) | [↑ Course Index](index.qmd) | [Module 8 →](08_cheatsheet.qmd)
+
+---
+
+## The Standard Quantum Limit {#sec-sql}
+
+In Module 6, we found that coherent states saturate the Heisenberg uncertainty principle:
+
+$$
+\Delta x\,\Delta p = \frac{\hbar}{2}, \quad \text{with } \Delta x = \frac{x_0}{\sqrt{2}},\; \Delta p = \frac{\hbar}{\sqrt{2}x_0}
+$$
+
+The noise is **symmetric** — equal uncertainty in $x$ and $p$ (in natural units). This symmetric minimum-uncertainty state defines the **Standard Quantum Limit (SQL)**.
+
+But the uncertainty principle only requires the *product* $\Delta x\,\Delta p \geq \hbar/2$. There is no constraint on the *individual* uncertainties!
+
+**Could we make a state with $\Delta x < x_0/\sqrt{2}$ (sub-SQL position noise)?**
+
+Yes — at the cost of $\Delta p > \hbar/\sqrt{2}x_0$ (super-SQL momentum noise). The product still satisfies $\Delta x\,\Delta p \geq \hbar/2$. Such states are called **squeezed states**.
+
+> **Textbook reference**: Cohen-Tannoudji, *Photons and Atoms*, Chapter 5; Walls & Milburn, *Quantum Optics* (the definitive quantum optics textbook).
+
+---
+
+## The Squeeze Operator {#sec-squeeze}
+
+### Quadrature Operators
+
+First, let's define the **quadrature operators** (dimensionless position and momentum):
+
+$$
+\hat{X}_1 = \frac{\hat{a} + \hat{a}^\dagger}{2}, \qquad \hat{X}_2 = \frac{\hat{a} - \hat{a}^\dagger}{2i}
+$$
+
+These satisfy $[\hat{X}_1, \hat{X}_2] = \frac{i}{2}$, giving $\Delta X_1\,\Delta X_2 \geq \frac{1}{4}$.
+
+For a coherent state: $\Delta X_1 = \Delta X_2 = \frac{1}{2}$ (equal noise).
+
+### Defining the Squeeze Operator
+
+The **squeeze operator** is:
+
+$$
+\hat{S}(\xi) = \exp\!\left(\frac{1}{2}\xi^*\hat{a}^2 - \frac{1}{2}\xi\hat{a}^{\dagger 2}\right), \quad \xi = r e^{i\theta} \in \mathbb{C}
+$$
+
+where $r \geq 0$ is the **squeezing parameter** and $\theta$ is the **squeezing angle**.
+
+**Properties of $\hat{S}(\xi)$**:
+
+- Unitary: $\hat{S}^\dagger = \hat{S}^{-1} = \hat{S}(-\xi)$
+- $\hat{S}^\dagger(\xi)\hat{a}\hat{S}(\xi) = \hat{a}\cosh r - \hat{a}^\dagger e^{i\theta}\sinh r$ (Bogoliubov transformation)
+- $\hat{S}^\dagger(\xi)\hat{a}^\dagger\hat{S}(\xi) = \hat{a}^\dagger\cosh r - \hat{a}\,e^{-i\theta}\sinh r$
+
+### Action on Quadratures
+
+For $\theta = 0$ (real squeezing, $\xi = r$):
+
+$$
+\hat{S}^\dagger(r)\hat{X}_1\hat{S}(r) = e^{-r}\hat{X}_1, \qquad \hat{S}^\dagger(r)\hat{X}_2\hat{S}(r) = e^{+r}\hat{X}_2
+$$
+
+The squeeze operator **contracts** one quadrature by $e^{-r}$ and **expands** the other by $e^{+r}$.
+
+---
+
+## The Squeezed Vacuum State {#sec-squeezed-vacuum}
+
+The simplest squeezed state is the **squeezed vacuum**:
+
+$$
+|0, \xi\rangle = \hat{S}(\xi)|0\rangle
+$$
+
+For real $\xi = r$, the uncertainties are:
+
+$$
+\Delta X_1 = \frac{e^{-r}}{2}, \qquad \Delta X_2 = \frac{e^{+r}}{2}
+$$
+
+$$
+\Delta X_1\,\Delta X_2 = \frac{1}{4} \quad \checkmark \text{ (saturates uncertainty principle)}
+$$
+
+In terms of position:
+
+$$
+\boxed{\Delta x = \frac{x_0}{\sqrt{2}}e^{-r}, \qquad \Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r}}
+$$
+
+For $r > 0$: position uncertainty **below** the SQL! Momentum uncertainty above the SQL.
+
+::: {.result-box}
+**Squeezed vacuum properties (real squeezing $\xi = r$):**
+
+$$\Delta x = \frac{x_0}{\sqrt{2}}e^{-r} < \frac{x_0}{\sqrt{2}}, \quad \Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r} > \frac{\hbar}{\sqrt{2}x_0}$$
+
+$$\Delta x\,\Delta p = \frac{\hbar}{2} \text{ (minimum uncertainty maintained)}$$
+:::
+
+### Fock-State Expansion of Squeezed Vacuum
+
+The squeezed vacuum contains only **even** photon numbers:
+
+$$
+|0, r\rangle = \frac{1}{\sqrt{\cosh r}}\sum_{n=0}^{\infty}(-1)^n\frac{\sqrt{(2n)!}}{2^n n!}(\tanh r)^n |2n\rangle
+$$
+
+This makes physical sense: the squeeze operator $\hat{S} \propto e^{\hat{a}^{\dagger 2}/2}$ creates pairs of photons.
+
+**Mean photon number** of the squeezed vacuum:
+
+$$
+\langle\hat{N}\rangle = \sinh^2 r
+$$
+
+Even the "vacuum" contains photons when squeezed!
+
+---
+
+## Squeezed Coherent States {#sec-squeezed-coherent}
+
+The most general Gaussian state is a **squeezed coherent state**:
+
+$$
+|\alpha, \xi\rangle = \hat{D}(\alpha)\hat{S}(\xi)|0\rangle
+$$
+
+This state has:
+
+$$
+\langle\hat{x}\rangle = \sqrt{2}x_0\,\text{Re}(\alpha), \qquad \langle\hat{p}\rangle = \frac{\sqrt{2}\hbar}{x_0}\,\text{Im}(\alpha)
+$$
+
+$$
+\Delta x = \frac{x_0}{\sqrt{2}}\sqrt{\cosh 2r - \sinh 2r\cos\theta}
+$$
+
+$$
+\Delta p = \frac{\hbar}{\sqrt{2}x_0}\sqrt{\cosh 2r + \sinh 2r\cos\theta}
+$$
+
+For $\theta = 0$: $\Delta x = \frac{x_0}{\sqrt{2}}e^{-r}$, $\Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r}$ (position-squeezed).
+
+For $\theta = \pi$: $\Delta x = \frac{x_0}{\sqrt{2}}e^{+r}$, $\Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{-r}$ (momentum-squeezed).
+
+---
+
+## Phase Space Picture: The Squeezed Wigner Function {#sec-wigner}
+
+The Wigner function of a squeezed state $|\alpha, r\rangle$ (real $r$):
+
+$$
+W(x,p) = \frac{1}{\pi\hbar}\exp\!\left(-\frac{(x - \langle\hat{x}\rangle)^2 e^{2r}}{x_0^2} - \frac{(p - \langle\hat{p}\rangle)^2 x_0^2 e^{-2r}}{\hbar^2}\right)
+$$
+
+This is a **Gaussian ellipse** in phase space:
+
+- Narrow in $x$ (by factor $e^{-r}$) → position-squeezed
+- Wide in $p$ (by factor $e^{+r}$) → momentum uncertainty increased
+
+::: {.callout-intuition}
+**Phase space picture**: A coherent state is a circular Gaussian disk. The squeeze operator **deforms** this disk into an ellipse, keeping its area constant (since $\Delta x\,\Delta p = \hbar/2$ is preserved). The orientation of the ellipse is controlled by the squeezing angle $\theta$.
+:::
+
+**Time evolution of squeezed states**: The ellipse rotates in phase space at frequency $\omega$. When the squeezed axis aligns with the $x$-direction, position noise is minimized; when it aligns with $p$, momentum noise is minimized. The noise oscillates at $2\omega$!
+
+---
+
+## Photon Number Statistics of Squeezed States {#sec-statistics}
+
+The photon number distribution $P(n) = |\langle n|\alpha, r\rangle|^2$ for a squeezed state is:
+
+- **Sub-Poissonian** ($\Delta N < \sqrt{\bar{n}}$) for certain parameter ranges
+- **Super-Poissonian** ($\Delta N > \sqrt{\bar{n}}$) for other ranges
+- Oscillatory (non-zero only for even $n$ for the squeezed vacuum)
+
+**Mandel Q parameter**:
+
+$$
+Q = \frac{\langle(\Delta N)^2\rangle - \langle N\rangle}{\langle N\rangle}
+$$
+
+- $Q = 0$: Poisson (coherent state, classical limit)
+- $Q < 0$: Sub-Poissonian (**non-classical**, squeezed)
+- $Q > 0$: Super-Poissonian (thermal light, classical)
+
+Sub-Poissonian statistics is a **non-classical signature** — it cannot be produced by any classical light source.
+
+---
+
+## The Bogoliubov Transformation {#sec-bogoliubov}
+
+The transformation of ladder operators by $\hat{S}(r)$ is a **Bogoliubov transformation**:
+
+$$
+\hat{b} = \hat{S}^\dagger(r)\hat{a}\hat{S}(r) = \hat{a}\cosh r - \hat{a}^\dagger\sinh r
+$$
+
+$$
+\hat{b}^\dagger = \hat{S}^\dagger(r)\hat{a}^\dagger\hat{S}(r) = \hat{a}^\dagger\cosh r - \hat{a}\sinh r
+$$
+
+The new operators $\hat{b}$, $\hat{b}^\dagger$ satisfy $[\hat{b}, \hat{b}^\dagger] = 1$ (the same as $\hat{a}$). 
+
+The squeezed vacuum $|0,r\rangle$ is the vacuum of the $\hat{b}$ operators:
+
+$$
+\hat{b}|0,r\rangle = 0
+$$
+
+This is the same mathematical structure as the **Bogoliubov transformation in superconductivity** (BCS theory) and **quantum field theory in curved spacetime** (Unruh effect, Hawking radiation)!
+
+---
+
+## Applications: LIGO and Gravitational Wave Detection {#sec-ligo}
+
+::: {.ligo-box}
+#### 🔭 LIGO: How Squeezed Light Makes History
+
+On September 14, 2015, LIGO detected gravitational waves for the first time — a signal lasting 0.2 seconds from two merging black holes 1.3 billion light-years away. The length change measured was $\Delta L \sim 10^{-18}$ m, smaller than a proton.
+
+**The quantum noise problem**: LIGO measures length changes via laser interferometry. The optical path length difference shifts the interference fringe. But the vacuum fluctuations entering the dark port of the beamsplitter add quantum noise — **shot noise** — that limits sensitivity.
+
+Shot noise power spectral density: $S_{\text{shot}} \propto 1/P_{\text{laser}}$ (decreases with power)
+
+Radiation pressure noise: $S_{\text{RP}} \propto P_{\text{laser}}$ (increases with power)
+
+These are conjugate — making one smaller makes the other larger. The product is set by the uncertainty principle: the **Standard Quantum Limit (SQL)**.
+
+**How squeezed light helps**: By injecting **phase-squeezed vacuum** into the dark port of LIGO, the phase noise (affecting the signal) is reduced below the shot noise limit. The price is increased amplitude noise, which is less important at LIGO's signal frequencies.
+
+Since 2019 (Advanced LIGO O3), LIGO has been using **50 dB squeezing** (factor of $e^{5}$ noise reduction), improving its range by 50%.
+
+**Squeezing parameters**: The squeezing parameter used is $r \approx 0.5$--$1.0$, corresponding to 4--9 dB of noise reduction.
+:::
+
+### Mathematical Description
+
+LIGO measures the phase quadrature $\hat{X}_2$. The quantum noise in $\hat{X}_2$ for a coherent vacuum input is $\Delta X_2 = 1/2$.
+
+With phase-squeezed injection: $\Delta X_2 = \frac{1}{2}e^{-r}$
+
+The **signal-to-noise ratio** improvement: $\text{SNR} \to \text{SNR} \times e^r$
+
+For $r = 1$ ($\approx 8.7$ dB squeezing): SNR improves by factor $e \approx 2.7$.
+
+This translates directly to **more observable gravitational wave events** per unit time.
+
+---
+
+## Other Applications of Squeezed States {#sec-applications}
+
+### Quantum Communication
+- **Continuous-variable quantum key distribution** (CV-QKD)
+- Squeezed states of the microwave field in circuit QED
+- **Quantum teleportation** of continuous variables (demonstrated by Furusawa et al., 1998)
+
+### Quantum Computing
+- **Gaussian boson sampling** — a quantum computational advantage protocol
+- Squeezed states are resources for **measurement-based quantum computing**
+
+### Precision Measurement
+- Atomic clocks and magnetometers
+- **Spin squeezing** in atomic systems (analog of optical squeezing for atomic spin)
+
+---
+
+## Comparison: Coherent vs. Squeezed States {#sec-comparison}
+
+| Property | Coherent $|\alpha\rangle$ | Position-Squeezed $|\alpha,r\rangle$ |
+|----------|--------------------------|--------------------------------------|
+| $\Delta x$ | $x_0/\sqrt{2}$ | $x_0 e^{-r}/\sqrt{2}$ |
+| $\Delta p$ | $\hbar/\sqrt{2}x_0$ | $\hbar e^r/\sqrt{2}x_0$ |
+| $\Delta x\,\Delta p$ | $\hbar/2$ | $\hbar/2$ |
+| Wigner function | Circular Gaussian | Elliptical Gaussian |
+| Photon statistics | Poisson | Sub-Poissonian (in some regimes) |
+| Mandel Q | 0 | $< 0$ (typically) |
+| Classical analog | Yes | Partially |
+| Generation | Laser | Optical Parametric Oscillator (OPO) |
+
+::: {.checkpoint}
+**Before moving on, make sure you can:**
+
+1. Define the squeeze operator $\hat{S}(\xi)$ and explain what it does to quadrature uncertainties.
+2. Show that $\hat{S}(r)$ reduces $\Delta x$ by $e^{-r}$ while increasing $\Delta p$ by $e^r$.
+3. Show that squeezing still satisfies $\Delta x\,\Delta p = \hbar/2$ (minimum uncertainty).
+4. Write the Bogoliubov transformation and show $[\hat{b}, \hat{b}^\dagger] = 1$.
+5. Explain in one paragraph how squeezed light improves LIGO sensitivity.
+6. What is the Mandel Q parameter and why is $Q < 0$ a non-classical signature?
+
+**Advanced challenge**: Compute $\langle\hat{N}\rangle$ for the squeezed vacuum $\hat{S}(r)|0\rangle$ using the Bogoliubov transformation.
+:::
+
+---
+
+::: {.nav-buttons}
+[← Module 6: Coherent States](06_coherent_states.qmd){.btn .btn-outline-secondary}
+[Next: Module 8 — Summary & Cheat Sheet →](08_cheatsheet.qmd){.btn .btn-success}
+:::

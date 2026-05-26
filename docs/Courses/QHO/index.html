@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.">
 
-<title>Physics Voyage - Courses</title>
+<title>Physics Voyage - Quantum Harmonic Oscillator</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,63 +70,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
 <script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-list-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-list-view'] = new List('listing-list-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-grid-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-grid-view'] = new List('listing-grid-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -157,17 +134,17 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/styles/styles.css">
-</head>
+<link rel="stylesheet" href="../../assets/styles/styles.css">
 
-<body class="nav-fixed">
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Physics Voyage</span>
     </a>
   </div>
@@ -178,23 +155,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./courses.html" aria-current="page"> 
+    <a class="nav-link" href="../../courses.html"> 
 <span class="menu-text">Course</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
+    <a class="nav-link" href="../../project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -214,282 +191,639 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#physics-courses" id="toc-physics-courses" class="nav-link active" data-scroll-target="#physics-courses">🎓 Physics Courses</a></li>
-  </ul>
-</nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Active">Active <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Physics">Physics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Upcoming">Upcoming <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Courses</h1>
-</div>
+  <div class="quarto-title">
+    <h1 class="title">Quantum Harmonic Oscillator</h1>
+        <p class="subtitle lead">From Classical Springs to Squeezed Light</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Physics</div>
+            <div class="quarto-category">Active</div>
+          </div>
+      </div>
 
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
 
-
-<div class="quarto-title-meta column-page-left">
-
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
     
-  
-    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">May 26, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+    <div class="featured-image-container">
+    <img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" alt="Featured image for Quantum Harmonic Oscillator">
   </div>
   
-
-
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
 </header>
 
 
 <style>
-/* ── Page Header ─────────────────────────────────────── */
-.courses-page-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+/* ── Hero Banner ───────────────────────────────────────────── */
+.qho-hero {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 45%, #4c1d95 100%);
   border-radius: 16px;
-  padding: 2.2rem 2.5rem;
+  padding: 2.8rem 2.5rem 2.2rem;
   color: white;
+  margin-bottom: 2.4rem;
+  border: 2px solid rgba(167,139,250,0.25);
+  box-shadow: 0 8px 32px rgba(76,29,149,0.28);
+  position: relative;
+  overflow: hidden;
+}
+.qho-hero::before {
+  content: "⚛";
+  position: absolute;
+  right: 2rem; top: 1rem;
+  font-size: 7rem;
+  opacity: 0.08;
+  line-height: 1;
+  pointer-events: none;
+}
+.qho-hero h2 {
+  color: #c4b5fd;
+  margin: 0 0 0.5rem;
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+.qho-hero p {
+  color: #ddd6fe;
+  font-size: 1.05rem;
+  margin: 0;
+  max-width: 720px;
+  line-height: 1.6;
+}
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.2rem;
+}
+.hero-badge {
+  background: rgba(167,139,250,0.22);
+  border: 1px solid rgba(167,139,250,0.45);
+  color: #e9d5ff;
+  border-radius: 6px;
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Stats Row ─────────────────────────────────────────────── */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-bottom: 2rem;
-  border: 1px solid rgba(167,139,250,0.25);
+}
+.stat-card {
+  flex: 1 1 120px;
+  background: var(--bs-body-bg, #fff);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0px var(--bs-body-color, #212529);
+}
+.stat-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #7c3aed;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bs-secondary-color, #6c757d);
+  font-weight: 600;
+}
+
+/* ── Section Headers ───────────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bs-body-color, #212529);
+}
+.section-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* ── Module Cards ──────────────────────────────────────────── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 2rem;
+}
+.module-card {
+  background: var(--bs-body-bg, #fff);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, #7c3aed, #a855f7);
+  border-radius: 12px 0 0 12px;
+}
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0px var(--bs-body-color, #212529);
+  border-color: #7c3aed;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.module-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7c3aed;
+}
+.module-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bs-heading-color, inherit);
+  line-height: 1.3;
+  margin: 0;
+}
+.module-desc {
+  font-size: 0.82rem;
+  color: var(--bs-secondary-color, #6c757d);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+.module-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+.module-tag {
+  background: rgba(124,58,237,0.1);
+  color: #7c3aed;
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.module-arrow {
+  position: absolute;
+  bottom: 1rem; right: 1.2rem;
+  font-size: 1.1rem;
+  color: #a78bfa;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.module-card:hover .module-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ── Prereq Box ────────────────────────────────────────────── */
+.prereq-box {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(148,163,184,0.2);
+}
+.prereq-box h4 { color: #38bdf8; margin-top: 0; font-size: 1rem; }
+.prereq-box ul { color: #cbd5e1; margin: 0; padding-left: 1.3rem; }
+.prereq-box li { margin-bottom: 4px; font-size: 0.9rem; }
+
+/* ── Book Cards ────────────────────────────────────────────── */
+.books-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.book-pill {
+  background: #7c3aed;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.book-pill span { display: block; font-weight: 400; font-size: 0.72rem; opacity: 0.82; }
+
+/* ── CTA Buttons ───────────────────────────────────────────── */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+/* ── Cheat Sheet Banner ────────────────────────────────────── */
+.cheatsheet-banner {
+  background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+  border-radius: 12px;
+  padding: 1.4rem 1.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(52,211,153,0.3);
 }
-.courses-page-header h2 {
-  color: #c4b5fd;
-  margin: 0 0 0.4rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-.courses-page-header p {
-  color: #ddd6fe;
-  margin: 0;
-  font-size: 0.95rem;
-  max-width: 560px;
-}
+.cheatsheet-banner p { color: #d1fae5; margin: 0; font-size: 0.9rem; }
+.cheatsheet-banner h4 { color: #a7f3d0; margin: 0 0 4px; font-size: 1.05rem; }
 
-/* ── Grid item hover (matches blog) ─────────────────── */
-#grid-view .quarto-grid-item {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--bs-border-color, #dee2e6) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+/* ── Dark-mode fixes ───────────────────────────────────────── */
+[data-bs-theme="dark"] .module-card {
+  background: #1e293b;
+  border-color: #334155;
 }
-#grid-view .quarto-grid-item:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
-}
-#grid-view .quarto-grid-item .thumbnail-image,
-#grid-view .quarto-grid-item .card-img-top {
-  aspect-ratio: 16 / 9 !important;
-  object-fit: cover !important;
-  width: 100% !important;
-}
-#grid-view .quarto-grid-item .listing-title {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-
-/* ── List item hover (matches blog) ─────────────────── */
-#list-view .quarto-post {
-  border-radius: 10px;
-  padding: 0.8rem;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-#list-view .quarto-post:hover {
-  background: rgba(124,58,237,0.04);
-  transform: translateX(4px);
+[data-bs-theme="dark"] .stat-card {
+  background: #1e293b;
+  border-color: #334155;
 }
 </style>
-<div class="courses-page-header">
-<section id="physics-courses" class="level2">
-<h2 class="anchored" data-anchor-id="physics-courses">🎓 Physics Courses</h2>
-<p>Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.</p>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="the-quantum-harmonic-oscillator" class="level2 qho-hero">
+<h2 class="anchored" data-anchor-id="the-quantum-harmonic-oscillator">⚛️ The Quantum Harmonic Oscillator</h2>
+<p>The most important system in all of physics — from molecules vibrating in a crystal to the photons of a laser beam to the quantum noise of gravitational-wave detectors. This course builds everything from scratch, with zero hand-waving.</p>
+<div class="hero-badges">
+<p><span class="hero-badge">📖 Shankar</span> <span class="hero-badge">📖 Cohen-Tannoudji</span> <span class="hero-badge">📖 Griffiths</span> <span class="hero-badge">🔬 8 Modules</span> <span class="hero-badge">🎯 Coherent States</span> <span class="hero-badge">🌀 Squeezed States</span> <span class="hero-badge">🔭 LIGO</span></p>
+</div>
 </section>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Grid View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">List View</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="listing-grid-view" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-grid-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-grid-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-     </select>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- STATS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-number">8</div>
+    <div class="stat-label">Modules</div>
   </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<a href="./Courses/Comp_Physics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Computational Physics Course
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<a href="./Courses/QHO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Quantum Harmonic Oscillator
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="listing-list-view" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-list-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-list-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
+  <div class="stat-card">
+    <div class="stat-number">3</div>
+    <div class="stat-label">Textbooks</div>
   </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+  <div class="stat-card">
+    <div class="stat-number">∞</div>
+    <div class="stat-label">Derivations</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">0</div>
+    <div class="stat-label">Hand-waving</div>
+  </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p><a href="./Courses/Comp_Physics/index.html" class="no-external">
-<p><img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image"></p>
-</a><p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Computational Physics Course</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/Comp_Physics/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MODULES -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="course-modules" class="level3 section-header">
+<h3 class="anchored" data-anchor-id="course-modules">📐 Course Modules</h3>
+</section>
+<div class="module-grid">
+<a class="module-card" href="01_why_oscillators.html">
+  <span class="module-num">Module 1</span>
+  <p class="module-title">Why Do We Need Oscillators?</p>
+  <p class="module-desc">Every stable potential looks like a spring near equilibrium. Taylor expansion argument, classical SHO review, phase space, and real physical examples from molecules to LC circuits.</p>
+  <div class="module-tags">
+    <span class="module-tag">Classical SHO</span>
+    <span class="module-tag">Taylor Expansion</span>
+    <span class="module-tag">Phase Space</span>
+  </div>
+  <span class="module-arrow">→</span>
 </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<div class="thumbnail">
-<p><a href="./Courses/QHO/index.html" class="no-external"></a></p><a href="./Courses/QHO/index.html" class="no-external">
-<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image"></p>
-</a><p><a href="./Courses/QHO/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/QHO/index.html" class="no-external">Quantum Harmonic Oscillator</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/QHO/index.html" class="no-external">From Classical Springs to Squeezed Light</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/QHO/index.html" class="no-external">A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/QHO/index.html" class="no-external">
-<div class="listing-date">
-May 26, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-</div>
-</div>
 
+<a class="module-card" href="02_quantization.html">
+  <span class="module-num">Module 2</span>
+  <p class="module-title">Quantizing the Oscillator</p>
+  <p class="module-desc">Canonical quantization, [x̂, p̂] = iℏ, the Schrödinger equation for the QHO, power-series solution, Hermite polynomials, and the quantized energy spectrum Eₙ = ℏω(n + ½).</p>
+  <div class="module-tags">
+    <span class="module-tag">Canonical Quantization</span>
+    <span class="module-tag">Hermite Polynomials</span>
+    <span class="module-tag">Zero-Point Energy</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="03_ladder_operators.html">
+  <span class="module-num">Module 3</span>
+  <p class="module-title">Ladder Operators — The Algebraic Shortcut</p>
+  <p class="module-desc">Create â and â† from scratch. Derive the full spectrum using only commutators — no differential equations needed. Fock states, the number operator, and all matrix elements of x̂ and p̂.</p>
+  <div class="module-tags">
+    <span class="module-tag">â and â†</span>
+    <span class="module-tag">Fock States</span>
+    <span class="module-tag">Number Operator</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="04_wavefunctions.html">
+  <span class="module-num">Module 4</span>
+  <p class="module-title">Wavefunctions and Hermite Polynomials</p>
+  <p class="module-desc">Explicit ψₙ(x) from the ground state up. Nodes, parity, orthonormality, quantum tunneling, expectation values, the virial theorem, and the quantum-classical correspondence.</p>
+  <div class="module-tags">
+    <span class="module-tag">ψₙ(x)</span>
+    <span class="module-tag">Tunneling</span>
+    <span class="module-tag">Uncertainty Principle</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="05_time_evolution.html">
+  <span class="module-num">Module 5</span>
+  <p class="module-title">Time Evolution</p>
+  <p class="module-desc">TDSE for superposition states, the time evolution operator, Heisenberg picture, Ehrenfest's theorem, quantum revivals at T = 2π/ω, and the Wigner function for phase-space visualization.</p>
+  <div class="module-tags">
+    <span class="module-tag">TDSE</span>
+    <span class="module-tag">Ehrenfest</span>
+    <span class="module-tag">Wigner Function</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="06_coherent_states.html">
+  <span class="module-num">Module 6</span>
+  <p class="module-title">Coherent States</p>
+  <p class="module-desc">Eigenstates of â. The displacement operator D̂(α), Fock expansion, minimum uncertainty, Poisson photon statistics, classical oscillation, and the phase-space picture. The quantum state of laser light.</p>
+  <div class="module-tags">
+    <span class="module-tag">â|α⟩ = α|α⟩</span>
+    <span class="module-tag">Poisson Stats</span>
+    <span class="module-tag">Laser Light</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="07_squeezed_states.html">
+  <span class="module-num">Module 7</span>
+  <p class="module-title">Squeezed States</p>
+  <p class="module-desc">Beyond the Standard Quantum Limit. The squeeze operator Ŝ(ξ), Bogoliubov transformations, sub-SQL noise, sub-Poissonian statistics, and the revolutionary application to LIGO gravitational-wave detection.</p>
+  <div class="module-tags">
+    <span class="module-tag">Ŝ(ξ)</span>
+    <span class="module-tag">Bogoliubov</span>
+    <span class="module-tag">LIGO</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="08_cheatsheet.html">
+  <span class="module-num">Module 8</span>
+  <p class="module-title">Summary, Cheat Sheet &amp; Further Reading</p>
+  <p class="module-desc">Every formula from the course in one place. Downloadable PDF cheat sheet covering all operators, commutators, wavefunctions, coherent and squeezed state properties. Plus a curated reading list.</p>
+  <div class="module-tags">
+    <span class="module-tag">All Formulas</span>
+    <span class="module-tag">PDF Download</span>
+    <span class="module-tag">Further Reading</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CHEAT SHEET BANNER -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="cheatsheet-banner">
+<section id="cheat-sheet-available" class="level4">
+<h4 class="anchored" data-anchor-id="cheat-sheet-available">📄 Cheat Sheet Available</h4>
+<p>A print-ready, 4-column landscape PDF cheat sheet with every formula — ladder operators, coherent states, squeezed states, Wigner functions, and LIGO.</p>
+</section>
+<p><a href="qho_cheatsheet.pdf" class="btn btn-warning">⬇️ Download PDF</a></p>
+</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PREREQS + BOOKS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="prerequisites-textbooks" class="level3 section-header">
+<h3 class="anchored" data-anchor-id="prerequisites-textbooks">📚 Prerequisites &amp; Textbooks</h3>
+</section>
+<section id="what-you-should-know-before-starting" class="level4 prereq-box">
+<h4 class="anchored" data-anchor-id="what-you-should-know-before-starting">🧩 What You Should Know Before Starting</h4>
+<ul>
+<li><strong>Classical Mechanics</strong>: Newton’s laws, energy conservation, simple harmonic motion <span class="math inline">\(\ddot{x} + \omega^2 x = 0\)</span></li>
+<li><strong>Linear Algebra</strong>: Vectors, matrices, eigenvalues and eigenvectors</li>
+<li><strong>Calculus</strong>: Differentiation, integration, Taylor series, basic ODEs</li>
+<li><strong>Quantum Mechanics</strong> <em>(helpful but not required)</em>: The Schrödinger equation, wave-particle duality</li>
+</ul>
+</section>
+<div class="books-row">
+<div class="book-pill">
+📖 Shankar<span>Principles of Quantum Mechanics, Ch. 7</span>
+</div>
+<div class="book-pill">
+📖 Cohen-Tannoudji<span>Quantum Mechanics Vol. 1, Ch. V + Compl. GV</span>
+</div>
+<div class="book-pill">
+📖 Griffiths<span>Introduction to QM, Section 2.3</span>
+</div>
+<div class="book-pill">
+📖 Walls &amp; Milburn<span>Quantum Optics — for squeezed states</span>
+</div>
+</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CTA -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="cta-row">
+<p><a href="01_why_oscillators.html" class="btn btn-success btn-lg">▶ Start Module 1</a> <a href="qho_cheatsheet.pdf" class="btn btn-outline-warning">📄 Cheat Sheet</a> <a href="../../courses.html" class="btn btn-outline-secondary">← All Courses</a></p>
+</div>
 
 
 

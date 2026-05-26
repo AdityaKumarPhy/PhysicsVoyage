@@ -96,28 +96,28 @@ This site is my open notebook — structured courses, project write-ups, and a b
 ::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
-**Computational Physics** <span class="badge bg-success float-end">Active</span>
+**Computational Physics** <span class="badge bg-secondary float-end">Upcoming</span>
 :::
 ::: {.card-body}
 Building numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.
 
 <br>
-[Start →](courses.qmd){.btn .btn-success .btn-outlined-success .mt-2}
+[Coming soon](courses.qmd){.btn .btn-sm .btn-outline-dark .mt-2}
 :::
 :::
 :::
 
-<!-- Course Card 2 -->
+<!-- Course Card 2 — QHO (ACTIVE) -->
 ::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
-**Quantum Mechanics I** <span class="badge bg-secondary float-end">Upcoming</span>
+**Quantum Harmonic Oscillator** <span class="badge bg-success float-end">Active</span>
 :::
 ::: {.card-body}
-From the postulates to perturbation theory. Every derivation done properly — for students who want the full mathematical story.
+From classical springs to coherent states and squeezed light. The most important system in physics — built from first principles using Shankar, Cohen-Tannoudji, and Griffiths.
 
 <br>
-[Coming soon](courses.qmd){.btn .btn-sm .btn-outline-dark .mt-2}
+[Start →](Courses/QHO/index.qmd){.btn .btn-success .mt-2}
 :::
 :::
 :::

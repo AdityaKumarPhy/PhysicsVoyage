@@ -3,20 +3,97 @@ title: "Courses"
 page-layout: full
 listing:
   - id: list-view
-    contents: Courses
+    contents:
+      - Courses/Comp_Physics/index.qmd
+      - Courses/QHO/index.qmd
     sort: "date desc"
     type: default
     categories: true
     sort-ui: true
     filter-ui: true
+    fields: [image, date, title, description, categories]
   - id: grid-view
-    contents: Courses
+    contents:
+      - Courses/Comp_Physics/index.qmd
+      - Courses/QHO/index.qmd
     sort: "date desc"
     type: grid
     categories: true
     sort-ui: true
     filter-ui: true
+    fields: [image, title, categories]
 ---
+
+```{=html}
+<style>
+/* ── Page Header ─────────────────────────────────────── */
+.courses-page-header {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+  border-radius: 16px;
+  padding: 2.2rem 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(167,139,250,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.courses-page-header h2 {
+  color: #c4b5fd;
+  margin: 0 0 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.courses-page-header p {
+  color: #ddd6fe;
+  margin: 0;
+  font-size: 0.95rem;
+  max-width: 560px;
+}
+
+/* ── Grid item hover (matches blog) ─────────────────── */
+#grid-view .quarto-grid-item {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--bs-border-color, #dee2e6) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+#grid-view .quarto-grid-item:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
+}
+#grid-view .quarto-grid-item .thumbnail-image,
+#grid-view .quarto-grid-item .card-img-top {
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
+  width: 100% !important;
+}
+#grid-view .quarto-grid-item .listing-title {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+/* ── List item hover (matches blog) ─────────────────── */
+#list-view .quarto-post {
+  border-radius: 10px;
+  padding: 0.8rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+#list-view .quarto-post:hover {
+  background: rgba(124,58,237,0.04);
+  transform: translateX(4px);
+}
+</style>
+```
+
+::: {.courses-page-header}
+::: {}
+## 🎓 Physics Courses
+Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.
+:::
+:::
 
 ::: {.panel-tabset}
 ## Grid View
@@ -28,4 +105,5 @@ listing:
 
 ::: {#list-view}
 :::
+
 :::

@@ -4,7 +4,7 @@
     "href": "courses.html",
     "title": "Courses",
     "section": "",
-    "text": "Grid ViewList View\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nComputational Physics Course\n\n\n\nPhysics\n\n\nUpcoming\n\n\n\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.\n\n\n\nAditya Kumar\n\n\nJun 1, 2026\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nComputational Physics Course\n\n\n\n\n\n\nPhysics\n\n\nUpcoming\n\n\n\nDetailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.\n\n\n\n\n\nJun 1, 2026\n\n\nAditya Kumar\n\n\n\n\n\n\nNo matching items"
+    "text": "Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated."
   },
   {
     "objectID": "blog.html",
@@ -200,7 +200,7 @@
     "href": "index.html#courses",
     "title": "Welcome to Physics Voyage",
     "section": "Courses",
-    "text": "Courses\n\n\n\n\n\nComputational Physics Active\n\n\nBuilding numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.\n Start →\n\n\n\n\n\n\n\nQuantum Mechanics I Upcoming\n\n\nFrom the postulates to perturbation theory. Every derivation done properly — for students who want the full mathematical story.\n Coming soon\n\n\n\n\n\n\n\nMany-Body Physics Upcoming\n\n\nSecond quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.\n Coming soon"
+    "text": "Courses\n\n\n\n\n\nComputational Physics Upcoming\n\n\nBuilding numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.\n Coming soon\n\n\n\n\n\n\n\nQuantum Harmonic Oscillator Active\n\n\nFrom classical springs to coherent states and squeezed light. The most important system in physics — built from first principles using Shankar, Cohen-Tannoudji, and Griffiths.\n Start →\n\n\n\n\n\n\n\nMany-Body Physics Upcoming\n\n\nSecond quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.\n Coming soon"
   },
   {
     "objectID": "index.html#featured",
@@ -215,5 +215,565 @@
     "title": "Welcome to Physics Voyage",
     "section": "YouTube Highlights",
     "text": "YouTube Highlights\n\n\n\n\n\n1. Latest Video\n\n\n\n \n\nLoading latest video…\n\n\n\n\n\n\n\n2. Most Popular Video\n\n\n\n \n\nLoading popular video…\n\n\n\n\n\n\n\n3. Popular Series\n\n\n\n \n\nView Playlist on YouTube"
+  },
+  {
+    "objectID": "Courses/QHO/index.html",
+    "href": "Courses/QHO/index.html",
+    "title": "Quantum Harmonic Oscillator",
+    "section": "",
+    "text": "The most important system in all of physics — from molecules vibrating in a crystal to the photons of a laser beam to the quantum noise of gravitational-wave detectors. This course builds everything from scratch, with zero hand-waving.\n\n📖 Shankar 📖 Cohen-Tannoudji 📖 Griffiths 🔬 8 Modules 🎯 Coherent States 🌀 Squeezed States 🔭 LIGO"
+  },
+  {
+    "objectID": "Courses/QHO/index.html#the-quantum-harmonic-oscillator",
+    "href": "Courses/QHO/index.html#the-quantum-harmonic-oscillator",
+    "title": "Quantum Harmonic Oscillator",
+    "section": "",
+    "text": "The most important system in all of physics — from molecules vibrating in a crystal to the photons of a laser beam to the quantum noise of gravitational-wave detectors. This course builds everything from scratch, with zero hand-waving.\n\n📖 Shankar 📖 Cohen-Tannoudji 📖 Griffiths 🔬 8 Modules 🎯 Coherent States 🌀 Squeezed States 🔭 LIGO"
+  },
+  {
+    "objectID": "Courses/QHO/index.html#textbook-sources",
+    "href": "Courses/QHO/index.html#textbook-sources",
+    "title": "The Quantum Harmonic Oscillator",
+    "section": "Textbook Sources",
+    "text": "Textbook Sources\nThis course weaves together three of the greatest quantum mechanics textbooks ever written:\n\nShankar Principles of Quantum Mechanics — algebraic elegance, ladder operators\nCohen-Tannoudji Quantum Mechanics (Vol. 1 & 2) — systematic completeness\nGriffiths Introduction to Quantum Mechanics — clarity and physical intuition"
+  },
+  {
+    "objectID": "Courses/QHO/index.html#what-you-will-learn",
+    "href": "Courses/QHO/index.html#what-you-will-learn",
+    "title": "The Quantum Harmonic Oscillator",
+    "section": "What You Will Learn",
+    "text": "What You Will Learn\nBy the end of this course you will be able to:\n\nExplain why the harmonic oscillator appears everywhere in physics\nQuantize the harmonic oscillator from first principles using canonical quantization\nUse ladder operators (creation/annihilation operators) to find the full energy spectrum algebraically\nWrite down and plot the wavefunctions \\(\\psi_n(x)\\) and understand their properties\nCompute time evolution of arbitrary quantum states in the QHO potential\nConstruct and understand coherent states — the most classical-like quantum states\nConstruct and understand squeezed states — states that beat the standard quantum noise\nApply these ideas to quantum optics, LIGO, and quantum information"
+  },
+  {
+    "objectID": "Courses/QHO/index.html#course-modules",
+    "href": "Courses/QHO/index.html#course-modules",
+    "title": "The Quantum Harmonic Oscillator",
+    "section": "Course Modules",
+    "text": "Course Modules\n\nModule 1 — Why Do We Need Oscillators?\nEvery potential looks like a spring near equilibrium. Classical SHO review, Taylor expansion argument, physical examples.\n\n\nModule 2 — Quantizing the Oscillator\nFrom \\(F = -kx\\) to the Schrödinger equation. Canonical quantization, the Hamiltonian operator, and the Hermite polynomial solution.\n\n\nModule 3 — Ladder Operators: The Algebraic Shortcut\nThe most powerful tool in quantum mechanics. Creation and annihilation operators \\(\\hat{a}^\\dagger, \\hat{a}\\), the number operator, and the spectrum of \\(\\hat{H}\\).\n\n\nModule 4 — Wavefunctions and Hermite Polynomials\nWhat does a quantum oscillator look like? Explicit wavefunctions, orthonormality, expectation values, the uncertainty principle.\n\n\nModule 5 — Time Evolution\nNothing is static in quantum mechanics. Time-dependent states, Ehrenfest’s theorem, Wigner functions, and the quantum-classical correspondence.\n\n\nModule 6 — Coherent States\nThe most classical quantum states. Eigenstates of \\(\\hat{a}\\), the displacement operator, Poisson photon statistics, and the phase-space picture.\n\n\nModule 7 — Squeezed States\nBeyond the standard quantum limit. The squeeze operator, squeezed vacuum, sub-Poissonian statistics, and applications to LIGO.\n\n\nModule 8 — Summary & Cheat Sheet\nEverything in one place. Comprehensive summary of all results plus a downloadable PDF cheat sheet."
+  },
+  {
+    "objectID": "Courses/QHO/index.html#prerequisites",
+    "href": "Courses/QHO/index.html#prerequisites",
+    "title": "The Quantum Harmonic Oscillator",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nWhat You Should Already Know\n\nClassical Mechanics: Newton’s laws, energy conservation, simple harmonic motion\nLinear Algebra: vectors, matrices, eigenvalues and eigenvectors\n\nCalculus: differentiation, integration, Taylor series, ordinary differential equations\nBasic Quantum Mechanics (helpful but not required): the Schrödinger equation, wave-particle duality, the uncertainty principle\n\n\nDon’t panic! We will review everything we need as we go. The goal is zero hand-waving."
+  },
+  {
+    "objectID": "Courses/QHO/index.html#how-to-use-this-course",
+    "href": "Courses/QHO/index.html#how-to-use-this-course",
+    "title": "The Quantum Harmonic Oscillator",
+    "section": "How to Use This Course",
+    "text": "How to Use This Course\n\nRead each module in order — concepts build on each other\nWork through every derivation yourself — don’t just read, do\nPause at the 🎯 Checkpoint boxes — these are where most students get confused\nDownload the cheat sheet at the end and keep it with you\n\nLet’s begin. 👇\n→ Start with Module 1"
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html",
+    "href": "Courses/QHO/03_ladder_operators.html",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "",
+    "text": "← Module 2 | ↑ Course Index | Module 4 →"
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-motivation",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-motivation",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "1 Motivation: There Must Be a Better Way",
+    "text": "1 Motivation: There Must Be a Better Way\nIn Module 2, we solved the QHO by substituting a power series into a differential equation and requiring it to terminate. It worked, but it was:\n\nTedious (lots of algebra)\nNot generalizable (a new calculation for each system)\nNot transparent (it’s hard to see why the energy is quantized)\n\nIn 1940, Paul Dirac found an algebraic method that derives the entire spectrum of the QHO without solving any differential equation. This method:\n\nReveals the deep structure of the problem\nGeneralizes to quantum field theory, quantum optics, and quantum computing\nIs the language in which 95% of modern quantum physics is written\n\nLet’s learn it.\n\nTextbook reference: Shankar, Section 7.4; Griffiths Section 2.3.1; Cohen-Tannoudji Vol. 1, Chapter V."
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-definition",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-definition",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "2 Defining the Ladder Operators",
+    "text": "2 Defining the Ladder Operators\nThe Hamiltonian is:\n\\[\n\\hat{H} = \\frac{\\hat{p}^2}{2m} + \\frac{1}{2}m\\omega^2\\hat{x}^2\n\\]\nNotice that classically, \\(p^2/2m + m\\omega^2 x^2/2\\) looks like the sum of two squares. We can try to “factor” it. Define:\n\\[\n\\boxed{\\hat{a} = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(\\hat{x} + \\frac{i\\hat{p}}{m\\omega}\\right)}\n\\]\n\\[\n\\boxed{\\hat{a}^\\dagger = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(\\hat{x} - \\frac{i\\hat{p}}{m\\omega}\\right)}\n\\]\nThese are called the annihilation operator (\\(\\hat{a}\\)) and creation operator (\\(\\hat{a}^\\dagger\\)). Note: \\(\\hat{a}^\\dagger\\) is the Hermitian conjugate (adjoint) of \\(\\hat{a}\\).\n\n\n\n\n\n\nWhy Are They Called Creation and Annihilation?\n\n\n\nAs we’ll prove shortly, \\(\\hat{a}^\\dagger\\) raises the quantum number \\(n\\) by 1 (creates a quantum of energy), and \\(\\hat{a}\\) lowers \\(n\\) by 1 (annihilates a quantum). In quantum optics, this corresponds to creating and destroying photons.\n\n\n\n2.1 Expressing \\(\\hat{x}\\) and \\(\\hat{p}\\) in Terms of \\(\\hat{a}\\) and \\(\\hat{a}^\\dagger\\)\nSolving the two equations above for \\(\\hat{x}\\) and \\(\\hat{p}\\):\n\\[\n\\boxed{\\hat{x} = \\sqrt{\\frac{\\hbar}{2m\\omega}}\\left(\\hat{a} + \\hat{a}^\\dagger\\right)}\n\\]\n\\[\n\\boxed{\\hat{p} = i\\sqrt{\\frac{m\\omega\\hbar}{2}}\\left(\\hat{a}^\\dagger - \\hat{a}\\right)}\n\\]\nUsing the oscillator length \\(x_0 = \\sqrt{\\hbar/m\\omega}\\):\n\\[\n\\hat{x} = \\frac{x_0}{\\sqrt{2}}\\left(\\hat{a} + \\hat{a}^\\dagger\\right), \\qquad \\hat{p} = \\frac{i\\hbar}{\\sqrt{2}\\,x_0}\\left(\\hat{a}^\\dagger - \\hat{a}\\right)\n\\]"
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-commutators",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-commutators",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "3 Key Commutation Relations",
+    "text": "3 Key Commutation Relations\nThe fundamental commutator \\([\\hat{x}, \\hat{p}] = i\\hbar\\) implies:\n\nComputing \\([\\hat{a}, \\hat{a}^\\dagger]\\):\n\\[\n[\\hat{a}, \\hat{a}^\\dagger] = \\frac{m\\omega}{2\\hbar}\\left[\\hat{x} + \\frac{i\\hat{p}}{m\\omega},\\, \\hat{x} - \\frac{i\\hat{p}}{m\\omega}\\right]\n\\]\n\\[\n= \\frac{m\\omega}{2\\hbar}\\left([\\hat{x}, -\\frac{i\\hat{p}}{m\\omega}] + [\\frac{i\\hat{p}}{m\\omega}, \\hat{x}]\\right)\n\\]\n\\[\n= \\frac{m\\omega}{2\\hbar}\\left(-\\frac{i}{m\\omega}[\\hat{x}, \\hat{p}] + \\frac{i}{m\\omega}[\\hat{p}, \\hat{x}]\\right)\n\\]\n\\[\n= \\frac{m\\omega}{2\\hbar}\\left(-\\frac{i}{m\\omega}(i\\hbar) + \\frac{i}{m\\omega}(-i\\hbar)\\right)\n= \\frac{m\\omega}{2\\hbar} \\cdot \\frac{2\\hbar}{m\\omega} = 1\n\\]\n\n\\[\n\\boxed{[\\hat{a},\\, \\hat{a}^\\dagger] = 1}\n\\]\nThis single commutation relation encodes all the physics of the harmonic oscillator."
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-hamiltonian",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-hamiltonian",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "4 The Hamiltonian in Terms of \\(\\hat{a}\\) and \\(\\hat{a}^\\dagger\\)",
+    "text": "4 The Hamiltonian in Terms of \\(\\hat{a}\\) and \\(\\hat{a}^\\dagger\\)\n\nComputing \\(\\hat{a}^\\dagger\\hat{a}\\):\n\\[\n\\hat{a}^\\dagger\\hat{a} = \\frac{m\\omega}{2\\hbar}\\left(\\hat{x} - \\frac{i\\hat{p}}{m\\omega}\\right)\\left(\\hat{x} + \\frac{i\\hat{p}}{m\\omega}\\right)\n\\]\n\\[\n= \\frac{m\\omega}{2\\hbar}\\left(\\hat{x}^2 + \\frac{\\hat{p}^2}{m^2\\omega^2} + \\frac{i}{m\\omega}[\\hat{x}, \\hat{p}]\\right)\n\\]\n\\[\n= \\frac{m\\omega}{2\\hbar}\\left(\\hat{x}^2 + \\frac{\\hat{p}^2}{m^2\\omega^2} - \\frac{\\hbar}{m\\omega}\\right)\n\\]\n\\[\n= \\frac{1}{\\hbar\\omega}\\left(\\frac{\\hat{p}^2}{2m} + \\frac{m\\omega^2\\hat{x}^2}{2}\\right) - \\frac{1}{2}\n= \\frac{\\hat{H}}{\\hbar\\omega} - \\frac{1}{2}\n\\]\n\nSolving for \\(\\hat{H}\\):\n\\[\n\\boxed{\\hat{H} = \\hbar\\omega\\left(\\hat{a}^\\dagger\\hat{a} + \\frac{1}{2}\\right) = \\hbar\\omega\\left(\\hat{N} + \\frac{1}{2}\\right)}\n\\]\nwhere we defined the number operator:\n\\[\n\\hat{N} = \\hat{a}^\\dagger\\hat{a}\n\\]\nThe number operator is Hermitian (\\(\\hat{N}^\\dagger = \\hat{N}\\)) and its eigenvalues give the quantum number \\(n\\)."
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-spectrum",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-spectrum",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "5 Deriving the Spectrum Algebraically",
+    "text": "5 Deriving the Spectrum Algebraically\n\n5.1 Step 1: The Number Operator Has Non-Negative Eigenvalues\nLet \\(|\\nu\\rangle\\) be an eigenstate of \\(\\hat{N}\\) with eigenvalue \\(\\nu\\): \\(\\hat{N}|\\nu\\rangle = \\nu|\\nu\\rangle\\).\nThen: \\[\n\\nu = \\langle\\nu|\\hat{N}|\\nu\\rangle = \\langle\\nu|\\hat{a}^\\dagger\\hat{a}|\\nu\\rangle = \\|\\hat{a}|\\nu\\rangle\\|^2 \\geq 0\n\\]\nSo all eigenvalues of \\(\\hat{N}\\) are non-negative: \\(\\nu \\geq 0\\).\n\n\n5.2 Step 2: \\(\\hat{a}\\) Lowers the Eigenvalue by 1\n\nShow \\([\\hat{N}, \\hat{a}] = -\\hat{a}\\):\n\\[\n[\\hat{N}, \\hat{a}] = [\\hat{a}^\\dagger\\hat{a},\\, \\hat{a}] = \\hat{a}^\\dagger[\\hat{a}, \\hat{a}] + [\\hat{a}^\\dagger, \\hat{a}]\\hat{a} = 0 + (-1)\\hat{a} = -\\hat{a}\n\\]\nSimilarly, \\([\\hat{N}, \\hat{a}^\\dagger] = +\\hat{a}^\\dagger\\).\nNow, apply \\(\\hat{N}\\) to \\(\\hat{a}|\\nu\\rangle\\):\n\\[\n\\hat{N}\\left(\\hat{a}|\\nu\\rangle\\right) = (\\hat{a}\\hat{N} - \\hat{a})|\\nu\\rangle = \\hat{a}(\\nu|\\nu\\rangle) - \\hat{a}|\\nu\\rangle = (\\nu - 1)\\left(\\hat{a}|\\nu\\rangle\\right)\n\\]\n\nSo \\(\\hat{a}|\\nu\\rangle\\) is an eigenstate of \\(\\hat{N}\\) with eigenvalue \\(\\nu - 1\\):\n\\[\n\\hat{a}|\\nu\\rangle \\propto |\\nu - 1\\rangle\n\\]\n\\(\\hat{a}\\) lowers the quantum number by 1. It is the annihilation operator.\n\n\n5.3 Step 3: \\(\\hat{a}^\\dagger\\) Raises the Eigenvalue by 1\nSimilarly: \\(\\hat{a}^\\dagger|\\nu\\rangle \\propto |\\nu + 1\\rangle\\).\n\\(\\hat{a}^\\dagger\\) raises the quantum number by 1. It is the creation operator.\n\n\n5.4 Step 4: The Spectrum Must Be \\(n = 0, 1, 2, \\ldots\\)\nStarting from any eigenstate \\(|\\nu\\rangle\\), applying \\(\\hat{a}\\) repeatedly gives:\n\\[\n|\\nu\\rangle \\to |\\nu - 1\\rangle \\to |\\nu - 2\\rangle \\to \\cdots\n\\]\nBut all eigenvalues must be \\(\\geq 0\\). So there must be a lowest state \\(|0\\rangle\\) where the ladder terminates:\n\\[\n\\hat{a}|0\\rangle = 0 \\quad \\text{(the ground state is annihilated by } \\hat{a}\\text{)}\n\\]\nFrom this, \\(\\hat{N}|0\\rangle = \\hat{a}^\\dagger\\hat{a}|0\\rangle = 0\\), so \\(\\nu_0 = 0\\).\nApplying \\(\\hat{a}\\) to \\(|\\nu\\rangle\\) must land on \\(|0\\rangle\\) after \\(\\nu\\) steps, meaning \\(\\nu\\) must be a non-negative integer: \\(\\nu = n \\in \\{0, 1, 2, \\ldots\\}\\).\nThe energy eigenvalues are therefore:\n\\[\n\\boxed{E_n = \\hbar\\omega\\left(n + \\frac{1}{2}\\right), \\quad n = 0, 1, 2, \\ldots}\n\\]\nWe derived this with zero differential equations! Just algebra."
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-matrix-elements",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-matrix-elements",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "6 Matrix Elements and Normalization",
+    "text": "6 Matrix Elements and Normalization\n\n6.1 Normalization of Ladder Operations\nWe need to find the proportionality constants:\n\nComputing \\(\\|\\hat{a}|n\\rangle\\|^2\\):\n\\[\n\\|\\hat{a}|n\\rangle\\|^2 = \\langle n|\\hat{a}^\\dagger\\hat{a}|n\\rangle = \\langle n|\\hat{N}|n\\rangle = n\n\\]\nSo \\(\\hat{a}|n\\rangle = \\sqrt{n}|n-1\\rangle\\).\nComputing \\(\\|\\hat{a}^\\dagger|n\\rangle\\|^2\\):\n\\[\n\\|\\hat{a}^\\dagger|n\\rangle\\|^2 = \\langle n|\\hat{a}\\hat{a}^\\dagger|n\\rangle = \\langle n|(\\hat{N} + 1)|n\\rangle = n + 1\n\\]\nSo \\(\\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}|n+1\\rangle\\).\n\n\\[\n\\boxed{\\hat{a}|n\\rangle = \\sqrt{n}\\,|n-1\\rangle, \\qquad \\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}\\,|n+1\\rangle}\n\\]\n\n\n6.2 Building All States from the Ground State\nApplying \\(\\hat{a}^\\dagger\\) repeatedly to \\(|0\\rangle\\):\n\\[\n|n\\rangle = \\frac{(\\hat{a}^\\dagger)^n}{\\sqrt{n!}}\\,|0\\rangle\n\\]\n\nThe state \\(|n\\rangle\\) is a Fock state — a state with exactly \\(n\\) quanta of energy. In quantum optics, \\(|n\\rangle\\) is a state with exactly \\(n\\) photons. The operation \\(\\hat{a}^\\dagger\\) “creates” one photon, and \\(\\hat{a}\\) “destroys” one.\n\n\n\n6.3 Matrix Elements of \\(\\hat{x}\\) and \\(\\hat{p}\\)\nUsing \\(\\hat{x} = \\frac{x_0}{\\sqrt{2}}(\\hat{a} + \\hat{a}^\\dagger)\\):\n\\[\n\\langle m|\\hat{x}|n\\rangle = \\frac{x_0}{\\sqrt{2}}\\left(\\sqrt{n}\\,\\delta_{m,n-1} + \\sqrt{n+1}\\,\\delta_{m,n+1}\\right)\n\\]\nSo \\(\\hat{x}\\) only connects adjacent levels. Similarly for \\(\\hat{p}\\).\nUsing \\(\\hat{p} = \\frac{i\\hbar}{\\sqrt{2}\\,x_0}(\\hat{a}^\\dagger - \\hat{a})\\):\n\\[\n\\langle m|\\hat{p}|n\\rangle = \\frac{i\\hbar}{\\sqrt{2}\\,x_0}\\left(\\sqrt{n+1}\\,\\delta_{m,n+1} - \\sqrt{n}\\,\\delta_{m,n-1}\\right)\n\\]\nImportant: \\(\\langle n|\\hat{x}|n\\rangle = 0\\) and \\(\\langle n|\\hat{p}|n\\rangle = 0\\) for all \\(n\\). (No expectation value of position or momentum in energy eigenstates — they oscillate symmetrically.)\n\n\n6.4 Matrix Elements of \\(\\hat{x}^2\\) and \\(\\hat{p}^2\\)\n\\[\n\\hat{x}^2 = \\frac{x_0^2}{2}(\\hat{a} + \\hat{a}^\\dagger)^2 = \\frac{x_0^2}{2}\\left(\\hat{a}^2 + \\hat{a}^\\dagger{}^2 + 2\\hat{N} + 1\\right)\n\\]\nTaking the diagonal (\\(m = n\\)) matrix element:\n\\[\n\\langle n|\\hat{x}^2|n\\rangle = \\frac{x_0^2}{2}(2n + 1) = \\left(n + \\frac{1}{2}\\right)x_0^2 = \\frac{\\hbar}{m\\omega}\\left(n + \\frac{1}{2}\\right)\n\\]\nSimilarly:\n\\[\n\\langle n|\\hat{p}^2|n\\rangle = m\\hbar\\omega\\left(n + \\frac{1}{2}\\right)\n\\]"
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-uncertainty",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-uncertainty",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "7 The Uncertainty Principle in the QHO",
+    "text": "7 The Uncertainty Principle in the QHO\nUsing \\(\\langle\\hat{x}\\rangle = 0\\) and \\(\\langle\\hat{x}^2\\rangle = \\left(n + \\frac{1}{2}\\right)x_0^2\\):\n\\[\n(\\Delta x)_n = \\sqrt{\\langle\\hat{x}^2\\rangle - \\langle\\hat{x}\\rangle^2} = x_0\\sqrt{n + \\frac{1}{2}}\n\\]\n\\[\n(\\Delta p)_n = \\frac{\\hbar}{x_0}\\sqrt{n + \\frac{1}{2}}\n\\]\nTherefore:\n\\[\n\\Delta x\\, \\Delta p = \\hbar\\left(n + \\frac{1}{2}\\right) \\geq \\frac{\\hbar}{2}\n\\]\nThe ground state \\(n = 0\\) gives:\n\\[\n(\\Delta x)_0\\, (\\Delta p)_0 = \\frac{\\hbar}{2}\n\\]\n\nThe ground state of the QHO saturates the Heisenberg uncertainty principle!\n\\[(\\Delta x)_0\\,(\\Delta p)_0 = \\frac{\\hbar}{2}\\]\nThis is the minimum uncertainty product. The ground state is a minimum uncertainty state."
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-h-commutators",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-h-commutators",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "8 Commutators Involving \\(\\hat{H}\\)",
+    "text": "8 Commutators Involving \\(\\hat{H}\\)\nUsing \\(\\hat{H} = \\hbar\\omega(\\hat{N} + 1/2)\\) and \\([\\hat{N}, \\hat{a}] = -\\hat{a}\\):\n\\[\n[\\hat{H},\\, \\hat{a}] = -\\hbar\\omega\\,\\hat{a}\n\\]\n\\[\n[\\hat{H},\\, \\hat{a}^\\dagger] = +\\hbar\\omega\\,\\hat{a}^\\dagger\n\\]\n\\[\n[\\hat{H},\\, \\hat{x}] = \\frac{i\\hbar}{m}\\hat{p} \\qquad [\\hat{H},\\, \\hat{p}] = -im\\omega^2\\hbar\\,\\hat{x}\n\\]\nThese commutators are the quantum analog of Hamilton’s equations of motion. They will be crucial for time evolution."
+  },
+  {
+    "objectID": "Courses/QHO/03_ladder_operators.html#sec-summary",
+    "href": "Courses/QHO/03_ladder_operators.html#sec-summary",
+    "title": "Module 3: Ladder Operators — The Algebraic Shortcut",
+    "section": "9 Summary: The Ladder Operator Toolbox",
+    "text": "9 Summary: The Ladder Operator Toolbox\n\n\n\n\n\n\n\nObject\nDefinition / Formula\n\n\n\n\nAnnihilation operator\n\\(\\hat{a} = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(\\hat{x} + \\frac{i\\hat{p}}{m\\omega}\\right)\\)\n\n\nCreation operator\n\\(\\hat{a}^\\dagger = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(\\hat{x} - \\frac{i\\hat{p}}{m\\omega}\\right)\\)\n\n\nNumber operator\n\\(\\hat{N} = \\hat{a}^\\dagger\\hat{a}\\)\n\n\nHamiltonian\n\\(\\hat{H} = \\hbar\\omega(\\hat{N} + \\frac{1}{2})\\)\n\n\nFundamental commutator\n\\([\\hat{a}, \\hat{a}^\\dagger] = 1\\)\n\n\nAction on Fock states\n\\(\\hat{a}|n\\rangle = \\sqrt{n}|n-1\\rangle\\), \\(\\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}|n+1\\rangle\\)\n\n\n\\(\\hat{x}\\) in terms of \\(\\hat{a}\\)\n\\(\\hat{x} = \\frac{x_0}{\\sqrt{2}}(\\hat{a} + \\hat{a}^\\dagger)\\)\n\n\n\\(\\hat{p}\\) in terms of \\(\\hat{a}\\)\n\\(\\hat{p} = \\frac{i\\hbar}{\\sqrt{2}x_0}(\\hat{a}^\\dagger - \\hat{a})\\)\n\n\nBuild \\(|n\\rangle\\) from \\(|0\\rangle\\)\n\\(|n\\rangle = \\frac{(\\hat{a}^\\dagger)^n}{\\sqrt{n!}}|0\\rangle\\)\n\n\n\n\nBefore moving on, make sure you can:\n\nDefine \\(\\hat{a}\\) and \\(\\hat{a}^\\dagger\\) and invert to get \\(\\hat{x}\\) and \\(\\hat{p}\\).\nProve \\([\\hat{a}, \\hat{a}^\\dagger] = 1\\) from \\([\\hat{x}, \\hat{p}] = i\\hbar\\).\nExpress \\(\\hat{H}\\) in terms of \\(\\hat{N}\\).\nProve that \\(\\hat{a}|n\\rangle \\propto |n-1\\rangle\\) using commutators alone.\nWrite down \\(\\hat{a}|n\\rangle = \\sqrt{n}|n-1\\rangle\\) and \\(\\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}|n+1\\rangle\\).\nCompute \\(\\langle n|\\hat{x}^2|n\\rangle\\) and use it to find \\(\\Delta x\\) for eigenstate \\(|n\\rangle\\).\n\nBonus challenge: Compute \\(\\langle n|\\hat{x}^4|n\\rangle\\) using the ladder operators. This appears in perturbation theory.\n\n\n\n← Module 2: Quantization Next: Module 4 — Wavefunctions →"
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html",
+    "href": "Courses/QHO/02_quantization.html",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "",
+    "text": "← Module 1 | ↑ Course Index | Module 3 →"
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-canonical",
+    "href": "Courses/QHO/02_quantization.html#sec-canonical",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "1 The Recipe: Canonical Quantization",
+    "text": "1 The Recipe: Canonical Quantization\nIn Module 1, we saw that the classical harmonic oscillator has Hamiltonian:\n\\[\nH_{\\text{classical}} = \\frac{p^2}{2m} + \\frac{1}{2}m\\omega^2 x^2\n\\]\nwhere \\(x\\) is position and \\(p = m\\dot{x}\\) is momentum.\nThe procedure of canonical quantization is the recipe for turning a classical system into a quantum one:\n\n\n\n\n\n\nThe Canonical Quantization Rules\n\n\n\n\nPromote classical variables to operators: \\(x \\to \\hat{x}\\), \\(p \\to \\hat{p}\\)\nImpose the canonical commutation relation: \\[[\\hat{x},\\, \\hat{p}] = i\\hbar\\]\nThe Hamiltonian becomes an operator: \\(\\hat{H} = \\frac{\\hat{p}^2}{2m} + \\frac{1}{2}m\\omega^2\\hat{x}^2\\)\nThe state of the system is a wavefunction \\(\\psi(x,t)\\) obeying the Schrödinger equation: \\[i\\hbar\\frac{\\partial\\psi}{\\partial t} = \\hat{H}\\psi\\]\n\n\n\nThis is the postulate of quantum mechanics — we cannot derive it from classical mechanics. But it works spectacularly well for every physical system we’ve ever tested.\n\nTextbook reference: Shankar, Chapter 4; Griffiths Section 2.3; Cohen-Tannoudji Vol. 1, Chapter II.\n\n\n1.1 The Commutation Relation: What Does It Mean?\nThe classical Poisson bracket \\(\\{x, p\\}_{\\text{PB}} = 1\\) gets promoted to \\([\\hat{x}, \\hat{p}] = i\\hbar\\).\nIn the position representation (the most common choice), we represent: \\[\n\\hat{x} \\to x \\quad \\text{(multiply by } x\\text{)}, \\qquad \\hat{p} \\to -i\\hbar\\frac{d}{dx}\n\\]\nLet’s verify the commutator:\n\nVerification of \\([\\hat{x}, \\hat{p}] = i\\hbar\\):\nApply \\([\\hat{x}, \\hat{p}]\\) to an arbitrary function \\(f(x)\\):\n\\[\n[\\hat{x}, \\hat{p}]f = \\hat{x}(\\hat{p}f) - \\hat{p}(\\hat{x}f)\n= x\\left(-i\\hbar\\frac{df}{dx}\\right) - \\left(-i\\hbar\\right)\\frac{d(xf)}{dx}\n\\]\n\\[\n= -i\\hbar x f' + i\\hbar\\left(f + xf'\\right) = i\\hbar f\n\\]\nSince this holds for any \\(f(x)\\), we have \\([\\hat{x}, \\hat{p}] = i\\hbar\\). ✓"
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-schrodinger",
+    "href": "Courses/QHO/02_quantization.html#sec-schrodinger",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "2 The Quantum Hamiltonian and Schrödinger Equation",
+    "text": "2 The Quantum Hamiltonian and Schrödinger Equation\nThe quantum Hamiltonian for the harmonic oscillator is:\n\\[\n\\hat{H} = -\\frac{\\hbar^2}{2m}\\frac{d^2}{dx^2} + \\frac{1}{2}m\\omega^2 x^2\n\\]\nFor stationary states (energy eigenstates), we seek solutions \\(\\psi_n(x)\\) such that:\n\\[\n\\hat{H}\\psi_n = E_n \\psi_n\n\\]\nThis gives the time-independent Schrödinger equation (TISE):\n\\[\n\\boxed{-\\frac{\\hbar^2}{2m}\\frac{d^2\\psi}{dx^2} + \\frac{1}{2}m\\omega^2 x^2\\psi = E\\psi}\n\\]\nOur job: find all \\(E\\) values for which this equation has normalizable solutions."
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-analytic",
+    "href": "Courses/QHO/02_quantization.html#sec-analytic",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "3 Solving the TISE: The Analytic Method",
+    "text": "3 Solving the TISE: The Analytic Method\n\n3.1 Dimensional Analysis: Natural Units\nBefore solving, let’s introduce natural dimensionless variables. The problem has two natural scales:\n\nLength scale: \\(x_0 = \\sqrt{\\dfrac{\\hbar}{m\\omega}}\\) (called the oscillator length or zero-point length)\nEnergy scale: \\(\\hbar\\omega\\)\n\nDefine the dimensionless variable: \\[\n\\xi = \\frac{x}{x_0} = x\\sqrt{\\frac{m\\omega}{\\hbar}}\n\\]\nAnd the dimensionless energy: \\[\n\\varepsilon = \\frac{2E}{\\hbar\\omega}\n\\]\nThe TISE becomes: \\[\n\\frac{d^2\\psi}{d\\xi^2} + (\\varepsilon - \\xi^2)\\psi = 0\n\\]\n\nThe oscillator length \\(x_0 = \\sqrt{\\hbar/m\\omega}\\) sets the quantum scale of fluctuations. For a typical molecule like \\(\\text{N}_2\\) with \\(\\omega \\sim 10^{14}\\) rad/s, \\(x_0 \\sim 10^{-11}\\) m — this is the scale of quantum vibrations around the bond length.\n\n\n\n3.2 Asymptotic Behavior for Large \\(\\xi\\)\nFor \\(|\\xi| \\to \\infty\\), the equation becomes \\(\\frac{d^2\\psi}{d\\xi^2} \\approx \\xi^2\\psi\\).\nThe two independent solutions are \\(\\psi \\sim e^{+\\xi^2/2}\\) (diverges, unphysical) and \\(\\psi \\sim e^{-\\xi^2/2}\\) (decays, physical).\nSo we write: \\[\n\\psi(\\xi) = h(\\xi)\\, e^{-\\xi^2/2}\n\\]\nwhere \\(h(\\xi)\\) is a function that grows more slowly than \\(e^{\\xi^2/2}\\).\n\n\n3.3 The Hermite Differential Equation\nSubstituting \\(\\psi = h e^{-\\xi^2/2}\\) into the TISE:\n\nSubstitution:\n\\[\\frac{d\\psi}{d\\xi} = h'e^{-\\xi^2/2} - \\xi h e^{-\\xi^2/2}\\]\n\\[\\frac{d^2\\psi}{d\\xi^2} = h''e^{-\\xi^2/2} - 2\\xi h'e^{-\\xi^2/2} + (\\xi^2 - 1)he^{-\\xi^2/2}\\]\nPlugging into \\(\\psi'' + (\\varepsilon - \\xi^2)\\psi = 0\\) and dividing by \\(e^{-\\xi^2/2}\\):\n\\[h'' - 2\\xi h' + (\\varepsilon - 1)h = 0\\]\nThis is the Hermite differential equation with parameter \\(\\lambda = \\varepsilon - 1\\).\n\n\n\n3.4 Power Series Solution\nTry \\(h(\\xi) = \\sum_{j=0}^{\\infty} a_j \\xi^j\\). Substituting:\n\\[\n\\sum_{j=0}^{\\infty}\\left[(j+2)(j+1)a_{j+2} - 2ja_j + (\\varepsilon - 1)a_j\\right]\\xi^j = 0\n\\]\nEach coefficient must vanish, giving the recursion relation:\n\\[\n\\boxed{a_{j+2} = \\frac{2j + 1 - \\varepsilon}{(j+1)(j+2)}\\, a_j}\n\\]\n\n\n3.5 The Quantization Condition\nFor large \\(j\\), if the series doesn’t terminate, \\(a_{j+2}/a_j \\to 2/j\\), which makes \\(h(\\xi) \\sim e^{\\xi^2}\\) — causing \\(\\psi \\sim e^{\\xi^2/2}\\), which is not normalizable.\nThe series must terminate. This happens when \\(2j + 1 - \\varepsilon = 0\\) for some non-negative integer \\(j = n\\):\n\\[\n\\varepsilon = 2n + 1 \\quad \\Longrightarrow \\quad \\frac{2E}{\\hbar\\omega} = 2n + 1\n\\]\n\\[\n\\boxed{E_n = \\left(n + \\frac{1}{2}\\right)\\hbar\\omega, \\qquad n = 0, 1, 2, 3, \\ldots}\n\\]\n\nThe Energy Spectrum of the Quantum Harmonic Oscillator\n\\[E_n = \\hbar\\omega\\!\\left(n + \\tfrac{1}{2}\\right), \\quad n = 0, 1, 2, 3, \\ldots\\]\nEnergy is quantized in steps of \\(\\hbar\\omega\\). The spectrum is equally spaced!"
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-spectrum",
+    "href": "Courses/QHO/02_quantization.html#sec-spectrum",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "4 The Energy Spectrum: Key Features",
+    "text": "4 The Energy Spectrum: Key Features\n\n4.1 Zero-Point Energy\nThe lowest energy state is \\(n = 0\\):\n\\[\nE_0 = \\frac{1}{2}\\hbar\\omega\n\\]\nThis is non-zero! Unlike the classical oscillator (which can have zero energy), the quantum oscillator always has at least this energy. This is the zero-point energy (ZPE).\n\nWhy zero-point energy? The uncertainty principle demands that we cannot simultaneously know position and momentum exactly. If the oscillator were at rest at \\(x = 0\\) with \\(p = 0\\), that would violate \\(\\Delta x\\, \\Delta p \\geq \\hbar/2\\). The zero-point energy is the quantum price of the uncertainty principle.\n\nPhysical manifestations of zero-point energy:\n\nLiquid helium never freezes at atmospheric pressure (even at \\(T = 0\\)) — the ZPE keeps it liquid\nCasimir effect — two uncharged metal plates attract due to vacuum fluctuations\nLamb shift — small but measurable correction to hydrogen energy levels\n\n\n\n4.2 Equally Spaced Levels\nThe levels \\(E_0, E_1, E_2, \\ldots\\) are equally spaced with spacing \\(\\hbar\\omega\\). This is why:\n\nDiatomic molecules absorb/emit light at harmonics of \\(\\omega\\)\nA photon of energy \\(\\hbar\\omega\\) can excite the oscillator from \\(n\\) to \\(n+1\\)\nLaser light at frequency \\(\\omega\\) can be resonantly absorbed"
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-hermite",
+    "href": "Courses/QHO/02_quantization.html#sec-hermite",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "5 The Hermite Polynomials",
+    "text": "5 The Hermite Polynomials\nWhen the series terminates at \\(j = n\\), \\(h(\\xi)\\) becomes the Hermite polynomial \\(H_n(\\xi)\\):\n\\[\nH_0(\\xi) = 1\n\\] \\[\nH_1(\\xi) = 2\\xi\n\\] \\[\nH_2(\\xi) = 4\\xi^2 - 2\n\\] \\[\nH_3(\\xi) = 8\\xi^3 - 12\\xi\n\\] \\[\nH_4(\\xi) = 16\\xi^4 - 48\\xi^2 + 12\n\\]\nRodrigues formula: \\[\nH_n(\\xi) = (-1)^n e^{\\xi^2}\\frac{d^n}{d\\xi^n}e^{-\\xi^2}\n\\]\nGenerating function: \\[\ne^{2\\xi t - t^2} = \\sum_{n=0}^{\\infty} \\frac{H_n(\\xi)}{n!}\\, t^n\n\\]\nRecurrence relation: \\[\nH_{n+1}(\\xi) = 2\\xi H_n(\\xi) - 2n H_{n-1}(\\xi)\n\\]\nParity: \\(H_n(-\\xi) = (-1)^n H_n(\\xi)\\) — so even \\(n\\) gives even functions, odd \\(n\\) gives odd functions.\n\nTextbook reference: Griffiths Section 2.3; Shankar Section 7.3."
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-wavefunctions",
+    "href": "Courses/QHO/02_quantization.html#sec-wavefunctions",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "6 The Normalized Wavefunctions",
+    "text": "6 The Normalized Wavefunctions\nNormalizing \\(\\psi_n = A_n H_n(\\xi)e^{-\\xi^2/2}\\) using \\(\\int_{-\\infty}^{\\infty}H_n^2 e^{-\\xi^2}d\\xi = 2^n n!\\sqrt{\\pi}\\):\n\\[\n\\boxed{\\psi_n(x) = \\left(\\frac{m\\omega}{\\pi\\hbar}\\right)^{1/4} \\frac{1}{\\sqrt{2^n n!}} H_n\\!\\left(\\sqrt{\\frac{m\\omega}{\\hbar}}\\,x\\right) e^{-m\\omega x^2/2\\hbar}}\n\\]\nLet’s write out the first few explicitly (using \\(x_0 = \\sqrt{\\hbar/m\\omega}\\) and \\(\\xi = x/x_0\\)):\n\\[\n\\psi_0(x) = \\left(\\frac{1}{\\pi x_0^2}\\right)^{1/4} e^{-x^2/2x_0^2}\n\\]\n\\[\n\\psi_1(x) = \\left(\\frac{1}{\\pi x_0^2}\\right)^{1/4} \\sqrt{2}\\,\\frac{x}{x_0}\\, e^{-x^2/2x_0^2}\n\\]\n\\[\n\\psi_2(x) = \\left(\\frac{1}{\\pi x_0^2}\\right)^{1/4} \\frac{1}{\\sqrt{2}}\\left(2\\frac{x^2}{x_0^2} - 1\\right) e^{-x^2/2x_0^2}\n\\]\n\n\n\n\n\n\nParity of the Wavefunctions\n\n\n\n\n\\(\\psi_n(-x) = (-1)^n \\psi_n(x)\\)\nEven \\(n\\): even wavefunctions\nOdd \\(n\\): odd wavefunctions\nThis follows from the parity of \\(H_n\\) and the symmetry of \\(V(x) = V(-x)\\).\n\n\n\n\n6.1 Orthonormality\nThe energy eigenstates form a complete orthonormal set:\n\\[\n\\int_{-\\infty}^{\\infty} \\psi_m^*(x)\\psi_n(x)\\,dx = \\delta_{mn}\n\\]\nThis means: - \\(m = n\\): \\(\\int|\\psi_n|^2\\,dx = 1\\) (normalized) - \\(m \\neq n\\): \\(\\int\\psi_m^*\\psi_n\\,dx = 0\\) (orthogonal)\nAny quantum state can be written as \\(\\psi(x) = \\sum_n c_n \\psi_n(x)\\) with \\(\\sum_n |c_n|^2 = 1\\)."
+  },
+  {
+    "objectID": "Courses/QHO/02_quantization.html#sec-comparison",
+    "href": "Courses/QHO/02_quantization.html#sec-comparison",
+    "title": "Module 2: Quantizing the Oscillator",
+    "section": "7 Comparison: Classical vs. Quantum",
+    "text": "7 Comparison: Classical vs. Quantum\n\n\n\n\n\n\n\n\nProperty\nClassical Oscillator\nQuantum Oscillator\n\n\n\n\nAllowed energies\nAny \\(E \\geq 0\\)\n\\(E_n = (n+\\frac{1}{2})\\hbar\\omega\\) only\n\n\nGround state energy\n\\(E = 0\\) (at rest)\n\\(E_0 = \\frac{1}{2}\\hbar\\omega \\neq 0\\)\n\n\nGround state position\n\\(x = 0\\) (definite)\n\\(\\langle x\\rangle = 0\\), \\(\\langle x^2\\rangle = x_0^2/2\\)\n\n\nLevel spacing\nContinuous\nEqual spacing \\(\\hbar\\omega\\)\n\n\nTunneling\nCannot go past turning points\nExponentially small probability beyond\n\n\n\n\n\n\n\n\n\nThe Classical Limit\n\n\n\nAt large \\(n\\), \\(E_n \\approx n\\hbar\\omega \\gg \\hbar\\omega\\), and the quantum energy spacing \\(\\hbar\\omega\\) becomes negligible compared to \\(E_n\\). The energy spectrum looks continuous — this is the classical limit.\nAlso, for large \\(n\\), \\(|\\psi_n(x)|^2\\) oscillates rapidly and its envelope matches the classical probability distribution \\(P_{\\text{cl}}(x) \\propto 1/\\sqrt{A^2 - x^2}\\) (where \\(A\\) is the classical turning point). This is the Bohr correspondence principle in action.\n\n\n\n\nBefore moving on, make sure you can:\n\nState the canonical quantization rules and write down \\(\\hat{H}\\) for the QHO.\nWrite down the TISE for the QHO and explain why solutions must terminate.\nState the energy eigenvalues \\(E_n = (n + \\frac{1}{2})\\hbar\\omega\\) and explain why \\(n=0\\) still has energy.\nWrite \\(\\psi_0(x)\\) and \\(\\psi_1(x)\\) from memory.\nWhat is the parity of \\(\\psi_n\\)?\n\nA deep question: The Hermite polynomial \\(H_n\\) has exactly \\(n\\) nodes (zeros). Why? (Hint: think about the node theorem for bound-state wavefunctions and the fact that higher eigenstates are orthogonal to lower ones.)\n\n\n\n← Module 1: Why Oscillators? Next: Module 3 — Ladder Operators →"
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html",
+    "href": "Courses/QHO/05_time_evolution.html",
+    "title": "Module 5: Time Evolution",
+    "section": "",
+    "text": "← Module 4 | ↑ Course Index | Module 6 →"
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-tdse",
+    "href": "Courses/QHO/05_time_evolution.html#sec-tdse",
+    "title": "Module 5: Time Evolution",
+    "section": "1 The Time-Dependent Schrödinger Equation",
+    "text": "1 The Time-Dependent Schrödinger Equation\nEverything we’ve done so far found the stationary states — the energy eigenstates \\(|n\\rangle\\) that don’t change shape over time (only their phase oscillates). But a general quantum state is a superposition, and it does change over time.\nThe full time-dependent Schrödinger equation (TDSE) is:\n\\[\ni\\hbar\\frac{\\partial}{\\partial t}|\\Psi(t)\\rangle = \\hat{H}|\\Psi(t)\\rangle\n\\]\n\nTextbook reference: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III."
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-energy-eigenstates",
+    "href": "Courses/QHO/05_time_evolution.html#sec-energy-eigenstates",
+    "title": "Module 5: Time Evolution",
+    "section": "2 Time Evolution of Energy Eigenstates",
+    "text": "2 Time Evolution of Energy Eigenstates\nFor an energy eigenstate \\(|n\\rangle\\):\n\\[\ni\\hbar\\frac{\\partial}{\\partial t}|n,t\\rangle = E_n|n,t\\rangle\n\\]\nThis integrates immediately:\n\\[\n|n,t\\rangle = e^{-iE_nt/\\hbar}|n\\rangle = e^{-i\\omega(n+1/2)t}|n\\rangle\n\\]\nThe only effect of time evolution on an energy eigenstate is a global phase \\(e^{-i\\omega(n+1/2)t}\\). Global phases have no physical consequence: \\(|\\psi(t)|^2 = |\\psi(0)|^2\\) for all \\(t\\).\n\nThis is why energy eigenstates are called stationary states — all observable quantities are time-independent in these states. The energy eigenstate doesn’t “do anything.”\nThis doesn’t mean nothing is happening — the wavefunction is rotating in the complex plane at frequency \\((n + \\frac{1}{2})\\omega\\). But since we only measure \\(|\\psi|^2\\), we can’t see this rotation."
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-time-operator",
+    "href": "Courses/QHO/05_time_evolution.html#sec-time-operator",
+    "title": "Module 5: Time Evolution",
+    "section": "3 The Time Evolution Operator",
+    "text": "3 The Time Evolution Operator\nThe formal solution to the TDSE is:\n\\[\n|\\Psi(t)\\rangle = \\hat{U}(t)|\\Psi(0)\\rangle, \\quad \\hat{U}(t) = e^{-i\\hat{H}t/\\hbar}\n\\]\nFor the QHO, we can write this in the Fock basis:\n\\[\n\\hat{U}(t) = e^{-i\\omega(\\hat{N}+1/2)t} = e^{-i\\omega t/2}\\, e^{-i\\omega t\\hat{N}}\n\\]\nSince \\(\\hat{N}|n\\rangle = n|n\\rangle\\):\n\\[\n\\hat{U}(t)|n\\rangle = e^{-i\\omega t(n+1/2)}|n\\rangle\n\\]\nThe key identity: \\(e^{-i\\omega t\\hat{N}}\\hat{a} = \\hat{a}e^{-i\\omega t(\\hat{N}-1)} = e^{-i\\omega t}\\hat{a}e^{-i\\omega t\\hat{N}}\\), or:\n\\[\n\\hat{U}(t)\\hat{a}\\hat{U}^\\dagger(t) = e^{-i\\omega t}\\hat{a}\n\\]\nThis means the ladder operators in the Heisenberg picture rotate:\n\\[\n\\hat{a}(t) = e^{-i\\omega t}\\hat{a}(0), \\qquad \\hat{a}^\\dagger(t) = e^{+i\\omega t}\\hat{a}^\\dagger(0)\n\\]"
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-superposition",
+    "href": "Courses/QHO/05_time_evolution.html#sec-superposition",
+    "title": "Module 5: Time Evolution",
+    "section": "4 Time Evolution of Superposition States",
+    "text": "4 Time Evolution of Superposition States\nA general initial state is a superposition:\n\\[\n|\\Psi(0)\\rangle = \\sum_{n=0}^{\\infty} c_n|n\\rangle, \\quad \\sum_n |c_n|^2 = 1\n\\]\nTime evolution:\n\\[\n|\\Psi(t)\\rangle = \\sum_{n=0}^{\\infty} c_n e^{-i\\omega(n+1/2)t}|n\\rangle\n\\]\nIn position space:\n\\[\n\\Psi(x,t) = \\sum_{n=0}^{\\infty} c_n e^{-i\\omega(n+1/2)t}\\psi_n(x)\n\\]\n\n4.1 Example: Superposition of \\(|0\\rangle\\) and \\(|1\\rangle\\)\nConsider: \\[\n|\\Psi(0)\\rangle = \\frac{1}{\\sqrt{2}}\\left(|0\\rangle + |1\\rangle\\right)\n\\]\nTime evolution: \\[\n|\\Psi(t)\\rangle = \\frac{e^{-i\\omega t/2}}{\\sqrt{2}}\\left(|0\\rangle + e^{-i\\omega t}|1\\rangle\\right)\n\\]\nThe expectation value of position:\n\n\\[\n\\langle\\hat{x}\\rangle(t) = \\frac{x_0}{\\sqrt{2}}\\langle\\Psi(t)|(\\hat{a} + \\hat{a}^\\dagger)|\\Psi(t)\\rangle\n\\]\nThe cross terms survive: \\(\\langle 0|\\hat{a}|1\\rangle = 1\\), \\(\\langle 1|\\hat{a}^\\dagger|0\\rangle = 1\\).\n\\[\n\\langle\\hat{x}\\rangle(t) = \\frac{x_0}{\\sqrt{2}}\\cdot\\frac{1}{2}\\cdot 2\\cos(\\omega t) = \\frac{x_0}{\\sqrt{2}}\\cos(\\omega t)\n\\]\n\nThe expectation value of position oscillates at frequency \\(\\omega\\) — like a classical oscillator!"
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-ehrenfest",
+    "href": "Courses/QHO/05_time_evolution.html#sec-ehrenfest",
+    "title": "Module 5: Time Evolution",
+    "section": "5 Ehrenfest’s Theorem",
+    "text": "5 Ehrenfest’s Theorem\n\n5.1 General Statement\nEhrenfest’s theorem says that expectation values obey classical equations of motion:\n\\[\n\\frac{d}{dt}\\langle\\hat{A}\\rangle = \\frac{i}{\\hbar}\\langle[\\hat{H}, \\hat{A}]\\rangle + \\left\\langle\\frac{\\partial\\hat{A}}{\\partial t}\\right\\rangle\n\\]\nFor time-independent operators in the QHO:\n\\[\n\\frac{d}{dt}\\langle\\hat{x}\\rangle = \\frac{i}{\\hbar}\\langle[\\hat{H}, \\hat{x}]\\rangle = \\frac{\\langle\\hat{p}\\rangle}{m}\n\\]\n\\[\n\\frac{d}{dt}\\langle\\hat{p}\\rangle = \\frac{i}{\\hbar}\\langle[\\hat{H}, \\hat{p}]\\rangle = -m\\omega^2\\langle\\hat{x}\\rangle\n\\]\nCombined: \\[\n\\frac{d^2}{dt^2}\\langle\\hat{x}\\rangle = -\\omega^2\\langle\\hat{x}\\rangle\n\\]\nThis is exactly Newton’s law for the harmonic oscillator! The center of the wavepacket \\(\\langle\\hat{x}\\rangle\\) oscillates like a classical particle.\n\nEhrenfest’s Theorem for the QHO:\n\\[\\frac{d^2}{dt^2}\\langle\\hat{x}\\rangle = -\\omega^2\\langle\\hat{x}\\rangle\\]\nThe quantum expectation value always satisfies the classical equation of motion — for any quantum state!\n\n\n\n5.2 Ehrenfest in the Heisenberg Picture\nIn the Heisenberg picture, operators evolve:\n\\[\n\\hat{x}(t) = x_0\\cos(\\omega t)\\,\\hat{x}(0) + \\frac{\\sin(\\omega t)}{m\\omega}\\hat{p}(0)\n\\]\n\\[\n\\hat{p}(t) = -m\\omega\\sin(\\omega t)\\,\\hat{x}(0) + \\cos(\\omega t)\\,\\hat{p}(0)\n\\]\nThis is exactly the classical solution \\(x(t) = x_0\\cos\\omega t + \\frac{p_0}{m\\omega}\\sin\\omega t\\) promoted to operators. The QHO Heisenberg equations are linear, which is why they have exact classical analogs."
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-revivals",
+    "href": "Courses/QHO/05_time_evolution.html#sec-revivals",
+    "title": "Module 5: Time Evolution",
+    "section": "6 Quantum Revivals",
+    "text": "6 Quantum Revivals\n\n6.1 When Superpositions Come Back\nFor a general superposition \\(|\\Psi(t)\\rangle = \\sum_n c_n e^{-in\\omega t}|n\\rangle\\) (dropping the common phase \\(e^{-i\\omega t/2}\\)):\nThe state returns exactly to itself when all phases complete full rotations:\n\\[\ne^{-in\\omega T} = 1 \\text{ for all } n \\quad \\Rightarrow \\quad T = \\frac{2\\pi}{\\omega}\n\\]\nThis is the classical period — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time \\(T = 2\\pi/\\omega\\).\n\n\n\n\n\n\nThis is Special to the QHO\n\n\n\nFor a particle in a box, the energy levels go as \\(n^2\\), so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period.\nThe QHO is special: its equally spaced energy levels (spacing \\(\\hbar\\omega\\)) mean all phase factors are integer multiples of \\(e^{-i\\omega t}\\), guaranteeing exact periodicity."
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-heisenberg",
+    "href": "Courses/QHO/05_time_evolution.html#sec-heisenberg",
+    "title": "Module 5: Time Evolution",
+    "section": "7 The Heisenberg Picture: Operators Evolve, States Don’t",
+    "text": "7 The Heisenberg Picture: Operators Evolve, States Don’t\nIn the Heisenberg picture, the time dependence is placed on operators rather than states:\n\\[\n\\hat{a}_H(t) = e^{i\\hat{H}t/\\hbar}\\,\\hat{a}\\,e^{-i\\hat{H}t/\\hbar} = e^{-i\\omega t}\\hat{a}\n\\]\n\\[\n\\hat{a}^\\dagger_H(t) = e^{+i\\omega t}\\hat{a}^\\dagger\n\\]\nThe position and momentum operators: \\[\n\\hat{x}_H(t) = \\frac{x_0}{\\sqrt{2}}\\left(e^{-i\\omega t}\\hat{a} + e^{+i\\omega t}\\hat{a}^\\dagger\\right)\n\\] \\[\n= x_0\\cos(\\omega t)\\,\\hat{x}(0) + \\frac{\\sin(\\omega t)}{m\\omega}\\hat{p}(0)\n\\]\nThis is the quantum oscillator in the Heisenberg picture — it oscillates exactly like the classical oscillator."
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-wigner",
+    "href": "Courses/QHO/05_time_evolution.html#sec-wigner",
+    "title": "Module 5: Time Evolution",
+    "section": "8 The Wigner Function: Phase-Space Quantum Mechanics",
+    "text": "8 The Wigner Function: Phase-Space Quantum Mechanics\n\n8.1 What Is the Wigner Function?\nIn classical mechanics, we can define a probability distribution in phase space \\(f(x, p)\\). In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the Wigner function:\n\\[\nW(x, p) = \\frac{1}{\\pi\\hbar}\\int_{-\\infty}^{\\infty} \\psi^*\\!\\left(x + y\\right)\\psi\\left(x - y\\right) e^{2ipy/\\hbar}\\,dy\n\\]\nProperties of \\(W(x,p)\\):\n\nReal: \\(W(x,p)\\) is always real\nMarginals: \\(\\int W\\,dp = |\\psi(x)|^2\\) and \\(\\int W\\,dx = |\\phi(p)|^2\\)\nNot always positive: \\(W\\) can be negative in some regions (a signature of quantum behavior)\nArea normalization: \\(\\int\\!\\!\\int W(x,p)\\,dx\\,dp = 1\\)\n\n\n\n8.2 Wigner Function of the Ground State\nFor \\(\\psi_0 = (\\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}\\):\n\\[\nW_0(x,p) = \\frac{1}{\\pi\\hbar}\\,e^{-x^2/x_0^2 - p^2 x_0^2/\\hbar^2}\n\\]\nThis is a Gaussian in phase space — entirely positive! The ground state is the most classical-looking quantum state.\n\n\n8.3 Wigner Function of Excited States\nFor excited states \\(|n\\rangle\\), the Wigner function is:\n\\[\nW_n(x,p) = \\frac{(-1)^n}{\\pi\\hbar}\\,L_n\\!\\left(\\frac{2r^2}{x_0^2}\\right)\\,e^{-r^2/x_0^2}\n\\]\nwhere \\(r^2 = x^2 + p^2 x_0^2/\\hbar^2\\) and \\(L_n\\) are Laguerre polynomials.\nKey feature: for \\(n \\geq 1\\), \\(W_n\\) takes negative values — a purely quantum signature. The negative regions appear as rings (for \\(n = 1\\)) or more complex structures for higher \\(n\\).\n\nThe Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via homodyne tomography) is a standard experimental technique. Negative values of \\(W\\) are direct evidence of non-classical states."
+  },
+  {
+    "objectID": "Courses/QHO/05_time_evolution.html#sec-summary",
+    "href": "Courses/QHO/05_time_evolution.html#sec-summary",
+    "title": "Module 5: Time Evolution",
+    "section": "9 Time Evolution of Expectation Values: Summary",
+    "text": "9 Time Evolution of Expectation Values: Summary\nFor a general state \\(|\\Psi(t)\\rangle = \\sum_n c_n e^{-i\\omega(n+1/2)t}|n\\rangle\\):\n\n\n\n\n\n\n\nQuantity\nTime dependence\n\n\n\n\n\\(\\langle\\hat{x}\\rangle(t)\\)\nOscillates at \\(\\omega\\)\n\n\n\\(\\langle\\hat{p}\\rangle(t)\\)\nOscillates at \\(\\omega\\), \\(90°\\) out of phase\n\n\n\\(\\langle\\hat{x}^2\\rangle(t)\\)\nOscillates at \\(2\\omega\\) and constant\n\n\n\\(\\langle\\hat{H}\\rangle\\)\nConstant (energy conservation)\n\n\n\\(\\langle\\hat{N}\\rangle\\)\nConstant\n\n\nPeriod of full return\n\\(T = 2\\pi/\\omega\\)\n\n\n\n\nBefore moving on, make sure you can:\n\nWrite the time evolution of an energy eigenstate \\(|n\\rangle\\).\nProve that \\(\\langle\\hat{x}\\rangle(t)\\) oscillates classically for any state.\nState Ehrenfest’s theorem for the QHO and verify it gives Newton’s law.\nExplain why the QHO state returns exactly after \\(T = 2\\pi/\\omega\\).\nDefine the Wigner function and state its key properties.\nWhy can the Wigner function be negative? What does this mean physically?\n\nAdvanced: Compute the Wigner function for \\(|1\\rangle\\) and show it has negative values.\n\n\n\n← Module 4: Wavefunctions Next: Module 6 — Coherent States →"
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html",
+    "href": "Courses/QHO/07_squeezed_states.html",
+    "title": "Module 7: Squeezed States",
+    "section": "",
+    "text": "← Module 6 | ↑ Course Index | Module 8 →"
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-sql",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-sql",
+    "title": "Module 7: Squeezed States",
+    "section": "1 The Standard Quantum Limit",
+    "text": "1 The Standard Quantum Limit\nIn Module 6, we found that coherent states saturate the Heisenberg uncertainty principle:\n\\[\n\\Delta x\\,\\Delta p = \\frac{\\hbar}{2}, \\quad \\text{with } \\Delta x = \\frac{x_0}{\\sqrt{2}},\\; \\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}\n\\]\nThe noise is symmetric — equal uncertainty in \\(x\\) and \\(p\\) (in natural units). This symmetric minimum-uncertainty state defines the Standard Quantum Limit (SQL).\nBut the uncertainty principle only requires the product \\(\\Delta x\\,\\Delta p \\geq \\hbar/2\\). There is no constraint on the individual uncertainties!\nCould we make a state with \\(\\Delta x &lt; x_0/\\sqrt{2}\\) (sub-SQL position noise)?\nYes — at the cost of \\(\\Delta p &gt; \\hbar/\\sqrt{2}x_0\\) (super-SQL momentum noise). The product still satisfies \\(\\Delta x\\,\\Delta p \\geq \\hbar/2\\). Such states are called squeezed states.\n\nTextbook reference: Cohen-Tannoudji, Photons and Atoms, Chapter 5; Walls & Milburn, Quantum Optics (the definitive quantum optics textbook)."
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-squeeze",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-squeeze",
+    "title": "Module 7: Squeezed States",
+    "section": "2 The Squeeze Operator",
+    "text": "2 The Squeeze Operator\n\n2.1 Quadrature Operators\nFirst, let’s define the quadrature operators (dimensionless position and momentum):\n\\[\n\\hat{X}_1 = \\frac{\\hat{a} + \\hat{a}^\\dagger}{2}, \\qquad \\hat{X}_2 = \\frac{\\hat{a} - \\hat{a}^\\dagger}{2i}\n\\]\nThese satisfy \\([\\hat{X}_1, \\hat{X}_2] = \\frac{i}{2}\\), giving \\(\\Delta X_1\\,\\Delta X_2 \\geq \\frac{1}{4}\\).\nFor a coherent state: \\(\\Delta X_1 = \\Delta X_2 = \\frac{1}{2}\\) (equal noise).\n\n\n2.2 Defining the Squeeze Operator\nThe squeeze operator is:\n\\[\n\\hat{S}(\\xi) = \\exp\\!\\left(\\frac{1}{2}\\xi^*\\hat{a}^2 - \\frac{1}{2}\\xi\\hat{a}^{\\dagger 2}\\right), \\quad \\xi = r e^{i\\theta} \\in \\mathbb{C}\n\\]\nwhere \\(r \\geq 0\\) is the squeezing parameter and \\(\\theta\\) is the squeezing angle.\nProperties of \\(\\hat{S}(\\xi)\\):\n\nUnitary: \\(\\hat{S}^\\dagger = \\hat{S}^{-1} = \\hat{S}(-\\xi)\\)\n\\(\\hat{S}^\\dagger(\\xi)\\hat{a}\\hat{S}(\\xi) = \\hat{a}\\cosh r - \\hat{a}^\\dagger e^{i\\theta}\\sinh r\\) (Bogoliubov transformation)\n\\(\\hat{S}^\\dagger(\\xi)\\hat{a}^\\dagger\\hat{S}(\\xi) = \\hat{a}^\\dagger\\cosh r - \\hat{a}\\,e^{-i\\theta}\\sinh r\\)\n\n\n\n2.3 Action on Quadratures\nFor \\(\\theta = 0\\) (real squeezing, \\(\\xi = r\\)):\n\\[\n\\hat{S}^\\dagger(r)\\hat{X}_1\\hat{S}(r) = e^{-r}\\hat{X}_1, \\qquad \\hat{S}^\\dagger(r)\\hat{X}_2\\hat{S}(r) = e^{+r}\\hat{X}_2\n\\]\nThe squeeze operator contracts one quadrature by \\(e^{-r}\\) and expands the other by \\(e^{+r}\\)."
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-squeezed-vacuum",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-squeezed-vacuum",
+    "title": "Module 7: Squeezed States",
+    "section": "3 The Squeezed Vacuum State",
+    "text": "3 The Squeezed Vacuum State\nThe simplest squeezed state is the squeezed vacuum:\n\\[\n|0, \\xi\\rangle = \\hat{S}(\\xi)|0\\rangle\n\\]\nFor real \\(\\xi = r\\), the uncertainties are:\n\\[\n\\Delta X_1 = \\frac{e^{-r}}{2}, \\qquad \\Delta X_2 = \\frac{e^{+r}}{2}\n\\]\n\\[\n\\Delta X_1\\,\\Delta X_2 = \\frac{1}{4} \\quad \\checkmark \\text{ (saturates uncertainty principle)}\n\\]\nIn terms of position:\n\\[\n\\boxed{\\Delta x = \\frac{x_0}{\\sqrt{2}}e^{-r}, \\qquad \\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}e^{+r}}\n\\]\nFor \\(r &gt; 0\\): position uncertainty below the SQL! Momentum uncertainty above the SQL.\n\nSqueezed vacuum properties (real squeezing \\(\\xi = r\\)):\n\\[\\Delta x = \\frac{x_0}{\\sqrt{2}}e^{-r} &lt; \\frac{x_0}{\\sqrt{2}}, \\quad \\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}e^{+r} &gt; \\frac{\\hbar}{\\sqrt{2}x_0}\\]\n\\[\\Delta x\\,\\Delta p = \\frac{\\hbar}{2} \\text{ (minimum uncertainty maintained)}\\]\n\n\n3.1 Fock-State Expansion of Squeezed Vacuum\nThe squeezed vacuum contains only even photon numbers:\n\\[\n|0, r\\rangle = \\frac{1}{\\sqrt{\\cosh r}}\\sum_{n=0}^{\\infty}(-1)^n\\frac{\\sqrt{(2n)!}}{2^n n!}(\\tanh r)^n |2n\\rangle\n\\]\nThis makes physical sense: the squeeze operator \\(\\hat{S} \\propto e^{\\hat{a}^{\\dagger 2}/2}\\) creates pairs of photons.\nMean photon number of the squeezed vacuum:\n\\[\n\\langle\\hat{N}\\rangle = \\sinh^2 r\n\\]\nEven the “vacuum” contains photons when squeezed!"
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-squeezed-coherent",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-squeezed-coherent",
+    "title": "Module 7: Squeezed States",
+    "section": "4 Squeezed Coherent States",
+    "text": "4 Squeezed Coherent States\nThe most general Gaussian state is a squeezed coherent state:\n\\[\n|\\alpha, \\xi\\rangle = \\hat{D}(\\alpha)\\hat{S}(\\xi)|0\\rangle\n\\]\nThis state has:\n\\[\n\\langle\\hat{x}\\rangle = \\sqrt{2}x_0\\,\\text{Re}(\\alpha), \\qquad \\langle\\hat{p}\\rangle = \\frac{\\sqrt{2}\\hbar}{x_0}\\,\\text{Im}(\\alpha)\n\\]\n\\[\n\\Delta x = \\frac{x_0}{\\sqrt{2}}\\sqrt{\\cosh 2r - \\sinh 2r\\cos\\theta}\n\\]\n\\[\n\\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}\\sqrt{\\cosh 2r + \\sinh 2r\\cos\\theta}\n\\]\nFor \\(\\theta = 0\\): \\(\\Delta x = \\frac{x_0}{\\sqrt{2}}e^{-r}\\), \\(\\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}e^{+r}\\) (position-squeezed).\nFor \\(\\theta = \\pi\\): \\(\\Delta x = \\frac{x_0}{\\sqrt{2}}e^{+r}\\), \\(\\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}e^{-r}\\) (momentum-squeezed)."
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-wigner",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-wigner",
+    "title": "Module 7: Squeezed States",
+    "section": "5 Phase Space Picture: The Squeezed Wigner Function",
+    "text": "5 Phase Space Picture: The Squeezed Wigner Function\nThe Wigner function of a squeezed state \\(|\\alpha, r\\rangle\\) (real \\(r\\)):\n\\[\nW(x,p) = \\frac{1}{\\pi\\hbar}\\exp\\!\\left(-\\frac{(x - \\langle\\hat{x}\\rangle)^2 e^{2r}}{x_0^2} - \\frac{(p - \\langle\\hat{p}\\rangle)^2 x_0^2 e^{-2r}}{\\hbar^2}\\right)\n\\]\nThis is a Gaussian ellipse in phase space:\n\nNarrow in \\(x\\) (by factor \\(e^{-r}\\)) → position-squeezed\nWide in \\(p\\) (by factor \\(e^{+r}\\)) → momentum uncertainty increased\n\n\nPhase space picture: A coherent state is a circular Gaussian disk. The squeeze operator deforms this disk into an ellipse, keeping its area constant (since \\(\\Delta x\\,\\Delta p = \\hbar/2\\) is preserved). The orientation of the ellipse is controlled by the squeezing angle \\(\\theta\\).\n\nTime evolution of squeezed states: The ellipse rotates in phase space at frequency \\(\\omega\\). When the squeezed axis aligns with the \\(x\\)-direction, position noise is minimized; when it aligns with \\(p\\), momentum noise is minimized. The noise oscillates at \\(2\\omega\\)!"
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-statistics",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-statistics",
+    "title": "Module 7: Squeezed States",
+    "section": "6 Photon Number Statistics of Squeezed States",
+    "text": "6 Photon Number Statistics of Squeezed States\nThe photon number distribution \\(P(n) = |\\langle n|\\alpha, r\\rangle|^2\\) for a squeezed state is:\n\nSub-Poissonian (\\(\\Delta N &lt; \\sqrt{\\bar{n}}\\)) for certain parameter ranges\nSuper-Poissonian (\\(\\Delta N &gt; \\sqrt{\\bar{n}}\\)) for other ranges\nOscillatory (non-zero only for even \\(n\\) for the squeezed vacuum)\n\nMandel Q parameter:\n\\[\nQ = \\frac{\\langle(\\Delta N)^2\\rangle - \\langle N\\rangle}{\\langle N\\rangle}\n\\]\n\n\\(Q = 0\\): Poisson (coherent state, classical limit)\n\\(Q &lt; 0\\): Sub-Poissonian (non-classical, squeezed)\n\\(Q &gt; 0\\): Super-Poissonian (thermal light, classical)\n\nSub-Poissonian statistics is a non-classical signature — it cannot be produced by any classical light source."
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-bogoliubov",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-bogoliubov",
+    "title": "Module 7: Squeezed States",
+    "section": "7 The Bogoliubov Transformation",
+    "text": "7 The Bogoliubov Transformation\nThe transformation of ladder operators by \\(\\hat{S}(r)\\) is a Bogoliubov transformation:\n\\[\n\\hat{b} = \\hat{S}^\\dagger(r)\\hat{a}\\hat{S}(r) = \\hat{a}\\cosh r - \\hat{a}^\\dagger\\sinh r\n\\]\n\\[\n\\hat{b}^\\dagger = \\hat{S}^\\dagger(r)\\hat{a}^\\dagger\\hat{S}(r) = \\hat{a}^\\dagger\\cosh r - \\hat{a}\\sinh r\n\\]\nThe new operators \\(\\hat{b}\\), \\(\\hat{b}^\\dagger\\) satisfy \\([\\hat{b}, \\hat{b}^\\dagger] = 1\\) (the same as \\(\\hat{a}\\)).\nThe squeezed vacuum \\(|0,r\\rangle\\) is the vacuum of the \\(\\hat{b}\\) operators:\n\\[\n\\hat{b}|0,r\\rangle = 0\n\\]\nThis is the same mathematical structure as the Bogoliubov transformation in superconductivity (BCS theory) and quantum field theory in curved spacetime (Unruh effect, Hawking radiation)!"
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-ligo",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-ligo",
+    "title": "Module 7: Squeezed States",
+    "section": "8 Applications: LIGO and Gravitational Wave Detection",
+    "text": "8 Applications: LIGO and Gravitational Wave Detection\n\n8.0.1 🔭 LIGO: How Squeezed Light Makes History\nOn September 14, 2015, LIGO detected gravitational waves for the first time — a signal lasting 0.2 seconds from two merging black holes 1.3 billion light-years away. The length change measured was \\(\\Delta L \\sim 10^{-18}\\) m, smaller than a proton.\nThe quantum noise problem: LIGO measures length changes via laser interferometry. The optical path length difference shifts the interference fringe. But the vacuum fluctuations entering the dark port of the beamsplitter add quantum noise — shot noise — that limits sensitivity.\nShot noise power spectral density: \\(S_{\\text{shot}} \\propto 1/P_{\\text{laser}}\\) (decreases with power)\nRadiation pressure noise: \\(S_{\\text{RP}} \\propto P_{\\text{laser}}\\) (increases with power)\nThese are conjugate — making one smaller makes the other larger. The product is set by the uncertainty principle: the Standard Quantum Limit (SQL).\nHow squeezed light helps: By injecting phase-squeezed vacuum into the dark port of LIGO, the phase noise (affecting the signal) is reduced below the shot noise limit. The price is increased amplitude noise, which is less important at LIGO’s signal frequencies.\nSince 2019 (Advanced LIGO O3), LIGO has been using 50 dB squeezing (factor of \\(e^{5}\\) noise reduction), improving its range by 50%.\nSqueezing parameters: The squeezing parameter used is \\(r \\approx 0.5\\)–\\(1.0\\), corresponding to 4–9 dB of noise reduction.\n\n\n8.1 Mathematical Description\nLIGO measures the phase quadrature \\(\\hat{X}_2\\). The quantum noise in \\(\\hat{X}_2\\) for a coherent vacuum input is \\(\\Delta X_2 = 1/2\\).\nWith phase-squeezed injection: \\(\\Delta X_2 = \\frac{1}{2}e^{-r}\\)\nThe signal-to-noise ratio improvement: \\(\\text{SNR} \\to \\text{SNR} \\times e^r\\)\nFor \\(r = 1\\) (\\(\\approx 8.7\\) dB squeezing): SNR improves by factor \\(e \\approx 2.7\\).\nThis translates directly to more observable gravitational wave events per unit time."
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-applications",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-applications",
+    "title": "Module 7: Squeezed States",
+    "section": "9 Other Applications of Squeezed States",
+    "text": "9 Other Applications of Squeezed States\n\n9.1 Quantum Communication\n\nContinuous-variable quantum key distribution (CV-QKD)\nSqueezed states of the microwave field in circuit QED\nQuantum teleportation of continuous variables (demonstrated by Furusawa et al., 1998)\n\n\n\n9.2 Quantum Computing\n\nGaussian boson sampling — a quantum computational advantage protocol\nSqueezed states are resources for measurement-based quantum computing\n\n\n\n9.3 Precision Measurement\n\nAtomic clocks and magnetometers\nSpin squeezing in atomic systems (analog of optical squeezing for atomic spin)"
+  },
+  {
+    "objectID": "Courses/QHO/07_squeezed_states.html#sec-comparison",
+    "href": "Courses/QHO/07_squeezed_states.html#sec-comparison",
+    "title": "Module 7: Squeezed States",
+    "section": "10 Comparison: Coherent vs. Squeezed States",
+    "text": "10 Comparison: Coherent vs. Squeezed States\n\n\n\n\n\n\n\n\nProperty\nCoherent \\(|\\alpha\\rangle\\)\nPosition-Squeezed \\(|\\alpha,r\\rangle\\)\n\n\n\n\n\\(\\Delta x\\)\n\\(x_0/\\sqrt{2}\\)\n\\(x_0 e^{-r}/\\sqrt{2}\\)\n\n\n\\(\\Delta p\\)\n\\(\\hbar/\\sqrt{2}x_0\\)\n\\(\\hbar e^r/\\sqrt{2}x_0\\)\n\n\n\\(\\Delta x\\,\\Delta p\\)\n\\(\\hbar/2\\)\n\\(\\hbar/2\\)\n\n\nWigner function\nCircular Gaussian\nElliptical Gaussian\n\n\nPhoton statistics\nPoisson\nSub-Poissonian (in some regimes)\n\n\nMandel Q\n0\n\\(&lt; 0\\) (typically)\n\n\nClassical analog\nYes\nPartially\n\n\nGeneration\nLaser\nOptical Parametric Oscillator (OPO)\n\n\n\n\nBefore moving on, make sure you can:\n\nDefine the squeeze operator \\(\\hat{S}(\\xi)\\) and explain what it does to quadrature uncertainties.\nShow that \\(\\hat{S}(r)\\) reduces \\(\\Delta x\\) by \\(e^{-r}\\) while increasing \\(\\Delta p\\) by \\(e^r\\).\nShow that squeezing still satisfies \\(\\Delta x\\,\\Delta p = \\hbar/2\\) (minimum uncertainty).\nWrite the Bogoliubov transformation and show \\([\\hat{b}, \\hat{b}^\\dagger] = 1\\).\nExplain in one paragraph how squeezed light improves LIGO sensitivity.\nWhat is the Mandel Q parameter and why is \\(Q &lt; 0\\) a non-classical signature?\n\nAdvanced challenge: Compute \\(\\langle\\hat{N}\\rangle\\) for the squeezed vacuum \\(\\hat{S}(r)|0\\rangle\\) using the Bogoliubov transformation.\n\n\n\n← Module 6: Coherent States Next: Module 8 — Summary & Cheat Sheet →"
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html",
+    "href": "Courses/QHO/01_why_oscillators.html",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "",
+    "text": "← Back to Course | Next: Module 2 →"
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html#the-big-picture",
+    "href": "Courses/QHO/01_why_oscillators.html#the-big-picture",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "1 The Big Picture",
+    "text": "1 The Big Picture\nBefore we write a single equation, let’s ask the most important question:\n\nWhy does the harmonic oscillator appear in almost every branch of physics?\n\nThe answer is profound and elegant. It has nothing to do with springs being special. It is a mathematical inevitability."
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html#sec-classical",
+    "href": "Courses/QHO/01_why_oscillators.html#sec-classical",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "2 Classical Simple Harmonic Motion",
+    "text": "2 Classical Simple Harmonic Motion\n\n2.1 The Spring\nYou’ve seen this before. A mass \\(m\\) on a spring with spring constant \\(k\\). The restoring force is:\n\\[\nF = -kx\n\\]\nNewton’s second law gives:\n\\[\nm\\ddot{x} = -kx \\quad \\Longrightarrow \\quad \\ddot{x} + \\omega^2 x = 0, \\quad \\omega = \\sqrt{\\frac{k}{m}}\n\\]\nThe general solution is:\n\\[\nx(t) = A\\cos(\\omega t + \\phi)\n\\]\nwhere \\(A\\) is the amplitude and \\(\\phi\\) is the initial phase — both fixed by initial conditions.\n\nThe mass oscillates back and forth forever (no friction), with frequency \\(\\omega\\) that depends only on the spring constant and mass, not on how far you stretch it. This amplitude-independence of frequency is the hallmark of SHO.\n\n\n\n2.2 Energy of the Classical Oscillator\nThe potential energy stored in the spring is:\n\\[\nV(x) = \\frac{1}{2}kx^2 = \\frac{1}{2}m\\omega^2 x^2\n\\]\nThe kinetic energy is \\(T = \\frac{1}{2}m\\dot{x}^2\\). The total energy is:\n\\[\nE = T + V = \\frac{1}{2}m\\dot{x}^2 + \\frac{1}{2}m\\omega^2 x^2\n\\]\nThis is conserved! You can verify: with \\(x = A\\cos(\\omega t + \\phi)\\), we get \\(\\dot{x} = -A\\omega\\sin(\\omega t + \\phi)\\), so:\n\\[\nE = \\frac{1}{2}m\\omega^2 A^2 \\underbrace{\\left[\\sin^2(\\omega t + \\phi) + \\cos^2(\\omega t + \\phi)\\right]}_{= 1} = \\frac{1}{2}m\\omega^2 A^2\n\\]\nThe energy is determined entirely by the amplitude \\(A\\).\n\n\n2.3 Phase Space: Seeing the Oscillator Geometrically\nInstead of plotting \\(x\\) vs. \\(t\\), physicists love to plot \\(x\\) vs. \\(p = m\\dot{x}\\) simultaneously. This is phase space.\nFrom energy conservation: \\[\n\\frac{p^2}{2m} + \\frac{1}{2}m\\omega^2 x^2 = E\n\\]\nThis is the equation of an ellipse in \\((x, p)\\) space! Every classical trajectory is an ellipse. The system goes around the ellipse at frequency \\(\\omega\\).\n\\[\n\\frac{x^2}{(A)^2} + \\frac{p^2}{(m\\omega A)^2} = 1\n\\]\n\n\n\n\n\n\nKey Insight: Phase Space Ellipses\n\n\n\n\nLarger energy → bigger ellipse (larger amplitude)\nAll ellipses are traversed in the same time \\(T = 2\\pi/\\omega\\)\nThe phase space picture will become crucial when we study coherent states (Module 6)"
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html#sec-taylor",
+    "href": "Courses/QHO/01_why_oscillators.html#sec-taylor",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "3 The Universal Argument: Taylor Expansion",
+    "text": "3 The Universal Argument: Taylor Expansion\n\n3.1 Any Smooth Potential Near Equilibrium is a Harmonic Oscillator\nThis is the key theorem. Suppose we have any potential \\(V(x)\\) with an equilibrium point at \\(x = x_0\\). That means:\n\\[\n\\left.\\frac{dV}{dx}\\right|_{x = x_0} = 0 \\quad \\text{(equilibrium condition)}\n\\]\nTaylor-expand \\(V(x)\\) around \\(x_0\\), setting \\(u = x - x_0\\):\n\\[\nV(x_0 + u) = V(x_0) + \\underbrace{V'(x_0)}_{= 0} u + \\frac{1}{2}V''(x_0)u^2 + \\frac{1}{6}V'''(x_0)u^3 + \\cdots\n\\]\nFor small displacements \\(u \\ll 1\\), the cubic and higher terms are negligible. Dropping the constant \\(V(x_0)\\) (which just shifts the energy zero), we get:\n\\[\n\\boxed{V(x) \\approx \\frac{1}{2}V''(x_0)\\, u^2 = \\frac{1}{2}k_{\\text{eff}}\\, u^2}\n\\]\nwhere we defined \\(k_{\\text{eff}} \\equiv V''(x_0)\\).\n\n\n\n\n\n\nThis is the Central Insight of the Entire Course\n\n\n\nEvery stable equilibrium of every physical system looks like a harmonic oscillator at small amplitudes. This is not an approximation we choose — it is a mathematical fact. The QHO is the universal model for small oscillations.\n(For a stable equilibrium, we need \\(V''(x_0) &gt; 0\\), i.e., \\(k_{\\text{eff}} &gt; 0\\).)\n\n\n\n\n3.2 Why Higher Order Terms Are Negligible\nLet’s be quantitative. If the displacement is \\(u\\) and the length scale over which \\(V\\) varies is \\(L\\), then:\n\nQuadratic term: \\(\\sim \\frac{1}{2}k u^2\\)\nCubic term: \\(\\sim \\frac{1}{6}V'''u^3 \\sim \\frac{ku^3}{L}\\)\n\nThe ratio of cubic to quadratic is \\(\\sim u/L\\). For \\(u \\ll L\\), the quadratic term dominates.\nIn quantum mechanics, the relevant displacement is the ground-state size of the oscillator:\n\\[\nx_0 = \\sqrt{\\frac{\\hbar}{m\\omega}} \\quad \\text{(characteristic length)}\n\\]\nAs long as \\(x_0 \\ll L\\) (which is almost always satisfied in practice), the harmonic approximation is excellent."
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html#sec-examples",
+    "href": "Courses/QHO/01_why_oscillators.html#sec-examples",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "4 Physical Examples",
+    "text": "4 Physical Examples\n\n4.1 Diatomic Molecules\nConsider two atoms bound by a molecular potential \\(V(r)\\). A famous model is the Lennard-Jones potential:\n\\[\nV(r) = 4\\epsilon\\left[\\left(\\frac{\\sigma}{r}\\right)^{12} - \\left(\\frac{\\sigma}{r}\\right)^6\\right]\n\\]\nThis has a minimum at \\(r_0 = 2^{1/6}\\sigma\\). Near \\(r_0\\), the Taylor expansion gives:\n\\[\nV(r) \\approx -\\epsilon + \\frac{1}{2}(36\\epsilon/\\sigma^2) \\cdot (r - r_0)^2\n\\]\nSo the two atoms vibrate around \\(r_0\\) like a quantum harmonic oscillator! This is why molecular vibrational spectra are nearly equally spaced — a direct consequence of the QHO energy levels \\(E_n = (n + \\frac{1}{2})\\hbar\\omega\\).\n\nTextbook reference: Griffiths, Problem 2.11; Cohen-Tannoudji Vol. 1, Chapter V.\n\n\n\n4.2 Electromagnetic Field Modes\nThis is the deepest application. The electromagnetic field in a cavity can be decomposed into normal modes (standing waves). Each mode has a Hamiltonian:\n\\[\nH_{\\mathbf{k},\\lambda} = \\frac{1}{2}\\left(\\dot{q}_{\\mathbf{k}\\lambda}^2 + \\omega_k^2 q_{\\mathbf{k}\\lambda}^2\\right)\n\\]\nThis is exactly a harmonic oscillator with \\(m = 1\\)! Quantizing this gives:\n\\[\n\\hat{H}_{\\mathbf{k}\\lambda} = \\hbar\\omega_k\\left(\\hat{a}_{\\mathbf{k}\\lambda}^\\dagger \\hat{a}_{\\mathbf{k}\\lambda} + \\frac{1}{2}\\right)\n\\]\nPhotons are just excitations of quantum harmonic oscillators. The entire theory of quantum optics is built on this.\n\nTextbook reference: Shankar, Chapter 18; Cohen-Tannoudji, Photons and Atoms (complementary text).\n\n\n\n4.3 Crystal Lattice Vibrations (Phonons)\nIn a solid, atoms sit at equilibrium positions in a crystal lattice. Small displacements from equilibrium are coupled oscillations. Normal-mode decomposition diagonalizes the system into independent quantum harmonic oscillators. The quantized excitations are called phonons.\nThis is why the heat capacity of solids (Einstein model, Debye model) can be computed from the QHO.\n\n\n4.4 LC Circuit\nA lossless inductor-capacitor circuit obeys: \\[\nL\\ddot{q} + \\frac{q}{C} = 0 \\quad \\Longrightarrow \\quad \\ddot{q} + \\omega^2 q = 0, \\quad \\omega = \\frac{1}{\\sqrt{LC}}\n\\]\nThis is SHO with \\(m \\to L\\) and \\(k \\to 1/C\\). Quantizing the LC circuit gives a superconducting qubit — the basis of all modern quantum computers!"
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html#sec-summary",
+    "href": "Courses/QHO/01_why_oscillators.html#sec-summary",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "5 Summary of the Classical SHO",
+    "text": "5 Summary of the Classical SHO\n\n\n\nQuantity\nFormula\n\n\n\n\nFrequency\n\\(\\omega = \\sqrt{k/m}\\)\n\n\nPosition\n\\(x(t) = A\\cos(\\omega t + \\phi)\\)\n\n\nMomentum\n\\(p(t) = -mA\\omega\\sin(\\omega t + \\phi)\\)\n\n\nPotential energy\n\\(V = \\frac{1}{2}m\\omega^2 x^2\\)\n\n\nTotal energy\n\\(E = \\frac{1}{2}m\\omega^2 A^2\\)\n\n\nPeriod\n\\(T = 2\\pi/\\omega\\)\n\n\n\n\nBefore moving on, make sure you can:\n\nWrite the equation of motion for a mass-spring system and solve it.\nCompute the energy in terms of amplitude.\nExplain the Taylor expansion argument: why is every potential near equilibrium a SHO?\nName at least 3 physical systems that are modeled as QHO.\n\nIf you can’t do all four, re-read this module. Module 2 assumes all of this."
+  },
+  {
+    "objectID": "Courses/QHO/01_why_oscillators.html#sec-quantum-preview",
+    "href": "Courses/QHO/01_why_oscillators.html#sec-quantum-preview",
+    "title": "Module 1: Why Do We Need Oscillators?",
+    "section": "6 A Taste of What’s Coming: Why Classical is Not Enough",
+    "text": "6 A Taste of What’s Coming: Why Classical is Not Enough\nThe classical harmonic oscillator allows any energy — you can set \\(E = \\frac{1}{2}m\\omega^2 A^2\\) to any positive number by choosing \\(A\\).\nBut nature doesn’t work that way. Experiments show that:\n\nEnergy is quantized: A QHO can only have energies \\(E_n = (n + \\frac{1}{2})\\hbar\\omega\\), \\(n = 0, 1, 2, \\ldots\\)\nZero-point energy exists: Even at \\(T = 0\\), the oscillator has energy \\(E_0 = \\frac{1}{2}\\hbar\\omega \\neq 0\\)!\nThe ground state is not at rest: \\(\\langle x \\rangle = 0\\) but \\(\\langle x^2 \\rangle \\neq 0\\) — quantum fluctuations.\n\nThese are not small corrections. They are fundamentally different behavior that arises from the quantization of the canonical variables \\(x\\) and \\(p\\).\nIn Module 2, we will replace \\(x \\to \\hat{x}\\) and \\(p \\to \\hat{p}\\) with operators satisfying \\([\\hat{x}, \\hat{p}] = i\\hbar\\), and watch the whole structure of the QHO emerge from this single commutation relation.\n\n\n← Back to Course Index Next: Module 2 — Quantization →"
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html",
+    "href": "Courses/QHO/04_wavefunctions.html",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "",
+    "text": "← Module 3 | ↑ Course Index | Module 5 →"
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-ground",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-ground",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "1 Getting the Ground State Wavefunction from Ladder Operators",
+    "text": "1 Getting the Ground State Wavefunction from Ladder Operators\nIn Module 3, we found that the ground state satisfies:\n\\[\n\\hat{a}|0\\rangle = 0\n\\]\nIn the position representation, \\(|0\\rangle \\to \\psi_0(x)\\), and the annihilation operator becomes:\n\\[\n\\hat{a} = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\left(x + \\frac{\\hbar}{m\\omega}\\frac{d}{dx}\\right)\n\\]\nThe condition \\(\\hat{a}\\psi_0 = 0\\) gives:\n\\[\n\\left(x + \\frac{\\hbar}{m\\omega}\\frac{d}{dx}\\right)\\psi_0(x) = 0\n\\]\nThis is a simple first-order ODE:\n\\[\n\\frac{d\\psi_0}{dx} = -\\frac{m\\omega}{\\hbar} x\\, \\psi_0\n\\]\nSeparating variables and integrating:\n\\[\n\\ln\\psi_0 = -\\frac{m\\omega}{2\\hbar}x^2 + C \\quad \\Rightarrow \\quad \\psi_0(x) = A\\, e^{-m\\omega x^2/2\\hbar}\n\\]\nNormalizing using \\(\\int_{-\\infty}^{\\infty}e^{-\\alpha x^2}dx = \\sqrt{\\pi/\\alpha}\\) with \\(\\alpha = m\\omega/\\hbar\\):\n\\[\n\\boxed{\\psi_0(x) = \\left(\\frac{m\\omega}{\\pi\\hbar}\\right)^{1/4} \\exp\\!\\left(-\\frac{m\\omega}{2\\hbar}x^2\\right)}\n\\]\nThe ground state is a Gaussian. This is the unique minimum-uncertainty state."
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-all-states",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-all-states",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "2 Generating All Wavefunctions",
+    "text": "2 Generating All Wavefunctions\nUsing \\(|n\\rangle = \\frac{(\\hat{a}^\\dagger)^n}{\\sqrt{n!}}|0\\rangle\\) and translating to position space:\n\\[\n\\psi_n(x) = \\frac{1}{\\sqrt{2^n\\, n!}}\\left(\\frac{m\\omega}{\\pi\\hbar}\\right)^{1/4} H_n\\!\\left(\\sqrt{\\frac{m\\omega}{\\hbar}}\\,x\\right) e^{-m\\omega x^2/2\\hbar}\n\\]\nUsing the oscillator length \\(x_0 = \\sqrt{\\hbar/m\\omega}\\) and \\(\\xi = x/x_0\\):\n\\[\n\\boxed{\\psi_n(\\xi) = \\frac{1}{\\sqrt{2^n\\, n!\\,\\sqrt{\\pi}\\,x_0}}\\, H_n(\\xi)\\, e^{-\\xi^2/2}}\n\\]\n\n2.1 The First Five Wavefunctions Explicitly\n\\[\n\\psi_0 = \\frac{1}{(\\pi x_0^2)^{1/4}}\\, e^{-\\xi^2/2}\n\\]\n\\[\n\\psi_1 = \\frac{1}{(\\pi x_0^2)^{1/4}}\\sqrt{2}\\,\\xi\\, e^{-\\xi^2/2}\n\\]\n\\[\n\\psi_2 = \\frac{1}{(\\pi x_0^2)^{1/4}}\\frac{1}{\\sqrt{2}}\\,(2\\xi^2 - 1)\\, e^{-\\xi^2/2}\n\\]\n\\[\n\\psi_3 = \\frac{1}{(\\pi x_0^2)^{1/4}}\\frac{1}{\\sqrt{3}}\\,(2\\xi^3 - 3\\xi)\\, e^{-\\xi^2/2}\n\\]\n\\[\n\\psi_4 = \\frac{1}{(\\pi x_0^2)^{1/4}}\\frac{1}{2\\sqrt{6}}\\,(4\\xi^4 - 12\\xi^2 + 3)\\, e^{-\\xi^2/2}\n\\]"
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-properties",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-properties",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "3 Physical Properties of the Wavefunctions",
+    "text": "3 Physical Properties of the Wavefunctions\n\n3.1 Number of Nodes\n\\(\\psi_n(x)\\) has exactly \\(n\\) nodes (zeros). This is the node theorem for bound states:\n\n\\(\\psi_0\\): 0 nodes (the Gaussian never crosses zero)\n\\(\\psi_1\\): 1 node (crosses zero once at \\(x = 0\\))\n\\(\\psi_2\\): 2 nodes\n\\(\\psi_n\\): exactly \\(n\\) nodes\n\nHigher-energy states have more rapid oscillations — they “fit more waves” into the potential well.\n\n\n3.2 Parity\n\\[\n\\psi_n(-x) = (-1)^n \\psi_n(x)\n\\]\n\nEven \\(n\\): even parity (symmetric about \\(x = 0\\))\nOdd \\(n\\): odd parity (antisymmetric about \\(x = 0\\))\n\nThis is a consequence of the symmetric potential \\(V(-x) = V(x)\\).\n\n\n3.3 Orthonormality\n\\[\n\\int_{-\\infty}^{\\infty} \\psi_m^*(x)\\psi_n(x)\\,dx = \\delta_{mn}\n\\]\nThis follows from the Hermite polynomial orthogonality: \\[\n\\int_{-\\infty}^{\\infty} H_m(\\xi)\\, H_n(\\xi)\\, e^{-\\xi^2}\\, d\\xi = 2^n\\, n!\\, \\sqrt{\\pi}\\, \\delta_{mn}\n\\]\n\n\n3.4 Completeness\nThe wavefunctions form a complete set: \\[\n\\sum_{n=0}^{\\infty} \\psi_n^*(x')\\psi_n(x) = \\delta(x - x')\n\\]\nThis means any square-integrable function can be expanded in the \\(\\psi_n\\)’s."
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-tunneling",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-tunneling",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "4 Classical Turning Points and Quantum Tunneling",
+    "text": "4 Classical Turning Points and Quantum Tunneling\nThe classical turning points for energy \\(E_n = (n + \\frac{1}{2})\\hbar\\omega\\) are where \\(V(x) = E_n\\):\n\\[\n\\frac{1}{2}m\\omega^2 x_{\\pm}^2 = \\left(n + \\frac{1}{2}\\right)\\hbar\\omega\n\\quad \\Rightarrow \\quad x_{\\pm} = \\pm\\sqrt{2n+1}\\, x_0\n\\]\nClassically, the particle cannot exist beyond \\(x_{\\pm}\\). But quantum mechanically, the wavefunction extends into the classically forbidden region!\nThe probability of finding the particle outside the classical turning points is:\n\\[\nP_{\\text{tunnel}} = \\int_{|x|&gt;x_+}|\\psi_n(x)|^2\\,dx\n\\]\nFor the ground state \\(n = 0\\), \\(x_+ = x_0\\):\n\\[\nP_{\\text{tunnel},0} = 2\\int_{x_0}^{\\infty}|\\psi_0(x)|^2\\,dx = \\text{erfc}(1/\\sqrt{2}) \\approx 15.7\\%\n\\]\nAbout 16% of the time, the ground-state particle is found in the classically forbidden region!\n\nThis is quantum tunneling — the particle “borrows” energy from the uncertainty principle to penetrate the classically forbidden region. This phenomenon is responsible for: - Nuclear fusion in stars (particles tunnel through the Coulomb barrier) - Scanning tunneling microscopy (STM) - Alpha decay of radioactive nuclei"
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-expectation",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-expectation",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "5 Expectation Values in Energy Eigenstates",
+    "text": "5 Expectation Values in Energy Eigenstates\nUsing ladder operators (from Module 3):\n\n\n\n\n\n\n\nQuantity\nValue in \\(|n\\rangle\\)\n\n\n\n\n\\(\\langle\\hat{x}\\rangle\\)\n\\(0\\)\n\n\n\\(\\langle\\hat{p}\\rangle\\)\n\\(0\\)\n\n\n\\(\\langle\\hat{x}^2\\rangle\\)\n\\((n + \\frac{1}{2})\\,x_0^2 = (n + \\frac{1}{2})\\frac{\\hbar}{m\\omega}\\)\n\n\n\\(\\langle\\hat{p}^2\\rangle\\)\n\\((n + \\frac{1}{2})\\,\\frac{\\hbar^2}{x_0^2} = (n + \\frac{1}{2})m\\hbar\\omega\\)\n\n\n\\(\\langle V\\rangle\\)\n\\(\\frac{1}{2}E_n\\)\n\n\n\\(\\langle T\\rangle\\)\n\\(\\frac{1}{2}E_n\\)\n\n\n\\(\\Delta x\\)\n\\(x_0\\sqrt{n + \\frac{1}{2}}\\)\n\n\n\\(\\Delta p\\)\n\\(\\frac{\\hbar}{x_0}\\sqrt{n + \\frac{1}{2}}\\)\n\n\n\\(\\Delta x\\,\\Delta p\\)\n\\((n + \\frac{1}{2})\\hbar\\)\n\n\n\n\n\n\n\n\n\nThe Virial Theorem for the QHO\n\n\n\n\\(\\langle T\\rangle = \\langle V\\rangle = \\frac{1}{2}E_n\\). This is the quantum version of the classical virial theorem. On average, kinetic and potential energies are equal in the QHO."
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-momentum",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-momentum",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "6 Momentum-Space Wavefunctions",
+    "text": "6 Momentum-Space Wavefunctions\nThe Fourier transform of \\(\\psi_n(x)\\) gives the momentum-space wavefunction \\(\\phi_n(p)\\):\n\\[\n\\phi_n(p) = \\frac{1}{\\sqrt{2\\pi\\hbar}}\\int_{-\\infty}^{\\infty} e^{-ipx/\\hbar}\\psi_n(x)\\,dx\n\\]\nA beautiful result: the momentum-space wavefunctions have the same form as the position-space ones!\n\\[\n\\phi_n(p) = \\frac{(-i)^n}{(m\\omega\\pi\\hbar)^{1/4}\\sqrt{2^n n!}}\\, H_n\\!\\left(\\frac{p}{\\sqrt{m\\omega\\hbar}}\\right) e^{-p^2/2m\\omega\\hbar}\n\\]\nThe momentum-space wavefunctions are also Hermite-Gaussian, with the same Gaussian envelope. This is a special property of the harmonic oscillator — its Hamiltonian is symmetric between \\(x\\) and \\(p\\)."
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-hermite",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-hermite",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "7 Hermite Polynomial Reference Table",
+    "text": "7 Hermite Polynomial Reference Table\n\n\n\n\\(n\\)\n\\(H_n(\\xi)\\)\nParity\n\n\n\n\n0\n\\(1\\)\nEven\n\n\n1\n\\(2\\xi\\)\nOdd\n\n\n2\n\\(4\\xi^2 - 2\\)\nEven\n\n\n3\n\\(8\\xi^3 - 12\\xi\\)\nOdd\n\n\n4\n\\(16\\xi^4 - 48\\xi^2 + 12\\)\nEven\n\n\n5\n\\(32\\xi^5 - 160\\xi^3 + 120\\xi\\)\nOdd\n\n\n\nRecurrence relation: \\(H_{n+1} = 2\\xi H_n - 2n H_{n-1}\\)\nDerivative: \\(H_n' = 2n H_{n-1}\\)\nRodrigues formula: \\(H_n(\\xi) = (-1)^n e^{\\xi^2}\\frac{d^n}{d\\xi^n}e^{-\\xi^2}\\)"
+  },
+  {
+    "objectID": "Courses/QHO/04_wavefunctions.html#sec-correspondence",
+    "href": "Courses/QHO/04_wavefunctions.html#sec-correspondence",
+    "title": "Module 4: Wavefunctions and Hermite Polynomials",
+    "section": "8 The Classical-Quantum Correspondence",
+    "text": "8 The Classical-Quantum Correspondence\nFor large \\(n\\), quantum mechanics must reproduce classical results. Let’s check:\nClassical probability: For a classical oscillator with amplitude \\(A = x_+\\), the particle spends most time at the turning points (where it’s slow). The classical probability density is:\n\\[\nP_{\\text{cl}}(x) = \\frac{1}{\\pi\\sqrt{A^2 - x^2}}, \\quad |x| &lt; A\n\\]\nQuantum probability: \\(|\\psi_n(x)|^2\\) oscillates rapidly for large \\(n\\).\nThe coarse-grained (average) quantum probability distribution for large \\(n\\) approaches \\(P_{\\text{cl}}(x)\\). You can verify this numerically by plotting \\(|\\psi_{20}(x)|^2\\) — the rapid oscillations average out to the classical distribution.\nThis is the Bohr correspondence principle: quantum mechanics must agree with classical mechanics in the limit of large quantum numbers.\n\n\nBefore moving on, make sure you can:\n\nDerive \\(\\psi_0(x)\\) by solving \\(\\hat{a}\\psi_0 = 0\\) as a first-order ODE.\nWrite \\(\\psi_1(x)\\) by applying \\(\\hat{a}^\\dagger\\) to \\(\\psi_0\\).\nState the number of nodes, parity, and normalization of \\(\\psi_n\\).\nCompute \\(\\langle\\hat{x}^2\\rangle\\) and \\(\\langle\\hat{p}^2\\rangle\\) in \\(|n\\rangle\\) using ladder operators.\nVerify the virial theorem \\(\\langle T\\rangle = \\langle V\\rangle = E_n/2\\).\nEstimate the tunneling probability for the ground state.\n\nConceptual question: Why is \\(\\langle\\hat{x}\\rangle = 0\\) for all energy eigenstates? What does this tell you about the symmetry of the potential?\n\n\n\n← Module 3: Ladder Operators Next: Module 5 — Time Evolution →"
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html",
+    "href": "Courses/QHO/06_coherent_states.html",
+    "title": "Module 6: Coherent States",
+    "section": "",
+    "text": "← Module 5 | ↑ Course Index | Module 7 →"
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-motivation",
+    "href": "Courses/QHO/06_coherent_states.html#sec-motivation",
+    "title": "Module 6: Coherent States",
+    "section": "1 Motivation: What is the Most Classical Quantum State?",
+    "text": "1 Motivation: What is the Most Classical Quantum State?\nThe energy eigenstates \\(|n\\rangle\\) are weird. For any \\(n\\):\n\n\\(\\langle\\hat{x}\\rangle = 0\\) always (no displacement)\nThe probability density is spread out and has nodes\nNothing seems to oscillate in time\n\nBut a real classical oscillator has a definite amplitude and phase. What quantum state most closely resembles a classical oscillating particle?\nThe answer is the coherent state, introduced by Roy Glauber in 1963 (for which he received the 2005 Nobel Prize in Physics).\n\nTextbook reference: Shankar, Exercise 7.4.9; Cohen-Tannoudji Vol. 1, Complement GV; Griffiths Problem 3.35."
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-definition",
+    "href": "Courses/QHO/06_coherent_states.html#sec-definition",
+    "title": "Module 6: Coherent States",
+    "section": "2 Definition: Eigenstates of \\(\\hat{a}\\)",
+    "text": "2 Definition: Eigenstates of \\(\\hat{a}\\)\nA coherent state \\(|\\alpha\\rangle\\) is defined as an eigenstate of the annihilation operator:\n\\[\n\\boxed{\\hat{a}|\\alpha\\rangle = \\alpha|\\alpha\\rangle}\n\\]\nwhere \\(\\alpha\\) is a complex number: \\(\\alpha = |\\alpha|e^{i\\theta} \\in \\mathbb{C}\\).\n\n\n\n\n\n\nWhy \\(\\hat{a}\\) and Not \\(\\hat{a}^\\dagger\\)?\n\n\n\n\\(\\hat{a}^\\dagger\\) has no eigenvalues — there is no normalizable state that satisfies \\(\\hat{a}^\\dagger|\\beta\\rangle = \\beta|\\beta\\rangle\\). (Proof: \\(\\hat{a}^\\dagger\\) raises \\(n\\) without bound, so the series never terminates.)\nBut \\(\\hat{a}\\) does have eigenvalues — any complex number \\(\\alpha\\) works. The ground state \\(|0\\rangle\\) is the special case \\(\\alpha = 0\\)."
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-fock-expansion",
+    "href": "Courses/QHO/06_coherent_states.html#sec-fock-expansion",
+    "title": "Module 6: Coherent States",
+    "section": "3 Expanding Coherent States in the Fock Basis",
+    "text": "3 Expanding Coherent States in the Fock Basis\nLet’s write \\(|\\alpha\\rangle = \\sum_{n=0}^{\\infty} c_n|n\\rangle\\) and apply \\(\\hat{a}|\\alpha\\rangle = \\alpha|\\alpha\\rangle\\):\n\n\\[\n\\hat{a}|\\alpha\\rangle = \\sum_n c_n \\hat{a}|n\\rangle = \\sum_n c_n \\sqrt{n}|n-1\\rangle = \\alpha\\sum_n c_n|n\\rangle\n\\]\nShifting index \\(n \\to n+1\\) on the left:\n\\[\n\\sum_n c_{n+1}\\sqrt{n+1}|n\\rangle = \\alpha\\sum_n c_n|n\\rangle\n\\]\nMatching term by term: \\(c_{n+1}\\sqrt{n+1} = \\alpha c_n\\)\nRecursion: \\(c_{n+1} = \\frac{\\alpha}{\\sqrt{n+1}}c_n\\)\nSolution: \\(c_n = \\frac{\\alpha^n}{\\sqrt{n!}}c_0\\)\nNormalizing: \\(\\sum_n|c_n|^2 = |c_0|^2\\sum_n\\frac{|\\alpha|^{2n}}{n!} = |c_0|^2 e^{|\\alpha|^2} = 1\\)\nSo \\(|c_0|^2 = e^{-|\\alpha|^2}\\) and \\(c_n = e^{-|\\alpha|^2/2}\\frac{\\alpha^n}{\\sqrt{n!}}\\).\n\n\\[\n\\boxed{|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_{n=0}^{\\infty}\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle}\n\\]\nThis is one of the most important equations in quantum optics!"
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-displacement",
+    "href": "Courses/QHO/06_coherent_states.html#sec-displacement",
+    "title": "Module 6: Coherent States",
+    "section": "4 The Displacement Operator",
+    "text": "4 The Displacement Operator\nAn elegant way to construct coherent states: define the displacement operator:\n\\[\n\\hat{D}(\\alpha) = e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}}\n\\]\nClaim: \\(|\\alpha\\rangle = \\hat{D}(\\alpha)|0\\rangle\\)\n\nProof using Baker-Campbell-Hausdorff (BCH) lemma:\nSince \\([\\alpha\\hat{a}^\\dagger, -\\alpha^*\\hat{a}] = |\\alpha|^2[\\hat{a}^\\dagger, \\hat{a}] = -|\\alpha|^2\\) (a c-number), BCH gives:\n\\[\n\\hat{D}(\\alpha) = e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}} = e^{-|\\alpha|^2/2} e^{\\alpha\\hat{a}^\\dagger} e^{-\\alpha^*\\hat{a}}\n\\]\nApplying to \\(|0\\rangle\\): \\(e^{-\\alpha^*\\hat{a}}|0\\rangle = |0\\rangle\\) (since \\(\\hat{a}|0\\rangle = 0\\))\n\\[\n\\hat{D}(\\alpha)|0\\rangle = e^{-|\\alpha|^2/2}e^{\\alpha\\hat{a}^\\dagger}|0\\rangle = e^{-|\\alpha|^2/2}\\sum_{n=0}^{\\infty}\\frac{(\\alpha\\hat{a}^\\dagger)^n}{n!}|0\\rangle = e^{-|\\alpha|^2/2}\\sum_{n=0}^{\\infty}\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle = |\\alpha\\rangle\\ ✓\n\\]\n\nThe displacement operator displaces the ground state to a coherent state:\n\\[\n|\\alpha\\rangle = \\hat{D}(\\alpha)|0\\rangle\n\\]\nProperties of \\(\\hat{D}(\\alpha)\\):\n\nUnitary: \\(\\hat{D}^\\dagger(\\alpha) = \\hat{D}(-\\alpha) = \\hat{D}^{-1}(\\alpha)\\)\nDisplacement of \\(\\hat{a}\\): \\(\\hat{D}^\\dagger(\\alpha)\\hat{a}\\hat{D}(\\alpha) = \\hat{a} + \\alpha\\)\nProduct: \\(\\hat{D}(\\alpha)\\hat{D}(\\beta) = e^{(\\alpha\\beta^* - \\alpha^*\\beta)/2}\\hat{D}(\\alpha + \\beta)\\)"
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-properties",
+    "href": "Courses/QHO/06_coherent_states.html#sec-properties",
+    "title": "Module 6: Coherent States",
+    "section": "5 Physical Properties of Coherent States",
+    "text": "5 Physical Properties of Coherent States\n\n5.1 Expectation Values\n\\[\n\\langle\\alpha|\\hat{a}|\\alpha\\rangle = \\alpha, \\quad \\langle\\alpha|\\hat{a}^\\dagger|\\alpha\\rangle = \\alpha^*\n\\]\nTherefore: \\[\n\\langle\\hat{x}\\rangle = \\frac{x_0}{\\sqrt{2}}\\langle\\hat{a} + \\hat{a}^\\dagger\\rangle = \\frac{x_0}{\\sqrt{2}}(\\alpha + \\alpha^*) = x_0\\sqrt{2}\\,\\text{Re}(\\alpha)\n\\]\n\\[\n\\langle\\hat{p}\\rangle = \\frac{i\\hbar}{\\sqrt{2}x_0}\\langle\\hat{a}^\\dagger - \\hat{a}\\rangle = \\frac{\\sqrt{2}\\hbar}{x_0}\\,\\text{Im}(\\alpha)\n\\]\nWriting \\(\\alpha = |\\alpha|e^{i\\phi}\\):\n\\[\n\\langle\\hat{x}\\rangle = \\sqrt{2}x_0|\\alpha|\\cos\\phi, \\qquad \\langle\\hat{p}\\rangle = \\sqrt{2}\\frac{\\hbar}{x_0}|\\alpha|\\sin\\phi\n\\]\n\n\n5.2 Minimum Uncertainty\nThe uncertainties in a coherent state:\n\\[\n(\\Delta x)^2 = \\langle\\hat{x}^2\\rangle - \\langle\\hat{x}\\rangle^2 = \\frac{x_0^2}{2}\n\\]\n\\[\n(\\Delta p)^2 = \\langle\\hat{p}^2\\rangle - \\langle\\hat{p}\\rangle^2 = \\frac{\\hbar^2}{2x_0^2}\n\\]\nTherefore:\n\\[\n\\Delta x\\,\\Delta p = \\frac{x_0}{{\\sqrt{2}}}\\cdot\\frac{\\hbar}{\\sqrt{2}x_0} = \\frac{\\hbar}{2}\n\\]\n\nCoherent states saturate the uncertainty principle: \\[\\Delta x\\,\\Delta p = \\frac{\\hbar}{2}\\]\nThis is the same as the ground state \\(|0\\rangle\\), which is a special case (\\(\\alpha = 0\\)) of a coherent state! All coherent states are minimum uncertainty states."
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-time-evolution",
+    "href": "Courses/QHO/06_coherent_states.html#sec-time-evolution",
+    "title": "Module 6: Coherent States",
+    "section": "6 Time Evolution of Coherent States",
+    "text": "6 Time Evolution of Coherent States\n\nComputing \\(|\\alpha(t)\\rangle = \\hat{U}(t)|\\alpha\\rangle\\):\n\\[\n\\hat{U}(t)|\\alpha\\rangle = e^{-i\\omega t/2}\\sum_n e^{-|\\alpha|^2/2}\\frac{\\alpha^n}{\\sqrt{n!}}e^{-in\\omega t}|n\\rangle\n\\]\n\\[\n= e^{-i\\omega t/2}\\sum_n e^{-|\\alpha|^2/2}\\frac{(\\alpha e^{-i\\omega t})^n}{\\sqrt{n!}}|n\\rangle\n\\]\n\\[\n= e^{-i\\omega t/2}|\\alpha e^{-i\\omega t}\\rangle\n\\]\n\n\\[\n\\boxed{\\hat{U}(t)|\\alpha\\rangle = e^{-i\\omega t/2}|\\alpha(t)\\rangle, \\quad \\alpha(t) = \\alpha e^{-i\\omega t}}\n\\]\nA coherent state remains a coherent state under time evolution — only the parameter \\(\\alpha\\) rotates in the complex plane at frequency \\(\\omega\\).\nThe expectation value of position:\n\\[\n\\langle\\hat{x}\\rangle(t) = \\sqrt{2}x_0|\\alpha|\\cos(\\omega t - \\phi) = A\\cos(\\omega t - \\phi)\n\\]\nThis is exactly classical motion! The coherent state oscillates without spreading, with amplitude \\(A = \\sqrt{2}x_0|\\alpha|\\) and phase \\(\\phi = \\arg(\\alpha)\\)."
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-photon-number",
+    "href": "Courses/QHO/06_coherent_states.html#sec-photon-number",
+    "title": "Module 6: Coherent States",
+    "section": "7 Photon Number Distribution",
+    "text": "7 Photon Number Distribution\nThe probability of finding \\(n\\) quanta in state \\(|\\alpha\\rangle\\):\n\\[\nP(n) = |\\langle n|\\alpha\\rangle|^2 = e^{-|\\alpha|^2}\\frac{|\\alpha|^{2n}}{n!}\n\\]\nThis is a Poisson distribution with mean \\(\\bar{n} = |\\alpha|^2\\):\n\\[\n\\boxed{P(n) = e^{-\\bar{n}}\\frac{\\bar{n}^n}{n!}, \\quad \\bar{n} = |\\alpha|^2 = \\langle\\hat{N}\\rangle}\n\\]\nProperties of the Poisson distribution: - Mean: \\(\\langle\\hat{N}\\rangle = |\\alpha|^2\\) - Variance: \\(\\langle(\\Delta N)^2\\rangle = |\\alpha|^2 = \\langle\\hat{N}\\rangle\\) - Standard deviation: \\(\\Delta N = |\\alpha|\\)\nThe Mandel Q parameter (measure of sub/super-Poissonian statistics):\n\\[\nQ = \\frac{\\langle(\\Delta N)^2\\rangle - \\langle N\\rangle}{\\langle N\\rangle} = 0 \\quad \\text{for coherent states}\n\\]\nCoherent states have Poissonian statistics — they are on the boundary between classical and non-classical light.\n\nLaser light is well-described by a coherent state. When you count photons from a laser, you get Poisson statistics — meaning the arrivals are random and uncorrelated. This is the minimal randomness imposed by quantum mechanics on the field amplitude.\nSub-Poissonian (\\(Q &lt; 0\\)) statistics would indicate squeezed light (non-classical) — the topic of Module 7!"
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-non-orthogonal",
+    "href": "Courses/QHO/06_coherent_states.html#sec-non-orthogonal",
+    "title": "Module 6: Coherent States",
+    "section": "8 Non-Orthogonality of Coherent States",
+    "text": "8 Non-Orthogonality of Coherent States\nUnlike Fock states, coherent states are not orthogonal:\n\\[\n\\langle\\beta|\\alpha\\rangle = e^{-|\\alpha|^2/2 - |\\beta|^2/2 + \\beta^*\\alpha}\n\\]\n\\[\n|\\langle\\beta|\\alpha\\rangle|^2 = e^{-|\\alpha - \\beta|^2}\n\\]\nTwo coherent states with \\(|\\alpha - \\beta| \\gg 1\\) are approximately orthogonal. Two with \\(|\\alpha - \\beta| \\ll 1\\) are nearly identical.\nThis makes sense physically: coherent states with very different amplitudes or phases are distinguishable, while those with nearly equal \\(\\alpha\\) are hard to tell apart.\n\n8.1 Over-Completeness\nDespite being non-orthogonal, coherent states form an over-complete basis:\n\\[\n\\frac{1}{\\pi}\\int |\\alpha\\rangle\\langle\\alpha|\\, d^2\\alpha = \\hat{I}\n\\]\nwhere \\(d^2\\alpha = d\\,\\text{Re}(\\alpha)\\,d\\,\\text{Im}(\\alpha)\\) is the integration measure over the complex plane.\nThis resolution of identity (over-completeness relation) is fundamental to the Glauber-Sudarshan P-representation of quantum optics."
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-phase-space",
+    "href": "Courses/QHO/06_coherent_states.html#sec-phase-space",
+    "title": "Module 6: Coherent States",
+    "section": "9 Phase Space Picture: The Wigner Function of Coherent States",
+    "text": "9 Phase Space Picture: The Wigner Function of Coherent States\nThe Wigner function of a coherent state \\(|\\alpha\\rangle\\):\n\\[\nW_\\alpha(x,p) = \\frac{1}{\\pi\\hbar}\\exp\\!\\left(-\\frac{(x - \\langle\\hat{x}\\rangle)^2}{x_0^2} - \\frac{(p - \\langle\\hat{p}\\rangle)^2\\,x_0^2}{\\hbar^2}\\right)\n\\]\nThis is a Gaussian centered at \\((\\langle\\hat{x}\\rangle, \\langle\\hat{p}\\rangle)\\) with:\n\nWidth in \\(x\\): \\(\\Delta x = x_0/\\sqrt{2}\\)\nWidth in \\(p\\): \\(\\Delta p = \\hbar/\\sqrt{2}x_0\\)\nPhase-space area: \\(\\pi\\Delta x\\,\\Delta p = \\pi\\hbar/2\\) (minimum area, Planck’s constant/2)\n\nTime evolution of the Wigner function: the Gaussian blob translates around an ellipse (circular for \\(m=1\\), \\(\\omega=1\\)) in phase space — exactly the classical orbit!\nThis is the phase-space picture of why coherent states are the most classical quantum states: their Wigner function looks like a classical phase-space distribution, and it moves classically."
+  },
+  {
+    "objectID": "Courses/QHO/06_coherent_states.html#sec-summary",
+    "href": "Courses/QHO/06_coherent_states.html#sec-summary",
+    "title": "Module 6: Coherent States",
+    "section": "10 Summary: Properties of Coherent States",
+    "text": "10 Summary: Properties of Coherent States\n\n\n\n\n\n\n\nProperty\nValue\n\n\n\n\nEigenvalue of \\(\\hat{a}\\)\n\\(\\hat{a}|\\alpha\\rangle = \\alpha|\\alpha\\rangle\\)\n\n\nFock-state expansion\n\\(|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_n\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle\\)\n\n\nGenerated by\n\\(|\\alpha\\rangle = \\hat{D}(\\alpha)|0\\rangle\\)\n\n\n\\(\\langle\\hat{x}\\rangle\\)\n\\(\\sqrt{2}x_0\\,\\text{Re}(\\alpha)\\)\n\n\n\\(\\langle\\hat{p}\\rangle\\)\n\\(\\sqrt{2}\\hbar x_0^{-1}\\,\\text{Im}(\\alpha)\\)\n\n\n\\(\\Delta x\\)\n\\(x_0/\\sqrt{2}\\) (independent of \\(\\alpha\\)!)\n\n\n\\(\\Delta p\\)\n\\(\\hbar/\\sqrt{2}x_0\\) (independent of \\(\\alpha\\)!)\n\n\n\\(\\Delta x\\,\\Delta p\\)\n\\(\\hbar/2\\) (minimum uncertainty)\n\n\nMean photon number\n\\(\\bar{n} = |\\alpha|^2\\)\n\n\nPhoton number distribution\nPoisson: \\(P(n) = e^{-\\bar{n}}\\bar{n}^n/n!\\)\n\n\nTime evolution\n\\(|\\alpha(t)\\rangle = e^{-i\\omega t/2}|\\alpha e^{-i\\omega t}\\rangle\\)\n\n\nOrthogonality\nNon-orthogonal: \\(|\\langle\\beta|\\alpha\\rangle|^2 = e^{-|\\alpha-\\beta|^2}\\)\n\n\n\n\nBefore moving on, make sure you can:\n\nDefine a coherent state as an eigenstate of \\(\\hat{a}\\) with eigenvalue \\(\\alpha\\).\nDerive the Fock-state expansion \\(|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_n \\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle\\).\nProve that \\(\\Delta x\\,\\Delta p = \\hbar/2\\) for all coherent states.\nShow that time evolution sends \\(|\\alpha\\rangle \\to e^{-i\\omega t/2}|\\alpha e^{-i\\omega t}\\rangle\\).\nDerive the Poisson distribution \\(P(n) = e^{-|\\alpha|^2}|\\alpha|^{2n}/n!\\).\nExplain the physical meaning of \\(|\\alpha|\\) and \\(\\arg(\\alpha)\\) in terms of classical amplitude and phase.\n\nConceptual: Why do coherent states not violate the uncertainty principle, even though they look classical?\n\n\n\n← Module 5: Time Evolution Next: Module 7 — Squeezed States →"
+  },
+  {
+    "objectID": "Courses/QHO/08_cheatsheet.html",
+    "href": "Courses/QHO/08_cheatsheet.html",
+    "title": "Module 8: Summary, Cheat Sheet & Further Reading",
+    "section": "",
+    "text": "← Module 7 | ↑ Course Index"
+  },
+  {
+    "objectID": "Courses/QHO/08_cheatsheet.html#congratulations-youve-completed-the-qho-course",
+    "href": "Courses/QHO/08_cheatsheet.html#congratulations-youve-completed-the-qho-course",
+    "title": "Module 8: Summary, Cheat Sheet & Further Reading",
+    "section": "1 🎓 Congratulations — You’ve Completed the QHO Course!",
+    "text": "1 🎓 Congratulations — You’ve Completed the QHO Course!\nYou have journeyed from a classical spring to the quantum foundations of LIGO. Every equation was derived from first principles. You now understand why this system is called the most important in all of physics.\n“The harmonic oscillator is the drosophila of quantum mechanics.” — C. Cohen-Tannoudji"
+  },
+  {
+    "objectID": "Courses/QHO/08_cheatsheet.html#sec-all-results",
+    "href": "Courses/QHO/08_cheatsheet.html#sec-all-results",
+    "title": "Module 8: Summary, Cheat Sheet & Further Reading",
+    "section": "2 Complete Reference: All Key Results",
+    "text": "2 Complete Reference: All Key Results\n\n2.1 The Fundamentals\n\n2.1.1 Classical SHO\n\\[\\ddot{x} + \\omega^2 x = 0, \\quad x(t) = A\\cos(\\omega t + \\phi), \\quad E = \\tfrac{1}{2}m\\omega^2 A^2\\]\n\n\n2.1.2 The QHO Hamiltonian (three forms)\n\\[\\hat{H} = \\frac{\\hat{p}^2}{2m} + \\frac{1}{2}m\\omega^2\\hat{x}^2 = \\hbar\\omega\\!\\left(\\hat{N} + \\tfrac{1}{2}\\right) = \\hbar\\omega\\!\\left(\\hat{a}^\\dagger\\hat{a} + \\tfrac{1}{2}\\right)\\]\n\n\n2.1.3 Energy Spectrum\n\\[E_n = \\hbar\\omega\\!\\left(n + \\tfrac{1}{2}\\right), \\quad n = 0,1,2,\\ldots \\quad \\text{(equally spaced, zero-point energy } E_0 = \\tfrac{1}{2}\\hbar\\omega\\text{)}\\]\n\n\n\n2.2 Ladder Operators\n\n2.2.1 Definitions and Inversions\n\\[\\hat{a} = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\!\\left(\\hat{x} + \\frac{i\\hat{p}}{m\\omega}\\right), \\quad \\hat{a}^\\dagger = \\sqrt{\\frac{m\\omega}{2\\hbar}}\\!\\left(\\hat{x} - \\frac{i\\hat{p}}{m\\omega}\\right)\\] \\[\\hat{x} = \\frac{x_0}{\\sqrt{2}}(\\hat{a} + \\hat{a}^\\dagger), \\quad \\hat{p} = \\frac{i\\hbar}{\\sqrt{2}x_0}(\\hat{a}^\\dagger - \\hat{a}), \\quad x_0 = \\sqrt{\\frac{\\hbar}{m\\omega}}\\]\n\n\n2.2.2 Commutators\n\\[[\\hat{a},\\hat{a}^\\dagger] = 1, \\quad [\\hat{N},\\hat{a}] = -\\hat{a}, \\quad [\\hat{N},\\hat{a}^\\dagger] = \\hat{a}^\\dagger\\] \\[[\\hat{H},\\hat{a}] = -\\hbar\\omega\\hat{a}, \\quad [\\hat{H},\\hat{a}^\\dagger] = +\\hbar\\omega\\hat{a}^\\dagger\\]\n\n\n2.2.3 Action on Fock States\n\\[\\hat{a}|n\\rangle = \\sqrt{n}\\,|n-1\\rangle, \\quad \\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}\\,|n+1\\rangle, \\quad |n\\rangle = \\frac{(\\hat{a}^\\dagger)^n}{\\sqrt{n!}}|0\\rangle\\]\n\n\n\n2.3 Wavefunctions\n\n2.3.1 General Formula\n\\[\\psi_n(x) = \\left(\\frac{m\\omega}{\\pi\\hbar}\\right)^{1/4}\\frac{1}{\\sqrt{2^n n!}} H_n\\!\\left(\\frac{x}{x_0}\\right)e^{-x^2/2x_0^2}\\] - Parity: \\(\\psi_n(-x) = (-1)^n\\psi_n(x)\\) - Nodes: \\(\\psi_n\\) has exactly \\(n\\) zeros - Ground state: \\(\\psi_0(x) = (\\pi x_0^2)^{-1/4}\\,e^{-x^2/2x_0^2}\\) (Gaussian)\n\n\n2.3.2 Expectation Values in \\(|n\\rangle\\)\n\\[\\langle\\hat{x}\\rangle = 0, \\quad \\langle\\hat{p}\\rangle = 0, \\quad \\langle\\hat{x}^2\\rangle = \\left(n+\\tfrac{1}{2}\\right)x_0^2, \\quad \\langle\\hat{p}^2\\rangle = \\left(n+\\tfrac{1}{2}\\right)\\frac{\\hbar^2}{x_0^2}\\] \\[\\Delta x\\,\\Delta p = \\left(n + \\tfrac{1}{2}\\right)\\hbar \\geq \\frac{\\hbar}{2}, \\quad \\langle T\\rangle = \\langle V\\rangle = \\frac{E_n}{2}\\]\n\n\n\n2.4 Time Evolution\n\n2.4.1 Time-Evolved States\n\\[|n,t\\rangle = e^{-i(n+1/2)\\omega t}|n\\rangle\\] \\[|\\Psi(t)\\rangle = \\sum_n c_n e^{-i(n+1/2)\\omega t}|n\\rangle, \\quad \\text{Period } T = \\frac{2\\pi}{\\omega}\\]\n\n\n2.4.2 Heisenberg Picture / Ehrenfest\n\\[\\hat{a}(t) = e^{-i\\omega t}\\hat{a}(0), \\quad \\hat{x}(t) = x_0\\cos\\omega t\\,\\hat{x}(0) + \\frac{\\sin\\omega t}{m\\omega}\\hat{p}(0)\\] \\[\\frac{d^2}{dt^2}\\langle\\hat{x}\\rangle = -\\omega^2\\langle\\hat{x}\\rangle \\quad \\text{(classical EOM for any quantum state)}\\]\n\n\n\n2.5 Coherent States\n\n2.5.1 Definition and Expansion\n\\[\\hat{a}|\\alpha\\rangle = \\alpha|\\alpha\\rangle, \\quad |\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_{n=0}^{\\infty}\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle = \\hat{D}(\\alpha)|0\\rangle\\] \\[\\hat{D}(\\alpha) = e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}} = e^{-|\\alpha|^2/2}e^{\\alpha\\hat{a}^\\dagger}e^{-\\alpha^*\\hat{a}}\\]\n\n\n2.5.2 Properties\n\\[\\langle\\hat{x}\\rangle = \\sqrt{2}x_0\\,\\text{Re}(\\alpha), \\quad \\langle\\hat{p}\\rangle = \\frac{\\sqrt{2}\\hbar}{x_0}\\,\\text{Im}(\\alpha)\\] \\[\\Delta x = \\frac{x_0}{\\sqrt{2}}, \\quad \\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}, \\quad \\Delta x\\,\\Delta p = \\frac{\\hbar}{2}\\] \\[P(n) = e^{-|\\alpha|^2}\\frac{|\\alpha|^{2n}}{n!} \\quad \\text{(Poisson)}, \\quad \\bar{n} = |\\alpha|^2, \\quad \\Delta N = |\\alpha|\\] \\[|\\alpha(t)\\rangle = e^{-i\\omega t/2}|\\alpha e^{-i\\omega t}\\rangle, \\quad |\\langle\\beta|\\alpha\\rangle|^2 = e^{-|\\alpha-\\beta|^2}\\] \\[\\frac{1}{\\pi}\\int|\\alpha\\rangle\\langle\\alpha|\\,d^2\\alpha = \\hat{I} \\quad \\text{(over-completeness)}\\]\n\n\n\n2.6 Squeezed States\n\n2.6.1 Squeeze Operator and Action\n\\[\\hat{S}(\\xi) = \\exp\\!\\left(\\tfrac{1}{2}\\xi^*\\hat{a}^2 - \\tfrac{1}{2}\\xi\\hat{a}^{\\dagger 2}\\right), \\quad \\xi = re^{i\\theta}\\] \\[\\hat{S}^\\dagger(r)\\hat{a}\\hat{S}(r) = \\hat{a}\\cosh r - \\hat{a}^\\dagger\\sinh r \\quad \\text{(Bogoliubov)}\\]\n\n\n2.6.2 Squeezed Vacuum and Coherent Squeezed States\n\\[|0,r\\rangle = \\hat{S}(r)|0\\rangle, \\quad |\\alpha,r\\rangle = \\hat{D}(\\alpha)\\hat{S}(r)|0\\rangle\\] \\[\\Delta x = \\frac{x_0}{\\sqrt{2}}e^{-r}, \\quad \\Delta p = \\frac{\\hbar}{\\sqrt{2}x_0}e^{+r}, \\quad \\Delta x\\,\\Delta p = \\frac{\\hbar}{2}\\] \\[\\langle\\hat{N}\\rangle_{\\text{sq.vac}} = \\sinh^2 r, \\quad Q &lt; 0 \\text{ (sub-Poissonian, non-classical)}\\]"
+  },
+  {
+    "objectID": "Courses/QHO/08_cheatsheet.html#sec-cheatsheet",
+    "href": "Courses/QHO/08_cheatsheet.html#sec-cheatsheet",
+    "title": "Module 8: Summary, Cheat Sheet & Further Reading",
+    "section": "3 Download the Cheat Sheet",
+    "text": "3 Download the Cheat Sheet\n\n3.1 📄 QHO Cheat Sheet (PDF)\nA print-ready, two-page LaTeX-compiled cheat sheet with every formula from this course — ready for your exam, your desk, or your soul.\n⬇️ Download PDF Cheat Sheet\nLaTeX source also available: qho_cheatsheet.tex"
+  },
+  {
+    "objectID": "Courses/QHO/08_cheatsheet.html#sec-reading",
+    "href": "Courses/QHO/08_cheatsheet.html#sec-reading",
+    "title": "Module 8: Summary, Cheat Sheet & Further Reading",
+    "section": "4 Further Reading",
+    "text": "4 Further Reading\n\n4.0.1 📖 Griffiths — Introduction to Quantum Mechanics (3rd ed.)\nChapter 2, Section 2.3: The harmonic oscillator — best first introduction. Clear, pedagogical, lots of examples.\nBest for: Beginners and undergraduates. The analytic (Hermite polynomial) method is done very clearly.\n\n\n4.0.2 📖 Shankar — Principles of Quantum Mechanics (2nd ed.)\nChapter 7: The harmonic oscillator — the definitive algebraic treatment. Exercise 7.4.9 introduces coherent states.\nBest for: Anyone who wants to understand the why behind the algebra. The notation is clean and the derivations are rigorous.\n\n\n4.0.3 📖 Cohen-Tannoudji, Diu & Laloë — Quantum Mechanics (Vol. 1 & 2)\nChapter V: The harmonic oscillator — extremely systematic. Complement GV covers coherent states.\nBest for: The most complete treatment. Read this when you want to make sure you haven’t missed anything.\n\n\n4.0.4 📖 Walls & Milburn — Quantum Optics (2nd ed.)\nChapter 2-3: Squeezed states, coherent states, phase space methods.\nBest for: Graduate students going into quantum optics or quantum information. The definitive reference for squeezed states.\n\n\n4.0.5 📖 Gerry & Knight — Introductory Quantum Optics\nChapter 3: Coherent states and squeezed states with quantum optical applications.\nBest for: A gentler introduction to quantum optics than Walls & Milburn."
+  },
+  {
+    "objectID": "Courses/QHO/08_cheatsheet.html#sec-next",
+    "href": "Courses/QHO/08_cheatsheet.html#sec-next",
+    "title": "Module 8: Summary, Cheat Sheet & Further Reading",
+    "section": "5 What Comes Next?",
+    "text": "5 What Comes Next?\nHaving mastered the QHO, you are now ready for:\n\nQuantum Field Theory: The QHO is the building block of every quantum field — scalar, electromagnetic, fermionic.\nQuantum Optics: Glauber-Sudarshan P-function, optical phase space, quantum state tomography.\nCircuit QED: Superconducting qubits are quantized LC circuits (QHOs), the platform of modern quantum computers.\nMany-Body Physics: Phonons, magnons, plasmons — all are collections of QHOs.\nPerturbation Theory: Anharmonic corrections to the QHO (\\(\\lambda x^4\\) potential) are the first test of perturbation theory.\n\n\n\n← Module 7: Squeezed States ↑ Back to Course Index"
+  },
+  {
+    "objectID": "courses.html#physics-courses",
+    "href": "courses.html#physics-courses",
+    "title": "Courses",
+    "section": "",
+    "text": "Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated."
   }
 ]

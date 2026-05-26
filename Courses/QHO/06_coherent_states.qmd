@@ -1,0 +1,392 @@
+---
+title: "Module 6: Coherent States"
+subtitle: "The Most Classical Quantum States"
+description: "We construct and explore coherent states — the eigenstates of the annihilation operator. These minimum-uncertainty wavepackets behave most classically, oscillate without spreading, and are the quantum states of laser light. Drawn from Shankar Ch. 7, Cohen-Tannoudji, and Glauber's Nobel Prize work."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course, Quantum Optics]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
+}
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #065f46 0%, #064e3b 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.result-box p { color: #a7f3d0; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+```
+
+[← Module 5](05_time_evolution.qmd) | [↑ Course Index](index.qmd) | [Module 7 →](07_squeezed_states.qmd)
+
+---
+
+## Motivation: What is the Most Classical Quantum State? {#sec-motivation}
+
+The energy eigenstates $|n\rangle$ are weird. For any $n$:
+
+- $\langle\hat{x}\rangle = 0$ always (no displacement)
+- The probability density is spread out and has nodes
+- Nothing seems to oscillate in time
+
+But a real classical oscillator has a definite amplitude and phase. What quantum state most closely resembles a classical oscillating particle?
+
+The answer is the **coherent state**, introduced by Roy Glauber in 1963 (for which he received the 2005 Nobel Prize in Physics).
+
+> **Textbook reference**: Shankar, Exercise 7.4.9; Cohen-Tannoudji Vol. 1, Complement GV; Griffiths Problem 3.35.
+
+---
+
+## Definition: Eigenstates of $\hat{a}$ {#sec-definition}
+
+A **coherent state** $|\alpha\rangle$ is defined as an eigenstate of the annihilation operator:
+
+$$
+\boxed{\hat{a}|\alpha\rangle = \alpha|\alpha\rangle}
+$$
+
+where $\alpha$ is a complex number: $\alpha = |\alpha|e^{i\theta} \in \mathbb{C}$.
+
+::: {.callout-note}
+## Why $\hat{a}$ and Not $\hat{a}^\dagger$?
+$\hat{a}^\dagger$ has **no eigenvalues** — there is no normalizable state that satisfies $\hat{a}^\dagger|\beta\rangle = \beta|\beta\rangle$. (Proof: $\hat{a}^\dagger$ raises $n$ without bound, so the series never terminates.)
+
+But $\hat{a}$ does have eigenvalues — any complex number $\alpha$ works. The ground state $|0\rangle$ is the special case $\alpha = 0$.
+:::
+
+---
+
+## Expanding Coherent States in the Fock Basis {#sec-fock-expansion}
+
+Let's write $|\alpha\rangle = \sum_{n=0}^{\infty} c_n|n\rangle$ and apply $\hat{a}|\alpha\rangle = \alpha|\alpha\rangle$:
+
+::: {.derivation-box}
+$$
+\hat{a}|\alpha\rangle = \sum_n c_n \hat{a}|n\rangle = \sum_n c_n \sqrt{n}|n-1\rangle = \alpha\sum_n c_n|n\rangle
+$$
+
+Shifting index $n \to n+1$ on the left:
+
+$$
+\sum_n c_{n+1}\sqrt{n+1}|n\rangle = \alpha\sum_n c_n|n\rangle
+$$
+
+Matching term by term: $c_{n+1}\sqrt{n+1} = \alpha c_n$
+
+**Recursion**: $c_{n+1} = \frac{\alpha}{\sqrt{n+1}}c_n$
+
+**Solution**: $c_n = \frac{\alpha^n}{\sqrt{n!}}c_0$
+
+**Normalizing**: $\sum_n|c_n|^2 = |c_0|^2\sum_n\frac{|\alpha|^{2n}}{n!} = |c_0|^2 e^{|\alpha|^2} = 1$
+
+So $|c_0|^2 = e^{-|\alpha|^2}$ and $c_n = e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}$.
+:::
+
+$$
+\boxed{|\alpha\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}|n\rangle}
+$$
+
+This is one of the most important equations in quantum optics!
+
+---
+
+## The Displacement Operator {#sec-displacement}
+
+An elegant way to construct coherent states: define the **displacement operator**:
+
+$$
+\hat{D}(\alpha) = e^{\alpha\hat{a}^\dagger - \alpha^*\hat{a}}
+$$
+
+**Claim**: $|\alpha\rangle = \hat{D}(\alpha)|0\rangle$
+
+::: {.derivation-box}
+**Proof using Baker-Campbell-Hausdorff (BCH) lemma:**
+
+Since $[\alpha\hat{a}^\dagger, -\alpha^*\hat{a}] = |\alpha|^2[\hat{a}^\dagger, \hat{a}] = -|\alpha|^2$ (a c-number), BCH gives:
+
+$$
+\hat{D}(\alpha) = e^{\alpha\hat{a}^\dagger - \alpha^*\hat{a}} = e^{-|\alpha|^2/2} e^{\alpha\hat{a}^\dagger} e^{-\alpha^*\hat{a}}
+$$
+
+Applying to $|0\rangle$: $e^{-\alpha^*\hat{a}}|0\rangle = |0\rangle$ (since $\hat{a}|0\rangle = 0$)
+
+$$
+\hat{D}(\alpha)|0\rangle = e^{-|\alpha|^2/2}e^{\alpha\hat{a}^\dagger}|0\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{(\alpha\hat{a}^\dagger)^n}{n!}|0\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}|n\rangle = |\alpha\rangle\ ✓
+$$
+:::
+
+The displacement operator **displaces** the ground state to a coherent state:
+
+$$
+|\alpha\rangle = \hat{D}(\alpha)|0\rangle
+$$
+
+Properties of $\hat{D}(\alpha)$:
+
+- **Unitary**: $\hat{D}^\dagger(\alpha) = \hat{D}(-\alpha) = \hat{D}^{-1}(\alpha)$
+- **Displacement of $\hat{a}$**: $\hat{D}^\dagger(\alpha)\hat{a}\hat{D}(\alpha) = \hat{a} + \alpha$
+- **Product**: $\hat{D}(\alpha)\hat{D}(\beta) = e^{(\alpha\beta^* - \alpha^*\beta)/2}\hat{D}(\alpha + \beta)$
+
+---
+
+## Physical Properties of Coherent States {#sec-properties}
+
+### Expectation Values
+
+$$
+\langle\alpha|\hat{a}|\alpha\rangle = \alpha, \quad \langle\alpha|\hat{a}^\dagger|\alpha\rangle = \alpha^*
+$$
+
+Therefore:
+$$
+\langle\hat{x}\rangle = \frac{x_0}{\sqrt{2}}\langle\hat{a} + \hat{a}^\dagger\rangle = \frac{x_0}{\sqrt{2}}(\alpha + \alpha^*) = x_0\sqrt{2}\,\text{Re}(\alpha)
+$$
+
+$$
+\langle\hat{p}\rangle = \frac{i\hbar}{\sqrt{2}x_0}\langle\hat{a}^\dagger - \hat{a}\rangle = \frac{\sqrt{2}\hbar}{x_0}\,\text{Im}(\alpha)
+$$
+
+Writing $\alpha = |\alpha|e^{i\phi}$:
+
+$$
+\langle\hat{x}\rangle = \sqrt{2}x_0|\alpha|\cos\phi, \qquad \langle\hat{p}\rangle = \sqrt{2}\frac{\hbar}{x_0}|\alpha|\sin\phi
+$$
+
+### Minimum Uncertainty
+
+The uncertainties in a coherent state:
+
+$$
+(\Delta x)^2 = \langle\hat{x}^2\rangle - \langle\hat{x}\rangle^2 = \frac{x_0^2}{2}
+$$
+
+$$
+(\Delta p)^2 = \langle\hat{p}^2\rangle - \langle\hat{p}\rangle^2 = \frac{\hbar^2}{2x_0^2}
+$$
+
+Therefore:
+
+$$
+\Delta x\,\Delta p = \frac{x_0}{{\sqrt{2}}}\cdot\frac{\hbar}{\sqrt{2}x_0} = \frac{\hbar}{2}
+$$
+
+::: {.result-box}
+**Coherent states saturate the uncertainty principle:**
+$$\Delta x\,\Delta p = \frac{\hbar}{2}$$
+
+This is the same as the ground state $|0\rangle$, which is a special case ($\alpha = 0$) of a coherent state! All coherent states are **minimum uncertainty states**.
+:::
+
+---
+
+## Time Evolution of Coherent States {#sec-time-evolution}
+
+::: {.derivation-box}
+**Computing $|\alpha(t)\rangle = \hat{U}(t)|\alpha\rangle$:**
+
+$$
+\hat{U}(t)|\alpha\rangle = e^{-i\omega t/2}\sum_n e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}e^{-in\omega t}|n\rangle
+$$
+
+$$
+= e^{-i\omega t/2}\sum_n e^{-|\alpha|^2/2}\frac{(\alpha e^{-i\omega t})^n}{\sqrt{n!}}|n\rangle
+$$
+
+$$
+= e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle
+$$
+:::
+
+$$
+\boxed{\hat{U}(t)|\alpha\rangle = e^{-i\omega t/2}|\alpha(t)\rangle, \quad \alpha(t) = \alpha e^{-i\omega t}}
+$$
+
+A coherent state **remains a coherent state** under time evolution — only the parameter $\alpha$ rotates in the complex plane at frequency $\omega$.
+
+The expectation value of position:
+
+$$
+\langle\hat{x}\rangle(t) = \sqrt{2}x_0|\alpha|\cos(\omega t - \phi) = A\cos(\omega t - \phi)
+$$
+
+This is **exactly classical motion**! The coherent state oscillates without spreading, with amplitude $A = \sqrt{2}x_0|\alpha|$ and phase $\phi = \arg(\alpha)$.
+
+---
+
+## Photon Number Distribution {#sec-photon-number}
+
+The probability of finding $n$ quanta in state $|\alpha\rangle$:
+
+$$
+P(n) = |\langle n|\alpha\rangle|^2 = e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}
+$$
+
+This is a **Poisson distribution** with mean $\bar{n} = |\alpha|^2$:
+
+$$
+\boxed{P(n) = e^{-\bar{n}}\frac{\bar{n}^n}{n!}, \quad \bar{n} = |\alpha|^2 = \langle\hat{N}\rangle}
+$$
+
+Properties of the Poisson distribution:
+- Mean: $\langle\hat{N}\rangle = |\alpha|^2$
+- Variance: $\langle(\Delta N)^2\rangle = |\alpha|^2 = \langle\hat{N}\rangle$
+- Standard deviation: $\Delta N = |\alpha|$
+
+The **Mandel Q parameter** (measure of sub/super-Poissonian statistics):
+
+$$
+Q = \frac{\langle(\Delta N)^2\rangle - \langle N\rangle}{\langle N\rangle} = 0 \quad \text{for coherent states}
+$$
+
+Coherent states have **Poissonian** statistics — they are on the boundary between classical and non-classical light.
+
+::: {.callout-intuition}
+**Laser light** is well-described by a coherent state. When you count photons from a laser, you get Poisson statistics — meaning the arrivals are random and uncorrelated. This is the minimal randomness imposed by quantum mechanics on the field amplitude.
+
+Sub-Poissonian ($Q < 0$) statistics would indicate **squeezed light** (non-classical) — the topic of Module 7!
+:::
+
+---
+
+## Non-Orthogonality of Coherent States {#sec-non-orthogonal}
+
+Unlike Fock states, coherent states are **not orthogonal**:
+
+$$
+\langle\beta|\alpha\rangle = e^{-|\alpha|^2/2 - |\beta|^2/2 + \beta^*\alpha}
+$$
+
+$$
+|\langle\beta|\alpha\rangle|^2 = e^{-|\alpha - \beta|^2}
+$$
+
+Two coherent states with $|\alpha - \beta| \gg 1$ are approximately orthogonal. Two with $|\alpha - \beta| \ll 1$ are nearly identical.
+
+This makes sense physically: coherent states with very different amplitudes or phases are distinguishable, while those with nearly equal $\alpha$ are hard to tell apart.
+
+### Over-Completeness
+
+Despite being non-orthogonal, coherent states form an **over-complete** basis:
+
+$$
+\frac{1}{\pi}\int |\alpha\rangle\langle\alpha|\, d^2\alpha = \hat{I}
+$$
+
+where $d^2\alpha = d\,\text{Re}(\alpha)\,d\,\text{Im}(\alpha)$ is the integration measure over the complex plane.
+
+This resolution of identity (over-completeness relation) is fundamental to the **Glauber-Sudarshan P-representation** of quantum optics.
+
+---
+
+## Phase Space Picture: The Wigner Function of Coherent States {#sec-phase-space}
+
+The Wigner function of a coherent state $|\alpha\rangle$:
+
+$$
+W_\alpha(x,p) = \frac{1}{\pi\hbar}\exp\!\left(-\frac{(x - \langle\hat{x}\rangle)^2}{x_0^2} - \frac{(p - \langle\hat{p}\rangle)^2\,x_0^2}{\hbar^2}\right)
+$$
+
+This is a **Gaussian centered at $(\langle\hat{x}\rangle, \langle\hat{p}\rangle)$** with:
+
+- Width in $x$: $\Delta x = x_0/\sqrt{2}$
+- Width in $p$: $\Delta p = \hbar/\sqrt{2}x_0$
+- Phase-space area: $\pi\Delta x\,\Delta p = \pi\hbar/2$ (minimum area, Planck's constant/2)
+
+**Time evolution** of the Wigner function: the Gaussian blob translates around an **ellipse** (circular for $m=1$, $\omega=1$) in phase space — exactly the classical orbit!
+
+This is the phase-space picture of why coherent states are the most classical quantum states: their Wigner function looks like a classical phase-space distribution, and it moves classically.
+
+---
+
+## Summary: Properties of Coherent States {#sec-summary}
+
+| Property | Value |
+|----------|-------|
+| Eigenvalue of $\hat{a}$ | $\hat{a}|\alpha\rangle = \alpha|\alpha\rangle$ |
+| Fock-state expansion | $|\alpha\rangle = e^{-|\alpha|^2/2}\sum_n\frac{\alpha^n}{\sqrt{n!}}|n\rangle$ |
+| Generated by | $|\alpha\rangle = \hat{D}(\alpha)|0\rangle$ |
+| $\langle\hat{x}\rangle$ | $\sqrt{2}x_0\,\text{Re}(\alpha)$ |
+| $\langle\hat{p}\rangle$ | $\sqrt{2}\hbar x_0^{-1}\,\text{Im}(\alpha)$ |
+| $\Delta x$ | $x_0/\sqrt{2}$ (independent of $\alpha$!) |
+| $\Delta p$ | $\hbar/\sqrt{2}x_0$ (independent of $\alpha$!) |
+| $\Delta x\,\Delta p$ | $\hbar/2$ (minimum uncertainty) |
+| Mean photon number | $\bar{n} = |\alpha|^2$ |
+| Photon number distribution | Poisson: $P(n) = e^{-\bar{n}}\bar{n}^n/n!$ |
+| Time evolution | $|\alpha(t)\rangle = e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle$ |
+| Orthogonality | Non-orthogonal: $|\langle\beta|\alpha\rangle|^2 = e^{-|\alpha-\beta|^2}$ |
+
+::: {.checkpoint}
+**Before moving on, make sure you can:**
+
+1. Define a coherent state as an eigenstate of $\hat{a}$ with eigenvalue $\alpha$.
+2. Derive the Fock-state expansion $|\alpha\rangle = e^{-|\alpha|^2/2}\sum_n \frac{\alpha^n}{\sqrt{n!}}|n\rangle$.
+3. Prove that $\Delta x\,\Delta p = \hbar/2$ for all coherent states.
+4. Show that time evolution sends $|\alpha\rangle \to e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle$.
+5. Derive the Poisson distribution $P(n) = e^{-|\alpha|^2}|\alpha|^{2n}/n!$.
+6. Explain the physical meaning of $|\alpha|$ and $\arg(\alpha)$ in terms of classical amplitude and phase.
+
+**Conceptual**: Why do coherent states not violate the uncertainty principle, even though they look classical?
+:::
+
+---
+
+::: {.nav-buttons}
+[← Module 5: Time Evolution](05_time_evolution.qmd){.btn .btn-outline-secondary}
+[Next: Module 7 — Squeezed States →](07_squeezed_states.qmd){.btn .btn-success}
+:::

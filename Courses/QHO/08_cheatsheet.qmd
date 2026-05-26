@@ -1,0 +1,243 @@
+---
+title: "Module 8: Summary, Cheat Sheet & Further Reading"
+subtitle: "Everything in One Place"
+description: "A comprehensive summary of all QHO results, a downloadable LaTeX cheat sheet, and a guide to further reading in Shankar, Cohen-Tannoudji, and Griffiths."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.summary-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+.summary-card h4 { color: #7c3aed; margin-bottom: 0.5rem; }
+
+.download-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+.download-box h3 { color: #c4b5fd; }
+.download-box p { color: #ddd6fe; }
+
+.book-card {
+  border-left: 4px solid #7c3aed;
+  padding: 1rem 1.4rem;
+  margin-bottom: 1rem;
+  background: #faf5ff;
+  border-radius: 0 8px 8px 0;
+}
+.book-card h4 { margin-bottom: 0.3rem; color: #5b21b6; }
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.completion-banner {
+  background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.completion-banner h2 { color: #a7f3d0; }
+.completion-banner p { color: #d1fae5; }
+</style>
+```
+
+[← Module 7](07_squeezed_states.qmd) | [↑ Course Index](index.qmd)
+
+---
+
+::: {.completion-banner}
+## 🎓 Congratulations — You've Completed the QHO Course!
+
+You have journeyed from a classical spring to the quantum foundations of LIGO. Every equation was derived from first principles. You now understand why this system is called *the most important in all of physics*.
+
+*"The harmonic oscillator is the drosophila of quantum mechanics."* — C. Cohen-Tannoudji
+:::
+
+---
+
+## Complete Reference: All Key Results {#sec-all-results}
+
+### The Fundamentals
+
+::: {.summary-card}
+#### Classical SHO
+$$\ddot{x} + \omega^2 x = 0, \quad x(t) = A\cos(\omega t + \phi), \quad E = \tfrac{1}{2}m\omega^2 A^2$$
+:::
+
+::: {.summary-card}
+#### The QHO Hamiltonian (three forms)
+$$\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2 = \hbar\omega\!\left(\hat{N} + \tfrac{1}{2}\right) = \hbar\omega\!\left(\hat{a}^\dagger\hat{a} + \tfrac{1}{2}\right)$$
+:::
+
+::: {.summary-card}
+#### Energy Spectrum
+$$E_n = \hbar\omega\!\left(n + \tfrac{1}{2}\right), \quad n = 0,1,2,\ldots \quad \text{(equally spaced, zero-point energy } E_0 = \tfrac{1}{2}\hbar\omega\text{)}$$
+:::
+
+### Ladder Operators
+
+::: {.summary-card}
+#### Definitions and Inversions
+$$\hat{a} = \sqrt{\frac{m\omega}{2\hbar}}\!\left(\hat{x} + \frac{i\hat{p}}{m\omega}\right), \quad \hat{a}^\dagger = \sqrt{\frac{m\omega}{2\hbar}}\!\left(\hat{x} - \frac{i\hat{p}}{m\omega}\right)$$
+$$\hat{x} = \frac{x_0}{\sqrt{2}}(\hat{a} + \hat{a}^\dagger), \quad \hat{p} = \frac{i\hbar}{\sqrt{2}x_0}(\hat{a}^\dagger - \hat{a}), \quad x_0 = \sqrt{\frac{\hbar}{m\omega}}$$
+:::
+
+::: {.summary-card}
+#### Commutators
+$$[\hat{a},\hat{a}^\dagger] = 1, \quad [\hat{N},\hat{a}] = -\hat{a}, \quad [\hat{N},\hat{a}^\dagger] = \hat{a}^\dagger$$
+$$[\hat{H},\hat{a}] = -\hbar\omega\hat{a}, \quad [\hat{H},\hat{a}^\dagger] = +\hbar\omega\hat{a}^\dagger$$
+:::
+
+::: {.summary-card}
+#### Action on Fock States
+$$\hat{a}|n\rangle = \sqrt{n}\,|n-1\rangle, \quad \hat{a}^\dagger|n\rangle = \sqrt{n+1}\,|n+1\rangle, \quad |n\rangle = \frac{(\hat{a}^\dagger)^n}{\sqrt{n!}}|0\rangle$$
+:::
+
+### Wavefunctions
+
+::: {.summary-card}
+#### General Formula
+$$\psi_n(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\frac{1}{\sqrt{2^n n!}} H_n\!\left(\frac{x}{x_0}\right)e^{-x^2/2x_0^2}$$
+- Parity: $\psi_n(-x) = (-1)^n\psi_n(x)$
+- Nodes: $\psi_n$ has exactly $n$ zeros
+- Ground state: $\psi_0(x) = (\pi x_0^2)^{-1/4}\,e^{-x^2/2x_0^2}$ (Gaussian)
+:::
+
+::: {.summary-card}
+#### Expectation Values in $|n\rangle$
+$$\langle\hat{x}\rangle = 0, \quad \langle\hat{p}\rangle = 0, \quad \langle\hat{x}^2\rangle = \left(n+\tfrac{1}{2}\right)x_0^2, \quad \langle\hat{p}^2\rangle = \left(n+\tfrac{1}{2}\right)\frac{\hbar^2}{x_0^2}$$
+$$\Delta x\,\Delta p = \left(n + \tfrac{1}{2}\right)\hbar \geq \frac{\hbar}{2}, \quad \langle T\rangle = \langle V\rangle = \frac{E_n}{2}$$
+:::
+
+### Time Evolution
+
+::: {.summary-card}
+#### Time-Evolved States
+$$|n,t\rangle = e^{-i(n+1/2)\omega t}|n\rangle$$
+$$|\Psi(t)\rangle = \sum_n c_n e^{-i(n+1/2)\omega t}|n\rangle, \quad \text{Period } T = \frac{2\pi}{\omega}$$
+:::
+
+::: {.summary-card}
+#### Heisenberg Picture / Ehrenfest
+$$\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \quad \hat{x}(t) = x_0\cos\omega t\,\hat{x}(0) + \frac{\sin\omega t}{m\omega}\hat{p}(0)$$
+$$\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle \quad \text{(classical EOM for any quantum state)}$$
+:::
+
+### Coherent States
+
+::: {.summary-card}
+#### Definition and Expansion
+$$\hat{a}|\alpha\rangle = \alpha|\alpha\rangle, \quad |\alpha\rangle = e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}|n\rangle = \hat{D}(\alpha)|0\rangle$$
+$$\hat{D}(\alpha) = e^{\alpha\hat{a}^\dagger - \alpha^*\hat{a}} = e^{-|\alpha|^2/2}e^{\alpha\hat{a}^\dagger}e^{-\alpha^*\hat{a}}$$
+:::
+
+::: {.summary-card}
+#### Properties
+$$\langle\hat{x}\rangle = \sqrt{2}x_0\,\text{Re}(\alpha), \quad \langle\hat{p}\rangle = \frac{\sqrt{2}\hbar}{x_0}\,\text{Im}(\alpha)$$
+$$\Delta x = \frac{x_0}{\sqrt{2}}, \quad \Delta p = \frac{\hbar}{\sqrt{2}x_0}, \quad \Delta x\,\Delta p = \frac{\hbar}{2}$$
+$$P(n) = e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!} \quad \text{(Poisson)}, \quad \bar{n} = |\alpha|^2, \quad \Delta N = |\alpha|$$
+$$|\alpha(t)\rangle = e^{-i\omega t/2}|\alpha e^{-i\omega t}\rangle, \quad |\langle\beta|\alpha\rangle|^2 = e^{-|\alpha-\beta|^2}$$
+$$\frac{1}{\pi}\int|\alpha\rangle\langle\alpha|\,d^2\alpha = \hat{I} \quad \text{(over-completeness)}$$
+:::
+
+### Squeezed States
+
+::: {.summary-card}
+#### Squeeze Operator and Action
+$$\hat{S}(\xi) = \exp\!\left(\tfrac{1}{2}\xi^*\hat{a}^2 - \tfrac{1}{2}\xi\hat{a}^{\dagger 2}\right), \quad \xi = re^{i\theta}$$
+$$\hat{S}^\dagger(r)\hat{a}\hat{S}(r) = \hat{a}\cosh r - \hat{a}^\dagger\sinh r \quad \text{(Bogoliubov)}$$
+:::
+
+::: {.summary-card}
+#### Squeezed Vacuum and Coherent Squeezed States
+$$|0,r\rangle = \hat{S}(r)|0\rangle, \quad |\alpha,r\rangle = \hat{D}(\alpha)\hat{S}(r)|0\rangle$$
+$$\Delta x = \frac{x_0}{\sqrt{2}}e^{-r}, \quad \Delta p = \frac{\hbar}{\sqrt{2}x_0}e^{+r}, \quad \Delta x\,\Delta p = \frac{\hbar}{2}$$
+$$\langle\hat{N}\rangle_{\text{sq.vac}} = \sinh^2 r, \quad Q < 0 \text{ (sub-Poissonian, non-classical)}$$
+:::
+
+---
+
+## Download the Cheat Sheet {#sec-cheatsheet}
+
+::: {.download-box}
+### 📄 QHO Cheat Sheet (PDF)
+
+A print-ready, two-page LaTeX-compiled cheat sheet with every formula from this course — ready for your exam, your desk, or your soul.
+
+[**⬇️ Download PDF Cheat Sheet**](qho_cheatsheet.pdf){.btn .btn-warning .btn-lg}
+
+*LaTeX source also available: [qho_cheatsheet.tex](qho_cheatsheet.tex)*
+:::
+
+---
+
+## Further Reading {#sec-reading}
+
+::: {.book-card}
+#### 📖 Griffiths — *Introduction to Quantum Mechanics* (3rd ed.)
+**Chapter 2, Section 2.3**: The harmonic oscillator — best first introduction. Clear, pedagogical, lots of examples.  
+**Best for**: Beginners and undergraduates. The analytic (Hermite polynomial) method is done very clearly.
+:::
+
+::: {.book-card}
+#### 📖 Shankar — *Principles of Quantum Mechanics* (2nd ed.)
+**Chapter 7**: The harmonic oscillator — the definitive algebraic treatment. Exercise 7.4.9 introduces coherent states.  
+**Best for**: Anyone who wants to understand the *why* behind the algebra. The notation is clean and the derivations are rigorous.
+:::
+
+::: {.book-card}
+#### 📖 Cohen-Tannoudji, Diu & Laloë — *Quantum Mechanics* (Vol. 1 & 2)
+**Chapter V**: The harmonic oscillator — extremely systematic. Complement GV covers coherent states.  
+**Best for**: The most complete treatment. Read this when you want to make sure you haven't missed anything.
+:::
+
+::: {.book-card}
+#### 📖 Walls & Milburn — *Quantum Optics* (2nd ed.)
+**Chapter 2-3**: Squeezed states, coherent states, phase space methods.  
+**Best for**: Graduate students going into quantum optics or quantum information. The definitive reference for squeezed states.
+:::
+
+::: {.book-card}
+#### 📖 Gerry & Knight — *Introductory Quantum Optics*
+**Chapter 3**: Coherent states and squeezed states with quantum optical applications.  
+**Best for**: A gentler introduction to quantum optics than Walls & Milburn.
+:::
+
+---
+
+## What Comes Next? {#sec-next}
+
+Having mastered the QHO, you are now ready for:
+
+- **Quantum Field Theory**: The QHO is the building block of every quantum field — scalar, electromagnetic, fermionic.
+- **Quantum Optics**: Glauber-Sudarshan P-function, optical phase space, quantum state tomography.
+- **Circuit QED**: Superconducting qubits are quantized LC circuits (QHOs), the platform of modern quantum computers.
+- **Many-Body Physics**: Phonons, magnons, plasmons — all are collections of QHOs.
+- **Perturbation Theory**: Anharmonic corrections to the QHO ($\lambda x^4$ potential) are the first test of perturbation theory.
+
+---
+
+::: {.nav-buttons}
+[← Module 7: Squeezed States](07_squeezed_states.qmd){.btn .btn-outline-secondary}
+[↑ Back to Course Index](index.qmd){.btn .btn-success}
+:::

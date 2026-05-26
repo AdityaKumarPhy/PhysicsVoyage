@@ -1,0 +1,375 @@
+---
+title: "Module 5: Time Evolution"
+subtitle: "Nothing is Static in Quantum Mechanics"
+description: "We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest's theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
+}
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+.result-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.result-box p { color: #c4b5fd; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+</style>
+```
+
+[← Module 4](04_wavefunctions.qmd) | [↑ Course Index](index.qmd) | [Module 6 →](06_coherent_states.qmd)
+
+---
+
+## The Time-Dependent Schrödinger Equation {#sec-tdse}
+
+Everything we've done so far found the *stationary* states — the energy eigenstates $|n\rangle$ that don't change shape over time (only their phase oscillates). But a general quantum state is a **superposition**, and it *does* change over time.
+
+The full time-dependent Schrödinger equation (TDSE) is:
+
+$$
+i\hbar\frac{\partial}{\partial t}|\Psi(t)\rangle = \hat{H}|\Psi(t)\rangle
+$$
+
+> **Textbook reference**: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III.
+
+---
+
+## Time Evolution of Energy Eigenstates {#sec-energy-eigenstates}
+
+For an energy eigenstate $|n\rangle$:
+
+$$
+i\hbar\frac{\partial}{\partial t}|n,t\rangle = E_n|n,t\rangle
+$$
+
+This integrates immediately:
+
+$$
+|n,t\rangle = e^{-iE_nt/\hbar}|n\rangle = e^{-i\omega(n+1/2)t}|n\rangle
+$$
+
+The **only effect** of time evolution on an energy eigenstate is a **global phase** $e^{-i\omega(n+1/2)t}$. Global phases have no physical consequence: $|\psi(t)|^2 = |\psi(0)|^2$ for all $t$.
+
+::: {.callout-intuition}
+This is why energy eigenstates are called **stationary states** — all observable quantities are time-independent in these states. The energy eigenstate doesn't "do anything."
+
+This doesn't mean nothing is happening — the wavefunction is rotating in the complex plane at frequency $(n + \frac{1}{2})\omega$. But since we only measure $|\psi|^2$, we can't see this rotation.
+:::
+
+---
+
+## The Time Evolution Operator {#sec-time-operator}
+
+The formal solution to the TDSE is:
+
+$$
+|\Psi(t)\rangle = \hat{U}(t)|\Psi(0)\rangle, \quad \hat{U}(t) = e^{-i\hat{H}t/\hbar}
+$$
+
+For the QHO, we can write this in the Fock basis:
+
+$$
+\hat{U}(t) = e^{-i\omega(\hat{N}+1/2)t} = e^{-i\omega t/2}\, e^{-i\omega t\hat{N}}
+$$
+
+Since $\hat{N}|n\rangle = n|n\rangle$:
+
+$$
+\hat{U}(t)|n\rangle = e^{-i\omega t(n+1/2)}|n\rangle
+$$
+
+The key identity: $e^{-i\omega t\hat{N}}\hat{a} = \hat{a}e^{-i\omega t(\hat{N}-1)} = e^{-i\omega t}\hat{a}e^{-i\omega t\hat{N}}$, or:
+
+$$
+\hat{U}(t)\hat{a}\hat{U}^\dagger(t) = e^{-i\omega t}\hat{a}
+$$
+
+This means the ladder operators in the **Heisenberg picture** rotate:
+
+$$
+\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}^\dagger(t) = e^{+i\omega t}\hat{a}^\dagger(0)
+$$
+
+---
+
+## Time Evolution of Superposition States {#sec-superposition}
+
+A general initial state is a superposition:
+
+$$
+|\Psi(0)\rangle = \sum_{n=0}^{\infty} c_n|n\rangle, \quad \sum_n |c_n|^2 = 1
+$$
+
+Time evolution:
+
+$$
+|\Psi(t)\rangle = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}|n\rangle
+$$
+
+In position space:
+
+$$
+\Psi(x,t) = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}\psi_n(x)
+$$
+
+### Example: Superposition of $|0\rangle$ and $|1\rangle$
+
+Consider:
+$$
+|\Psi(0)\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)
+$$
+
+Time evolution:
+$$
+|\Psi(t)\rangle = \frac{e^{-i\omega t/2}}{\sqrt{2}}\left(|0\rangle + e^{-i\omega t}|1\rangle\right)
+$$
+
+The expectation value of position:
+
+::: {.derivation-box}
+$$
+\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\langle\Psi(t)|(\hat{a} + \hat{a}^\dagger)|\Psi(t)\rangle
+$$
+
+The cross terms survive: $\langle 0|\hat{a}|1\rangle = 1$, $\langle 1|\hat{a}^\dagger|0\rangle = 1$.
+
+$$
+\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\cdot\frac{1}{2}\cdot 2\cos(\omega t) = \frac{x_0}{\sqrt{2}}\cos(\omega t)
+$$
+:::
+
+The expectation value of position **oscillates** at frequency $\omega$ — like a classical oscillator!
+
+---
+
+## Ehrenfest's Theorem {#sec-ehrenfest}
+
+### General Statement
+
+Ehrenfest's theorem says that expectation values obey classical equations of motion:
+
+$$
+\frac{d}{dt}\langle\hat{A}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{A}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
+$$
+
+For time-independent operators in the QHO:
+
+$$
+\frac{d}{dt}\langle\hat{x}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{x}]\rangle = \frac{\langle\hat{p}\rangle}{m}
+$$
+
+$$
+\frac{d}{dt}\langle\hat{p}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{p}]\rangle = -m\omega^2\langle\hat{x}\rangle
+$$
+
+Combined:
+$$
+\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle
+$$
+
+This is **exactly Newton's law** for the harmonic oscillator! The center of the wavepacket $\langle\hat{x}\rangle$ oscillates like a classical particle.
+
+::: {.result-box}
+**Ehrenfest's Theorem for the QHO:**
+
+$$\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle$$
+
+The quantum expectation value always satisfies the classical equation of motion — for **any** quantum state!
+:::
+
+### Ehrenfest in the Heisenberg Picture
+
+In the Heisenberg picture, operators evolve:
+
+$$
+\hat{x}(t) = x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
+$$
+
+$$
+\hat{p}(t) = -m\omega\sin(\omega t)\,\hat{x}(0) + \cos(\omega t)\,\hat{p}(0)
+$$
+
+This is exactly the classical solution $x(t) = x_0\cos\omega t + \frac{p_0}{m\omega}\sin\omega t$ promoted to operators. The QHO Heisenberg equations are **linear**, which is why they have exact classical analogs.
+
+---
+
+## Quantum Revivals {#sec-revivals}
+
+### When Superpositions Come Back
+
+For a general superposition $|\Psi(t)\rangle = \sum_n c_n e^{-in\omega t}|n\rangle$ (dropping the common phase $e^{-i\omega t/2}$):
+
+The state **returns exactly** to itself when all phases complete full rotations:
+
+$$
+e^{-in\omega T} = 1 \text{ for all } n \quad \Rightarrow \quad T = \frac{2\pi}{\omega}
+$$
+
+This is the **classical period** — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time $T = 2\pi/\omega$.
+
+::: {.callout-note}
+## This is Special to the QHO
+For a particle in a box, the energy levels go as $n^2$, so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period. 
+
+The QHO is special: its equally spaced energy levels (spacing $\hbar\omega$) mean all phase factors are integer multiples of $e^{-i\omega t}$, guaranteeing exact periodicity.
+:::
+
+---
+
+## The Heisenberg Picture: Operators Evolve, States Don't {#sec-heisenberg}
+
+In the Heisenberg picture, the time dependence is placed on **operators** rather than states:
+
+$$
+\hat{a}_H(t) = e^{i\hat{H}t/\hbar}\,\hat{a}\,e^{-i\hat{H}t/\hbar} = e^{-i\omega t}\hat{a}
+$$
+
+$$
+\hat{a}^\dagger_H(t) = e^{+i\omega t}\hat{a}^\dagger
+$$
+
+The position and momentum operators:
+$$
+\hat{x}_H(t) = \frac{x_0}{\sqrt{2}}\left(e^{-i\omega t}\hat{a} + e^{+i\omega t}\hat{a}^\dagger\right)
+$$
+$$
+= x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
+$$
+
+This is the **quantum oscillator in the Heisenberg picture** — it oscillates exactly like the classical oscillator.
+
+---
+
+## The Wigner Function: Phase-Space Quantum Mechanics {#sec-wigner}
+
+### What Is the Wigner Function?
+
+In classical mechanics, we can define a probability distribution in phase space $f(x, p)$. In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the **Wigner function**:
+
+$$
+W(x, p) = \frac{1}{\pi\hbar}\int_{-\infty}^{\infty} \psi^*\!\left(x + y\right)\psi\left(x - y\right) e^{2ipy/\hbar}\,dy
+$$
+
+Properties of $W(x,p)$:
+
+- **Real**: $W(x,p)$ is always real
+- **Marginals**: $\int W\,dp = |\psi(x)|^2$ and $\int W\,dx = |\phi(p)|^2$
+- **Not always positive**: $W$ can be negative in some regions (a signature of quantum behavior)
+- **Area normalization**: $\int\!\!\int W(x,p)\,dx\,dp = 1$
+
+### Wigner Function of the Ground State
+
+For $\psi_0 = (\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}$:
+
+$$
+W_0(x,p) = \frac{1}{\pi\hbar}\,e^{-x^2/x_0^2 - p^2 x_0^2/\hbar^2}
+$$
+
+This is a **Gaussian** in phase space — entirely positive! The ground state is the most classical-looking quantum state.
+
+### Wigner Function of Excited States
+
+For excited states $|n\rangle$, the Wigner function is:
+
+$$
+W_n(x,p) = \frac{(-1)^n}{\pi\hbar}\,L_n\!\left(\frac{2r^2}{x_0^2}\right)\,e^{-r^2/x_0^2}
+$$
+
+where $r^2 = x^2 + p^2 x_0^2/\hbar^2$ and $L_n$ are Laguerre polynomials.
+
+Key feature: for $n \geq 1$, $W_n$ takes **negative values** — a purely quantum signature. The negative regions appear as rings (for $n = 1$) or more complex structures for higher $n$.
+
+::: {.callout-intuition}
+The Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via **homodyne tomography**) is a standard experimental technique. Negative values of $W$ are direct evidence of non-classical states.
+:::
+
+---
+
+## Time Evolution of Expectation Values: Summary {#sec-summary}
+
+For a general state $|\Psi(t)\rangle = \sum_n c_n e^{-i\omega(n+1/2)t}|n\rangle$:
+
+| Quantity | Time dependence |
+|----------|----------------|
+| $\langle\hat{x}\rangle(t)$ | Oscillates at $\omega$ |
+| $\langle\hat{p}\rangle(t)$ | Oscillates at $\omega$, $90°$ out of phase |
+| $\langle\hat{x}^2\rangle(t)$ | Oscillates at $2\omega$ and constant |
+| $\langle\hat{H}\rangle$ | Constant (energy conservation) |
+| $\langle\hat{N}\rangle$ | Constant |
+| Period of full return | $T = 2\pi/\omega$ |
+
+::: {.checkpoint}
+**Before moving on, make sure you can:**
+
+1. Write the time evolution of an energy eigenstate $|n\rangle$.
+2. Prove that $\langle\hat{x}\rangle(t)$ oscillates classically for any state.
+3. State Ehrenfest's theorem for the QHO and verify it gives Newton's law.
+4. Explain why the QHO state returns exactly after $T = 2\pi/\omega$.
+5. Define the Wigner function and state its key properties.
+6. Why can the Wigner function be negative? What does this mean physically?
+
+**Advanced**: Compute the Wigner function for $|1\rangle$ and show it has negative values.
+:::
+
+---
+
+::: {.nav-buttons}
+[← Module 4: Wavefunctions](04_wavefunctions.qmd){.btn .btn-outline-secondary}
+[Next: Module 6 — Coherent States →](06_coherent_states.qmd){.btn .btn-success}
+:::

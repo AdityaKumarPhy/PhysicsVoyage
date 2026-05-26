@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.">
 
-<title>Physics Voyage - Courses</title>
+<title>Physics Voyage - Module 5: Time Evolution</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,63 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-list-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-list-view'] = new List('listing-list-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-grid-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-grid-view'] = new List('listing-grid-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -157,7 +101,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/styles/styles.css">
+<link rel="stylesheet" href="../../assets/styles/styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -167,7 +111,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Physics Voyage</span>
     </a>
   </div>
@@ -178,23 +122,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./courses.html" aria-current="page"> 
+    <a class="nav-link" href="../../courses.html"> 
 <span class="menu-text">Course</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
+    <a class="nav-link" href="../../project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -211,7 +155,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -219,23 +163,68 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#physics-courses" id="toc-physics-courses" class="nav-link active" data-scroll-target="#physics-courses">🎓 Physics Courses</a></li>
+  <li><a href="#sec-tdse" id="toc-sec-tdse" class="nav-link active" data-scroll-target="#sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</a></li>
+  <li><a href="#sec-energy-eigenstates" id="toc-sec-energy-eigenstates" class="nav-link" data-scroll-target="#sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</a></li>
+  <li><a href="#sec-time-operator" id="toc-sec-time-operator" class="nav-link" data-scroll-target="#sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</a></li>
+  <li><a href="#sec-superposition" id="toc-sec-superposition" class="nav-link" data-scroll-target="#sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</a>
+  <ul class="collapse">
+  <li><a href="#example-superposition-of-0rangle-and-1rangle" id="toc-example-superposition-of-0rangle-and-1rangle" class="nav-link" data-scroll-target="#example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-ehrenfest" id="toc-sec-ehrenfest" class="nav-link" data-scroll-target="#sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</a>
+  <ul class="collapse">
+  <li><a href="#general-statement" id="toc-general-statement" class="nav-link" data-scroll-target="#general-statement"><span class="header-section-number">5.1</span> General Statement</a></li>
+  <li><a href="#ehrenfest-in-the-heisenberg-picture" id="toc-ehrenfest-in-the-heisenberg-picture" class="nav-link" data-scroll-target="#ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</a></li>
+  </ul></li>
+  <li><a href="#sec-revivals" id="toc-sec-revivals" class="nav-link" data-scroll-target="#sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</a>
+  <ul class="collapse">
+  <li><a href="#when-superpositions-come-back" id="toc-when-superpositions-come-back" class="nav-link" data-scroll-target="#when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</a></li>
+  </ul></li>
+  <li><a href="#sec-heisenberg" id="toc-sec-heisenberg" class="nav-link" data-scroll-target="#sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</a></li>
+  <li><a href="#sec-wigner" id="toc-sec-wigner" class="nav-link" data-scroll-target="#sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-wigner-function" id="toc-what-is-the-wigner-function" class="nav-link" data-scroll-target="#what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</a></li>
+  <li><a href="#wigner-function-of-the-ground-state" id="toc-wigner-function-of-the-ground-state" class="nav-link" data-scroll-target="#wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</a></li>
+  <li><a href="#wigner-function-of-excited-states" id="toc-wigner-function-of-excited-states" class="nav-link" data-scroll-target="#wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</a></li>
+  </ul></li>
+  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Active">Active <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Physics">Physics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Upcoming">Upcoming <span class="quarto-category-count">(2)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Courses</h1>
+<h1 class="title">Module 5: Time Evolution</h1>
+<p class="subtitle lead">Nothing is Static in Quantum Mechanics</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Quantum Mechanics</div>
+    <div class="quarto-category">QHO Course</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
 
-<div class="quarto-title-meta column-page-left">
-
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Kumar </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -246,252 +235,336 @@ window.Quarto = {
 
 
 <style>
-/* ── Page Header ─────────────────────────────────────── */
-.courses-page-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-  border-radius: 16px;
-  padding: 2.2rem 2.5rem;
-  color: white;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(167,139,250,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
 }
-.courses-page-header h2 {
-  color: #c4b5fd;
-  margin: 0 0 0.4rem;
-  font-size: 1.5rem;
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
   font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
 }
-.courses-page-header p {
-  color: #ddd6fe;
-  margin: 0;
-  font-size: 0.95rem;
-  max-width: 560px;
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
 }
-
-/* ── Grid item hover (matches blog) ─────────────────── */
-#grid-view .quarto-grid-item {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--bs-border-color, #dee2e6) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
 }
-#grid-view .quarto-grid-item .thumbnail-image,
-#grid-view .quarto-grid-item .card-img-top {
-  aspect-ratio: 16 / 9 !important;
-  object-fit: cover !important;
-  width: 100% !important;
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item .listing-title {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-
-/* ── List item hover (matches blog) ─────────────────── */
-#list-view .quarto-post {
+.result-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
   border-radius: 10px;
-  padding: 0.8rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
 }
-#list-view .quarto-post:hover {
-  background: rgba(124,58,237,0.04);
-  transform: translateX(4px);
+.result-box p { color: #c4b5fd; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
 }
 </style>
-<div class="courses-page-header">
-<section id="physics-courses" class="level2">
-<h2 class="anchored" data-anchor-id="physics-courses">🎓 Physics Courses</h2>
-<p>Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.</p>
+<p><a href="../../Courses/QHO/04_wavefunctions.html">← Module 4</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/06_coherent_states.html">Module 6 →</a></p>
+<hr>
+<section id="sec-tdse" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</h2>
+<p>Everything we’ve done so far found the <em>stationary</em> states — the energy eigenstates <span class="math inline">\(|n\rangle\)</span> that don’t change shape over time (only their phase oscillates). But a general quantum state is a <strong>superposition</strong>, and it <em>does</em> change over time.</p>
+<p>The full time-dependent Schrödinger equation (TDSE) is:</p>
+<p><span class="math display">\[
+i\hbar\frac{\partial}{\partial t}|\Psi(t)\rangle = \hat{H}|\Psi(t)\rangle
+\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III.</p>
+</blockquote>
+<hr>
 </section>
+<section id="sec-energy-eigenstates" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</h2>
+<p>For an energy eigenstate <span class="math inline">\(|n\rangle\)</span>:</p>
+<p><span class="math display">\[
+i\hbar\frac{\partial}{\partial t}|n,t\rangle = E_n|n,t\rangle
+\]</span></p>
+<p>This integrates immediately:</p>
+<p><span class="math display">\[
+|n,t\rangle = e^{-iE_nt/\hbar}|n\rangle = e^{-i\omega(n+1/2)t}|n\rangle
+\]</span></p>
+<p>The <strong>only effect</strong> of time evolution on an energy eigenstate is a <strong>global phase</strong> <span class="math inline">\(e^{-i\omega(n+1/2)t}\)</span>. Global phases have no physical consequence: <span class="math inline">\(|\psi(t)|^2 = |\psi(0)|^2\)</span> for all <span class="math inline">\(t\)</span>.</p>
+<div class="callout-intuition">
+<p>This is why energy eigenstates are called <strong>stationary states</strong> — all observable quantities are time-independent in these states. The energy eigenstate doesn’t “do anything.”</p>
+<p>This doesn’t mean nothing is happening — the wavefunction is rotating in the complex plane at frequency <span class="math inline">\((n + \frac{1}{2})\omega\)</span>. But since we only measure <span class="math inline">\(|\psi|^2\)</span>, we can’t see this rotation.</p>
 </div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Grid View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">List View</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="listing-grid-view" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-grid-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-grid-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<hr>
+</section>
+<section id="sec-time-operator" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</h2>
+<p>The formal solution to the TDSE is:</p>
+<p><span class="math display">\[
+|\Psi(t)\rangle = \hat{U}(t)|\Psi(0)\rangle, \quad \hat{U}(t) = e^{-i\hat{H}t/\hbar}
+\]</span></p>
+<p>For the QHO, we can write this in the Fock basis:</p>
+<p><span class="math display">\[
+\hat{U}(t) = e^{-i\omega(\hat{N}+1/2)t} = e^{-i\omega t/2}\, e^{-i\omega t\hat{N}}
+\]</span></p>
+<p>Since <span class="math inline">\(\hat{N}|n\rangle = n|n\rangle\)</span>:</p>
+<p><span class="math display">\[
+\hat{U}(t)|n\rangle = e^{-i\omega t(n+1/2)}|n\rangle
+\]</span></p>
+<p>The key identity: <span class="math inline">\(e^{-i\omega t\hat{N}}\hat{a} = \hat{a}e^{-i\omega t(\hat{N}-1)} = e^{-i\omega t}\hat{a}e^{-i\omega t\hat{N}}\)</span>, or:</p>
+<p><span class="math display">\[
+\hat{U}(t)\hat{a}\hat{U}^\dagger(t) = e^{-i\omega t}\hat{a}
+\]</span></p>
+<p>This means the ladder operators in the <strong>Heisenberg picture</strong> rotate:</p>
+<p><span class="math display">\[
+\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}^\dagger(t) = e^{+i\omega t}\hat{a}^\dagger(0)
+\]</span></p>
+<hr>
+</section>
+<section id="sec-superposition" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</h2>
+<p>A general initial state is a superposition:</p>
+<p><span class="math display">\[
+|\Psi(0)\rangle = \sum_{n=0}^{\infty} c_n|n\rangle, \quad \sum_n |c_n|^2 = 1
+\]</span></p>
+<p>Time evolution:</p>
+<p><span class="math display">\[
+|\Psi(t)\rangle = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}|n\rangle
+\]</span></p>
+<p>In position space:</p>
+<p><span class="math display">\[
+\Psi(x,t) = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}\psi_n(x)
+\]</span></p>
+<section id="example-superposition-of-0rangle-and-1rangle" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></h3>
+<p>Consider: <span class="math display">\[
+|\Psi(0)\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)
+\]</span></p>
+<p>Time evolution: <span class="math display">\[
+|\Psi(t)\rangle = \frac{e^{-i\omega t/2}}{\sqrt{2}}\left(|0\rangle + e^{-i\omega t}|1\rangle\right)
+\]</span></p>
+<p>The expectation value of position:</p>
+<div class="derivation-box">
+<p><span class="math display">\[
+\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\langle\Psi(t)|(\hat{a} + \hat{a}^\dagger)|\Psi(t)\rangle
+\]</span></p>
+<p>The cross terms survive: <span class="math inline">\(\langle 0|\hat{a}|1\rangle = 1\)</span>, <span class="math inline">\(\langle 1|\hat{a}^\dagger|0\rangle = 1\)</span>.</p>
+<p><span class="math display">\[
+\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\cdot\frac{1}{2}\cdot 2\cos(\omega t) = \frac{x_0}{\sqrt{2}}\cos(\omega t)
+\]</span></p>
 </div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<a href="./Courses/Comp_Physics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Computational Physics Course
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
+<p>The expectation value of position <strong>oscillates</strong> at frequency <span class="math inline">\(\omega\)</span> — like a classical oscillator!</p>
+<hr>
+</section>
+</section>
+<section id="sec-ehrenfest" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</h2>
+<section id="general-statement" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="general-statement"><span class="header-section-number">5.1</span> General Statement</h3>
+<p>Ehrenfest’s theorem says that expectation values obey classical equations of motion:</p>
+<p><span class="math display">\[
+\frac{d}{dt}\langle\hat{A}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{A}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
+\]</span></p>
+<p>For time-independent operators in the QHO:</p>
+<p><span class="math display">\[
+\frac{d}{dt}\langle\hat{x}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{x}]\rangle = \frac{\langle\hat{p}\rangle}{m}
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dt}\langle\hat{p}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{p}]\rangle = -m\omega^2\langle\hat{x}\rangle
+\]</span></p>
+<p>Combined: <span class="math display">\[
+\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle
+\]</span></p>
+<p>This is <strong>exactly Newton’s law</strong> for the harmonic oscillator! The center of the wavepacket <span class="math inline">\(\langle\hat{x}\rangle\)</span> oscillates like a classical particle.</p>
+<div class="result-box">
+<p><strong>Ehrenfest’s Theorem for the QHO:</strong></p>
+<p><span class="math display">\[\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle\]</span></p>
+<p>The quantum expectation value always satisfies the classical equation of motion — for <strong>any</strong> quantum state!</p>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
+</section>
+<section id="ehrenfest-in-the-heisenberg-picture" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</h3>
+<p>In the Heisenberg picture, operators evolve:</p>
+<p><span class="math display">\[
+\hat{x}(t) = x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
+\]</span></p>
+<p><span class="math display">\[
+\hat{p}(t) = -m\omega\sin(\omega t)\,\hat{x}(0) + \cos(\omega t)\,\hat{p}(0)
+\]</span></p>
+<p>This is exactly the classical solution <span class="math inline">\(x(t) = x_0\cos\omega t + \frac{p_0}{m\omega}\sin\omega t\)</span> promoted to operators. The QHO Heisenberg equations are <strong>linear</strong>, which is why they have exact classical analogs.</p>
+<hr>
+</section>
+</section>
+<section id="sec-revivals" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</h2>
+<section id="when-superpositions-come-back" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</h3>
+<p>For a general superposition <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-in\omega t}|n\rangle\)</span> (dropping the common phase <span class="math inline">\(e^{-i\omega t/2}\)</span>):</p>
+<p>The state <strong>returns exactly</strong> to itself when all phases complete full rotations:</p>
+<p><span class="math display">\[
+e^{-in\omega T} = 1 \text{ for all } n \quad \Rightarrow \quad T = \frac{2\pi}{\omega}
+\]</span></p>
+<p>This is the <strong>classical period</strong> — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time <span class="math inline">\(T = 2\pi/\omega\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<a href="./Courses/QHO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Quantum Harmonic Oscillator
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="listing-list-view" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-list-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-list-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p><a href="./Courses/Comp_Physics/index.html" class="no-external">
-<p><img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image"></p>
-</a><p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Computational Physics Course</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/Comp_Physics/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<div class="thumbnail">
-<p><a href="./Courses/QHO/index.html" class="no-external"></a></p><a href="./Courses/QHO/index.html" class="no-external">
-<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image"></p>
-</a><p><a href="./Courses/QHO/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/QHO/index.html" class="no-external">Quantum Harmonic Oscillator</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/QHO/index.html" class="no-external">From Classical Springs to Squeezed Light</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
+<div class="callout-title-container flex-fill">
+This is Special to the QHO
 </div>
 </div>
-<div class="listing-description">
-<a href="./Courses/QHO/index.html" class="no-external">A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.</a>
+<div class="callout-body-container callout-body">
+<p>For a particle in a box, the energy levels go as <span class="math inline">\(n^2\)</span>, so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period.</p>
+<p>The QHO is special: its equally spaced energy levels (spacing <span class="math inline">\(\hbar\omega\)</span>) mean all phase factors are integer multiples of <span class="math inline">\(e^{-i\omega t}\)</span>, guaranteeing exact periodicity.</p>
 </div>
 </div>
-<div class="metadata">
-<a href="./Courses/QHO/index.html" class="no-external">
-<div class="listing-date">
-May 26, 2026
+<hr>
+</section>
+</section>
+<section id="sec-heisenberg" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</h2>
+<p>In the Heisenberg picture, the time dependence is placed on <strong>operators</strong> rather than states:</p>
+<p><span class="math display">\[
+\hat{a}_H(t) = e^{i\hat{H}t/\hbar}\,\hat{a}\,e^{-i\hat{H}t/\hbar} = e^{-i\omega t}\hat{a}
+\]</span></p>
+<p><span class="math display">\[
+\hat{a}^\dagger_H(t) = e^{+i\omega t}\hat{a}^\dagger
+\]</span></p>
+<p>The position and momentum operators: <span class="math display">\[
+\hat{x}_H(t) = \frac{x_0}{\sqrt{2}}\left(e^{-i\omega t}\hat{a} + e^{+i\omega t}\hat{a}^\dagger\right)
+\]</span> <span class="math display">\[
+= x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
+\]</span></p>
+<p>This is the <strong>quantum oscillator in the Heisenberg picture</strong> — it oscillates exactly like the classical oscillator.</p>
+<hr>
+</section>
+<section id="sec-wigner" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</h2>
+<section id="what-is-the-wigner-function" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</h3>
+<p>In classical mechanics, we can define a probability distribution in phase space <span class="math inline">\(f(x, p)\)</span>. In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the <strong>Wigner function</strong>:</p>
+<p><span class="math display">\[
+W(x, p) = \frac{1}{\pi\hbar}\int_{-\infty}^{\infty} \psi^*\!\left(x + y\right)\psi\left(x - y\right) e^{2ipy/\hbar}\,dy
+\]</span></p>
+<p>Properties of <span class="math inline">\(W(x,p)\)</span>:</p>
+<ul>
+<li><strong>Real</strong>: <span class="math inline">\(W(x,p)\)</span> is always real</li>
+<li><strong>Marginals</strong>: <span class="math inline">\(\int W\,dp = |\psi(x)|^2\)</span> and <span class="math inline">\(\int W\,dx = |\phi(p)|^2\)</span></li>
+<li><strong>Not always positive</strong>: <span class="math inline">\(W\)</span> can be negative in some regions (a signature of quantum behavior)</li>
+<li><strong>Area normalization</strong>: <span class="math inline">\(\int\!\!\int W(x,p)\,dx\,dp = 1\)</span></li>
+</ul>
+</section>
+<section id="wigner-function-of-the-ground-state" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</h3>
+<p>For <span class="math inline">\(\psi_0 = (\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}\)</span>:</p>
+<p><span class="math display">\[
+W_0(x,p) = \frac{1}{\pi\hbar}\,e^{-x^2/x_0^2 - p^2 x_0^2/\hbar^2}
+\]</span></p>
+<p>This is a <strong>Gaussian</strong> in phase space — entirely positive! The ground state is the most classical-looking quantum state.</p>
+</section>
+<section id="wigner-function-of-excited-states" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</h3>
+<p>For excited states <span class="math inline">\(|n\rangle\)</span>, the Wigner function is:</p>
+<p><span class="math display">\[
+W_n(x,p) = \frac{(-1)^n}{\pi\hbar}\,L_n\!\left(\frac{2r^2}{x_0^2}\right)\,e^{-r^2/x_0^2}
+\]</span></p>
+<p>where <span class="math inline">\(r^2 = x^2 + p^2 x_0^2/\hbar^2\)</span> and <span class="math inline">\(L_n\)</span> are Laguerre polynomials.</p>
+<p>Key feature: for <span class="math inline">\(n \geq 1\)</span>, <span class="math inline">\(W_n\)</span> takes <strong>negative values</strong> — a purely quantum signature. The negative regions appear as rings (for <span class="math inline">\(n = 1\)</span>) or more complex structures for higher <span class="math inline">\(n\)</span>.</p>
+<div class="callout-intuition">
+<p>The Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via <strong>homodyne tomography</strong>) is a standard experimental technique. Negative values of <span class="math inline">\(W\)</span> are direct evidence of non-classical states.</p>
 </div>
-</a>
+<hr>
+</section>
+</section>
+<section id="sec-summary" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</h2>
+<p>For a general state <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-i\omega(n+1/2)t}|n\rangle\)</span>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Time dependence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\langle\hat{x}\rangle(t)\)</span></td>
+<td>Oscillates at <span class="math inline">\(\omega\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\langle\hat{p}\rangle(t)\)</span></td>
+<td>Oscillates at <span class="math inline">\(\omega\)</span>, <span class="math inline">\(90°\)</span> out of phase</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\langle\hat{x}^2\rangle(t)\)</span></td>
+<td>Oscillates at <span class="math inline">\(2\omega\)</span> and constant</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\langle\hat{H}\rangle\)</span></td>
+<td>Constant (energy conservation)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\langle\hat{N}\rangle\)</span></td>
+<td>Constant</td>
+</tr>
+<tr class="even">
+<td>Period of full return</td>
+<td><span class="math inline">\(T = 2\pi/\omega\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="checkpoint">
+<p><strong>Before moving on, make sure you can:</strong></p>
+<ol type="1">
+<li>Write the time evolution of an energy eigenstate <span class="math inline">\(|n\rangle\)</span>.</li>
+<li>Prove that <span class="math inline">\(\langle\hat{x}\rangle(t)\)</span> oscillates classically for any state.</li>
+<li>State Ehrenfest’s theorem for the QHO and verify it gives Newton’s law.</li>
+<li>Explain why the QHO state returns exactly after <span class="math inline">\(T = 2\pi/\omega\)</span>.</li>
+<li>Define the Wigner function and state its key properties.</li>
+<li>Why can the Wigner function be negative? What does this mean physically?</li>
+</ol>
+<p><strong>Advanced</strong>: Compute the Wigner function for <span class="math inline">\(|1\rangle\)</span> and show it has negative values.</p>
 </div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-</div>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/QHO/04_wavefunctions.html" class="btn btn-outline-secondary">← Module 4: Wavefunctions</a> <a href="../../Courses/QHO/06_coherent_states.html" class="btn btn-success">Next: Module 6 — Coherent States →</a></p>
 </div>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

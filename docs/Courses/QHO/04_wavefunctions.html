@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-05-26">
+<meta name="description" content="We explore the position-space wavefunctions of the QHO in depth — their shapes, nodes, parity, and physical interpretation. We compute expectation values and verify the uncertainty principle. Classical-quantum comparison.">
 
-<title>Physics Voyage - Courses</title>
+<title>Physics Voyage - Module 4: Wavefunctions and Hermite Polynomials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,63 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-list-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-list-view'] = new List('listing-list-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-grid-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-grid-view'] = new List('listing-grid-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -157,7 +101,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="assets/styles/styles.css">
+<link rel="stylesheet" href="../../assets/styles/styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -167,7 +111,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Physics Voyage</span>
     </a>
   </div>
@@ -178,23 +122,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./courses.html" aria-current="page"> 
+    <a class="nav-link" href="../../courses.html"> 
 <span class="menu-text">Course</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
+    <a class="nav-link" href="../../project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -211,7 +155,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -219,23 +163,61 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#physics-courses" id="toc-physics-courses" class="nav-link active" data-scroll-target="#physics-courses">🎓 Physics Courses</a></li>
+  <li><a href="#sec-ground" id="toc-sec-ground" class="nav-link active" data-scroll-target="#sec-ground"><span class="header-section-number">1</span> Getting the Ground State Wavefunction from Ladder Operators</a></li>
+  <li><a href="#sec-all-states" id="toc-sec-all-states" class="nav-link" data-scroll-target="#sec-all-states"><span class="header-section-number">2</span> Generating All Wavefunctions</a>
+  <ul class="collapse">
+  <li><a href="#the-first-five-wavefunctions-explicitly" id="toc-the-first-five-wavefunctions-explicitly" class="nav-link" data-scroll-target="#the-first-five-wavefunctions-explicitly"><span class="header-section-number">2.1</span> The First Five Wavefunctions Explicitly</a></li>
+  </ul></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties"><span class="header-section-number">3</span> Physical Properties of the Wavefunctions</a>
+  <ul class="collapse">
+  <li><a href="#number-of-nodes" id="toc-number-of-nodes" class="nav-link" data-scroll-target="#number-of-nodes"><span class="header-section-number">3.1</span> Number of Nodes</a></li>
+  <li><a href="#parity" id="toc-parity" class="nav-link" data-scroll-target="#parity"><span class="header-section-number">3.2</span> Parity</a></li>
+  <li><a href="#orthonormality" id="toc-orthonormality" class="nav-link" data-scroll-target="#orthonormality"><span class="header-section-number">3.3</span> Orthonormality</a></li>
+  <li><a href="#completeness" id="toc-completeness" class="nav-link" data-scroll-target="#completeness"><span class="header-section-number">3.4</span> Completeness</a></li>
+  </ul></li>
+  <li><a href="#sec-tunneling" id="toc-sec-tunneling" class="nav-link" data-scroll-target="#sec-tunneling"><span class="header-section-number">4</span> Classical Turning Points and Quantum Tunneling</a></li>
+  <li><a href="#sec-expectation" id="toc-sec-expectation" class="nav-link" data-scroll-target="#sec-expectation"><span class="header-section-number">5</span> Expectation Values in Energy Eigenstates</a></li>
+  <li><a href="#sec-momentum" id="toc-sec-momentum" class="nav-link" data-scroll-target="#sec-momentum"><span class="header-section-number">6</span> Momentum-Space Wavefunctions</a></li>
+  <li><a href="#sec-hermite" id="toc-sec-hermite" class="nav-link" data-scroll-target="#sec-hermite"><span class="header-section-number">7</span> Hermite Polynomial Reference Table</a></li>
+  <li><a href="#sec-correspondence" id="toc-sec-correspondence" class="nav-link" data-scroll-target="#sec-correspondence"><span class="header-section-number">8</span> The Classical-Quantum Correspondence</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Active">Active <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Physics">Physics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quantum Mechanics">Quantum Mechanics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Upcoming">Upcoming <span class="quarto-category-count">(2)</span></div></div></div>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Courses</h1>
+<h1 class="title">Module 4: Wavefunctions and Hermite Polynomials</h1>
+<p class="subtitle lead">Seeing the Quantum Oscillator</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Quantum Mechanics</div>
+    <div class="quarto-category">QHO Course</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We explore the position-space wavefunctions of the QHO in depth — their shapes, nodes, parity, and physical interpretation. We compute expectation values and verify the uncertainty principle. Classical-quantum comparison.
+  </div>
 </div>
 
 
+<div class="quarto-title-meta">
 
-<div class="quarto-title-meta column-page-left">
-
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Kumar </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -246,252 +228,349 @@ window.Quarto = {
 
 
 <style>
-/* ── Page Header ─────────────────────────────────────── */
-.courses-page-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-  border-radius: 16px;
-  padding: 2.2rem 2.5rem;
-  color: white;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(167,139,250,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
 }
-.courses-page-header h2 {
-  color: #c4b5fd;
-  margin: 0 0 0.4rem;
-  font-size: 1.5rem;
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
   font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
 }
-.courses-page-header p {
-  color: #ddd6fe;
-  margin: 0;
-  font-size: 0.95rem;
-  max-width: 560px;
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
 }
-
-/* ── Grid item hover (matches blog) ─────────────────── */
-#grid-view .quarto-grid-item {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--bs-border-color, #dee2e6) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
+.derivation-box {
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  background: #eef2ff;
+  margin: 1.5rem 0;
 }
-#grid-view .quarto-grid-item .thumbnail-image,
-#grid-view .quarto-grid-item .card-img-top {
-  aspect-ratio: 16 / 9 !important;
-  object-fit: cover !important;
-  width: 100% !important;
+.derivation-box::before {
+  content: "✏️ Derivation";
+  display: block;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
 }
-#grid-view .quarto-grid-item .listing-title {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-
-/* ── List item hover (matches blog) ─────────────────── */
-#list-view .quarto-post {
+.result-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: white;
   border-radius: 10px;
-  padding: 0.8rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
 }
-#list-view .quarto-post:hover {
-  background: rgba(124,58,237,0.04);
-  transform: translateX(4px);
+.result-box p { color: #c4b5fd; margin-bottom: 0; }
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
 }
 </style>
-<div class="courses-page-header">
-<section id="physics-courses" class="level2">
-<h2 class="anchored" data-anchor-id="physics-courses">🎓 Physics Courses</h2>
-<p>Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.</p>
+<p><a href="../../Courses/QHO/03_ladder_operators.html">← Module 3</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/05_time_evolution.html">Module 5 →</a></p>
+<hr>
+<section id="sec-ground" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-ground"><span class="header-section-number">1</span> Getting the Ground State Wavefunction from Ladder Operators</h2>
+<p>In Module 3, we found that the ground state satisfies:</p>
+<p><span class="math display">\[
+\hat{a}|0\rangle = 0
+\]</span></p>
+<p>In the position representation, <span class="math inline">\(|0\rangle \to \psi_0(x)\)</span>, and the annihilation operator becomes:</p>
+<p><span class="math display">\[
+\hat{a} = \sqrt{\frac{m\omega}{2\hbar}}\left(x + \frac{\hbar}{m\omega}\frac{d}{dx}\right)
+\]</span></p>
+<p>The condition <span class="math inline">\(\hat{a}\psi_0 = 0\)</span> gives:</p>
+<p><span class="math display">\[
+\left(x + \frac{\hbar}{m\omega}\frac{d}{dx}\right)\psi_0(x) = 0
+\]</span></p>
+<p>This is a simple first-order ODE:</p>
+<p><span class="math display">\[
+\frac{d\psi_0}{dx} = -\frac{m\omega}{\hbar} x\, \psi_0
+\]</span></p>
+<p>Separating variables and integrating:</p>
+<p><span class="math display">\[
+\ln\psi_0 = -\frac{m\omega}{2\hbar}x^2 + C \quad \Rightarrow \quad \psi_0(x) = A\, e^{-m\omega x^2/2\hbar}
+\]</span></p>
+<p>Normalizing using <span class="math inline">\(\int_{-\infty}^{\infty}e^{-\alpha x^2}dx = \sqrt{\pi/\alpha}\)</span> with <span class="math inline">\(\alpha = m\omega/\hbar\)</span>:</p>
+<p><span class="math display">\[
+\boxed{\psi_0(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\!\left(-\frac{m\omega}{2\hbar}x^2\right)}
+\]</span></p>
+<p>The ground state is a <strong>Gaussian</strong>. This is the unique minimum-uncertainty state.</p>
+<hr>
 </section>
+<section id="sec-all-states" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-all-states"><span class="header-section-number">2</span> Generating All Wavefunctions</h2>
+<p>Using <span class="math inline">\(|n\rangle = \frac{(\hat{a}^\dagger)^n}{\sqrt{n!}}|0\rangle\)</span> and translating to position space:</p>
+<p><span class="math display">\[
+\psi_n(x) = \frac{1}{\sqrt{2^n\, n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\,x\right) e^{-m\omega x^2/2\hbar}
+\]</span></p>
+<p>Using the oscillator length <span class="math inline">\(x_0 = \sqrt{\hbar/m\omega}\)</span> and <span class="math inline">\(\xi = x/x_0\)</span>:</p>
+<p><span class="math display">\[
+\boxed{\psi_n(\xi) = \frac{1}{\sqrt{2^n\, n!\,\sqrt{\pi}\,x_0}}\, H_n(\xi)\, e^{-\xi^2/2}}
+\]</span></p>
+<section id="the-first-five-wavefunctions-explicitly" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="the-first-five-wavefunctions-explicitly"><span class="header-section-number">2.1</span> The First Five Wavefunctions Explicitly</h3>
+<p><span class="math display">\[
+\psi_0 = \frac{1}{(\pi x_0^2)^{1/4}}\, e^{-\xi^2/2}
+\]</span></p>
+<p><span class="math display">\[
+\psi_1 = \frac{1}{(\pi x_0^2)^{1/4}}\sqrt{2}\,\xi\, e^{-\xi^2/2}
+\]</span></p>
+<p><span class="math display">\[
+\psi_2 = \frac{1}{(\pi x_0^2)^{1/4}}\frac{1}{\sqrt{2}}\,(2\xi^2 - 1)\, e^{-\xi^2/2}
+\]</span></p>
+<p><span class="math display">\[
+\psi_3 = \frac{1}{(\pi x_0^2)^{1/4}}\frac{1}{\sqrt{3}}\,(2\xi^3 - 3\xi)\, e^{-\xi^2/2}
+\]</span></p>
+<p><span class="math display">\[
+\psi_4 = \frac{1}{(\pi x_0^2)^{1/4}}\frac{1}{2\sqrt{6}}\,(4\xi^4 - 12\xi^2 + 3)\, e^{-\xi^2/2}
+\]</span></p>
+<hr>
+</section>
+</section>
+<section id="sec-properties" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-properties"><span class="header-section-number">3</span> Physical Properties of the Wavefunctions</h2>
+<section id="number-of-nodes" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="number-of-nodes"><span class="header-section-number">3.1</span> Number of Nodes</h3>
+<p><span class="math inline">\(\psi_n(x)\)</span> has exactly <strong><span class="math inline">\(n\)</span> nodes</strong> (zeros). This is the <em>node theorem</em> for bound states:</p>
+<ul>
+<li><span class="math inline">\(\psi_0\)</span>: 0 nodes (the Gaussian never crosses zero)</li>
+<li><span class="math inline">\(\psi_1\)</span>: 1 node (crosses zero once at <span class="math inline">\(x = 0\)</span>)</li>
+<li><span class="math inline">\(\psi_2\)</span>: 2 nodes</li>
+<li><span class="math inline">\(\psi_n\)</span>: exactly <span class="math inline">\(n\)</span> nodes</li>
+</ul>
+<p>Higher-energy states have more rapid oscillations — they “fit more waves” into the potential well.</p>
+</section>
+<section id="parity" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="parity"><span class="header-section-number">3.2</span> Parity</h3>
+<p><span class="math display">\[
+\psi_n(-x) = (-1)^n \psi_n(x)
+\]</span></p>
+<ul>
+<li>Even <span class="math inline">\(n\)</span>: <strong>even parity</strong> (symmetric about <span class="math inline">\(x = 0\)</span>)</li>
+<li>Odd <span class="math inline">\(n\)</span>: <strong>odd parity</strong> (antisymmetric about <span class="math inline">\(x = 0\)</span>)</li>
+</ul>
+<p>This is a consequence of the symmetric potential <span class="math inline">\(V(-x) = V(x)\)</span>.</p>
+</section>
+<section id="orthonormality" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="orthonormality"><span class="header-section-number">3.3</span> Orthonormality</h3>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} \psi_m^*(x)\psi_n(x)\,dx = \delta_{mn}
+\]</span></p>
+<p>This follows from the Hermite polynomial orthogonality: <span class="math display">\[
+\int_{-\infty}^{\infty} H_m(\xi)\, H_n(\xi)\, e^{-\xi^2}\, d\xi = 2^n\, n!\, \sqrt{\pi}\, \delta_{mn}
+\]</span></p>
+</section>
+<section id="completeness" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="completeness"><span class="header-section-number">3.4</span> Completeness</h3>
+<p>The wavefunctions form a <strong>complete</strong> set: <span class="math display">\[
+\sum_{n=0}^{\infty} \psi_n^*(x')\psi_n(x) = \delta(x - x')
+\]</span></p>
+<p>This means any square-integrable function can be expanded in the <span class="math inline">\(\psi_n\)</span>’s.</p>
+<hr>
+</section>
+</section>
+<section id="sec-tunneling" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-tunneling"><span class="header-section-number">4</span> Classical Turning Points and Quantum Tunneling</h2>
+<p>The classical turning points for energy <span class="math inline">\(E_n = (n + \frac{1}{2})\hbar\omega\)</span> are where <span class="math inline">\(V(x) = E_n\)</span>:</p>
+<p><span class="math display">\[
+\frac{1}{2}m\omega^2 x_{\pm}^2 = \left(n + \frac{1}{2}\right)\hbar\omega
+\quad \Rightarrow \quad x_{\pm} = \pm\sqrt{2n+1}\, x_0
+\]</span></p>
+<p>Classically, the particle cannot exist beyond <span class="math inline">\(x_{\pm}\)</span>. But quantum mechanically, the wavefunction extends into the classically forbidden region!</p>
+<p>The probability of finding the particle outside the classical turning points is:</p>
+<p><span class="math display">\[
+P_{\text{tunnel}} = \int_{|x|&gt;x_+}|\psi_n(x)|^2\,dx
+\]</span></p>
+<p>For the ground state <span class="math inline">\(n = 0\)</span>, <span class="math inline">\(x_+ = x_0\)</span>:</p>
+<p><span class="math display">\[
+P_{\text{tunnel},0} = 2\int_{x_0}^{\infty}|\psi_0(x)|^2\,dx = \text{erfc}(1/\sqrt{2}) \approx 15.7\%
+\]</span></p>
+<p>About <strong>16%</strong> of the time, the ground-state particle is found in the classically forbidden region!</p>
+<div class="callout-intuition">
+<p>This is quantum tunneling — the particle “borrows” energy from the uncertainty principle to penetrate the classically forbidden region. This phenomenon is responsible for: - <strong>Nuclear fusion</strong> in stars (particles tunnel through the Coulomb barrier) - <strong>Scanning tunneling microscopy</strong> (STM) - <strong>Alpha decay</strong> of radioactive nuclei</p>
 </div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Grid View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">List View</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="listing-grid-view" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-grid-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-grid-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<hr>
+</section>
+<section id="sec-expectation" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-expectation"><span class="header-section-number">5</span> Expectation Values in Energy Eigenstates</h2>
+<p>Using ladder operators (from Module 3):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Value in <span class="math inline">\(|n\rangle\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\langle\hat{x}\rangle\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\langle\hat{p}\rangle\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\langle\hat{x}^2\rangle\)</span></td>
+<td><span class="math inline">\((n + \frac{1}{2})\,x_0^2 = (n + \frac{1}{2})\frac{\hbar}{m\omega}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\langle\hat{p}^2\rangle\)</span></td>
+<td><span class="math inline">\((n + \frac{1}{2})\,\frac{\hbar^2}{x_0^2} = (n + \frac{1}{2})m\hbar\omega\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\langle V\rangle\)</span></td>
+<td><span class="math inline">\(\frac{1}{2}E_n\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\langle T\rangle\)</span></td>
+<td><span class="math inline">\(\frac{1}{2}E_n\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta x\)</span></td>
+<td><span class="math inline">\(x_0\sqrt{n + \frac{1}{2}}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta p\)</span></td>
+<td><span class="math inline">\(\frac{\hbar}{x_0}\sqrt{n + \frac{1}{2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta x\,\Delta p\)</span></td>
+<td><span class="math inline">\((n + \frac{1}{2})\hbar\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<a href="./Courses/Comp_Physics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Computational Physics Course
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<a href="./Courses/QHO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Quantum Harmonic Oscillator
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="listing-list-view" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-list-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-list-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Physics,Upcoming" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p><a href="./Courses/Comp_Physics/index.html" class="no-external">
-<p><img src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image"></p>
-</a><p><a href="./Courses/Comp_Physics/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Computational Physics Course</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/Comp_Physics/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Upcoming'); return false;">
-Upcoming
-</div>
-</div>
-<div class="listing-description">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Quantum Mechanics,Physics,Active" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<div class="thumbnail">
-<p><a href="./Courses/QHO/index.html" class="no-external"></a></p><a href="./Courses/QHO/index.html" class="no-external">
-<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image"></p>
-</a><p><a href="./Courses/QHO/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/QHO/index.html" class="no-external">Quantum Harmonic Oscillator</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./Courses/QHO/index.html" class="no-external">From Classical Springs to Squeezed Light</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quantum Mechanics'); return false;">
-Quantum Mechanics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Physics'); return false;">
-Physics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Active'); return false;">
-Active
+<div class="callout-title-container flex-fill">
+The Virial Theorem for the QHO
 </div>
 </div>
-<div class="listing-description">
-<a href="./Courses/QHO/index.html" class="no-external">A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.</a>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\langle T\rangle = \langle V\rangle = \frac{1}{2}E_n\)</span>. This is the quantum version of the classical virial theorem. On average, kinetic and potential energies are equal in the QHO.</p>
 </div>
 </div>
-<div class="metadata">
-<a href="./Courses/QHO/index.html" class="no-external">
-<div class="listing-date">
-May 26, 2026
+<hr>
+</section>
+<section id="sec-momentum" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-momentum"><span class="header-section-number">6</span> Momentum-Space Wavefunctions</h2>
+<p>The Fourier transform of <span class="math inline">\(\psi_n(x)\)</span> gives the momentum-space wavefunction <span class="math inline">\(\phi_n(p)\)</span>:</p>
+<p><span class="math display">\[
+\phi_n(p) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty} e^{-ipx/\hbar}\psi_n(x)\,dx
+\]</span></p>
+<p>A beautiful result: the momentum-space wavefunctions have the <strong>same form</strong> as the position-space ones!</p>
+<p><span class="math display">\[
+\phi_n(p) = \frac{(-i)^n}{(m\omega\pi\hbar)^{1/4}\sqrt{2^n n!}}\, H_n\!\left(\frac{p}{\sqrt{m\omega\hbar}}\right) e^{-p^2/2m\omega\hbar}
+\]</span></p>
+<p>The momentum-space wavefunctions are also Hermite-Gaussian, with the same Gaussian envelope. This is a special property of the harmonic oscillator — its Hamiltonian is symmetric between <span class="math inline">\(x\)</span> and <span class="math inline">\(p\)</span>.</p>
+<hr>
+</section>
+<section id="sec-hermite" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-hermite"><span class="header-section-number">7</span> Hermite Polynomial Reference Table</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(H_n(\xi)\)</span></th>
+<th>Parity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td><span class="math inline">\(1\)</span></td>
+<td>Even</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td><span class="math inline">\(2\xi\)</span></td>
+<td>Odd</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td><span class="math inline">\(4\xi^2 - 2\)</span></td>
+<td>Even</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><span class="math inline">\(8\xi^3 - 12\xi\)</span></td>
+<td>Odd</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td><span class="math inline">\(16\xi^4 - 48\xi^2 + 12\)</span></td>
+<td>Even</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td><span class="math inline">\(32\xi^5 - 160\xi^3 + 120\xi\)</span></td>
+<td>Odd</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recurrence relation</strong>: <span class="math inline">\(H_{n+1} = 2\xi H_n - 2n H_{n-1}\)</span></p>
+<p><strong>Derivative</strong>: <span class="math inline">\(H_n' = 2n H_{n-1}\)</span></p>
+<p><strong>Rodrigues formula</strong>: <span class="math inline">\(H_n(\xi) = (-1)^n e^{\xi^2}\frac{d^n}{d\xi^n}e^{-\xi^2}\)</span></p>
+<hr>
+</section>
+<section id="sec-correspondence" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-correspondence"><span class="header-section-number">8</span> The Classical-Quantum Correspondence</h2>
+<p>For large <span class="math inline">\(n\)</span>, quantum mechanics must reproduce classical results. Let’s check:</p>
+<p><strong>Classical probability</strong>: For a classical oscillator with amplitude <span class="math inline">\(A = x_+\)</span>, the particle spends most time at the turning points (where it’s slow). The classical probability density is:</p>
+<p><span class="math display">\[
+P_{\text{cl}}(x) = \frac{1}{\pi\sqrt{A^2 - x^2}}, \quad |x| &lt; A
+\]</span></p>
+<p><strong>Quantum probability</strong>: <span class="math inline">\(|\psi_n(x)|^2\)</span> oscillates rapidly for large <span class="math inline">\(n\)</span>.</p>
+<p>The <strong>coarse-grained</strong> (average) quantum probability distribution for large <span class="math inline">\(n\)</span> approaches <span class="math inline">\(P_{\text{cl}}(x)\)</span>. You can verify this numerically by plotting <span class="math inline">\(|\psi_{20}(x)|^2\)</span> — the rapid oscillations average out to the classical distribution.</p>
+<p>This is the <strong>Bohr correspondence principle</strong>: quantum mechanics must agree with classical mechanics in the limit of large quantum numbers.</p>
+<hr>
+<div class="checkpoint">
+<p><strong>Before moving on, make sure you can:</strong></p>
+<ol type="1">
+<li>Derive <span class="math inline">\(\psi_0(x)\)</span> by solving <span class="math inline">\(\hat{a}\psi_0 = 0\)</span> as a first-order ODE.</li>
+<li>Write <span class="math inline">\(\psi_1(x)\)</span> by applying <span class="math inline">\(\hat{a}^\dagger\)</span> to <span class="math inline">\(\psi_0\)</span>.</li>
+<li>State the number of nodes, parity, and normalization of <span class="math inline">\(\psi_n\)</span>.</li>
+<li>Compute <span class="math inline">\(\langle\hat{x}^2\rangle\)</span> and <span class="math inline">\(\langle\hat{p}^2\rangle\)</span> in <span class="math inline">\(|n\rangle\)</span> using ladder operators.</li>
+<li>Verify the virial theorem <span class="math inline">\(\langle T\rangle = \langle V\rangle = E_n/2\)</span>.</li>
+<li>Estimate the tunneling probability for the ground state.</li>
+</ol>
+<p><strong>Conceptual question</strong>: Why is <span class="math inline">\(\langle\hat{x}\rangle = 0\)</span> for all energy eigenstates? What does this tell you about the symmetry of the potential?</p>
 </div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
-</div>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/QHO/03_ladder_operators.html" class="btn btn-outline-secondary">← Module 3: Ladder Operators</a> <a href="../../Courses/QHO/05_time_evolution.html" class="btn btn-success">Next: Module 5 — Time Evolution →</a></p>
 </div>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

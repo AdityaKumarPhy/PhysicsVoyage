@@ -1,0 +1,297 @@
+---
+title: "Module 1: Why Do We Need Oscillators?"
+subtitle: "Every Potential is a Spring in Disguise"
+description: "Discover why the harmonic oscillator is the most important system in physics. We explore classical SHO, Taylor expansion of potentials, and real physical examples from molecules to quantum fields."
+author: "Aditya Kumar"
+date: "2026-05-26"
+categories: [Quantum Mechanics, QHO Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #7c3aed;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+```
+
+[← Back to Course](index.qmd) | [Next: Module 2 →](02_quantization.qmd)
+
+---
+
+## The Big Picture
+
+Before we write a single equation, let's ask the most important question:
+
+> **Why does the harmonic oscillator appear in almost every branch of physics?**
+
+The answer is profound and elegant. It has nothing to do with springs being special. It is a mathematical inevitability.
+
+---
+
+## Classical Simple Harmonic Motion {#sec-classical}
+
+### The Spring
+
+You've seen this before. A mass $m$ on a spring with spring constant $k$. The restoring force is:
+
+$$
+F = -kx
+$$
+
+Newton's second law gives:
+
+$$
+m\ddot{x} = -kx \quad \Longrightarrow \quad \ddot{x} + \omega^2 x = 0, \quad \omega = \sqrt{\frac{k}{m}}
+$$
+
+The general solution is:
+
+$$
+x(t) = A\cos(\omega t + \phi)
+$$
+
+where $A$ is the amplitude and $\phi$ is the initial phase — both fixed by initial conditions.
+
+::: {.callout-intuition}
+The mass oscillates back and forth forever (no friction), with frequency $\omega$ that depends **only on the spring constant and mass**, not on how far you stretch it. This amplitude-independence of frequency is the hallmark of SHO.
+:::
+
+### Energy of the Classical Oscillator
+
+The potential energy stored in the spring is:
+
+$$
+V(x) = \frac{1}{2}kx^2 = \frac{1}{2}m\omega^2 x^2
+$$
+
+The kinetic energy is $T = \frac{1}{2}m\dot{x}^2$. The total energy is:
+
+$$
+E = T + V = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}m\omega^2 x^2
+$$
+
+This is conserved! You can verify: with $x = A\cos(\omega t + \phi)$, we get $\dot{x} = -A\omega\sin(\omega t + \phi)$, so:
+
+$$
+E = \frac{1}{2}m\omega^2 A^2 \underbrace{\left[\sin^2(\omega t + \phi) + \cos^2(\omega t + \phi)\right]}_{= 1} = \frac{1}{2}m\omega^2 A^2
+$$
+
+The energy is determined entirely by the amplitude $A$.
+
+### Phase Space: Seeing the Oscillator Geometrically
+
+Instead of plotting $x$ vs. $t$, physicists love to plot $x$ vs. $p = m\dot{x}$ simultaneously. This is **phase space**.
+
+From energy conservation:
+$$
+\frac{p^2}{2m} + \frac{1}{2}m\omega^2 x^2 = E
+$$
+
+This is the equation of an **ellipse** in $(x, p)$ space! Every classical trajectory is an ellipse. The system goes around the ellipse at frequency $\omega$.
+
+$$
+\frac{x^2}{(A)^2} + \frac{p^2}{(m\omega A)^2} = 1
+$$
+
+::: {.callout-note}
+## Key Insight: Phase Space Ellipses
+- **Larger energy** → **bigger ellipse** (larger amplitude)
+- All ellipses are traversed in the **same time** $T = 2\pi/\omega$
+- The phase space picture will become crucial when we study **coherent states** (Module 6)
+:::
+
+---
+
+## The Universal Argument: Taylor Expansion {#sec-taylor}
+
+### Any Smooth Potential Near Equilibrium is a Harmonic Oscillator
+
+This is the key theorem. Suppose we have **any** potential $V(x)$ with an equilibrium point at $x = x_0$. That means:
+
+$$
+\left.\frac{dV}{dx}\right|_{x = x_0} = 0 \quad \text{(equilibrium condition)}
+$$
+
+Taylor-expand $V(x)$ around $x_0$, setting $u = x - x_0$:
+
+$$
+V(x_0 + u) = V(x_0) + \underbrace{V'(x_0)}_{= 0} u + \frac{1}{2}V''(x_0)u^2 + \frac{1}{6}V'''(x_0)u^3 + \cdots
+$$
+
+For **small displacements** $u \ll 1$, the cubic and higher terms are negligible. Dropping the constant $V(x_0)$ (which just shifts the energy zero), we get:
+
+$$
+\boxed{V(x) \approx \frac{1}{2}V''(x_0)\, u^2 = \frac{1}{2}k_{\text{eff}}\, u^2}
+$$
+
+where we defined $k_{\text{eff}} \equiv V''(x_0)$.
+
+::: {.callout-tip}
+## This is the Central Insight of the Entire Course
+**Every stable equilibrium of every physical system looks like a harmonic oscillator at small amplitudes.** This is not an approximation we choose — it is a mathematical fact. The QHO is the universal model for small oscillations.
+
+(For a stable equilibrium, we need $V''(x_0) > 0$, i.e., $k_{\text{eff}} > 0$.)
+:::
+
+### Why Higher Order Terms Are Negligible
+
+Let's be quantitative. If the displacement is $u$ and the length scale over which $V$ varies is $L$, then:
+
+- Quadratic term: $\sim \frac{1}{2}k u^2$
+- Cubic term: $\sim \frac{1}{6}V'''u^3 \sim \frac{ku^3}{L}$
+
+The ratio of cubic to quadratic is $\sim u/L$. For $u \ll L$, the quadratic term dominates.
+
+**In quantum mechanics**, the relevant displacement is the **ground-state size** of the oscillator:
+
+$$
+x_0 = \sqrt{\frac{\hbar}{m\omega}} \quad \text{(characteristic length)}
+$$
+
+As long as $x_0 \ll L$ (which is almost always satisfied in practice), the harmonic approximation is excellent.
+
+---
+
+## Physical Examples {#sec-examples}
+
+### Diatomic Molecules
+
+Consider two atoms bound by a molecular potential $V(r)$. A famous model is the **Lennard-Jones potential**:
+
+$$
+V(r) = 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
+$$
+
+This has a minimum at $r_0 = 2^{1/6}\sigma$. Near $r_0$, the Taylor expansion gives:
+
+$$
+V(r) \approx -\epsilon + \frac{1}{2}(36\epsilon/\sigma^2) \cdot (r - r_0)^2
+$$
+
+So the two atoms vibrate around $r_0$ like a quantum harmonic oscillator! This is why molecular vibrational spectra are nearly equally spaced — a direct consequence of the QHO energy levels $E_n = (n + \frac{1}{2})\hbar\omega$.
+
+> **Textbook reference**: Griffiths, Problem 2.11; Cohen-Tannoudji Vol. 1, Chapter V.
+
+### Electromagnetic Field Modes
+
+This is the deepest application. The electromagnetic field in a cavity can be decomposed into normal modes (standing waves). Each mode has a Hamiltonian:
+
+$$
+H_{\mathbf{k},\lambda} = \frac{1}{2}\left(\dot{q}_{\mathbf{k}\lambda}^2 + \omega_k^2 q_{\mathbf{k}\lambda}^2\right)
+$$
+
+This is **exactly** a harmonic oscillator with $m = 1$! Quantizing this gives:
+
+$$
+\hat{H}_{\mathbf{k}\lambda} = \hbar\omega_k\left(\hat{a}_{\mathbf{k}\lambda}^\dagger \hat{a}_{\mathbf{k}\lambda} + \frac{1}{2}\right)
+$$
+
+**Photons are just excitations of quantum harmonic oscillators.** The entire theory of quantum optics is built on this.
+
+> **Textbook reference**: Shankar, Chapter 18; Cohen-Tannoudji, *Photons and Atoms* (complementary text).
+
+### Crystal Lattice Vibrations (Phonons)
+
+In a solid, atoms sit at equilibrium positions in a crystal lattice. Small displacements from equilibrium are coupled oscillations. Normal-mode decomposition diagonalizes the system into **independent** quantum harmonic oscillators. The quantized excitations are called **phonons**.
+
+This is why the heat capacity of solids (Einstein model, Debye model) can be computed from the QHO.
+
+### LC Circuit
+
+A lossless inductor-capacitor circuit obeys:
+$$
+L\ddot{q} + \frac{q}{C} = 0 \quad \Longrightarrow \quad \ddot{q} + \omega^2 q = 0, \quad \omega = \frac{1}{\sqrt{LC}}
+$$
+
+This is SHO with $m \to L$ and $k \to 1/C$. Quantizing the LC circuit gives a **superconducting qubit** — the basis of all modern quantum computers!
+
+---
+
+## Summary of the Classical SHO {#sec-summary}
+
+| Quantity | Formula |
+|----------|---------|
+| Frequency | $\omega = \sqrt{k/m}$ |
+| Position | $x(t) = A\cos(\omega t + \phi)$ |
+| Momentum | $p(t) = -mA\omega\sin(\omega t + \phi)$ |
+| Potential energy | $V = \frac{1}{2}m\omega^2 x^2$ |
+| Total energy | $E = \frac{1}{2}m\omega^2 A^2$ |
+| Period | $T = 2\pi/\omega$ |
+
+::: {.checkpoint}
+**Before moving on, make sure you can:**
+
+1. Write the equation of motion for a mass-spring system and solve it.
+2. Compute the energy in terms of amplitude.
+3. Explain the Taylor expansion argument: *why* is every potential near equilibrium a SHO?
+4. Name at least 3 physical systems that are modeled as QHO.
+
+If you can't do all four, re-read this module. Module 2 assumes all of this.
+:::
+
+---
+
+## A Taste of What's Coming: Why Classical is Not Enough {#sec-quantum-preview}
+
+The classical harmonic oscillator allows **any** energy — you can set $E = \frac{1}{2}m\omega^2 A^2$ to any positive number by choosing $A$.
+
+But nature doesn't work that way. Experiments show that:
+
+1. **Energy is quantized**: A QHO can only have energies $E_n = (n + \frac{1}{2})\hbar\omega$, $n = 0, 1, 2, \ldots$
+2. **Zero-point energy exists**: Even at $T = 0$, the oscillator has energy $E_0 = \frac{1}{2}\hbar\omega \neq 0$!
+3. **The ground state is not at rest**: $\langle x \rangle = 0$ but $\langle x^2 \rangle \neq 0$ — quantum fluctuations.
+
+These are not small corrections. They are fundamentally different behavior that arises from the quantization of the canonical variables $x$ and $p$.
+
+In Module 2, we will replace $x \to \hat{x}$ and $p \to \hat{p}$ with **operators** satisfying $[\hat{x}, \hat{p}] = i\hbar$, and watch the whole structure of the QHO emerge from this single commutation relation.
+
+---
+
+::: {.nav-buttons}
+[← Back to Course Index](index.qmd){.btn .btn-outline-secondary}
+[Next: Module 2 — Quantization →](02_quantization.qmd){.btn .btn-success}
+:::
