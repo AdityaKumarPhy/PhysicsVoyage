@@ -6,3 +6,9 @@
 # Only the cache (which holds Cloudinary URLs) is committed to git
 /assets/Media/*
 !/assets/Media/.cloudinary_cache.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
