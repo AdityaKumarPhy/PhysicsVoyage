@@ -107,9 +107,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About Us",
     "section": "",
-    "text": "About this site"
+    "text": "Welcome to Physics Voyage."
   },
   {
     "objectID": "project.html",
@@ -775,5 +775,61 @@
     "title": "Courses",
     "section": "",
     "text": "Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated."
+  },
+  {
+    "objectID": "about.html#your-story",
+    "href": "about.html#your-story",
+    "title": "About Us",
+    "section": "",
+    "text": "Welcome to Physics Voyage."
+  },
+  {
+    "objectID": "about.html#mission",
+    "href": "about.html#mission",
+    "title": "About Us",
+    "section": "Mission",
+    "text": "Mission\n[Add your mission statement here]"
+  },
+  {
+    "objectID": "about.html#team-members",
+    "href": "about.html#team-members",
+    "title": "About Us",
+    "section": "Team Members",
+    "text": "Team Members\n[Add team member details here]"
+  },
+  {
+    "objectID": "about.html#contributors",
+    "href": "about.html#contributors",
+    "title": "About Us",
+    "section": "Contributors",
+    "text": "Contributors\n[Add contributors here]"
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About Us",
+    "section": "Contact",
+    "text": "Contact\n[Add contact information here]"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Welcome to the Resources section! Here you can find all PDFs (both free and paid)."
+  },
+  {
+    "objectID": "resources.html#free-resources",
+    "href": "resources.html#free-resources",
+    "title": "Resources",
+    "section": "Free Resources",
+    "text": "Free Resources\n\nResource Name - Coming Soon"
+  },
+  {
+    "objectID": "resources.html#premium-resources",
+    "href": "resources.html#premium-resources",
+    "title": "Resources",
+    "section": "Premium Resources",
+    "text": "Premium Resources\n\nResource Name - Coming Soon"
   }
 ]

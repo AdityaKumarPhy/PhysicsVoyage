@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Physics Voyage - Featured Projects</title>
+<title>Physics Voyage - Resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="assets/styles/styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -102,11 +102,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Learn</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./project.html" aria-current="page"> 
+    <a class="nav-link" href="./project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
+    <a class="nav-link active" href="./resources.html" aria-current="page"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -150,23 +150,19 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Featured Projects</h1>
+<h1 class="title">Resources</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -178,23 +174,271 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-🚧 Coming Soon
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Detailed case studies of what I’m building, and summaries of open source contributions will be posted here. Check back soon!</p>
-</div>
+<style>
+/* Shopify-style grid */
+.resource-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    font-family: inherit; /* Inherits your Quarto Sketchy/Theme font */
+}
+
+.resource-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.resource-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 3rem 2rem;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.product-card:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Image container - SQUARE BOX */
+.product-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1/1; /* Forces square shape */
+    background-color: #f7f7f7;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px; 
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.quarto-dark .product-image-wrapper,
+[data-bs-theme="dark"] .product-image-wrapper {
+    background-color: #1a1a1a;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Change to 'contain' if you want full PDF showing */
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05); /* Shopify style gentle zoom on hover */
+}
+
+/* Badges */
+.badge-sale {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #000;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+    border-radius: 4px;
+}
+
+body.quarto-dark .badge-sale,
+[data-bs-theme="dark"] .badge-sale {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Content */
+.product-info {
+    text-align: left;
+}
+
+.product-vendor {
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
+}
+
+body.quarto-dark .product-vendor,
+[data-bs-theme="dark"] .product-vendor {
+    color: #aaa;
+}
+
+.product-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+/* Price */
+.product-price-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.price-regular {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.price-sale {
+    color: #d93025; /* Red for sale */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.price-free {
+    color: #1a73e8; /* Clean blue for free */
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+body.quarto-dark .price-free,
+[data-bs-theme="dark"] .price-free {
+    color: #66b2ff;
+}
+
+/* Button */
+.btn-add-to-cart {
+    width: 100%;
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
+    padding: 0.8rem;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+body.quarto-dark .btn-add-to-cart,
+[data-bs-theme="dark"] .btn-add-to-cart {
+    border-color: #fff;
+    color: #fff;
+}
+
+body.quarto-dark .btn-add-to-cart:hover,
+[data-bs-theme="dark"] .btn-add-to-cart:hover {
+    background-color: #fff;
+    color: #000;
+}
+</style>
+
+<div class="resource-container">
+    <div class="resource-header">
+        <h1>Resources &amp; Downloads</h1>
+        <p>Enhance your learning with our premium study materials.</p>
+    </div>
+
+    <div class="resource-grid">
+        <!-- Product 1 -->
+        <a href="#" class="product-card">
+            <div class="product-image-wrapper">
+                <span class="badge-sale">Sale</span>
+                <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Classical Mechanics" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-vendor">PDF Guide</div>
+                <h3 class="product-title">Mastering Classical Mechanics</h3>
+                <div class="product-price-container">
+                    <span class="price-regular">₹199 / $2</span>
+                    <span class="price-free">Free for a limited time</span>
+                </div>
+                <button class="btn-add-to-cart">Download Now</button>
+            </div>
+        </a>
+
+        <!-- Product 2 -->
+        <a href="#" class="product-card">
+            <div class="product-image-wrapper">
+                <span class="badge-sale">Sale</span>
+                <img src="https://images.unsplash.com/photo-1603126857599-f6e15782fa9b?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Quantum Physics" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-vendor">Cheat Sheet</div>
+                <h3 class="product-title">Quantum Physics Formula Sheet</h3>
+                <div class="product-price-container">
+                    <span class="price-regular">₹199 / $2</span>
+                    <span class="price-free">Free for a limited time</span>
+                </div>
+                <button class="btn-add-to-cart">Download Now</button>
+            </div>
+        </a>
+
+        <!-- Product 3 -->
+        <a href="#" class="product-card">
+            <div class="product-image-wrapper">
+                <span class="badge-sale">Sale</span>
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Electromagnetism" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-vendor">Practice Set</div>
+                <h3 class="product-title">Electromagnetism Problem Set</h3>
+                <div class="product-price-container">
+                    <span class="price-regular">₹199 / $2</span>
+                    <span class="price-free">Free for a limited time</span>
+                </div>
+                <button class="btn-add-to-cart">Download Now</button>
+            </div>
+        </a>
+
+        <!-- Product 4 -->
+        <a href="#" class="product-card">
+            <div class="product-image-wrapper">
+                <span class="badge-sale">Sale</span>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&amp;w=600&amp;auto=format&amp;fit=crop" alt="Astrophysics" class="product-image">
+            </div>
+            <div class="product-info">
+                <div class="product-vendor">Digital Book</div>
+                <h3 class="product-title">Introduction to Astrophysics</h3>
+                <div class="product-price-container">
+                    <span class="price-regular">₹199 / $2</span>
+                    <span class="price-free">Free for a limited time</span>
+                </div>
+                <button class="btn-add-to-cart">Download Now</button>
+            </div>
+        </a>
+    </div>
 </div>
 
 
 
-</main> <!-- /main -->
+
 <div id="newsletter-modal" class="newsletter-modal">
   <div class="newsletter-modal-content">
     <span class="newsletter-close">×</span>

@@ -7,6 +7,7 @@ project:
     - python3 assets/scripts/cloudinary_uploader.py
   resources:
     - assets/scripts/youtube-data.json
+    - assets/pdfs/
 
 website:
   title: "Physics Voyage"
@@ -18,13 +19,25 @@ website:
       - href: index.qmd
         text: Home
       - href: blog.qmd
-        text: Blog          
+        text: Articles          
       - href: courses.qmd
-        text: Course 
+        text: Learn 
       - href: project.qmd
         text: Projects
-      - href: about.qmd
-        text: About
+      - href: resources.qmd
+        text: Resources
+      - text: About
+        menu:
+          - text: Your Story
+            href: about.qmd#your-story
+          - text: Mission
+            href: about.qmd#mission
+          - text: Team Members
+            href: about.qmd#team-members
+          - text: Contributors
+            href: about.qmd#contributors
+          - text: Contact
+            href: about.qmd#contact
   reader-mode: true
   sidebar:
     - contents: posts.qmd # Creates a blog listing sidebar
