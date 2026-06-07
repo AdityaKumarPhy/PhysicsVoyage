@@ -4,7 +4,7 @@ import urllib.request
 import time
 
 def load_env():
-    env_vars = {}
+    env_vars = dict(os.environ)
     if os.path.exists('.env'):
         with open('.env', 'r') as f:
             for line in f:

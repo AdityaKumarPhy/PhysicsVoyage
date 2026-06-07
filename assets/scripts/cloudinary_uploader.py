@@ -13,7 +13,7 @@ import urllib.error
 
 # Load environment variables from .env
 def load_env(repo_root):
-    env_vars = {}
+    env_vars = dict(os.environ)
     env_path = os.path.join(repo_root, '.env')
     if os.path.exists(env_path):
         with open(env_path, 'r', encoding='utf-8') as f:

@@ -69,7 +69,7 @@ MEDIA_EXTENSIONS = {
 
 def load_env() -> dict:
     """Load variables from .env file in repo root."""
-    env_vars = {}
+    env_vars = dict(os.environ)
     env_path = os.path.join(REPO_ROOT, ".env")
     if os.path.exists(env_path):
         with open(env_path, "r", encoding="utf-8") as f:
