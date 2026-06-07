@@ -10,7 +10,7 @@ project:
 
 website:
   title: "Physics Voyage"
-  site-url: "https://physicsvoyage.adityakumar458959.workers.dev/"
+  site-url: "https://physicsvoyage-github-io.pages.dev/"
   favicon: assets/favicon.png
   search: true
   navbar:
