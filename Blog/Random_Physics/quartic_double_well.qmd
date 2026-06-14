@@ -4,6 +4,7 @@ description: "A detailed, step-by-step analytical and computational study of the
 author: "Aditya Kumar"
 date: "2026-06-14"
 categories: [Quantum Physics, Computational Physics, Python, Advanced]
+image: "https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436326/Github%20Blog/fig_p3_double_well_anatomy.png"
 draft: false
 toc: true
 toc-depth: 4
