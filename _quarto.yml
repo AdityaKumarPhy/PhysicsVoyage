@@ -24,8 +24,7 @@ website:
         text: Learn 
       - href: project.qmd
         text: Projects
-      - href: resources.qmd
-        text: Resources
+
       - text: About
         menu:
           - text: Your Story

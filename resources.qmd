@@ -3,6 +3,7 @@ title: "Resources"
 page-layout: custom
 sidebar: false
 toc: false
+draft: true
 ---
 
 ```{=html}

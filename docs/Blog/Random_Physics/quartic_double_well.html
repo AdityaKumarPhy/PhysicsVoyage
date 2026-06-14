@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-14">
+<meta name="description" content="A detailed, step-by-step analytical and computational study of the quartic double-well problem — from the overlap integral to tunneling dynamics.">
+
+<title>Physics Voyage - Quantum Tunneling in a Quartic Double-Well Potential</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-problem-matters" id="toc-why-this-problem-matters" class="nav-link active" data-scroll-target="#why-this-problem-matters">Why This Problem Matters</a></li>
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The Problem</a></li>
+  <li><a href="#analytical-solution" id="toc-analytical-solution" class="nav-link" data-scroll-target="#analytical-solution">Analytical Solution</a>
+  <ul>
+  <li><a href="#step-1-locating-the-minima" id="toc-step-1-locating-the-minima" class="nav-link" data-scroll-target="#step-1-locating-the-minima">Step 1 — Locating the Minima</a></li>
+  <li><a href="#step-2-barrier-height" id="toc-step-2-barrier-height" class="nav-link" data-scroll-target="#step-2-barrier-height">Step 2 — Barrier Height</a></li>
+  <li><a href="#step-3-harmonic-approximation-near-each-minimum" id="toc-step-3-harmonic-approximation-near-each-minimum" class="nav-link" data-scroll-target="#step-3-harmonic-approximation-near-each-minimum">Step 3 — Harmonic Approximation Near Each Minimum</a></li>
+  <li><a href="#step-4-constructing-localized-states" id="toc-step-4-constructing-localized-states" class="nav-link" data-scroll-target="#step-4-constructing-localized-states">Step 4 — Constructing Localized States</a></li>
+  <li><a href="#step-5-the-overlap-integral-tunneling-coupling" id="toc-step-5-the-overlap-integral-tunneling-coupling" class="nav-link" data-scroll-target="#step-5-the-overlap-integral-tunneling-coupling">Step 5 — The Overlap Integral (Tunneling Coupling)</a></li>
+  <li><a href="#step-6-solving-the-2-x-2-eigenvalue-problem" id="toc-step-6-solving-the-2-x-2-eigenvalue-problem" class="nav-link" data-scroll-target="#step-6-solving-the-2-x-2-eigenvalue-problem">Step 6 — Solving the 2 x 2 Eigenvalue Problem</a></li>
+  <li><a href="#step-7-the-eigenstates-bonding-and-antibonding" id="toc-step-7-the-eigenstates-bonding-and-antibonding" class="nav-link" data-scroll-target="#step-7-the-eigenstates-bonding-and-antibonding">Step 7 — The Eigenstates: Bonding and Antibonding</a></li>
+  <li><a href="#step-8-the-tunnel-splitting" id="toc-step-8-the-tunnel-splitting" class="nav-link" data-scroll-target="#step-8-the-tunnel-splitting">Step 8 — The Tunnel Splitting</a></li>
+  </ul></li>
+  <li><a href="#computational-workflow" id="toc-computational-workflow" class="nav-link" data-scroll-target="#computational-workflow">Computational Workflow</a>
+  <ul>
+  <li><a href="#the-finite-difference-method-fdm" id="toc-the-finite-difference-method-fdm" class="nav-link" data-scroll-target="#the-finite-difference-method-fdm">The Finite Difference Method (FDM)</a></li>
+  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python Implementation</a></li>
+  </ul></li>
+  <li><a href="#results-and-visualization" id="toc-results-and-visualization" class="nav-link" data-scroll-target="#results-and-visualization">Results and Visualization</a>
+  <ul>
+  <li><a href="#the-potential-landscape" id="toc-the-potential-landscape" class="nav-link" data-scroll-target="#the-potential-landscape">The Potential Landscape</a></li>
+  <li><a href="#eigenvalues-and-energy-splitting" id="toc-eigenvalues-and-energy-splitting" class="nav-link" data-scroll-target="#eigenvalues-and-energy-splitting">Eigenvalues and Energy Splitting</a></li>
+  <li><a href="#eigenstates-and-node-structure" id="toc-eigenstates-and-node-structure" class="nav-link" data-scroll-target="#eigenstates-and-node-structure">Eigenstates and Node Structure</a></li>
+  <li><a href="#verification-orthonormality-and-probability-distribution" id="toc-verification-orthonormality-and-probability-distribution" class="nav-link" data-scroll-target="#verification-orthonormality-and-probability-distribution">Verification: Orthonormality and Probability Distribution</a></li>
+  <li><a href="#harmonic-approximation-vs.-exact-solution" id="toc-harmonic-approximation-vs.-exact-solution" class="nav-link" data-scroll-target="#harmonic-approximation-vs.-exact-solution">Harmonic Approximation vs.&nbsp;Exact Solution</a></li>
+  <li><a href="#tunneling-dynamics" id="toc-tunneling-dynamics" class="nav-link" data-scroll-target="#tunneling-dynamics">Tunneling Dynamics</a></li>
+  </ul></li>
+  <li><a href="#physics-interpretation" id="toc-physics-interpretation" class="nav-link" data-scroll-target="#physics-interpretation">Physics Interpretation</a>
+  <ul>
+  <li><a href="#tunneling-is-not-teleportation" id="toc-tunneling-is-not-teleportation" class="nav-link" data-scroll-target="#tunneling-is-not-teleportation">Tunneling is not teleportation</a></li>
+  <li><a href="#why-the-ground-state-is-symmetric" id="toc-why-the-ground-state-is-symmetric" class="nav-link" data-scroll-target="#why-the-ground-state-is-symmetric">Why the ground state is symmetric</a></li>
+  <li><a href="#the-doublet-structure-encodes-the-barrier-shape" id="toc-the-doublet-structure-encodes-the-barrier-shape" class="nav-link" data-scroll-target="#the-doublet-structure-encodes-the-barrier-shape">The doublet structure encodes the barrier shape</a></li>
+  <li><a href="#eigenstates-are-delocalized-particles-are-not" id="toc-eigenstates-are-delocalized-particles-are-not" class="nav-link" data-scroll-target="#eigenstates-are-delocalized-particles-are-not">Eigenstates are delocalized; particles are not</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Quantum Tunneling in a Quartic Double-Well Potential</h1>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      A detailed, step-by-step analytical and computational study of the quartic double-well problem — from the overlap integral to tunneling dynamics.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Physics</div>
+            <div class="quarto-category">Computational Physics</div>
+            <div class="quarto-category">Python</div>
+            <div class="quarto-category">Advanced</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 14, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<section id="why-this-problem-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-problem-matters">Why This Problem Matters</h2>
+<p>The quartic double-well potential is far more than a textbook exercise. It is the <em>simplest</em> system that captures the physics of <strong>quantum tunneling</strong> — a phenomenon with no classical analogue — and its consequences show up across nearly every branch of modern physics.</p>
+<p>Here is why physicists keep coming back to this problem:</p>
+<ul>
+<li><strong>Molecular physics:</strong> The ammonia molecule (<span class="math inline">\(\text{NH}_3\)</span>) has two equivalent configurations (nitrogen above or below the hydrogen plane). The nitrogen atom tunnels between these two positions through a double-well potential. The resulting energy splitting is the operating principle behind the <strong>ammonia maser</strong>, one of the first masers ever built.</li>
+<li><strong>Condensed matter:</strong> Proton transfer in hydrogen bonds, defect migration in crystals, and the dynamics of Josephson junctions in superconducting circuits are all governed by double-well tunneling.</li>
+<li><strong>Quantum computing:</strong> Superconducting qubits (transmon, flux qubit) are engineered double-well systems. The tunnel splitting <em>is</em> the qubit frequency. Controlling it is the entire game.</li>
+<li><strong>Quantum field theory:</strong> The double-well potential is the prototype for <strong>spontaneous symmetry breaking</strong> and <strong>instanton</strong> physics. The tunneling amplitude between degenerate vacua is computed using the same overlap integral we will derive below.</li>
+<li><strong>Chemical physics:</strong> Reaction rates in chemistry often involve tunneling through an activation barrier. The Arrhenius law breaks down at low temperatures precisely because of quantum tunneling effects captured by models like this one.</li>
+</ul>
+<p>In short, solving the quartic double well teaches you the <em>machinery</em> — overlap integrals, tight-binding models, finite-difference discretization — that you will reuse in far more complex problems.</p>
+<hr>
+</section>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The Problem</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Problem Statement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider a particle of mass <span class="math inline">\(m\)</span> confined in the one-dimensional quartic double-well potential:</p>
+<p><span class="math display">\[V(x) = -\frac{1}{2}\alpha\, x^2 + \beta\, x^4, \qquad \alpha, \beta &gt; 0\]</span></p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li>Analyze the potential landscape: locate the minima, compute the barrier height, and determine the effective harmonic frequency near each minimum.</li>
+<li>Construct approximate localized states using the harmonic approximation.</li>
+<li>Using the <strong>two-state tight-binding model</strong>, compute the overlap (tunneling) integral and derive the analytical energy splitting.</li>
+<li>Solve the full eigenvalue problem numerically using the <strong>Finite Difference Method (FDM)</strong>.</li>
+<li>Visualize the eigenstates, verify their properties, and simulate the time-dependent tunneling dynamics.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Parameters used throughout this article:</strong> <span class="math inline">\(\hbar = 1\)</span>, <span class="math inline">\(m = 1\)</span>, <span class="math inline">\(\alpha = 4\)</span>, <span class="math inline">\(\beta = 0.5\)</span>. These are natural units chosen so that all quantities are of order unity, making the numerics clean and the plots easy to read.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="analytical-solution" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-solution">Analytical Solution</h2>
+<p>We now solve the problem step by step, starting from the shape of the potential and building up to the analytical prediction of the tunnel splitting.</p>
+<section id="step-1-locating-the-minima" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-locating-the-minima">Step 1 — Locating the Minima</h3>
+<p>To find the extrema of <span class="math inline">\(V(x)\)</span>, we set the first derivative to zero:</p>
+<p><span class="math display">\[\frac{dV}{dx} = -\alpha x + 4\beta x^3 = x(-\alpha + 4\beta x^2) = 0\]</span></p>
+<p>This gives three solutions:</p>
+<ul>
+<li><span class="math inline">\(x = 0\)</span> — a <strong>local maximum</strong> (the top of the barrier)</li>
+<li><span class="math inline">\(x = \pm\sqrt{\dfrac{\alpha}{4\beta}}\)</span> — two symmetric <strong>minima</strong> (the bottoms of the wells)</li>
+</ul>
+<p>For our parameters:</p>
+<p><span class="math display">\[\boxed{x_{\min} = \pm\sqrt{\frac{4}{4 \times 0.5}} = \pm\sqrt{2} \approx \pm 1.414}\]</span></p>
+</section>
+<section id="step-2-barrier-height" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-barrier-height">Step 2 — Barrier Height</h3>
+<p>The potential at the minima is:</p>
+<p><span class="math display">\[V_{\min} = V\!\left(\pm\sqrt{\frac{\alpha}{4\beta}}\right) = -\frac{\alpha^2}{16\beta}\]</span></p>
+<p>The potential at the barrier top is <span class="math inline">\(V(0) = 0\)</span>. Therefore the <strong>barrier height</strong> above the well floor is:</p>
+<p><span class="math display">\[\boxed{V_b = V(0) - V_{\min} = \frac{\alpha^2}{16\beta} = \frac{16}{8} = 2.0}\]</span></p>
+<p>This is the energy a classical particle would need to climb over the hill. A quantum particle, as we shall see, needs far less.</p>
+</section>
+<section id="step-3-harmonic-approximation-near-each-minimum" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-harmonic-approximation-near-each-minimum">Step 3 — Harmonic Approximation Near Each Minimum</h3>
+<p>We Taylor-expand <span class="math inline">\(V(x)\)</span> around <span class="math inline">\(x_{\min}\)</span> to second order. Writing <span class="math inline">\(x = x_{\min} + \xi\)</span> (where <span class="math inline">\(\xi\)</span> is a small displacement):</p>
+<p><span class="math display">\[V(x_{\min} + \xi) \approx V_{\min} + \frac{1}{2}V''(x_{\min})\,\xi^2 + \mathcal{O}(\xi^3)\]</span></p>
+<p>Computing the second derivative:</p>
+<p><span class="math display">\[V''(x) = -\alpha + 12\beta x^2 \quad\Longrightarrow\quad V''(x_{\min}) = -\alpha + 12\beta\cdot\frac{\alpha}{4\beta} = 2\alpha\]</span></p>
+<p>This is the curvature of a harmonic oscillator with spring constant <span class="math inline">\(k = 2\alpha\)</span>. The effective frequency is:</p>
+<p><span class="math display">\[\boxed{\omega_{\text{eff}} = \sqrt{\frac{k}{m}} = \sqrt{\frac{2\alpha}{m}} = \sqrt{8} = 2\sqrt{2} \approx 2.828}\]</span></p>
+<p>Each well, in isolation, behaves like a simple harmonic oscillator with this frequency.</p>
+</section>
+<section id="step-4-constructing-localized-states" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-constructing-localized-states">Step 4 — Constructing Localized States</h3>
+<p>If the barrier were infinitely high, the two wells would be completely isolated. Each would support its own ground-state wavefunction — a Gaussian centred at the respective minimum.</p>
+<p>We define:</p>
+<ul>
+<li><span class="math inline">\(|\phi_L\rangle\)</span> — the ground state of the <strong>left</strong> well (centred at <span class="math inline">\(x = -\sqrt{2}\)</span>)</li>
+<li><span class="math inline">\(|\phi_R\rangle\)</span> — the ground state of the <strong>right</strong> well (centred at <span class="math inline">\(x = +\sqrt{2}\)</span>)</li>
+</ul>
+<p>Within the harmonic approximation, these are:</p>
+<p><span class="math display">\[\phi_{L,R}(x) = \left(\frac{m\omega_{\text{eff}}}{\pi\hbar}\right)^{1/4} \exp\!\left[-\frac{m\omega_{\text{eff}}}{2\hbar}(x \mp \sqrt{2})^2\right]\]</span></p>
+<p>Both states have the <em>same</em> energy:</p>
+<p><span class="math display">\[\varepsilon = V_{\min} + \frac{1}{2}\hbar\omega_{\text{eff}} = -2 + \frac{1}{2}(2\sqrt{2}) = -2 + \sqrt{2} \approx -0.586\]</span></p>
+<p>At this stage, the system appears to have a <strong>doubly degenerate</strong> ground state. But this degeneracy is an artefact of ignoring the barrier region. The next step lifts it.</p>
+</section>
+<section id="step-5-the-overlap-integral-tunneling-coupling" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-the-overlap-integral-tunneling-coupling">Step 5 — The Overlap Integral (Tunneling Coupling)</h3>
+<p>Because the barrier has <em>finite</em> height, the tail of <span class="math inline">\(\phi_L\)</span> leaks into the right well and vice versa. The two states are not truly orthogonal — they overlap inside the barrier.</p>
+<p>We quantify this overlap through the <strong>tunneling matrix element</strong>:</p>
+<p><span class="math display">\[\Delta = -\langle\phi_L|\hat{H}|\phi_R\rangle = -\int_{-\infty}^{\infty} \phi_L^*(x)\,\hat{H}\,\phi_R(x)\,dx\]</span></p>
+<p><strong>What this integral captures:</strong></p>
+<ul>
+<li>The integrand is significant only in the <strong>classically forbidden region</strong> (under the barrier), where both <span class="math inline">\(\phi_L\)</span> and <span class="math inline">\(\phi_R\)</span> have small but nonzero amplitude.</li>
+<li>The operator <span class="math inline">\(\hat{H}\)</span> includes the kinetic energy term, which measures how rapidly the wavefunction changes — and it changes most rapidly precisely in the barrier region.</li>
+<li>A <em>higher</em> barrier or a <em>wider</em> barrier suppresses the overlap exponentially, making <span class="math inline">\(\Delta\)</span> smaller.</li>
+<li>A <em>lower</em> or <em>thinner</em> barrier increases the overlap, making <span class="math inline">\(\Delta\)</span> larger.</li>
+</ul>
+<p>The magnitude of <span class="math inline">\(\Delta\)</span> directly controls how fast the particle tunnels.</p>
+</section>
+<section id="step-6-solving-the-2-x-2-eigenvalue-problem" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-solving-the-2-x-2-eigenvalue-problem">Step 6 — Solving the 2 x 2 Eigenvalue Problem</h3>
+<p>In the basis <span class="math inline">\(\{|\phi_L\rangle, |\phi_R\rangle\}\)</span>, the full Hamiltonian takes the form of a <span class="math inline">\(2 \times 2\)</span> matrix:</p>
+<p><span class="math display">\[\hat{H} = \begin{pmatrix} \varepsilon &amp; -\Delta \\ -\Delta &amp; \varepsilon \end{pmatrix}\]</span></p>
+<p>To find the true energy eigenstates, we solve the secular equation:</p>
+<p><span class="math display">\[\det(\hat{H} - E\,\mathbf{I}) = 0\]</span></p>
+<p><span class="math display">\[\det\begin{pmatrix} \varepsilon - E &amp; -\Delta \\ -\Delta &amp; \varepsilon - E \end{pmatrix} = 0\]</span></p>
+<p><span class="math display">\[(\varepsilon - E)^2 - \Delta^2 = 0\]</span></p>
+<p><span class="math display">\[\varepsilon - E = \pm\Delta\]</span></p>
+<p>This yields <strong>two distinct energy levels</strong>:</p>
+<p><span class="math display">\[\boxed{E_0 = \varepsilon - \Delta \qquad (\text{ground state, lower})}\]</span> <span class="math display">\[\boxed{E_1 = \varepsilon + \Delta \qquad (\text{first excited state, higher})}\]</span></p>
+</section>
+<section id="step-7-the-eigenstates-bonding-and-antibonding" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-the-eigenstates-bonding-and-antibonding">Step 7 — The Eigenstates: Bonding and Antibonding</h3>
+<p>Substituting each eigenvalue back into <span class="math inline">\(\hat{H}|\psi\rangle = E|\psi\rangle\)</span>, we find the corresponding eigenstates:</p>
+<ul>
+<li><p><strong>Ground state</strong> (symmetric / <em>bonding</em>): <span class="math display">\[|\psi_0\rangle = \frac{1}{\sqrt{2}}\left(|\phi_L\rangle + |\phi_R\rangle\right)\]</span> This state has <strong>even parity</strong>, no nodes, and its wavefunction has identical positive humps in both wells.</p></li>
+<li><p><strong>First excited state</strong> (antisymmetric / <em>antibonding</em>): <span class="math display">\[|\psi_1\rangle = \frac{1}{\sqrt{2}}\left(|\phi_L\rangle - |\phi_R\rangle\right)\]</span> This state has <strong>odd parity</strong>, exactly one node at <span class="math inline">\(x = 0\)</span>, and its wavefunction has opposite signs in the two wells.</p></li>
+</ul>
+</section>
+<section id="step-8-the-tunnel-splitting" class="level3">
+<h3 class="anchored" data-anchor-id="step-8-the-tunnel-splitting">Step 8 — The Tunnel Splitting</h3>
+<p>The energy gap between the two states is:</p>
+<p><span class="math display">\[\boxed{\Delta E = E_1 - E_0 = 2\Delta}\]</span></p>
+<p>Key observations:</p>
+<ul>
+<li>The splitting is <strong>exponentially small</strong> when the barrier is tall and wide, because <span class="math inline">\(\Delta\)</span> depends on the overlap of Gaussian tails under the barrier.</li>
+<li>The splitting is a <em>direct, measurable</em> signature of tunneling. If <span class="math inline">\(\Delta E = 0\)</span>, there is no tunneling. Period.</li>
+<li>The <strong>tunneling time</strong> — the time for a particle to traverse from one well to the other — is:</li>
+</ul>
+<p><span class="math display">\[\boxed{\tau = \frac{\pi\hbar}{\Delta E}}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436331/Github%20Blog/fig_p3_two_state_model.png" class="img-fluid figure-img"></p>
+<figcaption>The two-state tight-binding model: isolated well states combine into symmetric (bonding) and antisymmetric (antibonding) eigenstates.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="computational-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="computational-workflow">Computational Workflow</h2>
+<p>The analytical two-state model gives us the correct qualitative picture, but it rests on the harmonic approximation — which ignores anharmonic corrections entirely. To get <em>precise</em> eigenvalues and eigenstates, we turn to numerics.</p>
+<section id="the-finite-difference-method-fdm" class="level3">
+<h3 class="anchored" data-anchor-id="the-finite-difference-method-fdm">The Finite Difference Method (FDM)</h3>
+<p>The idea is straightforward:</p>
+<ul>
+<li><strong>Discretize space</strong> into <span class="math inline">\(N\)</span> grid points: <span class="math inline">\(x_0, x_1, \ldots, x_{N-1}\)</span>.</li>
+<li><strong>Replace the second derivative</strong> with a three-point central difference: <span class="math display">\[\frac{d^2\psi}{dx^2}\bigg|_{x_i} \approx \frac{\psi_{i-1} - 2\psi_i + \psi_{i+1}}{(\Delta x)^2}\]</span></li>
+<li><strong>Assemble the Hamiltonian</strong> as an <span class="math inline">\(N \times N\)</span> sparse matrix: <span class="math inline">\(\mathbf{H} = \mathbf{T} + \mathbf{V}\)</span>, where <span class="math inline">\(\mathbf{T}\)</span> is tridiagonal (kinetic energy) and <span class="math inline">\(\mathbf{V}\)</span> is diagonal (potential energy).</li>
+<li><strong>Diagonalize</strong> to extract eigenvalues and eigenvectors.</li>
+</ul>
+<p>The matrix equation we solve is:</p>
+<p><span class="math display">\[\mathbf{H}\boldsymbol{\psi} = E\boldsymbol{\psi}\]</span></p>
+<p>This is an ordinary matrix eigenvalue problem — every linear algebra library can handle it.</p>
+</section>
+<section id="python-implementation" class="level3">
+<h3 class="anchored" data-anchor-id="python-implementation">Python Implementation</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> diags</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> eigsh</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Physical Parameters ---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>hbar, m <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">1.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="fl">4.0</span>, <span class="fl">0.5</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Spatial Grid ---</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, N)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> x[<span class="dv">1</span>] <span class="op">-</span> x[<span class="dv">0</span>]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Potential Energy ---</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> alpha <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> beta <span class="op">*</span> x<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Kinetic Energy (tridiagonal matrix) ---</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>coeff <span class="op">=</span> hbar<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> m <span class="op">*</span> dx<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>main_diag <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> coeff <span class="op">*</span> np.ones(N) <span class="op">+</span> V</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>off_diag  <span class="op">=</span> <span class="op">-</span>coeff <span class="op">*</span> np.ones(N <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> diags([off_diag, main_diag, off_diag], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Solve for 6 lowest eigenvalues ---</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>eigenvalues, eigenvectors <span class="op">=</span> eigsh(H, k<span class="op">=</span><span class="dv">6</span>, which<span class="op">=</span><span class="st">'SM'</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Results ---</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>dE <span class="op">=</span> eigenvalues[<span class="dv">1</span>] <span class="op">-</span> eigenvalues[<span class="dv">0</span>]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> np.pi <span class="op">*</span> hbar <span class="op">/</span> dE</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_0        = </span><span class="sc">{</span>eigenvalues[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"E_1        = </span><span class="sc">{</span>eigenvalues[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Splitting  = </span><span class="sc">{</span>dE<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tunnel time = </span><span class="sc">{</span>tau<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Why sparse matrices?</strong> The Hamiltonian is an <span class="math inline">\(N \times N\)</span> matrix, but only three diagonals are nonzero. Storing and operating on the full dense matrix would cost <span class="math inline">\(\mathcal{O}(N^2)\)</span> memory and <span class="math inline">\(\mathcal{O}(N^3)\)</span> time for diagonalization. Using <code>scipy.sparse</code>, we reduce this to <span class="math inline">\(\mathcal{O}(N)\)</span> memory and obtain the lowest few eigenvalues in <span class="math inline">\(\mathcal{O}(N)\)</span> time per Lanczos iteration.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="results-and-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-visualization">Results and Visualization</h2>
+<section id="the-potential-landscape" class="level3">
+<h3 class="anchored" data-anchor-id="the-potential-landscape">The Potential Landscape</h3>
+<p>The figure below shows the quartic potential with our chosen parameters. The two minima sit at <span class="math inline">\(x = \pm\sqrt{2}\)</span>, with a depth of <span class="math inline">\(V_{\min} = -2.0\)</span> and a barrier height of <span class="math inline">\(V_b = 2.0\)</span> above the well floors.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436326/Github%20Blog/fig_p3_double_well_anatomy.png" class="img-fluid figure-img"></p>
+<figcaption>Anatomy of the quartic double-well potential, with annotated minima, barrier height, and effective harmonic curvature.</figcaption>
+</figure>
+</div>
+</section>
+<section id="eigenvalues-and-energy-splitting" class="level3">
+<h3 class="anchored" data-anchor-id="eigenvalues-and-energy-splitting">Eigenvalues and Energy Splitting</h3>
+<p>The six lowest eigenvalues computed by the FDM are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(n\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(E_n\)</span></th>
+<th style="text-align: center;">Parity</th>
+<th style="text-align: center;">Doublet</th>
+<th style="text-align: center;">Splitting <span class="math inline">\(\Delta E_n\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(-1.1946\)</span></td>
+<td style="text-align: center;">Even</td>
+<td style="text-align: center;">1st</td>
+<td style="text-align: center;"><span class="math inline">\(0.0544\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(-1.1402\)</span></td>
+<td style="text-align: center;">Odd</td>
+<td style="text-align: center;">1st</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(+0.5138\)</span></td>
+<td style="text-align: center;">Even</td>
+<td style="text-align: center;">2nd</td>
+<td style="text-align: center;"><span class="math inline">\(0.6459\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(+1.1597\)</span></td>
+<td style="text-align: center;">Odd</td>
+<td style="text-align: center;">2nd</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="math inline">\(+2.7100\)</span></td>
+<td style="text-align: center;">Even</td>
+<td style="text-align: center;">3rd</td>
+<td style="text-align: center;"><span class="math inline">\(1.6677\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><span class="math inline">\(+4.3777\)</span></td>
+<td style="text-align: center;">Odd</td>
+<td style="text-align: center;">3rd</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Key observations from the table:</p>
+<ul>
+<li>The lowest doublet <span class="math inline">\((E_0, E_1)\)</span> has a <em>tiny</em> splitting of <span class="math inline">\(0.054\)</span> — the states are nearly degenerate, because the barrier is tall relative to their energy.</li>
+<li>Higher doublets have <em>progressively larger</em> splittings, because those states sit closer to the top of the barrier and “see” a thinner effective wall.</li>
+<li>Every doublet consists of one even-parity and one odd-parity state, as required by the symmetry of the potential.</li>
+</ul>
+<p>The computed tunneling time is:</p>
+<p><span class="math display">\[\tau = \frac{\pi \times 1.0}{0.0544} \approx 57.7 \quad \text{(natural units)}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436335/Github%20Blog/fig_p3_energy_splitting.png" class="img-fluid figure-img"></p>
+<figcaption>Energy level diagram showing the doublet structure and the tunnel splitting.</figcaption>
+</figure>
+</div>
+</section>
+<section id="eigenstates-and-node-structure" class="level3">
+<h3 class="anchored" data-anchor-id="eigenstates-and-node-structure">Eigenstates and Node Structure</h3>
+<p>The wavefunctions reveal the bonding/antibonding structure predicted by the analytical model:</p>
+<ul>
+<li><strong><span class="math inline">\(\psi_0\)</span> (ground state):</strong> Symmetric, no nodes, equal positive amplitude in both wells.</li>
+<li><strong><span class="math inline">\(\psi_1\)</span> (first excited state):</strong> Antisymmetric, one node at <span class="math inline">\(x = 0\)</span>, opposite signs in the two wells.</li>
+<li><strong><span class="math inline">\(\psi_2\)</span>, <span class="math inline">\(\psi_3\)</span>:</strong> The second doublet, with 2 and 3 nodes respectively.</li>
+</ul>
+<p>The node count matches the <strong>Sturm oscillation theorem</strong>: the <span class="math inline">\(n\)</span>-th eigenstate has exactly <span class="math inline">\(n\)</span> nodes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436340/Github%20Blog/fig_p3_eigenstates_detail.png" class="img-fluid figure-img"></p>
+<figcaption>First four eigenstates of the quartic double well, vertically offset by their eigenvalues.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436347/Github%20Blog/fig_p3_node_structure.png" class="img-fluid figure-img"></p>
+<figcaption>Node analysis of the first four eigenstates. Positive and negative lobes are shaded differently.</figcaption>
+</figure>
+</div>
+</section>
+<section id="verification-orthonormality-and-probability-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="verification-orthonormality-and-probability-distribution">Verification: Orthonormality and Probability Distribution</h3>
+<p>Two sanity checks confirm the numerical solution is correct:</p>
+<ul>
+<li><strong>Orthonormality:</strong> The overlap matrix <span class="math inline">\(\langle\psi_m|\psi_n\rangle\)</span> is the identity matrix to machine precision (<span class="math inline">\(\sim 10^{-14}\)</span> off-diagonal).</li>
+<li><strong>Delocalization:</strong> Every eigenstate has <em>exactly</em> 50% probability in the left well and 50% in the right well, as demanded by parity symmetry.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781437217/Github%20Blog/fig_p3_orthonormality.png" class="img-fluid figure-img"></p>
+<figcaption>Left: Overlap matrix confirming orthonormality. Right: Integrands showing the cancellation mechanism.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436351/Github%20Blog/fig_p3_prob_distribution.png" class="img-fluid figure-img"></p>
+<figcaption>Probability distribution across the two wells for each eigenstate.</figcaption>
+</figure>
+</div>
+</section>
+<section id="harmonic-approximation-vs.-exact-solution" class="level3">
+<h3 class="anchored" data-anchor-id="harmonic-approximation-vs.-exact-solution">Harmonic Approximation vs.&nbsp;Exact Solution</h3>
+<p>The harmonic approximation captures the Gaussian envelope near each minimum but fails in the barrier region:</p>
+<ul>
+<li>It overestimates the ground-state energy (<span class="math inline">\(-0.586\)</span> vs.&nbsp;the true <span class="math inline">\(-1.195\)</span>), because it ignores the anharmonic “flattening” of the quartic potential.</li>
+<li>It underestimates the wavefunction amplitude under the barrier, because the Gaussian tails drop off faster than the true eigenstates.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781437223/Github%20Blog/fig_p3_harmonic_vs_exact.png" class="img-fluid figure-img"></p>
+<figcaption>Comparison of harmonic-approximation states (dashed) with exact FDM eigenstates (solid).</figcaption>
+</figure>
+</div>
+</section>
+<section id="tunneling-dynamics" class="level3">
+<h3 class="anchored" data-anchor-id="tunneling-dynamics">Tunneling Dynamics</h3>
+<p>This is where the physics becomes vivid.</p>
+<p>Suppose we prepare the particle entirely in the <strong>right well</strong> at <span class="math inline">\(t = 0\)</span>. This localized state is <em>not</em> an energy eigenstate — it is a superposition:</p>
+<p><span class="math display">\[\psi_R(x) = \frac{1}{\sqrt{2}}\left[\psi_0(x) - \psi_1(x)\right]\]</span></p>
+<p>Under time evolution, the two components pick up different phase factors (because <span class="math inline">\(E_0 \neq E_1\)</span>), and the wavefunction becomes:</p>
+<p><span class="math display">\[\Psi(x,t) = \frac{1}{\sqrt{2}}\left[\psi_0(x)\,e^{-iE_0 t/\hbar} - \psi_1(x)\,e^{-iE_1 t/\hbar}\right]\]</span></p>
+<p>The probability density oscillates in time:</p>
+<p><span class="math display">\[|\Psi(x,t)|^2 = \frac{1}{2}\left[|\psi_0|^2 + |\psi_1|^2 - 2\psi_0\psi_1\cos\!\left(\frac{\Delta E\,t}{\hbar}\right)\right]\]</span></p>
+<p>What happens at each stage:</p>
+<ul>
+<li><strong><span class="math inline">\(t = 0\)</span>:</strong> The particle is 100% in the right well.</li>
+<li><strong><span class="math inline">\(t = \tau/2\)</span>:</strong> The cosine term vanishes. The probability is 50-50 across both wells.</li>
+<li><strong><span class="math inline">\(t = \tau\)</span>:</strong> The cosine term flips sign. The particle is now 100% in the <em>left</em> well.</li>
+<li><strong><span class="math inline">\(t = 2\tau\)</span>:</strong> The particle returns to the right well. The cycle repeats.</li>
+</ul>
+<p>The well-occupation probabilities follow perfect sinusoidal curves:</p>
+<p><span class="math display">\[P_R(t) = \cos^2\!\left(\frac{\Delta E\, t}{2\hbar}\right), \qquad P_L(t) = \sin^2\!\left(\frac{\Delta E\, t}{2\hbar}\right)\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436357/Github%20Blog/fig_p3_tunneling_dynamics.png" class="img-fluid figure-img"></p>
+<figcaption>Probability density at four characteristic times during the tunneling process.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1781436360/Github%20Blog/fig_p3_probability_transfer.png" class="img-fluid figure-img"></p>
+<figcaption>Probability of occupying the right (blue) and left (red) well as a function of time.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="physics-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="physics-interpretation">Physics Interpretation</h2>
+<p>Having worked through the mathematics and the numerics, let us step back and ask: <strong>what does this all mean physically?</strong></p>
+<section id="tunneling-is-not-teleportation" class="level3">
+<h3 class="anchored" data-anchor-id="tunneling-is-not-teleportation">Tunneling is not teleportation</h3>
+<ul>
+<li>The particle does not instantaneously jump from one well to the other. It <em>leaks</em> through the barrier continuously, like water seeping through a porous wall.</li>
+<li>The tunneling time <span class="math inline">\(\tau = 57.7\)</span> (in natural units) is finite and measurable. It is governed entirely by the energy splitting <span class="math inline">\(\Delta E\)</span>.</li>
+<li>If we increase the barrier height or width, <span class="math inline">\(\Delta E\)</span> shrinks exponentially, and the tunneling time grows exponentially. In the limit of an infinite barrier, <span class="math inline">\(\tau \to \infty\)</span> — tunneling ceases, and the particle is permanently trapped.</li>
+</ul>
+</section>
+<section id="why-the-ground-state-is-symmetric" class="level3">
+<h3 class="anchored" data-anchor-id="why-the-ground-state-is-symmetric">Why the ground state is symmetric</h3>
+<ul>
+<li>The symmetric (bonding) state <span class="math inline">\(\psi_0\)</span> has <strong>no node</strong>. It does not vanish anywhere between the two wells. This means its second derivative is smaller, which translates to a <em>lower kinetic energy</em>.</li>
+<li>The antisymmetric (antibonding) state <span class="math inline">\(\psi_1\)</span> has <strong>one node</strong> at <span class="math inline">\(x = 0\)</span>. The wavefunction must pass through zero and reverse sign, requiring a steeper slope in the barrier region and therefore a <em>higher kinetic energy</em>.</li>
+<li>The symmetric state always wins. This is the same reason the bonding molecular orbital in <span class="math inline">\(\text{H}_2^+\)</span> lies below the antibonding one.</li>
+</ul>
+</section>
+<section id="the-doublet-structure-encodes-the-barrier-shape" class="level3">
+<h3 class="anchored" data-anchor-id="the-doublet-structure-encodes-the-barrier-shape">The doublet structure encodes the barrier shape</h3>
+<ul>
+<li>States deep below the barrier top form <em>tight</em> doublets (small <span class="math inline">\(\Delta E\)</span>), because they barely penetrate the barrier.</li>
+<li>States near or above the barrier top form <em>wide</em> doublets (large <span class="math inline">\(\Delta E\)</span>), because they extend freely across both wells.</li>
+<li>The progression of splittings — <span class="math inline">\(0.054\)</span>, <span class="math inline">\(0.646\)</span>, <span class="math inline">\(1.668\)</span> — is a spectroscopic fingerprint of the barrier geometry.</li>
+</ul>
+</section>
+<section id="eigenstates-are-delocalized-particles-are-not" class="level3">
+<h3 class="anchored" data-anchor-id="eigenstates-are-delocalized-particles-are-not">Eigenstates are delocalized; particles are not</h3>
+<ul>
+<li>Every energy eigenstate lives equally in both wells (<span class="math inline">\(P_L = P_R = 0.5\)</span>). A particle in an eigenstate has no preference for left or right.</li>
+<li>A particle <em>localized</em> in one well is necessarily in a <em>superposition</em> of eigenstates. It is this superposition that evolves in time and produces the tunneling oscillation.</li>
+<li>Localization is not a property of the Hamiltonian; it is a property of the initial condition.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What we accomplished in this article
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 41%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Step</th>
+<th style="text-align: left;">What we did</th>
+<th style="text-align: left;">Key result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Located the minima of the quartic potential</td>
+<td style="text-align: left;"><span class="math inline">\(x_{\min} = \pm\sqrt{2}\)</span>, <span class="math inline">\(V_b = 2.0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Approximated each well as a harmonic oscillator</td>
+<td style="text-align: left;"><span class="math inline">\(\omega_{\text{eff}} = 2\sqrt{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Constructed localized states <span class="math inline">\(\phi_L\)</span> and <span class="math inline">\(\phi_R\)</span></td>
+<td style="text-align: left;">Gaussian wavefunctions centred at each minimum</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Computed the overlap (tunneling) integral</td>
+<td style="text-align: left;">Coupling <span class="math inline">\(\Delta\)</span> quantifies barrier penetration</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Solved the <span class="math inline">\(2\times 2\)</span> eigenvalue problem</td>
+<td style="text-align: left;"><span class="math inline">\(E_{0,1} = \varepsilon \mp \Delta\)</span>, splitting <span class="math inline">\(\Delta E = 2\Delta\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">Solved numerically via FDM (<span class="math inline">\(N = 1000\)</span> grid)</td>
+<td style="text-align: left;"><span class="math inline">\(E_0 = -1.1946\)</span>, <span class="math inline">\(E_1 = -1.1402\)</span>, <span class="math inline">\(\Delta E = 0.0544\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">Verified eigenstates (nodes, orthonormality, parity)</td>
+<td style="text-align: left;">All checks passed to machine precision</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: left;">Simulated tunneling dynamics</td>
+<td style="text-align: left;"><span class="math inline">\(\tau = 57.7\)</span>; sinusoidal probability oscillation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The quartic double well, despite its simplicity, contains the essential ingredients of tunneling physics: a degenerate landscape, an overlap integral that lifts the degeneracy, and a time-dependent oscillation whose frequency is set by the splitting. Understanding this system thoroughly equips you to tackle ammonia inversion, proton transfer, Josephson junction dynamics, and instanton calculations in quantum field theory — all of which are, at their core, double-well problems.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<style>
+.recommended-blogs-wrapper {
+  margin-top: 4rem;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(76, 114, 176, 0.05) 0%, rgba(85, 168, 104, 0.05) 100%);
+  border-left: 4px solid #4C72B0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  display: none; /* hidden until loaded */
+  transition: all 0.3s ease;
+}
+.recommended-blogs-wrapper:hover {
+  box-shadow: 0 6px 25px rgba(0,0,0,0.04);
+}
+.recommended-blogs-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #4C72B0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.recommended-blogs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.recommended-blog-item a {
+  text-decoration: none;
+  color: var(--bs-body-color, #333);
+  font-weight: 500;
+  font-size: 1.05rem;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.4);
+}
+.dark-mode .recommended-blog-item a {
+  color: var(--bs-body-color, #ddd);
+  background: rgba(255,255,255,0.03);
+}
+.recommended-blog-item a:hover {
+  background: rgba(76, 114, 176, 0.1);
+  color: #4C72B0;
+  transform: translateX(5px);
+}
+.dark-mode .recommended-blogs-wrapper {
+  background: linear-gradient(145deg, rgba(76, 114, 176, 0.1) 0%, rgba(85, 168, 104, 0.1) 100%);
+}
+</style>
+
+<div id="recommended-blogs" class="recommended-blogs-wrapper">
+  <h3 class="recommended-blogs-title">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg>
+    Read Next
+  </h3>
+  <ul id="recommended-blogs-list" class="recommended-blogs-list">
+  </ul>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Only run if we are inside a blog post
+  if (!window.location.pathname.includes('/Blog/') || window.location.pathname.endsWith('/index.html')) {
+    return;
+  }
+
+  // Identify root URL dynamically
+  const searchScript = document.querySelector('script[src*="quarto-search.js"]');
+  let rootUrl = "/";
+  if (searchScript) {
+    const src = searchScript.getAttribute("src");
+    if (src) {
+      rootUrl = src.split('site_libs')[0];
+    }
+  }
+
+  fetch(rootUrl + 'search.json')
+    .then(response => response.json())
+    .then(data => {
+      const currentPath = window.location.pathname;
+      const blogPosts = new Map();
+      let currentPostText = "";
+
+      // Gather unique posts
+      data.forEach(item => {
+        if (item.href && item.href.startsWith('Blog/') && item.section === "") {
+          if (currentPath.endsWith("/" + item.href) || currentPath.endsWith(item.href)) {
+            currentPostText = item.text || "";
+          } else {
+            blogPosts.set(item.href, item);
+          }
+        }
+      });
+
+      let uniquePosts = Array.from(blogPosts.values());
+      
+      if (uniquePosts.length > 0) {
+        // Simple word overlap similarity for categories/topics
+        const getWords = (str) => new Set(str.toLowerCase().match(/\b[a-z]{4,}\b/g) || []);
+        const currentWords = getWords(currentPostText);
+
+        uniquePosts.forEach(post => {
+          const postWords = getWords(post.text || "");
+          let overlap = 0;
+          postWords.forEach(word => { if (currentWords.has(word)) overlap++; });
+          // Add a tiny random factor so ties are broken unpredictably
+          post.similarityScore = overlap + Math.random();
+        });
+
+        // Sort by similarity and take top 3
+        uniquePosts.sort((a, b) => b.similarityScore - a.similarityScore);
+        const selected = uniquePosts.slice(0, 3);
+        
+        const listContainer = document.getElementById('recommended-blogs-list');
+        selected.forEach(post => {
+          const li = document.createElement('li');
+          li.className = 'recommended-blog-item';
+          const a = document.createElement('a');
+          
+          a.href = rootUrl + post.href;
+          a.textContent = post.title;
+          
+          li.appendChild(a);
+          listContainer.appendChild(li);
+        });
+        
+        // Show the widget
+        const isDarkMode = document.body.classList.contains('quarto-dark') || document.documentElement.classList.contains('quarto-dark') || document.body.dataset.quartoTheme === 'dark';
+        const wrapper = document.getElementById('recommended-blogs');
+        if(isDarkMode) wrapper.classList.add('dark-mode');
+        wrapper.style.display = 'block';
+
+        // Listen for Quarto theme toggle
+        window.document.addEventListener('quarto-color-scheme-toggle', function(e) {
+            if (e.detail.colorScheme === 'dark') {
+                wrapper.classList.add('dark-mode');
+            } else {
+                wrapper.classList.remove('dark-mode');
+            }
+        });
+      }
+    })
+    .catch(err => console.error("Error loading recommended blogs:", err));
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -2,7 +2,7 @@
 title: "Quantum Dynamics: Analytical & Computational Solutions in Python"
 description: "Master time evolution in quantum mechanics. Learn to solve the harmonic oscillator and double-well tunneling using both analytical math and computational Python."
 author: "Aditya Kumar"
-date: "2026-05-26T0 8:00:00" # Update this to the current date and time
+date: "2026-05-26T08:00:00" # Update this to the current date and time
 categories: [Quantum Physics, Computational Physics, Python, Advanced, Harmonic Oscillator] # Add relevant tags
 draft: false # Set to true if you want to keep it as a draft
 image: "https://res.cloudinary.com/dy3qzey1n/image/upload/q_auto/f_auto/v1779713303/Github%20Blog/harmonic_osillator.png"

@@ -9,17 +9,19 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/Blog/Random_Physics/quartic_double_well.html",
+      "/Blog/Random_Physics/Quantum Dynamics.html",
       "/Blog/Random_Physics/Wavefunction.html",
-      "/Blog/Subjects/Intro_Comp_Physics/index.html",
-      "/Blog/Random_Physics/Quantum Dynamics.html"
+      "/Blog/Subjects/Intro_Comp_Physics/index.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/Blog/Random_Physics/quartic_double_well.html",
+      "/Blog/Random_Physics/Quantum Dynamics.html",
       "/Blog/Random_Physics/Wavefunction.html",
-      "/Blog/Subjects/Intro_Comp_Physics/index.html",
-      "/Blog/Random_Physics/Quantum Dynamics.html"
+      "/Blog/Subjects/Intro_Comp_Physics/index.html"
     ]
   },
   {
