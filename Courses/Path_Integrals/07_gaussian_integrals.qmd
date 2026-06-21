@@ -1,0 +1,403 @@
+---
+title: "Module 7: Gaussian Integrals & Functional Determinants"
+subtitle: "The Computational Workhorse of Path Integrals"
+description: "Master the mathematical tools to exactly evaluate path integrals for quadratic actions using functional determinants, zeta-function regularization, and the Gel'fand-Yaglom method."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+{/html}
+
+[← Back to Course](index.qmd) | [Next: Module 8 →](08_classical_limit.qmd)
+
+# Introduction
+
+In previous modules, we discovered that computing a path integral boils down to summing over all possible paths $x(t)$ weighted by $e^{iS[x]/\hbar}$. But how do we *actually evaluate* this infinite-dimensional sum? It turns out that there is essentially only one class of integrals we can compute exactly in closed form: **Gaussian integrals**. 
+
+Remarkably, this isn't a severe limitation. For the free particle and the harmonic oscillator, the action is exactly quadratic, making their path integrals perfectly Gaussian. More profoundly, in any system, the path integral near the classical trajectory can be approximated by a Gaussian via Taylor expansion. Gaussian integrals are the universal engine driving calculations in Quantum Mechanics, Quantum Field Theory, and Statistical Mechanics. Let's build this engine from the ground up.
+
+---
+
+# 1. Finite-Dimensional Gaussian Integrals
+
+Before tackling infinite-dimensional path integrals, we must absolutely master finite-dimensional Gaussian integrals. We will never skip derivation steps here; understanding the finite-dimensional mechanics makes the infinite-dimensional leap straightforward.
+
+## 1.1 The One-Dimensional Gaussian
+
+The fundamental building block is the 1D Gaussian integral. For $a > 0$, we want to evaluate:
+$$ I = \int_{-\infty}^{\infty} e^{-ax^2} dx $$
+
+To evaluate this exactly, we use the famous "polar coordinates trick." We square the integral, writing the second copy with a dummy variable $y$:
+$$ I^2 = \left( \int_{-\infty}^{\infty} e^{-ax^2} dx \right) \left( \int_{-\infty}^{\infty} e^{-ay^2} dy \right) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-a(x^2 + y^2)} dx\, dy $$
+
+Now, transform to polar coordinates ($x = r\cos\theta, y = r\sin\theta$), where the area element becomes $dx\, dy = r\, dr\, d\theta$, and $x^2 + y^2 = r^2$:
+$$ I^2 = \int_0^{2\pi} d\theta \int_0^\infty e^{-ar^2} r\, dr $$
+
+The angular integral evaluates simply to $2\pi$. The radial integral is easily done via a substitution $u = ar^2$, so $du = 2ar\, dr$, meaning $r\, dr = \frac{du}{2a}$:
+$$ I^2 = 2\pi \int_0^\infty e^{-u} \frac{du}{2a} = \frac{\pi}{a} \left[ -e^{-u} \right]_0^\infty = \frac{\pi}{a} (0 - (-1)) = \frac{\pi}{a} $$
+
+Taking the square root, we get our most important result:
+$$ \boxed{ \int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}} } $$
+
+**Adding a Linear Term:**
+What if our exponent has a linear term? Consider $\int e^{-ax^2 + bx} dx$. We solve this by **completing the square** in the exponent:
+$$ -ax^2 + bx = -a\left(x^2 - \frac{b}{a}x\right) = -a\left(x - \frac{b}{2a}\right)^2 + \frac{b^2}{4a} $$
+
+Substitute this back into the integral:
+$$ \int_{-\infty}^{\infty} e^{-ax^2 + bx} dx = e^{b^2/(4a)} \int_{-\infty}^{\infty} e^{-a\left(x - \frac{b}{2a}\right)^2} dx $$
+
+We make a simple shift of variables $y = x - \frac{b}{2a}$ (where $dy = dx$). The limits of integration remain unchanged. The integral evaluates exactly to our standard result:
+$$ \boxed{ \int_{-\infty}^{\infty} e^{-ax^2 + bx} dx = \sqrt{\frac{\pi}{a}} \exp\left(\frac{b^2}{4a}\right) } $$
+
+## 1.2 The $n$-Dimensional Real Gaussian
+
+Now, let's generalize to $n$ dimensions. Consider an $n$-component vector $x$ and a real, symmetric $n \times n$ matrix $A$. The generalized Gaussian integral with a "source" vector $J$ is:
+$$ Z_n(J) = \int d^n x \exp\left(-\frac{1}{2} x^T A x + J^T x\right) $$
+
+For this integral to converge, the matrix $A$ must be **positive definite** (all its eigenvalues must be strictly positive). 
+
+First, let's look at the case where $J = 0$. Since $A$ is real and symmetric, the spectral theorem guarantees we can diagonalize it with an orthogonal matrix $O$ (where $O^T O = \mathbb{I}$ and $\det O = 1$):
+$$ A = O D O^T $$
+where $D = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)$ contains the positive eigenvalues of $A$. 
+
+Let's change our integration variables from $x$ to $y$ such that $x = O y$. 
+The measure transforms via the Jacobian: $d^n x = |\det O| d^n y = d^n y$.
+The quadratic form simplifies: $x^T A x = (Oy)^T A (Oy) = y^T (O^T A O) y = y^T D y = \sum_{i=1}^n \lambda_i y_i^2$.
+
+The $n$-dimensional integral neatly factorizes into $n$ independent 1D integrals:
+$$ Z_n(0) = \int d^n y \exp\left(-\frac{1}{2} \sum_{i=1}^n \lambda_i y_i^2\right) = \prod_{i=1}^n \left( \int_{-\infty}^{\infty} dy_i e^{-\frac{1}{2} \lambda_i y_i^2} \right) $$
+
+Using our 1D result (with $a = \lambda_i / 2$):
+$$ Z_n(0) = \prod_{i=1}^n \sqrt{\frac{2\pi}{\lambda_i}} = \frac{(2\pi)^{n/2}}{\sqrt{\prod_{i=1}^n \lambda_i}} $$
+
+Since the determinant of a matrix is the product of its eigenvalues ($\det A = \prod_{i=1}^n \lambda_i$), we arrive at a beautiful result:
+$$ \int d^n x \exp\left(-\frac{1}{2} x^T A x\right) = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} $$
+
+To include the source term $J$, we complete the square in $n$ dimensions, generalizing our 1D trick.
+$$ -\frac{1}{2} x^T A x + J^T x = -\frac{1}{2} (x - A^{-1} J)^T A (x - A^{-1} J) + \frac{1}{2} J^T A^{-1} J $$
+By shifting variables $y = x - A^{-1} J$, the integral evaluating the first term yields the non-source result, giving us the full generalized formula:
+$$ \boxed{ \int d^n x \exp\left(-\frac{1}{2} x^T A x + J^T x\right) = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} \exp\left(\frac{1}{2} J^T A^{-1} J\right) } $$
+
+::: {.callout-warning}
+## 🤔 Quick Question 1: The Ubiquity of Gaussians
+Why do Gaussian integrals appear everywhere in physics, especially in path integrals?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+Because the path integral for any linear or quadratic system (like free particles, harmonic oscillators, or free quantum fields) is exactly Gaussian. Furthermore, near a classical path (which is a minimum of the action), EVERY physical action is approximately quadratic when Taylor expanded (since the first derivative vanishes). Thus, Gaussian integrals are the universal computational tool for both exact systems and perturbative expansions of interacting systems.
+:::
+
+## 1.3 Complex Gaussian Integrals
+
+In quantum mechanics, we often integrate over complex variables. Consider an integration over $n$ complex variables $z_k$ and their complex conjugates $\bar{z}_k$. Let $A$ be a Hermitian, positive-definite matrix. The integral is:
+$$ Z_C = \int d^n z\, d^n \bar{z}\, \exp\left(-\bar{z}^T A z\right) $$
+
+To evaluate this, we break $z$ into its real and imaginary parts: $z_k = x_k + i y_k$.
+The measure is defined as $d^n z\, d^n \bar{z} \equiv \prod_{k=1}^n dx_k\, dy_k$.
+Let's see what happens in 1D ($n=1$) where $A$ is just a positive number $a$:
+$$ \bar{z} a z = (x - iy) a (x + iy) = a(x^2 + y^2) $$
+The integral splits into two real Gaussians:
+$$ \int dx\, dy\, \exp[-a(x^2 + y^2)] = \left( \int dx\, e^{-ax^2} \right) \left( \int dy\, e^{-ay^2} \right) = \sqrt{\frac{\pi}{a}} \sqrt{\frac{\pi}{a}} = \frac{\pi}{a} $$
+
+Generalizing to $n$ dimensions by diagonalizing the Hermitian matrix $A$, we get:
+$$ \boxed{ \int d^n z\, d^n \bar{z}\, \exp\left(-\bar{z}^T A z\right) = \frac{\pi^n}{\det A} } $$
+
+::: {.callout-tip}
+## Where did the square root go?
+Notice that the complex Gaussian formula has $\det A$ in the denominator, NOT $\sqrt{\det A}$. Why? Because an integration over $n$ complex variables is effectively an integration over $2n$ real variables. The "two real copies" (real and imaginary parts) multiply together, squaring the result and eliminating the square root. 
+:::
+
+## 1.4 Gaussian with Imaginary Exponent
+
+In quantum mechanics, the action exponentiates with an $i$: $e^{iS/\hbar}$. We must handle integrals with strictly imaginary exponents (known as **Fresnel integrals**):
+$$ \int_{-\infty}^{\infty} dx \exp\left(i \frac{a}{2} x^2\right) $$
+
+This integral is formally conditionally convergent because the integrand continuously oscillates without decaying. To rigorously define it, we employ **analytic continuation**. We add a tiny positive imaginary component to $a$, sending $a \to a + i\epsilon$ (where $\epsilon \to 0^+$).
+This transforms the exponent to $i \frac{1}{2}(a + i\epsilon) x^2 = \frac{1}{2}(ia - \epsilon) x^2 = -\frac{1}{2}(\epsilon - ia) x^2$.
+
+Now, the $\epsilon$ term provides exponential decay, guaranteeing convergence. Applying our standard 1D formula (where the coefficient of $x^2$ is $\frac{\epsilon - ia}{2}$):
+$$ \int_{-\infty}^{\infty} dx \dots = \sqrt{\frac{2\pi}{\epsilon - ia}} $$
+Taking the limit $\epsilon \to 0$, we find $\sqrt{\frac{2\pi}{-ia}}$. Since $-i = e^{-i\pi/2}$, we have $\sqrt{-i} = e^{-i\pi/4}$, or we can write it simply as:
+$$ \int_{-\infty}^{\infty} dx \exp\left(i \frac{a}{2} x^2\right) = \sqrt{\frac{2\pi i}{a}} \quad \text{(for } a>0) $$
+
+For $n$-dimensions with a matrix $A$:
+$$ \boxed{ \int d^n x \exp\left(i \frac{1}{2} x^T A x\right) = \frac{(2\pi i)^{n/2}}{\sqrt{\det A}} } $$
+
+---
+
+# 2. Infinite Dimensions: Gaussian Path Integrals
+
+Now we make the magnificent leap from finite $n$-dimensional integration to the infinite-dimensional continuous path integral.
+
+## 2.1 The General Gaussian Path Integral
+
+Recall our finite $n$-dimensional formula for $J=0$:
+$$ \int d^n x \exp\left(-\frac{1}{2} \sum_{i,j} x_i A_{ij} x_j\right) = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} $$
+
+In a path integral, the discrete index $i$ becomes a continuous time variable $t$. The vector $x_i$ becomes a path $x(t)$. The matrix $A_{ij}$ becomes a differential operator $\hat{O}(t,t')$ acting on the paths. The discrete sum over $i,j$ becomes a double integration over $t,t'$.
+
+$$ \frac{1}{2} \sum_{i,j} x_i A_{ij} x_j \quad \xrightarrow{\text{continuum}} \quad \frac{1}{2} \int_0^T dt \int_0^T dt' \, x(t) \hat{O}(t,t') x(t') $$
+
+In physical cases (like the free particle or harmonic oscillator), the operator is localized in time, meaning $\hat{O}(t,t') = \delta(t-t') \hat{O}_t$. The double integral collapses to a single integral: $\frac{1}{2} \int_0^T x(t) \hat{O}_t x(t) dt$.
+
+Following the exact same structure as the finite-dimensional case, we define the infinite-dimensional **Gaussian path integral**:
+$$ \boxed{ \int \mathcal{D}x \exp\left\{ -\frac{1}{2} \int dt\, x(t) \hat{O} x(t) \right\} = \frac{\mathcal{N}}{\sqrt{\det \hat{O}}} } $$
+
+Here, $\mathcal{N}$ is a normalization constant arising from the continuous analog of $(2\pi)^{n/2}$ and the measure $\mathcal{D}x$. The critical physical information resides entirely in the **functional determinant**: $\det \hat{O}$. 
+
+::: {.callout-intuition}
+A matrix determinant measures the "volume" scaling of a linear transformation. A functional determinant generalizes this: it measures how the differential operator $\hat{O}$ scales the infinite-dimensional "volume" of the space of paths. Computing a path integral exactly reduces entirely to computing $\det \hat{O}$.
+:::
+
+## 2.2 Computing Functional Determinants: Eigenvalue Method
+
+How do we compute the determinant of a differential operator? We use the spectral theorem. For a self-adjoint operator $\hat{O}$ acting on functions $x(t)$ with specific boundary conditions (e.g., $x(0)=x(T)=0$), there exists a complete set of orthonormal eigenfunctions $\phi_n(t)$ and eigenvalues $\lambda_n$:
+$$ \hat{O} \phi_n(t) = \lambda_n \phi_n(t) $$
+
+Any path satisfying the boundary conditions can be expanded in this basis:
+$$ x(t) = \sum_{n=1}^{\infty} c_n \phi_n(t) $$
+where the $c_n$ are the expansion coefficients. The measure $\mathcal{D}x$ mathematically translates to integrating over all possible coefficients: $\mathcal{D}x \sim \prod_{n} dc_n$.
+
+Let's plug the expansion into the quadratic form, using the orthonormality $\int \phi_n \phi_m dt = \delta_{nm}$:
+$$ \int_0^T x(t) \hat{O} x(t) dt = \int_0^T \left( \sum_m c_m \phi_m(t) \right) \hat{O} \left( \sum_n c_n \phi_n(t) \right) dt = \sum_n \lambda_n c_n^2 $$
+
+The path integral beautifully diagonalizes into an infinite product of 1D Gaussians!
+$$ \int \mathcal{D}x \dots = \prod_{n=1}^\infty \int_{-\infty}^\infty dc_n \exp\left(-\frac{1}{2} \lambda_n c_n^2\right) = \prod_{n=1}^\infty \sqrt{\frac{2\pi}{\lambda_n}} \propto \frac{1}{\sqrt{\prod_{n=1}^\infty \lambda_n}} $$
+
+Since the determinant of a matrix is the product of its eigenvalues, we formally define the **functional determinant** as the infinite product of its eigenvalues:
+$$ \boxed{ \det \hat{O} \equiv \prod_{n=1}^\infty \lambda_n } $$
+
+---
+
+# 3. Computing Functional Determinants
+
+Let's put this into practice by evaluating the determinants for our two favorite systems.
+
+## 3.1 Example: det(-d²/dt²) with Dirichlet BCs
+
+Consider a free particle. After an integration by parts (and applying Dirichlet boundary conditions $x(0)=x(T)=0$), the action operator is:
+$$ \hat{O}_{free} = -\frac{d^2}{dt^2} $$
+We need to solve the eigenvalue equation: $-\frac{d^2\phi_n}{dt^2} = \lambda_n \phi_n$.
+The solutions satisfying $\phi_n(0) = \phi_n(T) = 0$ are $\phi_n(t) = \sin(n\pi t / T)$ for $n = 1, 2, 3, \dots$.
+The corresponding eigenvalues are:
+$$ \lambda_n = \left(\frac{n\pi}{T}\right)^2 $$
+
+The functional determinant is thus:
+$$ \det \hat{O}_{free} = \prod_{n=1}^\infty \left(\frac{n\pi}{T}\right)^2 $$
+This infinite product clearly goes to infinity! The determinant formally diverges. Does this mean our path integral is useless? 
+
+::: {.callout-warning}
+## 🤔 Quick Question 2: Taming Infinities
+The functional determinant $\det(\hat{O}) = \prod_n \lambda_n$ is an infinite product of eigenvalues that generally grow with $n$. So the determinant is infinite! How can this possibly give a finite physical answer?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+Individual functional determinants formally diverge, but in physical observables (like transition amplitudes), we always compute **RATIOS** of determinants (e.g., comparing an interacting system to a reference free particle). In these ratios, the divergent high-energy constants cancel out completely, yielding a finite and physically meaningful result. This is our first encounter with the concept of **regularization**!
+:::
+
+## 3.2 Example: det(-d²/dt² - ω²) with Dirichlet BCs
+
+Now consider the harmonic oscillator. The operator is:
+$$ \hat{O}_{HO} = -\frac{d^2}{dt^2} - \omega^2 $$
+The eigenfunctions are identical to the free particle (sines), but the eigenvalues are shifted:
+$$ \lambda_n^{HO} = \left(\frac{n\pi}{T}\right)^2 - \omega^2 $$
+
+To compute a physically meaningful result, we look at the ratio of the HO determinant to the free particle determinant:
+$$ \frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \prod_{n=1}^\infty \frac{\lambda_n^{HO}}{\lambda_n^{free}} = \prod_{n=1}^\infty \frac{(n\pi/T)^2 - \omega^2}{(n\pi/T)^2} = \prod_{n=1}^\infty \left( 1 - \frac{\omega^2 T^2}{n^2\pi^2} \right) $$
+
+To evaluate this infinite product, we rely on Euler's famous infinite product formula for the sine function:
+$$ \frac{\sin(z)}{z} = \prod_{n=1}^\infty \left( 1 - \frac{z^2}{n^2\pi^2} \right) $$
+Setting $z = \omega T$, we arrive at the exact ratio:
+$$ \frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \frac{\sin(\omega T)}{\omega T} $$
+
+This perfectly reproduces the mysterious prefactor we encountered in Module 5!
+
+## 3.3 Zeta-Function Regularization
+
+> **Textbook reference**: For an in-depth look at zeta regularization, refer to *Path Integrals in Quantum Mechanics* by Zinn-Justin, Chapter 2.
+
+What if we want to assign a finite value to a *single* divergent determinant without forming a ratio? We use **Zeta-Function Regularization**, a powerful technique heavily used in Quantum Field Theory and String Theory.
+
+We define a generalized zeta function for the operator $\hat{O}$ by summing over the inverse powers of its eigenvalues:
+$$ \zeta_{\hat{O}}(s) = \sum_{n=1}^\infty \frac{1}{\lambda_n^s} $$
+For large positive $s$, this sum converges. We then analytically continue this function to $s=0$.
+
+Taking the derivative with respect to $s$:
+$$ \zeta_{\hat{O}}'(s) = \frac{d}{ds} \sum_{n=1}^\infty e^{-s \ln \lambda_n} = -\sum_{n=1}^\infty \frac{\ln \lambda_n}{\lambda_n^s} $$
+Evaluate this at $s=0$:
+$$ \zeta_{\hat{O}}'(0) = -\sum_{n=1}^\infty \ln \lambda_n = -\ln \left( \prod_{n=1}^\infty \lambda_n \right) = -\ln(\det \hat{O}) $$
+
+We can thus formally (and finitely) define the determinant as:
+$$ \boxed{ \det \hat{O} \equiv e^{-\zeta_{\hat{O}}'(0)} } $$
+This mathematically rigorous technique cleanly drops the infinite divergent parts, leaving only the finite physical residue.
+
+---
+
+# 4. Advanced Evaluation Techniques
+
+While expanding in eigenvalues is conceptually clear, it is often practically difficult for complicated potentials. Here are two massive shortcuts.
+
+## 4.1 The Gel'fand-Yaglom Method
+
+The **Gel'fand-Yaglom Theorem** is arguably the most powerful method for computing ratios of 1D functional determinants. 
+
+Consider an operator $\hat{O} = -\frac{d^2}{dt^2} + V(t)$ with Dirichlet boundary conditions $x(0)=x(T)=0$.
+The theorem states that the ratio of the determinants of $\hat{O}$ and the free operator $\hat{O}_{free} = -\frac{d^2}{dt^2}$ is simply given by the ratio of the solutions to their corresponding initial value problems at time $T$:
+
+$$ \boxed{ \frac{\det \hat{O}}{\det \hat{O}_{free}} = \frac{y(T)}{y_0(T)} } $$
+
+Where $y(t)$ satisfies the classical equation of motion with highly specific initial conditions:
+$$ \hat{O} y(t) = 0, \quad \text{with} \quad y(0) = 0, \quad y'(0) = 1 $$
+And $y_0(t)$ is the corresponding solution for the free particle:
+$$ \hat{O}_{free} y_0(t) = 0, \quad \text{with} \quad y_0(0) = 0, \quad y_0'(0) = 1 $$
+
+By solving a simple second-order classical differential equation, you entirely bypass the infinite product of eigenvalues!
+
+## 4.2 The Van Vleck-Morette Formula
+
+The Van Vleck-Morette formula provides a beautiful connection between the exact quantum propagator (for quadratic systems) and the classical action $S_{cl}$. It states that the propagator takes the form:
+
+$$ K(x_b, T; x_a, 0) = \left( -\frac{1}{2\pi i \hbar} \frac{\partial^2 S_{cl}}{\partial x_a \partial x_b} \right)^{1/2} e^{i S_{cl} / \hbar} $$
+
+The prefactor (which we know is $1/\sqrt{\det \hat{O}}$) is expressed entirely as a mixed partial derivative of the classical action evaluated on the classical boundary coordinates. 
+
+::: {.callout-intuition}
+The second derivative $\frac{\partial^2 S_{cl}}{\partial x_a \partial x_b}$ measures how sensitively the final momentum depends on the initial position. Physically, it measures the density of classical trajectories—how much the classical paths "spread out" or "focus" as they travel from $x_a$ to $x_b$.
+:::
+
+---
+
+# 5. Worked Examples
+
+## Worked Example 1: Full computation of the HO Propagator Prefactor
+
+Let's rigorously assemble the prefactor for the harmonic oscillator using our eigenvalue product ratio.
+
+1. The exact propagator takes the form $K = A(T) e^{i S_{cl}/\hbar}$.
+2. The prefactor $A(T)$ is proportional to $1/\sqrt{\det \hat{O}_{HO}}$.
+3. From our free particle knowledge, $A_{free}(T) = \sqrt{\frac{m}{2\pi i \hbar T}}$.
+4. We know that $\frac{A_{HO}(T)}{A_{free}(T)} = \sqrt{\frac{\det \hat{O}_{free}}{\det \hat{O}_{HO}}}$.
+5. From Section 3.2, we found $\frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \frac{\sin(\omega T)}{\omega T}$.
+6. Therefore, $\sqrt{\frac{\det \hat{O}_{free}}{\det \hat{O}_{HO}}} = \sqrt{\frac{\omega T}{\sin(\omega T)}}$.
+
+Multiplying the free prefactor by this ratio:
+$$ A_{HO}(T) = \sqrt{\frac{m}{2\pi i \hbar T}} \sqrt{\frac{\omega T}{\sin(\omega T)}} = \sqrt{\frac{m \omega}{2\pi i \hbar \sin(\omega T)}} $$
+This perfectly matches the result we cited without proof in Module 5!
+
+## Worked Example 2: Using Gel'fand-Yaglom for the Harmonic Oscillator
+
+Let's compute the same ratio $\frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}}$ using the Gel'fand-Yaglom method.
+
+**Step 1: Solve the free particle equation.**
+$$ -\frac{d^2 y_0}{dt^2} = 0 \implies y_0(t) = C_1 t + C_2 $$
+Applying initial conditions: $y_0(0) = 0 \implies C_2 = 0$. $y_0'(0) = 1 \implies C_1 = 1$.
+Thus, $y_0(t) = t$. At time $T$, we have $y_0(T) = T$.
+
+**Step 2: Solve the Harmonic Oscillator equation.**
+$$ \left(-\frac{d^2}{dt^2} - \omega^2\right) y(t) = 0 \implies y(t) = A \sin(\omega t) + B \cos(\omega t) $$
+Applying initial conditions: $y(0) = 0 \implies B = 0$.
+$y'(t) = A\omega \cos(\omega t)$. $y'(0) = 1 \implies A\omega = 1 \implies A = 1/\omega$.
+Thus, $y(t) = \frac{1}{\omega} \sin(\omega t)$. At time $T$, we have $y(T) = \frac{\sin(\omega T)}{\omega}$.
+
+**Step 3: Take the ratio.**
+$$ \frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \frac{y(T)}{y_0(T)} = \frac{\frac{\sin(\omega T)}{\omega}}{T} = \frac{\sin(\omega T)}{\omega T} $$
+In just 5 lines of basic classical differential equations, we reproduced an infinite product of eigenvalues!
+
+---
+
+# 6. Comprehensive Gaussian Integral Cheat Sheet
+
+| Integral Type | Expression | Exact Result |
+|--------------|------------|--------------|
+| **1D Real** | $\int_{-\infty}^{\infty} e^{-ax^2} dx$ | $\sqrt{\frac{\pi}{a}}$ |
+| **1D Real with Linear Term** | $\int_{-\infty}^{\infty} e^{-ax^2 + bx} dx$ | $\sqrt{\frac{\pi}{a}} e^{b^2/(4a)}$ |
+| **$n$-D Real** | $\int d^n x \exp\left(-\frac{1}{2} x^T A x\right)$ | $\frac{(2\pi)^{n/2}}{\sqrt{\det A}}$ |
+| **$n$-D Real with Source** | $\int d^n x \exp\left(-\frac{1}{2} x^T A x + J^T x\right)$ | $\frac{(2\pi)^{n/2}}{\sqrt{\det A}} \exp\left(\frac{1}{2} J^T A^{-1} J\right)$ |
+| **$n$-D Complex** | $\int d^n z d^n \bar{z} \exp\left(-\bar{z}^T A z\right)$ | $\frac{\pi^n}{\det A}$ |
+| **1D Imaginary** | $\int_{-\infty}^{\infty} dx \exp\left(i \frac{a}{2} x^2\right)$ | $\sqrt{\frac{2\pi i}{a}}$ |
+| **$n$-D Imaginary** | $\int d^n x \exp\left(i \frac{1}{2} x^T A x\right)$ | $\frac{(2\pi i)^{n/2}}{\sqrt{\det A}}$ |
+| **Path Integral** | $\int \mathcal{D}x \exp\left(-\frac{1}{2} \int x \hat{O} x\, dt\right)$ | $\propto \frac{1}{\sqrt{\det \hat{O}}}$ |
+
+---
+
+::: {.checkpoint}
+Before proceeding to the classical limit, ensure you are comfortable with:
+1. Completing the square to evaluate Gaussian integrals with linear source terms.
+2. The logic behind why $n$-dimensional Gaussians produce a $1/\sqrt{\det A}$ factor.
+3. Why complex integrations drop the square root.
+4. The definition of a functional determinant as an infinite product of eigenvalues.
+5. The practical usage of the Gel'fand-Yaglom initial-value theorem.
+:::
+
+---
+
+# 7. Practice Problems
+
+**Problem 1:** Evaluate the integral $\int_{-\infty}^{\infty} x^2 e^{-ax^2} dx$ by differentiating the standard 1D Gaussian formula with respect to the parameter $a$. This trick (differentiating under the integral sign) is ubiquitous in field theory.
+
+**Problem 2:** Consider the $n$-dimensional Gaussian integral with a source $J$. Show that by taking derivatives of the generating function $Z_n(J)$ with respect to $J_i$ and $J_j$, and then setting $J=0$, you can easily compute $\int d^n x\, x_i x_j \exp(-\frac{1}{2} x^T A x)$. What is the result in terms of the matrix $A$?
+
+**Problem 3:** Compute the functional determinant ratio for a particle in an inverted harmonic oscillator potential, where $V(x) = -\frac{1}{2}m\gamma^2 x^2$. Hint: Replace $\omega^2$ with $-\gamma^2$ and trace through the Gel'fand-Yaglom method.
+
+**Problem 4:** Verify the Van Vleck-Morette formula directly for the free particle. Compute the classical action $S_{cl}$, take the mixed partial derivative with respect to $x_a$ and $x_b$, and show that it yields the correct $1/\sqrt{t}$ prefactor.
+
+**Problem 5:** (Hard) Use Zeta-function regularization to formally evaluate $\det(-d^2/dt^2)$. You will need to use the properties of the Riemann zeta function $\zeta(s) = \sum_{n=1}^\infty n^{-s}$, specifically its derivative at $s=0$, which is $\zeta'(0) = -1/2 \ln(2\pi)$. 
+
+---
+
+::: {.nav-buttons}
+[← Previous: Module 6](06_functional_calculus.qmd){.btn .btn-outline-secondary}
+[Next: Module 8 →](08_classical_limit.qmd){.btn .btn-success}
+:::

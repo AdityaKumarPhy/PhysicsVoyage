@@ -1,0 +1,400 @@
+---
+title: "Module 9: Wick Rotation & Imaginary Time"
+subtitle: "Taming the Oscillatory Path Integral"
+description: "How to convert wildly oscillating quantum path integrals into beautifully convergent Gaussian integrals using imaginary time."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 10 →](10_euclidean_path_integral.qmd)
+
+# Introduction: The Trouble with Oscillations
+
+Welcome to one of the most transformative concepts in modern theoretical physics: the **Wick rotation**. So far, we have been studying the Feynman path integral in its standard, real-time formulation. While conceptually beautiful, we face a massive mathematical roadblock when trying to compute these integrals rigorously. In this module, we will learn how to bypass this roadblock by stepping into the realm of *imaginary time*.
+
+---
+
+## The Problem with Oscillating Integrals
+
+The fundamental object of our study is the quantum mechanical propagator, written as a path integral over all possible trajectories $x(t)$:
+
+$$
+K(x_b, t_b; x_a, t_a) = \int \mathcal{D}x \, e^{iS[x]/\hbar}
+$$
+
+The exponent here is purely imaginary. This means the integrand is an oscillatory function: its magnitude is always exactly $1$, but its phase spins wildly as we sum over paths.
+
+To understand why this is a nightmare for mathematicians, consider a simple 1D integral. The integral:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+converges beautifully. The function decays exponentially as $|x| \to \infty$, and the area under the curve is well-defined and finite. 
+
+Now, consider its oscillatory cousin, the Fresnel-type integral:
+
+$$
+\int_{-\infty}^{\infty} e^{ix^2} dx
+$$
+
+This does not decay! The function $e^{ix^2} = \cos(x^2) + i \sin(x^2)$ keeps oscillating all the way to infinity. While physicists often assign it a well-defined value ($\sqrt{i\pi}$) using regularization tricks, rigorously defining an *infinite-dimensional* integral of oscillating phases is famously difficult. The path integral does not converge in the traditional Lebesgue sense.
+
+::: {.callout-intuition}
+If we could somehow turn the $i$ in the exponent into a $-1$, our path integral would transform from a wildly spinning phase into an exponentially decaying weight. The highly oscillatory quantum problem would become a well-behaved, convergent mathematical problem. 
+:::
+
+---
+
+## The Wick Rotation — The Basic Idea
+
+Can we turn the $e^{iS/\hbar}$ into $e^{-\text{something}}?$ 
+
+The theoretical physicist Gian-Carlo Wick realized that we can achieve this by analytically continuing our time variable $t$ into the complex plane. Specifically, we define a new time variable $\tau$ such that:
+
+$$
+t = -i\tau \quad \implies \quad \tau = it
+$$
+
+This transformation is known as the **Wick rotation**. 
+
+If $t$ is the physical "real time" (often called Minkowski time), then $\tau$ is called **imaginary time** or **Euclidean time**. By substituting $t \to -i\tau$, we are effectively rotating our time axis by $90^\circ$ clockwise in the complex time plane. 
+
+Let's see exactly how this substitution transforms the mechanics of our system.
+
+---
+
+## What Happens to the Derivatives
+
+When we change our independent variable from $t$ to $\tau$, the differentials and derivatives transform as well. Since $t = -i\tau$:
+
+$$
+dt = -i d\tau
+$$
+
+By the chain rule, the velocity $\dot{x}$ transforms as:
+
+$$
+\dot{x} = \frac{dx}{dt} = \frac{dx}{d\tau} \frac{d\tau}{dt}
+$$
+
+Since $t = -i\tau$, we have $\frac{d\tau}{dt} = \frac{1}{-i} = i$. Therefore:
+
+$$
+\frac{dx}{dt} = i \frac{dx}{d\tau}
+$$
+
+Squaring the velocity, which appears in the kinetic energy, we get a crucial minus sign:
+
+$$
+\dot{x}^2 = \left( \frac{dx}{dt} \right)^2 = \left( i \frac{dx}{d\tau} \right)^2 = -\left( \frac{dx}{d\tau} \right)^2
+$$
+
+Let us define the "Euclidean velocity" as $\dot{x}_E \equiv \frac{dx}{d\tau}$. Our transformation rule is simply:
+
+$$
+\dot{x}^2 = -\dot{x}_E^2
+$$
+
+> **Textbook reference**: Shankar, *Principles of Quantum Mechanics*, Chapter 8.
+
+---
+
+## What Happens to the Action
+
+Now we apply these transformations to the action $S$ inside the exponent of the path integral. The standard (Minkowski) action is:
+
+$$
+S_M = \int dt \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right]
+$$
+
+Let's look at the term that actually appears in the path integral exponent: $\frac{i S_M}{\hbar}$. We substitute $dt = -i d\tau$ and $\dot{x}^2 = -\dot{x}_E^2$:
+
+$$
+\begin{aligned}
+\frac{i S_M}{\hbar} &= \frac{i}{\hbar} \int dt \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right] \\
+&= \frac{i}{\hbar} \int (-i d\tau) \left[ \frac{1}{2}m (-\dot{x}_E^2) - V(x) \right]
+\end{aligned}
+$$
+
+The factor of $i \times (-i)$ out front gives $+1$. The minus signs inside the bracket can be factored out:
+
+$$
+\begin{aligned}
+\frac{i S_M}{\hbar} &= \frac{1}{\hbar} \int d\tau \left[ -\frac{1}{2}m\dot{x}_E^2 - V(x) \right] \\
+&= -\frac{1}{\hbar} \int d\tau \left[ \frac{1}{2}m\dot{x}_E^2 + V(x) \right]
+\end{aligned}
+$$
+
+We define the term in the integral as the **Euclidean Action**, $S_E$:
+
+$$
+\boxed{ S_E[x] = \int d\tau \left[ \frac{1}{2}m\dot{x}_E^2 + V(x) \right] }
+$$
+
+So we have arrived at the beautiful result:
+
+$$
+\frac{i S_M}{\hbar} = -\frac{S_E}{\hbar}
+$$
+
+::: {.callout-tip}
+## Note the Crucial Sign!
+In the Euclidean action, the potential energy $V(x)$ has a **positive** sign. The Euclidean Lagrangian is $L_E = T + V$, unlike the Minkowski Lagrangian $L_M = T - V$. Assuming $V(x)$ is bounded from below, both the kinetic and potential terms in $S_E$ are strictly positive. Therefore, $S_E \ge 0$.
+:::
+
+## 🤔 Quick Question 1
+::: {.callout-warning}
+"Why does the potential energy pick up a $+$ sign after Wick rotation? This seems to create an 'inverted potential' problem — or does it?"
+:::
+::: {.callout-note collapse="true"}
+## Answer
+In the Euclidean action $S_E = \int (\frac{1}{2}m\dot{x}_E^2 + V) d\tau$, the $+$ sign means both kinetic and potential terms are positive. This is NOT the inverted potential — that appears in the classical *Euclidean equation of motion* which we will derive in Module 11. The $+$ sign in $S_E$ is exactly what makes the path integral converge, because it guarantees $S_E > 0$.
+:::
+
+---
+
+## The Euclidean Path Integral
+
+With the Wick rotation complete, the path integral transforms into the **Euclidean Path Integral**:
+
+$$
+K_E(x_b, \tau_b; x_a, \tau_a) = \int \mathcal{D}x \, e^{-S_E[x]/\hbar}
+$$
+
+Notice how profoundly the physics has changed mathematically! 
+- The Minkowski path integral weighs all paths equally (magnitude 1) and relies on delicate phase cancellations (interference).
+- The Euclidean path integral is a sum of real, decaying exponentials. Paths with a large Euclidean action $S_E$ are **exponentially suppressed**. The integral is strictly dominated by paths that minimize $S_E$.
+
+Because the integrand is real, positive, and strongly damped, the Euclidean path integral is mathematically well-defined and convergent (provided the potential $V(x)$ doesn't dive to $-\infty$). This is the convergent form of the path integral that gauge theorists compute on supercomputers!
+
+---
+
+## Complex Analysis Justification
+
+You might be wondering: "Is it really mathematically legitimate to just swap $t$ for $-i\tau$?"
+
+The justification comes from complex analysis. The propagator is a function of the total time $T = t_b - t_a$:
+
+$$
+K(T) = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle
+$$
+
+Let's treat $T$ as a complex variable. If the Hamiltonian $\hat{H}$ is bounded from below (meaning its lowest energy eigenvalue is $E_0 \ge 0$), the operator $e^{-i\hat{H}T/\hbar}$ remains well-behaved as long as $T$ has a negative imaginary part. 
+
+Let $T = |T| e^{-i\theta}$. If we move from the positive real axis ($\theta = 0$) into the lower half complex plane ($\theta \in (0, \pi]$), we are effectively adding a decaying real exponential. The function $K(T)$ is analytic in the lower half-plane. The Wick rotation $t \to -i\tau$ corresponds to moving along the negative imaginary axis ($\theta = \pi/2$). Because $K(T)$ is analytic in this region, the Minkowski and Euclidean propagators are rigorously connected by **analytic continuation**.
+
+---
+
+## When Can Wick Rotation Fail?
+
+Wick rotation relies heavily on the Hamiltonian being bounded from below (so that $e^{-\hat{H}\tau/\hbar}$ decays rather than explodes). If your physical system does not have a stable ground state ($E_0 \to -\infty$), the rotation will fail. 
+
+A famous example of this failure occurs in quantum gravity. The "conformal factor" of the spacetime metric contributes with the wrong sign to the action, making the gravitational action unbounded from below. This is known as the *conformal factor problem* in Euclidean quantum gravity.
+
+---
+
+## Physical Interpretation: Schrödinger vs Diffusion
+
+Let's look at the time evolution operator. 
+- In Minkowski time, evolution is unitary: $\hat{U}(t) = e^{-i\hat{H}t/\hbar}$. This gives rise to oscillation and quantum interference.
+- In Euclidean time, evolution is non-unitary and dissipative: $\hat{U}_E(\tau) = e^{-\hat{H}\tau/\hbar}$. This operator suppresses high-energy states exponentially and decays.
+
+If we look at the differential equation governing the evolution, the Schrödinger equation:
+$$
+i\hbar \frac{\partial \psi}{\partial t} = \hat{H} \psi
+$$
+becomes, upon substituting $t = -i\tau$:
+$$
+-\hbar \frac{\partial \psi_E}{\partial \tau} = \hat{H} \psi_E
+$$
+
+If $\hat{H} = -\frac{\hbar^2}{2m}\nabla^2$ (a free particle), this becomes:
+$$
+\frac{\partial \psi_E}{\partial \tau} = \frac{\hbar}{2m} \nabla^2 \psi_E
+$$
+
+This is exactly the **Diffusion equation** (or Heat equation), with a diffusion constant $D = \hbar / 2m$. The Wick rotation mathematically maps quantum mechanics into classical statistical diffusion!
+
+## 🤔 Quick Question 2
+::: {.callout-warning}
+"Is the Euclidean propagator still a transition amplitude?"
+:::
+::: {.callout-note collapse="true"}
+## Answer
+No. The Euclidean propagator $K_E = \langle x_b | e^{-\hat{H}\tau/\hbar} | x_a \rangle$ is the matrix element of an operator that is not unitary. It cannot be interpreted as a probability amplitude. It is more like a transition *weight* — mathematically identical to a Boltzmann factor $e^{-\beta E}$ from statistical mechanics. This is the first hint of the deep connection between Quantum Mechanics and Statistical Mechanics (which we will explore in Module 12).
+:::
+
+---
+
+## The Complete Minkowski ↔ Euclidean Dictionary
+
+To summarize our findings, here is the master translation dictionary between real and imaginary time. Keep this handy; it is indispensable for calculations.
+
+| Concept | Minkowski (Real Time) | Euclidean (Imaginary Time) |
+|:---|:---|:---|
+| Time Variable | $t$ | $\tau = it$ |
+| Action Term in Exponent | $iS_M$ | $-S_E$ |
+| Weight in Integral | $e^{iS_M/\hbar}$ (oscillates) | $e^{-S_E/\hbar}$ (damped) |
+| Lagrangian | $L_M = T - V$ | $L_E = T + V$ |
+| Differential Equation | Schrödinger equation | Diffusion equation |
+| Time Derivative | $i\hbar\partial_t$ | $-\hbar\partial_\tau$ |
+| Physical Behavior | Unitary evolution | Dissipative evolution |
+| Oscillation (Sine) | $\sin(\omega T)$ | $i \sinh(\omega \tau)$ |
+| Oscillation (Cosine)| $\cos(\omega T)$ | $\cosh(\omega \tau)$ |
+| Spacetime Metric | Minkowski $(-,+,+,+)$ | Euclidean $(+,+,+,+)$ |
+
+## 🤔 Quick Question 3
+::: {.callout-warning}
+"Why is this called 'Euclidean' time?"
+:::
+::: {.callout-note collapse="true"}
+## Answer
+In special relativity, the Minkowski spacetime invariant interval is given by $ds^2 = -c^2dt^2 + dx^2 + dy^2 + dz^2$. When we substitute $t = -i\tau$, the $dt^2$ term becomes $(-i d\tau)^2 = -d\tau^2$. Therefore, the metric becomes $ds^2 = c^2d\tau^2 + dx^2 + dy^2 + dz^2$. All signs are now positive! Spacetime has mathematically transformed into an ordinary 4D Euclidean space.
+:::
+
+---
+
+# Worked Examples
+
+Let's see the Wick rotation in action on propagators we have previously derived.
+
+### Worked Example 1: Wick-rotating the Free Particle
+
+**The Goal:** Convert the Minkowski free particle propagator to its Euclidean counterpart.
+
+**Step 1: Write down the Minkowski propagator.**
+From Module 3, the free particle propagator for time $T$ is:
+$$
+K_M(x_b, t_b; x_a, t_a) = \sqrt{\frac{m}{2\pi i \hbar T}} \exp\left( \frac{i m (x_b - x_a)^2}{2 \hbar T} \right)
+$$
+
+**Step 2: Substitute $T \to -i\tau$.**
+Let's plug $T = -i\tau$ directly into the expression.
+$$
+K_E = \sqrt{\frac{m}{2\pi i \hbar (-i\tau)}} \exp\left( \frac{i m (x_b - x_a)^2}{2 \hbar (-i\tau)} \right)
+$$
+
+**Step 3: Simplify the expression.**
+In the prefactor: $i \times (-i) = 1$.
+In the exponent: $\frac{i}{-i} = -1$.
+$$
+\boxed{ K_E(x_b, \tau_b; x_a, \tau_a) = \sqrt{\frac{m}{2\pi \hbar \tau}} \exp\left( -\frac{m (x_b - x_a)^2}{2 \hbar \tau} \right) }
+$$
+
+**Physical Result:**
+The oscillatory phase has become a purely real Gaussian function! This is precisely the fundamental solution to the diffusion equation, confirming our earlier insight.
+
+---
+
+### Worked Example 2: Wick-rotating the Harmonic Oscillator
+
+**The Goal:** Convert the harmonic oscillator propagator to Euclidean time.
+
+**Step 1: Write down the Minkowski propagator.**
+From Module 5, the harmonic oscillator propagator is:
+$$
+K_M = \sqrt{\frac{m\omega}{2\pi i \hbar \sin(\omega T)}} \exp\left\{ \frac{im\omega}{2\hbar \sin(\omega T)} \left[ (x_b^2+x_a^2)\cos(\omega T) - 2x_a x_b \right] \right\}
+$$
+
+**Step 2: Transform the trigonometric functions.**
+Using $T = -i\tau$, we recall the relations between trigonometric and hyperbolic functions of imaginary arguments:
+$$
+\sin(\omega(-i\tau)) = -i \sinh(\omega\tau)
+$$
+$$
+\cos(\omega(-i\tau)) = \cosh(\omega\tau)
+$$
+
+**Step 3: Substitute these into the propagator.**
+For the prefactor:
+$$
+\sqrt{\frac{m\omega}{2\pi i \hbar (-i \sinh(\omega \tau))}} = \sqrt{\frac{m\omega}{2\pi \hbar \sinh(\omega \tau)}}
+$$
+
+For the exponent factor:
+$$
+\frac{im\omega}{2\hbar (-i \sinh(\omega \tau))} = -\frac{m\omega}{2\hbar \sinh(\omega\tau)}
+$$
+
+Substituting these back into $K_M$, we obtain the complete Euclidean Harmonic Oscillator Propagator:
+$$
+\boxed{ K_E = \sqrt{\frac{m\omega}{2\pi \hbar \sinh(\omega \tau)}} \exp\left\{ -\frac{m\omega}{2\hbar \sinh(\omega\tau)} \left[ (x_b^2+x_a^2)\cosh(\omega\tau) - 2x_a x_b \right] \right\} }
+$$
+Once again, the wildly oscillating function has been beautifully tamed into a strictly decaying, real function.
+
+---
+
+::: {.checkpoint}
+**Review your understanding:**
+1. Can you explain why the action $S_M$ changes sign to become $-S_E$?
+2. What happens to the potential energy term $V(x)$ under Wick rotation?
+3. What differential equation does the Euclidean propagator satisfy instead of the Schrödinger equation?
+:::
+
+---
+
+# Practice Problems
+
+1. **Velocity Transformation:** Show that if we define $t = e^{-i\theta}\tau$ for an arbitrary angle $\theta$, the kinetic energy transforms as $\frac{1}{2}m\dot{x}^2 \to \frac{1}{2}m e^{2i\theta} (\frac{dx}{d\tau})^2$. Verify that $\theta = \pi/2$ recovers the Wick rotation result.
+2. **Euclidean Lagrangian:** Write down the Euclidean Lagrangian for a particle in a 3D harmonic oscillator potential $V(\mathbf{r}) = \frac{1}{2}m\omega^2 |\mathbf{r}|^2$. Show that the Euclidean Action $S_E \ge 0$ for any trajectory $\mathbf{r}(\tau)$.
+3. **Analytic Continuation:** Start with the free particle propagator $K(T)$. Explicitly write it as a function of the complex variable $T = \text{Re}(T) + i\text{Im}(T)$. Show that the propagator diverges exponentially if $\text{Im}(T) > 0$.
+4. **Diffusion Constant:** Compare the Euclidean free particle propagator to the standard Gaussian solution of the heat equation $P(x,t) = \frac{1}{\sqrt{4\pi D t}} e^{-x^2/4Dt}$. Identify the effective "diffusion constant" $D$ for the quantum particle.
+5. **Evaluating the Trace (Challenge):** Calculate the "trace" of the Euclidean harmonic oscillator propagator by integrating over all space: $Z(\tau) = \int_{-\infty}^\infty K_E(x, x; \tau) dx$. 
+*(Hint: You will need to use $\cosh(\omega\tau) - 1 = 2\sinh^2(\omega\tau/2)$ and $\sinh(\omega\tau) = 2\sinh(\omega\tau/2)\cosh(\omega\tau/2)$ to simplify the result).*
+
+::: {.nav-buttons}
+[← Previous Module](08_classical_limit.qmd){.btn .btn-outline-secondary}
+[Next: Module 10 →](10_euclidean_path_integral.qmd){.btn .btn-success}
+:::

@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="The complete, rigorous derivation of Feynman’s path integral from the operator formalism of quantum mechanics. We slice time, use the Trotter formula, insert complete sets of states, discover the phase-space path integral, integrate out momenta, and arrive at the Lagrangian path integral.">
+
+<title>Physics Voyage - Module 4: Deriving the Path Integral — The Full Construction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-starting-point" id="toc-sec-starting-point" class="nav-link active" data-scroll-target="#sec-starting-point"><span class="header-section-number">1</span> Starting Point: The Operator Expression</a></li>
+  <li><a href="#sec-slicing-time" id="toc-sec-slicing-time" class="nav-link" data-scroll-target="#sec-slicing-time"><span class="header-section-number">2</span> The Key Idea: Slicing Time</a>
+  <ul class="collapse">
+  <li><a href="#breaking-the-exponential-into-factors" id="toc-breaking-the-exponential-into-factors" class="nav-link" data-scroll-target="#breaking-the-exponential-into-factors"><span class="header-section-number">2.1</span> Breaking the exponential into factors</a></li>
+  <li><a href="#inserting-complete-sets-of-position-states" id="toc-inserting-complete-sets-of-position-states" class="nav-link" data-scroll-target="#inserting-complete-sets-of-position-states"><span class="header-section-number">2.2</span> Inserting complete sets of position states</a></li>
+  </ul></li>
+  <li><a href="#sec-trotter" id="toc-sec-trotter" class="nav-link" data-scroll-target="#sec-trotter"><span class="header-section-number">3</span> The Trotter Product Formula</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-of-non-commuting-operators" id="toc-the-problem-of-non-commuting-operators" class="nav-link" data-scroll-target="#the-problem-of-non-commuting-operators"><span class="header-section-number">3.1</span> The problem of non-commuting operators</a></li>
+  <li><a href="#baker-campbell-hausdorff-bch-formula" id="toc-baker-campbell-hausdorff-bch-formula" class="nav-link" data-scroll-target="#baker-campbell-hausdorff-bch-formula"><span class="header-section-number">3.2</span> Baker-Campbell-Hausdorff (BCH) formula</a></li>
+  <li><a href="#the-trotter-approximation" id="toc-the-trotter-approximation" class="nav-link" data-scroll-target="#the-trotter-approximation"><span class="header-section-number">3.3</span> The Trotter approximation</a></li>
+  </ul></li>
+  <li><a href="#sec-matrix-elements" id="toc-sec-matrix-elements" class="nav-link" data-scroll-target="#sec-matrix-elements"><span class="header-section-number">4</span> Matrix Elements: Building the Short-Time Propagator</a>
+  <ul class="collapse">
+  <li><a href="#the-potential-factor" id="toc-the-potential-factor" class="nav-link" data-scroll-target="#the-potential-factor"><span class="header-section-number">4.1</span> The potential factor</a></li>
+  <li><a href="#the-kinetic-factor-inserting-momentum-states" id="toc-the-kinetic-factor-inserting-momentum-states" class="nav-link" data-scroll-target="#the-kinetic-factor-inserting-momentum-states"><span class="header-section-number">4.2</span> The kinetic factor: inserting momentum states</a></li>
+  <li><a href="#the-complete-short-time-propagator" id="toc-the-complete-short-time-propagator" class="nav-link" data-scroll-target="#the-complete-short-time-propagator"><span class="header-section-number">4.3</span> The complete short-time propagator</a></li>
+  </ul></li>
+  <li><a href="#sec-phase-space-pi" id="toc-sec-phase-space-pi" class="nav-link" data-scroll-target="#sec-phase-space-pi"><span class="header-section-number">5</span> The Phase-Space Path Integral</a>
+  <ul class="collapse">
+  <li><a href="#assembling-the-full-propagator" id="toc-assembling-the-full-propagator" class="nav-link" data-scroll-target="#assembling-the-full-propagator"><span class="header-section-number">5.1</span> Assembling the full propagator</a></li>
+  <li><a href="#the-continuum-limit" id="toc-the-continuum-limit" class="nav-link" data-scroll-target="#the-continuum-limit"><span class="header-section-number">5.2</span> The continuum limit</a></li>
+  </ul></li>
+  <li><a href="#sec-integrating-momenta" id="toc-sec-integrating-momenta" class="nav-link" data-scroll-target="#sec-integrating-momenta"><span class="header-section-number">6</span> Integrating Out Momenta</a>
+  <ul class="collapse">
+  <li><a href="#the-gaussian-integral-for-one-time-slice" id="toc-the-gaussian-integral-for-one-time-slice" class="nav-link" data-scroll-target="#the-gaussian-integral-for-one-time-slice"><span class="header-section-number">6.1</span> The Gaussian integral for one time slice</a></li>
+  <li><a href="#completing-the-square" id="toc-completing-the-square" class="nav-link" data-scroll-target="#completing-the-square"><span class="header-section-number">6.2</span> Completing the square</a></li>
+  <li><a href="#performing-the-gaussian-integral" id="toc-performing-the-gaussian-integral" class="nav-link" data-scroll-target="#performing-the-gaussian-integral"><span class="header-section-number">6.3</span> Performing the Gaussian integral</a></li>
+  <li><a href="#combining-with-the-potential" id="toc-combining-with-the-potential" class="nav-link" data-scroll-target="#combining-with-the-potential"><span class="header-section-number">6.4</span> Combining with the potential</a></li>
+  </ul></li>
+  <li><a href="#sec-lagrangian-pi" id="toc-sec-lagrangian-pi" class="nav-link" data-scroll-target="#sec-lagrangian-pi"><span class="header-section-number">7</span> The Lagrangian Path Integral: Feynman’s Formula</a>
+  <ul class="collapse">
+  <li><a href="#assembling-the-full-result" id="toc-assembling-the-full-result" class="nav-link" data-scroll-target="#assembling-the-full-result"><span class="header-section-number">7.1</span> Assembling the full result</a></li>
+  </ul></li>
+  <li><a href="#sec-measure" id="toc-sec-measure" class="nav-link" data-scroll-target="#sec-measure"><span class="header-section-number">8</span> What “Sum Over All Paths” Really Means</a>
+  <ul class="collapse">
+  <li><a href="#the-path-integral-measure" id="toc-the-path-integral-measure" class="nav-link" data-scroll-target="#the-path-integral-measure"><span class="header-section-number">8.1</span> The path integral measure</a></li>
+  <li><a href="#why-this-doesnt-bother-physicists-much" id="toc-why-this-doesnt-bother-physicists-much" class="nav-link" data-scroll-target="#why-this-doesnt-bother-physicists-much"><span class="header-section-number">8.2</span> Why this doesn’t bother physicists (much)</a></li>
+  </ul></li>
+  <li><a href="#sec-worked-example-1" id="toc-sec-worked-example-1" class="nav-link" data-scroll-target="#sec-worked-example-1"><span class="header-section-number">9</span> Worked Example 1: Full Derivation for <span class="math inline">\(H = p^2/2m + V(x)\)</span></a></li>
+  <li><a href="#sec-worked-example-2" id="toc-sec-worked-example-2" class="nav-link" data-scroll-target="#sec-worked-example-2"><span class="header-section-number">10</span> Worked Example 2: Velocity-Dependent Potentials and Ordering Ambiguities</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-charged-particle-in-a-magnetic-field" id="toc-the-problem-charged-particle-in-a-magnetic-field" class="nav-link" data-scroll-target="#the-problem-charged-particle-in-a-magnetic-field"><span class="header-section-number">10.1</span> The problem: charged particle in a magnetic field</a></li>
+  <li><a href="#the-ordering-ambiguity" id="toc-the-ordering-ambiguity" class="nav-link" data-scroll-target="#the-ordering-ambiguity"><span class="header-section-number">10.2</span> The ordering ambiguity</a></li>
+  <li><a href="#the-midpoint-prescription" id="toc-the-midpoint-prescription" class="nav-link" data-scroll-target="#the-midpoint-prescription"><span class="header-section-number">10.3</span> The midpoint prescription</a></li>
+  </ul></li>
+  <li><a href="#sec-comparison" id="toc-sec-comparison" class="nav-link" data-scroll-target="#sec-comparison"><span class="header-section-number">11</span> Comparison of Formulations</a></li>
+  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">12</span> Summary of Key Results</a></li>
+  <li><a href="#sec-practice-problems" id="toc-sec-practice-problems" class="nav-link" data-scroll-target="#sec-practice-problems"><span class="header-section-number">13</span> Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 4: Deriving the Path Integral — The Full Construction</h1>
+        <p class="subtitle lead">From Operators to Sums Over Paths: Every Step, No Hand-Waving</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      The complete, rigorous derivation of Feynman’s path integral from the operator formalism of quantum mechanics. We slice time, use the Trotter formula, insert complete sets of states, discover the phase-space path integral, integrate out momenta, and arrive at the Lagrangian path integral.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Path Integrals Course</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 21, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/05_harmonic_oscillator.html">Next: Module 5 →</a></p>
+<hr>
+<p>This is the module where <em>everything comes together</em>. In Modules 1–3, we motivated the propagator, Feynman’s sum-over-paths idea, and computed the free-particle path integral almost by guessing the right procedure. Now we prove it. We will start from the standard operator formalism of quantum mechanics — the expression <span class="math inline">\(K = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle\)</span> — and, through a sequence of exact mathematical steps, derive Feynman’s path integral formula. No postulates, no hand-waving, just calculation.</p>
+<p>By the end of this module, you will understand <em>why</em> the path integral works, not just <em>that</em> it works. You will also discover that the path integral naturally comes in two flavors — a <strong>phase-space</strong> version (more fundamental) and a <strong>configuration-space</strong> version (more commonly used) — and see exactly how the Lagrangian emerges from the Hamiltonian through the integration over momenta.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook references</strong>: Shankar, <em>Principles of Quantum Mechanics</em>, Ch. 8 &amp; 21. Feynman &amp; Hibbs, Ch. 3. Kleinert, Ch. 2. Zinn-Justin, Ch. 2.</p>
+</blockquote>
+<hr>
+<section id="sec-starting-point" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-starting-point"><span class="header-section-number">1</span> Starting Point: The Operator Expression</h2>
+<p>Let us begin with something exact and uncontroversial. In the operator formalism of quantum mechanics, the <strong>propagator</strong> (transition amplitude) for a particle to travel from position <span class="math inline">\(x_a\)</span> at time <span class="math inline">\(t_a = 0\)</span> to position <span class="math inline">\(x_b\)</span> at time <span class="math inline">\(t_b = T\)</span> is:</p>
+<p><span id="eq-propagator-operator"><span class="math display">\[
+\boxed{K(x_b, T; x_a, 0) = \langle x_b | \, e^{-i\hat{H}T/\hbar} \, | x_a \rangle}
+\tag{1}\]</span></span></p>
+<p>This is <em>exact</em>. It follows directly from the time evolution of quantum states: if <span class="math inline">\(|\psi(0)\rangle\)</span> is the state at time <span class="math inline">\(0\)</span>, then <span class="math inline">\(|\psi(T)\rangle = e^{-i\hat{H}T/\hbar} |\psi(0)\rangle\)</span>, and projecting onto <span class="math inline">\(\langle x_b|\)</span> gives the wavefunction at position <span class="math inline">\(x_b\)</span> and time <span class="math inline">\(T\)</span>.</p>
+<p>There is nothing path-integral-ish about <a href="#eq-propagator-operator" class="quarto-xref">Equation&nbsp;1</a> yet. The Hamiltonian <span class="math inline">\(\hat{H}\)</span> is an operator acting on Hilbert space. Our goal for this entire module is a single, clear objective:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Our Goal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Convert the operator expression <span class="math inline">\(K = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle\)</span> into a <strong>sum over all paths</strong> weighted by <span class="math inline">\(e^{iS[\text{path}]/\hbar}\)</span>.</p>
+</div>
+</div>
+<p>To do this, we need to somehow get rid of the operator <span class="math inline">\(\hat{H}\)</span> and replace it with the classical Lagrangian <span class="math inline">\(L(x, \dot{x})\)</span> — a function, not an operator. The key idea is breathtakingly simple: <strong>slice time into tiny pieces</strong>.</p>
+<hr>
+</section>
+<section id="sec-slicing-time" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-slicing-time"><span class="header-section-number">2</span> The Key Idea: Slicing Time</h2>
+<section id="breaking-the-exponential-into-factors" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="breaking-the-exponential-into-factors"><span class="header-section-number">2.1</span> Breaking the exponential into factors</h3>
+<p>The time interval <span class="math inline">\([0, T]\)</span> is divided into <span class="math inline">\(N\)</span> equal segments, each of duration:</p>
+<p><span class="math display">\[
+\varepsilon = \frac{T}{N}
+\]</span></p>
+<p>The intermediate times are <span class="math inline">\(t_j = j\varepsilon\)</span> for <span class="math inline">\(j = 0, 1, 2, \ldots, N\)</span>, so <span class="math inline">\(t_0 = 0\)</span> and <span class="math inline">\(t_N = T\)</span>.</p>
+<p>Since the Hamiltonian <span class="math inline">\(\hat{H}\)</span> is time-independent (we’ll assume this throughout), the time evolution operator factors:</p>
+<p><span id="eq-time-slicing"><span class="math display">\[
+e^{-i\hat{H}T/\hbar} = \underbrace{e^{-i\hat{H}\varepsilon/\hbar} \cdot e^{-i\hat{H}\varepsilon/\hbar} \cdots e^{-i\hat{H}\varepsilon/\hbar}}_{N \text{ factors}}
+= \left( e^{-i\hat{H}\varepsilon/\hbar} \right)^N
+\tag{2}\]</span></span></p>
+<p>This is exact — no approximation. We have simply used the rule <span class="math inline">\(e^{A+A+\cdots} = e^A \cdot e^A \cdots\)</span> which holds because every factor is the <em>same</em> operator.</p>
+</section>
+<section id="inserting-complete-sets-of-position-states" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="inserting-complete-sets-of-position-states"><span class="header-section-number">2.2</span> Inserting complete sets of position states</h3>
+<p>Now comes the crucial step. Between each pair of consecutive factors <span class="math inline">\(e^{-i\hat{H}\varepsilon/\hbar}\)</span>, we insert a <strong>complete set of position eigenstates</strong>. Recall the <strong>completeness relation</strong> (also called the resolution of the identity):</p>
+<p><span class="math display">\[
+\hat{1} = \int_{-\infty}^{+\infty} dx_j \, |x_j\rangle \langle x_j|
+\]</span></p>
+<p>We insert <span class="math inline">\(N-1\)</span> such resolutions — one between each pair of consecutive time evolution operators. The propagator becomes:</p>
+<p><span class="math display">\[
+K = \langle x_b | \, e^{-i\hat{H}\varepsilon/\hbar} \cdot \hat{1} \cdot e^{-i\hat{H}\varepsilon/\hbar} \cdot \hat{1} \cdots \hat{1} \cdot e^{-i\hat{H}\varepsilon/\hbar} \, | x_a \rangle
+\]</span></p>
+<p>Writing this out with the integrals:</p>
+<p><span id="eq-sliced-propagator"><span class="math display">\[
+K = \int dx_1 \, dx_2 \cdots dx_{N-1} \; \prod_{j=0}^{N-1} \langle x_{j+1} | \, e^{-i\hat{H}\varepsilon/\hbar} \, | x_j \rangle
+\tag{3}\]</span></span></p>
+<p>where <span class="math inline">\(x_0 \equiv x_a\)</span> and <span class="math inline">\(x_N \equiv x_b\)</span> are the fixed endpoints.</p>
+<div class="callout-intuition">
+<p>What have we done? Each intermediate position <span class="math inline">\(x_j\)</span> represents the particle’s position at time <span class="math inline">\(t_j\)</span>. By integrating over all possible intermediate positions <span class="math inline">\(x_1, x_2, \ldots, x_{N-1}\)</span>, we are already performing a <strong>sum over all piecewise-linear paths</strong> connecting <span class="math inline">\(x_a\)</span> to <span class="math inline">\(x_b\)</span>! Each “path” is a sequence of positions <span class="math inline">\((x_0, x_1, x_2, \ldots, x_N)\)</span>, and the amplitude for that path is the product of the short-time propagators <span class="math inline">\(\langle x_{j+1} | e^{-i\hat{H}\varepsilon/\hbar} | x_j \rangle\)</span>.</p>
+</div>
+<p>The problem has now been reduced to a simpler one: <strong>compute the short-time propagator</strong> <span class="math inline">\(\langle x_{j+1} | e^{-i\hat{H}\varepsilon/\hbar} | x_j \rangle\)</span> for small <span class="math inline">\(\varepsilon\)</span>. This is where the Trotter product formula enters.</p>
+<hr>
+</section>
+</section>
+<section id="sec-trotter" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-trotter"><span class="header-section-number">3</span> The Trotter Product Formula</h2>
+<section id="the-problem-of-non-commuting-operators" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="the-problem-of-non-commuting-operators"><span class="header-section-number">3.1</span> The problem of non-commuting operators</h3>
+<p>For the standard non-relativistic Hamiltonian:</p>
+<p><span class="math display">\[
+\hat{H} = \hat{T} + \hat{V} = \frac{\hat{p}^2}{2m} + V(\hat{x})
+\]</span></p>
+<p>we would love to write:</p>
+<p><span class="math display">\[
+e^{-i(\hat{T}+\hat{V})\varepsilon/\hbar} \stackrel{?}{=} e^{-i\hat{T}\varepsilon/\hbar} \, e^{-i\hat{V}\varepsilon/\hbar}
+\]</span></p>
+<p>If <span class="math inline">\(\hat{T}\)</span> and <span class="math inline">\(\hat{V}\)</span> were <em>numbers</em>, this would be trivially true. But they are <em>operators</em>, and <span class="math inline">\([\hat{T}, \hat{V}] \neq 0\)</span> because <span class="math inline">\(\hat{T}\)</span> depends on <span class="math inline">\(\hat{p}\)</span> while <span class="math inline">\(\hat{V}\)</span> depends on <span class="math inline">\(\hat{x}\)</span>, and <span class="math inline">\([\hat{x}, \hat{p}] = i\hbar\)</span>.</p>
+<p>So the factorization above is <strong>not exact</strong>. But it becomes approximately correct for small <span class="math inline">\(\varepsilon\)</span>. Let us see exactly how.</p>
+</section>
+<section id="baker-campbell-hausdorff-bch-formula" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="baker-campbell-hausdorff-bch-formula"><span class="header-section-number">3.2</span> Baker-Campbell-Hausdorff (BCH) formula</h3>
+<p>The <strong>Baker-Campbell-Hausdorff formula</strong> tells us how to combine two operator exponentials:</p>
+<p><span id="eq-bch"><span class="math display">\[
+e^{\hat{A}} \, e^{\hat{B}} = \exp\!\left( \hat{A} + \hat{B} + \frac{1}{2}[\hat{A}, \hat{B}] + \frac{1}{12}\bigl([\hat{A},[\hat{A},\hat{B}]] + [[\hat{A},\hat{B}],\hat{B}]\bigr) + \cdots \right)
+\tag{4}\]</span></span></p>
+<p>Let us apply this with:</p>
+<p><span class="math display">\[
+\hat{A} = -\frac{i\hat{T}\varepsilon}{\hbar}, \qquad \hat{B} = -\frac{i\hat{V}\varepsilon}{\hbar}
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+e^{\hat{A}} e^{\hat{B}} = \exp\!\left( -\frac{i(\hat{T}+\hat{V})\varepsilon}{\hbar} + \frac{1}{2}[\hat{A}, \hat{B}] + \cdots \right)
+\]</span></p>
+<p>The commutator term is:</p>
+<p><span class="math display">\[
+\frac{1}{2}[\hat{A}, \hat{B}] = \frac{1}{2} \left(-\frac{i\varepsilon}{\hbar}\right)^2 [\hat{T}, \hat{V}] = -\frac{\varepsilon^2}{2\hbar^2} [\hat{T}, \hat{V}]
+\]</span></p>
+<p>This is of order <span class="math inline">\(\varepsilon^2\)</span>. The next terms in BCH involve double commutators and are of order <span class="math inline">\(\varepsilon^3\)</span>, and so on.</p>
+</section>
+<section id="the-trotter-approximation" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="the-trotter-approximation"><span class="header-section-number">3.3</span> The Trotter approximation</h3>
+<p>Therefore, we can write:</p>
+<p><span id="eq-trotter"><span class="math display">\[
+\boxed{e^{-i(\hat{T}+\hat{V})\varepsilon/\hbar} = e^{-i\hat{T}\varepsilon/\hbar} \, e^{-i\hat{V}\varepsilon/\hbar} + \mathcal{O}(\varepsilon^2)}
+\tag{5}\]</span></span></p>
+<p>This is the <strong>Trotter product formula</strong> (first-order version). The error in each time slice is <span class="math inline">\(\mathcal{O}(\varepsilon^2)\)</span>.</p>
+<p>Now, we have <span class="math inline">\(N\)</span> time slices, and <span class="math inline">\(\varepsilon = T/N\)</span>. The total accumulated error from all <span class="math inline">\(N\)</span> slices is:</p>
+<p><span class="math display">\[
+\text{Total error} \sim N \times \mathcal{O}(\varepsilon^2) = N \times \mathcal{O}\!\left(\frac{T^2}{N^2}\right) = \mathcal{O}\!\left(\frac{T^2}{N}\right) \xrightarrow{N \to \infty} 0
+\]</span></p>
+<p>So in the limit <span class="math inline">\(N \to \infty\)</span> (infinitely many infinitesimally thin time slices), the Trotter approximation becomes <strong>exact</strong>:</p>
+<p><span id="eq-trotter-exact"><span class="math display">\[
+e^{-i(\hat{T}+\hat{V})T/\hbar} = \lim_{N \to \infty} \left( e^{-i\hat{T}\varepsilon/\hbar} \, e^{-i\hat{V}\varepsilon/\hbar} \right)^N
+\tag{6}\]</span></span></p>
+<p>This is the <strong>Trotter product theorem</strong>, and it is a rigorous mathematical result (proven by Trotter in 1959 for self-adjoint operators).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Symmetric Trotter splitting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is a more accurate version called the <strong>symmetric</strong> (or Strang) <strong>splitting</strong>: <span class="math display">\[
+e^{-i(\hat{T}+\hat{V})\varepsilon/\hbar} = e^{-i\hat{V}\varepsilon/2\hbar} \, e^{-i\hat{T}\varepsilon/\hbar} \, e^{-i\hat{V}\varepsilon/2\hbar} + \mathcal{O}(\varepsilon^3)
+\]</span> This has error <span class="math inline">\(\mathcal{O}(\varepsilon^3)\)</span> per slice instead of <span class="math inline">\(\mathcal{O}(\varepsilon^2)\)</span>. Both converge to the exact result as <span class="math inline">\(N \to \infty\)</span>, but the symmetric version converges faster. For the path integral derivation, either form works — we’ll use the simpler first-order form.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What happens if <span class="math inline">\(\hat{T}\)</span> and <span class="math inline">\(\hat{V}\)</span> commute, i.e., <span class="math inline">\([\hat{T}, \hat{V}] = 0\)</span>? Does anything simplify in the Trotter formula?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\([\hat{T}, \hat{V}] = 0\)</span>, then the BCH formula (<a href="#eq-bch" class="quarto-xref">Equation&nbsp;4</a>) truncates immediately: <span class="math inline">\(e^{\hat{A}} e^{\hat{B}} = e^{\hat{A}+\hat{B}}\)</span> <em>exactly</em>. The Trotter formula becomes exact for <em>any</em> <span class="math inline">\(\varepsilon\)</span> — no approximation needed!</p>
+<p>The path integral would then trivially factorize into separate kinetic and potential contributions. The rich structure of the path integral arises precisely <em>because</em> <span class="math inline">\([\hat{x}, \hat{p}] = i\hbar \neq 0\)</span>. The non-commutativity of position and momentum is what makes the path integral non-trivial and interesting.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-matrix-elements" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-matrix-elements"><span class="header-section-number">4</span> Matrix Elements: Building the Short-Time Propagator</h2>
+<p>Using the Trotter formula (<a href="#eq-trotter" class="quarto-xref">Equation&nbsp;5</a>), the short-time propagator becomes:</p>
+<p><span class="math display">\[
+\langle x_{j+1} | \, e^{-i\hat{H}\varepsilon/\hbar} \, | x_j \rangle \approx \langle x_{j+1} | \, e^{-i\hat{T}\varepsilon/\hbar} \, e^{-i\hat{V}\varepsilon/\hbar} \, | x_j \rangle
+\]</span></p>
+<p>We need to compute this matrix element. Let’s handle the two exponentials one at a time.</p>
+<section id="the-potential-factor" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="the-potential-factor"><span class="header-section-number">4.1</span> The potential factor</h3>
+<p>The potential operator <span class="math inline">\(\hat{V} = V(\hat{x})\)</span> is diagonal in the position basis:</p>
+<p><span class="math display">\[
+\hat{V} |x_j\rangle = V(x_j) |x_j\rangle
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+e^{-i\hat{V}\varepsilon/\hbar} |x_j\rangle = e^{-iV(x_j)\varepsilon/\hbar} |x_j\rangle
+\]</span></p>
+<p>The potential exponential acting on <span class="math inline">\(|x_j\rangle\)</span> simply becomes a number (a c-number phase factor). We can pull it out:</p>
+<p><span id="eq-potential-factor"><span class="math display">\[
+\langle x_{j+1} | \, e^{-i\hat{T}\varepsilon/\hbar} \, e^{-i\hat{V}\varepsilon/\hbar} \, | x_j \rangle = e^{-iV(x_j)\varepsilon/\hbar} \, \langle x_{j+1} | \, e^{-i\hat{T}\varepsilon/\hbar} \, | x_j \rangle
+\tag{7}\]</span></span></p>
+</section>
+<section id="the-kinetic-factor-inserting-momentum-states" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="the-kinetic-factor-inserting-momentum-states"><span class="header-section-number">4.2</span> The kinetic factor: inserting momentum states</h3>
+<p>Now we need to compute <span class="math inline">\(\langle x_{j+1} | e^{-i\hat{T}\varepsilon/\hbar} | x_j \rangle\)</span> where <span class="math inline">\(\hat{T} = \hat{p}^2/2m\)</span>. The key insight is that <span class="math inline">\(\hat{T}\)</span> is diagonal in the <em>momentum</em> basis. So we insert a <strong>complete set of momentum eigenstates</strong>:</p>
+<p><span class="math display">\[
+\hat{1} = \int_{-\infty}^{+\infty} \frac{dp_j}{2\pi\hbar} \, |p_j\rangle \langle p_j|
+\]</span></p>
+<p>(The factor <span class="math inline">\(1/(2\pi\hbar)\)</span> appears because we normalize as <span class="math inline">\(\langle x | p \rangle = e^{ipx/\hbar}\)</span>.)</p>
+<p>Inserting this identity:</p>
+<p><span class="math display">\[
+\langle x_{j+1} | \, e^{-i\hat{T}\varepsilon/\hbar} \, | x_j \rangle = \int \frac{dp_j}{2\pi\hbar} \; \langle x_{j+1} | p_j \rangle \; e^{-ip_j^2\varepsilon/2m\hbar} \; \langle p_j | x_j \rangle
+\]</span></p>
+<p>Using <span class="math inline">\(\langle x | p \rangle = e^{ipx/\hbar}\)</span> and <span class="math inline">\(\langle p | x \rangle = e^{-ipx/\hbar}\)</span>:</p>
+<p><span class="math display">\[
+\langle x_{j+1} | \, e^{-i\hat{T}\varepsilon/\hbar} \, | x_j \rangle = \int \frac{dp_j}{2\pi\hbar} \; e^{ip_j x_{j+1}/\hbar} \; e^{-ip_j^2\varepsilon/2m\hbar} \; e^{-ip_j x_j/\hbar}
+\]</span></p>
+<p>Combining the exponents:</p>
+<p><span id="eq-kinetic-element"><span class="math display">\[
+\boxed{\langle x_{j+1} | \, e^{-i\hat{T}\varepsilon/\hbar} \, | x_j \rangle = \int \frac{dp_j}{2\pi\hbar} \; \exp\!\left\{ \frac{i}{\hbar}\left[ p_j(x_{j+1} - x_j) - \frac{p_j^2}{2m}\varepsilon \right] \right\}}
+\tag{8}\]</span></span></p>
+</section>
+<section id="the-complete-short-time-propagator" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="the-complete-short-time-propagator"><span class="header-section-number">4.3</span> The complete short-time propagator</h3>
+<p>Combining the potential factor (<a href="#eq-potential-factor" class="quarto-xref">Equation&nbsp;7</a>) and kinetic factor (<a href="#eq-kinetic-element" class="quarto-xref">Equation&nbsp;8</a>):</p>
+<p><span id="eq-short-time-propagator"><span class="math display">\[
+\langle x_{j+1} | \, e^{-i\hat{H}\varepsilon/\hbar} \, | x_j \rangle = \int \frac{dp_j}{2\pi\hbar} \; \exp\!\left\{ \frac{i}{\hbar}\left[ p_j(x_{j+1} - x_j) - \left(\frac{p_j^2}{2m} + V(x_j)\right)\varepsilon \right] \right\}
+\tag{9}\]</span></span></p>
+<p>Let us define the discrete velocity as <span class="math inline">\(\dot{x}_j \equiv (x_{j+1} - x_j)/\varepsilon\)</span>. Then <span class="math inline">\(x_{j+1} - x_j = \dot{x}_j \, \varepsilon\)</span>, and the exponent can be written suggestively as:</p>
+<p><span class="math display">\[
+\frac{i}{\hbar}\left[ p_j \, \dot{x}_j - H(x_j, p_j) \right]\varepsilon
+\]</span></p>
+<p>where <span class="math inline">\(H(x, p) = p^2/2m + V(x)\)</span> is the <strong>classical Hamiltonian</strong>. This is not a coincidence — it is the beginning of the connection between the quantum propagator and classical mechanics.</p>
+<div class="callout-intuition">
+<p>The exponent in the short-time propagator is <span class="math inline">\((i/\hbar)\)</span> times <span class="math inline">\([p\dot{x} - H]\varepsilon\)</span>. If you recall your classical mechanics, the quantity <span class="math inline">\(p\dot{x} - H\)</span> is precisely the integrand in the <strong>canonical action</strong> <span class="math inline">\(\int (p\dot{x} - H) \, dt\)</span>. The quantum path integral is directly building the classical action, one time slice at a time!</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-phase-space-pi" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-phase-space-pi"><span class="header-section-number">5</span> The Phase-Space Path Integral</h2>
+<section id="assembling-the-full-propagator" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="assembling-the-full-propagator"><span class="header-section-number">5.1</span> Assembling the full propagator</h3>
+<p>Now we substitute the short-time propagator (<a href="#eq-short-time-propagator" class="quarto-xref">Equation&nbsp;9</a>) back into the sliced expression (<a href="#eq-sliced-propagator" class="quarto-xref">Equation&nbsp;3</a>):</p>
+<p><span class="math display">\[
+K = \int dx_1 \cdots dx_{N-1} \prod_{j=0}^{N-1} \left[ \int \frac{dp_j}{2\pi\hbar} \; \exp\!\left\{ \frac{i}{\hbar}\left[ p_j(x_{j+1}-x_j) - H(x_j, p_j)\,\varepsilon \right] \right\} \right]
+\]</span></p>
+<p>We can pull all the <span class="math inline">\(x\)</span>-integrals and <span class="math inline">\(p\)</span>-integrals to the front, and combine all the exponentials (since the product of exponentials is the exponential of the sum):</p>
+<p><span id="eq-discrete-phase-space"><span class="math display">\[
+K = \int \left(\prod_{j=1}^{N-1} dx_j \right) \left(\prod_{j=0}^{N-1} \frac{dp_j}{2\pi\hbar} \right) \exp\!\left\{ \frac{i}{\hbar} \sum_{j=0}^{N-1} \left[ p_j(x_{j+1}-x_j) - H(x_j, p_j)\,\varepsilon \right] \right\}
+\tag{10}\]</span></span></p>
+<p>Notice the different index ranges:</p>
+<ul>
+<li>There are <span class="math inline">\(N-1\)</span> position integrals (<span class="math inline">\(x_1\)</span> through <span class="math inline">\(x_{N-1}\)</span>), because <span class="math inline">\(x_0 = x_a\)</span> and <span class="math inline">\(x_N = x_b\)</span> are fixed.</li>
+<li>There are <span class="math inline">\(N\)</span> momentum integrals (<span class="math inline">\(p_0\)</span> through <span class="math inline">\(p_{N-1}\)</span>), one for each time slice. Unlike positions, momenta are not fixed at the endpoints!</li>
+</ul>
+</section>
+<section id="the-continuum-limit" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="the-continuum-limit"><span class="header-section-number">5.2</span> The continuum limit</h3>
+<p>In the limit <span class="math inline">\(N \to \infty\)</span> (with <span class="math inline">\(\varepsilon = T/N \to 0\)</span>), the sum in the exponent becomes an integral. With <span class="math inline">\(x_{j+1} - x_j = \dot{x}(t_j)\varepsilon\)</span>:</p>
+<p><span class="math display">\[
+\sum_{j=0}^{N-1} \left[ p_j \dot{x}_j - H(x_j, p_j) \right] \varepsilon \;\longrightarrow\; \int_0^T \left[ p(t)\,\dot{x}(t) - H\bigl(x(t), p(t)\bigr) \right] dt
+\]</span></p>
+<p>The right-hand side is the <strong>canonical action functional</strong>:</p>
+<p><span class="math display">\[
+S_{\text{can}}[x, p] = \int_0^T \left[ p\,\dot{x} - H(x, p) \right] dt
+\]</span></p>
+<p>And the products of integrals define the <strong>phase-space path integral measure</strong>:</p>
+<p><span class="math display">\[
+\int \mathcal{D}x \, \mathcal{D}p \equiv \lim_{N \to \infty} \int \left(\prod_{j=1}^{N-1} dx_j \right) \left(\prod_{j=0}^{N-1} \frac{dp_j}{2\pi\hbar} \right)
+\]</span></p>
+<p>Putting it all together, we arrive at the <strong>phase-space path integral</strong>:</p>
+<p><span id="eq-phase-space-pi"><span class="math display">\[
+\boxed{K(x_b, T; x_a, 0) = \int \mathcal{D}x \, \mathcal{D}p \; \exp\!\left\{ \frac{i}{\hbar} \int_0^T \left[ p\,\dot{x} - H(x, p) \right] dt \right\}}
+\tag{11}\]</span></span></p>
+<p>with boundary conditions <span class="math inline">\(x(0) = x_a\)</span>, <span class="math inline">\(x(T) = x_b\)</span>, and <span class="math inline">\(p(t)\)</span> unconstrained.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Phase-Space Path Integral Is the More Fundamental Form
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The formula <a href="#eq-phase-space-pi" class="quarto-xref">Equation&nbsp;11</a> works for <strong>any</strong> Hamiltonian <span class="math inline">\(H(x, p)\)</span>, not just the standard <span class="math inline">\(p^2/2m + V(x)\)</span>. This is the most general form of the path integral. The Lagrangian version (which we’ll derive next) requires the Hamiltonian to be quadratic in <span class="math inline">\(p\)</span>. Always remember: the phase-space form is the parent; the Lagrangian form is the child.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is the phase-space path integral or the configuration-space (Lagrangian) path integral more fundamental? When does the Lagrangian version fail?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The <strong>phase-space version</strong> is more general and more fundamental — it works for <em>any</em> Hamiltonian <span class="math inline">\(H(x, p)\)</span>. The Lagrangian version requires performing the momentum integral, which is only a Gaussian when <span class="math inline">\(H\)</span> is <strong>quadratic in <span class="math inline">\(p\)</span></strong> (i.e., <span class="math inline">\(H = p^2/2m + V(x)\)</span> or similar).</p>
+<p>For systems where <span class="math inline">\(H\)</span> is <em>not</em> quadratic in <span class="math inline">\(p\)</span> — such as relativistic particles where <span class="math inline">\(H = c\sqrt{p^2 + m^2c^2} + V(x)\)</span>, or systems on curved spaces where the kinetic term has <span class="math inline">\(x\)</span>-dependent coefficients — the momentum integral cannot be done analytically, and one must either work in phase space or deal carefully with operator ordering ambiguities.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-integrating-momenta" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-integrating-momenta"><span class="header-section-number">6</span> Integrating Out Momenta</h2>
+<p>For the standard non-relativistic Hamiltonian <span class="math inline">\(H(x, p) = p^2/2m + V(x)\)</span>, we can perform the momentum integrals explicitly. This is the step that converts the phase-space path integral into the more familiar Lagrangian form.</p>
+<section id="the-gaussian-integral-for-one-time-slice" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="the-gaussian-integral-for-one-time-slice"><span class="header-section-number">6.1</span> The Gaussian integral for one time slice</h3>
+<p>Let us focus on a single momentum integral from <a href="#eq-discrete-phase-space" class="quarto-xref">Equation&nbsp;10</a>. For the <span class="math inline">\(j\)</span>-th time slice, we need:</p>
+<p><span class="math display">\[
+I_j = \int_{-\infty}^{+\infty} \frac{dp_j}{2\pi\hbar} \; \exp\!\left\{ \frac{i}{\hbar}\left[ p_j(x_{j+1}-x_j) - \frac{p_j^2}{2m}\varepsilon \right] \right\}
+\]</span></p>
+<p>Let us define <span class="math inline">\(\Delta x_j \equiv x_{j+1} - x_j\)</span> for brevity. The exponent is:</p>
+<p><span class="math display">\[
+\frac{i}{\hbar}\left[ p_j \, \Delta x_j - \frac{p_j^2\,\varepsilon}{2m} \right] = -\frac{i\varepsilon}{2m\hbar}\left[ p_j^2 - \frac{2m\,\Delta x_j}{\varepsilon} \, p_j \right]
+\]</span></p>
+</section>
+<section id="completing-the-square" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="completing-the-square"><span class="header-section-number">6.2</span> Completing the square</h3>
+<p>We complete the square in <span class="math inline">\(p_j\)</span>:</p>
+<p><span class="math display">\[
+p_j^2 - \frac{2m\,\Delta x_j}{\varepsilon} \, p_j = \left(p_j - \frac{m\,\Delta x_j}{\varepsilon}\right)^2 - \frac{m^2(\Delta x_j)^2}{\varepsilon^2}
+\]</span></p>
+<p>So the exponent becomes:</p>
+<p><span class="math display">\[
+-\frac{i\varepsilon}{2m\hbar}\left(p_j - \frac{m\,\Delta x_j}{\varepsilon}\right)^2 + \frac{i\varepsilon}{2m\hbar} \cdot \frac{m^2(\Delta x_j)^2}{\varepsilon^2}
+\]</span></p>
+<p>The second term simplifies to:</p>
+<p><span class="math display">\[
+\frac{i}{\hbar} \cdot \frac{m(\Delta x_j)^2}{2\varepsilon} = \frac{i}{\hbar} \cdot \frac{m}{2}\left(\frac{\Delta x_j}{\varepsilon}\right)^2 \varepsilon
+\]</span></p>
+<p>This is <span class="math inline">\((i/\hbar)\)</span> times the <strong>discretized kinetic energy</strong> <span class="math inline">\(\frac{1}{2}m\dot{x}_j^2\)</span> multiplied by <span class="math inline">\(\varepsilon\)</span>!</p>
+</section>
+<section id="performing-the-gaussian-integral" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="performing-the-gaussian-integral"><span class="header-section-number">6.3</span> Performing the Gaussian integral</h3>
+<p>The integral over <span class="math inline">\(p_j\)</span> is now:</p>
+<p><span class="math display">\[
+I_j = \frac{1}{2\pi\hbar} \exp\!\left\{ \frac{im(\Delta x_j)^2}{2\hbar\varepsilon} \right\} \int_{-\infty}^{+\infty} dp_j \; \exp\!\left\{ -\frac{i\varepsilon}{2m\hbar}\left(p_j - \frac{m\,\Delta x_j}{\varepsilon}\right)^2 \right\}
+\]</span></p>
+<p>Shifting the integration variable <span class="math inline">\(p_j \to p_j + m\,\Delta x_j/\varepsilon\)</span> (translation invariance of the integral):</p>
+<p><span class="math display">\[
+I_j = \frac{1}{2\pi\hbar} \exp\!\left\{ \frac{im(\Delta x_j)^2}{2\hbar\varepsilon} \right\} \int_{-\infty}^{+\infty} dp_j \; \exp\!\left\{ -\frac{i\varepsilon}{2m\hbar} \, p_j^2 \right\}
+\]</span></p>
+<p>This is a <strong>Fresnel-type Gaussian integral</strong>:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{+\infty} dp \; e^{-\alpha p^2} = \sqrt{\frac{\pi}{\alpha}}
+\]</span></p>
+<p>with <span class="math inline">\(\alpha = i\varepsilon/(2m\hbar)\)</span>. Using the analytic continuation of the Gaussian integral (see Module 7 for a careful treatment), we get:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{+\infty} dp \; e^{-i\varepsilon p^2/2m\hbar} = \sqrt{\frac{2\pi m\hbar}{i\varepsilon}} = \sqrt{\frac{2\pi m\hbar \cdot (-i)}{\varepsilon}} = \sqrt{\frac{2\pi m \hbar}{i\varepsilon}}
+\]</span></p>
+<p>Using <span class="math inline">\(1/i = -i = e^{-i\pi/2}\)</span>, we get <span class="math inline">\(\sqrt{2\pi m\hbar/(i\varepsilon)}\)</span>.</p>
+<p>Putting it all together:</p>
+<p><span class="math display">\[
+I_j = \frac{1}{2\pi\hbar} \sqrt{\frac{2\pi m \hbar}{i\varepsilon}} \; \exp\!\left\{ \frac{im(\Delta x_j)^2}{2\hbar\varepsilon} \right\}
+\]</span></p>
+<p>Simplifying:</p>
+<p><span id="eq-single-slice-result"><span class="math display">\[
+\boxed{I_j = \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{1/2} \exp\!\left\{ \frac{i}{\hbar} \frac{m}{2} \left(\frac{x_{j+1}-x_j}{\varepsilon}\right)^2 \varepsilon \right\}}
+\tag{12}\]</span></span></p>
+</section>
+<section id="combining-with-the-potential" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="combining-with-the-potential"><span class="header-section-number">6.4</span> Combining with the potential</h3>
+<p>Including the potential factor <span class="math inline">\(e^{-iV(x_j)\varepsilon/\hbar}\)</span> from <a href="#eq-potential-factor" class="quarto-xref">Equation&nbsp;7</a>, each time slice contributes:</p>
+<p><span class="math display">\[
+\left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{1/2} \exp\!\left\{ \frac{i}{\hbar}\left[ \frac{m}{2}\left(\frac{x_{j+1}-x_j}{\varepsilon}\right)^2 - V(x_j) \right]\varepsilon \right\}
+\]</span></p>
+<p>The quantity in square brackets is precisely the <strong>discrete Lagrangian</strong>:</p>
+<p><span class="math display">\[
+L_j = \frac{m}{2}\left(\frac{x_{j+1}-x_j}{\varepsilon}\right)^2 - V(x_j) = \frac{1}{2}m\dot{x}_j^2 - V(x_j)
+\]</span></p>
+<p>This is the Lagrangian <span class="math inline">\(L = T - V\)</span> evaluated on the <span class="math inline">\(j\)</span>-th time slice!</p>
+<div class="callout-intuition">
+<p>Where did the Lagrangian come from? We started with the <em>Hamiltonian</em> <span class="math inline">\(H = p^2/2m + V(x)\)</span>. When we integrated out the momentum <span class="math inline">\(p\)</span>, the Gaussian integral performed a <strong>Legendre transform</strong> automatically. The momentum integral found the stationary point <span class="math inline">\(p^* = m\dot{x}\)</span> (the classical relation!), and substituting back gave <span class="math inline">\(p^*\dot{x} - H(x, p^*) = m\dot{x}^2 - (m\dot{x}^2/2 + V) = m\dot{x}^2/2 - V = L(x, \dot{x})\)</span>. The path integral naturally performs the Legendre transform from the Hamiltonian to the Lagrangian.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-lagrangian-pi" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-lagrangian-pi"><span class="header-section-number">7</span> The Lagrangian Path Integral: Feynman’s Formula</h2>
+<section id="assembling-the-full-result" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="assembling-the-full-result"><span class="header-section-number">7.1</span> Assembling the full result</h3>
+<p>Multiplying together all <span class="math inline">\(N\)</span> time slices and integrating over all intermediate positions:</p>
+<p><span id="eq-discrete-lagrangian-pi"><span class="math display">\[
+K(x_b, T; x_a, 0) = \lim_{N \to \infty} \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2} \int dx_1 \cdots dx_{N-1} \; \exp\!\left\{ \frac{i}{\hbar} \sum_{j=0}^{N-1} L_j\,\varepsilon \right\}
+\tag{13}\]</span></span></p>
+<p>In the continuum limit, the sum becomes the <strong>action</strong>:</p>
+<p><span class="math display">\[
+\sum_{j=0}^{N-1} L_j \, \varepsilon \;\longrightarrow\; \int_0^T L\bigl(x(t), \dot{x}(t)\bigr) \, dt = S[x(t)]
+\]</span></p>
+<p>The products of integrals with the normalization factors define the <strong>path integral measure</strong>:</p>
+<p><span class="math display">\[
+\int \mathcal{D}x \equiv \lim_{N \to \infty} \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2} \int dx_1 \cdots dx_{N-1}
+\]</span></p>
+<p>And we arrive at <strong>Feynman’s path integral formula</strong>:</p>
+<p><span id="eq-feynman-pi"><span class="math display">\[
+\boxed{K(x_b, T; x_a, 0) = \int \mathcal{D}x(t) \; \exp\!\left\{ \frac{i}{\hbar} \int_0^T L\bigl(x, \dot{x}\bigr) \, dt \right\} = \int \mathcal{D}x \; e^{iS[x]/\hbar}}
+\tag{14}\]</span></span></p>
+<p>with boundary conditions <span class="math inline">\(x(0) = x_a\)</span>, <span class="math inline">\(x(T) = x_b\)</span>.</p>
+<p>🎉 <strong>This is it.</strong> This is Feynman’s formula. Let us pause and appreciate what we have accomplished:</p>
+<ol type="1">
+<li>We started from the <em>exact</em> operator expression <span class="math inline">\(K = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle\)</span>.</li>
+<li>We sliced time into <span class="math inline">\(N\)</span> pieces and inserted complete sets of position states.</li>
+<li>We used the Trotter formula to split <span class="math inline">\(e^{-i\hat{H}\varepsilon/\hbar}\)</span> into kinetic and potential factors.</li>
+<li>We inserted momentum states to compute the kinetic matrix element.</li>
+<li>We performed the Gaussian momentum integral, which gave us the Lagrangian.</li>
+<li>We took <span class="math inline">\(N \to \infty\)</span> and obtained the continuum path integral.</li>
+</ol>
+<p>No postulates were needed. The path integral is a <em>consequence</em> of the standard operator formalism, not an alternative to it.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why do we get the <em>Lagrangian</em> <span class="math inline">\(L = T - V\)</span> in the final formula, and not the <em>Hamiltonian</em> <span class="math inline">\(H = T + V\)</span>? After all, we started with the Hamiltonian!</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Integrating out momenta performs a <strong>Legendre transform</strong>! Here’s the chain of logic:</p>
+<ol type="1">
+<li>The phase-space path integral has the integrand <span class="math inline">\(\exp\{(i/\hbar)\int[p\dot{x} - H(x,p)]\,dt\}\)</span>.</li>
+<li>For <span class="math inline">\(H = p^2/2m + V(x)\)</span>, the <span class="math inline">\(p\)</span>-integral is Gaussian with stationary point at <span class="math inline">\(p^* = m\dot{x}\)</span>.</li>
+<li>Substituting <span class="math inline">\(p^* = m\dot{x}\)</span> into <span class="math inline">\(p\dot{x} - H\)</span>: <span class="math display">\[
+p^*\dot{x} - H(x, p^*) = m\dot{x}^2 - \left(\frac{m\dot{x}^2}{2} + V\right) = \frac{m\dot{x}^2}{2} - V = L(x, \dot{x})
+\]</span></li>
+</ol>
+<p>The Legendre transform <span class="math inline">\(L = p\dot{x} - H\)</span> is built into the structure of the phase-space path integral. The momentum integral simply <em>evaluates</em> this transform by performing the stationary-phase approximation (which, for a Gaussian, is exact).</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-measure" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-measure"><span class="header-section-number">8</span> What “Sum Over All Paths” Really Means</h2>
+<section id="the-path-integral-measure" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="the-path-integral-measure"><span class="header-section-number">8.1</span> The path integral measure</h3>
+<p>Let us be honest about the mathematical status of the expression <span class="math inline">\(\int \mathcal{D}x \; e^{iS[x]/\hbar}\)</span>.</p>
+<p>The <strong>path integral measure</strong> <span class="math inline">\(\mathcal{D}x\)</span> is defined only through the limiting procedure:</p>
+<p><span id="eq-measure-definition"><span class="math display">\[
+\int \mathcal{D}x(\cdot) \equiv \lim_{N \to \infty} \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2} \int_{-\infty}^{+\infty} dx_1 \int_{-\infty}^{+\infty} dx_2 \cdots \int_{-\infty}^{+\infty} dx_{N-1}
+\tag{15}\]</span></span></p>
+<p>Several important points:</p>
+<ol type="1">
+<li><p><strong>The normalization factor matters.</strong> The prefactor <span class="math inline">\((m/2\pi i\hbar\varepsilon)^{N/2}\)</span> diverges as <span class="math inline">\(N \to \infty\)</span> (since <span class="math inline">\(\varepsilon \to 0\)</span>). This divergence is <em>necessary</em> — it cancels against the fact that the integrals <span class="math inline">\(\int dx_1 \cdots dx_{N-1}\)</span> produce a vanishing result in the same limit. The ratio is finite and well-defined.</p></li>
+<li><p><strong>Infinitely many integrations.</strong> We are integrating over a function <span class="math inline">\(x(t)\)</span>, which is a point in an infinite-dimensional space. This is fundamentally different from ordinary integration.</p></li>
+<li><p><strong>The Minkowski path integral is formal.</strong> The oscillatory integrand <span class="math inline">\(e^{iS/\hbar}\)</span> does not converge absolutely — every path contributes with the same modulus <span class="math inline">\(|e^{iS/\hbar}| = 1\)</span>. There is no rigorous measure on path space for the Minkowski signature path integral. It is defined only as the limit of finite-dimensional integrals.</p></li>
+<li><p><strong>The Euclidean version is rigorous.</strong> After Wick rotation <span class="math inline">\(t \to -i\tau\)</span> (Module 9), the oscillatory <span class="math inline">\(e^{iS/\hbar}\)</span> becomes a damping factor <span class="math inline">\(e^{-S_E/\hbar}\)</span>, and the path integral becomes a well-defined integral with respect to <strong>Wiener measure</strong> — the measure on Brownian motion paths. This is the mathematical foundation of the path integral, due to Kac.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+For the Mathematically Inclined
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The paths that dominate the Wiener measure are <strong>continuous but nowhere differentiable</strong> — they are fractal-like, with fractal dimension 2. This means <span class="math inline">\(\dot{x}(t)\)</span> does not exist for a typical path! The “velocity” <span class="math inline">\(\dot{x}_j = (x_{j+1}-x_j)/\varepsilon\)</span> diverges as <span class="math inline">\(\varepsilon \to 0\)</span> for generic paths. The kinetic energy <span class="math inline">\(\frac{1}{2}m\dot{x}^2\)</span> is infinite on a typical path. Nevertheless, the <em>action</em> (which involves the integral <span class="math inline">\(\int \frac{1}{2}m\dot{x}^2\,dt\)</span>) is well-defined in a distributional sense because the divergent kinetic energy is compensated by the measure factor <span class="math inline">\((m/2\pi i\hbar\varepsilon)^{N/2}\)</span>. One should always think of the path integral as a limit of finite-dimensional integrals, never as a pre-existing infinite-dimensional integral.</p>
+</div>
+</div>
+</section>
+<section id="why-this-doesnt-bother-physicists-much" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="why-this-doesnt-bother-physicists-much"><span class="header-section-number">8.2</span> Why this doesn’t bother physicists (much)</h3>
+<p>Despite the lack of mathematical rigor in the Minkowski case, the path integral:</p>
+<ul>
+<li>Reproduces the correct Schrödinger equation (we proved this in Module 3 for the free particle).</li>
+<li>Gives correct propagators for all solvable systems (free particle, harmonic oscillator, etc.).</li>
+<li>Provides the most efficient framework for quantum field theory, where operator methods become unwieldy.</li>
+<li>Has a rigorous Euclidean version, which suffices for most calculations after Wick rotation.</li>
+</ul>
+<p>Physicists use the path integral as a <em>computational tool</em>, always keeping in mind that it is defined through the time-slicing limit. The formal continuum expression <span class="math inline">\(\int \mathcal{D}x \, e^{iS/\hbar}\)</span> is a shorthand for this limit.</p>
+<hr>
+</section>
+</section>
+<section id="sec-worked-example-1" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-worked-example-1"><span class="header-section-number">9</span> Worked Example 1: Full Derivation for <span class="math inline">\(H = p^2/2m + V(x)\)</span></h2>
+<p>Let us put all the steps together in one place, with no interruptions, for the standard non-relativistic particle.</p>
+<p><strong>Given:</strong> <span class="math inline">\(\hat{H} = \frac{\hat{p}^2}{2m} + V(\hat{x})\)</span></p>
+<p><strong>Goal:</strong> Derive <span class="math inline">\(K = \int \mathcal{D}x \; e^{iS[x]/\hbar}\)</span> where <span class="math inline">\(S = \int L \, dt\)</span> with <span class="math inline">\(L = \frac{1}{2}m\dot{x}^2 - V(x)\)</span>.</p>
+<p><strong>Step 1: Time slicing.</strong></p>
+<p><span class="math display">\[
+K = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle = \langle x_b | \left(e^{-i\hat{H}\varepsilon/\hbar}\right)^N | x_a \rangle, \quad \varepsilon = T/N
+\]</span></p>
+<p><strong>Step 2: Insert <span class="math inline">\(N-1\)</span> complete sets of position states.</strong></p>
+<p><span class="math display">\[
+K = \int dx_1 \cdots dx_{N-1} \prod_{j=0}^{N-1} \langle x_{j+1} | e^{-i\hat{H}\varepsilon/\hbar} | x_j \rangle
+\]</span></p>
+<p><strong>Step 3: Trotter split each factor.</strong></p>
+<p><span class="math display">\[
+\langle x_{j+1} | e^{-i\hat{H}\varepsilon/\hbar} | x_j \rangle \approx \langle x_{j+1} | e^{-i\hat{T}\varepsilon/\hbar} e^{-i\hat{V}\varepsilon/\hbar} | x_j \rangle
+\]</span></p>
+<p><strong>Step 4: Evaluate the potential factor.</strong></p>
+<p><span class="math display">\[
+e^{-i\hat{V}\varepsilon/\hbar} |x_j\rangle = e^{-iV(x_j)\varepsilon/\hbar} |x_j\rangle
+\]</span></p>
+<p><strong>Step 5: Insert momentum states for the kinetic factor.</strong></p>
+<p><span class="math display">\[
+\langle x_{j+1} | e^{-i\hat{T}\varepsilon/\hbar} | x_j \rangle = \int \frac{dp_j}{2\pi\hbar} \; e^{ip_j(x_{j+1}-x_j)/\hbar} \; e^{-ip_j^2\varepsilon/2m\hbar}
+\]</span></p>
+<p><strong>Step 6: Combine into the phase-space path integral.</strong></p>
+<p><span class="math display">\[
+K = \int \prod_{j=1}^{N-1} dx_j \prod_{j=0}^{N-1} \frac{dp_j}{2\pi\hbar} \; \exp\!\left\{ \frac{i}{\hbar}\sum_{j=0}^{N-1} \left[ p_j \frac{x_{j+1}-x_j}{\varepsilon} - \frac{p_j^2}{2m} - V(x_j) \right]\varepsilon \right\}
+\]</span></p>
+<p><strong>Step 7: Perform the Gaussian momentum integrals.</strong> For each <span class="math inline">\(j\)</span>:</p>
+<p><span class="math display">\[
+\int \frac{dp_j}{2\pi\hbar} \exp\!\left\{ \frac{i\varepsilon}{\hbar}\left[ p_j \dot{x}_j - \frac{p_j^2}{2m} \right] \right\} = \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{1/2} \exp\!\left\{ \frac{i\varepsilon}{\hbar} \frac{m\dot{x}_j^2}{2} \right\}
+\]</span></p>
+<p><strong>Step 8: Assemble the Lagrangian path integral.</strong></p>
+<p><span class="math display">\[
+K = \lim_{N \to \infty} \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2} \int dx_1 \cdots dx_{N-1} \; \exp\!\left\{ \frac{i}{\hbar}\sum_{j=0}^{N-1}\left[\frac{m\dot{x}_j^2}{2} - V(x_j)\right]\varepsilon \right\}
+\]</span></p>
+<p><strong>Step 9: Take the continuum limit.</strong></p>
+<p><span class="math display">\[
+\boxed{K(x_b, T; x_a, 0) = \int \mathcal{D}x \; \exp\!\left\{ \frac{i}{\hbar}\int_0^T \left[\frac{1}{2}m\dot{x}^2 - V(x)\right] dt \right\} = \int \mathcal{D}x \; e^{iS[x]/\hbar}}
+\]</span></p>
+<p>This is Feynman’s result. ∎</p>
+<hr>
+</section>
+<section id="sec-worked-example-2" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-worked-example-2"><span class="header-section-number">10</span> Worked Example 2: Velocity-Dependent Potentials and Ordering Ambiguities</h2>
+<section id="the-problem-charged-particle-in-a-magnetic-field" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="the-problem-charged-particle-in-a-magnetic-field"><span class="header-section-number">10.1</span> The problem: charged particle in a magnetic field</h3>
+<p>Consider a charged particle in an electromagnetic field. The Hamiltonian is:</p>
+<p><span class="math display">\[
+\hat{H} = \frac{1}{2m}\left(\hat{p} - \frac{e}{c}\hat{A}(\hat{x})\right)^2 + e\Phi(\hat{x})
+\]</span></p>
+<p>where <span class="math inline">\(A(x)\)</span> is the vector potential and <span class="math inline">\(\Phi(x)\)</span> is the scalar potential. Expanding:</p>
+<p><span class="math display">\[
+\hat{H} = \frac{\hat{p}^2}{2m} - \frac{e}{2mc}\left(\hat{p}\cdot\hat{A}(\hat{x}) + \hat{A}(\hat{x})\cdot\hat{p}\right) + \frac{e^2}{2mc^2}\hat{A}(\hat{x})^2 + e\Phi(\hat{x})
+\]</span></p>
+<p>The cross term <span class="math inline">\(\hat{p}\cdot\hat{A}(\hat{x}) + \hat{A}(\hat{x})\cdot\hat{p}\)</span> involves products of non-commuting operators <span class="math inline">\(\hat{p}\)</span> and <span class="math inline">\(\hat{A}(\hat{x})\)</span>. The <strong>ordering</strong> of these operators matters because <span class="math inline">\([\hat{x}, \hat{p}] = i\hbar \neq 0\)</span>.</p>
+</section>
+<section id="the-ordering-ambiguity" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="the-ordering-ambiguity"><span class="header-section-number">10.2</span> The ordering ambiguity</h3>
+<p>In the phase-space path integral, the Hamiltonian appears as a <em>classical function</em> <span class="math inline">\(H(x, p)\)</span>. But which classical function? Consider the term <span class="math inline">\(\hat{p}\,\hat{A}(\hat{x})\)</span>:</p>
+<ul>
+<li>If we put <span class="math inline">\(\hat{V}\)</span> to the right in the Trotter splitting (<span class="math inline">\(e^{-i\hat{T}\varepsilon/\hbar} e^{-i\hat{V}\varepsilon/\hbar}\)</span>), the potential is evaluated at <span class="math inline">\(x_j\)</span>.</li>
+<li>If we put <span class="math inline">\(\hat{V}\)</span> to the left, it would be evaluated at <span class="math inline">\(x_{j+1}\)</span>.</li>
+<li>The symmetric Trotter splitting gives evaluation at the midpoint <span class="math inline">\((x_j + x_{j+1})/2\)</span>.</li>
+</ul>
+<p>These choices differ by terms of order <span class="math inline">\(\varepsilon\)</span>, which <em>might</em> contribute finite corrections in the limit <span class="math inline">\(N \to \infty\)</span>. For the standard Hamiltonian <span class="math inline">\(H = p^2/2m + V(x)\)</span>, these corrections are absent because <span class="math inline">\(V\)</span> depends only on <span class="math inline">\(x\)</span>. But for velocity-dependent potentials (where <span class="math inline">\(H\)</span> involves mixed <span class="math inline">\(x\)</span>-<span class="math inline">\(p\)</span> terms), the ordering ambiguity becomes physical.</p>
+</section>
+<section id="the-midpoint-prescription" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="the-midpoint-prescription"><span class="header-section-number">10.3</span> The midpoint prescription</h3>
+<p>The correct prescription, which reproduces the Schrödinger equation, is the <strong>Weyl-ordered</strong> or <strong>midpoint</strong> rule:</p>
+<p><span class="math display">\[
+\langle x_{j+1} | e^{-i\hat{H}\varepsilon/\hbar} | x_j \rangle \approx \int \frac{dp_j}{2\pi\hbar} \exp\!\left\{ \frac{i}{\hbar}\left[ p_j(x_{j+1}-x_j) - H\!\left(\frac{x_j+x_{j+1}}{2}, p_j\right)\varepsilon \right]\right\}
+\]</span></p>
+<p>where the Hamiltonian is evaluated at the <strong>midpoint</strong> <span class="math inline">\(\bar{x}_j = (x_j + x_{j+1})/2\)</span>.</p>
+<p>For the charged particle, this gives the correct Lagrangian:</p>
+<p><span class="math display">\[
+L = \frac{1}{2}m\dot{x}^2 + \frac{e}{c}\dot{x} \cdot A(x) - e\Phi(x)
+\]</span></p>
+<p>The cross term <span class="math inline">\(\dot{x} \cdot A\)</span> emerges correctly only with the midpoint prescription. Other prescriptions (endpoint evaluations) give incorrect results that differ by terms proportional to <span class="math inline">\(\hbar\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Lesson of Ordering Ambiguities
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The path integral is not <em>independent</em> of the operator formalism — it is <em>derived from</em> it. Whenever operator ordering matters (which it does for velocity-dependent potentials, curved spaces, etc.), the correct path integral must be inferred from the operator ordering of the quantum Hamiltonian. The path integral does not resolve ordering ambiguities; it <em>inherits</em> them. This is a subtle but important point that many textbooks gloss over.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-comparison" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-comparison"><span class="header-section-number">11</span> Comparison of Formulations</h2>
+<p>Let us summarize the three equivalent ways of expressing the propagator:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Operator Formalism</th>
+<th>Phase-Space Path Integral</th>
+<th>Configuration-Space (Lagrangian) Path Integral</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Formula</strong></td>
+<td><span class="math inline">\(K = \langle x_b \| e^{-i\hat{H}T/\hbar} \| x_a \rangle\)</span></td>
+<td><span class="math inline">\(K = \int \mathcal{D}x\,\mathcal{D}p \; e^{(i/\hbar)\int[p\dot{x}-H]\,dt}\)</span></td>
+<td><span class="math inline">\(K = \int \mathcal{D}x \; e^{(i/\hbar)\int L\,dt}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Variables</strong></td>
+<td>Operators <span class="math inline">\(\hat{x}, \hat{p}\)</span></td>
+<td>Classical functions <span class="math inline">\(x(t), p(t)\)</span></td>
+<td>Classical function <span class="math inline">\(x(t)\)</span> only</td>
+</tr>
+<tr class="odd">
+<td><strong>Integrand</strong></td>
+<td>Hamiltonian operator <span class="math inline">\(\hat{H}\)</span></td>
+<td>Classical Hamiltonian <span class="math inline">\(H(x,p)\)</span></td>
+<td>Classical Lagrangian <span class="math inline">\(L(x,\dot{x})\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Boundary conditions</strong></td>
+<td><span class="math inline">\(x_a, x_b\)</span> fixed</td>
+<td><span class="math inline">\(x_a, x_b\)</span> fixed; <span class="math inline">\(p\)</span> free</td>
+<td><span class="math inline">\(x_a, x_b\)</span> fixed</td>
+</tr>
+<tr class="odd">
+<td><strong>Valid for</strong></td>
+<td>Any <span class="math inline">\(\hat{H}\)</span></td>
+<td>Any <span class="math inline">\(H(x,p)\)</span></td>
+<td><span class="math inline">\(H\)</span> quadratic in <span class="math inline">\(p\)</span> only</td>
+</tr>
+<tr class="even">
+<td><strong>Operator ordering</strong></td>
+<td>Explicit</td>
+<td>Encoded in discretization</td>
+<td>Encoded in discretization</td>
+</tr>
+<tr class="odd">
+<td><strong>Mathematical rigor</strong></td>
+<td>Fully rigorous</td>
+<td>Defined via time-slicing limit</td>
+<td>Defined via time-slicing limit</td>
+</tr>
+<tr class="even">
+<td><strong>Key advantage</strong></td>
+<td>Exact, non-perturbative</td>
+<td>Most general path integral form</td>
+<td>Elegant; connects to classical mechanics</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Kleinert, <em>Path Integrals in QM, Statistics, Polymer Physics, and Financial Markets</em>, Ch. 2 for a thorough comparison.</p>
+</blockquote>
+<hr>
+</section>
+<section id="sec-summary" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">12</span> Summary of Key Results</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Formula</th>
+<th>Equation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Starting point</td>
+<td><span class="math inline">\(K = \langle x_b \| e^{-i\hat{H}T/\hbar} \| x_a \rangle\)</span></td>
+<td><a href="#eq-propagator-operator" class="quarto-xref">Equation&nbsp;1</a></td>
+</tr>
+<tr class="even">
+<td>Time slicing</td>
+<td><span class="math inline">\(e^{-i\hat{H}T/\hbar} = (e^{-i\hat{H}\varepsilon/\hbar})^N\)</span></td>
+<td><a href="#eq-time-slicing" class="quarto-xref">Equation&nbsp;2</a></td>
+</tr>
+<tr class="odd">
+<td>Trotter formula</td>
+<td><span class="math inline">\(e^{-i(\hat{T}+\hat{V})\varepsilon/\hbar} = e^{-i\hat{T}\varepsilon/\hbar}e^{-i\hat{V}\varepsilon/\hbar} + \mathcal{O}(\varepsilon^2)\)</span></td>
+<td><a href="#eq-trotter" class="quarto-xref">Equation&nbsp;5</a></td>
+</tr>
+<tr class="even">
+<td>Single-slice kinetic element</td>
+<td><span class="math inline">\(\int \frac{dp}{2\pi\hbar} e^{ip\Delta x/\hbar - ip^2\varepsilon/2m\hbar}\)</span></td>
+<td><a href="#eq-kinetic-element" class="quarto-xref">Equation&nbsp;8</a></td>
+</tr>
+<tr class="odd">
+<td>Momentum integral result</td>
+<td><span class="math inline">\((m/2\pi i\hbar\varepsilon)^{1/2} \, e^{im(\Delta x)^2/2\hbar\varepsilon}\)</span></td>
+<td><a href="#eq-single-slice-result" class="quarto-xref">Equation&nbsp;12</a></td>
+</tr>
+<tr class="even">
+<td>Phase-space path integral</td>
+<td><span class="math inline">\(K = \int \mathcal{D}x\,\mathcal{D}p \; e^{(i/\hbar)\int[p\dot{x}-H]\,dt}\)</span></td>
+<td><a href="#eq-phase-space-pi" class="quarto-xref">Equation&nbsp;11</a></td>
+</tr>
+<tr class="odd">
+<td><strong>Feynman’s formula</strong></td>
+<td><span class="math inline">\(K = \int \mathcal{D}x \; e^{iS[x]/\hbar}\)</span></td>
+<td><a href="#eq-feynman-pi" class="quarto-xref">Equation&nbsp;14</a></td>
+</tr>
+<tr class="even">
+<td>Path integral measure</td>
+<td><span class="math inline">\(\int \mathcal{D}x = \lim_{N\to\infty} (m/2\pi i\hbar\varepsilon)^{N/2}\int dx_1\cdots dx_{N-1}\)</span></td>
+<td><a href="#eq-measure-definition" class="quarto-xref">Equation&nbsp;15</a></td>
+</tr>
+</tbody>
+</table>
+<div class="checkpoint">
+<p>Before moving on, make sure you can:</p>
+<ol type="1">
+<li>Start from <span class="math inline">\(K = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle\)</span> and explain each step leading to the path integral.</li>
+<li>State the Trotter product formula and explain why the error vanishes as <span class="math inline">\(N \to \infty\)</span>.</li>
+<li>Derive the short-time propagator <a href="#eq-short-time-propagator" class="quarto-xref">Equation&nbsp;9</a> by inserting momentum states.</li>
+<li>Perform the Gaussian momentum integral to go from the phase-space to the Lagrangian path integral.</li>
+<li>Explain why the Lagrangian (not the Hamiltonian) appears in Feynman’s formula.</li>
+<li>State when the configuration-space path integral fails and the phase-space version is needed.</li>
+<li>Explain the midpoint prescription and why operator ordering matters.</li>
+</ol>
+</div>
+<hr>
+</section>
+<section id="sec-practice-problems" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="sec-practice-problems"><span class="header-section-number">13</span> Practice Problems</h2>
+<p><strong>Problem 1</strong> (Warm-up): Verify the BCH formula to second order. Expand <span class="math inline">\(e^{\hat{A}}e^{\hat{B}}\)</span> and <span class="math inline">\(e^{\hat{A}+\hat{B}+\frac{1}{2}[\hat{A},\hat{B}]}\)</span> each to second order in the operators, and show they agree to <span class="math inline">\(\mathcal{O}(\hat{A}^2, \hat{A}\hat{B}, \hat{B}^2)\)</span>. (<em>Hint:</em> <span class="math inline">\(e^{\hat{A}} = 1 + \hat{A} + \hat{A}^2/2 + \cdots\)</span>)</p>
+<p><strong>Problem 2</strong> (Trotter error): Consider the symmetric Trotter splitting <span class="math inline">\(e^{-i\hat{V}\varepsilon/2\hbar}\,e^{-i\hat{T}\varepsilon/\hbar}\,e^{-i\hat{V}\varepsilon/2\hbar}\)</span>. Use the BCH formula to show that the error is <span class="math inline">\(\mathcal{O}(\varepsilon^3)\)</span> instead of <span class="math inline">\(\mathcal{O}(\varepsilon^2)\)</span>. Specifically, show that the <span class="math inline">\(\mathcal{O}(\varepsilon^2)\)</span> commutator terms cancel.</p>
+<p><strong>Problem 3</strong> (Gaussian integral practice): Compute the integral</p>
+<p><span class="math display">\[
+I = \int_{-\infty}^{+\infty} \frac{dp}{2\pi\hbar} \exp\!\left\{ \frac{i}{\hbar}\left[ p \cdot \Delta x - \frac{p^2}{2m}\varepsilon \right] \right\}
+\]</span></p>
+<p>by completing the square, and verify that you obtain <span class="math inline">\((m/2\pi i\hbar\varepsilon)^{1/2}\exp\{im(\Delta x)^2/2\hbar\varepsilon\}\)</span>.</p>
+<p><strong>Problem 4</strong> (Free particle check): Starting from the Lagrangian path integral <a href="#eq-discrete-lagrangian-pi" class="quarto-xref">Equation&nbsp;13</a> with <span class="math inline">\(V = 0\)</span>, verify that for <span class="math inline">\(N = 2\)</span> (one intermediate integration), you recover the free-particle propagator <span class="math inline">\(K = (m/2\pi i\hbar T)^{1/2}\exp\{im(x_b - x_a)^2/2\hbar T\}\)</span>. (<em>Hint:</em> You need to do one Gaussian integral over <span class="math inline">\(x_1\)</span>, using the result from Module 3.)</p>
+<p><strong>Problem 5</strong> (Phase-space for the harmonic oscillator): Write down the discrete phase-space path integral for the harmonic oscillator, <span class="math inline">\(H = p^2/2m + \frac{1}{2}m\omega^2 x^2\)</span>. Perform the momentum integrals to obtain the Lagrangian form. What is the discrete Lagrangian <span class="math inline">\(L_j\)</span> that appears?</p>
+<p><strong>Problem 6</strong> (Ordering ambiguity — challenging): Consider a one-dimensional system with the Hamiltonian <span class="math inline">\(\hat{H} = f(\hat{x})\hat{p}^2\)</span>, where <span class="math inline">\(f(x)\)</span> is some function of position (this arises, for example, for motion on a curved space). Show that the Trotter splitting <span class="math inline">\(e^{-i\hat{H}\varepsilon/\hbar} \approx e^{-if(\hat{x})\hat{p}^2\varepsilon/\hbar}\)</span> is ambiguous: the matrix element <span class="math inline">\(\langle x_{j+1}| e^{-if(\hat{x})\hat{p}^2\varepsilon/\hbar} |x_j\rangle\)</span> depends on whether <span class="math inline">\(f(\hat{x})\)</span> acts to the left or the right. Write down the matrix element using the midpoint prescription, <span class="math inline">\(f \to f(\bar{x}_j)\)</span> where <span class="math inline">\(\bar{x}_j = (x_j + x_{j+1})/2\)</span>, and show that the resulting Lagrangian includes an extra quantum correction term proportional to <span class="math inline">\(\hbar^2\)</span>.</p>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/Path_Integrals/03_free_particle.html" class="btn btn-outline-secondary">← Previous: Free Particle Propagator</a> <a href="../../Courses/Path_Integrals/05_harmonic_oscillator.html" class="btn btn-success">Next: Module 5 — Harmonic Oscillator →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

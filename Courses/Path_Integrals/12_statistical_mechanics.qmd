@@ -1,0 +1,310 @@
+---
+title: "Module 12: Connection to Statistical Mechanics"
+subtitle: "Quantum Mechanics as Classical Statistical Mechanics in $d+1$ Dimensions"
+description: "Exploring the profound equivalence between quantum mechanics in imaginary time and classical statistical mechanics."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 13 →](13_qft_path_integral.qmd)
+
+# Introduction: The Deepest Dictionary in Physics
+
+Welcome to what is arguably the most profound conceptual leap in this entire course. We have spent significant time developing the path integral as a tool for quantum mechanics. We introduced Wick rotation to make the path integral mathematically well-behaved. Now, we are going to see that this mathematical trick exposes a deep, exact equivalence between quantum mechanics and classical statistical mechanics. 
+
+By the end of this module, you will see that a quantum system in $d$ spatial dimensions is mathematically identical to a classical statistical system in $d+1$ dimensions. This dictionary allows us to map phase transitions to quantum fluctuations, borrow Monte Carlo techniques from stat mech to solve quantum field theories, and ultimately understand why thermal and quantum fluctuations are two sides of the same coin.
+
+## 12.1 The Formal Analogy
+
+Let's begin by recalling the time evolution operator in quantum mechanics:
+$$ \hat{U}(t) = e^{-i\hat{H}t/\hbar} $$
+This operator evolves a quantum state forward in real time $t$. 
+
+In classical statistical mechanics, the central object is the canonical partition function, and the corresponding statistical weight of a state with energy $E$ is given by the Boltzmann factor:
+$$ W = e^{-\beta \hat{H}} $$
+where $\beta = \frac{1}{k_B T}$, with $k_B$ being the Boltzmann constant and $T$ the absolute temperature.
+
+If we look at these two operators, they are formally identical under the substitution:
+$$ \frac{it}{\hbar} \to \beta \implies t \to -i\beta\hbar $$
+This is exactly the Wick rotation we introduced in Module 10: $t = -i\tau$. If we set the imaginary time $\tau = \beta\hbar$, the quantum time evolution operator becomes exactly the Boltzmann operator!
+
+::: {.callout-tip}
+## The Grand Equivalence
+Quantum mechanics in imaginary time **is** statistical mechanics. The parameter $\beta$ (inverse temperature) simply dictates the total duration of imaginary time.
+:::
+
+> **Textbook reference**: Altland & Simons, Ch. 4.
+
+::: {.callout-note}
+## Imaginary Time and Relativity
+It's worth noting that replacing $t$ with $-i\tau$ in Minkowski spacetime $ds^2 = -c^2dt^2 + dx^2 + dy^2 + dz^2$ yields $ds^2 = c^2d\tau^2 + dx^2 + dy^2 + dz^2$, which is Euclidean space with a positive definite metric. This is why we call it the *Euclidean* path integral. In statistical mechanics, there is no "light cone" or causal structure—everything is just an equilibrium probability distribution in a Euclidean space.
+:::
+
+## 12.2 Quantum Partition Function = Euclidean Path Integral
+
+In statistical mechanics, the partition function $Z(\beta)$ is the trace of the Boltzmann operator over all possible states of the system. For a quantum system, we can write the partition function by taking the trace over a complete set of position eigenstates $|x\rangle$:
+$$ Z(\beta) = \text{Tr}(e^{-\beta\hat{H}}) = \int dx \langle x | e^{-\beta\hat{H}} | x \rangle $$
+
+Notice what the integrand is. It is exactly the Euclidean transition amplitude (or propagator) to start at position $x$ and return to the exact same position $x$ after an imaginary time $\tau = \beta\hbar$:
+$$ \langle x | e^{-\beta\hat{H}} | x \rangle = K_E(x, x; \beta\hbar) $$
+
+From Module 10, we know how to write this Euclidean propagator as a path integral:
+$$ K_E(x, x; \beta\hbar) = \int_{x(0)=x}^{x(\beta\hbar)=x} \mathcal{D}x(\tau) \, e^{-S_E[x]/\hbar} $$
+where the Euclidean action is:
+$$ S_E[x] = \int_{0}^{\beta\hbar} \left( \frac{1}{2}m\left(\frac{dx}{d\tau}\right)^2 + V(x) \right) d\tau $$
+
+To get the full partition function $Z(\beta)$, we must integrate this amplitude over all possible starting/ending positions $x$. In the language of paths, we are integrating over all paths that start at some $x$ and return to the *same* $x$ after a time $\beta\hbar$. What kind of paths are these? They are **periodic paths**!
+
+$$ \boxed{ Z(\beta) = \int dx \int_{x(0)=x}^{x(\beta\hbar)=x} \mathcal{D}x(\tau) \, e^{-S_E[x]/\hbar} = \oint \mathcal{D}x(\tau) \, e^{-S_E[x]/\hbar} } $$
+where the $\oint$ symbol reminds us that we are summing over paths obeying the periodic boundary condition:
+$$ x(0) = x(\beta\hbar) $$
+
+::: {.callout-intuition}
+We can think of imaginary time as a circle of circumference $\beta\hbar$. A path in a thermal system is a closed loop around this circle. The partition function simply sums over all possible closed loops, weighted by $e^{-S_E/\hbar}$. The higher the temperature, the smaller the circle.
+:::
+
+::: {.callout-warning}
+## 🤔 Quick Question 1
+If quantum mechanics in imaginary time IS statistical mechanics, does that mean temperature is "imaginary time"?
+
+::: {.callout-note collapse="true"}
+## Answer
+Yes! The quantity $\beta = 1/k_B T$ plays the exact mathematical role of the extent of imaginary time, up to a factor of $\hbar$. The length of the "imaginary time" interval is $\tau \in [0, \beta\hbar]$. A hotter system (large $T$, small $\beta$) has a shorter imaginary-time circle. At $T=0$, the circle has infinite radius, and imaginary time extends from $-\infty$ to $\infty$.
+:::
+:::
+
+## 12.3 Thermal Expectation Values
+
+In quantum statistical mechanics, the thermal expectation value of an operator $\hat{O}$ is:
+$$ \langle \hat{O} \rangle_\beta = \frac{1}{Z(\beta)} \text{Tr}(e^{-\beta\hat{H}} \hat{O}) $$
+
+We can translate this into the path integral language. Suppose $\hat{O}$ depends only on position, $\hat{O} = O(\hat{x})$. Using the position basis to evaluate the trace:
+$$ \langle \hat{O} \rangle_\beta = \frac{1}{Z(\beta)} \int dx \langle x | e^{-\beta\hat{H}} O(\hat{x}) | x \rangle $$
+Since $\hat{O}$ acts on $|x\rangle$ to give $O(x)|x\rangle$, we can pull the eigenvalue $O(x)$ out. If we slice up the imaginary time interval into $N$ segments, the operator acts at a specific time (say, $\tau = 0$). The path integral representation simply includes this classical function $O(x(0))$ inside the integral:
+$$ \langle \hat{O} \rangle_\beta = \frac{1}{Z(\beta)} \oint \mathcal{D}x \, O(x(0)) e^{-S_E[x]/\hbar} $$
+
+What if we have a product of operators at different imaginary times, like $\hat{x}(\tau_1) \hat{x}(\tau_2)$? Just as in real-time QM (where the path integral automatically computes time-ordered products), the Euclidean path integral automatically computes **imaginary-time-ordered** products.
+$$ \langle \mathcal{T}_\tau \{\hat{x}(\tau_1) \hat{x}(\tau_2)\} \rangle_\beta = \frac{1}{Z(\beta)} \oint \mathcal{D}x \, x(\tau_1) x(\tau_2) e^{-S_E[x]/\hbar} $$
+where $\mathcal{T}_\tau$ orders operators such that the one with the largest imaginary time appears on the left.
+
+## 12.4 Classical Statistical Mechanics as $\hbar \to 0$
+
+Let's consider the high-temperature (small $\beta$) or semi-classical ($\hbar \to 0$) limit. In both cases, the product $\beta\hbar$ becomes very small. The imaginary-time circle shrinks!
+
+The thermal circle has circumference $\beta\hbar$. As this circumference goes to zero, the paths $x(\tau)$ have very little "room" to fluctuate in the $\tau$ direction without incurring a massive kinetic energy penalty.
+The kinetic term in the Euclidean action is $\int \frac{1}{2}m \dot{x}^2 d\tau$. If a path tries to change position significantly over a tiny time interval $\beta\hbar$, the derivative $\dot{x}$ becomes huge, making $S_E$ enormous and exponentially suppressing the path's contribution to $e^{-S_E/\hbar}$.
+
+Therefore, the path integral is dominated entirely by **constant paths**:
+$$ x(\tau) = x_0 \quad (\text{independent of } \tau) $$
+Let's evaluate the Euclidean action for such a constant path. Since $\dot{x} = 0$, the kinetic energy is zero:
+$$ S_E[x_0] = \int_0^{\beta\hbar} V(x_0) d\tau = \beta\hbar V(x_0) $$
+
+The path integral over all paths collapses into a single ordinary integral over the constant value $x_0$:
+$$ Z \to \int dx_0 \, e^{-S_E[x_0]/\hbar} = \int dx_0 \, e^{-\beta V(x_0)} $$
+
+This is exactly the configurational part of the classical canonical partition function! 
+
+::: {.callout-warning}
+## 🤔 Quick Question 2
+In classical stat mech, $Z = \int dp dx \, e^{-\beta H(x,p)}$. In the path integral, we only integrate over paths $x(\tau)$. Where did the momenta go?
+
+::: {.callout-note collapse="true"}
+## Answer
+They were integrated out! Remember Module 4: integrating out the momenta in the phase-space path integral gives the Lagrangian configuration-space path integral. In statistical mechanics, the momentum integrals are simple independent Gaussians at each point in time that yield the thermal de Broglie wavelength factors, leaving only the coordinate integrals. Adding back the momentum integral from the path integral measure exactly restores the full classical $Z_{\text{class}} = \int \frac{dpdx}{2\pi\hbar} e^{-\beta\left(\frac{p^2}{2m} + V(x)\right)}$.
+:::
+:::
+
+## 12.5 The Transfer Matrix
+
+Let's look at this connection from the other direction. Suppose we start with a classical 1D lattice model, like the 1D Ising model. The system consists of classical spins $s_i$ on a line, with energy depending on nearest neighbors. 
+A standard trick to solve such classical 1D models is the **Transfer Matrix** method. The partition function is written as a sum over all states:
+$$ Z = \sum_{\{s\}} e^{-\beta E(\{s\})} $$
+We can rewrite this as the trace of a matrix $\mathbf{T}$ raised to the power of the number of sites $N$:
+$$ Z = \text{Tr}(\mathbf{T}^N) $$
+where $\mathbf{T}_{s_i, s_{i+1}}$ describes the statistical weight of the bond between neighboring spins.
+
+Now compare this to the discretized Euclidean path integral for a quantum system:
+$$ Z = \text{Tr}(e^{-\beta\hat{H}}) = \text{Tr}\left( (e^{-\epsilon\hat{H}})^N \right) $$
+where we have sliced the imaginary time $\beta$ into $N$ steps of size $\epsilon$. 
+
+The equivalence is striking:
+$$ \boxed{ \mathbf{T} \longleftrightarrow e^{-\epsilon\hat{H}} } $$
+The transfer matrix of a $d$-dimensional classical system is literally the imaginary-time evolution operator of a $d$-dimensional quantum system! The classical spatial lattice direction corresponds to the quantum imaginary time direction.
+
+## 12.6 Quantum-Classical Dimensional Mapping
+
+This brings us to the profound dimensional mapping. Because the imaginary time axis behaves exactly like an extra spatial dimension in a classical statistical model, we have the following correspondence:
+
+**A $d$-dimensional quantum system at finite temperature $T$ is mathematically equivalent to a $(d+1)$-dimensional classical system.**
+
+The extra dimension is imaginary time, and its size is $L_\tau = \beta\hbar = \hbar / k_B T$.
+
+What happens at absolute zero temperature ($T=0$)? As $T \to 0$, the inverse temperature $\beta \to \infty$. The imaginary time circle unrolls into an infinite line.
+Therefore, a **zero-temperature quantum system in $d$ dimensions maps to a classical system in $d+1$ dimensions of infinite extent.** Quantum phase transitions (which occur at $T=0$ driven by a parameter like magnetic field) can be studied exactly like classical phase transitions in one higher dimension!
+
+---
+
+## Worked Example 1: Harmonic Oscillator Partition Function
+
+Let's explicitly compute the partition function for the quantum harmonic oscillator using the path integral and recover the Planck distribution.
+The Euclidean action is:
+$$ S_E[x] = \int_0^{\beta\hbar} \left( \frac{1}{2}m\dot{x}^2 + \frac{1}{2}m\omega^2 x^2 \right) d\tau $$
+
+We must sum over all periodic paths $x(\tau) = x(\tau + \beta\hbar)$. Since the paths are periodic, we can expand them in a Fourier series:
+$$ x(\tau) = \sum_{n=-\infty}^{\infty} x_n e^{i \omega_n \tau} $$
+where the frequencies $\omega_n$ must satisfy $e^{i \omega_n \beta\hbar} = 1$, which means:
+$$ \omega_n = \frac{2\pi n}{\beta\hbar}, \quad n \in \mathbb{Z} $$
+These are called **Matsubara frequencies**.
+
+Substitute the Fourier series into the action. Because the Fourier modes are orthogonal, the integral over $\tau$ kills cross terms, leaving:
+$$ S_E = \frac{\beta\hbar}{2} \sum_{n=-\infty}^{\infty} m (\omega_n^2 + \omega^2) |x_n|^2 $$
+Notice that the action is now completely diagonal—it is just a sum of independent harmonic oscillators for each Fourier mode $x_n$.
+The path integral $\oint \mathcal{D}x \, e^{-S_E/\hbar}$ becomes an infinite product of ordinary Gaussian integrals over the coefficients $x_n$:
+$$ Z = \mathcal{N} \prod_{n=-\infty}^{\infty} \left( \int dx_n \exp\left[ -\frac{\beta}{2} m (\omega_n^2 + \omega^2) |x_n|^2 \right] \right) $$
+
+Performing the Gaussian integrals gives:
+$$ Z = \mathcal{N}' \prod_{n=-\infty}^{\infty} \frac{1}{\sqrt{\omega_n^2 + \omega^2}} $$
+where $\mathcal{N}'$ is a normalization constant that is independent of $\omega$.
+
+To evaluate this infinite product elegantly, we take the logarithmic derivative with respect to $\omega$:
+$$ \frac{\partial \ln Z}{\partial \omega} = -\sum_{n=-\infty}^{\infty} \frac{\omega}{\omega_n^2 + \omega^2} $$
+Substituting $\omega_n = 2\pi n / \beta\hbar$:
+$$ \frac{\partial \ln Z}{\partial \omega} = -\frac{\beta\hbar}{2\pi} \sum_{n=-\infty}^{\infty} \frac{(\beta\hbar\omega/2\pi)}{n^2 + (\beta\hbar\omega/2\pi)^2} $$
+Using the standard identity $\sum_{n=-\infty}^\infty \frac{y}{n^2 + y^2} = \pi \coth(\pi y)$, and setting $y = \frac{\beta\hbar\omega}{2\pi}$, we get:
+$$ \frac{\partial \ln Z}{\partial \omega} = -\frac{\beta\hbar}{2} \coth\left(\frac{\beta\hbar\omega}{2}\right) $$
+
+Integrating this with respect to $\omega$ gives:
+$$ \ln Z = -\ln\left( \sinh\left(\frac{\beta\hbar\omega}{2}\right) \right) + C $$
+The constant $C$ can be fixed by regularizing the measure properly, yielding $C = -\ln 2$. Exponentiating both sides:
+$$ \boxed{ Z = \frac{1}{2\sinh(\beta\hbar\omega/2)} = \frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}} } $$
+This is exactly the canonical partition function of the quantum harmonic oscillator! The $e^{-\beta\hbar\omega/2}$ is the zero-point energy contribution, and the denominator is the familiar sum of the geometric series of excited states.
+
+---
+
+## Worked Example 2: Quantum Spin-1/2 to Classical 1D Ising Model
+
+Let's show how a single quantum spin-1/2 in a transverse magnetic field maps to a 1D classical Ising model.
+The quantum Hamiltonian is:
+$$ \hat{H} = -h \hat{\sigma}^x $$
+where $\hat{\sigma}^x$ is the Pauli X matrix. The partition function is $Z = \text{Tr}(e^{\beta h \hat{\sigma}^x})$.
+
+Let's slice the imaginary time $\beta$ into $N$ small steps of size $\epsilon = \beta / N$.
+$$ Z = \text{Tr} \left( (e^{\epsilon h \hat{\sigma}^x})^N \right) $$
+We insert a complete set of $\hat{\sigma}^z$ eigenstates (which we call $|s_k\rangle$ with $s_k \in \{+1, -1\}$) between every time slice $k$:
+$$ Z = \sum_{s_1, \dots, s_N} \langle s_1 | e^{\epsilon h \hat{\sigma}^x} | s_2 \rangle \langle s_2 | e^{\epsilon h \hat{\sigma}^x} | s_3 \rangle \dots \langle s_N | e^{\epsilon h \hat{\sigma}^x} | s_1 \rangle $$
+Note the periodic boundary condition $s_{N+1} = s_1$ arising from the trace.
+
+The matrix elements are evaluated as:
+$$ \langle s | e^{\epsilon h \hat{\sigma}^x} | s' \rangle = \langle s | \left( \cosh(\epsilon h) \mathbb{I} + \sinh(\epsilon h) \hat{\sigma}^x \right) | s' \rangle $$
+Because $\hat{\sigma}^x |s'\rangle = |-s'\rangle$, we have:
+- For $s=s'$, $\langle s | \hat{\sigma}^x | s \rangle = 0$, so the matrix element is $\cosh(\epsilon h)$.
+- For $s \neq s'$, $\langle s | \hat{\sigma}^x | -s \rangle = 1$, so the matrix element is $\sinh(\epsilon h)$.
+
+We can encode this compactly as an exponential of the form:
+$$ \langle s | e^{\epsilon h \hat{\sigma}^x} | s' \rangle = C e^{K s s'} $$
+where $C$ and $K$ are constants. Let's find $K$ and $C$.
+For $s=s'$, we have $C e^K = \cosh(\epsilon h)$.
+For $s \neq s'$ (i.e., $s = -s'$), we have $C e^{-K} = \sinh(\epsilon h)$.
+
+Dividing the first equation by the second gives:
+$$ e^{2K} = \coth(\epsilon h) \implies K = \frac{1}{2} \ln(\coth(\epsilon h)) $$
+Multiplying the two equations gives:
+$$ C^2 = \cosh(\epsilon h) \sinh(\epsilon h) \implies C = \sqrt{\frac{1}{2}\sinh(2\epsilon h)} $$
+
+Plugging this back into the partition function, we get:
+$$ \boxed{ Z = C^N \sum_{s_1, \dots, s_N} \exp\left( \sum_{k=1}^N K s_k s_{k+1} \right) } $$
+This is exactly the partition function of a **1D classical Ising model** with nearest-neighbor coupling $K$!
+A single 0-dimensional quantum spin has mapped onto a 1-dimensional classical chain of spins. The imaginary time axis has literally become the spatial axis of the classical lattice.
+
+## Summary Table: The Grand Dictionary
+
+| Quantum Mechanics ($d$ dimensions) | Classical Statistical Mechanics ($d+1$ dimensions) |
+| :--- | :--- |
+| Time Evolution Operator $e^{-it\hat{H}/\hbar}$ | Boltzmann Weight $e^{-\beta E}$ |
+| Wick Rotation $t = -i\tau$ | Imaginary time $\tau$ |
+| Partition function $Z = \text{Tr}(e^{-\beta\hat{H}})$ | Partition function $Z = \sum e^{-\beta E}$ |
+| Temperature $T$ | Inverse length of extra dimension ($L_\tau = \hbar/k_B T$) |
+| Ground state limit ($T=0$) | Infinite classical system in extra dimension |
+| Planck's constant $\hbar$ | Analogue of temperature in the classical system |
+| Imaginary time evolution $e^{-\epsilon\hat{H}}$ | Transfer matrix $\mathbf{T}$ |
+
+::: {.checkpoint}
+**Review the Equivalences**
+1. Why does the path integral for the quantum partition function require periodic paths?
+2. What role do the Matsubara frequencies play in the path integral evaluation of a thermal system?
+3. In the limit $\hbar \to 0$, what happens to the paths in the Euclidean path integral, and why does this recover classical statistical mechanics?
+:::
+
+## Practice Problems
+
+**Problem 1 (Easy):** 
+Use the relation $\beta = 1/k_B T$ to calculate the "circumference" (in units of time) of the imaginary time circle for a system at room temperature ($300$ K). *(Give the answer in seconds using $\hbar \approx 1.05 \times 10^{-34}$ J$\cdot$s and $k_B \approx 1.38 \times 10^{-23}$ J/K).* How does this compare to typical atomic transition timescales?
+
+**Problem 2 (Medium):**
+Write down the Euclidean action for a free particle. Compute its quantum partition function $Z(\beta)$ by explicitly evaluating the Euclidean path integral over periodic paths. You should obtain the thermal de Broglie wavelength.
+
+**Problem 3 (Medium):**
+Consider a quantum particle in a potential $V(x)$. Expand the path $x(\tau)$ around a constant path $x_0$: $x(\tau) = x_0 + \delta x(\tau)$. Compute the first quantum correction (to order $\hbar^2$) to the classical partition function by integrating over the quadratic fluctuations $\delta x(\tau)$. 
+*(Hint: Expand $V(x)$ to second order in $\delta x$ and evaluate the resulting harmonic oscillator-like Gaussian integral over the non-zero Matsubara modes).*
+
+**Problem 4 (Hard):**
+Derive the matrix element $\langle s | e^{\epsilon(J\hat{\sigma}^z_i \hat{\sigma}^z_{i+1} + h\hat{\sigma}^x_i)} | s' \rangle$ for a 1D quantum Ising chain in a transverse field. Show that the resulting classical model is a 2D Ising model on a square lattice. What are the couplings in the spatial and imaginary-time directions?
+
+**Problem 5 (Hard):**
+For the harmonic oscillator example, the Matsubara frequencies are $\omega_n = 2\pi n / \beta\hbar$. Suppose we have a *fermionic* harmonic oscillator (a two-level system). The path integral requires *anti-periodic* boundary conditions $x(\beta\hbar) = -x(0)$ over the thermal circle. What are the fermionic Matsubara frequencies? Compute the resulting partition function and show it matches the statistics of a two-level system.
+
+::: {.nav-buttons}
+[← Previous Module](11_euclidean_eom.qmd){.btn .btn-outline-secondary}
+[Next: Module 13 →](13_qft_path_integral.qmd){.btn .btn-success}
+:::

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aditya Kumar">
-<meta name="dcterms.date" content="2026-05-26">
-<meta name="description" content="We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="How to convert wildly oscillating quantum path integrals into beautifully convergent Gaussian integrals using imaginary time.">
 
-<title>Physics Voyage - Module 5: Time Evolution</title>
+<title>Physics Voyage - Module 9: Wick Rotation &amp; Imaginary Time</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -219,30 +219,27 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-tdse" id="toc-sec-tdse" class="nav-link active" data-scroll-target="#sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</a></li>
-  <li><a href="#sec-energy-eigenstates" id="toc-sec-energy-eigenstates" class="nav-link" data-scroll-target="#sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</a></li>
-  <li><a href="#sec-time-operator" id="toc-sec-time-operator" class="nav-link" data-scroll-target="#sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</a></li>
-  <li><a href="#sec-superposition" id="toc-sec-superposition" class="nav-link" data-scroll-target="#sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</a>
+  <li><a href="#introduction-the-trouble-with-oscillations" id="toc-introduction-the-trouble-with-oscillations" class="nav-link active" data-scroll-target="#introduction-the-trouble-with-oscillations"><span class="header-section-number">1</span> Introduction: The Trouble with Oscillations</a>
   <ul class="collapse">
-  <li><a href="#example-superposition-of-0rangle-and-1rangle" id="toc-example-superposition-of-0rangle-and-1rangle" class="nav-link" data-scroll-target="#example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></a></li>
+  <li><a href="#the-problem-with-oscillating-integrals" id="toc-the-problem-with-oscillating-integrals" class="nav-link" data-scroll-target="#the-problem-with-oscillating-integrals"><span class="header-section-number">1.1</span> The Problem with Oscillating Integrals</a></li>
+  <li><a href="#the-wick-rotation-the-basic-idea" id="toc-the-wick-rotation-the-basic-idea" class="nav-link" data-scroll-target="#the-wick-rotation-the-basic-idea"><span class="header-section-number">1.2</span> The Wick Rotation — The Basic Idea</a></li>
+  <li><a href="#what-happens-to-the-derivatives" id="toc-what-happens-to-the-derivatives" class="nav-link" data-scroll-target="#what-happens-to-the-derivatives"><span class="header-section-number">1.3</span> What Happens to the Derivatives</a></li>
+  <li><a href="#what-happens-to-the-action" id="toc-what-happens-to-the-action" class="nav-link" data-scroll-target="#what-happens-to-the-action"><span class="header-section-number">1.4</span> What Happens to the Action</a></li>
+  <li><a href="#quick-question-1" id="toc-quick-question-1" class="nav-link" data-scroll-target="#quick-question-1"><span class="header-section-number">1.5</span> 🤔 Quick Question 1</a></li>
+  <li><a href="#the-euclidean-path-integral" id="toc-the-euclidean-path-integral" class="nav-link" data-scroll-target="#the-euclidean-path-integral"><span class="header-section-number">1.6</span> The Euclidean Path Integral</a></li>
+  <li><a href="#complex-analysis-justification" id="toc-complex-analysis-justification" class="nav-link" data-scroll-target="#complex-analysis-justification"><span class="header-section-number">1.7</span> Complex Analysis Justification</a></li>
+  <li><a href="#when-can-wick-rotation-fail" id="toc-when-can-wick-rotation-fail" class="nav-link" data-scroll-target="#when-can-wick-rotation-fail"><span class="header-section-number">1.8</span> When Can Wick Rotation Fail?</a></li>
+  <li><a href="#physical-interpretation-schrödinger-vs-diffusion" id="toc-physical-interpretation-schrödinger-vs-diffusion" class="nav-link" data-scroll-target="#physical-interpretation-schrödinger-vs-diffusion"><span class="header-section-number">1.9</span> Physical Interpretation: Schrödinger vs Diffusion</a></li>
+  <li><a href="#quick-question-2" id="toc-quick-question-2" class="nav-link" data-scroll-target="#quick-question-2"><span class="header-section-number">1.10</span> 🤔 Quick Question 2</a></li>
+  <li><a href="#the-complete-minkowski-euclidean-dictionary" id="toc-the-complete-minkowski-euclidean-dictionary" class="nav-link" data-scroll-target="#the-complete-minkowski-euclidean-dictionary"><span class="header-section-number">1.11</span> The Complete Minkowski ↔︎ Euclidean Dictionary</a></li>
+  <li><a href="#quick-question-3" id="toc-quick-question-3" class="nav-link" data-scroll-target="#quick-question-3"><span class="header-section-number">1.12</span> 🤔 Quick Question 3</a></li>
   </ul></li>
-  <li><a href="#sec-ehrenfest" id="toc-sec-ehrenfest" class="nav-link" data-scroll-target="#sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">2</span> Worked Examples</a>
   <ul class="collapse">
-  <li><a href="#general-statement" id="toc-general-statement" class="nav-link" data-scroll-target="#general-statement"><span class="header-section-number">5.1</span> General Statement</a></li>
-  <li><a href="#ehrenfest-in-the-heisenberg-picture" id="toc-ehrenfest-in-the-heisenberg-picture" class="nav-link" data-scroll-target="#ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</a></li>
+  <li><a href="#worked-example-1-wick-rotating-the-free-particle" id="toc-worked-example-1-wick-rotating-the-free-particle" class="nav-link" data-scroll-target="#worked-example-1-wick-rotating-the-free-particle"><span class="header-section-number">2.0.1</span> Worked Example 1: Wick-rotating the Free Particle</a></li>
+  <li><a href="#worked-example-2-wick-rotating-the-harmonic-oscillator" id="toc-worked-example-2-wick-rotating-the-harmonic-oscillator" class="nav-link" data-scroll-target="#worked-example-2-wick-rotating-the-harmonic-oscillator"><span class="header-section-number">2.0.2</span> Worked Example 2: Wick-rotating the Harmonic Oscillator</a></li>
   </ul></li>
-  <li><a href="#sec-revivals" id="toc-sec-revivals" class="nav-link" data-scroll-target="#sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</a>
-  <ul class="collapse">
-  <li><a href="#when-superpositions-come-back" id="toc-when-superpositions-come-back" class="nav-link" data-scroll-target="#when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</a></li>
-  </ul></li>
-  <li><a href="#sec-heisenberg" id="toc-sec-heisenberg" class="nav-link" data-scroll-target="#sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</a></li>
-  <li><a href="#sec-wigner" id="toc-sec-wigner" class="nav-link" data-scroll-target="#sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</a>
-  <ul class="collapse">
-  <li><a href="#what-is-the-wigner-function" id="toc-what-is-the-wigner-function" class="nav-link" data-scroll-target="#what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</a></li>
-  <li><a href="#wigner-function-of-the-ground-state" id="toc-wigner-function-of-the-ground-state" class="nav-link" data-scroll-target="#wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</a></li>
-  <li><a href="#wigner-function-of-excited-states" id="toc-wigner-function-of-excited-states" class="nav-link" data-scroll-target="#wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</a></li>
-  </ul></li>
-  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">3</span> Practice Problems</a></li>
   </ul>
 </nav>
     </div>
@@ -251,14 +248,14 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
   <div class="quarto-title">
-    <h1 class="title">Module 5: Time Evolution</h1>
-        <p class="subtitle lead">Nothing is Static in Quantum Mechanics</p>
+    <h1 class="title">Module 9: Wick Rotation &amp; Imaginary Time</h1>
+        <p class="subtitle lead">Taming the Oscillatory Path Integral</p>
             <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
-      We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.
+      How to convert wildly oscillating quantum path integrals into beautifully convergent Gaussian integrals using imaginary time.
     </div>
             <div class="quarto-categories" style="margin-top: 20px;">
             <div class="quarto-category">Quantum Mechanics</div>
-            <div class="quarto-category">QHO Course</div>
+            <div class="quarto-category">Path Integrals Course</div>
           </div>
       </div>
 
@@ -387,7 +384,7 @@ window.Quarto = {
       </div>
                   <div>
         <span class="meta-heading">Published</span>
-        <span class="meta-value">May 26, 2026</span>
+        <span class="meta-value">June 21, 2026</span>
       </div>
           </div>
 
@@ -442,6 +439,7 @@ window.Quarto = {
 </header>
 
 
+{=html}
 <style>
 .callout-intuition {
   border-left: 4px solid #10b981;
@@ -471,29 +469,6 @@ window.Quarto = {
   color: #d97706;
   margin-bottom: 0.5rem;
 }
-.derivation-box {
-  border: 1.5px solid #6366f1;
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
-  background: #eef2ff;
-  margin: 1.5rem 0;
-}
-.derivation-box::before {
-  content: "✏️ Derivation";
-  display: block;
-  font-weight: 700;
-  color: #4f46e5;
-  margin-bottom: 0.5rem;
-}
-.result-box {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-  color: white;
-  border-radius: 10px;
-  padding: 1.2rem 1.5rem;
-  margin: 1.5rem 0;
-  text-align: center;
-}
-.result-box p { color: #c4b5fd; margin-bottom: 0; }
 .nav-buttons {
   display: flex;
   justify-content: space-between;
@@ -501,274 +476,390 @@ window.Quarto = {
   padding-top: 1rem;
   border-top: 1px solid #e5e7eb;
 }
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
 </style>
-<p><a href="../../Courses/QHO/04_wavefunctions.html">← Module 4</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/06_coherent_states.html">Module 6 →</a></p>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/10_euclidean_path_integral.html">Next: Module 10 →</a></p>
+<section id="introduction-the-trouble-with-oscillations" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction: The Trouble with Oscillations</h1>
+<p>Welcome to one of the most transformative concepts in modern theoretical physics: the <strong>Wick rotation</strong>. So far, we have been studying the Feynman path integral in its standard, real-time formulation. While conceptually beautiful, we face a massive mathematical roadblock when trying to compute these integrals rigorously. In this module, we will learn how to bypass this roadblock by stepping into the realm of <em>imaginary time</em>.</p>
 <hr>
-<section id="sec-tdse" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</h2>
-<p>Everything we’ve done so far found the <em>stationary</em> states — the energy eigenstates <span class="math inline">\(|n\rangle\)</span> that don’t change shape over time (only their phase oscillates). But a general quantum state is a <strong>superposition</strong>, and it <em>does</em> change over time.</p>
-<p>The full time-dependent Schrödinger equation (TDSE) is:</p>
+<section id="the-problem-with-oscillating-integrals" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-problem-with-oscillating-integrals"><span class="header-section-number">1.1</span> The Problem with Oscillating Integrals</h2>
+<p>The fundamental object of our study is the quantum mechanical propagator, written as a path integral over all possible trajectories <span class="math inline">\(x(t)\)</span>:</p>
 <p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|\Psi(t)\rangle = \hat{H}|\Psi(t)\rangle
+K(x_b, t_b; x_a, t_a) = \int \mathcal{D}x \, e^{iS[x]/\hbar}
+\]</span></p>
+<p>The exponent here is purely imaginary. This means the integrand is an oscillatory function: its magnitude is always exactly <span class="math inline">\(1\)</span>, but its phase spins wildly as we sum over paths.</p>
+<p>To understand why this is a nightmare for mathematicians, consider a simple 1D integral. The integral:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\]</span></p>
+<p>converges beautifully. The function decays exponentially as <span class="math inline">\(|x| \to \infty\)</span>, and the area under the curve is well-defined and finite.</p>
+<p>Now, consider its oscillatory cousin, the Fresnel-type integral:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} e^{ix^2} dx
+\]</span></p>
+<p>This does not decay! The function <span class="math inline">\(e^{ix^2} = \cos(x^2) + i \sin(x^2)\)</span> keeps oscillating all the way to infinity. While physicists often assign it a well-defined value (<span class="math inline">\(\sqrt{i\pi}\)</span>) using regularization tricks, rigorously defining an <em>infinite-dimensional</em> integral of oscillating phases is famously difficult. The path integral does not converge in the traditional Lebesgue sense.</p>
+<div class="callout-intuition">
+<p>If we could somehow turn the <span class="math inline">\(i\)</span> in the exponent into a <span class="math inline">\(-1\)</span>, our path integral would transform from a wildly spinning phase into an exponentially decaying weight. The highly oscillatory quantum problem would become a well-behaved, convergent mathematical problem.</p>
+</div>
+<hr>
+</section>
+<section id="the-wick-rotation-the-basic-idea" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-wick-rotation-the-basic-idea"><span class="header-section-number">1.2</span> The Wick Rotation — The Basic Idea</h2>
+<p>Can we turn the <span class="math inline">\(e^{iS/\hbar}\)</span> into <span class="math inline">\(e^{-\text{something}}?\)</span></p>
+<p>The theoretical physicist Gian-Carlo Wick realized that we can achieve this by analytically continuing our time variable <span class="math inline">\(t\)</span> into the complex plane. Specifically, we define a new time variable <span class="math inline">\(\tau\)</span> such that:</p>
+<p><span class="math display">\[
+t = -i\tau \quad \implies \quad \tau = it
+\]</span></p>
+<p>This transformation is known as the <strong>Wick rotation</strong>.</p>
+<p>If <span class="math inline">\(t\)</span> is the physical “real time” (often called Minkowski time), then <span class="math inline">\(\tau\)</span> is called <strong>imaginary time</strong> or <strong>Euclidean time</strong>. By substituting <span class="math inline">\(t \to -i\tau\)</span>, we are effectively rotating our time axis by <span class="math inline">\(90^\circ\)</span> clockwise in the complex time plane.</p>
+<p>Let’s see exactly how this substitution transforms the mechanics of our system.</p>
+<hr>
+</section>
+<section id="what-happens-to-the-derivatives" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="what-happens-to-the-derivatives"><span class="header-section-number">1.3</span> What Happens to the Derivatives</h2>
+<p>When we change our independent variable from <span class="math inline">\(t\)</span> to <span class="math inline">\(\tau\)</span>, the differentials and derivatives transform as well. Since <span class="math inline">\(t = -i\tau\)</span>:</p>
+<p><span class="math display">\[
+dt = -i d\tau
+\]</span></p>
+<p>By the chain rule, the velocity <span class="math inline">\(\dot{x}\)</span> transforms as:</p>
+<p><span class="math display">\[
+\dot{x} = \frac{dx}{dt} = \frac{dx}{d\tau} \frac{d\tau}{dt}
+\]</span></p>
+<p>Since <span class="math inline">\(t = -i\tau\)</span>, we have <span class="math inline">\(\frac{d\tau}{dt} = \frac{1}{-i} = i\)</span>. Therefore:</p>
+<p><span class="math display">\[
+\frac{dx}{dt} = i \frac{dx}{d\tau}
+\]</span></p>
+<p>Squaring the velocity, which appears in the kinetic energy, we get a crucial minus sign:</p>
+<p><span class="math display">\[
+\dot{x}^2 = \left( \frac{dx}{dt} \right)^2 = \left( i \frac{dx}{d\tau} \right)^2 = -\left( \frac{dx}{d\tau} \right)^2
+\]</span></p>
+<p>Let us define the “Euclidean velocity” as <span class="math inline">\(\dot{x}_E \equiv \frac{dx}{d\tau}\)</span>. Our transformation rule is simply:</p>
+<p><span class="math display">\[
+\dot{x}^2 = -\dot{x}_E^2
 \]</span></p>
 <blockquote class="blockquote">
-<p><strong>Textbook reference</strong>: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III.</p>
+<p><strong>Textbook reference</strong>: Shankar, <em>Principles of Quantum Mechanics</em>, Chapter 8.</p>
 </blockquote>
 <hr>
 </section>
-<section id="sec-energy-eigenstates" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</h2>
-<p>For an energy eigenstate <span class="math inline">\(|n\rangle\)</span>:</p>
+<section id="what-happens-to-the-action" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="what-happens-to-the-action"><span class="header-section-number">1.4</span> What Happens to the Action</h2>
+<p>Now we apply these transformations to the action <span class="math inline">\(S\)</span> inside the exponent of the path integral. The standard (Minkowski) action is:</p>
 <p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|n,t\rangle = E_n|n,t\rangle
+S_M = \int dt \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right]
 \]</span></p>
-<p>This integrates immediately:</p>
+<p>Let’s look at the term that actually appears in the path integral exponent: <span class="math inline">\(\frac{i S_M}{\hbar}\)</span>. We substitute <span class="math inline">\(dt = -i d\tau\)</span> and <span class="math inline">\(\dot{x}^2 = -\dot{x}_E^2\)</span>:</p>
 <p><span class="math display">\[
-|n,t\rangle = e^{-iE_nt/\hbar}|n\rangle = e^{-i\omega(n+1/2)t}|n\rangle
+\begin{aligned}
+\frac{i S_M}{\hbar} &amp;= \frac{i}{\hbar} \int dt \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right] \\
+&amp;= \frac{i}{\hbar} \int (-i d\tau) \left[ \frac{1}{2}m (-\dot{x}_E^2) - V(x) \right]
+\end{aligned}
 \]</span></p>
-<p>The <strong>only effect</strong> of time evolution on an energy eigenstate is a <strong>global phase</strong> <span class="math inline">\(e^{-i\omega(n+1/2)t}\)</span>. Global phases have no physical consequence: <span class="math inline">\(|\psi(t)|^2 = |\psi(0)|^2\)</span> for all <span class="math inline">\(t\)</span>.</p>
-<div class="callout-intuition">
-<p>This is why energy eigenstates are called <strong>stationary states</strong> — all observable quantities are time-independent in these states. The energy eigenstate doesn’t “do anything.”</p>
-<p>This doesn’t mean nothing is happening — the wavefunction is rotating in the complex plane at frequency <span class="math inline">\((n + \frac{1}{2})\omega\)</span>. But since we only measure <span class="math inline">\(|\psi|^2\)</span>, we can’t see this rotation.</p>
-</div>
-<hr>
-</section>
-<section id="sec-time-operator" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</h2>
-<p>The formal solution to the TDSE is:</p>
+<p>The factor of <span class="math inline">\(i \times (-i)\)</span> out front gives <span class="math inline">\(+1\)</span>. The minus signs inside the bracket can be factored out:</p>
 <p><span class="math display">\[
-|\Psi(t)\rangle = \hat{U}(t)|\Psi(0)\rangle, \quad \hat{U}(t) = e^{-i\hat{H}t/\hbar}
+\begin{aligned}
+\frac{i S_M}{\hbar} &amp;= \frac{1}{\hbar} \int d\tau \left[ -\frac{1}{2}m\dot{x}_E^2 - V(x) \right] \\
+&amp;= -\frac{1}{\hbar} \int d\tau \left[ \frac{1}{2}m\dot{x}_E^2 + V(x) \right]
+\end{aligned}
 \]</span></p>
-<p>For the QHO, we can write this in the Fock basis:</p>
+<p>We define the term in the integral as the <strong>Euclidean Action</strong>, <span class="math inline">\(S_E\)</span>:</p>
 <p><span class="math display">\[
-\hat{U}(t) = e^{-i\omega(\hat{N}+1/2)t} = e^{-i\omega t/2}\, e^{-i\omega t\hat{N}}
+\boxed{ S_E[x] = \int d\tau \left[ \frac{1}{2}m\dot{x}_E^2 + V(x) \right] }
 \]</span></p>
-<p>Since <span class="math inline">\(\hat{N}|n\rangle = n|n\rangle\)</span>:</p>
+<p>So we have arrived at the beautiful result:</p>
 <p><span class="math display">\[
-\hat{U}(t)|n\rangle = e^{-i\omega t(n+1/2)}|n\rangle
+\frac{i S_M}{\hbar} = -\frac{S_E}{\hbar}
 \]</span></p>
-<p>The key identity: <span class="math inline">\(e^{-i\omega t\hat{N}}\hat{a} = \hat{a}e^{-i\omega t(\hat{N}-1)} = e^{-i\omega t}\hat{a}e^{-i\omega t\hat{N}}\)</span>, or:</p>
-<p><span class="math display">\[
-\hat{U}(t)\hat{a}\hat{U}^\dagger(t) = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p>This means the ladder operators in the <strong>Heisenberg picture</strong> rotate:</p>
-<p><span class="math display">\[
-\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}^\dagger(t) = e^{+i\omega t}\hat{a}^\dagger(0)
-\]</span></p>
-<hr>
-</section>
-<section id="sec-superposition" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</h2>
-<p>A general initial state is a superposition:</p>
-<p><span class="math display">\[
-|\Psi(0)\rangle = \sum_{n=0}^{\infty} c_n|n\rangle, \quad \sum_n |c_n|^2 = 1
-\]</span></p>
-<p>Time evolution:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>In position space:</p>
-<p><span class="math display">\[
-\Psi(x,t) = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}\psi_n(x)
-\]</span></p>
-<section id="example-superposition-of-0rangle-and-1rangle" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></h3>
-<p>Consider: <span class="math display">\[
-|\Psi(0)\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)
-\]</span></p>
-<p>Time evolution: <span class="math display">\[
-|\Psi(t)\rangle = \frac{e^{-i\omega t/2}}{\sqrt{2}}\left(|0\rangle + e^{-i\omega t}|1\rangle\right)
-\]</span></p>
-<p>The expectation value of position:</p>
-<div class="derivation-box">
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\langle\Psi(t)|(\hat{a} + \hat{a}^\dagger)|\Psi(t)\rangle
-\]</span></p>
-<p>The cross terms survive: <span class="math inline">\(\langle 0|\hat{a}|1\rangle = 1\)</span>, <span class="math inline">\(\langle 1|\hat{a}^\dagger|0\rangle = 1\)</span>.</p>
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\cdot\frac{1}{2}\cdot 2\cos(\omega t) = \frac{x_0}{\sqrt{2}}\cos(\omega t)
-\]</span></p>
-</div>
-<p>The expectation value of position <strong>oscillates</strong> at frequency <span class="math inline">\(\omega\)</span> — like a classical oscillator!</p>
-<hr>
-</section>
-</section>
-<section id="sec-ehrenfest" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</h2>
-<section id="general-statement" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="general-statement"><span class="header-section-number">5.1</span> General Statement</h3>
-<p>Ehrenfest’s theorem says that expectation values obey classical equations of motion:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{A}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{A}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
-\]</span></p>
-<p>For time-independent operators in the QHO:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{x}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{x}]\rangle = \frac{\langle\hat{p}\rangle}{m}
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{p}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{p}]\rangle = -m\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>Combined: <span class="math display">\[
-\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>This is <strong>exactly Newton’s law</strong> for the harmonic oscillator! The center of the wavepacket <span class="math inline">\(\langle\hat{x}\rangle\)</span> oscillates like a classical particle.</p>
-<div class="result-box">
-<p><strong>Ehrenfest’s Theorem for the QHO:</strong></p>
-<p><span class="math display">\[\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle\]</span></p>
-<p>The quantum expectation value always satisfies the classical equation of motion — for <strong>any</strong> quantum state!</p>
-</div>
-</section>
-<section id="ehrenfest-in-the-heisenberg-picture" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</h3>
-<p>In the Heisenberg picture, operators evolve:</p>
-<p><span class="math display">\[
-\hat{x}(t) = x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p><span class="math display">\[
-\hat{p}(t) = -m\omega\sin(\omega t)\,\hat{x}(0) + \cos(\omega t)\,\hat{p}(0)
-\]</span></p>
-<p>This is exactly the classical solution <span class="math inline">\(x(t) = x_0\cos\omega t + \frac{p_0}{m\omega}\sin\omega t\)</span> promoted to operators. The QHO Heisenberg equations are <strong>linear</strong>, which is why they have exact classical analogs.</p>
-<hr>
-</section>
-</section>
-<section id="sec-revivals" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</h2>
-<section id="when-superpositions-come-back" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</h3>
-<p>For a general superposition <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-in\omega t}|n\rangle\)</span> (dropping the common phase <span class="math inline">\(e^{-i\omega t/2}\)</span>):</p>
-<p>The state <strong>returns exactly</strong> to itself when all phases complete full rotations:</p>
-<p><span class="math display">\[
-e^{-in\omega T} = 1 \text{ for all } n \quad \Rightarrow \quad T = \frac{2\pi}{\omega}
-\]</span></p>
-<p>This is the <strong>classical period</strong> — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time <span class="math inline">\(T = 2\pi/\omega\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-This is Special to the QHO
+Note the Crucial Sign!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For a particle in a box, the energy levels go as <span class="math inline">\(n^2\)</span>, so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period.</p>
-<p>The QHO is special: its equally spaced energy levels (spacing <span class="math inline">\(\hbar\omega\)</span>) mean all phase factors are integer multiples of <span class="math inline">\(e^{-i\omega t}\)</span>, guaranteeing exact periodicity.</p>
+<p>In the Euclidean action, the potential energy <span class="math inline">\(V(x)\)</span> has a <strong>positive</strong> sign. The Euclidean Lagrangian is <span class="math inline">\(L_E = T + V\)</span>, unlike the Minkowski Lagrangian <span class="math inline">\(L_M = T - V\)</span>. Assuming <span class="math inline">\(V(x)\)</span> is bounded from below, both the kinetic and potential terms in <span class="math inline">\(S_E\)</span> are strictly positive. Therefore, <span class="math inline">\(S_E \ge 0\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="quick-question-1" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="quick-question-1"><span class="header-section-number">1.5</span> 🤔 Quick Question 1</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“Why does the potential energy pick up a <span class="math inline">\(+\)</span> sign after Wick rotation? This seems to create an ‘inverted potential’ problem — or does it?”</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the Euclidean action <span class="math inline">\(S_E = \int (\frac{1}{2}m\dot{x}_E^2 + V) d\tau\)</span>, the <span class="math inline">\(+\)</span> sign means both kinetic and potential terms are positive. This is NOT the inverted potential — that appears in the classical <em>Euclidean equation of motion</em> which we will derive in Module 11. The <span class="math inline">\(+\)</span> sign in <span class="math inline">\(S_E\)</span> is exactly what makes the path integral converge, because it guarantees <span class="math inline">\(S_E &gt; 0\)</span>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-euclidean-path-integral" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="the-euclidean-path-integral"><span class="header-section-number">1.6</span> The Euclidean Path Integral</h2>
+<p>With the Wick rotation complete, the path integral transforms into the <strong>Euclidean Path Integral</strong>:</p>
+<p><span class="math display">\[
+K_E(x_b, \tau_b; x_a, \tau_a) = \int \mathcal{D}x \, e^{-S_E[x]/\hbar}
+\]</span></p>
+<p>Notice how profoundly the physics has changed mathematically! - The Minkowski path integral weighs all paths equally (magnitude 1) and relies on delicate phase cancellations (interference). - The Euclidean path integral is a sum of real, decaying exponentials. Paths with a large Euclidean action <span class="math inline">\(S_E\)</span> are <strong>exponentially suppressed</strong>. The integral is strictly dominated by paths that minimize <span class="math inline">\(S_E\)</span>.</p>
+<p>Because the integrand is real, positive, and strongly damped, the Euclidean path integral is mathematically well-defined and convergent (provided the potential <span class="math inline">\(V(x)\)</span> doesn’t dive to <span class="math inline">\(-\infty\)</span>). This is the convergent form of the path integral that gauge theorists compute on supercomputers!</p>
+<hr>
+</section>
+<section id="complex-analysis-justification" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="complex-analysis-justification"><span class="header-section-number">1.7</span> Complex Analysis Justification</h2>
+<p>You might be wondering: “Is it really mathematically legitimate to just swap <span class="math inline">\(t\)</span> for <span class="math inline">\(-i\tau\)</span>?”</p>
+<p>The justification comes from complex analysis. The propagator is a function of the total time <span class="math inline">\(T = t_b - t_a\)</span>:</p>
+<p><span class="math display">\[
+K(T) = \langle x_b | e^{-i\hat{H}T/\hbar} | x_a \rangle
+\]</span></p>
+<p>Let’s treat <span class="math inline">\(T\)</span> as a complex variable. If the Hamiltonian <span class="math inline">\(\hat{H}\)</span> is bounded from below (meaning its lowest energy eigenvalue is <span class="math inline">\(E_0 \ge 0\)</span>), the operator <span class="math inline">\(e^{-i\hat{H}T/\hbar}\)</span> remains well-behaved as long as <span class="math inline">\(T\)</span> has a negative imaginary part.</p>
+<p>Let <span class="math inline">\(T = |T| e^{-i\theta}\)</span>. If we move from the positive real axis (<span class="math inline">\(\theta = 0\)</span>) into the lower half complex plane (<span class="math inline">\(\theta \in (0, \pi]\)</span>), we are effectively adding a decaying real exponential. The function <span class="math inline">\(K(T)\)</span> is analytic in the lower half-plane. The Wick rotation <span class="math inline">\(t \to -i\tau\)</span> corresponds to moving along the negative imaginary axis (<span class="math inline">\(\theta = \pi/2\)</span>). Because <span class="math inline">\(K(T)\)</span> is analytic in this region, the Minkowski and Euclidean propagators are rigorously connected by <strong>analytic continuation</strong>.</p>
+<hr>
+</section>
+<section id="when-can-wick-rotation-fail" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="when-can-wick-rotation-fail"><span class="header-section-number">1.8</span> When Can Wick Rotation Fail?</h2>
+<p>Wick rotation relies heavily on the Hamiltonian being bounded from below (so that <span class="math inline">\(e^{-\hat{H}\tau/\hbar}\)</span> decays rather than explodes). If your physical system does not have a stable ground state (<span class="math inline">\(E_0 \to -\infty\)</span>), the rotation will fail.</p>
+<p>A famous example of this failure occurs in quantum gravity. The “conformal factor” of the spacetime metric contributes with the wrong sign to the action, making the gravitational action unbounded from below. This is known as the <em>conformal factor problem</em> in Euclidean quantum gravity.</p>
+<hr>
+</section>
+<section id="physical-interpretation-schrödinger-vs-diffusion" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="physical-interpretation-schrödinger-vs-diffusion"><span class="header-section-number">1.9</span> Physical Interpretation: Schrödinger vs Diffusion</h2>
+<p>Let’s look at the time evolution operator. - In Minkowski time, evolution is unitary: <span class="math inline">\(\hat{U}(t) = e^{-i\hat{H}t/\hbar}\)</span>. This gives rise to oscillation and quantum interference. - In Euclidean time, evolution is non-unitary and dissipative: <span class="math inline">\(\hat{U}_E(\tau) = e^{-\hat{H}\tau/\hbar}\)</span>. This operator suppresses high-energy states exponentially and decays.</p>
+<p>If we look at the differential equation governing the evolution, the Schrödinger equation: <span class="math display">\[
+i\hbar \frac{\partial \psi}{\partial t} = \hat{H} \psi
+\]</span> becomes, upon substituting <span class="math inline">\(t = -i\tau\)</span>: <span class="math display">\[
+-\hbar \frac{\partial \psi_E}{\partial \tau} = \hat{H} \psi_E
+\]</span></p>
+<p>If <span class="math inline">\(\hat{H} = -\frac{\hbar^2}{2m}\nabla^2\)</span> (a free particle), this becomes: <span class="math display">\[
+\frac{\partial \psi_E}{\partial \tau} = \frac{\hbar}{2m} \nabla^2 \psi_E
+\]</span></p>
+<p>This is exactly the <strong>Diffusion equation</strong> (or Heat equation), with a diffusion constant <span class="math inline">\(D = \hbar / 2m\)</span>. The Wick rotation mathematically maps quantum mechanics into classical statistical diffusion!</p>
+</section>
+<section id="quick-question-2" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="quick-question-2"><span class="header-section-number">1.10</span> 🤔 Quick Question 2</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“Is the Euclidean propagator still a transition amplitude?”</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>No.&nbsp;The Euclidean propagator <span class="math inline">\(K_E = \langle x_b | e^{-\hat{H}\tau/\hbar} | x_a \rangle\)</span> is the matrix element of an operator that is not unitary. It cannot be interpreted as a probability amplitude. It is more like a transition <em>weight</em> — mathematically identical to a Boltzmann factor <span class="math inline">\(e^{-\beta E}\)</span> from statistical mechanics. This is the first hint of the deep connection between Quantum Mechanics and Statistical Mechanics (which we will explore in Module 12).</p>
+</div>
 </div>
 </div>
 <hr>
 </section>
-</section>
-<section id="sec-heisenberg" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</h2>
-<p>In the Heisenberg picture, the time dependence is placed on <strong>operators</strong> rather than states:</p>
-<p><span class="math display">\[
-\hat{a}_H(t) = e^{i\hat{H}t/\hbar}\,\hat{a}\,e^{-i\hat{H}t/\hbar} = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p><span class="math display">\[
-\hat{a}^\dagger_H(t) = e^{+i\omega t}\hat{a}^\dagger
-\]</span></p>
-<p>The position and momentum operators: <span class="math display">\[
-\hat{x}_H(t) = \frac{x_0}{\sqrt{2}}\left(e^{-i\omega t}\hat{a} + e^{+i\omega t}\hat{a}^\dagger\right)
-\]</span> <span class="math display">\[
-= x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p>This is the <strong>quantum oscillator in the Heisenberg picture</strong> — it oscillates exactly like the classical oscillator.</p>
-<hr>
-</section>
-<section id="sec-wigner" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</h2>
-<section id="what-is-the-wigner-function" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</h3>
-<p>In classical mechanics, we can define a probability distribution in phase space <span class="math inline">\(f(x, p)\)</span>. In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the <strong>Wigner function</strong>:</p>
-<p><span class="math display">\[
-W(x, p) = \frac{1}{\pi\hbar}\int_{-\infty}^{\infty} \psi^*\!\left(x + y\right)\psi\left(x - y\right) e^{2ipy/\hbar}\,dy
-\]</span></p>
-<p>Properties of <span class="math inline">\(W(x,p)\)</span>:</p>
-<ul>
-<li><strong>Real</strong>: <span class="math inline">\(W(x,p)\)</span> is always real</li>
-<li><strong>Marginals</strong>: <span class="math inline">\(\int W\,dp = |\psi(x)|^2\)</span> and <span class="math inline">\(\int W\,dx = |\phi(p)|^2\)</span></li>
-<li><strong>Not always positive</strong>: <span class="math inline">\(W\)</span> can be negative in some regions (a signature of quantum behavior)</li>
-<li><strong>Area normalization</strong>: <span class="math inline">\(\int\!\!\int W(x,p)\,dx\,dp = 1\)</span></li>
-</ul>
-</section>
-<section id="wigner-function-of-the-ground-state" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</h3>
-<p>For <span class="math inline">\(\psi_0 = (\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}\)</span>:</p>
-<p><span class="math display">\[
-W_0(x,p) = \frac{1}{\pi\hbar}\,e^{-x^2/x_0^2 - p^2 x_0^2/\hbar^2}
-\]</span></p>
-<p>This is a <strong>Gaussian</strong> in phase space — entirely positive! The ground state is the most classical-looking quantum state.</p>
-</section>
-<section id="wigner-function-of-excited-states" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</h3>
-<p>For excited states <span class="math inline">\(|n\rangle\)</span>, the Wigner function is:</p>
-<p><span class="math display">\[
-W_n(x,p) = \frac{(-1)^n}{\pi\hbar}\,L_n\!\left(\frac{2r^2}{x_0^2}\right)\,e^{-r^2/x_0^2}
-\]</span></p>
-<p>where <span class="math inline">\(r^2 = x^2 + p^2 x_0^2/\hbar^2\)</span> and <span class="math inline">\(L_n\)</span> are Laguerre polynomials.</p>
-<p>Key feature: for <span class="math inline">\(n \geq 1\)</span>, <span class="math inline">\(W_n\)</span> takes <strong>negative values</strong> — a purely quantum signature. The negative regions appear as rings (for <span class="math inline">\(n = 1\)</span>) or more complex structures for higher <span class="math inline">\(n\)</span>.</p>
-<div class="callout-intuition">
-<p>The Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via <strong>homodyne tomography</strong>) is a standard experimental technique. Negative values of <span class="math inline">\(W\)</span> are direct evidence of non-classical states.</p>
-</div>
-<hr>
-</section>
-</section>
-<section id="sec-summary" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</h2>
-<p>For a general state <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-i\omega(n+1/2)t}|n\rangle\)</span>:</p>
+<section id="the-complete-minkowski-euclidean-dictionary" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="the-complete-minkowski-euclidean-dictionary"><span class="header-section-number">1.11</span> The Complete Minkowski ↔︎ Euclidean Dictionary</h2>
+<p>To summarize our findings, here is the master translation dictionary between real and imaginary time. Keep this handy; it is indispensable for calculations.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>Time dependence</th>
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Minkowski (Real Time)</th>
+<th style="text-align: left;">Euclidean (Imaginary Time)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span></td>
+<td style="text-align: left;">Time Variable</td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\tau = it\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\langle\hat{p}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span>, <span class="math inline">\(90°\)</span> out of phase</td>
+<td style="text-align: left;">Action Term in Exponent</td>
+<td style="text-align: left;"><span class="math inline">\(iS_M\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(-S_E\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}^2\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(2\omega\)</span> and constant</td>
+<td style="text-align: left;">Weight in Integral</td>
+<td style="text-align: left;"><span class="math inline">\(e^{iS_M/\hbar}\)</span> (oscillates)</td>
+<td style="text-align: left;"><span class="math inline">\(e^{-S_E/\hbar}\)</span> (damped)</td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\langle\hat{H}\rangle\)</span></td>
-<td>Constant (energy conservation)</td>
+<td style="text-align: left;">Lagrangian</td>
+<td style="text-align: left;"><span class="math inline">\(L_M = T - V\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(L_E = T + V\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{N}\rangle\)</span></td>
-<td>Constant</td>
+<td style="text-align: left;">Differential Equation</td>
+<td style="text-align: left;">Schrödinger equation</td>
+<td style="text-align: left;">Diffusion equation</td>
 </tr>
 <tr class="even">
-<td>Period of full return</td>
-<td><span class="math inline">\(T = 2\pi/\omega\)</span></td>
+<td style="text-align: left;">Time Derivative</td>
+<td style="text-align: left;"><span class="math inline">\(i\hbar\partial_t\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(-\hbar\partial_\tau\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Physical Behavior</td>
+<td style="text-align: left;">Unitary evolution</td>
+<td style="text-align: left;">Dissipative evolution</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oscillation (Sine)</td>
+<td style="text-align: left;"><span class="math inline">\(\sin(\omega T)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i \sinh(\omega \tau)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oscillation (Cosine)</td>
+<td style="text-align: left;"><span class="math inline">\(\cos(\omega T)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\cosh(\omega \tau)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Spacetime Metric</td>
+<td style="text-align: left;">Minkowski <span class="math inline">\((-,+,+,+)\)</span></td>
+<td style="text-align: left;">Euclidean <span class="math inline">\((+,+,+,+)\)</span></td>
 </tr>
 </tbody>
 </table>
-<div class="checkpoint">
-<p><strong>Before moving on, make sure you can:</strong></p>
-<ol type="1">
-<li>Write the time evolution of an energy eigenstate <span class="math inline">\(|n\rangle\)</span>.</li>
-<li>Prove that <span class="math inline">\(\langle\hat{x}\rangle(t)\)</span> oscillates classically for any state.</li>
-<li>State Ehrenfest’s theorem for the QHO and verify it gives Newton’s law.</li>
-<li>Explain why the QHO state returns exactly after <span class="math inline">\(T = 2\pi/\omega\)</span>.</li>
-<li>Define the Wigner function and state its key properties.</li>
-<li>Why can the Wigner function be negative? What does this mean physically?</li>
-</ol>
-<p><strong>Advanced</strong>: Compute the Wigner function for <span class="math inline">\(|1\rangle\)</span> and show it has negative values.</p>
+</section>
+<section id="quick-question-3" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="quick-question-3"><span class="header-section-number">1.12</span> 🤔 Quick Question 3</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“Why is this called ‘Euclidean’ time?”</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In special relativity, the Minkowski spacetime invariant interval is given by <span class="math inline">\(ds^2 = -c^2dt^2 + dx^2 + dy^2 + dz^2\)</span>. When we substitute <span class="math inline">\(t = -i\tau\)</span>, the <span class="math inline">\(dt^2\)</span> term becomes <span class="math inline">\((-i d\tau)^2 = -d\tau^2\)</span>. Therefore, the metric becomes <span class="math inline">\(ds^2 = c^2d\tau^2 + dx^2 + dy^2 + dz^2\)</span>. All signs are now positive! Spacetime has mathematically transformed into an ordinary 4D Euclidean space.</p>
+</div>
+</div>
 </div>
 <hr>
+</section>
+</section>
+<section id="worked-examples" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Worked Examples</h1>
+<p>Let’s see the Wick rotation in action on propagators we have previously derived.</p>
+<section id="worked-example-1-wick-rotating-the-free-particle" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="worked-example-1-wick-rotating-the-free-particle"><span class="header-section-number">2.0.1</span> Worked Example 1: Wick-rotating the Free Particle</h3>
+<p><strong>The Goal:</strong> Convert the Minkowski free particle propagator to its Euclidean counterpart.</p>
+<p><strong>Step 1: Write down the Minkowski propagator.</strong> From Module 3, the free particle propagator for time <span class="math inline">\(T\)</span> is: <span class="math display">\[
+K_M(x_b, t_b; x_a, t_a) = \sqrt{\frac{m}{2\pi i \hbar T}} \exp\left( \frac{i m (x_b - x_a)^2}{2 \hbar T} \right)
+\]</span></p>
+<p><strong>Step 2: Substitute <span class="math inline">\(T \to -i\tau\)</span>.</strong> Let’s plug <span class="math inline">\(T = -i\tau\)</span> directly into the expression. <span class="math display">\[
+K_E = \sqrt{\frac{m}{2\pi i \hbar (-i\tau)}} \exp\left( \frac{i m (x_b - x_a)^2}{2 \hbar (-i\tau)} \right)
+\]</span></p>
+<p><strong>Step 3: Simplify the expression.</strong> In the prefactor: <span class="math inline">\(i \times (-i) = 1\)</span>. In the exponent: <span class="math inline">\(\frac{i}{-i} = -1\)</span>. <span class="math display">\[
+\boxed{ K_E(x_b, \tau_b; x_a, \tau_a) = \sqrt{\frac{m}{2\pi \hbar \tau}} \exp\left( -\frac{m (x_b - x_a)^2}{2 \hbar \tau} \right) }
+\]</span></p>
+<p><strong>Physical Result:</strong> The oscillatory phase has become a purely real Gaussian function! This is precisely the fundamental solution to the diffusion equation, confirming our earlier insight.</p>
+<hr>
+</section>
+<section id="worked-example-2-wick-rotating-the-harmonic-oscillator" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="worked-example-2-wick-rotating-the-harmonic-oscillator"><span class="header-section-number">2.0.2</span> Worked Example 2: Wick-rotating the Harmonic Oscillator</h3>
+<p><strong>The Goal:</strong> Convert the harmonic oscillator propagator to Euclidean time.</p>
+<p><strong>Step 1: Write down the Minkowski propagator.</strong> From Module 5, the harmonic oscillator propagator is: <span class="math display">\[
+K_M = \sqrt{\frac{m\omega}{2\pi i \hbar \sin(\omega T)}} \exp\left\{ \frac{im\omega}{2\hbar \sin(\omega T)} \left[ (x_b^2+x_a^2)\cos(\omega T) - 2x_a x_b \right] \right\}
+\]</span></p>
+<p><strong>Step 2: Transform the trigonometric functions.</strong> Using <span class="math inline">\(T = -i\tau\)</span>, we recall the relations between trigonometric and hyperbolic functions of imaginary arguments: <span class="math display">\[
+\sin(\omega(-i\tau)) = -i \sinh(\omega\tau)
+\]</span> <span class="math display">\[
+\cos(\omega(-i\tau)) = \cosh(\omega\tau)
+\]</span></p>
+<p><strong>Step 3: Substitute these into the propagator.</strong> For the prefactor: <span class="math display">\[
+\sqrt{\frac{m\omega}{2\pi i \hbar (-i \sinh(\omega \tau))}} = \sqrt{\frac{m\omega}{2\pi \hbar \sinh(\omega \tau)}}
+\]</span></p>
+<p>For the exponent factor: <span class="math display">\[
+\frac{im\omega}{2\hbar (-i \sinh(\omega \tau))} = -\frac{m\omega}{2\hbar \sinh(\omega\tau)}
+\]</span></p>
+<p>Substituting these back into <span class="math inline">\(K_M\)</span>, we obtain the complete Euclidean Harmonic Oscillator Propagator: <span class="math display">\[
+\boxed{ K_E = \sqrt{\frac{m\omega}{2\pi \hbar \sinh(\omega \tau)}} \exp\left\{ -\frac{m\omega}{2\hbar \sinh(\omega\tau)} \left[ (x_b^2+x_a^2)\cosh(\omega\tau) - 2x_a x_b \right] \right\} }
+\]</span> Once again, the wildly oscillating function has been beautifully tamed into a strictly decaying, real function.</p>
+<hr>
+<div class="checkpoint">
+<p><strong>Review your understanding:</strong> 1. Can you explain why the action <span class="math inline">\(S_M\)</span> changes sign to become <span class="math inline">\(-S_E\)</span>? 2. What happens to the potential energy term <span class="math inline">\(V(x)\)</span> under Wick rotation? 3. What differential equation does the Euclidean propagator satisfy instead of the Schrödinger equation?</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="practice-problems" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Practice Problems</h1>
+<ol type="1">
+<li><strong>Velocity Transformation:</strong> Show that if we define <span class="math inline">\(t = e^{-i\theta}\tau\)</span> for an arbitrary angle <span class="math inline">\(\theta\)</span>, the kinetic energy transforms as <span class="math inline">\(\frac{1}{2}m\dot{x}^2 \to \frac{1}{2}m e^{2i\theta} (\frac{dx}{d\tau})^2\)</span>. Verify that <span class="math inline">\(\theta = \pi/2\)</span> recovers the Wick rotation result.</li>
+<li><strong>Euclidean Lagrangian:</strong> Write down the Euclidean Lagrangian for a particle in a 3D harmonic oscillator potential <span class="math inline">\(V(\mathbf{r}) = \frac{1}{2}m\omega^2 |\mathbf{r}|^2\)</span>. Show that the Euclidean Action <span class="math inline">\(S_E \ge 0\)</span> for any trajectory <span class="math inline">\(\mathbf{r}(\tau)\)</span>.</li>
+<li><strong>Analytic Continuation:</strong> Start with the free particle propagator <span class="math inline">\(K(T)\)</span>. Explicitly write it as a function of the complex variable <span class="math inline">\(T = \text{Re}(T) + i\text{Im}(T)\)</span>. Show that the propagator diverges exponentially if <span class="math inline">\(\text{Im}(T) &gt; 0\)</span>.</li>
+<li><strong>Diffusion Constant:</strong> Compare the Euclidean free particle propagator to the standard Gaussian solution of the heat equation <span class="math inline">\(P(x,t) = \frac{1}{\sqrt{4\pi D t}} e^{-x^2/4Dt}\)</span>. Identify the effective “diffusion constant” <span class="math inline">\(D\)</span> for the quantum particle.</li>
+<li><strong>Evaluating the Trace (Challenge):</strong> Calculate the “trace” of the Euclidean harmonic oscillator propagator by integrating over all space: <span class="math inline">\(Z(\tau) = \int_{-\infty}^\infty K_E(x, x; \tau) dx\)</span>. <em>(Hint: You will need to use <span class="math inline">\(\cosh(\omega\tau) - 1 = 2\sinh^2(\omega\tau/2)\)</span> and <span class="math inline">\(\sinh(\omega\tau) = 2\sinh(\omega\tau/2)\cosh(\omega\tau/2)\)</span> to simplify the result).</em></li>
+</ol>
 <div class="nav-buttons">
-<p><a href="../../Courses/QHO/04_wavefunctions.html" class="btn btn-outline-secondary">← Module 4: Wavefunctions</a> <a href="../../Courses/QHO/06_coherent_states.html" class="btn btn-success">Next: Module 6 — Coherent States →</a></p>
+<p><a href="../../Courses/Path_Integrals/08_classical_limit.html" class="btn btn-outline-secondary">← Previous Module</a> <a href="../../Courses/Path_Integrals/10_euclidean_path_integral.html" class="btn btn-success">Next: Module 10 →</a></p>
 </div>
 
 

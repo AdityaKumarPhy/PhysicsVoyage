@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="Mastering functional derivatives, Taylor expansions, and generating functionals.">
+
+<title>Physics Voyage - Module 6: Functional Integrals &amp; Functional Calculus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-functional" id="toc-what-is-a-functional" class="nav-link active" data-scroll-target="#what-is-a-functional"><span class="header-section-number">1</span> 1. What is a Functional?</a>
+  <ul class="collapse">
+  <li><a href="#common-examples-of-functionals" id="toc-common-examples-of-functionals" class="nav-link" data-scroll-target="#common-examples-of-functionals"><span class="header-section-number">1.1</span> Common Examples of Functionals</a></li>
+  </ul></li>
+  <li><a href="#functional-derivatives" id="toc-functional-derivatives" class="nav-link" data-scroll-target="#functional-derivatives"><span class="header-section-number">2</span> 2. Functional Derivatives</a>
+  <ul class="collapse">
+  <li><a href="#formal-definition" id="toc-formal-definition" class="nav-link" data-scroll-target="#formal-definition"><span class="header-section-number">2.1</span> Formal Definition</a></li>
+  <li><a href="#example-a-the-evaluation-functional" id="toc-example-a-the-evaluation-functional" class="nav-link" data-scroll-target="#example-a-the-evaluation-functional"><span class="header-section-number">2.2</span> Example A: The Evaluation Functional</a></li>
+  <li><a href="#example-b-a-quadratic-functional" id="toc-example-b-a-quadratic-functional" class="nav-link" data-scroll-target="#example-b-a-quadratic-functional"><span class="header-section-number">2.3</span> Example B: A Quadratic Functional</a></li>
+  <li><a href="#example-c-derivative-of-the-kinetic-energy-integration-by-parts" id="toc-example-c-derivative-of-the-kinetic-energy-integration-by-parts" class="nav-link" data-scroll-target="#example-c-derivative-of-the-kinetic-energy-integration-by-parts"><span class="header-section-number">2.4</span> Example C: Derivative of the Kinetic Energy (Integration by Parts!)</a></li>
+  </ul></li>
+  <li><a href="#key-identities" id="toc-key-identities" class="nav-link" data-scroll-target="#key-identities"><span class="header-section-number">3</span> 3. Key Identities</a></li>
+  <li><a href="#euler-lagrange-from-functionals" id="toc-euler-lagrange-from-functionals" class="nav-link" data-scroll-target="#euler-lagrange-from-functionals"><span class="header-section-number">4</span> 4. Euler-Lagrange from Functionals</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-1-action-for-a-particle-in-a-potential" id="toc-worked-example-1-action-for-a-particle-in-a-potential" class="nav-link" data-scroll-target="#worked-example-1-action-for-a-particle-in-a-potential"><span class="header-section-number">4.1</span> 🌟 Worked Example 1: Action for a particle in a potential</a></li>
+  </ul></li>
+  <li><a href="#functional-taylor-expansion" id="toc-functional-taylor-expansion" class="nav-link" data-scroll-target="#functional-taylor-expansion"><span class="header-section-number">5</span> 5. Functional Taylor Expansion</a></li>
+  <li><a href="#generating-functionals-source-terms" id="toc-generating-functionals-source-terms" class="nav-link" data-scroll-target="#generating-functionals-source-terms"><span class="header-section-number">6</span> 6. Generating Functionals &amp; Source Terms</a></li>
+  <li><a href="#correlation-functions-from-zj" id="toc-correlation-functions-from-zj" class="nav-link" data-scroll-target="#correlation-functions-from-zj"><span class="header-section-number">7</span> 7. Correlation Functions from Z[J]</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-2-the-free-particle-correlator" id="toc-worked-example-2-the-free-particle-correlator" class="nav-link" data-scroll-target="#worked-example-2-the-free-particle-correlator"><span class="header-section-number">7.1</span> 🌟 Worked Example 2: The Free Particle Correlator</a></li>
+  </ul></li>
+  <li><a href="#dictionary-ordinary-calculus-vs-functional-calculus" id="toc-dictionary-ordinary-calculus-vs-functional-calculus" class="nav-link" data-scroll-target="#dictionary-ordinary-calculus-vs-functional-calculus"><span class="header-section-number">8</span> 8. Dictionary: Ordinary Calculus vs Functional Calculus</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">9</span> Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 6: Functional Integrals &amp; Functional Calculus</h1>
+        <p class="subtitle lead">The Mathematics of Infinite Dimensions</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      Mastering functional derivatives, Taylor expansions, and generating functionals.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Path Integrals Course</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 21, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/07_gaussian_integrals.html">Next: Module 7 →</a></p>
+<p>To deeply understand path integrals, we need to transition from the mathematics of finite-dimensional spaces to the mathematics of infinite-dimensional spaces. In classical mechanics and standard quantum mechanics, we usually deal with functions: mathematical objects that map a number (like time <span class="math inline">\(t\)</span>) to another number (like position <span class="math inline">\(x(t)\)</span>).</p>
+<p>However, in the path integral formalism, the central object is the action <span class="math inline">\(S[x]\)</span>, which maps an entire <em>function</em> (a path <span class="math inline">\(x(t)\)</span>) to a single number. This requires us to generalize the rules of calculus. We must learn how to differentiate and Taylor-expand with respect to entire functions rather than simple variables. This machinery is known as <strong>functional calculus</strong>, and it is the universal language of modern Quantum Field Theory (QFT) and advanced statistical mechanics. Let’s build this toolkit from the ground up!</p>
+<section id="what-is-a-functional" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="what-is-a-functional"><span class="header-section-number">1</span> 1. What is a Functional?</h2>
+<p>A standard function, <span class="math inline">\(f(x)\)</span>, takes a number <span class="math inline">\(x\)</span> and returns another number <span class="math inline">\(f(x)\)</span>. A <strong>functional</strong>, denoted with square brackets as <span class="math inline">\(F[x(t)]\)</span>, takes an <em>entire function</em> <span class="math inline">\(x(t)\)</span> and returns a single real or complex number.</p>
+<div class="callout-intuition">
+<p>Imagine a function as a simple machine: you drop a single coin (a number) into the slot, and it spits out a ticket (another number). A functional, on the other hand, is a much larger machine. You must feed it an entire strip of film (a full continuous trajectory <span class="math inline">\(x(t)\)</span> over some time interval). Only after scanning the whole strip does the machine spit out a single ticket (a number).</p>
+</div>
+<section id="common-examples-of-functionals" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="common-examples-of-functionals"><span class="header-section-number">1.1</span> Common Examples of Functionals</h3>
+<ol type="1">
+<li><p><strong>The Action Functional:</strong> The most famous functional in physics is the classical action: <span class="math display">\[ S[x] = \int_{t_a}^{t_b} L(x(t), \dot{x}(t), t) \, dt \]</span> You plug in a path <span class="math inline">\(x(t)\)</span>, evaluate the Lagrangian <span class="math inline">\(L\)</span> at every instant, integrate over time, and get a single number <span class="math inline">\(S\)</span>.</p></li>
+<li><p><strong>Arc Length:</strong> The length of a curve <span class="math inline">\(y(x)\)</span> between <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> in 2D space: <span class="math display">\[ L[y] = \int_{x_1}^{x_2} \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx \]</span></p></li>
+<li><p><strong>Local Evaluation Functional:</strong> A functional that simply evaluates the function at a specific point <span class="math inline">\(t_0\)</span>: <span class="math display">\[ E_{t_0}[x] = x(t_0) \]</span> This can be rewritten using the Dirac delta function, transforming it into an integral form: <span class="math display">\[ E_{t_0}[x] = \int x(t) \delta(t - t_0) \, dt \]</span></p></li>
+</ol>
+</section>
+</section>
+<section id="functional-derivatives" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="functional-derivatives"><span class="header-section-number">2</span> 2. Functional Derivatives</h2>
+<p>In ordinary calculus, the derivative <span class="math inline">\(df/dx\)</span> tells us how the number <span class="math inline">\(f\)</span> changes when we slightly vary the number <span class="math inline">\(x\)</span>. For a functional <span class="math inline">\(F[x]\)</span>, we want to know how the number <span class="math inline">\(F\)</span> changes when we slightly vary the <em>entire function</em> <span class="math inline">\(x(t)\)</span> by a small amount <span class="math inline">\(\delta x(t)\)</span>.</p>
+<p>By analogy with the multivariable chain rule <span class="math inline">\(df = \sum_i (\partial f/\partial x_i) dx_i\)</span>, the variation of a functional is defined as: <span class="math display">\[ \delta F = F[x + \delta x] - F[x] = \int \frac{\delta F[x]}{\delta x(t)} \delta x(t) \, dt \]</span></p>
+<p>Here, <span class="math inline">\(\frac{\delta F[x]}{\delta x(t)}\)</span> is the <strong>functional derivative</strong>. It tells us the sensitivity of <span class="math inline">\(F\)</span> to a localized change in the function <span class="math inline">\(x\)</span> at the specific time <span class="math inline">\(t\)</span>.</p>
+<section id="formal-definition" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="formal-definition"><span class="header-section-number">2.1</span> Formal Definition</h3>
+<p>To make this rigorous, we introduce a small parameter <span class="math inline">\(\epsilon\)</span> and an arbitrary “test function” <span class="math inline">\(\eta(t)\)</span>. We define the functional derivative via the first-order Taylor expansion in <span class="math inline">\(\epsilon\)</span>: <span class="math display">\[ F[x + \epsilon \eta] = F[x] + \epsilon \int \frac{\delta F[x]}{\delta x(t)} \eta(t) \, dt + \mathcal{O}(\epsilon^2) \]</span></p>
+<p>Let’s compute some explicit examples to build intuition.</p>
+</section>
+<section id="example-a-the-evaluation-functional" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="example-a-the-evaluation-functional"><span class="header-section-number">2.2</span> Example A: The Evaluation Functional</h3>
+<p>Let <span class="math inline">\(F[x] = x(t')\)</span>. We want to find its functional derivative with respect to <span class="math inline">\(x(t)\)</span>. <span class="math display">\[ F[x + \epsilon \eta] = x(t') + \epsilon \eta(t') \]</span> Using the Dirac delta function, we can rewrite <span class="math inline">\(\eta(t')\)</span> as an integral: <span class="math display">\[ F[x + \epsilon \eta] = F[x] + \epsilon \int \delta(t - t') \eta(t) \, dt \]</span> Comparing this with the formal definition, we immediately read off: <span class="math display">\[ \boxed{ \frac{\delta x(t')}{\delta x(t)} = \delta(t - t') } \]</span> This is the functional analog of the ordinary calculus rule <span class="math inline">\(\frac{\partial x_i}{\partial x_j} = \delta_{ij}\)</span>.</p>
+</section>
+<section id="example-b-a-quadratic-functional" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="example-b-a-quadratic-functional"><span class="header-section-number">2.3</span> Example B: A Quadratic Functional</h3>
+<p>Let <span class="math inline">\(F[x] = \int x(t')^2 \, dt'\)</span>. <span class="math display">\[ F[x + \epsilon \eta] = \int \left( x(t') + \epsilon \eta(t') \right)^2 \, dt' \]</span> <span class="math display">\[ F[x + \epsilon \eta] = \int \left( x(t')^2 + 2\epsilon x(t')\eta(t') + \epsilon^2 \eta(t')^2 \right) \, dt' \]</span> Dropping the <span class="math inline">\(\mathcal{O}(\epsilon^2)\)</span> term, we have: <span class="math display">\[ F[x + \epsilon \eta] \approx F[x] + \epsilon \int \left[ 2 x(t') \right] \eta(t') \, dt' \]</span> Changing the dummy variable <span class="math inline">\(t'\)</span> to <span class="math inline">\(t\)</span> in the integral, we identify: <span class="math display">\[ \boxed{ \frac{\delta}{\delta x(t)} \int x(t')^2 \, dt' = 2x(t) } \]</span></p>
+</section>
+<section id="example-c-derivative-of-the-kinetic-energy-integration-by-parts" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="example-c-derivative-of-the-kinetic-energy-integration-by-parts"><span class="header-section-number">2.4</span> Example C: Derivative of the Kinetic Energy (Integration by Parts!)</h3>
+<p>Let <span class="math inline">\(F[x] = \int_{t_a}^{t_b} \frac{1}{2} m \dot{x}(t')^2 \, dt'\)</span>. <span class="math display">\[ F[x + \epsilon \eta] = \int_{t_a}^{t_b} \frac{1}{2} m \left( \dot{x}(t') + \epsilon \dot{\eta}(t') \right)^2 \, dt' \]</span> <span class="math display">\[ F[x + \epsilon \eta] \approx F[x] + \epsilon \int_{t_a}^{t_b} m \dot{x}(t') \dot{\eta}(t') \, dt' \]</span> Notice that the variation involves <span class="math inline">\(\dot{\eta}(t')\)</span>, but our definition of the functional derivative requires the integral to be of the form <span class="math inline">\(\int (\cdots) \eta(t') \, dt'\)</span>. We must move the derivative off of <span class="math inline">\(\eta(t')\)</span> and onto <span class="math inline">\(x(t')\)</span>. We do this using <strong>integration by parts</strong>: <span class="math display">\[ \int_{t_a}^{t_b} m \dot{x}(t') \dot{\eta}(t') \, dt' = \left[ m \dot{x}(t') \eta(t') \right]_{t_a}^{t_b} - \int_{t_a}^{t_b} m \ddot{x}(t') \eta(t') \, dt' \]</span> Assuming the variation <span class="math inline">\(\eta(t')\)</span> vanishes at the boundaries <span class="math inline">\(t_a\)</span> and <span class="math inline">\(t_b\)</span> (as is standard in the calculus of variations since the endpoints of the path are fixed), the boundary term drops out. We are left with: <span class="math display">\[ F[x + \epsilon \eta] \approx F[x] + \epsilon \int_{t_a}^{t_b} \left[ -m \ddot{x}(t') \right] \eta(t') \, dt' \]</span> Thus, swapping the dummy variable <span class="math inline">\(t'\)</span> for <span class="math inline">\(t\)</span>: <span class="math display">\[ \boxed{ \frac{\delta}{\delta x(t)} \int \frac{1}{2} m \dot{x}(t')^2 \, dt' = -m \ddot{x}(t) } \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Whenever the functional contains time derivatives of <span class="math inline">\(x(t)\)</span>, computing the functional derivative will almost always require integration by parts to isolate the arbitrary variation <span class="math inline">\(\eta(t)\)</span>. Always pay attention to the boundary terms!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="key-identities" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="key-identities"><span class="header-section-number">3</span> 3. Key Identities</h2>
+<p>The rules of functional calculus beautifully mirror those of ordinary calculus.</p>
+<ol type="1">
+<li><p><strong>Linearity:</strong> <span class="math display">\[ \frac{\delta}{\delta x(t)} \left( a F[x] + b G[x] \right) = a \frac{\delta F[x]}{\delta x(t)} + b \frac{\delta G[x]}{\delta x(t)} \]</span></p></li>
+<li><p><strong>Product Rule (Leibniz Rule):</strong> <span class="math display">\[ \frac{\delta}{\delta x(t)} \left( F[x] G[x] \right) = \frac{\delta F[x]}{\delta x(t)} G[x] + F[x] \frac{\delta G[x]}{\delta x(t)} \]</span></p></li>
+<li><p><strong>Chain Rule:</strong> If <span class="math inline">\(F\)</span> depends on <span class="math inline">\(x\)</span> through another function <span class="math inline">\(y(t)\)</span>, where <span class="math inline">\(y\)</span> is a local function of <span class="math inline">\(x\)</span>: <span class="math display">\[ \frac{\delta F[y(x)]}{\delta x(t)} = \int \frac{\delta F[y]}{\delta y(t')} \frac{\delta y(t')}{\delta x(t)} \, dt' \]</span> Notice that the sum from the multivariable chain rule <span class="math inline">\(\sum_i\)</span> becomes an integral <span class="math inline">\(\int dt'\)</span> in the functional case.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Higher-order functional derivatives are symmetric, just like partial derivatives. That is, <span class="math inline">\(\frac{\delta^2 F}{\delta x(t_1) \delta x(t_2)} = \frac{\delta^2 F}{\delta x(t_2) \delta x(t_1)}\)</span>, assuming the functional is sufficiently smooth.</p>
+</div>
+</div>
+</section>
+<section id="euler-lagrange-from-functionals" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="euler-lagrange-from-functionals"><span class="header-section-number">4</span> 4. Euler-Lagrange from Functionals</h2>
+<p>We are now equipped to derive the Euler-Lagrange equations using our compact functional derivative notation. The principle of least action states that the classical path <span class="math inline">\(x_{cl}(t)\)</span> is an extremum of the action <span class="math inline">\(S[x]\)</span>. In functional language, this means the functional derivative of <span class="math inline">\(S[x]\)</span> evaluated at <span class="math inline">\(x_{cl}\)</span> must vanish exactly: <span class="math display">\[ \left. \frac{\delta S[x]}{\delta x(t)} \right|_{x = x_{cl}} = 0 \]</span></p>
+<p>Let’s derive this for a general action <span class="math inline">\(S[x] = \int_{t_a}^{t_b} L(x(t'), \dot{x}(t')) \, dt'\)</span>. We vary <span class="math inline">\(x\)</span> by <span class="math inline">\(\epsilon \eta(t')\)</span>: <span class="math display">\[ S[x + \epsilon \eta] = \int_{t_a}^{t_b} L(x(t') + \epsilon \eta(t'), \dot{x}(t') + \epsilon \dot{\eta}(t')) \, dt' \]</span> Taylor expanding the Lagrangian to first order in <span class="math inline">\(\epsilon\)</span>: <span class="math display">\[ S[x + \epsilon \eta] \approx \int_{t_a}^{t_b} \left[ L(x, \dot{x}) + \epsilon \frac{\partial L}{\partial x}\eta(t') + \epsilon \frac{\partial L}{\partial \dot{x}}\dot{\eta}(t') \right] dt' \]</span> <span class="math display">\[ = S[x] + \epsilon \int_{t_a}^{t_b} \left[ \frac{\partial L}{\partial x}\eta(t') + \frac{\partial L}{\partial \dot{x}}\dot{\eta}(t') \right] dt' \]</span> To isolate <span class="math inline">\(\eta(t')\)</span>, we integrate the second term by parts: <span class="math display">\[ \int_{t_a}^{t_b} \frac{\partial L}{\partial \dot{x}}\dot{\eta}(t') \, dt' = \left[ \frac{\partial L}{\partial \dot{x}}\eta(t') \right]_{t_a}^{t_b} - \int_{t_a}^{t_b} \frac{d}{dt'}\left( \frac{\partial L}{\partial \dot{x}} \right) \eta(t') \, dt' \]</span> Since the endpoints are fixed, <span class="math inline">\(\eta(t_a) = \eta(t_b) = 0\)</span>, the boundary term vanishes. Substituting this back: <span class="math display">\[ S[x + \epsilon \eta] \approx S[x] + \epsilon \int_{t_a}^{t_b} \left[ \frac{\partial L}{\partial x} - \frac{d}{dt'}\left( \frac{\partial L}{\partial \dot{x}} \right) \right] \eta(t') \, dt' \]</span> Comparing this to the formal definition <span class="math inline">\(S[x + \epsilon \eta] = S[x] + \epsilon \int \frac{\delta S}{\delta x(t')} \eta(t') \, dt'\)</span>, we identify the functional derivative: <span class="math display">\[ \boxed{ \frac{\delta S[x]}{\delta x(t)} = \frac{\partial L}{\partial x} - \frac{d}{dt}\left( \frac{\partial L}{\partial \dot{x}} \right) } \]</span> Setting this functional derivative to zero precisely yields the celebrated <strong>Euler-Lagrange equation</strong>.</p>
+<section id="worked-example-1-action-for-a-particle-in-a-potential" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="worked-example-1-action-for-a-particle-in-a-potential"><span class="header-section-number">4.1</span> 🌟 Worked Example 1: Action for a particle in a potential</h3>
+<p><strong>Problem:</strong> Compute <span class="math inline">\(\frac{\delta S}{\delta x(t)}\)</span> for the action <span class="math inline">\(S = \int \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right] dt\)</span>, and show that setting it to zero gives Newton’s Second Law.</p>
+<p><strong>Solution:</strong> We can use the general formula we just derived, or compute it directly from scratch. Let’s do it directly to build muscle memory. Vary <span class="math inline">\(x \to x + \epsilon \eta\)</span>: <span class="math display">\[ S[x + \epsilon \eta] = \int \left[ \frac{1}{2}m(\dot{x} + \epsilon \dot{\eta})^2 - V(x + \epsilon \eta) \right] dt \]</span> Expand to first order in <span class="math inline">\(\epsilon\)</span>: <span class="math display">\[ \approx \int \left[ \frac{1}{2}m\dot{x}^2 + \epsilon m\dot{x}\dot{\eta} - V(x) - \epsilon V'(x)\eta \right] dt \]</span> <span class="math display">\[ = S[x] + \epsilon \int \left[ m\dot{x}\dot{\eta} - V'(x)\eta \right] dt \]</span> Integrate the <span class="math inline">\(m\dot{x}\dot{\eta}\)</span> term by parts: <span class="math display">\[ \int m\dot{x}\dot{\eta} \, dt = \left[ m\dot{x}\eta \right] - \int m\ddot{x}\eta \, dt = - \int m\ddot{x}\eta \, dt \]</span> Substitute back: <span class="math display">\[ S[x + \epsilon \eta] \approx S[x] + \epsilon \int \left[ -m\ddot{x} - V'(x) \right] \eta(t) \, dt \]</span> We extract the functional derivative: <span class="math display">\[ \frac{\delta S}{\delta x(t)} = -m\ddot{x} - V'(x) \]</span> Setting this to zero yields <span class="math inline">\(-m\ddot{x} - V'(x) = 0 \implies m\ddot{x} = -V'(x)\)</span>, which is precisely <span class="math inline">\(F = ma\)</span>.</p>
+</section>
+</section>
+<section id="functional-taylor-expansion" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="functional-taylor-expansion"><span class="header-section-number">5</span> 5. Functional Taylor Expansion</h2>
+<p>Just as a function <span class="math inline">\(f(x)\)</span> can be expanded around a point <span class="math inline">\(x_0\)</span>, a functional <span class="math inline">\(F[x]\)</span> can be expanded around a specific function <span class="math inline">\(x_0(t)\)</span>. Let’s write the variation as <span class="math inline">\(y(t)\)</span>, so we are evaluating <span class="math inline">\(F[x_0 + y]\)</span>.</p>
+<p>The <strong>Functional Taylor Expansion</strong> is given by: <span class="math display">\[ F[x_0 + y] = F[x_0] + \int dt \left. \frac{\delta F}{\delta x(t)} \right|_{x_0} y(t) + \frac{1}{2!} \int dt \int dt' \left. \frac{\delta^2 F}{\delta x(t) \delta x(t')} \right|_{x_0} y(t) y(t') + \dots \]</span></p>
+<p>This is profoundly useful when <span class="math inline">\(F[x]\)</span> is the action <span class="math inline">\(S[x]\)</span> and we expand around the classical path <span class="math inline">\(x_{cl}(t)\)</span>: <span class="math display">\[ S[x_{cl} + y] = S[x_{cl}] + \int dt \left. \frac{\delta S}{\delta x(t)} \right|_{x_{cl}} y(t) + \frac{1}{2!} \int dt \int dt' \left. \frac{\delta^2 S}{\delta x(t) \delta x(t')} \right|_{x_{cl}} y(t) y(t') + \dots \]</span></p>
+<p>Because <span class="math inline">\(x_{cl}\)</span> satisfies the Euler-Lagrange equations, the first functional derivative is zero! Therefore, the linear term in <span class="math inline">\(y(t)\)</span> vanishes entirely: <span class="math display">\[ \left. \frac{\delta S}{\delta x(t)} \right|_{x_{cl}} = 0 \]</span></p>
+<p>We are left with: <span class="math display">\[ S[x_{cl} + y] = S[x_{cl}] + S_{fluct}[y] + \mathcal{O}(y^3) \]</span> where the quadratic term represents the action of the quantum fluctuations <span class="math inline">\(y(t)\)</span> around the classical path. This provides the rigorous mathematical justification for the semiclassical decomposition we used in Module 5 for the Harmonic Oscillator!</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What is the functional derivative of the action with respect to <span class="math inline">\(x(t)\)</span>? What does it equal when evaluated exactly on the classical path?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The functional derivative <span class="math inline">\(\frac{\delta S}{\delta x(t)}\)</span> gives the Euler-Lagrange expression: <span class="math inline">\(\frac{\partial L}{\partial x} - \frac{d}{dt}(\frac{\partial L}{\partial \dot{x}})\)</span>. When evaluated on the classical path <span class="math inline">\(x_{cl}\)</span>, this functional derivative is identically zero, which simply means that the action is stationary at the classical path.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-functionals-source-terms" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="generating-functionals-source-terms"><span class="header-section-number">6</span> 6. Generating Functionals &amp; Source Terms</h2>
+<p>In ordinary probability theory, to compute the moments <span class="math inline">\(\langle x \rangle, \langle x^2 \rangle, \dots\)</span> of a probability distribution <span class="math inline">\(P(x)\)</span>, we introduce a moment-generating function: <span class="math display">\[ Z(J) = \int e^{J x} P(x) \, dx \]</span> By taking derivatives with respect to <span class="math inline">\(J\)</span> and setting <span class="math inline">\(J=0\)</span>, we easily pull down factors of <span class="math inline">\(x\)</span>: <span class="math display">\[ \langle x^n \rangle = \left. \frac{d^n Z(J)}{dJ^n} \right|_{J=0} \]</span></p>
+<p>In the path integral formulation of quantum mechanics and QFT, we construct a <strong>generating functional</strong>, <span class="math inline">\(Z[J]\)</span>. We modify the standard path integral by adding a “source term” <span class="math inline">\(J(t)x(t)\)</span> to the action. Here, <span class="math inline">\(J(t)\)</span> is an arbitrary external driving force.</p>
+<p><span class="math display">\[ \boxed{ Z[J] = \int \mathcal{D}x \, \exp\left\{ \frac{i}{\hbar} S[x] + i \int J(t) x(t) \, dt \right\} } \]</span></p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, Ch. 8. Also widely covered in Zee, QFT in a Nutshell, Ch. I.3.</p>
+</blockquote>
+<p>This <span class="math inline">\(Z[J]\)</span> is the master object of Quantum Field Theory. If you know <span class="math inline">\(Z[J]\)</span>, you mathematically know absolutely everything there is to know about the quantum system!</p>
+<div class="callout-intuition">
+<p>Why add <span class="math inline">\(J(t)\)</span>? Think of <span class="math inline">\(J(t)\)</span> as an artificial external hand poking and prodding the quantum system at different times <span class="math inline">\(t\)</span>. By observing how the system’s “vacuum” (the sum over paths) reacts to this prodding (by taking functional derivatives with respect to <span class="math inline">\(J\)</span>), we can deduce the internal dynamics and correlations of the particle itself. Once we have our answers, we set <span class="math inline">\(J=0\)</span> to turn the prodding off.</p>
+</div>
+</section>
+<section id="correlation-functions-from-zj" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="correlation-functions-from-zj"><span class="header-section-number">7</span> 7. Correlation Functions from Z[J]</h2>
+<p>How do we use <span class="math inline">\(Z[J]\)</span>? Suppose we want to compute the expectation value of the particle’s position at time <span class="math inline">\(t_1\)</span>, known as a 1-point correlation function <span class="math inline">\(\langle x(t_1) \rangle\)</span>.</p>
+<p>Let’s take the functional derivative of <span class="math inline">\(Z[J]\)</span> with respect to the source <span class="math inline">\(J(t_1)\)</span>: <span class="math display">\[ \frac{\delta Z[J]}{\delta J(t_1)} = \int \mathcal{D}x \, \frac{\delta}{\delta J(t_1)} \exp\left\{ \frac{i}{\hbar} S[x] + i \int J(t) x(t) \, dt \right\} \]</span> Using the chain rule and the fact that <span class="math inline">\(\frac{\delta}{\delta J(t_1)} \int J(t)x(t)dt = x(t_1)\)</span>: <span class="math display">\[ \frac{\delta Z[J]}{\delta J(t_1)} = \int \mathcal{D}x \, \left( i x(t_1) \right) \exp\left\{ \frac{i}{\hbar} S[x] + i \int J(t) x(t) \, dt \right\} \]</span> If we multiply by <span class="math inline">\(-i\)</span> and then set the artificial source <span class="math inline">\(J=0\)</span>, the exponential just becomes the standard amplitude <span class="math inline">\(e^{iS/\hbar}\)</span>: <span class="math display">\[ \left. -i \frac{\delta Z[J]}{\delta J(t_1)} \right|_{J=0} = \int \mathcal{D}x \, x(t_1) e^{\frac{i}{\hbar}S[x]} \]</span> To get the normalized expectation value, we must divide by <span class="math inline">\(Z[0] = \int \mathcal{D}x \, e^{iS/\hbar}\)</span>: <span class="math display">\[ \boxed{ \langle x(t_1) \rangle = \frac{1}{Z[0]} \left. \left( -i \frac{\delta}{\delta J(t_1)} \right) Z[J] \right|_{J=0} } \]</span></p>
+<p>We can extend this to find the expectation value of the product of positions at two different times, the <strong>2-point correlation function</strong> (or Green’s function): <span class="math display">\[ \langle x(t_1) x(t_2) \rangle = \frac{\int \mathcal{D}x \, x(t_1) x(t_2) e^{\frac{i}{\hbar}S[x]}}{\int \mathcal{D}x \, e^{\frac{i}{\hbar}S[x]}} \]</span> This is generated by taking two functional derivatives: <span class="math display">\[ \boxed{ \langle x(t_1) x(t_2) \rangle = \frac{1}{Z[0]} \left. \left( -i \frac{\delta}{\delta J(t_1)} \right) \left( -i \frac{\delta}{\delta J(t_2)} \right) Z[J] \right|_{J=0} } \]</span></p>
+<p>In general, an <span class="math inline">\(n\)</span>-point correlation function is given by taking <span class="math inline">\(n\)</span> functional derivatives of <span class="math inline">\(Z[J]\)</span>. The physical meaning of <span class="math inline">\(\langle x(t_1) x(t_2) \rangle\)</span> is the probability amplitude for a particle to propagate from <span class="math inline">\(x(t_2)\)</span> to <span class="math inline">\(x(t_1)\)</span>; it characterizes how fluctuations at time <span class="math inline">\(t_2\)</span> influence the particle at time <span class="math inline">\(t_1\)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why is <span class="math inline">\(Z[J]\)</span> called a ‘generating functional’? What exactly does it generate?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(Z[J]\)</span> is called a generating functional because it generates all possible correlation functions (expectation values of products like <span class="math inline">\(x(t_1)x(t_2)\dots x(t_n)\)</span>) of the quantum theory. By repeatedly applying the functional derivative <span class="math inline">\(\delta/\delta J(t)\)</span> and then setting the source <span class="math inline">\(J\)</span> to zero, we “pull down” variables into the path integral, generating the entire family of <span class="math inline">\(n\)</span>-point correlation functions, exactly like a moment generating function generates statistical moments.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="worked-example-2-the-free-particle-correlator" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="worked-example-2-the-free-particle-correlator"><span class="header-section-number">7.1</span> 🌟 Worked Example 2: The Free Particle Correlator</h3>
+<p><strong>Problem:</strong> Compute <span class="math inline">\(Z[J]\)</span> for a free particle where the action is <span class="math inline">\(S_0 = \int \frac{1}{2}m\dot{x}^2 dt\)</span> plus a source term <span class="math inline">\(\int Jx dt\)</span>. Then use it to find <span class="math inline">\(\langle x(t_1)x(t_2) \rangle\)</span>.</p>
+<p><strong>Solution:</strong> We will use units where <span class="math inline">\(\hbar = 1\)</span> for simplicity. The total exponent is: <span class="math display">\[ iS_{tot} = i \int \left[ \frac{1}{2}m\dot{x}^2 + J(t)x(t) \right] dt \]</span> Integrating the kinetic term by parts (assuming boundary terms vanish as usual): <span class="math display">\[ \int \frac{1}{2}m\dot{x}^2 dt = -\int \frac{1}{2} x(t) m\frac{d^2}{dt^2} x(t) dt \]</span> Let’s define the differential operator <span class="math inline">\(O = -m \frac{d^2}{dt^2}\)</span>. The exponent is a quadratic form: <span class="math display">\[ iS_{tot} = \frac{i}{2} \int x(t) O x(t) dt + i \int J(t)x(t) dt \]</span> By “completing the square” for functional integrals (which we will rigorously prove step-by-step in Module 7), we can shift variables <span class="math inline">\(x \to x + x_0\)</span> to perform the integral. The result for the generating functional is an exponential of a quadratic in <span class="math inline">\(J\)</span>: <span class="math display">\[ Z[J] = Z[0] \exp\left\{ -\frac{i}{2} \int \int J(t) G(t, t') J(t') \, dt \, dt' \right\} \]</span> Here, <span class="math inline">\(G(t, t')\)</span> is the Green’s function, which is the inverse of our differential operator <span class="math inline">\(O\)</span>: <span class="math display">\[ -m \frac{d^2}{dt^2} G(t, t') = \delta(t - t') \]</span></p>
+<p>Now, let’s extract the 2-point correlator! <span class="math display">\[ \langle x(t_1) x(t_2) \rangle = \frac{1}{Z[0]} \left. (-i)^2 \frac{\delta^2 Z[J]}{\delta J(t_1) \delta J(t_2)} \right|_{J=0} \]</span> Let <span class="math inline">\(W[J] = -\frac{i}{2} \int \int J(t) G(t, t') J(t') dt dt'\)</span> so that <span class="math inline">\(Z[J] = Z[0] e^{W[J]}\)</span>. First derivative (using the chain rule and the symmetric property <span class="math inline">\(G(t,t') = G(t',t)\)</span>): <span class="math display">\[ \frac{\delta Z}{\delta J(t_2)} = Z[0] e^{W[J]} \frac{\delta W}{\delta J(t_2)} = Z[J] \left( -i \int G(t_2, t') J(t') dt' \right) \]</span> Second derivative with respect to <span class="math inline">\(J(t_1)\)</span>: <span class="math display">\[ \frac{\delta^2 Z}{\delta J(t_1) \delta J(t_2)} = \frac{\delta Z}{\delta J(t_1)} \left( -i \int G(t_2, t') J(t') dt' \right) + Z[J] \left( -i G(t_2, t_1) \right) \]</span> Now, evaluate at <span class="math inline">\(J=0\)</span>. The first term vanishes entirely because the integral over <span class="math inline">\(J\)</span> is zero. We are left with just the second term: <span class="math display">\[ \left. \frac{\delta^2 Z}{\delta J(t_1) \delta J(t_2)} \right|_{J=0} = Z[0] ( -i G(t_2, t_1) ) \]</span> Plug this into the correlator formula: <span class="math display">\[ \langle x(t_1) x(t_2) \rangle = \frac{1}{Z[0]} (-1) Z[0] (-i G(t_2, t_1)) = i G(t_1, t_2) \]</span> This beautiful result shows that the 2-point correlation function of a free particle is exactly proportional to its Green’s function!</p>
+</section>
+</section>
+<section id="dictionary-ordinary-calculus-vs-functional-calculus" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="dictionary-ordinary-calculus-vs-functional-calculus"><span class="header-section-number">8</span> 8. Dictionary: Ordinary Calculus vs Functional Calculus</h2>
+<p>To consolidate your learning, keep this translation dictionary handy as we move deeper into the course:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Ordinary Calculus (Finite <span class="math inline">\(N\)</span>)</th>
+<th style="text-align: left;">Functional Calculus (Infinite Dim)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Index / Coordinate</strong></td>
+<td style="text-align: left;">Discrete index <span class="math inline">\(i\)</span></td>
+<td style="text-align: left;">Continuous time <span class="math inline">\(t\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Variable</strong></td>
+<td style="text-align: left;">Vector <span class="math inline">\(\vec{x} = \{x_1, x_2, \dots, x_N\}\)</span></td>
+<td style="text-align: left;">Function <span class="math inline">\(x(t)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Function(al)</strong></td>
+<td style="text-align: left;">Function <span class="math inline">\(f(\vec{x})\)</span></td>
+<td style="text-align: left;">Functional <span class="math inline">\(F[x(t)]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Summation</strong></td>
+<td style="text-align: left;">Sum <span class="math inline">\(\sum_i (\dots)\)</span></td>
+<td style="text-align: left;">Integral <span class="math inline">\(\int dt (\dots)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Identity Matrix</strong></td>
+<td style="text-align: left;">Kronecker delta <span class="math inline">\(\delta_{ij}\)</span></td>
+<td style="text-align: left;">Dirac delta <span class="math inline">\(\delta(t - t')\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Derivative</strong></td>
+<td style="text-align: left;">Partial derivative <span class="math inline">\(\frac{\partial}{\partial x_i}\)</span></td>
+<td style="text-align: left;">Functional derivative <span class="math inline">\(\frac{\delta}{\delta x(t)}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Chain Rule</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{\partial f}{\partial y_i} = \sum_j \frac{\partial f}{\partial x_j} \frac{\partial x_j}{\partial y_i}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{\delta F}{\delta y(t)} = \int dt' \frac{\delta F}{\delta x(t')} \frac{\delta x(t')}{\delta y(t)}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Taylor Series</strong></td>
+<td style="text-align: left;"><span class="math inline">\(f(\vec{x}_0 + \vec{y}) = f(\vec{x}_0) + \sum_i \frac{\partial f}{\partial x_i} y_i + \dots\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F[x_0 + y] = F[x_0] + \int dt \frac{\delta F}{\delta x(t)} y(t) + \dots\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="checkpoint">
+<p><strong>Review Checklist</strong> - Can you explain the difference between a function and a functional in your own words? - Do you understand why integration by parts is essential when computing functional derivatives of Lagrangians with <span class="math inline">\(\dot{x}\)</span>? - Can you write down the general formula for extracting an expectation value <span class="math inline">\(\langle x(t) \rangle\)</span> from the generating functional <span class="math inline">\(Z[J]\)</span>?</p>
+</div>
+</section>
+<section id="practice-problems" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="practice-problems"><span class="header-section-number">9</span> Practice Problems</h2>
+<ol type="1">
+<li><strong>Easy:</strong> Compute the functional derivative of <span class="math inline">\(F[x] = \int_{0}^{T} x(t)^3 \, dt\)</span> with respect to <span class="math inline">\(x(t')\)</span>.</li>
+<li><strong>Easy:</strong> For the functional <span class="math inline">\(G[x] = \int x(t) y(t) \, dt\)</span> where <span class="math inline">\(y(t)\)</span> is a fixed function, what is <span class="math inline">\(\frac{\delta G}{\delta x(t')}\)</span>?</li>
+<li><strong>Medium:</strong> Let <span class="math inline">\(F[x] = \exp\left( \int x(t)^2 dt \right)\)</span>. Compute <span class="math inline">\(\frac{\delta F}{\delta x(t')}\)</span> using the functional chain rule.</li>
+<li><strong>Medium:</strong> The length of a string hanging between two posts is given by the functional <span class="math inline">\(L[y] = \int \sqrt{1 + y'(x)^2} dx\)</span>. Compute <span class="math inline">\(\frac{\delta L}{\delta y(x)}\)</span>. Set it to zero to find the differential equation for the curve of minimum length (which you should recognize as a straight line if there are no other forces).</li>
+<li><strong>Hard:</strong> Given the Lagrangian for a particle in an electromagnetic field, <span class="math inline">\(L = \frac{1}{2}m\dot{x}^2 + \frac{e}{c} \dot{x} A(x) - e \phi(x)\)</span>, use functional differentiation of the action <span class="math inline">\(\frac{\delta S}{\delta x(t)} = 0\)</span> to derive the Lorentz force law. (Assume 1D for simplicity, but treat <span class="math inline">\(A\)</span> and <span class="math inline">\(\phi\)</span> as functions of <span class="math inline">\(x\)</span>).</li>
+<li><strong>Hard:</strong> Using the expression for <span class="math inline">\(Z[J]\)</span> from Worked Example 2, perform the functional derivatives to find the explicit form of the 4-point correlation function <span class="math inline">\(\langle x(t_1) x(t_2) x(t_3) x(t_4) \rangle\)</span> in terms of the Green’s function <span class="math inline">\(G(t, t')\)</span>. (This is your first glimpse of Wick’s Theorem!).</li>
+</ol>
+<div class="nav-buttons">
+<p><a href="../../Courses/Path_Integrals/05_harmonic_oscillator.html" class="btn btn-outline-secondary">← Previous Module</a> <a href="../../Courses/Path_Integrals/07_gaussian_integrals.html" class="btn btn-success">Next: Module 7 →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

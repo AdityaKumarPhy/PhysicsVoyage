@@ -1,0 +1,18 @@
+# Shared options for all Path Integrals course module pages
+
+freeze: true
+
+website:
+  back-to-top-navigation: true
+
+format:
+  html:
+    template-partials:
+      - ../../Blog/partials/title-block.html
+    include-in-header:
+      - ../../Blog/progress-bar.html
+    highlight-style:
+      light: github
+      dark: dracula
+    toc: true
+    toc-depth: 3

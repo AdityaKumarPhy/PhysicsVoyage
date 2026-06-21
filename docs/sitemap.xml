@@ -1,131 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/courses.html</loc>
-    <lastmod>2026-05-26T14:00:11.019Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/blog.html</loc>
-    <lastmod>2026-05-25T13:47:21.381Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/test.html</loc>
-    <lastmod>2026-05-26T00:57:18.817Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/test3.html</loc>
-    <lastmod>2026-05-26T06:58:02.143Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/Quantum Dynamics.html</loc>
-    <lastmod>2026-05-26T07:10:46.317Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/test5.html</loc>
-    <lastmod>2026-05-26T07:02:47.791Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Subjects/Intro_Comp_Physics/index.html</loc>
-    <lastmod>2026-05-25T11:41:02.596Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/about.html</loc>
-    <lastmod>2026-05-22T12:31:02.636Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/project.html</loc>
-    <lastmod>2026-05-22T16:19:02.976Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/Comp_Physics/index.html</loc>
-    <lastmod>2026-05-22T16:18:15.465Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/test4.html</loc>
-    <lastmod>2026-05-26T07:00:04.804Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/Wavefunction.html</loc>
-    <lastmod>2026-05-25T13:36:56.536Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Blog/Random_Physics/test2.html</loc>
-    <lastmod>2026-05-26T06:57:23.522Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/index.html</loc>
-    <lastmod>2026-05-26T13:43:13.357Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/feed.html</loc>
-    <lastmod>2026-05-23T01:15:36.454Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/index.html</loc>
-    <lastmod>2026-05-26T14:24:22.210Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/03_ladder_operators.html</loc>
-    <lastmod>2026-05-26T07:25:56.438Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/02_quantization.html</loc>
-    <lastmod>2026-05-26T07:24:31.439Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/05_time_evolution.html</loc>
-    <lastmod>2026-05-26T07:28:12.727Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/07_squeezed_states.html</loc>
-    <lastmod>2026-05-26T07:31:02.396Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/01_why_oscillators.html</loc>
-    <lastmod>2026-05-26T07:23:11.236Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/04_wavefunctions.html</loc>
-    <lastmod>2026-05-26T07:27:00.263Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/06_coherent_states.html</loc>
-    <lastmod>2026-05-26T07:29:35.249Z</lastmod>
-  </url>
-  <url>
-    <loc>https://adityakumarphy.github.io/PhysicsVoyage.github.io/Courses/QHO/08_cheatsheet.html</loc>
-    <lastmod>2026-05-26T07:32:07.843Z</lastmod>
-  </url>
-  <url>
-    <loc>https://physicsvoyage-github-io.pages.dev/about.html</loc>
-    <lastmod>2026-06-14T11:19:12.100Z</lastmod>
-  </url>
-  <url>
-    <loc>https://physicsvoyage-github-io.pages.dev/index.html</loc>
-    <lastmod>2026-06-14T12:07:00.805Z</lastmod>
+    <loc>https://physicsvoyage-github-io.pages.dev/courses.html</loc>
+    <lastmod>2026-06-21T01:24:42.561Z</lastmod>
   </url>
   <url>
     <loc>https://physicsvoyage-github-io.pages.dev/blog.html</loc>
     <lastmod>2026-05-25T13:47:21.381Z</lastmod>
   </url>
   <url>
-    <loc>https://physicsvoyage-github-io.pages.dev/courses.html</loc>
-    <lastmod>2026-05-26T14:00:11.019Z</lastmod>
+    <loc>https://physicsvoyage-github-io.pages.dev/Blog/Random_Physics/quartic_double_well.html</loc>
+    <lastmod>2026-06-14T12:10:23.094Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Blog/Random_Physics/Wavefunction.html</loc>
+    <lastmod>2026-05-25T13:36:56.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/03_free_particle.html</loc>
+    <lastmod>2026-06-21T01:20:04.094Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/15_cheatsheet.html</loc>
+    <lastmod>2026-06-21T01:27:21.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/06_functional_calculus.html</loc>
+    <lastmod>2026-06-21T01:25:47.911Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/08_classical_limit.html</loc>
+    <lastmod>2026-06-21T01:27:33.661Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/05_harmonic_oscillator.html</loc>
+    <lastmod>2026-06-21T01:19:34.792Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/07_gaussian_integrals.html</loc>
+    <lastmod>2026-06-21T01:26:33.404Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/11_euclidean_eom.html</loc>
+    <lastmod>2026-06-21T01:27:22.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/02_sum_over_paths.html</loc>
+    <lastmod>2026-06-21T01:19:24.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Comp_Physics/index.html</loc>
+    <lastmod>2026-05-22T16:18:15.465Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/03_ladder_operators.html</loc>
+    <lastmod>2026-05-26T07:25:56.438Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/index.html</loc>
+    <lastmod>2026-05-26T14:24:22.210Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/04_wavefunctions.html</loc>
+    <lastmod>2026-05-26T07:27:00.263Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/01_why_oscillators.html</loc>
+    <lastmod>2026-05-26T07:23:11.236Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/about.html</loc>
+    <lastmod>2026-06-14T11:19:12.100Z</lastmod>
   </url>
   <url>
     <loc>https://physicsvoyage-github-io.pages.dev/project.html</loc>
     <lastmod>2026-05-22T16:19:02.976Z</lastmod>
   </url>
   <url>
-    <loc>https://physicsvoyage-github-io.pages.dev/Blog/Random_Physics/Quantum Dynamics.html</loc>
-    <lastmod>2026-06-14T11:18:25.299Z</lastmod>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/07_squeezed_states.html</loc>
+    <lastmod>2026-05-26T07:31:02.396Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/05_time_evolution.html</loc>
+    <lastmod>2026-05-26T07:28:12.727Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/02_quantization.html</loc>
+    <lastmod>2026-05-26T07:24:31.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/06_coherent_states.html</loc>
+    <lastmod>2026-05-26T07:29:35.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/QHO/08_cheatsheet.html</loc>
+    <lastmod>2026-05-26T07:32:07.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/09_wick_rotation.html</loc>
+    <lastmod>2026-06-21T01:27:22.885Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/14_applications.html</loc>
+    <lastmod>2026-06-21T01:26:25.070Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/01_propagators.html</loc>
+    <lastmod>2026-06-21T01:32:08.726Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/index.html</loc>
+    <lastmod>2026-06-21T01:43:37.436Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/10_euclidean_path_integral.html</loc>
+    <lastmod>2026-06-21T01:26:51.520Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/04_path_integral_derivation.html</loc>
+    <lastmod>2026-06-21T01:19:15.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/13_qft_path_integral.html</loc>
+    <lastmod>2026-06-21T01:27:56.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Path_Integrals/12_statistical_mechanics.html</loc>
+    <lastmod>2026-06-21T01:27:08.634Z</lastmod>
   </url>
   <url>
     <loc>https://physicsvoyage-github-io.pages.dev/Blog/Subjects/Intro_Comp_Physics/index.html</loc>
     <lastmod>2026-05-25T11:41:02.596Z</lastmod>
   </url>
   <url>
-    <loc>https://physicsvoyage-github-io.pages.dev/Blog/Random_Physics/quartic_double_well.html</loc>
-    <lastmod>2026-06-14T12:10:23.094Z</lastmod>
+    <loc>https://physicsvoyage-github-io.pages.dev/Blog/Random_Physics/Quantum Dynamics.html</loc>
+    <lastmod>2026-06-14T11:18:25.299Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/index.html</loc>
+    <lastmod>2026-06-14T12:07:00.805Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/feed.html</loc>
+    <lastmod>2026-05-23T01:15:36.454Z</lastmod>
   </url>
 </urlset>

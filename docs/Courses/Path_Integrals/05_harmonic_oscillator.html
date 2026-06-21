@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="We compute the path integral for the quantum harmonic oscillator from scratch — finding the classical path, evaluating the classical action, computing the fluctuation determinant via eigenvalue methods, assembling the exact propagator, and recovering the energy spectrum E_n = (n+½)ℏω.">
+
+<title>Physics Voyage - Module 5: Path Integral for the Harmonic Oscillator</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-setup" id="toc-the-setup" class="nav-link active" data-scroll-target="#the-setup"><span class="header-section-number">1</span> The Setup</a></li>
+  <li><a href="#the-classical-path" id="toc-the-classical-path" class="nav-link" data-scroll-target="#the-classical-path"><span class="header-section-number">2</span> The Classical Path</a>
+  <ul class="collapse">
+  <li><a href="#setting-up-the-equation-of-motion" id="toc-setting-up-the-equation-of-motion" class="nav-link" data-scroll-target="#setting-up-the-equation-of-motion"><span class="header-section-number">2.1</span> Setting Up the Equation of Motion</a></li>
+  <li><a href="#the-general-solution" id="toc-the-general-solution" class="nav-link" data-scroll-target="#the-general-solution"><span class="header-section-number">2.2</span> The General Solution</a></li>
+  <li><a href="#applying-boundary-conditions" id="toc-applying-boundary-conditions" class="nav-link" data-scroll-target="#applying-boundary-conditions"><span class="header-section-number">2.3</span> Applying Boundary Conditions</a></li>
+  <li><a href="#writing-the-classical-path-in-a-clean-form" id="toc-writing-the-classical-path-in-a-clean-form" class="nav-link" data-scroll-target="#writing-the-classical-path-in-a-clean-form"><span class="header-section-number">2.4</span> Writing the Classical Path in a Clean Form</a></li>
+  </ul></li>
+  <li><a href="#the-classical-action" id="toc-the-classical-action" class="nav-link" data-scroll-target="#the-classical-action"><span class="header-section-number">3</span> The Classical Action</a>
+  <ul class="collapse">
+  <li><a href="#computing-dotx_textcl" id="toc-computing-dotx_textcl" class="nav-link" data-scroll-target="#computing-dotx_textcl"><span class="header-section-number">3.1</span> Computing <span class="math inline">\(\dot{x}_{\text{cl}}\)</span></a></li>
+  <li><a href="#the-integration-trick" id="toc-the-integration-trick" class="nav-link" data-scroll-target="#the-integration-trick"><span class="header-section-number">3.2</span> The Integration Trick</a></li>
+  <li><a href="#evaluating-the-boundary-terms" id="toc-evaluating-the-boundary-terms" class="nav-link" data-scroll-target="#evaluating-the-boundary-terms"><span class="header-section-number">3.3</span> Evaluating the Boundary Terms</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">3.4</span> Putting It All Together</a></li>
+  </ul></li>
+  <li><a href="#decomposition-classical-fluctuations" id="toc-decomposition-classical-fluctuations" class="nav-link" data-scroll-target="#decomposition-classical-fluctuations"><span class="header-section-number">4</span> Decomposition: Classical + Fluctuations</a>
+  <ul class="collapse">
+  <li><a href="#the-decomposition" id="toc-the-decomposition" class="nav-link" data-scroll-target="#the-decomposition"><span class="header-section-number">4.1</span> The Decomposition</a></li>
+  <li><a href="#the-action-splits-exactly" id="toc-the-action-splits-exactly" class="nav-link" data-scroll-target="#the-action-splits-exactly"><span class="header-section-number">4.2</span> The Action Splits Exactly</a></li>
+  <li><a href="#the-cross-terms-vanish" id="toc-the-cross-terms-vanish" class="nav-link" data-scroll-target="#the-cross-terms-vanish"><span class="header-section-number">4.3</span> The Cross Terms Vanish!</a></li>
+  <li><a href="#the-exact-result" id="toc-the-exact-result" class="nav-link" data-scroll-target="#the-exact-result"><span class="header-section-number">4.4</span> The Exact Result</a></li>
+  </ul></li>
+  <li><a href="#the-key-insight-factorization" id="toc-the-key-insight-factorization" class="nav-link" data-scroll-target="#the-key-insight-factorization"><span class="header-section-number">5</span> The Key Insight: Factorization</a>
+  <ul class="collapse">
+  <li><a href="#the-propagator-factorizes" id="toc-the-propagator-factorizes" class="nav-link" data-scroll-target="#the-propagator-factorizes"><span class="header-section-number">5.1</span> The Propagator Factorizes</a></li>
+  </ul></li>
+  <li><a href="#computing-the-fluctuation-determinant" id="toc-computing-the-fluctuation-determinant" class="nav-link" data-scroll-target="#computing-the-fluctuation-determinant"><span class="header-section-number">6</span> Computing the Fluctuation Determinant</a>
+  <ul class="collapse">
+  <li><a href="#step-1-eigenfunction-expansion" id="toc-step-1-eigenfunction-expansion" class="nav-link" data-scroll-target="#step-1-eigenfunction-expansion"><span class="header-section-number">6.1</span> Step 1: Eigenfunction Expansion</a></li>
+  <li><a href="#step-2-evaluate-the-fluctuation-action" id="toc-step-2-evaluate-the-fluctuation-action" class="nav-link" data-scroll-target="#step-2-evaluate-the-fluctuation-action"><span class="header-section-number">6.2</span> Step 2: Evaluate the Fluctuation Action</a></li>
+  <li><a href="#step-3-the-path-integral-as-a-product-of-ordinary-integrals" id="toc-step-3-the-path-integral-as-a-product-of-ordinary-integrals" class="nav-link" data-scroll-target="#step-3-the-path-integral-as-a-product-of-ordinary-integrals"><span class="header-section-number">6.3</span> Step 3: The Path Integral as a Product of Ordinary Integrals</a></li>
+  <li><a href="#step-4-ratio-with-the-free-particle" id="toc-step-4-ratio-with-the-free-particle" class="nav-link" data-scroll-target="#step-4-ratio-with-the-free-particle"><span class="header-section-number">6.4</span> Step 4: Ratio with the Free Particle</a></li>
+  <li><a href="#step-5-the-infinite-product-identity" id="toc-step-5-the-infinite-product-identity" class="nav-link" data-scroll-target="#step-5-the-infinite-product-identity"><span class="header-section-number">6.5</span> Step 5: The Infinite Product Identity</a></li>
+  </ul></li>
+  <li><a href="#the-final-propagator" id="toc-the-final-propagator" class="nav-link" data-scroll-target="#the-final-propagator"><span class="header-section-number">7</span> The Final Propagator</a>
+  <ul class="collapse">
+  <li><a href="#assembling-the-pieces" id="toc-assembling-the-pieces" class="nav-link" data-scroll-target="#assembling-the-pieces"><span class="header-section-number">7.1</span> Assembling the Pieces</a></li>
+  <li><a href="#structure-of-the-propagator" id="toc-structure-of-the-propagator" class="nav-link" data-scroll-target="#structure-of-the-propagator"><span class="header-section-number">7.2</span> Structure of the Propagator</a></li>
+  </ul></li>
+  <li><a href="#recovering-the-energy-spectrum" id="toc-recovering-the-energy-spectrum" class="nav-link" data-scroll-target="#recovering-the-energy-spectrum"><span class="header-section-number">8</span> Recovering the Energy Spectrum</a>
+  <ul class="collapse">
+  <li><a href="#spectral-decomposition-of-the-propagator" id="toc-spectral-decomposition-of-the-propagator" class="nav-link" data-scroll-target="#spectral-decomposition-of-the-propagator"><span class="header-section-number">8.1</span> Spectral Decomposition of the Propagator</a></li>
+  <li><a href="#the-mehler-formula" id="toc-the-mehler-formula" class="nav-link" data-scroll-target="#the-mehler-formula"><span class="header-section-number">8.2</span> The Mehler Formula</a></li>
+  <li><a href="#reading-off-the-spectrum" id="toc-reading-off-the-spectrum" class="nav-link" data-scroll-target="#reading-off-the-spectrum"><span class="header-section-number">8.3</span> Reading Off the Spectrum</a>
+  <ul class="collapse">
+  <li><a href="#the-energy-levels" id="toc-the-energy-levels" class="nav-link" data-scroll-target="#the-energy-levels"><span class="header-section-number">8.3.1</span> The Energy Levels</a></li>
+  <li><a href="#the-wavefunctions" id="toc-the-wavefunctions" class="nav-link" data-scroll-target="#the-wavefunctions"><span class="header-section-number">8.3.2</span> The Wavefunctions</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#connection-to-the-qho-course" id="toc-connection-to-the-qho-course" class="nav-link" data-scroll-target="#connection-to-the-qho-course"><span class="header-section-number">9</span> Connection to the QHO Course</a></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">10</span> Worked Examples</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-1-the-free-particle-limit-omega-to-0" id="toc-worked-example-1-the-free-particle-limit-omega-to-0" class="nav-link" data-scroll-target="#worked-example-1-the-free-particle-limit-omega-to-0"><span class="header-section-number">10.1</span> Worked Example 1: The Free-Particle Limit (<span class="math inline">\(\omega \to 0\)</span>)</a></li>
+  <li><a href="#worked-example-2-extracting-the-ground-state-from-t-to-infty" id="toc-worked-example-2-extracting-the-ground-state-from-t-to-infty" class="nav-link" data-scroll-target="#worked-example-2-extracting-the-ground-state-from-t-to-infty"><span class="header-section-number">10.2</span> Worked Example 2: Extracting the Ground State from <span class="math inline">\(T \to \infty\)</span></a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#key-formulas-at-a-glance" id="toc-key-formulas-at-a-glance" class="nav-link" data-scroll-target="#key-formulas-at-a-glance"><span class="header-section-number">11.1</span> Key Formulas at a Glance</a></li>
+  <li><a href="#free-particle-vs.-harmonic-oscillator-side-by-side" id="toc-free-particle-vs.-harmonic-oscillator-side-by-side" class="nav-link" data-scroll-target="#free-particle-vs.-harmonic-oscillator-side-by-side"><span class="header-section-number">11.2</span> Free Particle vs.&nbsp;Harmonic Oscillator — Side by Side</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">12</span> Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 5: Path Integral for the Harmonic Oscillator</h1>
+        <p class="subtitle lead">The Second Exactly Solvable Case — Classical Paths, Fluctuation Determinants, and the Exact Propagator</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      We compute the path integral for the quantum harmonic oscillator from scratch — finding the classical path, evaluating the classical action, computing the fluctuation determinant via eigenvalue methods, assembling the exact propagator, and recovering the energy spectrum E_n = (n+½)ℏω.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Path Integrals Course</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 21, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/06_functional_calculus.html">Next: Module 6 →</a></p>
+<hr>
+<p>In the <a href="../../Courses/Path_Integrals/04_path_integral_derivation.html">previous module</a>, we rigorously derived the path integral from the operator formulation of quantum mechanics. We also worked through the free particle as the simplest application. Now we tackle the <strong>harmonic oscillator</strong> — the second exactly solvable path integral, and arguably the most important one in all of physics.</p>
+<p>Why is this calculation so central? Because the harmonic oscillator isn’t just a toy. It’s the prototype for <em>every</em> quadratic action — and in quantum field theory, the free-field path integral is nothing but an infinite collection of harmonic oscillators. The techniques we develop here — decomposing paths into classical + fluctuations, computing fluctuation determinants, using eigenvalue methods — are the same tools that power modern QFT calculations. Master this module, and you’ve mastered the template for essentially all exactly solvable path integrals.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What you’ll learn
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>How to find the classical path satisfying boundary conditions</li>
+<li>How to compute the classical action explicitly</li>
+<li>The crucial decomposition: <span class="math inline">\(x(t) = x_{\text{cl}}(t) + y(t)\)</span> and why the action <em>factorizes</em></li>
+<li>How to evaluate the fluctuation path integral via eigenvalue methods</li>
+<li>The exact harmonic oscillator propagator (boxed formula!)</li>
+<li>How to extract the energy spectrum <span class="math inline">\(E_n = (n + \tfrac{1}{2})\hbar\omega\)</span> from the propagator</li>
+<li>The free-particle limit and the half-period singularity</li>
+</ul>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook references</strong>: Feynman &amp; Hibbs, Ch. 3 §3-5; Shankar, Ch. 8 §8.6; Kleinert, Ch. 2; Zinn-Justin, Ch. 2.</p>
+</blockquote>
+<hr>
+<section id="the-setup" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The Setup</h1>
+<p>We consider a particle of mass <span class="math inline">\(m\)</span> in a one-dimensional harmonic potential with angular frequency <span class="math inline">\(\omega\)</span>. The <strong>Lagrangian</strong> is:</p>
+<p><span class="math display">\[
+L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2
+\]</span></p>
+<p>This is a <strong>quadratic Lagrangian</strong> — quadratic in both <span class="math inline">\(x\)</span> and <span class="math inline">\(\dot{x}\)</span>. This fact will have profound consequences: it means the path integral can be evaluated <em>exactly</em>.</p>
+<p>Our goal is to compute the <strong>propagator</strong> (transition amplitude):</p>
+<p><span class="math display">\[
+K(x_b, t_b; x_a, t_a) = \int_{x(t_a) = x_a}^{x(t_b) = x_b} \mathcal{D}x(t) \; \exp\!\left[\frac{i}{\hbar} \int_{t_a}^{t_b} L\big(x, \dot{x}\big) \, dt \right]
+\]</span></p>
+<p>with the <strong>boundary conditions</strong>:</p>
+<p><span class="math display">\[
+x(t_a) = x_a, \qquad x(t_b) = x_b
+\]</span></p>
+<p>We define the total elapsed time:</p>
+<p><span class="math display">\[
+T \equiv t_b - t_a
+\]</span></p>
+<div class="callout-intuition">
+<p>Think of the path integral as a “quantum election” — every conceivable path from <span class="math inline">\((x_a, t_a)\)</span> to <span class="math inline">\((x_b, t_b)\)</span> gets to “vote,” weighted by the phase <span class="math inline">\(e^{iS/\hbar}\)</span>. For the harmonic oscillator, the action is quadratic, which means the “vote counting” reduces to a single Gaussian integral. This is why the harmonic oscillator is exactly solvable — just like any Gaussian integral is exactly computable.</p>
+</div>
+<hr>
+</section>
+<section id="the-classical-path" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Classical Path</h1>
+<section id="setting-up-the-equation-of-motion" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="setting-up-the-equation-of-motion"><span class="header-section-number">2.1</span> Setting Up the Equation of Motion</h2>
+<p>Before doing any quantum calculation, we need to find the <strong>classical path</strong> — the one that extremizes the action. The Euler-Lagrange equation for our Lagrangian is:</p>
+<p><span class="math display">\[
+\frac{d}{dt}\frac{\partial L}{\partial \dot{x}} - \frac{\partial L}{\partial x} = 0
+\]</span></p>
+<p>Computing the derivatives:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial \dot{x}} = m\dot{x}, \qquad \frac{\partial L}{\partial x} = -m\omega^2 x
+\]</span></p>
+<p>So the equation of motion is:</p>
+<p><span class="math display">\[
+m\ddot{x} + m\omega^2 x = 0 \quad \implies \quad \boxed{\ddot{x} + \omega^2 x = 0}
+\]</span></p>
+<p>This is the familiar simple harmonic oscillator equation!</p>
+</section>
+<section id="the-general-solution" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-general-solution"><span class="header-section-number">2.2</span> The General Solution</h2>
+<p>The general solution is:</p>
+<p><span class="math display">\[
+x(t) = A\cos\omega t + B\sin\omega t
+\]</span></p>
+<p>where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are constants determined by boundary conditions.</p>
+</section>
+<section id="applying-boundary-conditions" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="applying-boundary-conditions"><span class="header-section-number">2.3</span> Applying Boundary Conditions</h2>
+<p>We need <span class="math inline">\(x(t_a) = x_a\)</span> and <span class="math inline">\(x(t_b) = x_b\)</span>. Let’s apply these:</p>
+<p><strong>Condition 1</strong>: <span class="math inline">\(x(t_a) = x_a\)</span>:</p>
+<p><span class="math display">\[
+x_a = A\cos\omega t_a + B\sin\omega t_a \tag{1}
+\]</span></p>
+<p><strong>Condition 2</strong>: <span class="math inline">\(x(t_b) = x_b\)</span>:</p>
+<p><span class="math display">\[
+x_b = A\cos\omega t_b + B\sin\omega t_b \tag{2}
+\]</span></p>
+<p>From Eq. (1):</p>
+<p><span class="math display">\[
+A = \frac{x_a - B\sin\omega t_a}{\cos\omega t_a}
+\]</span></p>
+<p>Substituting into Eq. (2):</p>
+<p><span class="math display">\[
+x_b = \frac{(x_a - B\sin\omega t_a)\cos\omega t_b}{\cos\omega t_a} + B\sin\omega t_b
+\]</span></p>
+<p><span class="math display">\[
+x_b \cos\omega t_a = x_a \cos\omega t_b - B\sin\omega t_a \cos\omega t_b + B\sin\omega t_b \cos\omega t_a
+\]</span></p>
+<p><span class="math display">\[
+x_b \cos\omega t_a - x_a \cos\omega t_b = B\big(\sin\omega t_b \cos\omega t_a - \sin\omega t_a \cos\omega t_b\big)
+\]</span></p>
+<p>The expression in parentheses is exactly <span class="math inline">\(\sin\omega(t_b - t_a) = \sin\omega T\)</span>:</p>
+<p><span class="math display">\[
+B = \frac{x_b \cos\omega t_a - x_a \cos\omega t_b}{\sin\omega T}
+\]</span></p>
+<p>Similarly:</p>
+<p><span class="math display">\[
+A = \frac{x_a \sin\omega t_b - x_b \sin\omega t_a}{\sin\omega T}
+\]</span></p>
+</section>
+<section id="writing-the-classical-path-in-a-clean-form" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="writing-the-classical-path-in-a-clean-form"><span class="header-section-number">2.4</span> Writing the Classical Path in a Clean Form</h2>
+<p>Substituting <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> back into <span class="math inline">\(x(t) = A\cos\omega t + B\sin\omega t\)</span>:</p>
+<p><span class="math display">\[
+x_{\text{cl}}(t) = \frac{(x_a \sin\omega t_b - x_b \sin\omega t_a)\cos\omega t + (x_b \cos\omega t_a - x_a \cos\omega t_b)\sin\omega t}{\sin\omega T}
+\]</span></p>
+<p>Now, group the <span class="math inline">\(x_a\)</span> and <span class="math inline">\(x_b\)</span> terms:</p>
+<ul>
+<li><strong>Coefficient of <span class="math inline">\(x_a\)</span></strong>: <span class="math inline">\(\sin\omega t_b \cos\omega t - \cos\omega t_b \sin\omega t = \sin\omega(t_b - t)\)</span></li>
+<li><strong>Coefficient of <span class="math inline">\(x_b\)</span></strong>: <span class="math inline">\(\cos\omega t_a \sin\omega t - \sin\omega t_a \cos\omega t = \sin\omega(t - t_a)\)</span></li>
+</ul>
+<p>Both identities use the sine subtraction formula <span class="math inline">\(\sin(\alpha - \beta) = \sin\alpha\cos\beta - \cos\alpha\sin\beta\)</span>.</p>
+<p>Therefore, the <strong>classical path</strong> is:</p>
+<p><span class="math display">\[
+\boxed{x_{\text{cl}}(t) = \frac{x_a \sin\omega(t_b - t) + x_b \sin\omega(t - t_a)}{\sin\omega T}}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sanity check
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let’s verify the boundary conditions:</p>
+<ul>
+<li>At <span class="math inline">\(t = t_a\)</span>: <span class="math inline">\(x_{\text{cl}}(t_a) = \frac{x_a \sin\omega T + x_b \cdot 0}{\sin\omega T} = x_a\)</span> ✓</li>
+<li>At <span class="math inline">\(t = t_b\)</span>: <span class="math inline">\(x_{\text{cl}}(t_b) = \frac{x_a \cdot 0 + x_b \sin\omega T}{\sin\omega T} = x_b\)</span> ✓</li>
+</ul>
+<p>Also, for <span class="math inline">\(\omega \to 0\)</span>: using <span class="math inline">\(\sin\omega\tau \to \omega\tau\)</span>, we get <span class="math inline">\(x_{\text{cl}}(t) \to \frac{x_a(t_b - t) + x_b(t - t_a)}{T}\)</span>, which is the straight-line path of a free particle. ✓</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-classical-action" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> The Classical Action</h1>
+<p>Now we compute the action evaluated on the classical path:</p>
+<p><span class="math display">\[
+S_{\text{cl}} = \int_{t_a}^{t_b} \left[\frac{1}{2}m\dot{x}_{\text{cl}}^2 - \frac{1}{2}m\omega^2 x_{\text{cl}}^2 \right] dt
+\]</span></p>
+<p>This is a crucial calculation, so we’ll do every step.</p>
+<section id="computing-dotx_textcl" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="computing-dotx_textcl"><span class="header-section-number">3.1</span> Computing <span class="math inline">\(\dot{x}_{\text{cl}}\)</span></h2>
+<p>Differentiating the classical path:</p>
+<p><span class="math display">\[
+\dot{x}_{\text{cl}}(t) = \frac{-x_a \omega\cos\omega(t_b - t) + x_b \omega\cos\omega(t - t_a)}{\sin\omega T}
+\]</span></p>
+<p><span class="math display">\[
+= \frac{\omega}{\sin\omega T}\Big[-x_a \cos\omega(t_b - t) + x_b \cos\omega(t - t_a)\Big]
+\]</span></p>
+</section>
+<section id="the-integration-trick" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-integration-trick"><span class="header-section-number">3.2</span> The Integration Trick</h2>
+<p>Rather than computing <span class="math inline">\(\dot{x}_{\text{cl}}^2\)</span> and <span class="math inline">\(x_{\text{cl}}^2\)</span> separately and integrating, there’s a beautiful shortcut. Since <span class="math inline">\(x_{\text{cl}}\)</span> satisfies the equation of motion <span class="math inline">\(\ddot{x}_{\text{cl}} + \omega^2 x_{\text{cl}} = 0\)</span>, we can write:</p>
+<p><span class="math display">\[
+\frac{1}{2}m\omega^2 x_{\text{cl}}^2 = -\frac{1}{2}m x_{\text{cl}} \ddot{x}_{\text{cl}}
+\]</span></p>
+<p>So the Lagrangian on the classical path becomes:</p>
+<p><span class="math display">\[
+L_{\text{cl}} = \frac{1}{2}m\dot{x}_{\text{cl}}^2 + \frac{1}{2}m x_{\text{cl}} \ddot{x}_{\text{cl}}
+\]</span></p>
+<p>Now notice that this is a total derivative! Specifically:</p>
+<p><span class="math display">\[
+\frac{d}{dt}\Big(\frac{1}{2}m x_{\text{cl}} \dot{x}_{\text{cl}}\Big) = \frac{1}{2}m \dot{x}_{\text{cl}}^2 + \frac{1}{2}m x_{\text{cl}} \ddot{x}_{\text{cl}} = L_{\text{cl}}
+\]</span></p>
+<p>This is a wonderful result. The classical action becomes a <strong>boundary term</strong>:</p>
+<p><span class="math display">\[
+S_{\text{cl}} = \int_{t_a}^{t_b} L_{\text{cl}} \, dt = \frac{1}{2}m \Big[x_{\text{cl}}(t) \dot{x}_{\text{cl}}(t)\Big]_{t_a}^{t_b}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{S_{\text{cl}} = \frac{m}{2}\Big[x_b \dot{x}_{\text{cl}}(t_b) - x_a \dot{x}_{\text{cl}}(t_a)\Big]}
+\]</span></p>
+</section>
+<section id="evaluating-the-boundary-terms" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="evaluating-the-boundary-terms"><span class="header-section-number">3.3</span> Evaluating the Boundary Terms</h2>
+<p>We need <span class="math inline">\(\dot{x}_{\text{cl}}\)</span> at the endpoints. From our expression for <span class="math inline">\(\dot{x}_{\text{cl}}(t)\)</span>:</p>
+<p><strong>At <span class="math inline">\(t = t_b\)</span></strong>: <span class="math inline">\(\omega(t_b - t_b) = 0\)</span> and <span class="math inline">\(\omega(t_b - t_a) = \omega T\)</span>:</p>
+<p><span class="math display">\[
+\dot{x}_{\text{cl}}(t_b) = \frac{\omega}{\sin\omega T}\Big[-x_a \cos 0 + x_b \cos\omega T\Big] = \frac{\omega}{\sin\omega T}\Big[x_b \cos\omega T - x_a\Big]
+\]</span></p>
+<p><strong>At <span class="math inline">\(t = t_a\)</span></strong>: <span class="math inline">\(\omega(t_b - t_a) = \omega T\)</span> and <span class="math inline">\(\omega(t_a - t_a) = 0\)</span>:</p>
+<p><span class="math display">\[
+\dot{x}_{\text{cl}}(t_a) = \frac{\omega}{\sin\omega T}\Big[-x_a \cos\omega T + x_b \cos 0\Big] = \frac{\omega}{\sin\omega T}\Big[x_b - x_a \cos\omega T\Big]
+\]</span></p>
+</section>
+<section id="putting-it-all-together" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">3.4</span> Putting It All Together</h2>
+<p><span class="math display">\[
+S_{\text{cl}} = \frac{m}{2}\left[x_b \cdot \frac{\omega(x_b \cos\omega T - x_a)}{\sin\omega T} - x_a \cdot \frac{\omega(x_b - x_a \cos\omega T)}{\sin\omega T}\right]
+\]</span></p>
+<p><span class="math display">\[
+= \frac{m\omega}{2\sin\omega T}\Big[x_b^2 \cos\omega T - x_a x_b - x_a x_b + x_a^2 \cos\omega T\Big]
+\]</span></p>
+<p><span class="math display">\[
+\boxed{S_{\text{cl}} = \frac{m\omega}{2\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]}
+\]</span></p>
+<p>This is one of the most important formulas in path integral quantum mechanics. Memorize its structure!</p>
+<div class="callout-intuition">
+<p>The classical action has a beautiful physical interpretation. The factor <span class="math inline">\(m\omega/\sin\omega T\)</span> sets the overall scale and diverges when <span class="math inline">\(\omega T\)</span> is a multiple of <span class="math inline">\(\pi\)</span> (we’ll see why shortly). The term <span class="math inline">\((x_a^2 + x_b^2)\cos\omega T\)</span> describes the “self-coupling” of the endpoints, while <span class="math inline">\(-2x_a x_b\)</span> describes their mutual coupling. In the free-particle limit (<span class="math inline">\(\omega \to 0\)</span>), this reduces to <span class="math inline">\(S_{\text{cl}} = m(x_b - x_a)^2 / 2T\)</span> — the familiar free-particle action.</p>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What physical interpretation can you give to the classical action <span class="math inline">\(S_{\text{cl}}\)</span> in the limit <span class="math inline">\(x_a = x_b = x_0\)</span>? What does the action look like?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Setting <span class="math inline">\(x_a = x_b = x_0\)</span>: <span class="math display">\[
+S_{\text{cl}} = \frac{m\omega x_0^2}{2\sin\omega T}(2\cos\omega T - 2) = \frac{m\omega x_0^2(\cos\omega T - 1)}{\sin\omega T}
+\]</span> Using the identity <span class="math inline">\((\cos\theta - 1)/\sin\theta = -\tan(\theta/2)\)</span>: <span class="math display">\[
+S_{\text{cl}} = -m\omega x_0^2 \tan\!\left(\frac{\omega T}{2}\right)
+\]</span> This is the action for a particle starting and ending at the same point <span class="math inline">\(x_0\)</span>. For <span class="math inline">\(T = 2\pi/\omega\)</span> (one full period), the tangent vanishes and <span class="math inline">\(S_{\text{cl}} = 0\)</span> — the particle goes around and comes back, accumulating zero net action. This matches the classical intuition that after a full period, the oscillator returns to its initial state with the same velocity.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="decomposition-classical-fluctuations" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Decomposition: Classical + Fluctuations</h1>
+<p>This section contains one of the most important ideas in path integral physics.</p>
+<section id="the-decomposition" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="the-decomposition"><span class="header-section-number">4.1</span> The Decomposition</h2>
+<p>Any path <span class="math inline">\(x(t)\)</span> that goes from <span class="math inline">\(x_a\)</span> at time <span class="math inline">\(t_a\)</span> to <span class="math inline">\(x_b\)</span> at time <span class="math inline">\(t_b\)</span> can be written as:</p>
+<p><span class="math display">\[
+x(t) = x_{\text{cl}}(t) + y(t)
+\]</span></p>
+<p>where <span class="math inline">\(x_{\text{cl}}(t)\)</span> is the classical path we just found, and <span class="math inline">\(y(t)\)</span> is a <strong>fluctuation</strong> (deviation) from the classical path. Since <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(x_{\text{cl}}(t)\)</span> must both satisfy the same boundary conditions, the fluctuation must vanish at both endpoints:</p>
+<p><span class="math display">\[
+\boxed{y(t_a) = 0, \qquad y(t_b) = 0}
+\]</span></p>
+<p>This is a <strong>Dirichlet boundary condition</strong> on the fluctuations.</p>
+</section>
+<section id="the-action-splits-exactly" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="the-action-splits-exactly"><span class="header-section-number">4.2</span> The Action Splits Exactly</h2>
+<p>Let’s compute <span class="math inline">\(S[x_{\text{cl}} + y]\)</span> by substituting into the action. The Lagrangian is:</p>
+<p><span class="math display">\[
+L = \frac{1}{2}m(\dot{x}_{\text{cl}} + \dot{y})^2 - \frac{1}{2}m\omega^2(x_{\text{cl}} + y)^2
+\]</span></p>
+<p>Expanding:</p>
+<p><span class="math display">\[
+L = \underbrace{\frac{1}{2}m\dot{x}_{\text{cl}}^2 - \frac{1}{2}m\omega^2 x_{\text{cl}}^2}_{L_{\text{cl}}} + \underbrace{m\dot{x}_{\text{cl}}\dot{y} - m\omega^2 x_{\text{cl}} y}_{\text{cross terms}} + \underbrace{\frac{1}{2}m\dot{y}^2 - \frac{1}{2}m\omega^2 y^2}_{L_{\text{fluct}}}
+\]</span></p>
+<p>The action therefore has three pieces:</p>
+<p><span class="math display">\[
+S[x_{\text{cl}} + y] = S_{\text{cl}} + S_{\text{cross}} + S_2[y]
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+S_{\text{cross}} = \int_{t_a}^{t_b} \big(m\dot{x}_{\text{cl}}\dot{y} - m\omega^2 x_{\text{cl}} y\big) \, dt
+\]</span></p>
+<p><span class="math display">\[
+S_2[y] = \int_{t_a}^{t_b} \frac{1}{2}m\big(\dot{y}^2 - \omega^2 y^2\big) \, dt
+\]</span></p>
+</section>
+<section id="the-cross-terms-vanish" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="the-cross-terms-vanish"><span class="header-section-number">4.3</span> The Cross Terms Vanish!</h2>
+<p>This is the key step. Let’s show that <span class="math inline">\(S_{\text{cross}} = 0\)</span>. Integrate the <span class="math inline">\(\dot{x}_{\text{cl}}\dot{y}\)</span> term by parts:</p>
+<p><span class="math display">\[
+\int_{t_a}^{t_b} m\dot{x}_{\text{cl}}\dot{y} \, dt = \Big[m\dot{x}_{\text{cl}} y\Big]_{t_a}^{t_b} - \int_{t_a}^{t_b} m\ddot{x}_{\text{cl}} y \, dt
+\]</span></p>
+<p>The boundary term vanishes because <span class="math inline">\(y(t_a) = y(t_b) = 0\)</span>. So:</p>
+<p><span class="math display">\[
+S_{\text{cross}} = -\int_{t_a}^{t_b} m\ddot{x}_{\text{cl}} y \, dt - \int_{t_a}^{t_b} m\omega^2 x_{\text{cl}} y \, dt
+\]</span></p>
+<p><span class="math display">\[
+= -\int_{t_a}^{t_b} m(\ddot{x}_{\text{cl}} + \omega^2 x_{\text{cl}}) y \, dt = 0
+\]</span></p>
+<p>The integrand vanishes identically because <span class="math inline">\(x_{\text{cl}}\)</span> satisfies the equation of motion <span class="math inline">\(\ddot{x}_{\text{cl}} + \omega^2 x_{\text{cl}} = 0\)</span>!</p>
+</section>
+<section id="the-exact-result" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="the-exact-result"><span class="header-section-number">4.4</span> The Exact Result</h2>
+<p>The action splits cleanly into two parts:</p>
+<p><span class="math display">\[
+\boxed{S[x_{\text{cl}} + y] = S_{\text{cl}} + S_2[y]}
+\]</span></p>
+<p>with the <strong>fluctuation action</strong>:</p>
+<p><span class="math display">\[
+S_2[y] = \frac{m}{2}\int_{t_a}^{t_b}\Big(\dot{y}^2 - \omega^2 y^2\Big) \, dt
+\]</span></p>
+<p>There are no cubic, quartic, or higher-order terms — because the original action was <strong>at most quadratic in <span class="math inline">\(x\)</span></strong>. This exact splitting is the hallmark of quadratic actions.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why does the path integral split into <span class="math inline">\(e^{iS_{\text{cl}}/\hbar} \times (\text{fluctuation factor})\)</span>? Is this always true?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This happens because the action is <strong>at most quadratic</strong> in <span class="math inline">\(x\)</span>. For a quadratic action, expanding <span class="math inline">\(x = x_{\text{cl}} + y\)</span> gives: (1) a piece that depends only on the endpoints (the classical action <span class="math inline">\(S_{\text{cl}}\)</span>), (2) cross terms that vanish because <span class="math inline">\(x_{\text{cl}}\)</span> satisfies the equation of motion, and (3) a fluctuation piece <span class="math inline">\(S_2[y]\)</span> that is independent of the endpoints.</p>
+<p>For <strong>non-quadratic</strong> actions (e.g., with a <span class="math inline">\(\lambda x^4\)</span> anharmonic term), the decomposition <span class="math inline">\(x = x_{\text{cl}} + y\)</span> would produce cubic terms like <span class="math inline">\(\sim x_{\text{cl}} y^2\)</span> and quartic terms <span class="math inline">\(\sim y^3, y^4\)</span> in the fluctuation action. These “interaction terms” couple the fluctuations to the classical path and to each other, so the path integral does <em>not</em> factorize. In that case, one must resort to perturbation theory or numerical methods.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-key-insight-factorization" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> The Key Insight: Factorization</h1>
+<section id="the-propagator-factorizes" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-propagator-factorizes"><span class="header-section-number">5.1</span> The Propagator Factorizes</h2>
+<p>Since <span class="math inline">\(S[x] = S_{\text{cl}} + S_2[y]\)</span> and the measure <span class="math inline">\(\mathcal{D}x\)</span> becomes <span class="math inline">\(\mathcal{D}y\)</span> (shifting by the fixed classical path doesn’t change the measure), we have:</p>
+<p><span class="math display">\[
+K(x_b, t_b; x_a, t_a) = \int \mathcal{D}y \; \exp\!\left[\frac{i}{\hbar}\big(S_{\text{cl}} + S_2[y]\big)\right]
+\]</span></p>
+<p>The classical action is just a number (it depends on <span class="math inline">\(x_a, x_b, T\)</span>, but not on <span class="math inline">\(y\)</span>), so it comes outside the integral:</p>
+<p><span class="math display">\[
+\boxed{K(x_b, t_b; x_a, t_a) = e^{iS_{\text{cl}}/\hbar} \times \underbrace{\int \mathcal{D}y \; e^{iS_2[y]/\hbar}}_{F(T)}}
+\]</span></p>
+<p>This is a profound factorization:</p>
+<ul>
+<li>The <strong>classical phase</strong> <span class="math inline">\(e^{iS_{\text{cl}}/\hbar}\)</span> carries all the information about the endpoints <span class="math inline">\(x_a, x_b\)</span>.</li>
+<li>The <strong>fluctuation integral</strong> <span class="math inline">\(F(T)\)</span> is the path integral over all fluctuations <span class="math inline">\(y(t)\)</span> with Dirichlet boundary conditions <span class="math inline">\(y(t_a) = y(t_b) = 0\)</span>. It depends <em>only on <span class="math inline">\(T\)</span></em> (and on <span class="math inline">\(m, \omega, \hbar\)</span>), not on the endpoints!</li>
+</ul>
+<p>The fluctuation integral is Gaussian — it’s the functional analog of <span class="math inline">\(\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\pi/a}\)</span>. Computing it is our next task.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Template for All Quadratic Path Integrals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The factorization <span class="math inline">\(K = e^{iS_{\text{cl}}/\hbar} \times F(T)\)</span> is the universal template for quadratic actions. To find <span class="math inline">\(K\)</span>, you need to:</p>
+<ol type="1">
+<li>Find the classical path <span class="math inline">\(x_{\text{cl}}(t)\)</span> satisfying the boundary conditions</li>
+<li>Compute the classical action <span class="math inline">\(S_{\text{cl}}\)</span></li>
+<li>Compute the fluctuation prefactor <span class="math inline">\(F(T)\)</span></li>
+</ol>
+<p>This template works for the free particle, the harmonic oscillator, a particle in a linear potential, a charged particle in a uniform magnetic field, and many more.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="computing-the-fluctuation-determinant" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Computing the Fluctuation Determinant</h1>
+<p>This is the most technically involved part of the calculation. We need to evaluate the <strong>Gaussian path integral</strong>:</p>
+<p><span class="math display">\[
+F(T) = \int \mathcal{D}y \; \exp\!\left[\frac{im}{2\hbar}\int_{t_a}^{t_b}\big(\dot{y}^2 - \omega^2 y^2\big) \, dt\right]
+\]</span></p>
+<p>over all paths <span class="math inline">\(y(t)\)</span> satisfying <span class="math inline">\(y(t_a) = y(t_b) = 0\)</span>.</p>
+<section id="step-1-eigenfunction-expansion" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="step-1-eigenfunction-expansion"><span class="header-section-number">6.1</span> Step 1: Eigenfunction Expansion</h2>
+<p>Since <span class="math inline">\(y(t)\)</span> vanishes at both endpoints, we can expand it in a <strong>Fourier sine series</strong>. Let’s shift the time variable so that <span class="math inline">\(t_a = 0\)</span> and <span class="math inline">\(t_b = T\)</span> (this is just a relabeling and doesn’t affect the physics). Then:</p>
+<p><span class="math display">\[
+y(t) = \sum_{n=1}^{\infty} a_n \sin\!\left(\frac{n\pi t}{T}\right)
+\]</span></p>
+<p>Each basis function <span class="math inline">\(\sin(n\pi t/T)\)</span> automatically satisfies the Dirichlet boundary conditions <span class="math inline">\(y(0) = y(T) = 0\)</span>.</p>
+<p>The coefficients <span class="math inline">\(\{a_n\}\)</span> are the <strong>new integration variables</strong> — summing over all paths <span class="math inline">\(y(t)\)</span> is equivalent to integrating over all possible values of the coefficients <span class="math inline">\(a_1, a_2, a_3, \ldots\)</span></p>
+</section>
+<section id="step-2-evaluate-the-fluctuation-action" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="step-2-evaluate-the-fluctuation-action"><span class="header-section-number">6.2</span> Step 2: Evaluate the Fluctuation Action</h2>
+<p>Let’s compute <span class="math inline">\(S_2[y]\)</span> in terms of the <span class="math inline">\(a_n\)</span>.</p>
+<p><strong>The <span class="math inline">\(\dot{y}^2\)</span> term:</strong></p>
+<p><span class="math display">\[
+\dot{y}(t) = \sum_{n=1}^{\infty} a_n \frac{n\pi}{T} \cos\!\left(\frac{n\pi t}{T}\right)
+\]</span></p>
+<p><span class="math display">\[
+\int_0^T \dot{y}^2 \, dt = \sum_{n,m} a_n a_m \frac{n\pi}{T} \frac{m\pi}{T} \int_0^T \cos\!\left(\frac{n\pi t}{T}\right)\cos\!\left(\frac{m\pi t}{T}\right) dt
+\]</span></p>
+<p>The orthogonality of cosines gives us:</p>
+<p><span class="math display">\[
+\int_0^T \cos\!\left(\frac{n\pi t}{T}\right)\cos\!\left(\frac{m\pi t}{T}\right) dt = \frac{T}{2}\delta_{nm}
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\int_0^T \dot{y}^2 \, dt = \sum_{n=1}^{\infty} a_n^2 \frac{n^2\pi^2}{T^2} \cdot \frac{T}{2} = \frac{1}{2}\sum_{n=1}^{\infty} a_n^2 \frac{n^2\pi^2}{T}
+\]</span></p>
+<p><strong>The <span class="math inline">\(y^2\)</span> term:</strong></p>
+<p><span class="math display">\[
+\int_0^T y^2 \, dt = \sum_{n,m} a_n a_m \int_0^T \sin\!\left(\frac{n\pi t}{T}\right)\sin\!\left(\frac{m\pi t}{T}\right) dt = \sum_{n=1}^{\infty} a_n^2 \frac{T}{2}
+\]</span></p>
+<p>where we used the orthogonality <span class="math inline">\(\int_0^T \sin(n\pi t/T)\sin(m\pi t/T) \, dt = (T/2)\delta_{nm}\)</span>.</p>
+<p><strong>Combining:</strong></p>
+<p><span class="math display">\[
+S_2[y] = \frac{m}{2}\left[\frac{1}{2}\sum_n a_n^2 \frac{n^2\pi^2}{T} - \omega^2 \sum_n a_n^2 \frac{T}{2}\right]
+\]</span></p>
+<p><span class="math display">\[
+= \frac{m}{4}\sum_{n=1}^{\infty} a_n^2 \left(\frac{n^2\pi^2}{T} - \omega^2 T\right)
+\]</span></p>
+<p><span class="math display">\[
+\boxed{S_2[y] = \frac{m}{4}\sum_{n=1}^{\infty} \lambda_n \, a_n^2}
+\]</span></p>
+<p>where we have defined the <strong>eigenvalues</strong>:</p>
+<p><span class="math display">\[
+\lambda_n = \frac{n^2\pi^2}{T} - \omega^2 T = \frac{T}{1}\left(\frac{n^2\pi^2}{T^2} - \omega^2\right)
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What are these eigenvalues?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The eigenvalues <span class="math inline">\(\lambda_n\)</span> are the eigenvalues of the differential operator <span class="math inline">\(\hat{O} = -d^2/dt^2 - \omega^2\)</span> acting on functions with Dirichlet boundary conditions. The eigenfunctions are <span class="math inline">\(\sin(n\pi t/T)\)</span> with eigenvalues <span class="math inline">\((n\pi/T)^2 - \omega^2\)</span>. We’ll explore this operator interpretation much more deeply in <a href="../../Courses/Path_Integrals/07_gaussian_integrals.html">Module 7</a> on Gaussian integrals and functional determinants.</p>
+</div>
+</div>
+</section>
+<section id="step-3-the-path-integral-as-a-product-of-ordinary-integrals" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="step-3-the-path-integral-as-a-product-of-ordinary-integrals"><span class="header-section-number">6.3</span> Step 3: The Path Integral as a Product of Ordinary Integrals</h2>
+<p>The path integral measure becomes:</p>
+<p><span class="math display">\[
+\mathcal{D}y = \mathcal{N} \prod_{n=1}^{\infty} da_n
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{N}\)</span> is a normalization constant (which we’ll track carefully). The path integral factorizes into a product of independent Gaussian integrals:</p>
+<p><span class="math display">\[
+F(T) = \mathcal{N} \prod_{n=1}^{\infty} \int_{-\infty}^{\infty} da_n \; \exp\!\left[\frac{im}{4\hbar}\lambda_n a_n^2\right]
+\]</span></p>
+<p>Each integral is a <strong>Fresnel integral</strong> of the form <span class="math inline">\(\int_{-\infty}^{\infty} e^{i\alpha x^2} dx = \sqrt{\pi / (-i\alpha)} = \sqrt{i\pi/\alpha}\)</span>:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} da_n \; \exp\!\left[\frac{im\lambda_n}{4\hbar} a_n^2\right] = \sqrt{\frac{4\pi i \hbar}{m\lambda_n}}
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+F(T) = \mathcal{N} \prod_{n=1}^{\infty} \sqrt{\frac{4\pi i\hbar}{m\lambda_n}}
+\]</span></p>
+</section>
+<section id="step-4-ratio-with-the-free-particle" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="step-4-ratio-with-the-free-particle"><span class="header-section-number">6.4</span> Step 4: Ratio with the Free Particle</h2>
+<p>The overall normalization <span class="math inline">\(\mathcal{N}\)</span> is tricky, and it’s much cleaner to compute <span class="math inline">\(F(T)\)</span> as a <strong>ratio</strong> with the free-particle case (<span class="math inline">\(\omega = 0\)</span>). For <span class="math inline">\(\omega = 0\)</span>, the eigenvalues are <span class="math inline">\(\lambda_n^{(0)} = n^2\pi^2/T\)</span>, and we know the free-particle propagator is:</p>
+<p><span class="math display">\[
+K_{\text{free}} = \sqrt{\frac{m}{2\pi i\hbar T}} \exp\!\left[\frac{im(x_b - x_a)^2}{2\hbar T}\right]
+\]</span></p>
+<p>So the free-particle fluctuation prefactor is <span class="math inline">\(F_{\text{free}} = \sqrt{m/2\pi i\hbar T}\)</span>.</p>
+<p>The ratio of the harmonic oscillator fluctuation factor to the free-particle one involves:</p>
+<p><span class="math display">\[
+\frac{F(T)}{F_{\text{free}}(T)} = \prod_{n=1}^{\infty} \sqrt{\frac{\lambda_n^{(0)}}{\lambda_n}} = \prod_{n=1}^{\infty} \sqrt{\frac{n^2\pi^2/T}{n^2\pi^2/T - \omega^2 T}}
+\]</span></p>
+<p><span class="math display">\[
+= \prod_{n=1}^{\infty} \frac{1}{\sqrt{1 - \omega^2 T^2/(n^2\pi^2)}}
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+\left(\frac{F(T)}{F_{\text{free}}(T)}\right)^2 = \prod_{n=1}^{\infty} \frac{1}{1 - \omega^2 T^2/(n^2\pi^2)}
+\]</span></p>
+</section>
+<section id="step-5-the-infinite-product-identity" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="step-5-the-infinite-product-identity"><span class="header-section-number">6.5</span> Step 5: The Infinite Product Identity</h2>
+<p>Now we use the famous <strong>Euler infinite product formula for the sine function</strong>:</p>
+<p><span class="math display">\[
+\sin z = z \prod_{n=1}^{\infty}\left(1 - \frac{z^2}{n^2\pi^2}\right)
+\]</span></p>
+<p>Setting <span class="math inline">\(z = \omega T\)</span>:</p>
+<p><span class="math display">\[
+\prod_{n=1}^{\infty}\left(1 - \frac{\omega^2 T^2}{n^2\pi^2}\right) = \frac{\sin\omega T}{\omega T}
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\left(\frac{F(T)}{F_{\text{free}}(T)}\right)^2 = \frac{\omega T}{\sin\omega T}
+\]</span></p>
+<p><span class="math display">\[
+\frac{F(T)}{F_{\text{free}}(T)} = \sqrt{\frac{\omega T}{\sin\omega T}}
+\]</span></p>
+<p>And since <span class="math inline">\(F_{\text{free}} = \sqrt{m/2\pi i\hbar T}\)</span>:</p>
+<p><span class="math display">\[
+F(T) = \sqrt{\frac{m}{2\pi i\hbar T}} \cdot \sqrt{\frac{\omega T}{\sin\omega T}} = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{F(T) = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}}}
+\]</span></p>
+<div class="callout-intuition">
+<p>The fluctuation prefactor tells you “how many paths contribute effectively.” When <span class="math inline">\(\sin\omega T\)</span> is small (near <span class="math inline">\(T = n\pi/\omega\)</span>), the prefactor diverges — this means the paths are “focusing” toward a single configuration, producing a delta-function-like propagator. When <span class="math inline">\(\sin\omega T\)</span> is large, many paths contribute with similar phases, producing a broad, smooth propagator.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-final-propagator" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> The Final Propagator</h1>
+<section id="assembling-the-pieces" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="assembling-the-pieces"><span class="header-section-number">7.1</span> Assembling the Pieces</h2>
+<p>We now combine the classical phase and the fluctuation prefactor:</p>
+<p><span class="math display">\[
+K(x_b, t_b; x_a, t_a) = F(T) \cdot \exp\!\left[\frac{i}{\hbar}S_{\text{cl}}\right]
+\]</span></p>
+<p>Substituting our results:</p>
+<p><span class="math display">\[
+\boxed{K(x_b, t_b; x_a, t_a) = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \; \exp\!\left\{\frac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]\right\}}
+\]</span></p>
+<p>This is the <strong>exact propagator for the quantum harmonic oscillator</strong>, first derived by Feynman. It is one of the crown jewels of path integral quantum mechanics.</p>
+<p>Let’s appreciate what we’ve accomplished: starting from <span class="math inline">\(\int \mathcal{D}x \, e^{iS[x]/\hbar}\)</span>, a sum over infinitely many paths, we’ve obtained a closed-form expression. This was possible because the action is quadratic.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Feynman &amp; Hibbs, §3-5, Eq. (3-59); Shankar, Ch. 8, Eq. (8.6.14).</p>
+</blockquote>
+</section>
+<section id="structure-of-the-propagator" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="structure-of-the-propagator"><span class="header-section-number">7.2</span> Structure of the Propagator</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Expression</th>
+<th>Physical meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prefactor</td>
+<td><span class="math inline">\(\sqrt{m\omega/2\pi i\hbar \sin\omega T}\)</span></td>
+<td>Fluctuation determinant; “how many paths contribute”</td>
+</tr>
+<tr class="even">
+<td>Phase: diagonal</td>
+<td><span class="math inline">\((x_a^2 + x_b^2)\cos\omega T\)</span></td>
+<td>Self-coupling of the endpoints</td>
+</tr>
+<tr class="odd">
+<td>Phase: off-diagonal</td>
+<td><span class="math inline">\(-2x_a x_b\)</span></td>
+<td>Mutual coupling between endpoints</td>
+</tr>
+<tr class="even">
+<td>Overall scale</td>
+<td><span class="math inline">\(m\omega/2\hbar\sin\omega T\)</span></td>
+<td>Sets the “sharpness” of the propagator</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What happens at <span class="math inline">\(T = \pi/\omega\)</span> (half-period)? The propagator diverges! What does this mean physically?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>At <span class="math inline">\(T = \pi/\omega\)</span>, we have <span class="math inline">\(\sin\omega T = \sin\pi = 0\)</span>. But the propagator doesn’t just blow up randomly — it becomes a <strong>delta function</strong>: <span class="math inline">\(K \to \delta(x_b + x_a)\)</span>.</p>
+<p>To see this, note that as <span class="math inline">\(\sin\omega T \to 0\)</span> and <span class="math inline">\(\cos\omega T \to -1\)</span>, the exponent becomes: <span class="math display">\[
+\frac{im\omega}{2\hbar\sin\omega T}\Big[-(x_a^2 + x_b^2) - 2x_a x_b\Big] = \frac{-im\omega}{2\hbar\sin\omega T}(x_a + x_b)^2
+\]</span></p>
+<p>This is a Gaussian in <span class="math inline">\((x_a + x_b)\)</span> with width <span class="math inline">\(\to 0\)</span>, which is a representation of <span class="math inline">\(\delta(x_b + x_a)\)</span>.</p>
+<p><strong>Physical meaning</strong>: After a half-period, the particle arrives at the <strong>mirror-image point</strong> <span class="math inline">\(x_b = -x_a\)</span>. This is the <strong>classical focusing effect</strong> — all classical paths starting from <span class="math inline">\(x_a\)</span> converge at <span class="math inline">\(-x_a\)</span> after a half-period, regardless of their initial velocity. The quantum propagator reflects this classical focusing by becoming a delta function.</p>
+<p>Similarly, at <span class="math inline">\(T = 2\pi/\omega\)</span> (full period), <span class="math inline">\(K \to \delta(x_b - x_a)\)</span>: the particle returns to its starting point.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="recovering-the-energy-spectrum" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Recovering the Energy Spectrum</h1>
+<p>The propagator contains the <strong>complete information</strong> about the energy spectrum. Let’s extract it.</p>
+<section id="spectral-decomposition-of-the-propagator" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="spectral-decomposition-of-the-propagator"><span class="header-section-number">8.1</span> Spectral Decomposition of the Propagator</h2>
+<p>From operator quantum mechanics, we know that the propagator can be written as:</p>
+<p><span class="math display">\[
+K(x_b, t_b; x_a, t_a) = \sum_{n=0}^{\infty} \psi_n(x_b) \psi_n^*(x_a) \, e^{-iE_n T/\hbar}
+\]</span></p>
+<p>where <span class="math inline">\(\psi_n(x)\)</span> and <span class="math inline">\(E_n\)</span> are the energy eigenfunctions and eigenvalues of the harmonic oscillator Hamiltonian.</p>
+<p>If we can expand our exact propagator in this form, we can <strong>read off</strong> both the energy levels and the wavefunctions. This is a spectacular consistency check — and it also demonstrates that the path integral and operator formulations are completely equivalent.</p>
+</section>
+<section id="the-mehler-formula" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="the-mehler-formula"><span class="header-section-number">8.2</span> The Mehler Formula</h2>
+<p>The mathematical identity that connects our propagator to the spectral sum is the <strong>Mehler formula</strong> (also known as Mehler’s Hermite formula). Let’s derive the expansion directly.</p>
+<p>First, rewrite the exponent in a more symmetric form. Define the dimensionless variables <span class="math inline">\(\xi_a = \sqrt{m\omega/\hbar}\, x_a\)</span> and <span class="math inline">\(\xi_b = \sqrt{m\omega/\hbar}\, x_b\)</span>, and set <span class="math inline">\(q = e^{-i\omega T}\)</span>. Then:</p>
+<p><span class="math display">\[
+\cos\omega T = \frac{q + q^{-1}}{2} = \frac{1+q^2}{2q}, \qquad \sin\omega T = \frac{q^{-1} - q}{2i} = \frac{1-q^2}{2iq}
+\]</span></p>
+<p>After some algebra, the exponent becomes:</p>
+<p><span class="math display">\[
+\frac{im\omega}{2\hbar\sin\omega T}\Big[(\xi_a^2 + \xi_b^2)\cos\omega T - 2\xi_a\xi_b\Big] \cdot \frac{\hbar}{m\omega}
+\]</span></p>
+<p>Working through the algebra carefully, the propagator can be written as:</p>
+<p><span class="math display">\[
+K = \sqrt{\frac{m\omega}{\pi\hbar}} \cdot \frac{1}{\sqrt{1 - q^2}} \exp\!\left[-\frac{\xi_a^2 + \xi_b^2}{2}\cdot\frac{1+q^2}{1-q^2} + \frac{2\xi_a \xi_b q}{1-q^2}\right]
+\]</span></p>
+<p>Now expand using the <strong>generating function for Hermite polynomials</strong>. The Mehler formula states:</p>
+<p><span class="math display">\[
+\frac{1}{\sqrt{1 - q^2}} \exp\!\left[-\frac{(\xi_a^2 + \xi_b^2)q^2 - 2\xi_a\xi_b q}{1-q^2}\right] = \sum_{n=0}^{\infty} \frac{q^n}{2^n n!} H_n(\xi_a) H_n(\xi_b)
+\]</span></p>
+<p>where <span class="math inline">\(H_n\)</span> are the <strong>Hermite polynomials</strong>.</p>
+</section>
+<section id="reading-off-the-spectrum" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="reading-off-the-spectrum"><span class="header-section-number">8.3</span> Reading Off the Spectrum</h2>
+<p>Noting that <span class="math inline">\(q^n = e^{-in\omega T}\)</span>, the exponential prefactor contributes <span class="math inline">\(e^{-(\xi_a^2 + \xi_b^2)/2} \cdot e^{-i\omega T/2}\)</span> (from careful treatment of the <span class="math inline">\(1/(1-q^2)\)</span> and the prefactor). The full expansion becomes:</p>
+<p><span class="math display">\[
+K = \sum_{n=0}^{\infty} \left[\frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_b^2/2\hbar} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}x_b\right)\right]
+\]</span> <span class="math display">\[
+\times \left[\frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_a^2/2\hbar} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}x_a\right)\right] e^{-i(n+1/2)\omega T}
+\]</span></p>
+<p>Comparing with <span class="math inline">\(K = \sum_n \psi_n(x_b)\psi_n^*(x_a) e^{-iE_n T/\hbar}\)</span>, we read off:</p>
+<section id="the-energy-levels" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="the-energy-levels"><span class="header-section-number">8.3.1</span> The Energy Levels</h3>
+<p><span class="math display">\[
+\boxed{E_n = \left(n + \frac{1}{2}\right)\hbar\omega, \qquad n = 0, 1, 2, \ldots}
+\]</span></p>
+<p>The familiar harmonic oscillator spectrum, complete with the <strong>zero-point energy</strong> <span class="math inline">\(E_0 = \hbar\omega/2\)</span>, emerges naturally from the path integral!</p>
+</section>
+<section id="the-wavefunctions" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="the-wavefunctions"><span class="header-section-number">8.3.2</span> The Wavefunctions</h3>
+<p><span class="math display">\[
+\boxed{\psi_n(x) = \frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\!\left(-\frac{m\omega x^2}{2\hbar}\right) H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\, x\right)}
+\]</span></p>
+<p>These are exactly the harmonic oscillator wavefunctions obtained from the operator (ladder operator) approach!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Path Integral Knows Everything
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The path integral propagator <span class="math inline">\(K\)</span> is not just a transition amplitude — it’s a <strong>generating function</strong> for the entire energy spectrum and all wavefunctions. By computing a single object (the propagator), you get all the eigenvalues and eigenfunctions simultaneously. This is the power of the path integral approach.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="connection-to-the-qho-course" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Connection to the QHO Course</h1>
+<p>If you’ve studied the <a href="../../Courses/QHO/index.html">Quantum Harmonic Oscillator course</a> on this site, you’ll recognize that the results we just derived — <span class="math inline">\(E_n = (n+\frac{1}{2})\hbar\omega\)</span> and the Hermite-Gaussian wavefunctions — are exactly what was obtained there using <a href="../../Courses/QHO/03_ladder_operators.html">ladder operators</a> (the algebraic method) and by <a href="../../Courses/QHO/04_wavefunctions.html">solving the Schrödinger equation directly</a>.</p>
+<p>What’s remarkable is that the path integral approach gives us these results from a completely different starting point. We never once wrote down the Schrödinger equation. We never used operators <span class="math inline">\(\hat{a}\)</span> and <span class="math inline">\(\hat{a}^\dagger\)</span>. We simply computed a sum over all paths — and the energy levels and wavefunctions emerged automatically.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 31%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Starting Point</th>
+<th>How <span class="math inline">\(E_n\)</span> is Obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ladder operators</td>
+<td><span class="math inline">\([\hat{a}, \hat{a}^\dagger] = 1\)</span></td>
+<td>Algebraic: count rungs on the ladder</td>
+</tr>
+<tr class="even">
+<td>Schrödinger equation</td>
+<td><span class="math inline">\(\hat{H}\psi = E\psi\)</span></td>
+<td>Solve ODE, demand normalizability</td>
+</tr>
+<tr class="odd">
+<td><strong>Path integral</strong></td>
+<td><span class="math inline">\(K = \int \mathcal{D}x \, e^{iS/\hbar}\)</span></td>
+<td><strong>Compute <span class="math inline">\(K\)</span>, expand as spectral sum</strong></td>
+</tr>
+</tbody>
+</table>
+<p>All three approaches are <em>equivalent</em>. The path integral doesn’t give you “different physics” — it gives you a different <em>perspective</em> on the same physics, one that generalizes beautifully to field theory.</p>
+<hr>
+</section>
+<section id="worked-examples" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Worked Examples</h1>
+<section id="worked-example-1-the-free-particle-limit-omega-to-0" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="worked-example-1-the-free-particle-limit-omega-to-0"><span class="header-section-number">10.1</span> Worked Example 1: The Free-Particle Limit (<span class="math inline">\(\omega \to 0\)</span>)</h2>
+<p><strong>Problem</strong>: Show that the harmonic oscillator propagator reduces to the free-particle propagator when <span class="math inline">\(\omega \to 0\)</span>.</p>
+<p><strong>Solution</strong>: We need to take the limit <span class="math inline">\(\omega \to 0\)</span> carefully in:</p>
+<p><span class="math display">\[
+K_{\text{HO}} = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \; \exp\!\left\{\frac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]\right\}
+\]</span></p>
+<p><strong>Step 1: Expand the trigonometric functions.</strong></p>
+<p>For small <span class="math inline">\(\omega\)</span>:</p>
+<p><span class="math display">\[
+\sin\omega T \approx \omega T - \frac{(\omega T)^3}{6} + \cdots \approx \omega T
+\]</span></p>
+<p><span class="math display">\[
+\cos\omega T \approx 1 - \frac{(\omega T)^2}{2} + \cdots \approx 1
+\]</span></p>
+<p><strong>Step 2: Expand the prefactor.</strong></p>
+<p><span class="math display">\[
+\sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \approx \sqrt{\frac{m\omega}{2\pi i\hbar \cdot \omega T}} = \sqrt{\frac{m}{2\pi i\hbar T}}
+\]</span></p>
+<p>This is exactly the free-particle prefactor! ✓</p>
+<p><strong>Step 3: Expand the exponent.</strong></p>
+<p><span class="math display">\[
+\frac{m\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]
+\]</span></p>
+<p><span class="math display">\[
+\approx \frac{m\omega}{2\hbar \cdot \omega T}\Big[(x_a^2 + x_b^2) \cdot 1 - 2x_a x_b\Big] = \frac{m}{2\hbar T}(x_a - x_b)^2
+\]</span></p>
+<p>using <span class="math inline">\((x_a^2 + x_b^2 - 2x_a x_b) = (x_a - x_b)^2\)</span>.</p>
+<p><strong>Step 4: Assemble.</strong></p>
+<p><span class="math display">\[
+K_{\text{HO}} \xrightarrow{\omega \to 0} \sqrt{\frac{m}{2\pi i\hbar T}} \exp\!\left[\frac{im(x_b - x_a)^2}{2\hbar T}\right] = K_{\text{free}} \quad \checkmark
+\]</span></p>
+<p>The harmonic oscillator propagator smoothly reduces to the free-particle propagator as the restoring force vanishes.</p>
+<hr>
+</section>
+<section id="worked-example-2-extracting-the-ground-state-from-t-to-infty" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="worked-example-2-extracting-the-ground-state-from-t-to-infty"><span class="header-section-number">10.2</span> Worked Example 2: Extracting the Ground State from <span class="math inline">\(T \to \infty\)</span></h2>
+<p><strong>Problem</strong>: Extract the ground-state energy and wavefunction from the harmonic oscillator propagator by taking the limit <span class="math inline">\(T \to \infty\)</span> (with appropriate <span class="math inline">\(i\epsilon\)</span> prescription).</p>
+<p><strong>Solution</strong>: The spectral decomposition tells us:</p>
+<p><span class="math display">\[
+K = \sum_{n=0}^{\infty} \psi_n(x_b)\psi_n^*(x_a)\, e^{-iE_n T/\hbar}
+\]</span></p>
+<p>For large <span class="math inline">\(T\)</span>, all terms oscillate wildly and the sum doesn’t converge. The trick is to give <span class="math inline">\(T\)</span> a small <strong>negative imaginary part</strong>: <span class="math inline">\(T \to T(1 - i\epsilon)\)</span> with <span class="math inline">\(\epsilon &gt; 0\)</span> small. This is equivalent to a small Wick rotation. Then:</p>
+<p><span class="math display">\[
+e^{-iE_n T/\hbar} \to e^{-iE_n T/\hbar} \cdot e^{-E_n \epsilon T/\hbar}
+\]</span></p>
+<p>The real exponential <span class="math inline">\(e^{-E_n \epsilon T/\hbar}\)</span> suppresses all terms with <span class="math inline">\(E_n &gt; E_0\)</span>. As <span class="math inline">\(T \to \infty\)</span>, only the <strong>ground state</strong> (<span class="math inline">\(n = 0\)</span>) survives:</p>
+<p><span class="math display">\[
+K \xrightarrow{T \to \infty} \psi_0(x_b)\psi_0^*(x_a)\, e^{-iE_0 T/\hbar}
+\]</span></p>
+<p><strong>Step 1: Take <span class="math inline">\(T \to \infty\)</span> in the propagator.</strong></p>
+<p>With <span class="math inline">\(T \to \infty (1 - i\epsilon)\)</span>, we have <span class="math inline">\(\omega T \to \infty\)</span> with a negative imaginary part. Therefore:</p>
+<p><span class="math display">\[
+\sin\omega T = \frac{e^{i\omega T} - e^{-i\omega T}}{2i} \to \frac{-e^{-i\omega T}}{2i} = \frac{e^{-i\omega T}}{2i} \cdot (-1)
+\]</span></p>
+<p>Wait — let’s be more careful. With <span class="math inline">\(T \to T(1-i\epsilon)\)</span>:</p>
+<p><span class="math display">\[
+e^{i\omega T} \to e^{i\omega T} \cdot e^{\omega\epsilon T} \to \infty
+\]</span> <span class="math display">\[
+e^{-i\omega T} \to e^{-i\omega T} \cdot e^{-\omega\epsilon T} \to 0
+\]</span></p>
+<p>So <span class="math inline">\(\sin\omega T \approx e^{i\omega T}/2i\)</span> and <span class="math inline">\(\cos\omega T \approx e^{i\omega T}/2\)</span>.</p>
+<p><strong>Step 2: Evaluate the prefactor.</strong></p>
+<p><span class="math display">\[
+\sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \approx \sqrt{\frac{m\omega}{2\pi i\hbar \cdot e^{i\omega T}/2i}} = \sqrt{\frac{m\omega}{\pi\hbar \cdot e^{i\omega T}}} = \sqrt{\frac{m\omega}{\pi\hbar}} \, e^{-i\omega T/2}
+\]</span></p>
+<p><strong>Step 3: Evaluate the exponent.</strong></p>
+<p><span class="math display">\[
+\frac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]
+\]</span></p>
+<p><span class="math display">\[
+\approx \frac{im\omega}{2\hbar} \cdot \frac{2i}{e^{i\omega T}} \left[(x_a^2 + x_b^2)\frac{e^{i\omega T}}{2} - 2x_a x_b\right]
+\]</span></p>
+<p><span class="math display">\[
+= \frac{im\omega}{2\hbar} \cdot 2i \left[\frac{x_a^2 + x_b^2}{2} - 2x_a x_b \, e^{-i\omega T}\right]
+\]</span></p>
+<p>The term <span class="math inline">\(e^{-i\omega T} \to 0\)</span> as <span class="math inline">\(T \to \infty\)</span> (with the <span class="math inline">\(i\epsilon\)</span> prescription), so:</p>
+<p><span class="math display">\[
+\text{exponent} \to \frac{im\omega}{2\hbar} \cdot 2i \cdot \frac{x_a^2 + x_b^2}{2} = -\frac{m\omega}{2\hbar}(x_a^2 + x_b^2)
+\]</span></p>
+<p>(since <span class="math inline">\(i \cdot i = -1\)</span>).</p>
+<p><strong>Step 4: Assemble.</strong></p>
+<p><span class="math display">\[
+K \xrightarrow{T \to \infty} \sqrt{\frac{m\omega}{\pi\hbar}} \, e^{-i\omega T/2} \exp\!\left[-\frac{m\omega}{2\hbar}(x_a^2 + x_b^2)\right]
+\]</span></p>
+<p><span class="math display">\[
+= \left[\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_b^2/2\hbar}\right] \left[\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_a^2/2\hbar}\right] e^{-i\omega T/2}
+\]</span></p>
+<p><strong>Step 5: Read off the results.</strong></p>
+<p>Comparing with <span class="math inline">\(K \to \psi_0(x_b)\psi_0^*(x_a) e^{-iE_0 T/\hbar}\)</span>:</p>
+<p><span class="math display">\[
+\boxed{\psi_0(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\!\left(-\frac{m\omega x^2}{2\hbar}\right)}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{E_0 = \frac{1}{2}\hbar\omega}
+\]</span></p>
+<p>The ground-state Gaussian wavefunction and the zero-point energy emerge directly from the large-<span class="math inline">\(T\)</span> behavior of the propagator. The zero-point energy <span class="math inline">\(\hbar\omega/2\)</span> is <em>not</em> put in by hand — it comes from the fluctuation determinant (the <span class="math inline">\(\sqrt{\sin\omega T}\)</span> in the denominator).</p>
+<hr>
+</section>
+</section>
+<section id="summary" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Summary</h1>
+<section id="key-formulas-at-a-glance" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="key-formulas-at-a-glance"><span class="header-section-number">11.1</span> Key Formulas at a Glance</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classical path</td>
+<td><span class="math inline">\(x_{\text{cl}}(t) = \dfrac{x_a \sin\omega(t_b - t) + x_b \sin\omega(t - t_a)}{\sin\omega T}\)</span></td>
+</tr>
+<tr class="even">
+<td>Classical action</td>
+<td><span class="math inline">\(S_{\text{cl}} = \dfrac{m\omega}{2\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]\)</span></td>
+</tr>
+<tr class="odd">
+<td>Action decomposition</td>
+<td><span class="math inline">\(S[x_{\text{cl}} + y] = S_{\text{cl}} + S_2[y]\)</span>, with <span class="math inline">\(S_2 = \dfrac{m}{2}\displaystyle\int(\dot{y}^2 - \omega^2 y^2)\,dt\)</span></td>
+</tr>
+<tr class="even">
+<td>Fluctuation prefactor</td>
+<td><span class="math inline">\(F(T) = \sqrt{\dfrac{m\omega}{2\pi i\hbar \sin\omega T}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Full propagator</strong></td>
+<td><span class="math inline">\(K = \sqrt{\dfrac{m\omega}{2\pi i\hbar \sin\omega T}} \exp\!\left\{\dfrac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2+x_b^2)\cos\omega T - 2x_ax_b\Big]\right\}\)</span></td>
+</tr>
+<tr class="even">
+<td>Energy levels</td>
+<td><span class="math inline">\(E_n = (n + \tfrac{1}{2})\hbar\omega\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ground state wavefunction</td>
+<td><span class="math inline">\(\psi_0(x) = (m\omega/\pi\hbar)^{1/4}\, e^{-m\omega x^2/2\hbar}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="free-particle-vs.-harmonic-oscillator-side-by-side" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="free-particle-vs.-harmonic-oscillator-side-by-side"><span class="header-section-number">11.2</span> Free Particle vs.&nbsp;Harmonic Oscillator — Side by Side</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 50%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Free particle (<span class="math inline">\(\omega = 0\)</span>)</th>
+<th>Harmonic oscillator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classical path</td>
+<td>Straight line: <span class="math inline">\(x_{\text{cl}}(t) = x_a + \dfrac{x_b-x_a}{T}(t-t_a)\)</span></td>
+<td><span class="math inline">\(\dfrac{x_a \sin\omega(t_b-t) + x_b\sin\omega(t-t_a)}{\sin\omega T}\)</span></td>
+</tr>
+<tr class="even">
+<td>Classical action</td>
+<td><span class="math inline">\(\dfrac{m(x_b-x_a)^2}{2T}\)</span></td>
+<td><span class="math inline">\(\dfrac{m\omega}{2\sin\omega T}\Big[(x_a^2+x_b^2)\cos\omega T - 2x_ax_b\Big]\)</span></td>
+</tr>
+<tr class="odd">
+<td>Prefactor</td>
+<td><span class="math inline">\(\sqrt{\dfrac{m}{2\pi i\hbar T}}\)</span></td>
+<td><span class="math inline">\(\sqrt{\dfrac{m\omega}{2\pi i\hbar \sin\omega T}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Energy spectrum</td>
+<td><span class="math inline">\(E_k = \dfrac{\hbar^2 k^2}{2m}\)</span> (continuous)</td>
+<td><span class="math inline">\(E_n = (n+\tfrac{1}{2})\hbar\omega\)</span> (discrete)</td>
+</tr>
+<tr class="odd">
+<td>Ground state</td>
+<td>Plane wave (delocalized)</td>
+<td>Gaussian <span class="math inline">\(\psi_0 \propto e^{-m\omega x^2/2\hbar}\)</span></td>
+</tr>
+<tr class="even">
+<td>Singularities in <span class="math inline">\(K\)</span></td>
+<td>None</td>
+<td>At <span class="math inline">\(T = n\pi/\omega\)</span> (caustics)</td>
+</tr>
+<tr class="odd">
+<td>Replacement rule</td>
+<td><span class="math inline">\(T \to \sin\omega T / \omega\)</span></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>replacement rule</strong> is striking: in every formula, you can go from the free particle to the harmonic oscillator by replacing <span class="math inline">\(T \to (\sin\omega T)/\omega\)</span>. This works for the prefactor and (with appropriate modifications for <span class="math inline">\(\cos\omega T\)</span>) for the exponent.</p>
+<hr>
+<div class="checkpoint">
+<p>Before moving on, make sure you can:</p>
+<ol type="1">
+<li><strong>Derive</strong> the classical path <span class="math inline">\(x_{\text{cl}}(t)\)</span> from the equation of motion with boundary conditions</li>
+<li><strong>Compute</strong> the classical action using the boundary-term trick <span class="math inline">\(S_{\text{cl}} = \frac{m}{2}[x_b\dot{x}_{\text{cl}}(t_b) - x_a\dot{x}_{\text{cl}}(t_a)]\)</span></li>
+<li><strong>Explain</strong> why the cross terms <span class="math inline">\(S_{\text{cross}}\)</span> vanish (it’s because <span class="math inline">\(x_{\text{cl}}\)</span> satisfies the EOM)</li>
+<li><strong>State</strong> why the factorization <span class="math inline">\(K = e^{iS_{\text{cl}}/\hbar} \times F(T)\)</span> is exact for quadratic actions but not for anharmonic ones</li>
+<li><strong>Reproduce</strong> the eigenvalue computation: <span class="math inline">\(\lambda_n = (n\pi/T)^2 - \omega^2\)</span>, and the use of the Euler product to get <span class="math inline">\(\sin\omega T / \omega T\)</span></li>
+<li><strong>Write down</strong> the exact propagator from memory</li>
+<li><strong>Take</strong> the <span class="math inline">\(\omega \to 0\)</span> limit and recover the free-particle propagator</li>
+<li><strong>Explain</strong> the physical meaning of the singularities at <span class="math inline">\(T = n\pi/\omega\)</span></li>
+</ol>
+</div>
+<hr>
+</section>
+</section>
+<section id="practice-problems" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Practice Problems</h1>
+<p><strong>Problem 1</strong> (Warm-up) ⭐</p>
+<p>Verify that the harmonic oscillator propagator satisfies the Schrödinger equation:</p>
+<p><span class="math display">\[
+i\hbar \frac{\partial K}{\partial t_b} = -\frac{\hbar^2}{2m}\frac{\partial^2 K}{\partial x_b^2} + \frac{1}{2}m\omega^2 x_b^2 \, K
+\]</span></p>
+<p><em>Hint</em>: Differentiate the exact propagator with respect to <span class="math inline">\(t_b\)</span> and <span class="math inline">\(x_b\)</span>. This is an algebraic exercise — tedious but important.</p>
+<hr>
+<p><strong>Problem 2</strong> (Classical action verification) ⭐⭐</p>
+<p>Compute the classical action <span class="math inline">\(S_{\text{cl}}\)</span> by <em>directly</em> integrating <span class="math inline">\(\int_{t_a}^{t_b} L_{\text{cl}} \, dt\)</span> without using the boundary-term trick. That is, compute <span class="math inline">\(\int \dot{x}_{\text{cl}}^2 \, dt\)</span> and <span class="math inline">\(\int x_{\text{cl}}^2 \, dt\)</span> separately using the explicit classical path. Verify that you get the same answer.</p>
+<p><em>Hint</em>: You’ll need the integrals <span class="math inline">\(\int_0^T \sin^2(\alpha t + \beta)\, dt\)</span> and <span class="math inline">\(\int_0^T \cos^2(\alpha t + \beta) \, dt\)</span>.</p>
+<hr>
+<p><strong>Problem 3</strong> (Full-period propagator) ⭐⭐</p>
+<p>Show that at <span class="math inline">\(T = 2\pi/\omega\)</span> (one full classical period), the propagator becomes:</p>
+<p><span class="math display">\[
+K\big(x_b, x_a; T = 2\pi/\omega\big) = \delta(x_b - x_a)
+\]</span></p>
+<p><em>Hint</em>: Take the limit <span class="math inline">\(\omega T \to 2\pi\)</span> carefully. You’ll find <span class="math inline">\(\cos\omega T \to 1\)</span>, <span class="math inline">\(\sin\omega T \to 0\)</span>, and the exponent becomes a representation of the delta function.</p>
+<p>What does this result mean physically?</p>
+<hr>
+<p><strong>Problem 4</strong> (Propagator composition) ⭐⭐⭐</p>
+<p>Verify the composition property explicitly: compute</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} K(x_b, T_2; x, 0) \, K(x, 0; x_a, -T_1) \, dx
+\]</span></p>
+<p>and show that the result equals <span class="math inline">\(K(x_b, T_1 + T_2; x_a, 0)\)</span>. You’ll need to do a Gaussian integral.</p>
+<p><em>Hint</em>: Collect the exponent into a quadratic form in <span class="math inline">\(x\)</span> and complete the square.</p>
+<hr>
+<p><strong>Problem 5</strong> (The driven harmonic oscillator) ⭐⭐⭐</p>
+<p>Consider a harmonic oscillator with an additional driving force <span class="math inline">\(f(t)\)</span>. The Lagrangian is:</p>
+<p><span class="math display">\[
+L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2 + f(t)\,x
+\]</span></p>
+<ol type="a">
+<li><p>Find the classical path <span class="math inline">\(x_{\text{cl}}(t)\)</span> by solving the driven equation of motion <span class="math inline">\(\ddot{x} + \omega^2 x = f(t)/m\)</span> with boundary conditions <span class="math inline">\(x(t_a) = x_a\)</span>, <span class="math inline">\(x(t_b) = x_b\)</span>. Express your answer using the Green’s function of the harmonic oscillator.</p></li>
+<li><p>Show that the action still splits as <span class="math inline">\(S = S_{\text{cl}} + S_2[y]\)</span> and that the fluctuation prefactor <span class="math inline">\(F(T)\)</span> is the <em>same</em> as for the undriven case.</p></li>
+<li><p>Why is the fluctuation prefactor independent of the driving force?</p></li>
+</ol>
+<hr>
+<p><strong>Problem 6</strong> (Quarter-period propagator) ⭐⭐⭐⭐</p>
+<p>At <span class="math inline">\(T = \pi/(2\omega)\)</span> (quarter period), show that the propagator simplifies to:</p>
+<p><span class="math display">\[
+K\big(x_b, x_a; T = \pi/2\omega\big) = \sqrt{\frac{m\omega}{2\pi i\hbar}} \exp\!\left[\frac{im\omega}{\hbar}\left(-x_a x_b\right)\right]
+\]</span></p>
+<p>Show that this propagator, when applied to a Gaussian wavepacket centered at <span class="math inline">\(x_0\)</span> with width <span class="math inline">\(\sigma\)</span>, produces the wavefunction at time <span class="math inline">\(T = \pi/(2\omega)\)</span>. What does this operation correspond to in phase space?</p>
+<p><em>Hint</em>: A quarter-period evolution of the harmonic oscillator is essentially a <strong>Fourier transform</strong>. This connection is deep — the harmonic oscillator generates continuous fractional Fourier transforms!</p>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/Path_Integrals/04_path_integral_derivation.html" class="btn btn-outline-secondary">← Previous Module</a> <a href="../../Courses/Path_Integrals/06_functional_calculus.html" class="btn btn-success">Next: Module 6 →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

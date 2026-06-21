@@ -1,0 +1,291 @@
+---
+title: "Module 10: Euclidean Path Integrals"
+subtitle: "Unveiling the Deep Connection Between Quantum Mechanics and Statistical Physics"
+description: "In this module, we construct and analyze the Euclidean path integral, revealing how imaginary time isolates ground state properties and seamlessly transforms quantum dynamics into thermal equilibrium."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 11 →](11_euclidean_eom.qmd)
+
+# Introduction
+
+In our previous module, we introduced the concept of **Wick rotation**—the analytical continuation of time to purely imaginary values, $t = -i\tau$. Now, it is time to fully exploit this transformation. 
+
+By defining the **Euclidean path integral**, we will discover a remarkable mapping between quantum mechanics and classical statistical mechanics. In Minkowski space (real time), paths interfere with oscillating phases, $e^{iS/\hbar}$. In Euclidean space (imaginary time), paths are suppressed by decaying exponential weights, $e^{-S_E/\hbar}$. This lack of oscillation might seem like a loss of quantum "magic", but it provides us with an unparalleled tool to extract the hardest-to-reach information about a quantum system: its ground state and lowest-lying excitations. 
+
+Let's embark on this journey into the profound interplay of imaginary time, ground states, and thermodynamics!
+
+# 10.1 The Euclidean Propagator
+
+Recall the standard propagator in real time $t$, which is the coordinate representation of the time-evolution operator:
+$$ K(x_b, t_b; x_a, t_a) = \langle x_b | e^{-i\hat{H}(t_b - t_a)/\hbar} | x_a \rangle $$
+
+If we perform a Wick rotation to imaginary time $t = -i\tau$, the evolution operator becomes $e^{-\hat{H}(\tau_b - \tau_a)/\hbar}$. This leads us to define the **Euclidean propagator**:
+$$ K_E(x_b, \tau_b; x_a, \tau_a) = \langle x_b | e^{-\hat{H}(\tau_b - \tau_a)/\hbar} | x_a \rangle $$
+
+Notice the dramatic change! The real-time propagator is generally complex and describes oscillatory quantum interference. In stark contrast, the Euclidean propagator is strictly **real and positive** (assuming real boundary conditions $x_a, x_b$). It represents the matrix elements of the imaginary-time evolution operator, which is purely a damping factor rather than a unitary rotation.
+
+::: {.callout-intuition}
+Because the weight of each path is exactly $e^{-S_E/\hbar}$, and since the Euclidean action $S_E$ is real and bounded from below, the Euclidean propagator acts like a diffusion process. Instead of waves traveling and interfering, "probability" smoothly diffuses and settles into the lowest energy configuration.
+:::
+
+# 10.2 Spectral Representation
+
+To see exactly why the Euclidean propagator is so useful, let's express it in terms of the energy eigenstates of the system. Let the states $|n\rangle$ be the eigenstates of the Hamiltonian with eigenvalues $E_n$:
+$$ \hat{H}|n\rangle = E_n|n\rangle $$
+We assume the spectrum is bounded from below, with $E_0 \le E_1 \le E_2 \le \dots$.
+
+We can insert a complete set of these energy eigenstates, $\sum_n |n\rangle \langle n| = \mathbb{I}$, into the definition of the Euclidean propagator. Let $\tau = \tau_b - \tau_a$. Then:
+$$ K_E(x_b, \tau; x_a, 0) = \langle x_b | e^{-\hat{H}\tau/\hbar} \left( \sum_n |n\rangle\langle n| \right) | x_a \rangle $$
+$$ K_E(x_b, \tau; x_a, 0) = \sum_n \langle x_b | n \rangle \langle n | x_a \rangle e^{-E_n\tau/\hbar} $$
+Since $\langle x_b | n \rangle = \psi_n(x_b)$ and $\langle n | x_a \rangle = \psi_n^*(x_a)$, we obtain the **spectral representation**:
+$$ \boxed{ K_E(x_b, \tau; x_a, 0) = \sum_{n=0}^{\infty} \psi_n(x_b)\psi_n^*(x_a) e^{-E_n\tau/\hbar} } $$
+
+> **Textbook reference**: Shankar, *Principles of Quantum Mechanics*, Ch. 8.
+
+::: {.callout-note}
+Notice that these are **real exponentials, not oscillating phases!** In real time, the terms would be $e^{-iE_nt/\hbar}$, keeping all states "alive" forever. In imaginary time, each term decays exponentially at a rate determined by its energy $E_n$. The higher the energy, the faster it vanishes.
+:::
+
+# 10.3 Ground-State Projection — The Magic of Large $\tau$
+
+What happens if we take the limit of very large imaginary time, $\tau \to \infty$? Let's factor out the term corresponding to the ground state energy, $E_0$:
+$$ K_E(x_b, \tau; x_a, 0) = e^{-E_0\tau/\hbar} \left[ \psi_0(x_b)\psi_0^*(x_a) + \sum_{n=1}^{\infty} \psi_n(x_b)\psi_n^*(x_a) e^{-(E_n-E_0)\tau/\hbar} \right] $$
+
+As $\tau$ grows very large, the exponential factors in the sum, $e^{-(E_n-E_0)\tau/\hbar}$, will strongly tend to zero because $E_n > E_0$ for all $n \ge 1$. Consequently, all excited-state contributions are exponentially suppressed relative to the ground state. 
+
+In the strict limit $\tau \to \infty$, only the ground state survives:
+$$ \boxed{ \lim_{\tau \to \infty} K_E(x_b, \tau; x_a, 0) = \psi_0(x_b)\psi_0^*(x_a) e^{-E_0\tau/\hbar} } $$
+
+::: {.callout-tip}
+### The Power of Ground-State Projection
+THIS IS INCREDIBLY POWERFUL. If we have a complicated interacting theory where we do not know the exact eigenstates, we can simply construct the Euclidean path integral, evaluate it for large $\tau$, and it will automatically filter out all excited states and hand us the ground state wave function and energy! This is the primary workhorse technique in **Lattice Quantum Chromodynamics (LQCD)** to extract the masses of protons, neutrons, and other hadrons.
+:::
+
+# 10.4 Extracting the Ground-State Energy
+
+We can extract the exact numerical value of the ground-state energy directly from the asymptotic behavior of the Euclidean propagator. Rearranging the large-$\tau$ limit:
+$$ \ln K_E(x_b, \tau; x_a, 0) \approx -\frac{E_0\tau}{\hbar} + \ln(\psi_0(x_b)\psi_0^*(x_a)) $$
+If we divide by $\tau$ and take the limit, the second term vanishes:
+$$ \boxed{ E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \ln K_E(x_b, \tau; x_a, 0) } $$
+
+An even more elegant way to do this, without depending on the boundary coordinates $x_a$ and $x_b$, is to set $x_b = x_a = x$ and integrate over all space. This defines an object $Z(\tau)$:
+$$ Z(\tau) = \int dx K_E(x, \tau; x, 0) = \int dx \sum_{n} |\psi_n(x)|^2 e^{-E_n\tau/\hbar} $$
+Using the normalization of the wavefunctions $\int dx |\psi_n(x)|^2 = 1$, we get:
+$$ Z(\tau) = \sum_n e^{-E_n\tau/\hbar} $$
+Taking the large-$\tau$ limit here gives $Z(\tau) \approx e^{-E_0\tau/\hbar}$. Thus:
+$$ \boxed{ E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \ln Z(\tau) } $$
+
+# 10.5 Extracting the Energy Gap
+
+What if we want to know the first excited state, or more specifically, the energy gap $E_1 - E_0$? We look at the **Euclidean two-point correlation function**:
+$$ C(\tau_1 - \tau_2) = \langle x(\tau_1) x(\tau_2) \rangle_E = \frac{1}{Z} \int \mathcal{D}x \, x(\tau_1) x(\tau_2) e^{-S_E/\hbar} $$
+In the operator formalism, assuming $\tau_1 > \tau_2$ and evaluating in the ground state (which we obtain implicitly by taking the total time interval $T \to \infty$), this correlation function is:
+$$ C(\tau_1 - \tau_2) = \langle 0 | \hat{x}(\tau_1) \hat{x}(\tau_2) | 0 \rangle $$
+We use the imaginary-time Heisenberg picture: $\hat{x}(\tau) = e^{\hat{H}\tau/\hbar} \hat{x}(0) e^{-\hat{H}\tau/\hbar}$. 
+$$ C(\tau_1 - \tau_2) = \langle 0 | e^{\hat{H}\tau_1/\hbar} \hat{x} e^{-\hat{H}\tau_1/\hbar} e^{\hat{H}\tau_2/\hbar} \hat{x} e^{-\hat{H}\tau_2/\hbar} | 0 \rangle $$
+Since $\hat{H}|0\rangle = E_0|0\rangle$, the outer operators give $e^{E_0\tau_1/\hbar}$ and $e^{-E_0\tau_2/\hbar}$:
+$$ C(\tau_1 - \tau_2) = \langle 0 | e^{E_0\tau_1/\hbar} \hat{x} e^{-\hat{H}(\tau_1-\tau_2)/\hbar} \hat{x} e^{-E_0\tau_2/\hbar} | 0 \rangle $$
+Now, we boldly insert a complete set of energy eigenstates $\sum_n |n\rangle \langle n| = \mathbb{I}$ between the two $\hat{x}$ operators:
+$$ C(\tau_1 - \tau_2) = \sum_n e^{E_0\tau_1/\hbar} \langle 0 | \hat{x} | n \rangle e^{-E_n(\tau_1-\tau_2)/\hbar} \langle n | \hat{x} | 0 \rangle e^{-E_0\tau_2/\hbar} $$
+$$ C(\tau_1 - \tau_2) = \sum_n |\langle 0|\hat{x}|n\rangle|^2 e^{-(E_n - E_0)(\tau_1 - \tau_2)/\hbar} $$
+Let $\Delta\tau = \tau_1 - \tau_2$. For large separations $|\Delta\tau| \to \infty$, the dominant term comes from the lowest energy level for which the matrix element $\langle 0|\hat{x}|n\rangle$ is non-zero. For a symmetric potential, $\langle 0|\hat{x}|0\rangle = 0$. Thus, the lowest surviving state is $n=1$.
+$$ \boxed{ C(\Delta\tau) \xrightarrow{|\Delta\tau| \to \infty} |\langle 0|\hat{x}|1\rangle|^2 e^{-(E_1 - E_0)|\Delta\tau|/\hbar} } $$
+The exponential decay rate of the correlation function explicitly gives the **energy gap** $E_1 - E_0$!
+
+# 10.6 The Euclidean Generating Functional
+
+To systematically compute these correlation functions, we construct the **Euclidean Generating Functional**:
+$$ \boxed{ Z_E[J] = \int \mathcal{D}x \, \exp\left[ -\frac{S_E[x]}{\hbar} + \int J(\tau)x(\tau)d\tau \right] } $$
+
+Compare this to the Minkowski version, where we had $e^{iS/\hbar + i \int Jx dt}$. In Euclidean space, the $i$'s vanish, making this purely a statistical weighting function. We can generate arbitrary $n$-point Euclidean correlation functions through functional differentiation:
+$$ \langle x(\tau_1) \dots x(\tau_n) \rangle_E = \frac{1}{Z_E[0]} \frac{\delta^n Z_E[J]}{\delta J(\tau_1) \dots \delta J(\tau_n)} \Bigg|_{J=0} $$
+
+# 10.7 The Partition Function & Periodic Paths
+
+Now we reach THE BIG RESULT of this module. What happens if we take the integral we defined earlier, $Z(\beta\hbar) = \int dx K_E(x, \beta\hbar; x, 0)$?
+We have already shown that:
+$$ \int dx K_E(x, \beta\hbar; x, 0) = \sum_n e^{-\beta E_n} $$
+But wait... $\sum_n e^{-\beta E_n}$ is exactly the **canonical partition function** from statistical mechanics, provided we identify $\beta$ with $1 / (k_B T)$!
+
+Let's look at this from the path integral side. The propagator $K_E(x, \beta\hbar; x, 0)$ is the sum over all paths that start at $x$ at $\tau=0$ and end at the *same* $x$ at $\tau=\beta\hbar$. 
+Integrating over all starting/ending points $x$ means we are summing over **all possible periodic paths**.
+$$ \boxed{ Z(\beta) = \text{Tr}(e^{-\beta\hat{H}}) = \oint \mathcal{D}x \, e^{-S_E/\hbar} } $$
+Here, the symbol $\oint \mathcal{D}x$ specifically denotes integration over paths that satisfy the periodic boundary condition:
+$$ x(0) = x(\beta\hbar) $$
+
+::: {.callout-tip}
+### Quantum Mechanics is Thermal Mechanics
+This is one of the most beautiful connections in theoretical physics. A quantum mechanical system in thermal equilibrium at temperature $T$ is mathematically completely equivalent to the same quantum system evolving in imaginary time over a bounded interval of length $\beta\hbar = \hbar/(k_B T)$ with periodic boundary conditions!
+:::
+
+# 10.8 The Thermal Circle
+
+Because of the periodic boundary condition $x(0) = x(\beta\hbar)$, the imaginary time coordinate $\tau$ ceases to be a straight infinite line. Instead, it is topologically compactified into a **circle of circumference $\beta\hbar$**. 
+
+Imagine a cylinder. The spatial coordinates run along the length of the cylinder, while the imaginary time coordinate wraps around the circumference. 
+- At $T \to 0$ ($\beta \to \infty$), the circumference becomes infinitely large, and the cylinder unrolls into an infinite flat sheet (recovering zero-temperature quantum mechanics).
+- At high temperatures $T \to \infty$ ($\beta \to 0$), the cylinder squashes down into an infinitesimally thin loop. The paths have no "room" to fluctuate in imaginary time, and the system collapses entirely into classical mechanics!
+
+---
+
+# 📝 Worked Examples
+
+### Worked Example 1: Harmonic Oscillator Partition Function
+**Problem:** Compute the canonical partition function $Z(\beta)$ for the quantum harmonic oscillator directly from the Euclidean path integral.
+
+**Solution:**
+From Module 9, the Euclidean propagator for the harmonic oscillator is:
+$$ K_E(x_b, \tau; x_a, 0) = \sqrt{\frac{m\omega}{2\pi\hbar\sinh(\omega\tau)}} \exp\left[ -\frac{m\omega}{2\hbar\sinh(\omega\tau)} \left( (x_a^2+x_b^2)\cosh(\omega\tau) - 2x_a x_b \right) \right] $$
+
+To find the partition function, we set $x_a = x_b = x$, $\tau = \beta\hbar$, and integrate over $x$:
+$$ Z(\beta) = \int_{-\infty}^{\infty} dx K_E(x, \beta\hbar; x, 0) $$
+$$ Z(\beta) = \int_{-\infty}^{\infty} dx \sqrt{\frac{m\omega}{2\pi\hbar\sinh(\beta\hbar\omega)}} \exp\left[ -\frac{m\omega}{2\hbar\sinh(\beta\hbar\omega)} x^2 \left( 2\cosh(\beta\hbar\omega) - 2 \right) \right] $$
+
+We use the half-angle identity $\cosh(\theta) - 1 = 2\sinh^2(\theta/2)$ to simplify the term in the parentheses:
+$$ 2\cosh(\beta\hbar\omega) - 2 = 4\sinh^2\left(\frac{\beta\hbar\omega}{2}\right) $$
+And the double-angle identity for the denominator: $\sinh(\beta\hbar\omega) = 2\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})$.
+Substituting these into the exponent:
+$$ -\frac{m\omega}{2\hbar \left( 2\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2}) \right)} \left[ 4\sinh^2\left(\frac{\beta\hbar\omega}{2}\right) x^2 \right] = -\frac{m\omega}{\hbar} \frac{\sinh(\frac{\beta\hbar\omega}{2})}{\cosh(\frac{\beta\hbar\omega}{2})} x^2 = -\frac{m\omega}{\hbar} \tanh\left(\frac{\beta\hbar\omega}{2}\right) x^2 $$
+
+This leaves us with a standard Gaussian integral $\int e^{-ax^2} dx = \sqrt{\pi/a}$:
+$$ Z(\beta) = \sqrt{\frac{m\omega}{4\pi\hbar\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})}} \int_{-\infty}^{\infty} dx \exp\left[ -\frac{m\omega}{\hbar} \tanh\left(\frac{\beta\hbar\omega}{2}\right) x^2 \right] $$
+$$ Z(\beta) = \sqrt{\frac{m\omega}{4\pi\hbar\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})}} \sqrt{\frac{\pi\hbar}{m\omega \tanh(\frac{\beta\hbar\omega}{2})}} $$
+Notice how the $m, \omega, \pi$, and $\hbar$ neatly cancel out inside the combined square root:
+$$ Z(\beta) = \sqrt{\frac{1}{4\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})} \times \frac{\cosh(\frac{\beta\hbar\omega}{2})}{\sinh(\frac{\beta\hbar\omega}{2})}} = \sqrt{\frac{1}{4\sinh^2(\frac{\beta\hbar\omega}{2})}} = \frac{1}{2\sinh(\frac{\beta\hbar\omega}{2})} $$
+
+To verify this, we expand using $2\sinh(y) = e^y - e^{-y}$:
+$$ Z(\beta) = \frac{1}{e^{\beta\hbar\omega/2} - e^{-\beta\hbar\omega/2}} = \frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}} = e^{-\beta\hbar\omega/2} \sum_{n=0}^{\infty} (e^{-\beta\hbar\omega})^n = \sum_{n=0}^{\infty} e^{-\beta\hbar\omega(n+1/2)} $$
+This precisely matches the known partition function $\sum_n e^{-\beta E_n}$ with $E_n = \hbar\omega(n+1/2)$.
+
+### Worked Example 2: Extracting Energy Gaps
+**Problem:** Use the results of the harmonic oscillator to extract $E_0$ and the gap $E_1 - E_0$.
+
+**Solution:**
+From Section 10.4, $E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \ln Z(\tau)$. Using our result from above with $\beta\hbar \to \tau$:
+$$ Z(\tau) = \frac{e^{-\omega\tau/2}}{1 - e^{-\omega\tau}} $$
+$$ \ln Z(\tau) = -\frac{\omega\tau}{2} - \ln(1 - e^{-\omega\tau}) $$
+In the limit $\tau \to \infty$, $e^{-\omega\tau} \to 0$, so the logarithmic term vanishes.
+$$ E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \left( -\frac{\omega\tau}{2} \right) = \frac{\hbar\omega}{2} $$
+This is the correct zero-point energy!
+
+For the gap, recall the continuous Euclidean correlation function for the HO (which we derive from $Z_E[J]$):
+$$ C(\tau) = \frac{\hbar}{2m\omega} e^{-\omega|\tau|} $$
+Comparing this to the general asymptotic form $C(\tau) \propto e^{-(E_1 - E_0)|\tau|/\hbar}$, we immediately see that:
+$$ \frac{E_1 - E_0}{\hbar} = \omega \implies E_1 - E_0 = \hbar\omega $$
+The energy gap is exactly $\hbar\omega$, as expected.
+
+---
+
+## 🤔 Quick Question 1
+::: {.callout-warning}
+### Why do periodic boundary conditions give the thermal partition function?
+We forced the paths to end exactly where they started, $x(\beta\hbar) = x(0)$. Why does this particular geometry have anything to do with temperature?
+
+::: {.callout-note collapse="true"}
+#### Answer
+Setting the endpoints to be equal ($x_a = x_b = x$) and integrating over all $x$ is the continuous coordinate representation of the **Trace** operation in linear algebra: $\int \langle x | \hat{O} | x \rangle dx = \text{Tr}(\hat{O})$. 
+The canonical partition function from statistical mechanics is fundamentally defined as the trace of the Boltzmann weight: $Z = \text{Tr}(e^{-\beta\hat{H}})$. Thus, making the paths periodic and integrating is the path integral's way of executing the trace operation required by thermal physics.
+:::
+:::
+
+## 🤔 Quick Question 2
+::: {.callout-warning}
+### Can we extract ALL energy levels from the Euclidean path integral, not just $E_0$ and $E_1$?
+We saw how $E_0$ dominates at very large $\tau$, and $E_1$ dominates the decay of the correlation function. Are higher excited states like $E_2, E_3$ lost forever?
+
+::: {.callout-note collapse="true"}
+#### Answer
+Yes, they can be extracted! While $E_0$ and $E_1$ dominate the asymptotic ($\tau \to \infty$) limits, the full correlation function contains a sum over all states: $\sum_n |c_n|^2 e^{-(E_n-E_0)\tau/\hbar}$. By carefully measuring (or simulating) the correlation function at *intermediate* values of $\tau$, and fitting it to a sum of multiple decaying exponentials, one can systematically extract $E_2, E_3$, etc. This requires high precision, but it is routinely done in lattice QCD.
+:::
+:::
+
+---
+
+# Summary Table
+
+| Concept | Minkowski (Real Time, $t$) | Euclidean (Imaginary Time, $\tau$) |
+| :--- | :--- | :--- |
+| **Time Variable** | $t$ | $\tau = i t$ |
+| **Action** | $S = \int (\frac{1}{2}m\dot{x}^2 - V(x))dt$ | $S_E = \int (\frac{1}{2}m\dot{x}^2 + V(x))d\tau$ |
+| **Path Weight** | $e^{iS/\hbar}$ (Oscillating phase) | $e^{-S_E/\hbar}$ (Exponential damping) |
+| **Evolution Op.** | $e^{-i\hat{H}t/\hbar}$ (Unitary rotation) | $e^{-\hat{H}\tau/\hbar}$ (Hermitian decay) |
+| **Asymptotic ($\infty$)**| Highly oscillatory, hard to define | Projects completely onto the Ground State $E_0$ |
+| **Trace $\to$ Physics** | --- | Canonical Partition Function at $T = \frac{\hbar}{k_B \beta}$ |
+
+---
+
+::: {.checkpoint}
+#### 🎯 Checkpoint
+Before moving on, verify that you understand:
+1. Why the limit $\tau \to \infty$ filters out all excited states and leaves only the ground state.
+2. The mathematical steps showing that inserting complete sets of states into $\langle x(\tau_1)x(\tau_2)\rangle_E$ leads to an exponential decay controlled by $E_1 - E_0$.
+3. The topological distinction between zero-temperature QFT (an infinite imaginary time axis) and finite-temperature QFT (a circular imaginary time axis).
+:::
+
+---
+
+# Practice Problems
+
+1. **The Double Well Potential**: Suppose a particle is in a double well potential. At large $\tau$, the correlation function $C(\tau)$ is measured to decay as $A e^{-\Delta E \tau/\hbar}$. Physically, what does $\Delta E$ represent in this specific system, and why is it very small?
+2. **Euclidean Propagator of a Free Particle**: Perform a Wick rotation on the real-time free particle propagator. Verify that it satisfies the diffusion equation rather than the Schrödinger equation.
+3. **High Temperature Limit**: Start with the path integral expression for $Z(\beta)$. Take the limit $\beta \to 0$ (high temperature). Argue that the kinetic energy term strictly enforces that the only contributing paths are constants $x(\tau) = x_0$. Show that this recovers the classical partition function $Z \propto \int dx_0 e^{-\beta V(x_0)}$.
+4. **Parity and Energy Gaps**: In Section 10.5, we assumed $\langle 0 | \hat{x} | 0 \rangle = 0$ because of symmetry, which led to the leading term being $n=1$. If we had an asymmetric potential where $\langle 0 | \hat{x} | 0 \rangle \ne 0$, how would you modify the observable to correctly extract the gap $E_1 - E_0$? *(Hint: Consider the connected correlation function $\langle x(\tau_1)x(\tau_2)\rangle - \langle x \rangle^2$)*.
+5. **Finite Temperature Correlation**: At finite temperature $T = 1/(k_B\beta)$, the time direction is a circle. Re-derive the two point correlation function expansion, but this time trace over all states instead of just taking the ground state expectation. Show that the correlation function $C(\tau)$ must be periodic in $\tau$ with period $\beta\hbar$. 
+
+::: {.nav-buttons}
+[← Previous Module](09_wick_rotation.qmd){.btn .btn-outline-secondary}
+[Next: Module 11 →](11_euclidean_eom.qmd){.btn .btn-success}
+:::

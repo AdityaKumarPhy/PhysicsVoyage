@@ -1,0 +1,1064 @@
+---
+title: "Module 3: The Free Particle Propagator"
+subtitle: "Your First Path Integral Calculation — From Discretization to Closed Form"
+description: "We compute the path integral for the simplest possible system — a free particle — using time-slicing, Gaussian integration, and the continuum limit. Every step of algebra is shown explicitly."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+```
+
+[← Back to Course](index.qmd) | [← Module 2: Sum Over Paths](02_sum_over_paths.qmd) | [Next: Module 4 →](04_path_integral_derivation.qmd)
+
+---
+
+This is the module where we roll up our sleeves and **compute**. Up to now, we've built intuition about propagators and the sum-over-paths idea. But we've been waving our hands. Now it's time to actually *do* a path integral — and we'll do it for the simplest system in physics: a **free particle** (no potential energy, just kinetic energy).
+
+Why start here? Because the free particle has a quadratic Lagrangian, which means every integral we encounter is **Gaussian**. Gaussian integrals are the one class of integrals we can do in closed form. This makes the free particle the ideal testing ground where we can verify that the path integral machinery actually produces the correct quantum-mechanical propagator.
+
+The result we'll derive — and verify — is beautiful:
+
+$$
+\boxed{K(x_b, t_b;\, x_a, t_a) = \sqrt{\frac{m}{2\pi i\hbar T}}\,\exp\!\left(\frac{im(x_b - x_a)^2}{2\hbar T}\right)}
+$$
+
+where $T = t_b - t_a$. Every single step, from discretization to continuum limit, will be shown explicitly.
+
+> **Textbook references**: Feynman & Hibbs, Ch. 3; Shankar, Ch. 21; Kleinert, Ch. 2; Schulman, Ch. 4.
+
+# Setting Up the Problem
+
+## The Lagrangian and Boundary Conditions
+
+Our system is a particle of mass $m$ moving in one dimension with **no potential**. The Lagrangian is purely kinetic:
+
+$$
+L(x, \dot{x}) = \frac{1}{2}m\dot{x}^2
+$$
+
+This is the simplest Lagrangian you can write down. There's no $V(x)$ term — the particle is free.
+
+We want to compute the **propagator** (also called the kernel or transition amplitude):
+
+$$
+K(x_b, t_b;\, x_a, t_a) = \int_{x(t_a)=x_a}^{x(t_b)=x_b} \mathcal{D}x(t)\;\exp\!\left(\frac{i}{\hbar}\int_{t_a}^{t_b} \frac{1}{2}m\dot{x}^2\,dt\right)
+$$
+
+The boundary conditions are:
+
+- The particle starts at position $x_a$ at time $t_a$
+- The particle ends at position $x_b$ at time $t_b$
+
+We sum over **all** paths connecting $(x_a, t_a)$ to $(x_b, t_b)$ — not just the classical straight-line path, but every conceivable wiggly trajectory.
+
+::: {.callout-intuition}
+Picture the setup: on a spacetime diagram, mark the point $(t_a, x_a)$ at the left and $(t_b, x_b)$ at the right. The classical path is a straight line connecting them (constant velocity). But quantum mechanically, the particle "explores" every possible path — zig-zagging, looping, going to the edge of the universe and back. The path integral assigns each path a phase $e^{iS/\hbar}$ and sums them all up. Paths near the classical one have slowly varying phases and add constructively; wild paths have rapidly oscillating phases and mostly cancel.
+:::
+
+## Classical Solution for Reference
+
+Before diving into the path integral, let's record what the **classical** answer looks like. The Euler-Lagrange equation for $L = \frac{1}{2}m\dot{x}^2$ is:
+
+$$
+\frac{d}{dt}\frac{\partial L}{\partial \dot{x}} = \frac{\partial L}{\partial x} \quad\Longrightarrow\quad m\ddot{x} = 0 \quad\Longrightarrow\quad \ddot{x} = 0
+$$
+
+So the classical path is uniform motion: $x_{\text{cl}}(t) = x_a + \frac{x_b - x_a}{T}(t - t_a)$, where $T = t_b - t_a$.
+
+The classical action along this path is:
+
+$$
+S_{\text{cl}} = \int_{t_a}^{t_b}\frac{1}{2}m\dot{x}_{\text{cl}}^2\,dt = \frac{1}{2}m\left(\frac{x_b - x_a}{T}\right)^2 T = \frac{m(x_b - x_a)^2}{2T}
+$$
+
+We'll see that the final propagator has the form $K = A(T) \cdot e^{iS_{\text{cl}}/\hbar}$. This is a general feature of systems with quadratic Lagrangians — the exponential part is always $e^{iS_{\text{cl}}/\hbar}$, and the prefactor $A(T)$ comes from summing fluctuations around the classical path.
+
+
+# Time-Slicing: Discretizing the Path {#sec-time-slicing}
+
+## Why Discretize?
+
+The path integral $\int \mathcal{D}x(t)$ is an integral over the **infinite-dimensional** space of all functions $x(t)$. We don't know how to directly define or compute such a thing — there's no standard measure theory for infinite-dimensional spaces that works here.
+
+Our strategy: **replace the continuous path with a finite collection of points**, turning the path integral into a product of ordinary (finite-dimensional) integrals that we *can* evaluate. Then take the limit where the number of points goes to infinity.
+
+This is called **time-slicing** (or lattice discretization in time), and it's Feynman's original approach.
+
+## The Discretization Procedure
+
+Divide the time interval $[t_a, t_b]$ into $N$ equal subintervals of width:
+
+$$
+\varepsilon = \frac{t_b - t_a}{N} = \frac{T}{N}
+$$
+
+The time points are:
+
+$$
+t_j = t_a + j\varepsilon, \quad j = 0, 1, 2, \ldots, N
+$$
+
+So $t_0 = t_a$ and $t_N = t_b$.
+
+At each intermediate time $t_j$ (for $j = 1, 2, \ldots, N-1$), we assign a position $x_j$. The endpoints are fixed:
+
+$$
+x_0 = x_a, \quad x_N = x_b
+$$
+
+A **discretized path** is specified by the $N-1$ intermediate positions $(x_1, x_2, \ldots, x_{N-1})$. Each $x_j$ can range over all of $\mathbb{R}$, and we integrate over all of them.
+
+::: {.callout-intuition}
+Think of it as a connect-the-dots picture. You pin down the starting point and ending point, then you place $N-1$ intermediate dots at equally spaced times. Each dot can be at any position. You connect adjacent dots with straight-line segments — that's one discretized path. Different choices of dot positions give different paths. The path integral sums over all possible dot placements.
+:::
+
+::: {.callout-tip}
+## The Role of $N$
+$N$ is not a physical parameter — it's a regularization device. At the end of the calculation, we take $N \to \infty$ (equivalently $\varepsilon \to 0$) to recover the continuum path integral. The result must be independent of $N$ in this limit. If it isn't, something has gone wrong with our definition of the path integral.
+:::
+
+
+# The Discretized Action {#sec-discretized-action}
+
+## Approximating the Velocity
+
+On each small segment from $t_j$ to $t_{j+1}$, the path is approximately linear (the dots are connected by straight lines). So the velocity on this segment is approximately:
+
+$$
+\dot{x}(t) \approx \frac{x_{j+1} - x_j}{\varepsilon} \quad \text{for } t \in [t_j, t_{j+1}]
+$$
+
+This approximation becomes exact in the limit $\varepsilon \to 0$.
+
+## Building the Discretized Action
+
+The action for the full path is:
+
+$$
+S[x(t)] = \int_{t_a}^{t_b}\frac{1}{2}m\dot{x}^2\,dt = \sum_{j=0}^{N-1}\int_{t_j}^{t_{j+1}}\frac{1}{2}m\dot{x}^2\,dt
+$$
+
+Using our approximation for $\dot{x}$ on each segment, and noting that the integral over each interval of width $\varepsilon$ just multiplies by $\varepsilon$:
+
+$$
+\int_{t_j}^{t_{j+1}}\frac{1}{2}m\dot{x}^2\,dt \approx \frac{1}{2}m\left(\frac{x_{j+1} - x_j}{\varepsilon}\right)^2 \cdot \varepsilon = \frac{m(x_{j+1} - x_j)^2}{2\varepsilon}
+$$
+
+Therefore, the **discretized action** is:
+
+$$
+\boxed{S_N = \sum_{j=0}^{N-1}\frac{m(x_{j+1} - x_j)^2}{2\varepsilon}}
+$$
+
+## Physical Interpretation
+
+Each term $\frac{m(x_{j+1}-x_j)^2}{2\varepsilon}$ is the kinetic energy of the $j$-th segment times the duration $\varepsilon$:
+
+- $\frac{x_{j+1}-x_j}{\varepsilon}$ is the approximate velocity on segment $j$
+- $\frac{1}{2}m\left(\frac{x_{j+1}-x_j}{\varepsilon}\right)^2$ is the kinetic energy on segment $j$
+- Multiplying by $\varepsilon$ gives the action contribution of segment $j$
+
+Notice that a term $\frac{m(x_{j+1}-x_j)^2}{2\varepsilon}$ is large when adjacent positions are far apart (the particle moves fast) and small when adjacent positions are close (the particle moves slowly). The sum adds up the action contributions from all $N$ segments.
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Why is there a factor of $1/\varepsilon$ in the exponent of each term, rather than a factor of $\varepsilon$? Doesn't the action for a single time step involve multiplying by $\varepsilon$?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+Yes! The action contribution from one segment is $\frac{1}{2}m\dot{x}^2 \cdot \varepsilon$. But $\dot{x} \approx (x_{j+1}-x_j)/\varepsilon$, so squaring the velocity gives a $1/\varepsilon^2$. Multiplying by $\varepsilon$ leaves a net $1/\varepsilon$:
+
+$$
+\frac{1}{2}m\left(\frac{\Delta x}{\varepsilon}\right)^2\varepsilon = \frac{m(\Delta x)^2}{2\varepsilon}
+$$
+
+This makes physical sense: for fixed $\Delta x$, making $\varepsilon$ smaller means the particle has to move faster, so the action increases. Rapidly oscillating paths (large $\Delta x$ for small $\varepsilon$) have large action and hence rapidly oscillating phase, leading to cancellation in the sum — exactly the mechanism that suppresses non-classical paths.
+:::
+
+
+# The Path Integral Measure {#sec-measure}
+
+## From $\mathcal{D}x$ to Ordinary Integrals
+
+With the discretized action in hand, the path integral becomes:
+
+$$
+K(x_b, t_b;\,x_a, t_a) = \lim_{N\to\infty}\left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}\int_{-\infty}^{\infty}dx_1\int_{-\infty}^{\infty}dx_2\cdots\int_{-\infty}^{\infty}dx_{N-1}\;\exp\!\left(\frac{i}{\hbar}\sum_{j=0}^{N-1}\frac{m(x_{j+1}-x_j)^2}{2\varepsilon}\right)
+$$
+
+Let's unpack this carefully. The integration is over the $N-1$ intermediate positions $x_1, x_2, \ldots, x_{N-1}$, each ranging from $-\infty$ to $+\infty$. But what about that **normalization prefactor** $\left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}$?
+
+## Where Does the Normalization Come From?
+
+This is one of the most important — and most confusing — aspects of the path integral. Let us understand it step by step.
+
+**Physical requirement**: as $T = t_b - t_a \to 0^+$, the propagator must approach a delta function:
+
+$$
+K(x_b, t_b;\, x_a, t_a) \xrightarrow{T\to 0^+} \delta(x_b - x_a)
+$$
+
+This is because if no time passes, the particle stays where it is. Mathematically, this is the statement that the time-evolution operator becomes the identity: $\hat{U}(0) = \hat{I}$.
+
+**The normalization is fixed by this condition.** Let's see why the specific factor $\left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{1/2}$ appears at each time step.
+
+Consider a single time step ($N=1$, no intermediate integration). The propagator for one step of duration $\varepsilon$ is:
+
+$$
+K_\varepsilon(x_b, x_a) = A(\varepsilon)\,\exp\!\left(\frac{im(x_b - x_a)^2}{2\hbar\varepsilon}\right)
+$$
+
+where $A(\varepsilon)$ is the normalization we need to determine. As $\varepsilon \to 0^+$, the exponent $\frac{im(x_b-x_a)^2}{2\hbar\varepsilon}$ oscillates infinitely rapidly for $x_b \neq x_a$, killing the amplitude everywhere except at $x_b = x_a$. This is exactly the behavior of a delta function! Recall the representation:
+
+$$
+\delta(x) = \lim_{\varepsilon \to 0^+}\sqrt{\frac{m}{2\pi i\hbar\varepsilon}}\,\exp\!\left(\frac{imx^2}{2\hbar\varepsilon}\right)
+$$
+
+This is just the Fresnel/Gaussian nascent delta function. Comparing, we must have:
+
+$$
+\boxed{A(\varepsilon) = \sqrt{\frac{m}{2\pi i\hbar\varepsilon}}}
+$$
+
+For $N$ time steps, each step contributes one such factor, giving $A(\varepsilon)^N = \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}$. But we integrate over only $N-1$ intermediate variables, so one might wonder whether it should be $N/2$ or $(N-1)/2$. The answer is $N/2$ — there are $N$ segments, and each segment contributes one factor. The counting is: $N$ normalization factors from the $N$ segments, $N-1$ integrations over intermediate positions.
+
+::: {.callout-note}
+## Alternative Viewpoint: From the Operator Formalism
+In Module 4, we'll derive this normalization rigorously by inserting complete sets of states between time-evolution operators. For now, the delta-function requirement is sufficient to fix the normalization.
+:::
+
+
+# Doing the Gaussian Integrals {#sec-gaussian-integrals}
+
+This is the **key section** of this module. We're going to evaluate the $(N-1)$-fold integral explicitly by doing the integrations one at a time, from inside out.
+
+## Gaussian Integral Toolkit
+
+Before we begin, let's collect the Gaussian integral formulas we'll need. These are the workhorses of path integral calculations.
+
+| Formula | Conditions |
+|---------|------------|
+| $\displaystyle\int_{-\infty}^{\infty}e^{-ax^2}\,dx = \sqrt{\frac{\pi}{a}}$ | $\text{Re}(a) > 0$ |
+| $\displaystyle\int_{-\infty}^{\infty}e^{-ax^2 + bx}\,dx = \sqrt{\frac{\pi}{a}}\,\exp\!\left(\frac{b^2}{4a}\right)$ | $\text{Re}(a) > 0$ |
+| $\displaystyle\int_{-\infty}^{\infty}e^{-ax^2 + bx + c}\,dx = \sqrt{\frac{\pi}{a}}\,\exp\!\left(\frac{b^2}{4a} + c\right)$ | $\text{Re}(a) > 0$ |
+| $\displaystyle\int_{-\infty}^{\infty}e^{iax^2}\,dx = \sqrt{\frac{\pi}{|a|}}\,e^{i\,\text{sgn}(a)\pi/4}=\sqrt{\frac{i\pi}{a}}$ | $a \in \mathbb{R},\; a\neq 0$ |
+
+: Essential Gaussian integral formulas. The last formula is the **Fresnel integral**, which we need because our exponents are purely imaginary. {.striped}
+
+::: {.callout-tip}
+## The Completing-the-Square Trick
+Every Gaussian integral is done the same way: **complete the square** in the exponent, then shift the integration variable. For $-ax^2 + bx = -a\left(x - \frac{b}{2a}\right)^2 + \frac{b^2}{4a}$, the shift $x \to x + \frac{b}{2a}$ reduces it to a pure Gaussian times a constant.
+:::
+
+## Setting Up the Integral
+
+Let's write out the full integral. Define the shorthand:
+
+$$
+\alpha = \frac{m}{2i\hbar\varepsilon}
+$$
+
+Note that $\alpha$ is **imaginary** (specifically, $\alpha = \frac{m}{2i\hbar\varepsilon} = \frac{-im}{2\hbar\varepsilon}$). Then each factor in the exponent becomes:
+
+$$
+\frac{i}{\hbar}\cdot\frac{m(x_{j+1}-x_j)^2}{2\varepsilon} = i\alpha(x_{j+1}-x_j)^2 \cdot \frac{1}{i} \cdot i = \frac{im}{2\hbar\varepsilon}(x_{j+1}-x_j)^2
+$$
+
+Wait — let's be more careful. We have:
+
+$$
+\frac{i}{\hbar}\cdot\frac{m(x_{j+1}-x_j)^2}{2\varepsilon} = \frac{im}{2\hbar\varepsilon}(x_{j+1}-x_j)^2
+$$
+
+Let us define for convenience:
+
+$$
+\beta = \frac{im}{2\hbar\varepsilon}
+$$
+
+So the exponent is $\beta\sum_{j=0}^{N-1}(x_{j+1}-x_j)^2$, and the full propagator is:
+
+$$
+K = \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}\int dx_1\cdots dx_{N-1}\;\exp\!\left[\beta\sum_{j=0}^{N-1}(x_{j+1}-x_j)^2\right]
+$$
+
+Note that $\beta = \frac{im}{2\hbar\varepsilon}$ is purely imaginary (positive imaginary part when $m, \varepsilon > 0$). The exponent of each Gaussian is $\beta(x_{j+1}-x_j)^2$ where $\beta$ has positive imaginary part, so this is a Fresnel-type (oscillatory) integral. We'll handle convergence by implicitly assuming a small negative real part (i.e., Feynman's $i\varepsilon$ prescription) and continue analytically.
+
+## Step-by-Step Integration for General $N$
+
+The key observation is that the exponent is a sum of terms, each involving **only adjacent** positions:
+
+$$
+\beta\left[(x_1 - x_0)^2 + (x_2 - x_1)^2 + (x_3 - x_2)^2 + \cdots + (x_N - x_{N-1})^2\right]
+$$
+
+This means that when we integrate over $x_1$, only the first two terms depend on $x_1$. When we integrate over $x_2$, only terms involving $x_2$ matter. This **nearest-neighbor** coupling is what makes the integral tractable.
+
+### Integrating over $x_1$
+
+The terms in the exponent that involve $x_1$ are:
+
+$$
+\beta\left[(x_1 - x_0)^2 + (x_2 - x_1)^2\right]
+$$
+
+Let's expand:
+
+$$
+\beta\left[x_1^2 - 2x_0 x_1 + x_0^2 + x_2^2 - 2x_2 x_1 + x_1^2\right] = \beta\left[2x_1^2 - 2(x_0 + x_2)x_1 + x_0^2 + x_2^2\right]
+$$
+
+This is a Gaussian in $x_1$ with:
+
+- Coefficient of $x_1^2$: $2\beta$ (so $a = -2\beta$ in the standard form $e^{-ax_1^2 + bx_1}$)
+- Coefficient of $x_1$: $-2\beta(x_0 + x_2)$ (so $b = 2\beta(x_0 + x_2)$)
+
+Wait, we need to be careful about signs. We have:
+
+$$
+\exp\left[\beta(2x_1^2 - 2(x_0+x_2)x_1)\right] = \exp\left[-(-2\beta)x_1^2 + 2\beta(x_0+x_2)x_1\right]
+$$
+
+Using $\int e^{-ax^2 + bx}\,dx = \sqrt{\pi/a}\,e^{b^2/4a}$ with $a = -2\beta$ and $b = 2\beta(x_0+x_2)$:
+
+$$
+\int_{-\infty}^{\infty}dx_1\;\exp\left[\beta\left(2x_1^2 - 2(x_0+x_2)x_1\right)\right] = \sqrt{\frac{\pi}{-2\beta}}\,\exp\!\left(\frac{4\beta^2(x_0+x_2)^2}{4(-2\beta)}\right)
+$$
+
+$$
+= \sqrt{\frac{\pi}{-2\beta}}\,\exp\!\left(\frac{-\beta(x_0+x_2)^2}{2}\right)
+$$
+
+Now, including the $x_0^2 + x_2^2$ terms that we factored out (they don't depend on $x_1$), the total contribution from the first two segments after integrating out $x_1$ is:
+
+$$
+\sqrt{\frac{\pi}{-2\beta}}\,\exp\!\left[\beta(x_0^2 + x_2^2) - \frac{\beta(x_0+x_2)^2}{2}\right]
+$$
+
+Let's simplify the exponent:
+
+$$
+\beta\left[x_0^2 + x_2^2 - \frac{(x_0+x_2)^2}{2}\right] = \beta\left[\frac{2x_0^2 + 2x_2^2 - x_0^2 - 2x_0 x_2 - x_2^2}{2}\right] = \beta\cdot\frac{x_0^2 - 2x_0 x_2 + x_2^2}{2}
+$$
+
+$$
+= \frac{\beta}{2}(x_2 - x_0)^2
+$$
+
+Beautiful! After integrating out $x_1$, we get:
+
+$$
+\sqrt{\frac{\pi}{-2\beta}}\,\exp\!\left[\frac{\beta}{2}(x_2 - x_0)^2\right]
+$$
+
+::: {.callout-intuition}
+Look at what happened! The two segments from $x_0 \to x_1 \to x_2$ (each of duration $\varepsilon$) have been "fused" into a single effective segment from $x_0 \to x_2$ (of duration $2\varepsilon$). The factor $\beta/2 = \frac{im}{2\hbar \cdot 2\varepsilon}$ is exactly what you'd get for a single segment of duration $2\varepsilon$. Integrating out the intermediate point is literally replacing two short segments by one longer segment!
+:::
+
+### Integrating over $x_2$
+
+After integrating out $x_1$, we're left with (writing only the $x_2$-dependent part of the exponent):
+
+$$
+\frac{\beta}{2}(x_2 - x_0)^2 + \beta(x_3 - x_2)^2
+$$
+
+Let's expand:
+
+$$
+\frac{\beta}{2}(x_2^2 - 2x_0 x_2 + x_0^2) + \beta(x_3^2 - 2x_3 x_2 + x_2^2)
+$$
+
+$$
+= \frac{3\beta}{2}x_2^2 - \beta(x_0 + 2x_3)x_2 + \frac{\beta}{2}x_0^2 + \beta x_3^2
+$$
+
+This is again a Gaussian in $x_2$. With $a = -\frac{3\beta}{2}$ and $b = \beta(x_0 + 2x_3)$:
+
+$$
+\int dx_2\;\exp\left[-\frac{3\beta}{2}x_2^2 + \beta(x_0 + 2x_3)x_2\right] \cdot (\text{const}) \;\longrightarrow\; \sqrt{\frac{\pi}{-3\beta/2}}\,\exp\!\left[\frac{\beta^2(x_0+2x_3)^2}{4 \cdot (-3\beta/2)}\right]
+$$
+
+After careful algebra (which follows the same pattern), one obtains:
+
+$$
+\sqrt{\frac{\pi}{-2\beta}}\sqrt{\frac{\pi}{-3\beta/2}}\;\exp\!\left[\frac{\beta}{3}(x_3 - x_0)^2\right]
+$$
+
+Wait — but let's track this more systematically. Let me reformulate.
+
+### The General Pattern
+
+After integrating out $x_1, x_2, \ldots, x_k$, the result has the form:
+
+$$
+\left(\prod_{j=1}^{k}\sqrt{\frac{\pi}{-(j+1)\beta/j}}\right)\exp\!\left[\frac{\beta}{k+1}(x_{k+1} - x_0)^2\right]
+$$
+
+Let's verify: after integrating $x_1$ ($k=1$): the exponent is $\frac{\beta}{2}(x_2 - x_0)^2$. ✓
+
+After integrating $x_2$ ($k=2$): the exponent is $\frac{\beta}{3}(x_3 - x_0)^2$. ✓
+
+The pattern continues. **After integrating out all $N-1$ intermediate positions**, the exponent becomes:
+
+$$
+\frac{\beta}{N}(x_N - x_0)^2 = \frac{\beta}{N}(x_b - x_a)^2
+$$
+
+Now, $\frac{\beta}{N} = \frac{im}{2\hbar\varepsilon N} = \frac{im}{2\hbar T}$, since $\varepsilon N = T$. So the exponent is:
+
+$$
+\frac{im(x_b - x_a)^2}{2\hbar T}
+$$
+
+This is exactly $\frac{i}{\hbar}S_{\text{cl}}$ — the classical action! This is our first glimpse of a beautiful general result.
+
+### The Prefactor
+
+Let's track the prefactors. Each integration over $x_k$ produces a factor $\sqrt{\frac{\pi}{-(k+1)\beta/k}}$, which we can rewrite as $\sqrt{\frac{\pi k}{-(k+1)\beta}}$.
+
+The product of all $N-1$ such factors is:
+
+$$
+\prod_{k=1}^{N-1}\sqrt{\frac{\pi k}{-(k+1)\beta}} = \prod_{k=1}^{N-1}\sqrt{\frac{\pi k}{(k+1)(-\beta)}}
+$$
+
+Let's compute this product. Pull out the common factors:
+
+$$
+= \left(\frac{\pi}{-\beta}\right)^{(N-1)/2}\prod_{k=1}^{N-1}\sqrt{\frac{k}{k+1}}
+$$
+
+The product $\prod_{k=1}^{N-1}\sqrt{\frac{k}{k+1}}$ is a telescoping product:
+
+$$
+\prod_{k=1}^{N-1}\sqrt{\frac{k}{k+1}} = \sqrt{\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdots\frac{N-1}{N}} = \sqrt{\frac{1}{N}}
+$$
+
+So the total integration prefactor is:
+
+$$
+\left(\frac{\pi}{-\beta}\right)^{(N-1)/2}\cdot\frac{1}{\sqrt{N}}
+$$
+
+Now recall $\beta = \frac{im}{2\hbar\varepsilon}$, so $-\beta = \frac{-im}{2\hbar\varepsilon}$ and $\frac{\pi}{-\beta} = \frac{2\pi\hbar\varepsilon}{-im} = \frac{2\pi i\hbar\varepsilon}{m}$ (using $1/(-i) = i$).
+
+Therefore:
+
+$$
+\left(\frac{\pi}{-\beta}\right)^{(N-1)/2} = \left(\frac{2\pi i\hbar\varepsilon}{m}\right)^{(N-1)/2}
+$$
+
+Combining with the overall normalization $\left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}$:
+
+$$
+K = \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}\cdot\left(\frac{2\pi i\hbar\varepsilon}{m}\right)^{(N-1)/2}\cdot\frac{1}{\sqrt{N}}\cdot\exp\!\left(\frac{im(x_b-x_a)^2}{2\hbar T}\right)
+$$
+
+$$
+= \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{1/2}\cdot\frac{1}{\sqrt{N}}\cdot\exp\!\left(\frac{im(x_b-x_a)^2}{2\hbar T}\right)
+$$
+
+Since $\varepsilon N = T$, we have $\varepsilon = T/N$, so:
+
+$$
+\frac{m}{2\pi i\hbar\varepsilon} = \frac{mN}{2\pi i\hbar T}
+$$
+
+and:
+
+$$
+\sqrt{\frac{m}{2\pi i\hbar\varepsilon}}\cdot\frac{1}{\sqrt{N}} = \sqrt{\frac{mN}{2\pi i\hbar T}}\cdot\frac{1}{\sqrt{N}} = \sqrt{\frac{m}{2\pi i\hbar T}}
+$$
+
+The factors of $N$ **cancel perfectly**!
+
+
+# The Continuum Limit and Final Result {#sec-continuum-limit}
+
+Since all factors of $N$ have canceled, the result is the same for all $N$ (remarkable!), and in particular survives the limit $N \to \infty$:
+
+$$
+\boxed{K(x_b, t_b;\, x_a, t_a) = \sqrt{\frac{m}{2\pi i\hbar T}}\,\exp\!\left(\frac{im(x_b - x_a)^2}{2\hbar T}\right)}
+$$
+
+where $T = t_b - t_a > 0$.
+
+Let's pause and appreciate what we've done:
+
+1. We **discretized** the continuous path into $N$ segments
+2. We computed $N-1$ **Gaussian integrals** sequentially
+3. We found that all factors of $N$ and $\varepsilon$ cancel, leaving a result that depends only on the **physical** quantities $m$, $T$, and $\Delta x = x_b - x_a$
+4. The exponential is $e^{iS_{\text{cl}}/\hbar}$ — the phase is the classical action
+5. The prefactor $\sqrt{m/(2\pi i\hbar T)}$ comes from integrating over fluctuations
+
+::: {.callout-tip}
+## Structure of the Result
+The free-particle propagator has two parts:
+
+- **Prefactor** $\sqrt{m/(2\pi i\hbar T)}$: from the Gaussian integration over all possible fluctuations around the classical path. Note it's independent of $x_a$ and $x_b$.
+- **Phase** $\exp(iS_{\text{cl}}/\hbar)$: the classical action evaluated on the straight-line (classical) path.
+
+This structure — $K = F(T) \times e^{iS_{\text{cl}}/\hbar}$ — holds for *any* system with a quadratic Lagrangian (free particle, harmonic oscillator, charged particle in uniform fields, etc.). It does **not** hold for anharmonic potentials.
+:::
+
+
+# Verification of the Propagator {#sec-verification}
+
+We've obtained a formula — but is it correct? A good physicist always checks their answer. We'll verify three independent properties.
+
+## Check 1: Free-Particle Schrödinger Equation
+
+The propagator $K(x_b, t_b;\, x_a, t_a)$ should satisfy the free-particle Schrödinger equation as a function of the final coordinates $(x_b, t_b)$:
+
+$$
+i\hbar\frac{\partial K}{\partial t_b} = -\frac{\hbar^2}{2m}\frac{\partial^2 K}{\partial x_b^2}
+$$
+
+Let's verify this. Write $K = A(T)\,e^{i\phi}$ where $T = t_b - t_a$, $A(T) = \sqrt{\frac{m}{2\pi i\hbar T}}$, and $\phi = \frac{m(x_b - x_a)^2}{2\hbar T}$.
+
+**Left side** — $i\hbar\,\partial K/\partial t_b$:
+
+First, $\frac{\partial T}{\partial t_b} = 1$. We need:
+
+$$
+\frac{\partial K}{\partial t_b} = \frac{dA}{dT}\,e^{i\phi} + A\,e^{i\phi}\cdot i\frac{\partial\phi}{\partial t_b}
+$$
+
+We have:
+
+$$
+\frac{dA}{dT} = -\frac{1}{2T}A(T)
+$$
+
+$$
+\frac{\partial\phi}{\partial t_b} = \frac{\partial}{\partial T}\left[\frac{m(x_b-x_a)^2}{2\hbar T}\right] = -\frac{m(x_b - x_a)^2}{2\hbar T^2}
+$$
+
+So:
+
+$$
+\frac{\partial K}{\partial t_b} = K\left[-\frac{1}{2T} - \frac{im(x_b-x_a)^2}{2\hbar T^2}\right]
+$$
+
+$$
+i\hbar\frac{\partial K}{\partial t_b} = K\left[-\frac{i\hbar}{2T} + \frac{m(x_b-x_a)^2}{2T^2}\right]
+$$
+
+**Right side** — $-\frac{\hbar^2}{2m}\,\partial^2 K/\partial x_b^2$:
+
+First derivative:
+
+$$
+\frac{\partial K}{\partial x_b} = K \cdot \frac{im(x_b - x_a)}{\hbar T}
+$$
+
+Second derivative:
+
+$$
+\frac{\partial^2 K}{\partial x_b^2} = K\cdot\frac{im}{\hbar T} + K\cdot\left(\frac{im(x_b-x_a)}{\hbar T}\right)^2 = K\left[\frac{im}{\hbar T} - \frac{m^2(x_b-x_a)^2}{\hbar^2 T^2}\right]
+$$
+
+Therefore:
+
+$$
+-\frac{\hbar^2}{2m}\frac{\partial^2 K}{\partial x_b^2} = K\left[-\frac{i\hbar}{2T} + \frac{m(x_b-x_a)^2}{2T^2}\right]
+$$
+
+**The left and right sides match!** ✓
+
+## Check 2: Delta-Function Initial Condition
+
+As $T \to 0^+$, we need $K \to \delta(x_b - x_a)$. Let $\xi = x_b - x_a$. Then:
+
+$$
+K = \sqrt{\frac{m}{2\pi i\hbar T}}\,\exp\!\left(\frac{im\xi^2}{2\hbar T}\right)
+$$
+
+As $T \to 0^+$:
+
+- For $\xi \neq 0$: the exponent $\frac{im\xi^2}{2\hbar T}$ has magnitude $\to \infty$, so the exponential oscillates infinitely rapidly, and the integral of $K$ against any smooth test function vanishes except at $\xi = 0$.
+- For $\xi = 0$: $K = \sqrt{m/(2\pi i\hbar T)} \to \infty$.
+- The integral: $\int_{-\infty}^{\infty}K\,d\xi = \sqrt{\frac{m}{2\pi i\hbar T}}\int_{-\infty}^{\infty}\exp\!\left(\frac{im\xi^2}{2\hbar T}\right)d\xi$.
+
+Using the Fresnel integral $\int e^{i\alpha \xi^2}d\xi = \sqrt{\pi/(|\alpha|)}\,e^{i\pi/4\,\text{sgn}(\alpha)}$ with $\alpha = \frac{m}{2\hbar T} > 0$:
+
+$$
+\int_{-\infty}^{\infty}\exp\!\left(\frac{im\xi^2}{2\hbar T}\right)d\xi = \sqrt{\frac{2\pi\hbar T}{m}}\,e^{i\pi/4} = \sqrt{\frac{2\pi i\hbar T}{m}}
+$$
+
+So:
+
+$$
+\int_{-\infty}^{\infty}K\,d\xi = \sqrt{\frac{m}{2\pi i\hbar T}}\cdot\sqrt{\frac{2\pi i\hbar T}{m}} = 1
+$$
+
+The propagator integrates to 1 for all $T > 0$, and its support narrows to $\xi = 0$ as $T \to 0^+$. This confirms $K \to \delta(x_b - x_a)$. ✓
+
+## Check 3: Composition Property (Chapman-Kolmogorov)
+
+The composition property states that propagating from $a \to c$ should be equivalent to propagating from $a \to b$ and then $b \to c$:
+
+$$
+K(x_c, t_c;\, x_a, t_a) = \int_{-\infty}^{\infty}dx_b\;K(x_c, t_c;\, x_b, t_b)\,K(x_b, t_b;\, x_a, t_a)
+$$
+
+Let $T_1 = t_b - t_a$ and $T_2 = t_c - t_b$, so $T = t_c - t_a = T_1 + T_2$.
+
+The right side is:
+
+$$
+\int dx_b\;\sqrt{\frac{m}{2\pi i\hbar T_2}}\exp\!\left(\frac{im(x_c-x_b)^2}{2\hbar T_2}\right)\cdot\sqrt{\frac{m}{2\pi i\hbar T_1}}\exp\!\left(\frac{im(x_b-x_a)^2}{2\hbar T_1}\right)
+$$
+
+$$
+= \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\int dx_b\;\exp\!\left[\frac{im}{2\hbar}\left(\frac{(x_c-x_b)^2}{T_2} + \frac{(x_b-x_a)^2}{T_1}\right)\right]
+$$
+
+The exponent is quadratic in $x_b$. Expanding:
+
+$$
+\frac{(x_c - x_b)^2}{T_2} + \frac{(x_b - x_a)^2}{T_1} = \frac{T_1 + T_2}{T_1 T_2}x_b^2 - 2\left(\frac{x_c}{T_2} + \frac{x_a}{T_1}\right)x_b + \frac{x_c^2}{T_2} + \frac{x_a^2}{T_1}
+$$
+
+This is a Gaussian integral in $x_b$ with $a' = -\frac{im}{2\hbar}\cdot\frac{T}{T_1 T_2}$ (coefficient of $x_b^2$, with appropriate sign from the $e^{-a'x^2+\ldots}$ form), and the result, after completing the square and simplifying, yields:
+
+$$
+\sqrt{\frac{m}{2\pi i\hbar T}}\,\exp\!\left(\frac{im(x_c - x_a)^2}{2\hbar T}\right) = K(x_c, t_c;\, x_a, t_a)
+$$
+
+The composition property is verified! ✓
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Why do we need the strange normalization factor $\sqrt{m/(2\pi i\hbar\varepsilon)}$ at each time step?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+Without it, the integral either diverges or gives the wrong normalization. The prefactor is uniquely fixed by requiring that the propagator satisfies $K(x_b, t_b;\, x_a, t_a) \to \delta(x_b - x_a)$ as $t_b \to t_a^+$. This is the physical requirement that if no time elapses, the particle stays where it is ($\hat{U}(0) = \hat{I}$). The specific form $\sqrt{m/(2\pi i\hbar\varepsilon)}$ is the one that makes $\exp\left(\frac{im(x_b - x_a)^2}{2\hbar\varepsilon}\right)$ into a valid nascent delta function as $\varepsilon \to 0$.
+:::
+
+::: {.callout-warning}
+## 🤔 Quick Question
+The result involves $\sqrt{i}$ in the denominator (via $\sqrt{2\pi i\hbar T}$). What does a complex-valued propagator mean physically?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+The propagator $K$ is a quantum **amplitude**, not a probability. It's perfectly fine for it to be complex — in fact, it *must* be complex because it represents the phase accumulated along quantum paths. The physical (measurable) quantity is $|K(x_b, t_b;\, x_a, t_a)|^2$, which gives the **transition probability density** — the probability per unit length of finding the particle at $x_b$ at time $t_b$, given it was at $x_a$ at time $t_a$.
+
+For the free particle, $|K|^2 = \frac{m}{2\pi\hbar T}$, which is independent of $x_b - x_a$. This makes sense: a free particle that starts at a definite position $x_a$ has uniform probability of being found anywhere at later times (the position-space wavefunction spreads, and the probability at any specific point is a decreasing function of $T$ — in fact, it decreases as $1/T$).
+
+The complex phase $e^{iS_{\text{cl}}/\hbar}$ encodes the interference between different quantum paths. This interference is what gives rise to all quantum phenomena.
+:::
+
+
+# Worked Examples
+
+## Worked Example 1: Complete Calculation with $N = 2$
+
+Let's do the $N = 2$ case from scratch — one intermediate integration point $x_1$, with $x_0 = x_a$ and $x_2 = x_b$ fixed.
+
+**Setup**: With $N = 2$, we have $\varepsilon = T/2$ and the discretized action is:
+
+$$
+S_2 = \frac{m(x_1 - x_0)^2}{2\varepsilon} + \frac{m(x_2 - x_1)^2}{2\varepsilon}
+$$
+
+The propagator is:
+
+$$
+K = \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{2/2}\int_{-\infty}^{\infty}dx_1\;\exp\!\left[\frac{im}{2\hbar\varepsilon}\left((x_1-x_0)^2 + (x_2-x_1)^2\right)\right]
+$$
+
+$$
+= \frac{m}{2\pi i\hbar\varepsilon}\int_{-\infty}^{\infty}dx_1\;\exp\!\left[\frac{im}{2\hbar\varepsilon}\left((x_1-x_0)^2 + (x_2-x_1)^2\right)\right]
+$$
+
+**Step 1: Expand the exponent.** Let $\beta = \frac{im}{2\hbar\varepsilon}$.
+
+$$
+\beta\left[(x_1 - x_0)^2 + (x_2 - x_1)^2\right] = \beta\left[2x_1^2 - 2(x_0 + x_2)x_1 + x_0^2 + x_2^2\right]
+$$
+
+**Step 2: Complete the square in $x_1$.**
+
+$$
+2x_1^2 - 2(x_0+x_2)x_1 = 2\left[x_1 - \frac{x_0+x_2}{2}\right]^2 - \frac{(x_0+x_2)^2}{2}
+$$
+
+So the exponent becomes:
+
+$$
+\beta\left\{2\left[x_1 - \frac{x_0+x_2}{2}\right]^2 - \frac{(x_0+x_2)^2}{2} + x_0^2 + x_2^2\right\}
+$$
+
+**Step 3: Simplify the constant part.**
+
+$$
+-\frac{(x_0+x_2)^2}{2} + x_0^2 + x_2^2 = -\frac{x_0^2 + 2x_0 x_2 + x_2^2}{2} + x_0^2 + x_2^2 = \frac{x_0^2 - 2x_0 x_2 + x_2^2}{2} = \frac{(x_2-x_0)^2}{2}
+$$
+
+So:
+
+$$
+\text{exponent} = 2\beta\left[x_1 - \frac{x_0+x_2}{2}\right]^2 + \frac{\beta}{2}(x_2 - x_0)^2
+$$
+
+**Step 4: Do the Gaussian integral.** The $x_1$ integral is:
+
+$$
+\int_{-\infty}^{\infty}dx_1\;\exp\!\left\{2\beta\left[x_1 - \frac{x_0+x_2}{2}\right]^2\right\} = \sqrt{\frac{\pi}{-2\beta}}
+$$
+
+(Shifting $x_1 \to x_1 + \frac{x_0+x_2}{2}$ and using $\int e^{-ax^2}dx = \sqrt{\pi/a}$ with $a = -2\beta$.)
+
+**Step 5: Combine everything.**
+
+$$
+K = \frac{m}{2\pi i\hbar\varepsilon}\cdot\sqrt{\frac{\pi}{-2\beta}}\cdot\exp\!\left[\frac{\beta}{2}(x_b - x_a)^2\right]
+$$
+
+Now compute $\sqrt{\frac{\pi}{-2\beta}}$:
+
+$$
+-2\beta = -2\cdot\frac{im}{2\hbar\varepsilon} = \frac{-im}{\hbar\varepsilon} \quad\Longrightarrow\quad \frac{\pi}{-2\beta} = \frac{\pi\hbar\varepsilon}{-im} = \frac{i\pi\hbar\varepsilon}{m}
+$$
+
+$$
+\sqrt{\frac{\pi}{-2\beta}} = \sqrt{\frac{i\pi\hbar\varepsilon}{m}} = \sqrt{\frac{\pi\hbar\varepsilon}{m}}\,e^{i\pi/4}
+$$
+
+And:
+
+$$
+\frac{m}{2\pi i\hbar\varepsilon}\cdot\sqrt{\frac{i\pi\hbar\varepsilon}{m}} = \frac{1}{2}\sqrt{\frac{m}{i\pi\hbar\varepsilon}} = \frac{1}{2}\sqrt{\frac{m}{\pi\hbar\varepsilon}}\,e^{-i\pi/4}
+$$
+
+Actually, let's just compute the ratio more directly. We have:
+
+$$
+\frac{m}{2\pi i\hbar\varepsilon} = \left(\sqrt{\frac{m}{2\pi i\hbar\varepsilon}}\right)^2
+$$
+
+and:
+
+$$
+\sqrt{\frac{\pi}{-2\beta}} = \sqrt{\frac{2\pi i\hbar\varepsilon}{2m}} = \frac{1}{\sqrt{2}}\sqrt{\frac{2\pi i\hbar\varepsilon}{m}}\cdot\frac{1}{\sqrt{2}} = \sqrt{\frac{\pi i\hbar\varepsilon}{m}}
+$$
+
+Hmm, let me be more systematic. We have $\beta = \frac{im}{2\hbar\varepsilon}$, so:
+
+$$
+-2\beta = \frac{-im}{\hbar\varepsilon}
+$$
+
+$$
+\frac{\pi}{-2\beta} = \frac{\pi\hbar\varepsilon}{-im} = \frac{\pi\hbar\varepsilon\cdot i}{m} = \frac{i\pi\hbar\varepsilon}{m}
+$$
+
+$$
+\sqrt{\frac{\pi}{-2\beta}} = \sqrt{\frac{i\pi\hbar\varepsilon}{m}}
+$$
+
+And the overall prefactor from normalization is:
+
+$$
+\frac{m}{2\pi i\hbar\varepsilon} \cdot \sqrt{\frac{i\pi\hbar\varepsilon}{m}} = \frac{\sqrt{m}}{2\sqrt{i\pi\hbar\varepsilon}} = \sqrt{\frac{m}{4i\pi\hbar\varepsilon}} = \sqrt{\frac{m}{2\pi i\hbar \cdot 2\varepsilon}} = \sqrt{\frac{m}{2\pi i\hbar T}}
+$$
+
+where in the last step we used $T = 2\varepsilon$.
+
+And the exponent: $\frac{\beta}{2}(x_b - x_a)^2 = \frac{im}{4\hbar\varepsilon}(x_b-x_a)^2 = \frac{im(x_b-x_a)^2}{2\hbar T}$, since $4\varepsilon = 2T$ when $\varepsilon = T/2$.
+
+**Final answer**:
+
+$$
+\boxed{K = \sqrt{\frac{m}{2\pi i\hbar T}}\,\exp\!\left(\frac{im(x_b - x_a)^2}{2\hbar T}\right)}
+$$
+
+Exactly the same as the general result — as it must be, since the answer is independent of $N$. ✓
+
+
+## Worked Example 2: Propagation of a Gaussian Wavepacket
+
+Let's use the propagator to **evolve** an initial Gaussian wavepacket:
+
+$$
+\psi(x, 0) = \left(\frac{1}{2\pi\sigma^2}\right)^{1/4}\exp\!\left(-\frac{x^2}{4\sigma^2}\right)
+$$
+
+This is a minimum-uncertainty wavepacket centered at the origin with width $\sigma$ and zero average momentum.
+
+**The time-evolved wavefunction** is obtained by convolving with the propagator:
+
+$$
+\psi(x, t) = \int_{-\infty}^{\infty}dx'\;K(x, t;\, x', 0)\,\psi(x', 0)
+$$
+
+$$
+= \sqrt{\frac{m}{2\pi i\hbar t}}\left(\frac{1}{2\pi\sigma^2}\right)^{1/4}\int_{-\infty}^{\infty}dx'\;\exp\!\left[\frac{im(x-x')^2}{2\hbar t} - \frac{x'^2}{4\sigma^2}\right]
+$$
+
+**Step 1: Expand the exponent.** Collect terms in $x'$:
+
+$$
+\frac{im(x-x')^2}{2\hbar t} - \frac{x'^2}{4\sigma^2} = \frac{im}{2\hbar t}(x^2 - 2xx' + x'^2) - \frac{x'^2}{4\sigma^2}
+$$
+
+$$
+= -\left(\frac{1}{4\sigma^2} - \frac{im}{2\hbar t}\right)x'^2 + \frac{imx}{\hbar t}x' + \frac{imx^2}{2\hbar t}
+$$
+
+Define:
+
+$$
+a = \frac{1}{4\sigma^2} - \frac{im}{2\hbar t} = \frac{1}{4\sigma^2} + \frac{im}{2\hbar t}\cdot(-1)
+$$
+
+Wait — let's be careful with the sign. We have:
+
+$$
+\frac{im}{2\hbar t}x'^2 - \frac{x'^2}{4\sigma^2} = \left(\frac{im}{2\hbar t} - \frac{1}{4\sigma^2}\right)x'^2
+$$
+
+So in the standard form $e^{-ax'^2 + bx'}$:
+
+$$
+a = \frac{1}{4\sigma^2} - \frac{im}{2\hbar t}, \qquad b = \frac{imx}{\hbar t}
+$$
+
+**Step 2: Apply the Gaussian integral formula.**
+
+$$
+\int dx'\;e^{-ax'^2 + bx'} = \sqrt{\frac{\pi}{a}}\exp\!\left(\frac{b^2}{4a}\right)
+$$
+
+**Step 3: Compute $b^2/(4a)$.**
+
+$$
+\frac{b^2}{4a} = \frac{-m^2 x^2/(\hbar^2 t^2)}{4\left(\frac{1}{4\sigma^2} - \frac{im}{2\hbar t}\right)} = \frac{-m^2 x^2}{\hbar^2 t^2}\cdot\frac{1}{4a}
+$$
+
+Let me define $\sigma_t$ through:
+
+$$
+a = \frac{1}{4\sigma^2}\left(1 - \frac{2im\sigma^2}{\hbar t}\right) = \frac{1}{4\sigma^2}\left(1 + \frac{it}{\tau}\right)^{-1}\cdot\left(1 + \frac{it}{\tau}\right)\cdot\ldots
+$$
+
+Actually, let me take a cleaner approach. Define the **spreading time**:
+
+$$
+\tau = \frac{2m\sigma^2}{\hbar}
+$$
+
+Then $\frac{im}{2\hbar t} = \frac{i}{4\sigma^2}\cdot\frac{\tau}{t}\cdot\frac{t}{\tau}\cdot\ldots$ Hmm, let me just compute directly:
+
+$$
+a = \frac{1}{4\sigma^2} - \frac{im}{2\hbar t} = \frac{1}{4\sigma^2}\left(1 - \frac{2im\sigma^2}{\hbar t}\right) = \frac{1}{4\sigma^2}\left(1 - \frac{i\tau}{t}\right)
+$$
+
+where $\tau \equiv \frac{2m\sigma^2}{\hbar}$.
+
+Now:
+
+$$
+\frac{b^2}{4a} = \frac{(imx/\hbar t)^2}{4 \cdot \frac{1}{4\sigma^2}(1 - i\tau/t)} = \frac{-m^2 x^2 \sigma^2}{\hbar^2 t^2(1 - i\tau/t)}
+$$
+
+Using $\frac{m\sigma^2}{\hbar t} = \frac{\tau}{2t}$, we get $\frac{m^2\sigma^2}{\hbar^2 t^2} = \frac{\tau^2}{4\sigma^2 t^2}$:
+
+$$
+\frac{b^2}{4a} = \frac{-\tau^2 x^2}{4\sigma^2 t^2(1 - i\tau/t)} = \frac{-\tau^2 x^2}{4\sigma^2 t(t - i\tau)}
+$$
+
+We can also write the full exponent (including the $\frac{imx^2}{2\hbar t}$ term from the expansion):
+
+$$
+\frac{b^2}{4a} + \frac{imx^2}{2\hbar t}
+$$
+
+After some algebra (which I'll spare and state the result), the exponent of $x^2$ in $\psi(x,t)$ becomes:
+
+$$
+-\frac{x^2}{4\sigma^2(1 + it/\tau)}
+$$
+
+**Step 4: Assemble the result.** After combining all prefactors, the time-evolved wavefunction is:
+
+$$
+\boxed{\psi(x, t) = \left(\frac{1}{2\pi\sigma_t^2}\right)^{1/4}\exp\!\left(-\frac{x^2}{4\sigma_t^2}\right)}
+$$
+
+where the **complex width parameter** is:
+
+$$
+\sigma_t^2 = \sigma^2\left(1 + \frac{it}{\tau}\right) = \sigma^2 + \frac{i\hbar t}{2m}
+$$
+
+and $\tau = 2m\sigma^2/\hbar$ is the characteristic spreading time.
+
+**Step 5: Physical interpretation.** The probability density is:
+
+$$
+|\psi(x,t)|^2 = \frac{1}{\sqrt{2\pi\,|\sigma_t|^2}}\exp\!\left(-\frac{x^2}{2|\sigma_t|^2}\right)
+$$
+
+where:
+
+$$
+|\sigma_t|^2 = \sigma^2\sqrt{1 + \left(\frac{t}{\tau}\right)^2} \longrightarrow \sigma^2\frac{t}{\tau} = \frac{\hbar t}{2m} \quad\text{as}\quad t \to \infty
+$$
+
+Wait, let me be precise. We have $\sigma_t^2 = \sigma^2 + \frac{i\hbar t}{2m}$. For the probability density, we need the real part of $\frac{1}{\sigma_t^2}$:
+
+$$
+\frac{1}{\sigma_t^2} = \frac{1}{\sigma^2 + i\hbar t/(2m)} = \frac{\sigma^2 - i\hbar t/(2m)}{\sigma^4 + \hbar^2 t^2/(4m^2)}
+$$
+
+The real part is $\frac{\sigma^2}{\sigma^4 + \hbar^2 t^2/(4m^2)}$. Defining the **physical width**:
+
+$$
+\boxed{w(t) = \sigma\sqrt{1 + \frac{t^2}{\tau^2}} = \sigma\sqrt{1 + \frac{\hbar^2 t^2}{4m^2\sigma^4}}}
+$$
+
+we have $|\psi(x,t)|^2 \propto \exp\!\left(-\frac{x^2}{2w(t)^2}\right)$.
+
+**The wavepacket spreads!** The width grows from $\sigma$ at $t = 0$ to $\sigma\sqrt{2}$ at $t = \tau$, and then grows linearly as $t/\tau$ for $t \gg \tau$. This is a quintessential quantum effect — a free particle wavepacket inevitably spreads due to the uncertainty principle. Different momentum components travel at different speeds, causing the spatial distribution to broaden.
+
+::: {.callout-intuition}
+The spreading time $\tau = 2m\sigma^2/\hbar$ encodes the competition between quantum uncertainty and classical inertia:
+
+- **Large mass $m$** or **large initial width $\sigma$**: $\tau$ is large, spreading is slow. A bowling ball wavepacket doesn't spread appreciably in the age of the universe.
+- **Small mass** or **small initial width**: $\tau$ is small, spreading is fast. An electron confined to atomic scales spreads in $\sim 10^{-16}$ seconds.
+:::
+
+
+# Summary of Key Results
+
+| Quantity | Expression |
+|----------|------------|
+| Free-particle Lagrangian | $L = \frac{1}{2}m\dot{x}^2$ |
+| Discretized action | $S_N = \sum_{j=0}^{N-1}\frac{m(x_{j+1}-x_j)^2}{2\varepsilon}$ |
+| Path integral measure | $\int\mathcal{D}x \to \left(\frac{m}{2\pi i\hbar\varepsilon}\right)^{N/2}\int dx_1\cdots dx_{N-1}$ |
+| Classical action | $S_{\text{cl}} = \frac{m(x_b-x_a)^2}{2T}$ |
+| **Free-particle propagator** | $K = \sqrt{\frac{m}{2\pi i\hbar T}}\exp\!\left(\frac{im(x_b-x_a)^2}{2\hbar T}\right)$ |
+| Probability density | $|K|^2 = \frac{m}{2\pi\hbar T}$ (uniform in space) |
+| Gaussian wavepacket width | $w(t) = \sigma\sqrt{1 + \hbar^2 t^2/(4m^2\sigma^4)}$ |
+| Spreading time | $\tau = 2m\sigma^2/\hbar$ |
+
+: Summary of all key results from the free-particle path integral. {.striped .hover}
+
+
+::: {.checkpoint}
+Before moving on, make sure you can:
+
+1. Write down the discretized action for the free particle with $N$ time steps.
+2. Explain why the normalization factor $\sqrt{m/(2\pi i\hbar\varepsilon)}$ is needed at each step.
+3. Perform the Gaussian integral for $N = 2$ (one intermediate integration) from scratch.
+4. State the final propagator and verify it satisfies the Schrödinger equation.
+5. Explain physically why a Gaussian wavepacket spreads, and estimate the spreading time for an electron confined to $\sigma = 1$ Å.
+:::
+
+
+# Practice Problems
+
+**Problem 1** (Warm-up): *Units check.*
+Verify that the argument of the exponential $\frac{m(x_b-x_a)^2}{2\hbar T}$ is dimensionless. Also verify that the prefactor $\sqrt{m/(2\pi i\hbar T)}$ has dimensions of $1/\text{length}$ (as required for a propagator in one dimension).
+
+**Problem 2** (Calculation): *$N = 3$ case.*
+Redo the time-sliced calculation with $N = 3$ (two intermediate integrations, $x_1$ and $x_2$). Integrate out $x_1$ first, then $x_2$, showing all steps. Verify you get the same propagator.
+
+**Problem 3** (Verification): *Composition property in detail.*
+Verify the composition property explicitly:
+
+$$
+\int_{-\infty}^{\infty}dx_b\;K(x_c, t_c;\,x_b, t_b)\,K(x_b, t_b;\,x_a, t_a) = K(x_c, t_c;\,x_a, t_a)
+$$
+
+Show all algebra, including the completing-the-square step. This is a Gaussian integral — specify the effective $a$ and $b$ parameters.
+
+**Problem 4** (Application): *Propagating a momentum eigenstate.*
+Start with a plane wave $\psi(x, 0) = e^{ipx/\hbar}$ (not normalizable, but let's proceed formally). Compute $\psi(x, t) = \int dx'\;K(x, t;\,x', 0)\,e^{ipx'/\hbar}$ and show that you get:
+
+$$
+\psi(x, t) = \exp\!\left[\frac{i}{\hbar}\left(px - \frac{p^2 t}{2m}\right)\right]
+$$
+
+Interpret the result: $E = p^2/(2m)$ is the free-particle energy.
+
+**Problem 5** (Conceptual): *The spreading time.*
+(a) Compute the spreading time $\tau$ for an electron ($m = 9.1\times 10^{-31}$ kg) with initial width $\sigma = 1$ Å $ = 10^{-10}$ m.
+(b) Compute $\tau$ for a baseball ($m = 0.145$ kg) with $\sigma = 1\,\mu$m.
+(c) Interpret your results: why do we never observe quantum spreading for macroscopic objects?
+
+**Problem 6** (Challenge): *Higher-dimensional free particle.*
+Generalize the free-particle propagator to $d$ dimensions. The Lagrangian is $L = \frac{1}{2}m|\dot{\mathbf{x}}|^2$. Since there are no cross-terms between different spatial components, argue that the $d$-dimensional propagator factorizes:
+
+$$
+K(\mathbf{x}_b, t_b;\,\mathbf{x}_a, t_a) = \prod_{k=1}^{d}K^{(1D)}(x_{b,k}, t_b;\, x_{a,k}, t_a)
+$$
+
+Write out the explicit result for $d = 3$. Verify that $|K|^2$ has the correct dimensions (probability per unit volume).
+
+
+---
+
+> **Further Reading**: Feynman & Hibbs, Chapter 3, §3.1–3.2. Shankar, *Principles of Quantum Mechanics*, Ch. 21. For a rigorous treatment of the measure, see Kleinert, *Path Integrals in Quantum Mechanics, Statistics, Polymer Physics, and Financial Markets*, Ch. 2. For the Gaussian wavepacket problem treated from the operator perspective (for comparison), see Griffiths, *Introduction to Quantum Mechanics*, §2.4.
+
+::: {.nav-buttons}
+[← Previous: Sum Over Paths](02_sum_over_paths.qmd){.btn .btn-outline-secondary}
+[Next: Module 4 — Path Integral Derivation →](04_path_integral_derivation.qmd){.btn .btn-success}
+:::

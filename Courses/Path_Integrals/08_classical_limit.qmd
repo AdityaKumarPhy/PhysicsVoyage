@@ -1,0 +1,362 @@
+---
+title: "Module 8: The Classical Limit & Stationary Phase"
+subtitle: "Recovering the macroscopic world from the path integral"
+description: "Understanding how classical mechanics emerges from quantum principles using the stationary phase approximation and semiclassical expansions."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 9 →](09_wick_rotation.qmd)
+
+# Introduction
+
+One of the most profound requirements of any new physical theory is that it must reproduce the established older theory in the appropriate limit. If quantum mechanics is the fundamental description of nature, why do macroscopic objects like baseballs and planets appear to follow Newton's deterministic laws so perfectly? 
+
+In the canonical formulation of quantum mechanics, showing this correspondence usually involves Ehrenfest's theorem or complex WKB wavefunctions. But in Feynman's path integral formulation, the transition from quantum to classical mechanics is beautifully transparent. The classical world is simply the **stationary phase approximation** of the quantum path integral. 
+
+In this module, we will explore exactly how the principle of least action emerges from the sum over all paths.
+
+# 8.1 Why Does Classical Mechanics Work?
+
+Recall the fundamental postulate of the path integral: a particle travels from $A$ to $B$ by taking **every possible path** simultaneously. The total probability amplitude is the sum of the amplitudes for each path, weighted by the phase $e^{i S[x] / \hbar}$.
+
+$$ K(x_f, t_f; x_i, t_i) = \int \mathcal{D}x \, e^{\frac{i}{\hbar} S[x]} $$
+
+The action $S[x]$ has units of angular momentum (Joules $\cdot$ seconds), which is the exact same unit as Planck's constant, $\hbar \approx 1.05 \times 10^{-34} \text{ J}\cdot\text{s}$.
+
+For macroscopic objects, typical actions are on the order of $1 \text{ J}\cdot\text{s}$ or larger. This means the ratio $S / \hbar$ is incredibly huge—on the order of $10^{34}$. For such massive values, any slight variation in the path $x(t)$ causes the phase $S[x]/\hbar$ to change by billions of radians. The complex exponentials oscillate so wildly that neighboring paths completely cancel each other out in the sum.
+
+::: {.callout-intuition}
+Imagine adding up thousands of vectors of unit length pointing in random directions. Because they point every which way, their vector sum will be overwhelmingly close to zero. This is exactly what happens in the path integral for macroscopic objects—the "quantum noise" of non-classical paths destructively interferes and sums to zero.
+:::
+
+Is there any exception? Yes! If there is a path where the action $S[x]$ is *stationary* (meaning small variations in the path do not change the action at first order), then the paths in the immediate vicinity of this special path will all have roughly the same phase. They will *constructively* interfere.
+
+By definition, the path where the action is stationary is the **classical path** $x_{cl}(t)$. Thus, classical mechanics is nothing more than the region of constructive interference in the quantum superposition of all paths.
+
+# 8.2 The Stationary Phase Approximation (1D)
+
+To mathematically formalize this idea, let's look at the stationary phase approximation for ordinary 1D integrals. Consider an integral of the form:
+
+$$ I(\lambda) = \int_{-\infty}^{\infty} g(x) e^{i \lambda f(x)} dx $$
+
+where $\lambda$ is a very large real parameter (analogous to $1/\hbar$), and $f(x)$ and $g(x)$ are smooth real-valued functions. 
+
+When $\lambda \to \infty$, the integrand oscillates wildly. The positive and negative areas cancel out almost everywhere. The only significant contribution to the integral comes from the neighborhood of points where the phase is stationary, i.e., where the derivative vanishes:
+
+$$ f'(x_0) = 0 $$
+
+Let's assume there is only one such **stationary point**, $x_0$. We can Taylor expand $f(x)$ around this point:
+
+$$ f(x) \approx f(x_0) + f'(x_0)(x - x_0) + \frac{1}{2} f''(x_0) (x - x_0)^2 + \dots $$
+
+Since $f'(x_0) = 0$, the linear term vanishes. Substituting this into the integral and assuming $g(x)$ varies slowly enough that $g(x) \approx g(x_0)$ near the stationary point, we get:
+
+$$ I(\lambda) \approx g(x_0) e^{i \lambda f(x_0)} \int_{-\infty}^{\infty} e^{i \frac{\lambda}{2} f''(x_0) (x - x_0)^2} dx $$
+
+This is now a standard Gaussian integral, albeit with a complex exponent. 
+
+::: {.callout-tip}
+## Gaussian Integral with imaginary coefficient
+Recall from the previous module that for a real $a > 0$:
+$$ \int_{-\infty}^{\infty} e^{-a u^2} du = \sqrt{\frac{\pi}{a}} $$
+By analytically continuing to purely imaginary values, if we have $\int_{-\infty}^{\infty} e^{\pm i a u^2} du$, the result is $\sqrt{\frac{\pi}{a}} e^{\pm i \pi / 4}$. 
+:::
+
+Applying this to our integral, we set $u = x - x_0$ and $a = -i \frac{\lambda}{2} f''(x_0)$. To ensure the sign is handled correctly, we define the signature:
+
+$$ \text{sgn}(f''(x_0)) = \begin{cases} 1 & \text{if } f''(x_0) > 0 \\ -1 & \text{if } f''(x_0) < 0 \end{cases} $$
+
+The result of the integral gives the celebrated **Stationary Phase Formula**:
+
+$$ \boxed{ I(\lambda) \approx g(x_0) \sqrt{\frac{2\pi}{\lambda |f''(x_0)|}} \exp\left( i \lambda f(x_0) + i \frac{\pi}{4} \text{sgn}(f''(x_0)) \right) } $$
+
+The phase factor $e^{\pm i \pi/4}$ is known as the **Maslov index** contribution. It comes from the Gaussian integration over the quadratic fluctuations around the stationary point.
+
+::: {.callout-warning}
+## 🤔 Quick Question 1
+Is the classical limit strictly the exact same as taking the mathematical limit $\hbar \to 0$? Can you think of a quantum system where $\hbar \to 0$ does NOT just smoothly give classical behavior?
+
+::: {.callout-note collapse="true"}
+## Answer
+The classical limit is not simply $\hbar \to 0$ universally. The most obvious counter-example is **quantum tunneling**. The amplitude for tunneling through a barrier goes as $\sim e^{-S_E/\hbar}$, where $S_E$ is the Euclidean action. As $\hbar \to 0$, this amplitude vanishes completely! So tunneling is entirely invisible in the mathematical $\hbar \to 0$ limit of classical mechanics, yet it's a real, fundamentally quantum effect. Additionally, topological phenomena like the Aharonov-Bohm effect depend explicitly on phases that do not disappear smoothly in the classical limit.
+:::
+:::
+
+---
+
+### Worked Example 1: Stationary Phase for a Degenerate Point
+
+> Evaluate the asymptotic behavior of $\int_0^\infty e^{i\lambda x^3} dx$ as $\lambda \to \infty$ using a variant of the stationary phase method.
+
+**Step 1: Identify the phase function and stationary points.**
+Here, $f(x) = x^3$. The derivative is $f'(x) = 3x^2$. 
+Setting $f'(x) = 0$ gives a stationary point at $x = 0$. 
+
+**Step 2: Check the second derivative.**
+$f''(x) = 6x$, so $f''(0) = 0$. 
+Wait! Our standard formula requires $|f''(x_0)| \neq 0$. This is called a **degenerate stationary point**. 
+
+**Step 3: Modify the expansion.**
+Since the lowest non-vanishing derivative at $x=0$ is the third derivative $f'''(0) = 6$, the Taylor expansion gives exactly $f(x) \approx x^3$. The integral is:
+$$ I(\lambda) \approx \int_0^\infty e^{i\lambda x^3} dx $$
+
+**Step 4: Evaluate exactly by substituting variables.**
+Let $u = \lambda^{1/3} x \implies dx = \lambda^{-1/3} du$.
+$$ I(\lambda) \approx \lambda^{-1/3} \int_0^\infty e^{i u^3} du $$
+The integral $\int_0^\infty e^{i u^3} du$ is just a constant number (it evaluates to $\Gamma(4/3) e^{i\pi/6} / 3$).
+Therefore, the asymptotic behavior is $I(\lambda) \propto \lambda^{-1/3}$.
+
+> **Takeaway:** When $f''(x_0) \neq 0$, the integral scales as $\lambda^{-1/2}$. When the point is degenerate and the first non-zero derivative is the $n$-th derivative, the integral generally scales as $\lambda^{-1/n}$.
+
+---
+
+# 8.3 Applying to the Path Integral
+
+We now lift the 1D stationary phase concept to the infinite-dimensional functional integral:
+
+$$ K(x_f, t_f; x_i, t_i) = \int \mathcal{D}x \, e^{\frac{i}{\hbar} S[x]} $$
+
+Here, the large parameter is $\lambda = 1/\hbar$. The phase function is the functional $S[x]$. 
+The "points" in our domain are entire trajectories $x(t)$. 
+
+To find the "stationary point" of the action, we set the functional derivative to zero:
+
+$$ \frac{\delta S[x]}{\delta x(t)} = 0 $$
+
+By definition, the paths that satisfy this condition are those that obey the **Euler-Lagrange equation**:
+
+$$ \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} \right) - \frac{\partial L}{\partial x} = 0 $$
+
+These are exactly the paths followed by classical particles! Let's denote a classical path as $x_{cl}(t)$. Thus, in the limit $\hbar \to 0$ (or more accurately, $S \gg \hbar$), the path integral is completely dominated by the classical path(s).
+
+> **Textbook reference**: Shankar, Ch. 8 or Feynman & Hibbs, Ch. 2.
+
+# 8.4 The Semiclassical Expansion
+
+Let's do the functional equivalent of the Taylor expansion from Section 8.2. We write any path $x(t)$ as the classical path plus a small fluctuation $y(t)$:
+
+$$ x(t) = x_{cl}(t) + \sqrt{\hbar} y(t) $$
+
+We insert the $\sqrt{\hbar}$ just as a convenient scaling factor so that the fluctuations have an explicit $\hbar$ dependence. Note that since all paths must start at $x_i$ and end at $x_f$, and the classical path already satisfies these boundaries, the fluctuation $y(t)$ must vanish at the endpoints:
+$$ y(t_i) = 0 \quad \text{and} \quad y(t_f) = 0 $$
+
+Now, expand the action functional $S[x]$ around $x_{cl}$:
+
+$$ S[x_{cl} + \sqrt{\hbar} y] = S[x_{cl}] + \sqrt{\hbar} \int_{t_i}^{t_f} dt \left. \frac{\delta S}{\delta x(t)} \right|_{x_{cl}} y(t) + \frac{\hbar}{2} \int_{t_i}^{t_f} \int_{t_i}^{t_f} dt dt' y(t) \left. \frac{\delta^2 S}{\delta x(t) \delta x(t')} \right|_{x_{cl}} y(t') + \mathcal{O}(\hbar^{3/2}) $$
+
+Because $x_{cl}$ is a stationary path, the linear term (the first functional derivative) is identically zero!
+
+Thus, the action simplifies to:
+
+$$ S[x] \approx S_{cl} + \frac{\hbar}{2} \delta^2 S[y] $$
+
+Where $S_{cl} = S[x_{cl}]$ is the classical action, and $\delta^2 S[y]$ represents the second-order variation of the action.
+
+Plug this back into the path integral, changing the measure from $\mathcal{D}x$ to $\mathcal{D}y$ (since $x_{cl}$ is fixed, $\mathcal{D}x = \mathcal{D}(\sqrt{\hbar} y) \propto \mathcal{D}y$):
+
+$$ K \approx e^{\frac{i}{\hbar} S_{cl}} \int \mathcal{D}y \, e^{\frac{i}{2} \delta^2 S[y]} $$
+
+This is a profoundly important result.
+1. The **leading order** term is the phase factor $e^{i S_{cl} / \hbar}$.
+2. The **next order** term is the integral over $y$, which is a functional Gaussian integral. This integral evaluates to the reciprocal square root of a functional determinant (called the **fluctuation determinant**).
+3. The higher order terms (which we dropped) yield $\mathcal{O}(\hbar)$ **quantum corrections** (these form loop diagrams in QFT).
+
+::: {.callout-warning}
+## 🤔 Quick Question 2
+For a system with a quadratic Lagrangian (like the free particle or harmonic oscillator), the semiclassical approximation is perfectly exact, requiring no higher-order quantum corrections. Why? What is special about quadratic actions?
+
+::: {.callout-note collapse="true"}
+## Answer
+If the Lagrangian only has terms up to $x^2$ and $\dot{x}^2$, the action $S[x]$ is purely quadratic in the path coordinates. Therefore, its functional Taylor expansion naturally terminates exactly at the second order ($\delta^2 S$). There are literally zero cubic ($\delta^3 S$) or higher terms. Because we dropped no terms when making the expansion, the Gaussian integral captures the entire behavior exactly.
+:::
+:::
+
+---
+
+### Worked Example 2: Semiclassical Propagator for the Harmonic Oscillator
+
+> Show that the semiclassical approximation for the harmonic oscillator gives the exact propagator shape.
+
+**Step 1: The Lagrangian**
+$L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2$.
+Because this is quadratic, the expansion $S = S_{cl} + \frac{1}{2}\delta^2 S$ is exact.
+
+**Step 2: Second variation**
+Let's find the fluctuation action for $y(t)$:
+$$ S[x_{cl} + y] = \int \left[ \frac{1}{2}m(\dot{x}_{cl} + \dot{y})^2 - \frac{1}{2}m\omega^2 (x_{cl} + y)^2 \right] dt $$
+Expanding and gathering the $y^2$ terms (since the cross-terms vanish upon integrating by parts by virtue of $x_{cl}$ obeying the E-L equations):
+$$ \frac{1}{2}\delta^2 S = \int_{t_i}^{t_f} \left( \frac{1}{2}m\dot{y}^2 - \frac{1}{2}m\omega^2 y^2 \right) dt $$
+
+**Step 3: The Path Integral**
+The full propagator is exactly:
+$$ K = e^{\frac{i}{\hbar} S_{cl}} \times \int_{y(t_i)=0}^{y(t_f)=0} \mathcal{D}y \exp\left[ \frac{i}{\hbar} \int \left( \frac{1}{2}m\dot{y}^2 - \frac{1}{2}m\omega^2 y^2 \right) dt \right] $$
+
+**Step 4: Analyze the integral**
+Notice that the remaining path integral over $y(t)$ *does not depend on the endpoints $x_i$ and $x_f$* at all! It only depends on the time interval $T = t_f - t_i$, the mass $m$, and the frequency $\omega$. We call this integral $F(T)$. 
+Thus, the exact propagator takes the form:
+$$ K = F(T) e^{\frac{i}{\hbar} S_{cl}} $$
+This exactly matches the structure of the semiclassical WKB approximation, proving the approximation is exact for the harmonic oscillator.
+
+---
+
+# 8.5 Connection to WKB Approximation
+
+In standard quantum mechanics, the WKB (Wentzel-Kramers-Brillouin) approximation is used to solve the Schrödinger equation semiclassically. It proposes a wavefunction of the form $\psi(x) = A(x) e^{i W(x)/\hbar}$ and expands in powers of $\hbar$.
+
+The path integral provides a much more direct route to the WKB propagator. By performing the functional Gaussian integral over the fluctuations $y(t)$ (using techniques of functional determinants that we will cover rigorously in a later module), one obtains the **Van Vleck-Pauli-Morette formula**:
+
+$$ K_{WKB}(x_f, t_f; x_i, t_i) = \left( \frac{i}{2\pi \hbar} \right)^{D/2} \sqrt{\left| \det \left( - \frac{\partial^2 S_{cl}}{\partial x_f \partial x_i} \right) \right|} \exp\left( \frac{i}{\hbar} S_{cl}(x_f, x_i, T) \right) $$
+
+- The **phase** is given precisely by the classical action evaluated along the classical trajectory.
+- The **prefactor** is determined by the **Van Vleck determinant**, which measures how the final position changes if you vary the initial momentum. It represents the density of classical trajectories.
+
+This is arguably the most beautiful bridge between classical mechanics (governed by $S_{cl}$) and quantum mechanics (governed by the propagator $K$).
+
+# 8.6 Multiple Classical Paths
+
+What happens if there is more than one classical path connecting $x_i$ to $x_f$ in time $T$? 
+Because the path integral is a linear sum, we simply sum the stationary phase contributions from *each* classical path:
+
+$$ K \approx \sum_{n} A_n e^{\frac{i}{\hbar} S^{(n)}_{cl}} $$
+
+where $S^{(n)}_{cl}$ is the action for the $n$-th classical path, and $A_n$ is the corresponding Van Vleck prefactor.
+
+Because we are adding complex amplitudes, **different classical paths will interfere with each other**. 
+
+::: {.callout-intuition}
+Imagine a particle shot toward a wall that bounces back to a detector. There are two classical paths to get to the detector at time $T$:
+1. A direct slow path that never hits the wall.
+2. A fast path that bounces off the wall and returns.
+
+In the semiclassical limit, the particle effectively takes *both* classical paths. The phase difference between them is $\Delta S / \hbar$. As you move the detector, $\Delta S$ changes, and the probabilities will oscillate, creating a macroscopic interference pattern!
+:::
+
+# 8.7 When Does the Semiclassical Approximation Fail?
+
+The semiclassical approximation is robust, but it breaks down in three notable scenarios:
+
+1. **Near Caustics (Focal Points):** If classical trajectories converge to a single point (like a lens focusing light), the Van Vleck determinant $\det (-\partial^2 S_{cl}/\partial x_f \partial x_i)$ diverges to infinity. The simple stationary phase approximation breaks down here, and one must use uniform approximations (like Airy functions, as seen in our degenerate point example!).
+2. **Quantum Tunneling:** If a particle is fired at a barrier with insufficient classical energy, there is *no* real classical path that reaches the other side. The classical action is undefined for real time. To see tunneling in the path integral, we must analytically continue time to imaginary values ($t \to -i\tau$), known as **Wick Rotation**, which we will cover in the very next module!
+3. **Quantum Chaos:** If the classical system is chaotic, there are exponentially many classical paths between two points, and they become infinitely dense. The simple sum over classical paths fails to converge nicely, leading to the rich field of quantum chaos and the Gutzwiller trace formula.
+
+# 8.8 Numerical Estimates
+
+To appreciate why the classical limit is so sharply defined for everyday objects but not for microscopic ones, let's estimate the ratio $S / \hbar$ for three different regimes. 
+Recall $\hbar \approx 1.05 \times 10^{-34} \text{ J}\cdot\text{s}$. 
+Action $S \approx \text{Kinetic Energy} \times \text{time} \approx \frac{1}{2}mv^2 t$.
+
+1. **A pitched baseball:** 
+   - $m \approx 0.15 \text{ kg}$, $v \approx 40 \text{ m/s}$, $t \approx 0.5 \text{ s}$.
+   - $S \approx \frac{1}{2}(0.15)(1600)(0.5) \approx 60 \text{ J}\cdot\text{s}$.
+   - $S / \hbar \approx \frac{60}{10^{-34}} = 6 \times 10^{35}$.
+   - *Result:* Overwhelmingly classical. The phase oscillates so furiously that no non-classical path has any chance of surviving the sum.
+
+2. **A dust grain:**
+   - $m \approx 10^{-15} \text{ kg}$, $v \approx 10^{-3} \text{ m/s}$, $t \approx 1 \text{ s}$.
+   - $S \approx 10^{-21} \text{ J}\cdot\text{s}$.
+   - $S / \hbar \approx 10^{13}$.
+   - *Result:* Still highly classical, but entering the realm where precision macroscopic superposition might be achievable.
+
+3. **An electron in a hydrogen atom:**
+   - $m \approx 10^{-30} \text{ kg}$, $v \approx 10^6 \text{ m/s}$, orbital time $t \approx 10^{-16} \text{ s}$.
+   - $S \approx (10^{-30})(10^{12})(10^{-16}) = 10^{-34} \text{ J}\cdot\text{s}$.
+   - $S / \hbar \approx 1$.
+   - *Result:* Strongly quantum mechanical. All paths contribute roughly equally, and the particle is thoroughly smeared out in a superposition.
+
+# 8.9 The Correspondence Principle from Path Integrals
+
+Finally, let's see how Ehrenfest's theorem emerges. The expectation value of position at time $t$ is:
+
+$$ \langle x(t) \rangle = \frac{\int \mathcal{D}x \, x(t) e^{\frac{i}{\hbar} S[x]}}{\int \mathcal{D}x \, e^{\frac{i}{\hbar} S[x]}} $$
+
+In the limit $\hbar \to 0$, the numerator and denominator are both completely dominated by the path $x_{cl}(t)$ that makes the action stationary. The wild cancellations kill off contributions from all other paths. Therefore, the integral evaluates approximately to the integrand evaluated at the classical path:
+
+$$ \langle x(t) \rangle \approx \frac{x_{cl}(t) e^{\frac{i}{\hbar} S[x_{cl}]}}{e^{\frac{i}{\hbar} S[x_{cl}]}} = x_{cl}(t) $$
+
+Thus, the expectation value of the quantum position exactly follows the classical trajectory. Newton's laws are fully restored in the macroscopic limit!
+
+---
+
+# Summary
+
+| Concept | Path Integral Meaning |
+| :--- | :--- |
+| **Classical Path** | The specific path $x_{cl}$ where $\delta S = 0$ (stationary phase). |
+| **Classical Mechanics** | The limit $S \gg \hbar$ where non-classical paths destructively interfere. |
+| **Semiclassical Expansion** | Expanding paths as $x = x_{cl} + \sqrt{\hbar}y$. Exact for quadratic actions. |
+| **WKB Prefactor** | Arises from the functional integral over quadratic fluctuations (Van Vleck det). |
+| **Interference** | Occurs when multiple classical paths connect the same endpoints. |
+
+::: {.checkpoint}
+**Check your understanding:**
+1. Why does a large ratio of $S/\hbar$ cause paths to cancel out?
+2. What happens to the semiclassical expansion if the Lagrangian has $x^4$ terms?
+3. How does the Maslov index phase shift $\pi/4$ arise?
+:::
+
+---
+
+# Practice Problems
+
+1. **Stationary Phase in 2D:** Extend the stationary phase formula to a 2D integral $I = \iint dx dy \, g(x,y) e^{i\lambda f(x,y)}$. Show that the prefactor depends on the determinant of the Hessian matrix of $f$, and the Maslov index depends on the signature of the Hessian.
+2. **Expanding the Action:** Consider a particle in a potential $V(x) = \alpha x^3$. Write down the first three terms of the action expanded around the classical path, $S[x_{cl} + \sqrt{\hbar} y]$. Identify the term that spoils the exactness of the semiclassical approximation.
+3. **Double Slit as Multiple Paths:** Model a double-slit experiment as having exactly two classical paths from the source to a point $y$ on the screen. Let the lengths of the paths be $L_1$ and $L_2$. Show that summing the semiclassical amplitudes gives an intensity pattern proportional to $\cos^2(p(L_1 - L_2)/2\hbar)$.
+4. **Limits of WKB:** The Van Vleck determinant involves $\frac{\partial^2 S_{cl}}{\partial x_f \partial x_i}$. For a free particle, calculate this derivative explicitly and show that the determinant is constant, preventing caustics.
+5. **Phase Space Stationary Phase:** The path integral can also be written in phase space: $\int \mathcal{D}p \mathcal{D}q \exp[\frac{i}{\hbar} \int (p\dot{q} - H) dt]$. Find the stationary phase conditions for both $\delta p$ and $\delta q$, and show that they yield Hamilton's equations of motion.
+
+::: {.nav-buttons}
+[← Previous Module](07_gaussian_integrals.qmd){.btn .btn-outline-secondary}
+[Next: Module 9 →](09_wick_rotation.qmd){.btn .btn-success}
+:::

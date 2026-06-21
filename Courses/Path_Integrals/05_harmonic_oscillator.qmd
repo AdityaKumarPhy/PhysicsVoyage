@@ -1,0 +1,1079 @@
+---
+title: "Module 5: Path Integral for the Harmonic Oscillator"
+subtitle: "The Second Exactly Solvable Case — Classical Paths, Fluctuation Determinants, and the Exact Propagator"
+description: "We compute the path integral for the quantum harmonic oscillator from scratch — finding the classical path, evaluating the classical action, computing the fluctuation determinant via eigenvalue methods, assembling the exact propagator, and recovering the energy spectrum E_n = (n+½)ℏω."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+```
+
+[← Back to Course](index.qmd) | [Next: Module 6 →](06_functional_calculus.qmd)
+
+---
+
+In the [previous module](04_path_integral_derivation.qmd), we rigorously derived the path integral from the operator formulation of quantum mechanics. We also worked through the free particle as the simplest application. Now we tackle the **harmonic oscillator** — the second exactly solvable path integral, and arguably the most important one in all of physics.
+
+Why is this calculation so central? Because the harmonic oscillator isn't just a toy. It's the prototype for *every* quadratic action — and in quantum field theory, the free-field path integral is nothing but an infinite collection of harmonic oscillators. The techniques we develop here — decomposing paths into classical + fluctuations, computing fluctuation determinants, using eigenvalue methods — are the same tools that power modern QFT calculations. Master this module, and you've mastered the template for essentially all exactly solvable path integrals.
+
+::: {.callout-tip}
+## What you'll learn
+- How to find the classical path satisfying boundary conditions
+- How to compute the classical action explicitly
+- The crucial decomposition: $x(t) = x_{\text{cl}}(t) + y(t)$ and why the action *factorizes*
+- How to evaluate the fluctuation path integral via eigenvalue methods
+- The exact harmonic oscillator propagator (boxed formula!)
+- How to extract the energy spectrum $E_n = (n + \tfrac{1}{2})\hbar\omega$ from the propagator
+- The free-particle limit and the half-period singularity
+:::
+
+> **Textbook references**: Feynman & Hibbs, Ch. 3 §3-5; Shankar, Ch. 8 §8.6; Kleinert, Ch. 2; Zinn-Justin, Ch. 2.
+
+---
+
+# The Setup
+
+We consider a particle of mass $m$ in a one-dimensional harmonic potential with angular frequency $\omega$. The **Lagrangian** is:
+
+$$
+L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2
+$$
+
+This is a **quadratic Lagrangian** — quadratic in both $x$ and $\dot{x}$. This fact will have profound consequences: it means the path integral can be evaluated *exactly*.
+
+Our goal is to compute the **propagator** (transition amplitude):
+
+$$
+K(x_b, t_b; x_a, t_a) = \int_{x(t_a) = x_a}^{x(t_b) = x_b} \mathcal{D}x(t) \; \exp\!\left[\frac{i}{\hbar} \int_{t_a}^{t_b} L\big(x, \dot{x}\big) \, dt \right]
+$$
+
+with the **boundary conditions**:
+
+$$
+x(t_a) = x_a, \qquad x(t_b) = x_b
+$$
+
+We define the total elapsed time:
+
+$$
+T \equiv t_b - t_a
+$$
+
+::: {.callout-intuition}
+Think of the path integral as a "quantum election" — every conceivable path from $(x_a, t_a)$ to $(x_b, t_b)$ gets to "vote," weighted by the phase $e^{iS/\hbar}$. For the harmonic oscillator, the action is quadratic, which means the "vote counting" reduces to a single Gaussian integral. This is why the harmonic oscillator is exactly solvable — just like any Gaussian integral is exactly computable.
+:::
+
+---
+
+# The Classical Path
+
+## Setting Up the Equation of Motion
+
+Before doing any quantum calculation, we need to find the **classical path** — the one that extremizes the action. The Euler-Lagrange equation for our Lagrangian is:
+
+$$
+\frac{d}{dt}\frac{\partial L}{\partial \dot{x}} - \frac{\partial L}{\partial x} = 0
+$$
+
+Computing the derivatives:
+
+$$
+\frac{\partial L}{\partial \dot{x}} = m\dot{x}, \qquad \frac{\partial L}{\partial x} = -m\omega^2 x
+$$
+
+So the equation of motion is:
+
+$$
+m\ddot{x} + m\omega^2 x = 0 \quad \implies \quad \boxed{\ddot{x} + \omega^2 x = 0}
+$$
+
+This is the familiar simple harmonic oscillator equation!
+
+## The General Solution
+
+The general solution is:
+
+$$
+x(t) = A\cos\omega t + B\sin\omega t
+$$
+
+where $A$ and $B$ are constants determined by boundary conditions.
+
+## Applying Boundary Conditions
+
+We need $x(t_a) = x_a$ and $x(t_b) = x_b$. Let's apply these:
+
+**Condition 1**: $x(t_a) = x_a$:
+
+$$
+x_a = A\cos\omega t_a + B\sin\omega t_a \tag{1}
+$$
+
+**Condition 2**: $x(t_b) = x_b$:
+
+$$
+x_b = A\cos\omega t_b + B\sin\omega t_b \tag{2}
+$$
+
+From Eq. (1):
+
+$$
+A = \frac{x_a - B\sin\omega t_a}{\cos\omega t_a}
+$$
+
+Substituting into Eq. (2):
+
+$$
+x_b = \frac{(x_a - B\sin\omega t_a)\cos\omega t_b}{\cos\omega t_a} + B\sin\omega t_b
+$$
+
+$$
+x_b \cos\omega t_a = x_a \cos\omega t_b - B\sin\omega t_a \cos\omega t_b + B\sin\omega t_b \cos\omega t_a
+$$
+
+$$
+x_b \cos\omega t_a - x_a \cos\omega t_b = B\big(\sin\omega t_b \cos\omega t_a - \sin\omega t_a \cos\omega t_b\big)
+$$
+
+The expression in parentheses is exactly $\sin\omega(t_b - t_a) = \sin\omega T$:
+
+$$
+B = \frac{x_b \cos\omega t_a - x_a \cos\omega t_b}{\sin\omega T}
+$$
+
+Similarly:
+
+$$
+A = \frac{x_a \sin\omega t_b - x_b \sin\omega t_a}{\sin\omega T}
+$$
+
+## Writing the Classical Path in a Clean Form
+
+Substituting $A$ and $B$ back into $x(t) = A\cos\omega t + B\sin\omega t$:
+
+$$
+x_{\text{cl}}(t) = \frac{(x_a \sin\omega t_b - x_b \sin\omega t_a)\cos\omega t + (x_b \cos\omega t_a - x_a \cos\omega t_b)\sin\omega t}{\sin\omega T}
+$$
+
+Now, group the $x_a$ and $x_b$ terms:
+
+- **Coefficient of $x_a$**: $\sin\omega t_b \cos\omega t - \cos\omega t_b \sin\omega t = \sin\omega(t_b - t)$
+- **Coefficient of $x_b$**: $\cos\omega t_a \sin\omega t - \sin\omega t_a \cos\omega t = \sin\omega(t - t_a)$
+
+Both identities use the sine subtraction formula $\sin(\alpha - \beta) = \sin\alpha\cos\beta - \cos\alpha\sin\beta$.
+
+Therefore, the **classical path** is:
+
+$$
+\boxed{x_{\text{cl}}(t) = \frac{x_a \sin\omega(t_b - t) + x_b \sin\omega(t - t_a)}{\sin\omega T}}
+$$
+
+::: {.callout-note}
+## Sanity check
+Let's verify the boundary conditions:
+
+- At $t = t_a$: $x_{\text{cl}}(t_a) = \frac{x_a \sin\omega T + x_b \cdot 0}{\sin\omega T} = x_a$ ✓
+- At $t = t_b$: $x_{\text{cl}}(t_b) = \frac{x_a \cdot 0 + x_b \sin\omega T}{\sin\omega T} = x_b$ ✓
+
+Also, for $\omega \to 0$: using $\sin\omega\tau \to \omega\tau$, we get $x_{\text{cl}}(t) \to \frac{x_a(t_b - t) + x_b(t - t_a)}{T}$, which is the straight-line path of a free particle. ✓
+:::
+
+---
+
+# The Classical Action
+
+Now we compute the action evaluated on the classical path:
+
+$$
+S_{\text{cl}} = \int_{t_a}^{t_b} \left[\frac{1}{2}m\dot{x}_{\text{cl}}^2 - \frac{1}{2}m\omega^2 x_{\text{cl}}^2 \right] dt
+$$
+
+This is a crucial calculation, so we'll do every step.
+
+## Computing $\dot{x}_{\text{cl}}$
+
+Differentiating the classical path:
+
+$$
+\dot{x}_{\text{cl}}(t) = \frac{-x_a \omega\cos\omega(t_b - t) + x_b \omega\cos\omega(t - t_a)}{\sin\omega T}
+$$
+
+$$
+= \frac{\omega}{\sin\omega T}\Big[-x_a \cos\omega(t_b - t) + x_b \cos\omega(t - t_a)\Big]
+$$
+
+## The Integration Trick
+
+Rather than computing $\dot{x}_{\text{cl}}^2$ and $x_{\text{cl}}^2$ separately and integrating, there's a beautiful shortcut. Since $x_{\text{cl}}$ satisfies the equation of motion $\ddot{x}_{\text{cl}} + \omega^2 x_{\text{cl}} = 0$, we can write:
+
+$$
+\frac{1}{2}m\omega^2 x_{\text{cl}}^2 = -\frac{1}{2}m x_{\text{cl}} \ddot{x}_{\text{cl}}
+$$
+
+So the Lagrangian on the classical path becomes:
+
+$$
+L_{\text{cl}} = \frac{1}{2}m\dot{x}_{\text{cl}}^2 + \frac{1}{2}m x_{\text{cl}} \ddot{x}_{\text{cl}}
+$$
+
+Now notice that this is a total derivative! Specifically:
+
+$$
+\frac{d}{dt}\Big(\frac{1}{2}m x_{\text{cl}} \dot{x}_{\text{cl}}\Big) = \frac{1}{2}m \dot{x}_{\text{cl}}^2 + \frac{1}{2}m x_{\text{cl}} \ddot{x}_{\text{cl}} = L_{\text{cl}}
+$$
+
+This is a wonderful result. The classical action becomes a **boundary term**:
+
+$$
+S_{\text{cl}} = \int_{t_a}^{t_b} L_{\text{cl}} \, dt = \frac{1}{2}m \Big[x_{\text{cl}}(t) \dot{x}_{\text{cl}}(t)\Big]_{t_a}^{t_b}
+$$
+
+$$
+\boxed{S_{\text{cl}} = \frac{m}{2}\Big[x_b \dot{x}_{\text{cl}}(t_b) - x_a \dot{x}_{\text{cl}}(t_a)\Big]}
+$$
+
+## Evaluating the Boundary Terms
+
+We need $\dot{x}_{\text{cl}}$ at the endpoints. From our expression for $\dot{x}_{\text{cl}}(t)$:
+
+**At $t = t_b$**: $\omega(t_b - t_b) = 0$ and $\omega(t_b - t_a) = \omega T$:
+
+$$
+\dot{x}_{\text{cl}}(t_b) = \frac{\omega}{\sin\omega T}\Big[-x_a \cos 0 + x_b \cos\omega T\Big] = \frac{\omega}{\sin\omega T}\Big[x_b \cos\omega T - x_a\Big]
+$$
+
+**At $t = t_a$**: $\omega(t_b - t_a) = \omega T$ and $\omega(t_a - t_a) = 0$:
+
+$$
+\dot{x}_{\text{cl}}(t_a) = \frac{\omega}{\sin\omega T}\Big[-x_a \cos\omega T + x_b \cos 0\Big] = \frac{\omega}{\sin\omega T}\Big[x_b - x_a \cos\omega T\Big]
+$$
+
+## Putting It All Together
+
+$$
+S_{\text{cl}} = \frac{m}{2}\left[x_b \cdot \frac{\omega(x_b \cos\omega T - x_a)}{\sin\omega T} - x_a \cdot \frac{\omega(x_b - x_a \cos\omega T)}{\sin\omega T}\right]
+$$
+
+$$
+= \frac{m\omega}{2\sin\omega T}\Big[x_b^2 \cos\omega T - x_a x_b - x_a x_b + x_a^2 \cos\omega T\Big]
+$$
+
+$$
+\boxed{S_{\text{cl}} = \frac{m\omega}{2\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]}
+$$
+
+This is one of the most important formulas in path integral quantum mechanics. Memorize its structure!
+
+::: {.callout-intuition}
+The classical action has a beautiful physical interpretation. The factor $m\omega/\sin\omega T$ sets the overall scale and diverges when $\omega T$ is a multiple of $\pi$ (we'll see why shortly). The term $(x_a^2 + x_b^2)\cos\omega T$ describes the "self-coupling" of the endpoints, while $-2x_a x_b$ describes their mutual coupling. In the free-particle limit ($\omega \to 0$), this reduces to $S_{\text{cl}} = m(x_b - x_a)^2 / 2T$ — the familiar free-particle action.
+:::
+
+::: {.callout-warning}
+## 🤔 Quick Question
+What physical interpretation can you give to the classical action $S_{\text{cl}}$ in the limit $x_a = x_b = x_0$? What does the action look like?
+
+::: {.callout-note collapse="true"}
+## Answer
+Setting $x_a = x_b = x_0$:
+$$
+S_{\text{cl}} = \frac{m\omega x_0^2}{2\sin\omega T}(2\cos\omega T - 2) = \frac{m\omega x_0^2(\cos\omega T - 1)}{\sin\omega T}
+$$
+Using the identity $(\cos\theta - 1)/\sin\theta = -\tan(\theta/2)$:
+$$
+S_{\text{cl}} = -m\omega x_0^2 \tan\!\left(\frac{\omega T}{2}\right)
+$$
+This is the action for a particle starting and ending at the same point $x_0$. For $T = 2\pi/\omega$ (one full period), the tangent vanishes and $S_{\text{cl}} = 0$ — the particle goes around and comes back, accumulating zero net action. This matches the classical intuition that after a full period, the oscillator returns to its initial state with the same velocity.
+:::
+:::
+
+---
+
+# Decomposition: Classical + Fluctuations
+
+This section contains one of the most important ideas in path integral physics.
+
+## The Decomposition
+
+Any path $x(t)$ that goes from $x_a$ at time $t_a$ to $x_b$ at time $t_b$ can be written as:
+
+$$
+x(t) = x_{\text{cl}}(t) + y(t)
+$$
+
+where $x_{\text{cl}}(t)$ is the classical path we just found, and $y(t)$ is a **fluctuation** (deviation) from the classical path. Since $x(t)$ and $x_{\text{cl}}(t)$ must both satisfy the same boundary conditions, the fluctuation must vanish at both endpoints:
+
+$$
+\boxed{y(t_a) = 0, \qquad y(t_b) = 0}
+$$
+
+This is a **Dirichlet boundary condition** on the fluctuations.
+
+## The Action Splits Exactly
+
+Let's compute $S[x_{\text{cl}} + y]$ by substituting into the action. The Lagrangian is:
+
+$$
+L = \frac{1}{2}m(\dot{x}_{\text{cl}} + \dot{y})^2 - \frac{1}{2}m\omega^2(x_{\text{cl}} + y)^2
+$$
+
+Expanding:
+
+$$
+L = \underbrace{\frac{1}{2}m\dot{x}_{\text{cl}}^2 - \frac{1}{2}m\omega^2 x_{\text{cl}}^2}_{L_{\text{cl}}} + \underbrace{m\dot{x}_{\text{cl}}\dot{y} - m\omega^2 x_{\text{cl}} y}_{\text{cross terms}} + \underbrace{\frac{1}{2}m\dot{y}^2 - \frac{1}{2}m\omega^2 y^2}_{L_{\text{fluct}}}
+$$
+
+The action therefore has three pieces:
+
+$$
+S[x_{\text{cl}} + y] = S_{\text{cl}} + S_{\text{cross}} + S_2[y]
+$$
+
+where:
+
+$$
+S_{\text{cross}} = \int_{t_a}^{t_b} \big(m\dot{x}_{\text{cl}}\dot{y} - m\omega^2 x_{\text{cl}} y\big) \, dt
+$$
+
+$$
+S_2[y] = \int_{t_a}^{t_b} \frac{1}{2}m\big(\dot{y}^2 - \omega^2 y^2\big) \, dt
+$$
+
+## The Cross Terms Vanish!
+
+This is the key step. Let's show that $S_{\text{cross}} = 0$. Integrate the $\dot{x}_{\text{cl}}\dot{y}$ term by parts:
+
+$$
+\int_{t_a}^{t_b} m\dot{x}_{\text{cl}}\dot{y} \, dt = \Big[m\dot{x}_{\text{cl}} y\Big]_{t_a}^{t_b} - \int_{t_a}^{t_b} m\ddot{x}_{\text{cl}} y \, dt
+$$
+
+The boundary term vanishes because $y(t_a) = y(t_b) = 0$. So:
+
+$$
+S_{\text{cross}} = -\int_{t_a}^{t_b} m\ddot{x}_{\text{cl}} y \, dt - \int_{t_a}^{t_b} m\omega^2 x_{\text{cl}} y \, dt
+$$
+
+$$
+= -\int_{t_a}^{t_b} m(\ddot{x}_{\text{cl}} + \omega^2 x_{\text{cl}}) y \, dt = 0
+$$
+
+The integrand vanishes identically because $x_{\text{cl}}$ satisfies the equation of motion $\ddot{x}_{\text{cl}} + \omega^2 x_{\text{cl}} = 0$!
+
+## The Exact Result
+
+The action splits cleanly into two parts:
+
+$$
+\boxed{S[x_{\text{cl}} + y] = S_{\text{cl}} + S_2[y]}
+$$
+
+with the **fluctuation action**:
+
+$$
+S_2[y] = \frac{m}{2}\int_{t_a}^{t_b}\Big(\dot{y}^2 - \omega^2 y^2\Big) \, dt
+$$
+
+There are no cubic, quartic, or higher-order terms — because the original action was **at most quadratic in $x$**. This exact splitting is the hallmark of quadratic actions.
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Why does the path integral split into $e^{iS_{\text{cl}}/\hbar} \times (\text{fluctuation factor})$? Is this always true?
+
+::: {.callout-note collapse="true"}
+## Answer
+This happens because the action is **at most quadratic** in $x$. For a quadratic action, expanding $x = x_{\text{cl}} + y$ gives: (1) a piece that depends only on the endpoints (the classical action $S_{\text{cl}}$), (2) cross terms that vanish because $x_{\text{cl}}$ satisfies the equation of motion, and (3) a fluctuation piece $S_2[y]$ that is independent of the endpoints.
+
+For **non-quadratic** actions (e.g., with a $\lambda x^4$ anharmonic term), the decomposition $x = x_{\text{cl}} + y$ would produce cubic terms like $\sim x_{\text{cl}} y^2$ and quartic terms $\sim y^3, y^4$ in the fluctuation action. These "interaction terms" couple the fluctuations to the classical path and to each other, so the path integral does *not* factorize. In that case, one must resort to perturbation theory or numerical methods.
+:::
+:::
+
+---
+
+# The Key Insight: Factorization
+
+## The Propagator Factorizes
+
+Since $S[x] = S_{\text{cl}} + S_2[y]$ and the measure $\mathcal{D}x$ becomes $\mathcal{D}y$ (shifting by the fixed classical path doesn't change the measure), we have:
+
+$$
+K(x_b, t_b; x_a, t_a) = \int \mathcal{D}y \; \exp\!\left[\frac{i}{\hbar}\big(S_{\text{cl}} + S_2[y]\big)\right]
+$$
+
+The classical action is just a number (it depends on $x_a, x_b, T$, but not on $y$), so it comes outside the integral:
+
+$$
+\boxed{K(x_b, t_b; x_a, t_a) = e^{iS_{\text{cl}}/\hbar} \times \underbrace{\int \mathcal{D}y \; e^{iS_2[y]/\hbar}}_{F(T)}}
+$$
+
+This is a profound factorization:
+
+- The **classical phase** $e^{iS_{\text{cl}}/\hbar}$ carries all the information about the endpoints $x_a, x_b$.
+- The **fluctuation integral** $F(T)$ is the path integral over all fluctuations $y(t)$ with Dirichlet boundary conditions $y(t_a) = y(t_b) = 0$. It depends *only on $T$* (and on $m, \omega, \hbar$), not on the endpoints!
+
+The fluctuation integral is Gaussian — it's the functional analog of $\int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\pi/a}$. Computing it is our next task.
+
+::: {.callout-tip}
+## The Template for All Quadratic Path Integrals
+The factorization $K = e^{iS_{\text{cl}}/\hbar} \times F(T)$ is the universal template for quadratic actions. To find $K$, you need to:
+
+1. Find the classical path $x_{\text{cl}}(t)$ satisfying the boundary conditions
+2. Compute the classical action $S_{\text{cl}}$
+3. Compute the fluctuation prefactor $F(T)$
+
+This template works for the free particle, the harmonic oscillator, a particle in a linear potential, a charged particle in a uniform magnetic field, and many more.
+:::
+
+---
+
+# Computing the Fluctuation Determinant
+
+This is the most technically involved part of the calculation. We need to evaluate the **Gaussian path integral**:
+
+$$
+F(T) = \int \mathcal{D}y \; \exp\!\left[\frac{im}{2\hbar}\int_{t_a}^{t_b}\big(\dot{y}^2 - \omega^2 y^2\big) \, dt\right]
+$$
+
+over all paths $y(t)$ satisfying $y(t_a) = y(t_b) = 0$.
+
+## Step 1: Eigenfunction Expansion
+
+Since $y(t)$ vanishes at both endpoints, we can expand it in a **Fourier sine series**. Let's shift the time variable so that $t_a = 0$ and $t_b = T$ (this is just a relabeling and doesn't affect the physics). Then:
+
+$$
+y(t) = \sum_{n=1}^{\infty} a_n \sin\!\left(\frac{n\pi t}{T}\right)
+$$
+
+Each basis function $\sin(n\pi t/T)$ automatically satisfies the Dirichlet boundary conditions $y(0) = y(T) = 0$.
+
+The coefficients $\{a_n\}$ are the **new integration variables** — summing over all paths $y(t)$ is equivalent to integrating over all possible values of the coefficients $a_1, a_2, a_3, \ldots$
+
+## Step 2: Evaluate the Fluctuation Action
+
+Let's compute $S_2[y]$ in terms of the $a_n$.
+
+**The $\dot{y}^2$ term:**
+
+$$
+\dot{y}(t) = \sum_{n=1}^{\infty} a_n \frac{n\pi}{T} \cos\!\left(\frac{n\pi t}{T}\right)
+$$
+
+$$
+\int_0^T \dot{y}^2 \, dt = \sum_{n,m} a_n a_m \frac{n\pi}{T} \frac{m\pi}{T} \int_0^T \cos\!\left(\frac{n\pi t}{T}\right)\cos\!\left(\frac{m\pi t}{T}\right) dt
+$$
+
+The orthogonality of cosines gives us:
+
+$$
+\int_0^T \cos\!\left(\frac{n\pi t}{T}\right)\cos\!\left(\frac{m\pi t}{T}\right) dt = \frac{T}{2}\delta_{nm}
+$$
+
+Therefore:
+
+$$
+\int_0^T \dot{y}^2 \, dt = \sum_{n=1}^{\infty} a_n^2 \frac{n^2\pi^2}{T^2} \cdot \frac{T}{2} = \frac{1}{2}\sum_{n=1}^{\infty} a_n^2 \frac{n^2\pi^2}{T}
+$$
+
+**The $y^2$ term:**
+
+$$
+\int_0^T y^2 \, dt = \sum_{n,m} a_n a_m \int_0^T \sin\!\left(\frac{n\pi t}{T}\right)\sin\!\left(\frac{m\pi t}{T}\right) dt = \sum_{n=1}^{\infty} a_n^2 \frac{T}{2}
+$$
+
+where we used the orthogonality $\int_0^T \sin(n\pi t/T)\sin(m\pi t/T) \, dt = (T/2)\delta_{nm}$.
+
+**Combining:**
+
+$$
+S_2[y] = \frac{m}{2}\left[\frac{1}{2}\sum_n a_n^2 \frac{n^2\pi^2}{T} - \omega^2 \sum_n a_n^2 \frac{T}{2}\right]
+$$
+
+$$
+= \frac{m}{4}\sum_{n=1}^{\infty} a_n^2 \left(\frac{n^2\pi^2}{T} - \omega^2 T\right)
+$$
+
+$$
+\boxed{S_2[y] = \frac{m}{4}\sum_{n=1}^{\infty} \lambda_n \, a_n^2}
+$$
+
+where we have defined the **eigenvalues**:
+
+$$
+\lambda_n = \frac{n^2\pi^2}{T} - \omega^2 T = \frac{T}{1}\left(\frac{n^2\pi^2}{T^2} - \omega^2\right)
+$$
+
+::: {.callout-note}
+## What are these eigenvalues?
+The eigenvalues $\lambda_n$ are the eigenvalues of the differential operator $\hat{O} = -d^2/dt^2 - \omega^2$ acting on functions with Dirichlet boundary conditions. The eigenfunctions are $\sin(n\pi t/T)$ with eigenvalues $(n\pi/T)^2 - \omega^2$. We'll explore this operator interpretation much more deeply in [Module 7](07_gaussian_integrals.qmd) on Gaussian integrals and functional determinants.
+:::
+
+## Step 3: The Path Integral as a Product of Ordinary Integrals
+
+The path integral measure becomes:
+
+$$
+\mathcal{D}y = \mathcal{N} \prod_{n=1}^{\infty} da_n
+$$
+
+where $\mathcal{N}$ is a normalization constant (which we'll track carefully). The path integral factorizes into a product of independent Gaussian integrals:
+
+$$
+F(T) = \mathcal{N} \prod_{n=1}^{\infty} \int_{-\infty}^{\infty} da_n \; \exp\!\left[\frac{im}{4\hbar}\lambda_n a_n^2\right]
+$$
+
+Each integral is a **Fresnel integral** of the form $\int_{-\infty}^{\infty} e^{i\alpha x^2} dx = \sqrt{\pi / (-i\alpha)} = \sqrt{i\pi/\alpha}$:
+
+$$
+\int_{-\infty}^{\infty} da_n \; \exp\!\left[\frac{im\lambda_n}{4\hbar} a_n^2\right] = \sqrt{\frac{4\pi i \hbar}{m\lambda_n}}
+$$
+
+So:
+
+$$
+F(T) = \mathcal{N} \prod_{n=1}^{\infty} \sqrt{\frac{4\pi i\hbar}{m\lambda_n}}
+$$
+
+## Step 4: Ratio with the Free Particle
+
+The overall normalization $\mathcal{N}$ is tricky, and it's much cleaner to compute $F(T)$ as a **ratio** with the free-particle case ($\omega = 0$). For $\omega = 0$, the eigenvalues are $\lambda_n^{(0)} = n^2\pi^2/T$, and we know the free-particle propagator is:
+
+$$
+K_{\text{free}} = \sqrt{\frac{m}{2\pi i\hbar T}} \exp\!\left[\frac{im(x_b - x_a)^2}{2\hbar T}\right]
+$$
+
+So the free-particle fluctuation prefactor is $F_{\text{free}} = \sqrt{m/2\pi i\hbar T}$.
+
+The ratio of the harmonic oscillator fluctuation factor to the free-particle one involves:
+
+$$
+\frac{F(T)}{F_{\text{free}}(T)} = \prod_{n=1}^{\infty} \sqrt{\frac{\lambda_n^{(0)}}{\lambda_n}} = \prod_{n=1}^{\infty} \sqrt{\frac{n^2\pi^2/T}{n^2\pi^2/T - \omega^2 T}}
+$$
+
+$$
+= \prod_{n=1}^{\infty} \frac{1}{\sqrt{1 - \omega^2 T^2/(n^2\pi^2)}}
+$$
+
+So:
+
+$$
+\left(\frac{F(T)}{F_{\text{free}}(T)}\right)^2 = \prod_{n=1}^{\infty} \frac{1}{1 - \omega^2 T^2/(n^2\pi^2)}
+$$
+
+## Step 5: The Infinite Product Identity
+
+Now we use the famous **Euler infinite product formula for the sine function**:
+
+$$
+\sin z = z \prod_{n=1}^{\infty}\left(1 - \frac{z^2}{n^2\pi^2}\right)
+$$
+
+Setting $z = \omega T$:
+
+$$
+\prod_{n=1}^{\infty}\left(1 - \frac{\omega^2 T^2}{n^2\pi^2}\right) = \frac{\sin\omega T}{\omega T}
+$$
+
+Therefore:
+
+$$
+\left(\frac{F(T)}{F_{\text{free}}(T)}\right)^2 = \frac{\omega T}{\sin\omega T}
+$$
+
+$$
+\frac{F(T)}{F_{\text{free}}(T)} = \sqrt{\frac{\omega T}{\sin\omega T}}
+$$
+
+And since $F_{\text{free}} = \sqrt{m/2\pi i\hbar T}$:
+
+$$
+F(T) = \sqrt{\frac{m}{2\pi i\hbar T}} \cdot \sqrt{\frac{\omega T}{\sin\omega T}} = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}}
+$$
+
+$$
+\boxed{F(T) = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}}}
+$$
+
+::: {.callout-intuition}
+The fluctuation prefactor tells you "how many paths contribute effectively." When $\sin\omega T$ is small (near $T = n\pi/\omega$), the prefactor diverges — this means the paths are "focusing" toward a single configuration, producing a delta-function-like propagator. When $\sin\omega T$ is large, many paths contribute with similar phases, producing a broad, smooth propagator.
+:::
+
+---
+
+# The Final Propagator
+
+## Assembling the Pieces
+
+We now combine the classical phase and the fluctuation prefactor:
+
+$$
+K(x_b, t_b; x_a, t_a) = F(T) \cdot \exp\!\left[\frac{i}{\hbar}S_{\text{cl}}\right]
+$$
+
+Substituting our results:
+
+$$
+\boxed{K(x_b, t_b; x_a, t_a) = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \; \exp\!\left\{\frac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]\right\}}
+$$
+
+This is the **exact propagator for the quantum harmonic oscillator**, first derived by Feynman. It is one of the crown jewels of path integral quantum mechanics.
+
+Let's appreciate what we've accomplished: starting from $\int \mathcal{D}x \, e^{iS[x]/\hbar}$, a sum over infinitely many paths, we've obtained a closed-form expression. This was possible because the action is quadratic.
+
+> **Textbook reference**: Feynman & Hibbs, §3-5, Eq. (3-59); Shankar, Ch. 8, Eq. (8.6.14).
+
+## Structure of the Propagator
+
+| Component | Expression | Physical meaning |
+|-----------|-----------|-----------------|
+| Prefactor | $\sqrt{m\omega/2\pi i\hbar \sin\omega T}$ | Fluctuation determinant; "how many paths contribute" |
+| Phase: diagonal | $(x_a^2 + x_b^2)\cos\omega T$ | Self-coupling of the endpoints |
+| Phase: off-diagonal | $-2x_a x_b$ | Mutual coupling between endpoints |
+| Overall scale | $m\omega/2\hbar\sin\omega T$ | Sets the "sharpness" of the propagator |
+
+::: {.callout-warning}
+## 🤔 Quick Question
+What happens at $T = \pi/\omega$ (half-period)? The propagator diverges! What does this mean physically?
+
+::: {.callout-note collapse="true"}
+## Answer
+At $T = \pi/\omega$, we have $\sin\omega T = \sin\pi = 0$. But the propagator doesn't just blow up randomly — it becomes a **delta function**: $K \to \delta(x_b + x_a)$.
+
+To see this, note that as $\sin\omega T \to 0$ and $\cos\omega T \to -1$, the exponent becomes:
+$$
+\frac{im\omega}{2\hbar\sin\omega T}\Big[-(x_a^2 + x_b^2) - 2x_a x_b\Big] = \frac{-im\omega}{2\hbar\sin\omega T}(x_a + x_b)^2
+$$
+
+This is a Gaussian in $(x_a + x_b)$ with width $\to 0$, which is a representation of $\delta(x_b + x_a)$.
+
+**Physical meaning**: After a half-period, the particle arrives at the **mirror-image point** $x_b = -x_a$. This is the **classical focusing effect** — all classical paths starting from $x_a$ converge at $-x_a$ after a half-period, regardless of their initial velocity. The quantum propagator reflects this classical focusing by becoming a delta function.
+
+Similarly, at $T = 2\pi/\omega$ (full period), $K \to \delta(x_b - x_a)$: the particle returns to its starting point.
+:::
+:::
+
+---
+
+# Recovering the Energy Spectrum
+
+The propagator contains the **complete information** about the energy spectrum. Let's extract it.
+
+## Spectral Decomposition of the Propagator
+
+From operator quantum mechanics, we know that the propagator can be written as:
+
+$$
+K(x_b, t_b; x_a, t_a) = \sum_{n=0}^{\infty} \psi_n(x_b) \psi_n^*(x_a) \, e^{-iE_n T/\hbar}
+$$
+
+where $\psi_n(x)$ and $E_n$ are the energy eigenfunctions and eigenvalues of the harmonic oscillator Hamiltonian.
+
+If we can expand our exact propagator in this form, we can **read off** both the energy levels and the wavefunctions. This is a spectacular consistency check — and it also demonstrates that the path integral and operator formulations are completely equivalent.
+
+## The Mehler Formula
+
+The mathematical identity that connects our propagator to the spectral sum is the **Mehler formula** (also known as Mehler's Hermite formula). Let's derive the expansion directly.
+
+First, rewrite the exponent in a more symmetric form. Define the dimensionless variables $\xi_a = \sqrt{m\omega/\hbar}\, x_a$ and $\xi_b = \sqrt{m\omega/\hbar}\, x_b$, and set $q = e^{-i\omega T}$. Then:
+
+$$
+\cos\omega T = \frac{q + q^{-1}}{2} = \frac{1+q^2}{2q}, \qquad \sin\omega T = \frac{q^{-1} - q}{2i} = \frac{1-q^2}{2iq}
+$$
+
+After some algebra, the exponent becomes:
+
+$$
+\frac{im\omega}{2\hbar\sin\omega T}\Big[(\xi_a^2 + \xi_b^2)\cos\omega T - 2\xi_a\xi_b\Big] \cdot \frac{\hbar}{m\omega}
+$$
+
+Working through the algebra carefully, the propagator can be written as:
+
+$$
+K = \sqrt{\frac{m\omega}{\pi\hbar}} \cdot \frac{1}{\sqrt{1 - q^2}} \exp\!\left[-\frac{\xi_a^2 + \xi_b^2}{2}\cdot\frac{1+q^2}{1-q^2} + \frac{2\xi_a \xi_b q}{1-q^2}\right]
+$$
+
+Now expand using the **generating function for Hermite polynomials**. The Mehler formula states:
+
+$$
+\frac{1}{\sqrt{1 - q^2}} \exp\!\left[-\frac{(\xi_a^2 + \xi_b^2)q^2 - 2\xi_a\xi_b q}{1-q^2}\right] = \sum_{n=0}^{\infty} \frac{q^n}{2^n n!} H_n(\xi_a) H_n(\xi_b)
+$$
+
+where $H_n$ are the **Hermite polynomials**.
+
+## Reading Off the Spectrum
+
+Noting that $q^n = e^{-in\omega T}$, the exponential prefactor contributes $e^{-(\xi_a^2 + \xi_b^2)/2} \cdot e^{-i\omega T/2}$ (from careful treatment of the $1/(1-q^2)$ and the prefactor). The full expansion becomes:
+
+$$
+K = \sum_{n=0}^{\infty} \left[\frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_b^2/2\hbar} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}x_b\right)\right]
+$$
+$$
+\times \left[\frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_a^2/2\hbar} H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}x_a\right)\right] e^{-i(n+1/2)\omega T}
+$$
+
+Comparing with $K = \sum_n \psi_n(x_b)\psi_n^*(x_a) e^{-iE_n T/\hbar}$, we read off:
+
+### The Energy Levels
+
+$$
+\boxed{E_n = \left(n + \frac{1}{2}\right)\hbar\omega, \qquad n = 0, 1, 2, \ldots}
+$$
+
+The familiar harmonic oscillator spectrum, complete with the **zero-point energy** $E_0 = \hbar\omega/2$, emerges naturally from the path integral!
+
+### The Wavefunctions
+
+$$
+\boxed{\psi_n(x) = \frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\!\left(-\frac{m\omega x^2}{2\hbar}\right) H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\, x\right)}
+$$
+
+These are exactly the harmonic oscillator wavefunctions obtained from the operator (ladder operator) approach!
+
+::: {.callout-tip}
+## The Path Integral Knows Everything
+The path integral propagator $K$ is not just a transition amplitude — it's a **generating function** for the entire energy spectrum and all wavefunctions. By computing a single object (the propagator), you get all the eigenvalues and eigenfunctions simultaneously. This is the power of the path integral approach.
+:::
+
+---
+
+# Connection to the QHO Course
+
+If you've studied the [Quantum Harmonic Oscillator course](../QHO/index.qmd) on this site, you'll recognize that the results we just derived — $E_n = (n+\frac{1}{2})\hbar\omega$ and the Hermite-Gaussian wavefunctions — are exactly what was obtained there using [ladder operators](../QHO/03_ladder_operators.qmd) (the algebraic method) and by [solving the Schrödinger equation directly](../QHO/04_wavefunctions.qmd).
+
+What's remarkable is that the path integral approach gives us these results from a completely different starting point. We never once wrote down the Schrödinger equation. We never used operators $\hat{a}$ and $\hat{a}^\dagger$. We simply computed a sum over all paths — and the energy levels and wavefunctions emerged automatically.
+
+| Approach | Starting Point | How $E_n$ is Obtained |
+|----------|---------------|----------------------|
+| Ladder operators | $[\hat{a}, \hat{a}^\dagger] = 1$ | Algebraic: count rungs on the ladder |
+| Schrödinger equation | $\hat{H}\psi = E\psi$ | Solve ODE, demand normalizability |
+| **Path integral** | $K = \int \mathcal{D}x \, e^{iS/\hbar}$ | **Compute $K$, expand as spectral sum** |
+
+All three approaches are *equivalent*. The path integral doesn't give you "different physics" — it gives you a different *perspective* on the same physics, one that generalizes beautifully to field theory.
+
+---
+
+# Worked Examples
+
+## Worked Example 1: The Free-Particle Limit ($\omega \to 0$)
+
+**Problem**: Show that the harmonic oscillator propagator reduces to the free-particle propagator when $\omega \to 0$.
+
+**Solution**: We need to take the limit $\omega \to 0$ carefully in:
+
+$$
+K_{\text{HO}} = \sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \; \exp\!\left\{\frac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]\right\}
+$$
+
+**Step 1: Expand the trigonometric functions.**
+
+For small $\omega$:
+
+$$
+\sin\omega T \approx \omega T - \frac{(\omega T)^3}{6} + \cdots \approx \omega T
+$$
+
+$$
+\cos\omega T \approx 1 - \frac{(\omega T)^2}{2} + \cdots \approx 1
+$$
+
+**Step 2: Expand the prefactor.**
+
+$$
+\sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \approx \sqrt{\frac{m\omega}{2\pi i\hbar \cdot \omega T}} = \sqrt{\frac{m}{2\pi i\hbar T}}
+$$
+
+This is exactly the free-particle prefactor! ✓
+
+**Step 3: Expand the exponent.**
+
+$$
+\frac{m\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]
+$$
+
+$$
+\approx \frac{m\omega}{2\hbar \cdot \omega T}\Big[(x_a^2 + x_b^2) \cdot 1 - 2x_a x_b\Big] = \frac{m}{2\hbar T}(x_a - x_b)^2
+$$
+
+using $(x_a^2 + x_b^2 - 2x_a x_b) = (x_a - x_b)^2$.
+
+**Step 4: Assemble.**
+
+$$
+K_{\text{HO}} \xrightarrow{\omega \to 0} \sqrt{\frac{m}{2\pi i\hbar T}} \exp\!\left[\frac{im(x_b - x_a)^2}{2\hbar T}\right] = K_{\text{free}} \quad \checkmark
+$$
+
+The harmonic oscillator propagator smoothly reduces to the free-particle propagator as the restoring force vanishes.
+
+---
+
+## Worked Example 2: Extracting the Ground State from $T \to \infty$
+
+**Problem**: Extract the ground-state energy and wavefunction from the harmonic oscillator propagator by taking the limit $T \to \infty$ (with appropriate $i\epsilon$ prescription).
+
+**Solution**: The spectral decomposition tells us:
+
+$$
+K = \sum_{n=0}^{\infty} \psi_n(x_b)\psi_n^*(x_a)\, e^{-iE_n T/\hbar}
+$$
+
+For large $T$, all terms oscillate wildly and the sum doesn't converge. The trick is to give $T$ a small **negative imaginary part**: $T \to T(1 - i\epsilon)$ with $\epsilon > 0$ small. This is equivalent to a small Wick rotation. Then:
+
+$$
+e^{-iE_n T/\hbar} \to e^{-iE_n T/\hbar} \cdot e^{-E_n \epsilon T/\hbar}
+$$
+
+The real exponential $e^{-E_n \epsilon T/\hbar}$ suppresses all terms with $E_n > E_0$. As $T \to \infty$, only the **ground state** ($n = 0$) survives:
+
+$$
+K \xrightarrow{T \to \infty} \psi_0(x_b)\psi_0^*(x_a)\, e^{-iE_0 T/\hbar}
+$$
+
+**Step 1: Take $T \to \infty$ in the propagator.**
+
+With $T \to \infty (1 - i\epsilon)$, we have $\omega T \to \infty$ with a negative imaginary part. Therefore:
+
+$$
+\sin\omega T = \frac{e^{i\omega T} - e^{-i\omega T}}{2i} \to \frac{-e^{-i\omega T}}{2i} = \frac{e^{-i\omega T}}{2i} \cdot (-1)
+$$
+
+Wait — let's be more careful. With $T \to T(1-i\epsilon)$:
+
+$$
+e^{i\omega T} \to e^{i\omega T} \cdot e^{\omega\epsilon T} \to \infty
+$$
+$$
+e^{-i\omega T} \to e^{-i\omega T} \cdot e^{-\omega\epsilon T} \to 0
+$$
+
+So $\sin\omega T \approx e^{i\omega T}/2i$ and $\cos\omega T \approx e^{i\omega T}/2$.
+
+**Step 2: Evaluate the prefactor.**
+
+$$
+\sqrt{\frac{m\omega}{2\pi i\hbar \sin\omega T}} \approx \sqrt{\frac{m\omega}{2\pi i\hbar \cdot e^{i\omega T}/2i}} = \sqrt{\frac{m\omega}{\pi\hbar \cdot e^{i\omega T}}} = \sqrt{\frac{m\omega}{\pi\hbar}} \, e^{-i\omega T/2}
+$$
+
+**Step 3: Evaluate the exponent.**
+
+$$
+\frac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]
+$$
+
+$$
+\approx \frac{im\omega}{2\hbar} \cdot \frac{2i}{e^{i\omega T}} \left[(x_a^2 + x_b^2)\frac{e^{i\omega T}}{2} - 2x_a x_b\right]
+$$
+
+$$
+= \frac{im\omega}{2\hbar} \cdot 2i \left[\frac{x_a^2 + x_b^2}{2} - 2x_a x_b \, e^{-i\omega T}\right]
+$$
+
+The term $e^{-i\omega T} \to 0$ as $T \to \infty$ (with the $i\epsilon$ prescription), so:
+
+$$
+\text{exponent} \to \frac{im\omega}{2\hbar} \cdot 2i \cdot \frac{x_a^2 + x_b^2}{2} = -\frac{m\omega}{2\hbar}(x_a^2 + x_b^2)
+$$
+
+(since $i \cdot i = -1$).
+
+**Step 4: Assemble.**
+
+$$
+K \xrightarrow{T \to \infty} \sqrt{\frac{m\omega}{\pi\hbar}} \, e^{-i\omega T/2} \exp\!\left[-\frac{m\omega}{2\hbar}(x_a^2 + x_b^2)\right]
+$$
+
+$$
+= \left[\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_b^2/2\hbar}\right] \left[\left(\frac{m\omega}{\pi\hbar}\right)^{1/4} e^{-m\omega x_a^2/2\hbar}\right] e^{-i\omega T/2}
+$$
+
+**Step 5: Read off the results.**
+
+Comparing with $K \to \psi_0(x_b)\psi_0^*(x_a) e^{-iE_0 T/\hbar}$:
+
+$$
+\boxed{\psi_0(x) = \left(\frac{m\omega}{\pi\hbar}\right)^{1/4} \exp\!\left(-\frac{m\omega x^2}{2\hbar}\right)}
+$$
+
+$$
+\boxed{E_0 = \frac{1}{2}\hbar\omega}
+$$
+
+The ground-state Gaussian wavefunction and the zero-point energy emerge directly from the large-$T$ behavior of the propagator. The zero-point energy $\hbar\omega/2$ is *not* put in by hand — it comes from the fluctuation determinant (the $\sqrt{\sin\omega T}$ in the denominator).
+
+---
+
+# Summary
+
+## Key Formulas at a Glance
+
+| Quantity | Formula |
+|----------|---------|
+| Classical path | $x_{\text{cl}}(t) = \dfrac{x_a \sin\omega(t_b - t) + x_b \sin\omega(t - t_a)}{\sin\omega T}$ |
+| Classical action | $S_{\text{cl}} = \dfrac{m\omega}{2\sin\omega T}\Big[(x_a^2 + x_b^2)\cos\omega T - 2x_a x_b\Big]$ |
+| Action decomposition | $S[x_{\text{cl}} + y] = S_{\text{cl}} + S_2[y]$, with $S_2 = \dfrac{m}{2}\displaystyle\int(\dot{y}^2 - \omega^2 y^2)\,dt$ |
+| Fluctuation prefactor | $F(T) = \sqrt{\dfrac{m\omega}{2\pi i\hbar \sin\omega T}}$ |
+| **Full propagator** | $K = \sqrt{\dfrac{m\omega}{2\pi i\hbar \sin\omega T}} \exp\!\left\{\dfrac{im\omega}{2\hbar\sin\omega T}\Big[(x_a^2+x_b^2)\cos\omega T - 2x_ax_b\Big]\right\}$ |
+| Energy levels | $E_n = (n + \tfrac{1}{2})\hbar\omega$ |
+| Ground state wavefunction | $\psi_0(x) = (m\omega/\pi\hbar)^{1/4}\, e^{-m\omega x^2/2\hbar}$ |
+
+## Free Particle vs. Harmonic Oscillator — Side by Side
+
+| Feature | Free particle ($\omega = 0$) | Harmonic oscillator |
+|---------|------------------------------|---------------------|
+| Classical path | Straight line: $x_{\text{cl}}(t) = x_a + \dfrac{x_b-x_a}{T}(t-t_a)$ | $\dfrac{x_a \sin\omega(t_b-t) + x_b\sin\omega(t-t_a)}{\sin\omega T}$ |
+| Classical action | $\dfrac{m(x_b-x_a)^2}{2T}$ | $\dfrac{m\omega}{2\sin\omega T}\Big[(x_a^2+x_b^2)\cos\omega T - 2x_ax_b\Big]$ |
+| Prefactor | $\sqrt{\dfrac{m}{2\pi i\hbar T}}$ | $\sqrt{\dfrac{m\omega}{2\pi i\hbar \sin\omega T}}$ |
+| Energy spectrum | $E_k = \dfrac{\hbar^2 k^2}{2m}$ (continuous) | $E_n = (n+\tfrac{1}{2})\hbar\omega$ (discrete) |
+| Ground state | Plane wave (delocalized) | Gaussian $\psi_0 \propto e^{-m\omega x^2/2\hbar}$ |
+| Singularities in $K$ | None | At $T = n\pi/\omega$ (caustics) |
+| Replacement rule | $T \to \sin\omega T / \omega$ | — |
+
+The **replacement rule** is striking: in every formula, you can go from the free particle to the harmonic oscillator by replacing $T \to (\sin\omega T)/\omega$. This works for the prefactor and (with appropriate modifications for $\cos\omega T$) for the exponent.
+
+---
+
+::: {.checkpoint}
+Before moving on, make sure you can:
+
+1. **Derive** the classical path $x_{\text{cl}}(t)$ from the equation of motion with boundary conditions
+2. **Compute** the classical action using the boundary-term trick $S_{\text{cl}} = \frac{m}{2}[x_b\dot{x}_{\text{cl}}(t_b) - x_a\dot{x}_{\text{cl}}(t_a)]$
+3. **Explain** why the cross terms $S_{\text{cross}}$ vanish (it's because $x_{\text{cl}}$ satisfies the EOM)
+4. **State** why the factorization $K = e^{iS_{\text{cl}}/\hbar} \times F(T)$ is exact for quadratic actions but not for anharmonic ones
+5. **Reproduce** the eigenvalue computation: $\lambda_n = (n\pi/T)^2 - \omega^2$, and the use of the Euler product to get $\sin\omega T / \omega T$
+6. **Write down** the exact propagator from memory
+7. **Take** the $\omega \to 0$ limit and recover the free-particle propagator
+8. **Explain** the physical meaning of the singularities at $T = n\pi/\omega$
+:::
+
+---
+
+# Practice Problems
+
+**Problem 1** (Warm-up) ⭐
+
+Verify that the harmonic oscillator propagator satisfies the Schrödinger equation:
+
+$$
+i\hbar \frac{\partial K}{\partial t_b} = -\frac{\hbar^2}{2m}\frac{\partial^2 K}{\partial x_b^2} + \frac{1}{2}m\omega^2 x_b^2 \, K
+$$
+
+*Hint*: Differentiate the exact propagator with respect to $t_b$ and $x_b$. This is an algebraic exercise — tedious but important.
+
+---
+
+**Problem 2** (Classical action verification) ⭐⭐
+
+Compute the classical action $S_{\text{cl}}$ by *directly* integrating $\int_{t_a}^{t_b} L_{\text{cl}} \, dt$ without using the boundary-term trick. That is, compute $\int \dot{x}_{\text{cl}}^2 \, dt$ and $\int x_{\text{cl}}^2 \, dt$ separately using the explicit classical path. Verify that you get the same answer.
+
+*Hint*: You'll need the integrals $\int_0^T \sin^2(\alpha t + \beta)\, dt$ and $\int_0^T \cos^2(\alpha t + \beta) \, dt$.
+
+---
+
+**Problem 3** (Full-period propagator) ⭐⭐
+
+Show that at $T = 2\pi/\omega$ (one full classical period), the propagator becomes:
+
+$$
+K\big(x_b, x_a; T = 2\pi/\omega\big) = \delta(x_b - x_a)
+$$
+
+*Hint*: Take the limit $\omega T \to 2\pi$ carefully. You'll find $\cos\omega T \to 1$, $\sin\omega T \to 0$, and the exponent becomes a representation of the delta function.
+
+What does this result mean physically?
+
+---
+
+**Problem 4** (Propagator composition) ⭐⭐⭐
+
+Verify the composition property explicitly: compute
+
+$$
+\int_{-\infty}^{\infty} K(x_b, T_2; x, 0) \, K(x, 0; x_a, -T_1) \, dx
+$$
+
+and show that the result equals $K(x_b, T_1 + T_2; x_a, 0)$. You'll need to do a Gaussian integral.
+
+*Hint*: Collect the exponent into a quadratic form in $x$ and complete the square.
+
+---
+
+**Problem 5** (The driven harmonic oscillator) ⭐⭐⭐
+
+Consider a harmonic oscillator with an additional driving force $f(t)$. The Lagrangian is:
+
+$$
+L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2 + f(t)\,x
+$$
+
+(a) Find the classical path $x_{\text{cl}}(t)$ by solving the driven equation of motion $\ddot{x} + \omega^2 x = f(t)/m$ with boundary conditions $x(t_a) = x_a$, $x(t_b) = x_b$. Express your answer using the Green's function of the harmonic oscillator.
+
+(b) Show that the action still splits as $S = S_{\text{cl}} + S_2[y]$ and that the fluctuation prefactor $F(T)$ is the *same* as for the undriven case.
+
+(c) Why is the fluctuation prefactor independent of the driving force?
+
+---
+
+**Problem 6** (Quarter-period propagator) ⭐⭐⭐⭐
+
+At $T = \pi/(2\omega)$ (quarter period), show that the propagator simplifies to:
+
+$$
+K\big(x_b, x_a; T = \pi/2\omega\big) = \sqrt{\frac{m\omega}{2\pi i\hbar}} \exp\!\left[\frac{im\omega}{\hbar}\left(-x_a x_b\right)\right]
+$$
+
+Show that this propagator, when applied to a Gaussian wavepacket centered at $x_0$ with width $\sigma$, produces the wavefunction at time $T = \pi/(2\omega)$. What does this operation correspond to in phase space?
+
+*Hint*: A quarter-period evolution of the harmonic oscillator is essentially a **Fourier transform**. This connection is deep — the harmonic oscillator generates continuous fractional Fourier transforms!
+
+---
+
+::: {.nav-buttons}
+[← Previous Module](04_path_integral_derivation.qmd){.btn .btn-outline-secondary}
+[Next: Module 6 →](06_functional_calculus.qmd){.btn .btn-success}
+:::

@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="We define the propagator K(x_b, t_b; x_a, t_a), derive its key properties from the time evolution operator, prove the composition law, connect it to wavefunctions and Green’s functions, and compute the free particle propagator explicitly.">
+
+<title>Physics Voyage - Module 1: Propagators &amp; Transition Amplitudes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-central-question-of-quantum-mechanics" id="toc-the-central-question-of-quantum-mechanics" class="nav-link active" data-scroll-target="#the-central-question-of-quantum-mechanics"><span class="header-section-number">1</span> The Central Question of Quantum Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#why-this-question-matters" id="toc-why-this-question-matters" class="nav-link" data-scroll-target="#why-this-question-matters"><span class="header-section-number">1.1</span> Why This Question Matters</a></li>
+  <li><a href="#the-double-slit-experiment-as-motivation" id="toc-the-double-slit-experiment-as-motivation" class="nav-link" data-scroll-target="#the-double-slit-experiment-as-motivation"><span class="header-section-number">1.2</span> The Double-Slit Experiment as Motivation</a></li>
+  <li><a href="#the-propagator-an-overview" id="toc-the-propagator-an-overview" class="nav-link" data-scroll-target="#the-propagator-an-overview"><span class="header-section-number">1.3</span> The Propagator: An Overview</a></li>
+  </ul></li>
+  <li><a href="#the-time-evolution-operator" id="toc-the-time-evolution-operator" class="nav-link" data-scroll-target="#the-time-evolution-operator"><span class="header-section-number">2</span> The Time Evolution Operator</a>
+  <ul class="collapse">
+  <li><a href="#definition-and-meaning" id="toc-definition-and-meaning" class="nav-link" data-scroll-target="#definition-and-meaning"><span class="header-section-number">2.1</span> Definition and Meaning</a></li>
+  <li><a href="#proof-of-unitarity" id="toc-proof-of-unitarity" class="nav-link" data-scroll-target="#proof-of-unitarity"><span class="header-section-number">2.2</span> Proof of Unitarity</a></li>
+  <li><a href="#the-composition-group-property" id="toc-the-composition-group-property" class="nav-link" data-scroll-target="#the-composition-group-property"><span class="header-section-number">2.3</span> The Composition (Group) Property</a></li>
+  </ul></li>
+  <li><a href="#the-propagator-kernel" id="toc-the-propagator-kernel" class="nav-link" data-scroll-target="#the-propagator-kernel"><span class="header-section-number">3</span> The Propagator (Kernel)</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">3.1</span> Definition</a></li>
+  <li><a href="#notation-conventions" id="toc-notation-conventions" class="nav-link" data-scroll-target="#notation-conventions"><span class="header-section-number">3.2</span> Notation Conventions</a></li>
+  <li><a href="#initial-condition" id="toc-initial-condition" class="nav-link" data-scroll-target="#initial-condition"><span class="header-section-number">3.3</span> Initial Condition</a></li>
+  </ul></li>
+  <li><a href="#completeness-and-the-composition-property" id="toc-completeness-and-the-composition-property" class="nav-link" data-scroll-target="#completeness-and-the-composition-property"><span class="header-section-number">4</span> Completeness and the Composition Property</a>
+  <ul class="collapse">
+  <li><a href="#derivation-of-the-composition-law" id="toc-derivation-of-the-composition-law" class="nav-link" data-scroll-target="#derivation-of-the-composition-law"><span class="header-section-number">4.1</span> Derivation of the Composition Law</a></li>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation"><span class="header-section-number">4.2</span> Physical Interpretation</a></li>
+  <li><a href="#the-seed-of-the-path-integral" id="toc-the-seed-of-the-path-integral" class="nav-link" data-scroll-target="#the-seed-of-the-path-integral"><span class="header-section-number">4.3</span> The Seed of the Path Integral</a></li>
+  </ul></li>
+  <li><a href="#connection-to-wavefunctions" id="toc-connection-to-wavefunctions" class="nav-link" data-scroll-target="#connection-to-wavefunctions"><span class="header-section-number">5</span> Connection to Wavefunctions</a>
+  <ul class="collapse">
+  <li><a href="#propagating-the-wavefunction" id="toc-propagating-the-wavefunction" class="nav-link" data-scroll-target="#propagating-the-wavefunction"><span class="header-section-number">5.1</span> Propagating the Wavefunction</a></li>
+  <li><a href="#what-this-equation-tells-us" id="toc-what-this-equation-tells-us" class="nav-link" data-scroll-target="#what-this-equation-tells-us"><span class="header-section-number">5.2</span> What This Equation Tells Us</a></li>
+  </ul></li>
+  <li><a href="#propagator-as-a-greens-function" id="toc-propagator-as-a-greens-function" class="nav-link" data-scroll-target="#propagator-as-a-greens-function"><span class="header-section-number">6</span> Propagator as a Green’s Function</a>
+  <ul class="collapse">
+  <li><a href="#the-differential-equation-for-k" id="toc-the-differential-equation-for-k" class="nav-link" data-scroll-target="#the-differential-equation-for-k"><span class="header-section-number">6.1</span> The Differential Equation for K</a></li>
+  <li><a href="#the-initial-condition-and-greens-function-interpretation" id="toc-the-initial-condition-and-greens-function-interpretation" class="nav-link" data-scroll-target="#the-initial-condition-and-greens-function-interpretation"><span class="header-section-number">6.2</span> The Initial Condition and Green’s Function Interpretation</a></li>
+  </ul></li>
+  <li><a href="#spectral-representation-of-the-propagator" id="toc-spectral-representation-of-the-propagator" class="nav-link" data-scroll-target="#spectral-representation-of-the-propagator"><span class="header-section-number">7</span> Spectral Representation of the Propagator</a>
+  <ul class="collapse">
+  <li><a href="#derivation" id="toc-derivation" class="nav-link" data-scroll-target="#derivation"><span class="header-section-number">7.1</span> Derivation</a></li>
+  <li><a href="#physical-content" id="toc-physical-content" class="nav-link" data-scroll-target="#physical-content"><span class="header-section-number">7.2</span> Physical Content</a></li>
+  </ul></li>
+  <li><a href="#worked-example-1-the-free-particle-propagator" id="toc-worked-example-1-the-free-particle-propagator" class="nav-link" data-scroll-target="#worked-example-1-the-free-particle-propagator">Worked Example 1: The Free Particle Propagator</a>
+  <ul class="collapse">
+  <li><a href="#strategy-use-the-spectralplane-wave-method" id="toc-strategy-use-the-spectralplane-wave-method" class="nav-link" data-scroll-target="#strategy-use-the-spectralplane-wave-method">Strategy: Use the Spectral/Plane-Wave Method</a></li>
+  <li><a href="#evaluating-the-gaussian-integral" id="toc-evaluating-the-gaussian-integral" class="nav-link" data-scroll-target="#evaluating-the-gaussian-integral">Evaluating the Gaussian Integral</a></li>
+  <li><a href="#the-result" id="toc-the-result" class="nav-link" data-scroll-target="#the-result">The Result</a></li>
+  <li><a href="#checking-the-result" id="toc-checking-the-result" class="nav-link" data-scroll-target="#checking-the-result">Checking the Result</a></li>
+  </ul></li>
+  <li><a href="#worked-example-2-verifying-the-composition-property" id="toc-worked-example-2-verifying-the-composition-property" class="nav-link" data-scroll-target="#worked-example-2-verifying-the-composition-property">Worked Example 2: Verifying the Composition Property</a>
+  <ul class="collapse">
+  <li><a href="#setting-up-the-integral" id="toc-setting-up-the-integral" class="nav-link" data-scroll-target="#setting-up-the-integral">Setting Up the Integral</a></li>
+  <li><a href="#evaluating-the-gaussian" id="toc-evaluating-the-gaussian" class="nav-link" data-scroll-target="#evaluating-the-gaussian">Evaluating the Gaussian</a></li>
+  <li><a href="#computing-the-leftover-exponent" id="toc-computing-the-leftover-exponent" class="nav-link" data-scroll-target="#computing-the-leftover-exponent">Computing the Leftover Exponent</a></li>
+  <li><a href="#assembling-the-result" id="toc-assembling-the-result" class="nav-link" data-scroll-target="#assembling-the-result">Assembling the Result</a></li>
+  </ul></li>
+  <li><a href="#summary-of-key-formulas" id="toc-summary-of-key-formulas" class="nav-link" data-scroll-target="#summary-of-key-formulas"><span class="header-section-number">8</span> Summary of Key Formulas</a></li>
+  <li><a href="#self-check" id="toc-self-check" class="nav-link" data-scroll-target="#self-check"><span class="header-section-number">9</span> Self-Check</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">10</span> Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 1: Propagators &amp; Transition Amplitudes</h1>
+        <p class="subtitle lead">The Fundamental Question of Quantum Mechanics — How Does a Particle Get from A to B?</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      We define the propagator <span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span>, derive its key properties from the time evolution operator, prove the composition law, connect it to wavefunctions and Green’s functions, and compute the free particle propagator explicitly.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Path Integrals Course</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 21, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/02_sum_over_paths.html">Next: Module 2 — The Sum-Over-Paths Idea →</a></p>
+<hr>
+<p>Every formulation of quantum mechanics — Schrödinger’s wave mechanics, Heisenberg’s matrix mechanics, Dirac’s abstract operator formalism — ultimately needs to answer one deceptively simple question:</p>
+<blockquote class="blockquote">
+<p><em>If a particle is at position <span class="math inline">\(x_a\)</span> at time <span class="math inline">\(t_a\)</span>, what is the probability amplitude to find it at position <span class="math inline">\(x_b\)</span> at time <span class="math inline">\(t_b\)</span>?</em></p>
+</blockquote>
+<p>The object that answers this question is called the <strong>propagator</strong>, and it is the central character of the entire path integral story. In this module, we’ll build up the propagator from scratch — starting with the physical motivation, deriving it from the time evolution operator, uncovering its remarkable composition property, and computing it explicitly for the free particle.</p>
+<p>By the end of this module, you will understand that knowing the propagator is equivalent to knowing <em>everything</em> about a quantum system.</p>
+<section id="the-central-question-of-quantum-mechanics" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The Central Question of Quantum Mechanics</h1>
+<section id="why-this-question-matters" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="why-this-question-matters"><span class="header-section-number">1.1</span> Why This Question Matters</h2>
+<p>Let’s start with the most basic scenario you can imagine. A particle sits at position <span class="math inline">\(x_a\)</span> at some initial time <span class="math inline">\(t_a\)</span>. You wait. At a later time <span class="math inline">\(t_b\)</span>, you measure its position. What is the probability of finding it at position <span class="math inline">\(x_b\)</span>?</p>
+<p>In <strong>classical mechanics</strong>, this question has a definite answer: solve Newton’s equations with the given initial conditions, and the particle follows a unique trajectory <span class="math inline">\(x(t)\)</span>. At time <span class="math inline">\(t_b\)</span>, it’s at one specific position. No ambiguity. No probability.</p>
+<p>In <strong>quantum mechanics</strong>, the answer is fundamentally different. The particle doesn’t follow a single path. Instead, we can only compute a <strong>probability amplitude</strong> — a complex number whose squared modulus gives the probability. The object that encodes this amplitude is what we call the <strong>propagator</strong>.</p>
+</section>
+<section id="the-double-slit-experiment-as-motivation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-double-slit-experiment-as-motivation"><span class="header-section-number">1.2</span> The Double-Slit Experiment as Motivation</h2>
+<p>The double-slit experiment captures the essence of why propagators are so important. Consider an electron source at position <span class="math inline">\(x_a\)</span>, a screen with two slits, and a detection screen at position <span class="math inline">\(x_b\)</span>.</p>
+<p>Classically, the electron goes through slit 1 <em>or</em> slit 2. The total intensity at the detector would be:</p>
+<p><span class="math display">\[
+I_{\text{classical}} = I_1 + I_2
+\]</span></p>
+<p>But experimentally, we observe an <strong>interference pattern</strong>:</p>
+<p><span class="math display">\[
+I_{\text{quantum}} = |A_1 + A_2|^2 = |A_1|^2 + |A_2|^2 + 2\,\text{Re}(A_1^* A_2)
+\]</span></p>
+<p>where <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> are complex <strong>amplitudes</strong> for the particle to travel through each slit. The cross term <span class="math inline">\(2\,\text{Re}(A_1^* A_2)\)</span> is the interference term — it’s what makes quantum mechanics quantum.</p>
+<div class="callout-intuition">
+<p>The double-slit experiment tells us that quantum mechanics works with <strong>amplitudes</strong>, not probabilities. To find the total amplitude for going from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, we must <strong>sum amplitudes over all possible intermediate states</strong>. This is the seed of the entire path integral formulation — and the propagator is the mathematical object that encodes these amplitudes.</p>
+</div>
+</section>
+<section id="the-propagator-an-overview" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-propagator-an-overview"><span class="header-section-number">1.3</span> The Propagator: An Overview</h2>
+<p>The <strong>propagator</strong> <span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span> is defined as the quantum mechanical amplitude for a particle to travel from position <span class="math inline">\(x_a\)</span> at time <span class="math inline">\(t_a\)</span> to position <span class="math inline">\(x_b\)</span> at time <span class="math inline">\(t_b\)</span>. The probability of this transition is:</p>
+<p><span class="math display">\[
+P(x_a, t_a \to x_b, t_b) = |K(x_b, t_b;\, x_a, t_a)|^2
+\]</span></p>
+<p>This single object contains <strong>all</strong> the dynamical information about a quantum system. Once you know <span class="math inline">\(K\)</span>, you can:</p>
+<ul>
+<li>Evolve any initial wavefunction forward in time</li>
+<li>Compute transition probabilities between any two states</li>
+<li>Extract energy eigenvalues and eigenstates</li>
+<li>Calculate expectation values of any observable</li>
+</ul>
+<p>The rest of this module is devoted to building this object rigorously.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, <em>Principles of Quantum Mechanics</em>, Ch. 5.1–5.3; Feynman &amp; Hibbs, Ch. 3.</p>
+</blockquote>
+</section>
+</section>
+<section id="the-time-evolution-operator" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Time Evolution Operator</h1>
+<section id="definition-and-meaning" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="definition-and-meaning"><span class="header-section-number">2.1</span> Definition and Meaning</h2>
+<p>In quantum mechanics, the state of a system at time <span class="math inline">\(t_b\)</span> is related to its state at time <span class="math inline">\(t_a\)</span> by the <strong>time evolution operator</strong> <span class="math inline">\(\hat{U}(t_b, t_a)\)</span>:</p>
+<p><span class="math display">\[
+\boxed{|\psi(t_b)\rangle = \hat{U}(t_b, t_a)\,|\psi(t_a)\rangle}
+\]</span></p>
+<p>For a time-independent Hamiltonian <span class="math inline">\(\hat{H}\)</span> (which we’ll assume throughout most of this course), the time evolution operator takes the explicit form:</p>
+<p><span class="math display">\[
+\boxed{\hat{U}(t_b, t_a) = e^{-i\hat{H}(t_b - t_a)/\hbar}}
+\]</span></p>
+<p>Let’s understand where this comes from. The Schrödinger equation tells us:</p>
+<p><span class="math display">\[
+i\hbar \frac{\partial}{\partial t}|\psi(t)\rangle = \hat{H}|\psi(t)\rangle
+\]</span></p>
+<p>This is a first-order ODE in time. For a time-independent <span class="math inline">\(\hat{H}\)</span>, we can integrate it directly. Let <span class="math inline">\(T = t_b - t_a\)</span>. Then:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial t}|\psi(t)\rangle = -\frac{i}{\hbar}\hat{H}|\psi(t)\rangle
+\]</span></p>
+<p>The solution is the operator exponential:</p>
+<p><span class="math display">\[
+|\psi(t_a + T)\rangle = e^{-i\hat{H}T/\hbar}\,|\psi(t_a)\rangle
+\]</span></p>
+<p>This is completely analogous to solving <span class="math inline">\(\dot{x} = ax\)</span> to get <span class="math inline">\(x(t) = e^{at}x(0)\)</span>, except now <span class="math inline">\(a\)</span> is replaced by the operator <span class="math inline">\(-i\hat{H}/\hbar\)</span>.</p>
+</section>
+<section id="proof-of-unitarity" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="proof-of-unitarity"><span class="header-section-number">2.2</span> Proof of Unitarity</h2>
+<p>One of the most important properties of <span class="math inline">\(\hat{U}\)</span> is that it is <strong>unitary</strong>: <span class="math inline">\(\hat{U}^\dagger \hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}\)</span>. This is absolutely essential — it guarantees that probabilities are conserved under time evolution.</p>
+<p><strong>Proof.</strong> Since <span class="math inline">\(\hat{H}\)</span> is Hermitian (<span class="math inline">\(\hat{H}^\dagger = \hat{H}\)</span>), we have:</p>
+<p><span class="math display">\[
+\hat{U}^\dagger(t_b, t_a) = \left(e^{-i\hat{H}(t_b - t_a)/\hbar}\right)^\dagger = e^{+i\hat{H}^\dagger(t_b - t_a)/\hbar} = e^{+i\hat{H}(t_b - t_a)/\hbar}
+\]</span></p>
+<p>where in the last step we used <span class="math inline">\(\hat{H}^\dagger = \hat{H}\)</span>. Now compute the product:</p>
+<p><span class="math display">\[
+\hat{U}^\dagger \hat{U} = e^{+i\hat{H}T/\hbar}\,e^{-i\hat{H}T/\hbar}
+\]</span></p>
+<p>Since both exponentials involve the <em>same</em> operator <span class="math inline">\(\hat{H}\)</span>, they commute with each other, and we can combine the exponents:</p>
+<p><span class="math display">\[
+\hat{U}^\dagger \hat{U} = e^{+i\hat{H}T/\hbar - i\hat{H}T/\hbar} = e^{0} = \hat{I} \qquad \checkmark
+\]</span></p>
+<p>Similarly, <span class="math inline">\(\hat{U}\hat{U}^\dagger = \hat{I}\)</span>. Therefore <span class="math inline">\(\hat{U}\)</span> is unitary. <span class="math inline">\(\blacksquare\)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why unitarity matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unitarity guarantees <span class="math inline">\(\langle \psi(t_b)|\psi(t_b)\rangle = \langle \psi(t_a)|\hat{U}^\dagger \hat{U}|\psi(t_a)\rangle = \langle \psi(t_a)|\psi(t_a)\rangle\)</span>. So if the state is normalized at time <span class="math inline">\(t_a\)</span>, it stays normalized at all later times. <strong>Probability is conserved.</strong> This is a non-negotiable requirement of quantum mechanics.</p>
+</div>
+</div>
+</section>
+<section id="the-composition-group-property" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="the-composition-group-property"><span class="header-section-number">2.3</span> The Composition (Group) Property</h2>
+<p>The time evolution operator satisfies a crucial <strong>composition law</strong>: evolving from <span class="math inline">\(t_1\)</span> to <span class="math inline">\(t_3\)</span> is the same as first evolving from <span class="math inline">\(t_1\)</span> to <span class="math inline">\(t_2\)</span>, then from <span class="math inline">\(t_2\)</span> to <span class="math inline">\(t_3\)</span>:</p>
+<p><span class="math display">\[
+\boxed{\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1)}
+\]</span></p>
+<p><strong>Proof.</strong> For a time-independent Hamiltonian, let <span class="math inline">\(T_{31} = t_3 - t_1\)</span>, <span class="math inline">\(T_{32} = t_3 - t_2\)</span>, and <span class="math inline">\(T_{21} = t_2 - t_1\)</span>. Clearly <span class="math inline">\(T_{31} = T_{32} + T_{21}\)</span>. Then:</p>
+<p><span class="math display">\[
+\hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1) = e^{-i\hat{H}T_{32}/\hbar}\,e^{-i\hat{H}T_{21}/\hbar} = e^{-i\hat{H}(T_{32} + T_{21})/\hbar} = e^{-i\hat{H}T_{31}/\hbar} = \hat{U}(t_3, t_1) \qquad \checkmark
+\]</span></p>
+<p>Again, combining the exponents is valid because both involve the same operator <span class="math inline">\(\hat{H}\)</span>. <span class="math inline">\(\blacksquare\)</span></p>
+<p>Together with <span class="math inline">\(\hat{U}(t, t) = \hat{I}\)</span> and <span class="math inline">\(\hat{U}^{-1}(t_b, t_a) = \hat{U}(t_a, t_b) = \hat{U}^\dagger(t_b, t_a)\)</span>, these properties tell us that the set of time evolution operators forms a <strong>one-parameter unitary group</strong> parametrized by the elapsed time <span class="math inline">\(T = t_b - t_a\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Additional properties of <span class="math inline">\(\hat{U}\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here is a summary of all the key properties of the time evolution operator:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Definition</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}(t_b, t_a) = e^{-i\hat{H}(t_b - t_a)/\hbar}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Unitarity</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}^\dagger \hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Composition</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Identity</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}(t, t) = \hat{I}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Inverse</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}^{-1}(t_b, t_a) = \hat{U}(t_a, t_b) = \hat{U}^\dagger(t_b, t_a)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Schrödinger eq.</strong></td>
+<td style="text-align: left;"><span class="math inline">\(i\hbar\,\partial_t\,\hat{U}(t, t_a) = \hat{H}\,\hat{U}(t, t_a)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Sakurai &amp; Napolitano, <em>Modern Quantum Mechanics</em>, Ch. 2.1; Shankar, Ch. 4.3.</p>
+</blockquote>
+</section>
+</section>
+<section id="the-propagator-kernel" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> The Propagator (Kernel)</h1>
+<section id="definition" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">3.1</span> Definition</h2>
+<p>Now we arrive at the star of our show. The <strong>propagator</strong> (also called the <strong>kernel</strong> or <strong>transition amplitude</strong>) is obtained by sandwiching the time evolution operator between position eigenstates:</p>
+<p><span class="math display">\[
+\boxed{K(x_b, t_b;\, x_a, t_a) \equiv \langle x_b|\,\hat{U}(t_b, t_a)\,|x_a\rangle = \langle x_b|\,e^{-i\hat{H}(t_b - t_a)/\hbar}\,|x_a\rangle}
+\]</span></p>
+<p>Let’s parse this carefully. The ket <span class="math inline">\(|x_a\rangle\)</span> represents a particle localized at position <span class="math inline">\(x_a\)</span>. The operator <span class="math inline">\(\hat{U}(t_b, t_a)\)</span> evolves this state forward in time by an amount <span class="math inline">\(T = t_b - t_a\)</span>. The bra <span class="math inline">\(\langle x_b|\)</span> then projects the result onto the position eigenstate at <span class="math inline">\(x_b\)</span>. The resulting complex number <span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span> is the <strong>amplitude</strong> for the particle to go from <span class="math inline">\((x_a, t_a)\)</span> to <span class="math inline">\((x_b, t_b)\)</span>.</p>
+<div class="callout-intuition">
+<p>Think of the propagator as the quantum mechanical “travel guide.” If you tell it where the particle starts (position <span class="math inline">\(x_a\)</span>, time <span class="math inline">\(t_a\)</span>) and where you’d like it to end up (position <span class="math inline">\(x_b\)</span>, time <span class="math inline">\(t_b\)</span>), it gives you a complex number whose magnitude squared tells you the probability of that journey. Unlike a classical travel guide, this one doesn’t give you <em>a</em> route — it implicitly accounts for <em>all possible</em> routes simultaneously.</p>
+</div>
+</section>
+<section id="notation-conventions" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="notation-conventions"><span class="header-section-number">3.2</span> Notation Conventions</h2>
+<p>Different textbooks use different notations. Here’s a quick translation table:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">This course</th>
+<th style="text-align: left;">Feynman &amp; Hibbs</th>
+<th style="text-align: left;">Shankar</th>
+<th style="text-align: left;">Sakurai</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(K(b, a)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(U(x_b, t_b; x_a, t_a)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\langle x_b, t_b | x_a, t_a\rangle\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Sakurai’s notation <span class="math inline">\(\langle x_b, t_b | x_a, t_a\rangle\)</span> is compact and suggestive — it literally reads as “the amplitude to go from <span class="math inline">\((x_a, t_a)\)</span> to <span class="math inline">\((x_b, t_b)\)</span>.” We’ll mostly stick with the explicit notation <span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span> since it keeps the arguments clear.</p>
+</section>
+<section id="initial-condition" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="initial-condition"><span class="header-section-number">3.3</span> Initial Condition</h2>
+<p>At equal times (<span class="math inline">\(t_b = t_a\)</span>), the time evolution operator is the identity <span class="math inline">\(\hat{U}(t_a, t_a) = \hat{I}\)</span>. Therefore:</p>
+<p><span class="math display">\[
+K(x_b, t_a;\, x_a, t_a) = \langle x_b|\hat{I}|x_a\rangle = \langle x_b|x_a\rangle = \delta(x_b - x_a)
+\]</span></p>
+<p>This makes perfect physical sense: at <span class="math inline">\(t = t_a\)</span>, the particle is definitely at <span class="math inline">\(x_a\)</span>, so the amplitude to find it at <span class="math inline">\(x_b\)</span> is nonzero only if <span class="math inline">\(x_b = x_a\)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why must the propagator satisfy a <strong>composition property</strong>? That is, why must we be able to write: <span class="math display">\[
+K(x_c, t_c;\, x_a, t_a) = \int dx_b\, K(x_c, t_c;\, x_b, t_b)\,K(x_b, t_b;\, x_a, t_a)?
+\]</span> What physical principle would be violated if this property failed?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The composition property follows from the <strong>completeness of position eigenstates</strong> — the fact that <span class="math inline">\(\int dx_b\,|x_b\rangle\langle x_b| = \hat{I}\)</span>. Physically, it means that inserting a “fictitious intermediate measurement” at time <span class="math inline">\(t_b\)</span> (and summing over all possible outcomes <span class="math inline">\(x_b\)</span>) shouldn’t change the total amplitude. If this property failed, it would mean that the resolution of the identity is violated, i.e., position eigenstates don’t form a complete basis. This would destroy the entire mathematical framework of quantum mechanics. It would also violate the composition law of the time evolution operator: <span class="math inline">\(\hat{U}(t_c, t_a) = \hat{U}(t_c, t_b)\hat{U}(t_b, t_a)\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="completeness-and-the-composition-property" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Completeness and the Composition Property</h1>
+<section id="derivation-of-the-composition-law" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="derivation-of-the-composition-law"><span class="header-section-number">4.1</span> Derivation of the Composition Law</h2>
+<p>The composition property of the propagator is one of the most important results in this entire course. It’s the mathematical seed from which the path integral will grow. Let’s derive it carefully.</p>
+<p>We want to compute <span class="math inline">\(K(x_c, t_c; x_a, t_a) = \langle x_c|\hat{U}(t_c, t_a)|x_a\rangle\)</span>. We know that <span class="math inline">\(\hat{U}\)</span> satisfies the composition law:</p>
+<p><span class="math display">\[
+\hat{U}(t_c, t_a) = \hat{U}(t_c, t_b)\,\hat{U}(t_b, t_a)
+\]</span></p>
+<p>for any intermediate time <span class="math inline">\(t_a &lt; t_b &lt; t_c\)</span>. Substituting:</p>
+<p><span class="math display">\[
+K(x_c, t_c;\, x_a, t_a) = \langle x_c|\,\hat{U}(t_c, t_b)\,\hat{U}(t_b, t_a)\,|x_a\rangle
+\]</span></p>
+<p>Now comes the key step. We insert a <strong>complete set of position eigenstates</strong> at time <span class="math inline">\(t_b\)</span> between the two evolution operators. The completeness relation (also called the resolution of the identity) states:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} dx_b\,|x_b\rangle\langle x_b| = \hat{I}
+\]</span></p>
+<p>Inserting this identity operator between <span class="math inline">\(\hat{U}(t_c, t_b)\)</span> and <span class="math inline">\(\hat{U}(t_b, t_a)\)</span>:</p>
+<p><span class="math display">\[
+K(x_c, t_c;\, x_a, t_a) = \langle x_c|\,\hat{U}(t_c, t_b)\,\left(\int dx_b\,|x_b\rangle\langle x_b|\right)\,\hat{U}(t_b, t_a)\,|x_a\rangle
+\]</span></p>
+<p>Since the integral is over a c-number variable <span class="math inline">\(x_b\)</span>, we can pull it outside the bra-ket structure:</p>
+<p><span class="math display">\[
+K(x_c, t_c;\, x_a, t_a) = \int dx_b\,\langle x_c|\hat{U}(t_c, t_b)|x_b\rangle\,\langle x_b|\hat{U}(t_b, t_a)|x_a\rangle
+\]</span></p>
+<p>But each of these matrix elements is just a propagator! We recognize:</p>
+<p><span class="math display">\[
+\boxed{K(x_c, t_c;\, x_a, t_a) = \int_{-\infty}^{\infty} dx_b\,K(x_c, t_c;\, x_b, t_b)\,K(x_b, t_b;\, x_a, t_a)}
+\]</span></p>
+<p>This is the <strong>composition property</strong> (or <strong>Chapman–Kolmogorov equation</strong> for the propagator). <span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="physical-interpretation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="physical-interpretation"><span class="header-section-number">4.2</span> Physical Interpretation</h2>
+<p>Let’s really unpack what this equation says. To find the amplitude for a particle to go from <span class="math inline">\((x_a, t_a)\)</span> to <span class="math inline">\((x_c, t_c)\)</span>, you can:</p>
+<ol type="1">
+<li><strong>Pick any intermediate time</strong> <span class="math inline">\(t_b\)</span> between <span class="math inline">\(t_a\)</span> and <span class="math inline">\(t_c\)</span>.</li>
+<li>For each possible intermediate position <span class="math inline">\(x_b\)</span>, compute the amplitude to go from <span class="math inline">\((x_a, t_a) \to (x_b, t_b)\)</span> and then from <span class="math inline">\((x_b, t_b) \to (x_c, t_c)\)</span>.</li>
+<li><strong>Multiply</strong> these two amplitudes (because they are sequential processes).</li>
+<li><strong>Sum (integrate)</strong> over all possible intermediate positions <span class="math inline">\(x_b\)</span>.</li>
+</ol>
+<div class="callout-intuition">
+<p>This is the quantum analog of a relay race. The particle “passes through” every possible intermediate position <span class="math inline">\(x_b\)</span> at time <span class="math inline">\(t_b\)</span>, and the total amplitude is the sum of contributions from all these intermediate points. <strong>No single intermediate position is preferred</strong> — the particle’s amplitude receives contributions from all of them. This is profoundly different from classical mechanics, where the particle passes through exactly one intermediate position.</p>
+</div>
+</section>
+<section id="the-seed-of-the-path-integral" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="the-seed-of-the-path-integral"><span class="header-section-number">4.3</span> The Seed of the Path Integral</h2>
+<p>Here is the crucial observation that will lead us to the path integral in Module 2: we can insert <strong>not just one</strong>, but <strong>many</strong> complete sets of states at intermediate times.</p>
+<p>For example, with two intermediate times <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span> (<span class="math inline">\(t_a &lt; t_1 &lt; t_2 &lt; t_b\)</span>):</p>
+<p><span class="math display">\[
+K(x_b, t_b;\, x_a, t_a) = \int dx_1 \int dx_2\,K(x_b, t_b;\, x_2, t_2)\,K(x_2, t_2;\, x_1, t_1)\,K(x_1, t_1;\, x_a, t_a)
+\]</span></p>
+<p>With <span class="math inline">\(N-1\)</span> intermediate times:</p>
+<p><span class="math display">\[
+K(x_b, t_b;\, x_a, t_a) = \int dx_1\,dx_2\,\cdots\,dx_{N-1}\;\prod_{j=0}^{N-1} K(x_{j+1}, t_{j+1};\, x_j, t_j)
+\]</span></p>
+<p>where <span class="math inline">\(x_0 = x_a\)</span>, <span class="math inline">\(x_N = x_b\)</span>, and we integrate over all intermediate positions <span class="math inline">\(x_1, x_2, \ldots, x_{N-1}\)</span>. In the limit <span class="math inline">\(N \to \infty\)</span>, the set of intermediate positions traces out a <strong>path</strong> <span class="math inline">\(x(t)\)</span> — and the integral becomes a <strong>sum over all paths</strong>. This is Feynman’s path integral, which we’ll develop fully in Module 2.</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Feynman &amp; Hibbs, Ch. 2.5; Shankar, Ch. 21.1.</p>
+</blockquote>
+</section>
+</section>
+<section id="connection-to-wavefunctions" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Connection to Wavefunctions</h1>
+<section id="propagating-the-wavefunction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="propagating-the-wavefunction"><span class="header-section-number">5.1</span> Propagating the Wavefunction</h2>
+<p>The propagator directly tells us how to evolve a wavefunction forward in time. Suppose we know the wavefunction <span class="math inline">\(\psi(x_a, t_a)\)</span> at time <span class="math inline">\(t_a\)</span>. Then the wavefunction at a later time <span class="math inline">\(t_b\)</span> is:</p>
+<p><span class="math display">\[
+\boxed{\psi(x_b, t_b) = \int_{-\infty}^{\infty} dx_a\,K(x_b, t_b;\, x_a, t_a)\,\psi(x_a, t_a)}
+\]</span></p>
+<p><strong>Derivation.</strong> Start with <span class="math inline">\(|\psi(t_b)\rangle = \hat{U}(t_b, t_a)|\psi(t_a)\rangle\)</span>. Project onto position eigenstates:</p>
+<p><span class="math display">\[
+\psi(x_b, t_b) = \langle x_b|\psi(t_b)\rangle = \langle x_b|\hat{U}(t_b, t_a)|\psi(t_a)\rangle
+\]</span></p>
+<p>Insert a complete set of position states <span class="math inline">\(\int dx_a\,|x_a\rangle\langle x_a| = \hat{I}\)</span>:</p>
+<p><span class="math display">\[
+\psi(x_b, t_b) = \int dx_a\,\langle x_b|\hat{U}(t_b, t_a)|x_a\rangle\,\langle x_a|\psi(t_a)\rangle = \int dx_a\,K(x_b, t_b;\, x_a, t_a)\,\psi(x_a, t_a) \quad \blacksquare
+\]</span></p>
+</section>
+<section id="what-this-equation-tells-us" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="what-this-equation-tells-us"><span class="header-section-number">5.2</span> What This Equation Tells Us</h2>
+<p>This is a beautiful and powerful result. It says: the propagator acts as an <strong>integral kernel</strong> (like a matrix element in a continuous basis) that takes the initial wavefunction and “propagates” it forward to give the final wavefunction.</p>
+<p>Think of <span class="math inline">\(K\)</span> as an operator in disguise. In discrete quantum mechanics (with a finite-dimensional Hilbert space), the time evolution operator <span class="math inline">\(\hat{U}\)</span> is a matrix, and the equation <span class="math inline">\(|\psi(t_b)\rangle = \hat{U}|\psi(t_a)\rangle\)</span> is matrix multiplication. In the continuous position basis, matrix multiplication becomes integration:</p>
+<p><span class="math display">\[
+\psi(x_b, t_b) = \sum_{x_a} U_{x_b x_a}\,\psi(x_a, t_a) \quad \longrightarrow \quad \psi(x_b, t_b) = \int dx_a\,K(x_b, t_b;\, x_a, t_a)\,\psi(x_a, t_a)
+\]</span></p>
+<p>The propagator <span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span> is simply the “matrix element” <span class="math inline">\(U_{x_b x_a}\)</span> in the position basis.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The propagator knows everything
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you know the propagator <span class="math inline">\(K\)</span>, you can evolve <strong>any</strong> initial wavefunction forward in time using the integral above. Different initial states <span class="math inline">\(\psi(x_a, t_a)\)</span> give different final states <span class="math inline">\(\psi(x_b, t_b)\)</span>, but the propagator <span class="math inline">\(K\)</span> is the same for all of them — it depends only on the Hamiltonian, not on the state. This is why <span class="math inline">\(K\)</span> contains all the dynamical information of the quantum system.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The propagator <span class="math inline">\(K\)</span> contains ALL information about the quantum system. Why is that true? What specific knowledge does <span class="math inline">\(K\)</span> give you access to?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Knowing the propagator <span class="math inline">\(K(x_b, t_b; x_a, t_a) = \langle x_b|e^{-i\hat{H}T/\hbar}|x_a\rangle\)</span> means knowing the matrix elements of the time evolution operator <span class="math inline">\(\hat{U}\)</span> in the position basis. Since position eigenstates form a <strong>complete basis</strong>, knowing all matrix elements of <span class="math inline">\(\hat{U}\)</span> in this basis is equivalent to knowing <span class="math inline">\(\hat{U}\)</span> itself. And knowing <span class="math inline">\(\hat{U}\)</span> means knowing <span class="math inline">\(\hat{H}\)</span> (take the time derivative at <span class="math inline">\(T = 0\)</span>), which determines the complete time evolution of <strong>any</strong> state. Concretely, from <span class="math inline">\(K\)</span> you can:</p>
+<ul>
+<li>Evolve any wavefunction: <span class="math inline">\(\psi(x_b, t_b) = \int dx_a\, K \, \psi(x_a, t_a)\)</span></li>
+<li>Extract energy eigenvalues from the spectral representation (see Section 7)</li>
+<li>Compute transition probabilities: <span class="math inline">\(P = |K|^2\)</span></li>
+<li>Obtain Green’s functions and response functions</li>
+</ul>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, Ch. 5.1; Sakurai, Ch. 2.6.</p>
+</blockquote>
+</section>
+</section>
+<section id="propagator-as-a-greens-function" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Propagator as a Green’s Function</h1>
+<section id="the-differential-equation-for-k" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-differential-equation-for-k"><span class="header-section-number">6.1</span> The Differential Equation for K</h2>
+<p>The propagator <span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span> satisfies a differential equation that reveals its role as a <strong>Green’s function</strong> of the Schrödinger equation. Let us derive this.</p>
+<p>We know that the time evolution operator satisfies:</p>
+<p><span class="math display">\[
+i\hbar\frac{\partial}{\partial t_b}\hat{U}(t_b, t_a) = \hat{H}\,\hat{U}(t_b, t_a)
+\]</span></p>
+<p>Take the matrix element <span class="math inline">\(\langle x_b|(\cdots)|x_a\rangle\)</span> of both sides:</p>
+<p><span class="math display">\[
+i\hbar\frac{\partial}{\partial t_b}\langle x_b|\hat{U}(t_b, t_a)|x_a\rangle = \langle x_b|\hat{H}\,\hat{U}(t_b, t_a)|x_a\rangle
+\]</span></p>
+<p>The left side is just <span class="math inline">\(i\hbar\,\partial K/\partial t_b\)</span>. On the right side, <span class="math inline">\(\hat{H}\)</span> acts on <span class="math inline">\(\langle x_b|\)</span>. For a Hamiltonian of the standard form <span class="math inline">\(\hat{H} = \hat{p}^2/2m + V(\hat{x})\)</span>, we have:</p>
+<p><span class="math display">\[
+\langle x_b|\hat{H} = \left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2} + V(x_b)\right)\langle x_b|
+\]</span></p>
+<p>Therefore, the propagator satisfies the <strong>Schrödinger equation</strong> as a function of the final coordinates <span class="math inline">\((x_b, t_b)\)</span>:</p>
+<p><span class="math display">\[
+\boxed{i\hbar\frac{\partial}{\partial t_b}K(x_b, t_b;\, x_a, t_a) = \hat{H}_{x_b}\,K(x_b, t_b;\, x_a, t_a)}
+\]</span></p>
+<p>where <span class="math inline">\(\hat{H}_{x_b} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2} + V(x_b)\)</span> acts on the <span class="math inline">\(x_b\)</span> variable.</p>
+</section>
+<section id="the-initial-condition-and-greens-function-interpretation" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="the-initial-condition-and-greens-function-interpretation"><span class="header-section-number">6.2</span> The Initial Condition and Green’s Function Interpretation</h2>
+<p>Combined with the initial condition <span class="math inline">\(K(x_b, t_a; x_a, t_a) = \delta(x_b - x_a)\)</span>, we see that the propagator is the <strong>Green’s function</strong> of the time-dependent Schrödinger equation. More precisely:</p>
+<p><span class="math display">\[
+\left(i\hbar\frac{\partial}{\partial t} - \hat{H}_x\right)K(x, t;\, x', t') = i\hbar\,\delta(x - x')\,\delta(t - t')
+\]</span></p>
+<p>where we impose <span class="math inline">\(K = 0\)</span> for <span class="math inline">\(t &lt; t'\)</span> (the <strong>retarded</strong> Green’s function, reflecting causality — no propagation backward in time).</p>
+<div class="callout-intuition">
+<p>Why does the propagator play the role of a Green’s function? Remember from classical electromagnetism: the Green’s function <span class="math inline">\(G(\mathbf{r}, \mathbf{r}')\)</span> of Poisson’s equation gives the potential at <span class="math inline">\(\mathbf{r}\)</span> due to a point charge at <span class="math inline">\(\mathbf{r}'\)</span>. The full potential for an arbitrary charge distribution is obtained by integrating <span class="math inline">\(G\)</span> against the charge density. Similarly, the propagator <span class="math inline">\(K\)</span> is the “response” to a delta-function initial condition — a particle perfectly localized at <span class="math inline">\(x'\)</span> at time <span class="math inline">\(t'\)</span>. The general solution for any initial wavefunction is obtained by integrating <span class="math inline">\(K\)</span> against <span class="math inline">\(\psi(x', t')\)</span>.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Causality and the retarded propagator
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The condition <span class="math inline">\(K(x_b, t_b; x_a, t_a) = 0\)</span> for <span class="math inline">\(t_b &lt; t_a\)</span> is the statement that effects cannot precede causes. In practice, we often write:</p>
+<p><span class="math display">\[
+G^+(x_b, t_b;\, x_a, t_a) = -\frac{i}{\hbar}\,\theta(t_b - t_a)\,K(x_b, t_b;\, x_a, t_a)
+\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> is the Heaviside step function. The factor of <span class="math inline">\(-i/\hbar\)</span> is a convention chosen so that <span class="math inline">\(G^+\)</span> satisfies the inhomogeneous equation with a simple <span class="math inline">\(\delta\)</span>-function source.</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Sakurai, Ch. 2.6; Shankar, Ch. 5.4.</p>
+</blockquote>
+</section>
+</section>
+<section id="spectral-representation-of-the-propagator" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Spectral Representation of the Propagator</h1>
+<section id="derivation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="derivation"><span class="header-section-number">7.1</span> Derivation</h2>
+<p>One of the most useful ways to express the propagator is through the <strong>spectral representation</strong> — an expansion in energy eigenstates. This connects the propagator directly to the energy spectrum of the system.</p>
+<p>Let <span class="math inline">\(\{|n\rangle\}\)</span> be the complete set of energy eigenstates with <span class="math inline">\(\hat{H}|n\rangle = E_n|n\rangle\)</span>. Completeness says:</p>
+<p><span class="math display">\[
+\sum_n |n\rangle\langle n| = \hat{I}
+\]</span></p>
+<p>(For continuous spectra, the sum becomes an integral, but the logic is the same.)</p>
+<p>Insert this into the definition of the propagator:</p>
+<p><span class="math display">\[
+K(x_b, t_b;\, x_a, t_a) = \langle x_b|\,e^{-i\hat{H}T/\hbar}\,|x_a\rangle
+\]</span></p>
+<p>where <span class="math inline">\(T = t_b - t_a\)</span>. Inserting the resolution of identity:</p>
+<p><span class="math display">\[
+K = \langle x_b|\,e^{-i\hat{H}T/\hbar}\,\left(\sum_n |n\rangle\langle n|\right)\,|x_a\rangle = \sum_n \langle x_b|\,e^{-i\hat{H}T/\hbar}\,|n\rangle\,\langle n|x_a\rangle
+\]</span></p>
+<p>Since <span class="math inline">\(|n\rangle\)</span> is an eigenstate of <span class="math inline">\(\hat{H}\)</span> with eigenvalue <span class="math inline">\(E_n\)</span>:</p>
+<p><span class="math display">\[
+e^{-i\hat{H}T/\hbar}|n\rangle = e^{-iE_n T/\hbar}|n\rangle
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+K = \sum_n \langle x_b|n\rangle\,e^{-iE_n T/\hbar}\,\langle n|x_a\rangle
+\]</span></p>
+<p>Writing <span class="math inline">\(\langle x_b|n\rangle = \psi_n(x_b)\)</span> and <span class="math inline">\(\langle n|x_a\rangle = \psi_n^*(x_a)\)</span>, we obtain the <strong>spectral representation</strong>:</p>
+<p><span class="math display">\[
+\boxed{K(x_b, t_b;\, x_a, t_a) = \sum_n \psi_n(x_b)\,\psi_n^*(x_a)\,e^{-iE_n(t_b - t_a)/\hbar}}
+\]</span></p>
+</section>
+<section id="physical-content" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="physical-content"><span class="header-section-number">7.2</span> Physical Content</h2>
+<p>This formula is remarkably informative. Let’s unpack it:</p>
+<ul>
+<li>Each term in the sum corresponds to one energy eigenstate <span class="math inline">\(|n\rangle\)</span>.</li>
+<li>The factor <span class="math inline">\(\psi_n(x_b)\,\psi_n^*(x_a)\)</span> describes the spatial overlap: the particle is “created” at <span class="math inline">\(x_a\)</span> with amplitude <span class="math inline">\(\psi_n^*(x_a)\)</span> and “detected” at <span class="math inline">\(x_b\)</span> with amplitude <span class="math inline">\(\psi_n(x_b)\)</span>.</li>
+<li>The phase factor <span class="math inline">\(e^{-iE_n T/\hbar}\)</span> provides the time evolution — each energy eigenstate oscillates at its own frequency <span class="math inline">\(\omega_n = E_n/\hbar\)</span>.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extracting energy eigenvalues from the propagator
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you know the propagator <span class="math inline">\(K\)</span>, you can extract the energy spectrum by examining how <span class="math inline">\(K\)</span> oscillates in time. Each frequency component corresponds to an energy eigenvalue <span class="math inline">\(E_n\)</span>. This will become especially powerful in the Euclidean (imaginary time) formulation (Module 10), where the oscillating phases become decaying exponentials, and the ground state energy can be extracted by taking the <span class="math inline">\(T \to \infty\)</span> limit.</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, Ch. 5.2; Sakurai, Ch. 2.6.</p>
+</blockquote>
+</section>
+</section>
+<section id="worked-example-1-the-free-particle-propagator" class="level1 unnumbered">
+<h1 class="unnumbered">Worked Example 1: The Free Particle Propagator</h1>
+<p>Let’s compute the propagator for the simplest possible system: a <strong>free particle</strong> in one dimension, with Hamiltonian <span class="math inline">\(\hat{H} = \hat{p}^2/2m\)</span>.</p>
+<section id="strategy-use-the-spectralplane-wave-method" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="strategy-use-the-spectralplane-wave-method">Strategy: Use the Spectral/Plane-Wave Method</h2>
+<p>For a free particle, the energy eigenstates are <strong>plane waves</strong>. The momentum eigenstates <span class="math inline">\(|p\rangle\)</span> satisfy <span class="math inline">\(\hat{H}|p\rangle = \frac{p^2}{2m}|p\rangle\)</span>, and the position-space wavefunctions are:</p>
+<p><span class="math display">\[
+\langle x|p\rangle = \frac{1}{\sqrt{2\pi\hbar}}\,e^{ipx/\hbar}
+\]</span></p>
+<p>The spectrum is continuous, so the spectral sum becomes an integral over momenta:</p>
+<p><span class="math display">\[
+K_0(x_b, t_b;\, x_a, t_a) = \int_{-\infty}^{\infty}\frac{dp}{2\pi\hbar}\,e^{ip x_b/\hbar}\,e^{-ip^2 T/2m\hbar}\,e^{-ip x_a/\hbar}
+\]</span></p>
+<p>where <span class="math inline">\(T = t_b - t_a\)</span>. Combining the exponentials:</p>
+<p><span class="math display">\[
+K_0 = \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty} dp\;\exp\left[\frac{i}{\hbar}\left(p(x_b - x_a) - \frac{p^2 T}{2m}\right)\right]
+\]</span></p>
+</section>
+<section id="evaluating-the-gaussian-integral" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="evaluating-the-gaussian-integral">Evaluating the Gaussian Integral</h2>
+<p>Let <span class="math inline">\(\Delta x = x_b - x_a\)</span>. The exponent is:</p>
+<p><span class="math display">\[
+\frac{i}{\hbar}\left(p\,\Delta x - \frac{p^2 T}{2m}\right) = -\frac{iT}{2m\hbar}\left(p^2 - \frac{2m\,\Delta x}{T}\,p\right)
+\]</span></p>
+<p>Complete the square in <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[
+p^2 - \frac{2m\,\Delta x}{T}\,p = \left(p - \frac{m\,\Delta x}{T}\right)^2 - \frac{m^2\,\Delta x^2}{T^2}
+\]</span></p>
+<p>Substituting back:</p>
+<p><span class="math display">\[
+K_0 = \frac{1}{2\pi\hbar}\exp\left[\frac{i}{\hbar}\cdot\frac{m\,\Delta x^2}{2T}\right]\int_{-\infty}^{\infty}dp\;\exp\left[-\frac{iT}{2m\hbar}\left(p - \frac{m\,\Delta x}{T}\right)^2\right]
+\]</span></p>
+<p>The remaining integral is a Gaussian. Let <span class="math inline">\(q = p - m\Delta x/T\)</span>:</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}dq\;\exp\left[-\frac{iT}{2m\hbar}\,q^2\right] = \sqrt{\frac{2\pi m\hbar}{iT}} = \sqrt{\frac{2\pi m\hbar}{iT}}
+\]</span></p>
+<p>Here we used the Gaussian integral formula <span class="math inline">\(\int_{-\infty}^{\infty}dq\,e^{-\alpha q^2} = \sqrt{\pi/\alpha}\)</span> with <span class="math inline">\(\alpha = iT/(2m\hbar)\)</span>. (The convergence is ensured by giving <span class="math inline">\(T\)</span> a small positive imaginary part — a prescription we’ll understand deeply when we study Wick rotation in Module 9.)</p>
+</section>
+<section id="the-result" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-result">The Result</h2>
+<p>Putting everything together:</p>
+<p><span class="math display">\[
+\boxed{K_0(x_b, t_b;\, x_a, t_a) = \sqrt{\frac{m}{2\pi i\hbar T}}\;\exp\left[\frac{im(x_b - x_a)^2}{2\hbar T}\right]}
+\]</span></p>
+<p>where <span class="math inline">\(T = t_b - t_a &gt; 0\)</span>.</p>
+</section>
+<section id="checking-the-result" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="checking-the-result">Checking the Result</h2>
+<p>Let’s verify that this makes physical sense:</p>
+<ol type="1">
+<li><p><strong>Initial condition</strong>: As <span class="math inline">\(T \to 0^+\)</span>, the prefactor <span class="math inline">\(\sqrt{m/(2\pi i\hbar T)}\)</span> diverges and the exponential oscillates infinitely rapidly except at <span class="math inline">\(x_b = x_a\)</span>. This combination gives <span class="math inline">\(K_0 \to \delta(x_b - x_a)\)</span>, as required. ✓</p></li>
+<li><p><strong>Dimensions</strong>: <span class="math inline">\(m/(\hbar T)\)</span> has dimensions of <span class="math inline">\(1/\text{length}^2\)</span>, so the exponent is dimensionless. The prefactor has dimensions of <span class="math inline">\(1/\text{length}\)</span>, which is correct for <span class="math inline">\(K\)</span> (since <span class="math inline">\(\int dx_b\,|K|^2\)</span> should be dimensionless). ✓</p></li>
+<li><p><strong>Classical phase</strong>: The exponent <span class="math inline">\(im\Delta x^2/(2\hbar T)\)</span> can be rewritten as <span class="math inline">\(iS_{\text{cl}}/\hbar\)</span>, where <span class="math inline">\(S_{\text{cl}} = m\Delta x^2/(2T)\)</span> is the classical action for a free particle traveling from <span class="math inline">\(x_a\)</span> to <span class="math inline">\(x_b\)</span> in time <span class="math inline">\(T\)</span>. (The classical free particle moves at constant velocity <span class="math inline">\(v = \Delta x/T\)</span>, and <span class="math inline">\(S = \int_0^T \frac{1}{2}mv^2\,dt = \frac{1}{2}m v^2 T = m\Delta x^2/(2T)\)</span>.) This connection to the classical action is the first hint of the deep relationship we’ll explore in Module 8. ✓</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The classical action makes an appearance!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that the free particle propagator has the form <span class="math inline">\(K \propto e^{iS_{\text{cl}}/\hbar}\)</span>, where <span class="math inline">\(S_{\text{cl}}\)</span> is the classical action. This is <strong>not</strong> a coincidence — it’s the beginning of the connection between quantum amplitudes and classical mechanics that forms the backbone of the path integral formulation.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="worked-example-2-verifying-the-composition-property" class="level1 unnumbered">
+<h1 class="unnumbered">Worked Example 2: Verifying the Composition Property</h1>
+<p>Let’s explicitly verify that the free particle propagator satisfies the composition property. We need to check:</p>
+<p><span class="math display">\[
+K_0(x_c, t_c;\, x_a, t_a) = \int_{-\infty}^{\infty}dx_b\;K_0(x_c, t_c;\, x_b, t_b)\;K_0(x_b, t_b;\, x_a, t_a)
+\]</span></p>
+<section id="setting-up-the-integral" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="setting-up-the-integral">Setting Up the Integral</h2>
+<p>Let <span class="math inline">\(T_1 = t_b - t_a\)</span> and <span class="math inline">\(T_2 = t_c - t_b\)</span>, so <span class="math inline">\(T = t_c - t_a = T_1 + T_2\)</span>. The right-hand side is:</p>
+<p><span class="math display">\[
+\text{RHS} = \int dx_b\;\sqrt{\frac{m}{2\pi i\hbar T_2}}\exp\left[\frac{im(x_c - x_b)^2}{2\hbar T_2}\right]\;\sqrt{\frac{m}{2\pi i\hbar T_1}}\exp\left[\frac{im(x_b - x_a)^2}{2\hbar T_1}\right]
+\]</span></p>
+<p>Pull out the prefactors:</p>
+<p><span class="math display">\[
+\text{RHS} = \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\int dx_b\;\exp\left[\frac{im}{2\hbar}\left(\frac{(x_c - x_b)^2}{T_2} + \frac{(x_b - x_a)^2}{T_1}\right)\right]
+\]</span></p>
+</section>
+<section id="evaluating-the-gaussian" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="evaluating-the-gaussian">Evaluating the Gaussian</h2>
+<p>The exponent is quadratic in <span class="math inline">\(x_b\)</span>. Let’s expand and collect terms. Define <span class="math inline">\(f(x_b)\)</span> as the content of the exponential (without <span class="math inline">\(im/2\hbar\)</span>):</p>
+<p><span class="math display">\[
+f(x_b) = \frac{x_c^2 - 2x_c x_b + x_b^2}{T_2} + \frac{x_b^2 - 2x_a x_b + x_a^2}{T_1}
+\]</span></p>
+<p>Collecting powers of <span class="math inline">\(x_b\)</span>:</p>
+<p><span class="math display">\[
+f(x_b) = \underbrace{\left(\frac{1}{T_1} + \frac{1}{T_2}\right)}_{= T/(T_1 T_2)}x_b^2 - 2\left(\frac{x_a}{T_1} + \frac{x_c}{T_2}\right)x_b + \frac{x_a^2}{T_1} + \frac{x_c^2}{T_2}
+\]</span></p>
+<p>This is a quadratic <span class="math inline">\(Ax_b^2 - 2Bx_b + C\)</span> with:</p>
+<p><span class="math display">\[
+A = \frac{T}{T_1 T_2}, \qquad B = \frac{x_a}{T_1} + \frac{x_c}{T_2}, \qquad C = \frac{x_a^2}{T_1} + \frac{x_c^2}{T_2}
+\]</span></p>
+<p>Completing the square: <span class="math inline">\(Ax_b^2 - 2Bx_b + C = A(x_b - B/A)^2 + C - B^2/A\)</span>.</p>
+<p>The Gaussian integral gives:</p>
+<p><span class="math display">\[
+\int dx_b\;\exp\left[\frac{im}{2\hbar}\left(A x_b^2 - 2Bx_b + C\right)\right] = \sqrt{\frac{2\pi\hbar}{imA}}\;\exp\left[\frac{im}{2\hbar}\left(C - \frac{B^2}{A}\right)\right]
+\]</span></p>
+</section>
+<section id="computing-the-leftover-exponent" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="computing-the-leftover-exponent">Computing the Leftover Exponent</h2>
+<p>We need <span class="math inline">\(C - B^2/A\)</span>:</p>
+<p><span class="math display">\[
+C - \frac{B^2}{A} = \frac{x_a^2}{T_1} + \frac{x_c^2}{T_2} - \frac{T_1 T_2}{T}\left(\frac{x_a}{T_1} + \frac{x_c}{T_2}\right)^2
+\]</span></p>
+<p>Expanding the square:</p>
+<p><span class="math display">\[
+\left(\frac{x_a}{T_1} + \frac{x_c}{T_2}\right)^2 = \frac{x_a^2}{T_1^2} + \frac{2x_a x_c}{T_1 T_2} + \frac{x_c^2}{T_2^2}
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+\frac{T_1 T_2}{T}\left(\frac{x_a^2}{T_1^2} + \frac{2x_a x_c}{T_1 T_2} + \frac{x_c^2}{T_2^2}\right) = \frac{x_a^2 T_2}{T T_1} + \frac{2 x_a x_c}{T} + \frac{x_c^2 T_1}{T T_2}
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+C - \frac{B^2}{A} = x_a^2\left(\frac{1}{T_1} - \frac{T_2}{T T_1}\right) + x_c^2\left(\frac{1}{T_2} - \frac{T_1}{T T_2}\right) - \frac{2x_a x_c}{T}
+\]</span></p>
+<p>For the <span class="math inline">\(x_a^2\)</span> coefficient: <span class="math inline">\(\frac{1}{T_1} - \frac{T_2}{TT_1} = \frac{T - T_2}{TT_1} = \frac{T_1}{TT_1} = \frac{1}{T}\)</span>. Similarly, the <span class="math inline">\(x_c^2\)</span> coefficient is <span class="math inline">\(1/T\)</span>.</p>
+<p>So:</p>
+<p><span class="math display">\[
+C - \frac{B^2}{A} = \frac{x_a^2 + x_c^2 - 2x_a x_c}{T} = \frac{(x_c - x_a)^2}{T}
+\]</span></p>
+</section>
+<section id="assembling-the-result" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="assembling-the-result">Assembling the Result</h2>
+<p>The full RHS becomes:</p>
+<p><span class="math display">\[
+\text{RHS} = \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\;\sqrt{\frac{2\pi\hbar}{im \cdot T/(T_1 T_2)}}\;\exp\left[\frac{im(x_c - x_a)^2}{2\hbar T}\right]
+\]</span></p>
+<p>Simplifying the prefactor:</p>
+<p><span class="math display">\[
+\frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\;\sqrt{\frac{2\pi\hbar T_1 T_2}{imT}} = \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\;\frac{\sqrt{T_1 T_2}}{\sqrt{T}}\;\sqrt{\frac{2\pi\hbar}{im}} = \frac{m}{2\pi i\hbar}\;\frac{1}{\sqrt{T}}\;\sqrt{\frac{2\pi\hbar}{im}}
+\]</span></p>
+<p><span class="math display">\[
+= \frac{1}{\sqrt{T}}\;\frac{m}{2\pi i\hbar}\;\sqrt{\frac{2\pi\hbar}{im}} = \frac{1}{\sqrt{T}}\;\sqrt{\frac{m^2}{(2\pi i\hbar)^2}\;\frac{2\pi\hbar}{im}} = \frac{1}{\sqrt{T}}\;\sqrt{\frac{m}{2\pi i\hbar}} = \sqrt{\frac{m}{2\pi i\hbar T}}
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\text{RHS} = \sqrt{\frac{m}{2\pi i\hbar T}}\;\exp\left[\frac{im(x_c - x_a)^2}{2\hbar T}\right] = K_0(x_c, t_c;\, x_a, t_a) = \text{LHS} \qquad \checkmark
+\]</span></p>
+<p>The composition property is verified! The key mathematical mechanism was that the Gaussian integral over the intermediate position <span class="math inline">\(x_b\)</span> “telescoped” the two short-time propagators into a single long-time propagator. This will happen again and again in the path integral formulation. <span class="math inline">\(\blacksquare\)</span></p>
+</section>
+</section>
+<section id="summary-of-key-formulas" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Summary of Key Formulas</h1>
+<p>Here is a complete reference table for everything we derived in this module:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Time evolution operator</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}(t_b, t_a) = e^{-i\hat{H}(t_b - t_a)/\hbar}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Unitarity</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}^\dagger\hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Composition law</strong> (<span class="math inline">\(\hat{U}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Propagator definition</strong></td>
+<td style="text-align: left;"><span class="math inline">\(K(x_b, t_b;\, x_a, t_a) = \langle x_b|e^{-i\hat{H}T/\hbar}|x_a\rangle\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Initial condition</strong></td>
+<td style="text-align: left;"><span class="math inline">\(K(x_b, t_a;\, x_a, t_a) = \delta(x_b - x_a)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Composition law</strong> (<span class="math inline">\(K\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(K(x_c, t_c;\, x_a, t_a) = \int dx_b\, K(x_c, t_c;\, x_b, t_b)\, K(x_b, t_b;\, x_a, t_a)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Wavefunction evolution</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\psi(x_b, t_b) = \int dx_a\, K(x_b, t_b;\, x_a, t_a)\, \psi(x_a, t_a)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Schrödinger equation for</strong> <span class="math inline">\(K\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\hbar\,\partial_{t_b} K = \hat{H}_{x_b}\, K\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Spectral representation</strong></td>
+<td style="text-align: left;"><span class="math inline">\(K = \sum_n \psi_n(x_b)\,\psi_n^*(x_a)\,e^{-iE_n T/\hbar}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Free particle propagator</strong></td>
+<td style="text-align: left;"><span class="math inline">\(K_0 = \sqrt{\dfrac{m}{2\pi i\hbar T}}\;\exp\!\left[\dfrac{im(x_b - x_a)^2}{2\hbar T}\right]\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="self-check" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Self-Check</h1>
+<div class="checkpoint">
+<p>Before moving on to Module 2, make sure you can answer these questions:</p>
+<ol type="1">
+<li><p><strong>Define the propagator</strong> in words and in symbols. What are its arguments, and what does it physically represent?</p></li>
+<li><p><strong>Derive the composition property</strong> of the propagator starting from <span class="math inline">\(\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\hat{U}(t_2, t_1)\)</span> and the completeness relation. Do this without looking at your notes.</p></li>
+<li><p><strong>Write down the spectral representation</strong> of the propagator in terms of energy eigenstates. How would you use it to extract the ground state energy?</p></li>
+<li><p><strong>Reproduce the free particle propagator</strong> from scratch, starting from the plane-wave expansion. Make sure you can do the Gaussian integral.</p></li>
+</ol>
+</div>
+</section>
+<section id="practice-problems" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Practice Problems</h1>
+<p><strong>Problem 1</strong> (Warm-up) ⭐</p>
+<p>Show that the free particle propagator <span class="math inline">\(K_0 = \sqrt{m/(2\pi i\hbar T)}\exp[im\Delta x^2/(2\hbar T)]\)</span> satisfies the initial condition:</p>
+<p><span class="math display">\[
+\lim_{T \to 0^+} K_0(x_b, t_b;\, x_a, t_a) = \delta(x_b - x_a)
+\]</span></p>
+<p><em>Hint</em>: Use the nascent delta function representation <span class="math inline">\(\delta(x) = \lim_{\epsilon \to 0^+}\frac{1}{\sqrt{2\pi\epsilon}}e^{-x^2/(2\epsilon)}\)</span>, and identify <span class="math inline">\(\epsilon\)</span> with an appropriate combination of parameters. Be careful with the factor of <span class="math inline">\(i\)</span>!</p>
+<hr>
+<p><strong>Problem 2</strong> (Standard) ⭐⭐</p>
+<p>Verify that the free particle propagator satisfies the free-particle Schrödinger equation:</p>
+<p><span class="math display">\[
+i\hbar\frac{\partial K_0}{\partial t_b} = -\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x_b^2}
+\]</span></p>
+<p>by explicitly computing both sides and showing they are equal.</p>
+<hr>
+<p><strong>Problem 3</strong> (Standard) ⭐⭐</p>
+<p>A particle in one dimension is initially described by a Gaussian wave packet:</p>
+<p><span class="math display">\[
+\psi(x, 0) = \left(\frac{1}{2\pi\sigma^2}\right)^{1/4}\exp\left(-\frac{x^2}{4\sigma^2}\right)
+\]</span></p>
+<p>Using the free particle propagator, compute <span class="math inline">\(\psi(x, t)\)</span> at a later time <span class="math inline">\(t\)</span>. Show that the wave packet remains Gaussian but its width grows as:</p>
+<p><span class="math display">\[
+\sigma(t) = \sigma\sqrt{1 + \frac{\hbar^2 t^2}{4m^2\sigma^4}}
+\]</span></p>
+<p><em>Hint</em>: Use <span class="math inline">\(\psi(x, t) = \int dx'\, K_0(x, t; x', 0)\,\psi(x', 0)\)</span> and evaluate the Gaussian integral in <span class="math inline">\(x'\)</span>.</p>
+<hr>
+<p><strong>Problem 4</strong> (Intermediate) ⭐⭐⭐</p>
+<p><strong>(a)</strong> Write down the spectral representation of the propagator for the infinite square well (particle in a box of width <span class="math inline">\(L\)</span>), using the known energy eigenstates <span class="math inline">\(\psi_n(x) = \sqrt{2/L}\sin(n\pi x/L)\)</span> and energies <span class="math inline">\(E_n = n^2\pi^2\hbar^2/(2mL^2)\)</span>.</p>
+<p><strong>(b)</strong> Verify that your expression satisfies <span class="math inline">\(K(x_b, 0; x_a, 0) = \delta(x_b - x_a)\)</span> by using the completeness relation for the eigenstates.</p>
+<p><strong>(c)</strong> What happens to <span class="math inline">\(K\)</span> in the limit <span class="math inline">\(T \to \infty\)</span>? Can you interpret this physically?</p>
+<hr>
+<p><strong>Problem 5</strong> (Advanced) ⭐⭐⭐⭐</p>
+<p>The <strong>free particle propagator in <span class="math inline">\(d\)</span> spatial dimensions</strong> generalizes to:</p>
+<p><span class="math display">\[
+K_0^{(d)}(\mathbf{x}_b, t_b;\, \mathbf{x}_a, t_a) = \left(\frac{m}{2\pi i\hbar T}\right)^{d/2}\exp\left[\frac{im|\mathbf{x}_b - \mathbf{x}_a|^2}{2\hbar T}\right]
+\]</span></p>
+<p><strong>(a)</strong> Derive this from the <span class="math inline">\(d\)</span>-dimensional momentum integral.</p>
+<p><strong>(b)</strong> Verify the composition property in <span class="math inline">\(d\)</span> dimensions.</p>
+<p><strong>(c)</strong> Show that in <span class="math inline">\(d = 3\)</span>, the propagator can be written as a function of <span class="math inline">\(r = |\mathbf{x}_b - \mathbf{x}_a|\)</span> only (i.e., it is spherically symmetric). Explain why this must be the case on physical grounds.</p>
+<hr>
+<p><strong>Problem 6</strong> (Challenge) ⭐⭐⭐⭐⭐</p>
+<p><strong>(a)</strong> Starting from the spectral representation of the propagator, derive the <strong>trace formula</strong>:</p>
+<p><span class="math display">\[
+\text{Tr}[\hat{U}(T)] \equiv \int dx\, K(x, T;\, x, 0) = \sum_n e^{-iE_n T/\hbar}
+\]</span></p>
+<p><strong>(b)</strong> Evaluate this trace for the free particle. You will find a divergent result — explain why this divergence is expected physically.</p>
+<p><strong>(c)</strong> For the harmonic oscillator, use the known energy spectrum <span class="math inline">\(E_n = (n + 1/2)\hbar\omega\)</span> to compute <span class="math inline">\(\text{Tr}[\hat{U}(T)]\)</span> and show it equals:</p>
+<p><span class="math display">\[
+\text{Tr}[\hat{U}(T)] = \frac{1}{2i\sin(\omega T/2)}
+\]</span></p>
+<p><em>Hint</em>: Sum the geometric series. This result will be important in Module 5.</p>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/Path_Integrals/index.html" class="btn btn-outline-secondary">← Back to Course</a> <a href="../../Courses/Path_Integrals/02_sum_over_paths.html" class="btn btn-success">Next: Module 2 — The Sum-Over-Paths Idea →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

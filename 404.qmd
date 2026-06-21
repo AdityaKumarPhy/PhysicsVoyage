@@ -114,7 +114,7 @@ toc: false
         Oops! It seems you've crossed an event horizon into uncharted space. The page you are looking for does not correspond to any valid quantum state in our website's universe.
       </p>
 
-      <a href="https://adityakumarphy.github.io/PhysicsVoyage.github.io/" class="btn-sketchy">
+      <a href="https://physicsvoyage-github-io.pages.dev/" class="btn-sketchy">
         Initiate Warp Drive (Return to Home )→
       </a>
     </div>

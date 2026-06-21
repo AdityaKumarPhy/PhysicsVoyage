@@ -6,6 +6,7 @@ listing:
     contents:
       - Courses/Comp_Physics/index.qmd
       - Courses/QHO/index.qmd
+      - Courses/Path_Integrals/index.qmd
     sort: "date desc"
     type: default
     categories: true
@@ -16,6 +17,7 @@ listing:
     contents:
       - Courses/Comp_Physics/index.qmd
       - Courses/QHO/index.qmd
+      - Courses/Path_Integrals/index.qmd
     sort: "date desc"
     type: grid
     categories: true

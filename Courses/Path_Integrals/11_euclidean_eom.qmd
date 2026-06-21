@@ -1,0 +1,310 @@
+---
+title: "Module 11: Euclidean Equations of Motion & Instantons"
+subtitle: "Tunneling as Classical Motion in Imaginary Time"
+description: "Exploring the inverted potential, instantons, the dilute instanton gas, and quantum tunneling via Euclidean path integrals."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 12 →](12_statistical_mechanics.qmd)
+
+# Introduction
+
+In classical mechanics, a particle cannot cross a potential barrier if its energy is less than the barrier height. In quantum mechanics, the particle can **tunnel** through. However, if we try to calculate this tunneling amplitude using the standard Minkowski (real-time) path integral, we run into a severe mathematical roadblock: the paths that cross the barrier are classically forbidden, meaning they do not correspond to stationary points of the real-time action $S_M$. As a result, the weight $e^{iS_M/\hbar}$ oscillates wildly, making the path integral desperately hard to evaluate.
+
+But a remarkable mathematical transformation solves this problem: **Wick rotation**. By shifting to imaginary time ($\tau = it$), the oscillatory phase becomes a real exponential suppression, $e^{-S_E/\hbar}$. More profoundly, what was a forbidden quantum process in real time becomes a perfectly ordinary *classical* process in imaginary time! Let's uncover how this works.
+
+---
+
+# The Euclidean Equation of Motion
+
+Let's begin by recalling the Euclidean action $S_E$ we derived in the last module. By defining Euclidean time $\tau = it$, the path integral amplitude changes from $\int \mathcal{D}x \, e^{iS_M/\hbar}$ to $\int \mathcal{D}x \, e^{-S_E/\hbar}$, where the Euclidean action is:
+$$ S_E[x] = \int d\tau \left[ \frac{1}{2}m \left(\frac{dx}{d\tau}\right)^2 + V(x) \right] $$
+
+Just like in classical mechanics, the path that gives the largest contribution to the path integral is the one that minimizes the action $S_E$. To find this dominant trajectory, we demand that the first variation of the action vanishes, $\delta S_E = 0$:
+$$ \delta S_E = \int d\tau \left[ m \frac{dx}{d\tau} \frac{d(\delta x)}{d\tau} + V'(x)\delta x \right] = 0 $$
+
+Integrating the first term by parts (and assuming the variation $\delta x$ vanishes at the boundaries):
+$$ \int d\tau \left[ -m \frac{d^2x}{d\tau^2} + V'(x) \right] \delta x = 0 $$
+
+Since this must hold for any arbitrary variation $\delta x(\tau)$, the term in the brackets must be zero. This yields the **Euclidean Equation of Motion**:
+$$ \boxed{ m \frac{d^2x}{d\tau^2} = +V'(x) } $$
+
+Compare this to the standard Newtonian equation of motion in real (Minkowski) time:
+$$ m \frac{d^2x}{dt^2} = -V'(x) $$
+
+Notice the dramatic difference? The Euclidean equation of motion is exactly the same as the classical equation of motion, but with the sign of the potential flipped! The particle is moving in an **inverted potential** $-V(x)$. 
+
+::: {.callout-intuition}
+When we switch from real time to imaginary time, the kinetic energy picks up a relative minus sign compared to the potential energy (because $dt^2 = -d\tau^2$). Factoring out the overall minus sign to make the kinetic term positive again means we must flip the sign of the potential. Thus, "imaginary time" is mathematically equivalent to "real time, but with the world turned upside down."
+:::
+
+---
+
+# Why the Inverted Potential?
+
+Why is this inversion so incredibly useful for understanding quantum tunneling?
+
+In Minkowski time, paths that cross a barrier are physically forbidden for a particle with insufficient energy. The action $S_M$ has no real solutions for such paths, meaning there is no classical trajectory to anchor our semiclassical approximation around. 
+
+But look at what happens in Euclidean time: **if the physical potential $V(x)$ has a barrier, the inverted potential $-V(x)$ has a valley!**
+
+Because the Euclidean equation of motion governs a particle moving in $-V(x)$, a particle can simply roll through the valley. What was a classically forbidden tunneling process in real time is now just a classical particle sliding down a hill and up another in imaginary time. The dominant path in the Euclidean path integral (the path minimizing $S_E$) is precisely this classical trajectory in the inverted potential.
+
+---
+
+# The Double-Well Potential
+
+To make this concrete, let's look at the quintessential model of quantum tunneling: the **symmetric double-well potential**. 
+$$ V(x) = \lambda(x^2 - a^2)^2 $$
+where $\lambda > 0$.
+
+This potential has two degenerate minima (true vacua) at $x = \pm a$. At the origin ($x=0$), there is a potential barrier of height $V(0) = \lambda a^4$. 
+
+In classical Minkowski mechanics, a particle with energy $E=0$ placed at $x = -a$ will simply sit there forever. It does not have the energy to cross the barrier to the other minimum at $x = +a$. 
+
+However, we know from quantum mechanics that the particle can tunnel through the barrier. The true ground state of this system is not localized at $x = -a$ or $x = +a$, but is a symmetric superposition of both. How does the path integral framework capture this tunneling? By looking at the Euclidean action!
+
+::: {.callout-warning}
+## 🤔 Quick Question 1
+In Minkowski time, the particle can't cross the barrier. How can the Euclidean path integral describe tunneling if its EOM is also 'classical'?
+
+::: {.callout-note collapse="true"}
+## Answer
+Because the Euclidean EOM uses the inverted potential! What is a forbidden potential barrier in real time becomes a classical, easily traversable valley in imaginary time. Tunneling is just classical motion in imaginary time.
+:::
+:::
+
+---
+
+# The Instanton Solution
+
+In Euclidean time, the system is governed by the inverted potential:
+$$ -V(x) = -\lambda(x^2 - a^2)^2 $$
+
+Imagine the shape of $-V(x)$. It looks like two hills located at $x = \pm a$, with a valley between them at $x=0$. 
+
+Let's consider a particle with Euclidean energy $E_E = 0$. Remember that the Euclidean energy is conserved and is defined as:
+$$ E_E = \frac{1}{2}m \left(\frac{dx}{d\tau}\right)^2 - V(x) = \text{constant} $$
+*(Note the minus sign! This is because the "potential" is now $-V(x)$).*
+
+If the particle starts at the top of the left hill at $x = -a$ at $\tau \to -\infty$, it has zero kinetic energy and zero potential energy ($V(\pm a) = 0$). Hence, $E_E = 0$ for the entire journey. 
+The particle slowly rolls down the left hill into the valley, and coasts up the right hill, coming to rest at $x = +a$ at $\tau \to +\infty$.
+
+This specific classical solution in Euclidean time—a path that starts at one vacuum and ends at another—is called an **Instanton**. It is localized in (imaginary) time, representing an "instantaneous" tunneling event.
+
+## Worked Example 1: Deriving the Instanton Solution
+
+Let's derive the exact mathematical form of the instanton for the double well.
+
+**Step 1: Set up energy conservation.**
+Since the particle starts at rest at $x=-a$ where $V(-a)=0$, the total Euclidean energy is zero:
+$$ \frac{1}{2}m \left(\frac{dx}{d\tau}\right)^2 - V(x) = 0 $$
+
+**Step 2: Solve for the velocity.**
+$$ \frac{dx}{d\tau} = \sqrt{\frac{2V(x)}{m}} $$
+*(We take the positive root because the particle is moving from $-a$ to $+a$, so $dx/d\tau > 0$.)*
+Substitute the double-well potential $V(x) = \lambda(x^2 - a^2)^2$:
+$$ \frac{dx}{d\tau} = \sqrt{\frac{2\lambda}{m}}(a^2 - x^2) $$
+
+**Step 3: Integrate the equation.**
+Separate variables:
+$$ \int \frac{dx}{a^2 - x^2} = \int \sqrt{\frac{2\lambda}{m}} d\tau $$
+Using the standard integral $\int \frac{dx}{a^2 - x^2} = \frac{1}{a} \tanh^{-1}\left(\frac{x}{a}\right)$:
+$$ \frac{1}{a} \tanh^{-1}\left(\frac{x}{a}\right) = \sqrt{\frac{2\lambda}{m}} (\tau - \tau_0) $$
+where $\tau_0$ is the constant of integration (the "center" of the instanton).
+
+**Step 4: Solve for $x(\tau)$.**
+$$ x_{cl}(\tau) = a \tanh\left[ a\sqrt{\frac{2\lambda}{m}} (\tau - \tau_0) \right] $$
+
+Let's define the frequency of small oscillations around the minima. Near $x=a$, the potential is approximately a harmonic oscillator. Taylor expanding $V(x)$: $V(x) \approx \frac{1}{2} m \omega^2 (x-a)^2$.
+Calculating the second derivative: $V''(a) = 8\lambda a^2$. Thus, $m\omega^2 = 8\lambda a^2$, which means $\omega = a\sqrt{8\lambda/m}$.
+
+Notice that $a\sqrt{\frac{2\lambda}{m}} = \frac{\omega}{2}$. Therefore, the instanton solution can be beautifully written as:
+$$ \boxed{ x_{cl}(\tau) = a \tanh\left[ \frac{\omega}{2}(\tau - \tau_0) \right] } $$
+
+This solution is a "kink" that smoothly interpolates between $-a$ and $+a$.
+
+---
+
+# Instanton Action
+
+To find the tunneling amplitude, we need the Euclidean action $S_0$ evaluated along this instanton trajectory.
+$$ S_0 = \int_{-\infty}^{\infty} d\tau \left[ \frac{1}{2}m \left(\frac{dx_{cl}}{d\tau}\right)^2 + V(x_{cl}) \right] $$
+
+Using our energy conservation condition, $\frac{1}{2}m(dx_{cl}/d\tau)^2 = V(x_{cl})$, the two terms in the integral are perfectly equal! We can rewrite the action purely in terms of the kinetic energy or purely in terms of the potential. Let's write it as:
+$$ S_0 = \int_{-\infty}^{\infty} d\tau \, m \left(\frac{dx_{cl}}{d\tau}\right)^2 $$
+Since $\frac{dx_{cl}}{d\tau} > 0$, we can change variables from $d\tau$ to $dx$:
+$$ d\tau = \frac{dx}{\dot{x}} \implies S_0 = \int_{-a}^{+a} dx \, m \dot{x}_{cl} $$
+Substitute $\dot{x}_{cl} = \sqrt{\frac{2V(x)}{m}} = \sqrt{\frac{2\lambda}{m}}(a^2 - x^2)$:
+$$ S_0 = \int_{-a}^{+a} dx \, \sqrt{2m\lambda}(a^2 - x^2) $$
+$$ S_0 = \sqrt{2m\lambda} \left[ a^2 x - \frac{x^3}{3} \right]_{-a}^{+a} = \sqrt{2m\lambda} \left( \frac{4a^3}{3} \right) = \frac{4}{3} a^3 \sqrt{2m\lambda} $$
+
+If we substitute $a^3 \sqrt{2m\lambda}$ in terms of $m, \omega$, and $\lambda$ (using $a^2 = m\omega^2/8\lambda$), we find:
+$$ \boxed{ S_0 = \frac{m^2 \omega^3}{12\lambda} } $$
+
+The most important takeaway here is that **the instanton action is FINITE**. 
+
+---
+
+# Tunneling Amplitude and the WKB Connection
+
+In the semiclassical limit ($\hbar \to 0$), the path integral is dominated by the path of least Euclidean action. The amplitude to go from $-a$ to $+a$ is proportional to:
+$$ \mathcal{A}(-a \to +a) \propto e^{-S_0/\hbar} $$
+
+Does this look familiar? It should! The WKB approximation for the tunneling transmission amplitude through a barrier $V(x)$ at energy $E=0$ is given by:
+$$ T \propto \exp\left( -\frac{1}{\hbar} \int_{-a}^{+a} \sqrt{2m V(x)} \, dx \right) $$
+
+If you look closely at our derivation for the instanton action, we evaluated precisely $S_0 = \int \sqrt{2mV(x)} dx$. 
+**The Euclidean path integral has elegantly reproduced the WKB tunneling amplitude!** What was a complex, forbidden process in Minkowski space naturally emerged from purely classical reasoning in Euclidean space.
+
+::: {.callout-tip}
+> **Textbook reference**: Shankar, Ch. 21, and Coleman's "Aspects of Symmetry" (Ch. 7) for a deep dive into instantons and semiclassical tunneling.
+:::
+
+---
+
+# The Dilute Instanton Gas and Ground State Splitting
+
+If we consider a particle starting at $x=-a$ and ending at $x=-a$ after a very long time $T \to \infty$, the particle doesn't just have to sit at $-a$. It could tunnel to $+a$ (an instanton) and then tunnel back to $-a$ (an **anti-instanton**). 
+
+In fact, over a long time $T$, the particle could bounce back and forth $n$ times! A configuration with $n$ such transitions consists of a sequence of instantons and anti-instantons. 
+
+If the time $T$ is very large, these instantons are widely separated and barely interact. This is known as the **Dilute Instanton Gas** approximation. 
+For $n$ widely separated instantons/anti-instantons, the total action is simply $n$ times the action of a single instanton: $S_{total} \approx n S_0$.
+
+To find the true transition amplitude, we must sum over all possible numbers of instantons $n$ (summing over all paths!). Doing this summation (which is essentially a statistical mechanics sum over a "gas" of instantons) reveals a profound physical result:
+
+The energy levels of the system are modified. The two degenerate classical ground states split into two distinct quantum energy levels:
+$$ \boxed{ E_{\pm} = \frac{\hbar\omega}{2} \pm K e^{-S_0/\hbar} } $$
+(where $K$ is a determinant prefactor from integrating over quantum fluctuations).
+
+The symmetric state (which has no nodes) gets the lower energy $E_-$, while the antisymmetric state gets the higher energy $E_+$. **This is ground-state splitting!** The instantons—representing tunneling—are the direct mathematical cause of this splitting.
+
+::: {.callout-warning}
+## 🤔 Quick Question 2
+Why is the tunneling amplitude $e^{-S_E/\hbar}$ and not $e^{iS_M/\hbar}$?
+
+::: {.callout-note collapse="true"}
+## Answer
+After Wick rotation ($\tau = it$), the oscillatory phase $e^{iS_M/\hbar}$ mathematically becomes a real exponential suppression $e^{-S_E/\hbar}$. The fact that the Euclidean action $S_0$ is positive and finite guarantees that the amplitude exponentially decays, which is exactly the behavior of quantum tunneling.
+:::
+:::
+
+---
+
+# Physical Interpretation
+
+Instantons are deeply physical objects in quantum field theory and mechanics. 
+1. **They are classical paths**—but only in imaginary time.
+2. **They connect topologically distinct vacua.** (From one minimum to another).
+3. **They represent quantum tunneling events.** Every instanton in the Euclidean path integral corresponds to one tunneling event in real time.
+
+---
+
+# Worked Example 2: The Bounce Solution
+
+What if $V(x)$ doesn't have two equal minima, but rather one **metastable minimum** (a "false vacuum") and one lower **true minimum**? 
+
+Imagine $V(x)$ has a local minimum at $x=0$ (false vacuum) and drops off to negative infinity for large $x$. A particle trapped at $x=0$ will eventually tunnel out. This is a model for radioactive decay or false vacuum decay in cosmology.
+
+**The Euclidean approach:**
+We invert the potential to $-V(x)$. Now, $x=0$ is a hill, and the true vacuum is an even deeper valley that slopes down into an infinitely deep abyss. 
+Wait! Since we inverted it, the true minimum is now a *higher* hill than the false vacuum hill at $x=0$.
+
+A particle starts at $x=0$ at $\tau \to -\infty$ with $E_E = 0$. It rolls down the first hill, crosses the valley, and rolls *up* the second hill (the true vacuum). But because the second hill is taller, the particle doesn't have enough energy to reach the top. It reaches a turning point, stops, and then **bounces** back, eventually returning to $x=0$ at $\tau \to +\infty$.
+
+This trajectory is called the **Bounce**. 
+Just like the instanton gave the tunneling amplitude between degenerate vacua, the single Bounce solution gives the **decay rate** ($\Gamma$) of the false vacuum!
+$$ \Gamma \propto e^{-S_{bounce}/\hbar} $$
+This beautifully illustrates how Euclidean path integrals handle instability and decay.
+
+---
+
+# Summary: Minkowski vs Euclidean Paths
+
+| Property | Minkowski (Real Time $t$) | Euclidean (Imaginary Time $\tau$) |
+| :--- | :--- | :--- |
+| **Time Variable** | $t$ | $\tau = it$ |
+| **Weighting Factor** | $e^{iS_M/\hbar}$ (Oscillatory) | $e^{-S_E/\hbar}$ (Exponentially Damped) |
+| **Equation of Motion** | $m \ddot{x} = -V'(x)$ | $m x'' = +V'(x)$ |
+| **Effective Potential** | Normal $V(x)$ | Inverted $-V(x)$ |
+| **Tunneling path** | Classically forbidden | Classically allowed (Instanton/Bounce) |
+| **Energy Conservation** | $E = \frac{1}{2}m\dot{x}^2 + V(x)$ | $E_E = \frac{1}{2}m x'^2 - V(x)$ |
+
+---
+
+::: {.checkpoint}
+**Review Check**
+- Do you understand why the potential sign flips in Euclidean time?
+- Can you explain why a potential barrier becomes a valley in imaginary time?
+- Are you comfortable with deriving the instanton solution $x_{cl}(\tau)$ from energy conservation?
+- Do you see how summing over a "gas" of instantons leads to ground-state energy splitting?
+:::
+
+---
+
+# Practice Problems
+
+1. **Easy:** Verify that the Euclidean energy $E_E = \frac{1}{2}m(dx/d\tau)^2 - V(x)$ is a conserved quantity along paths that satisfy the Euclidean equation of motion $m(d^2x/d\tau^2) = V'(x)$.
+2. **Easy:** Consider a particle in a potential $V(x) = \frac{1}{2}kx^2$. Write down the Euclidean equation of motion. What are the classical trajectories in Euclidean time? Do instantons exist for this potential? Why or why not?
+3. **Medium:** For the double-well potential $V(x) = \lambda(x^2 - a^2)^2$, sketch the inverted potential $-V(x)$. Identify the turning points for a particle with Euclidean energy $E_E = 0$. 
+4. **Medium:** Using the instanton solution $x_{cl}(\tau) = a \tanh(\omega(\tau-\tau_0)/2)$, calculate the velocity $\frac{dx_{cl}}{d\tau}$ and show explicitly that $\frac{1}{2}m(dx_{cl}/d\tau)^2 = V(x_{cl})$.
+5. **Hard:** **The Anti-Instanton.** The instanton describes a transition from $-a$ to $+a$. Find the classical Euclidean solution that describes a transition from $+a$ to $-a$. This is the anti-instanton. What is its action? 
+6. **Hard:** Consider the potential $V(x) = \alpha x^2 - \beta x^3$ (with $\alpha, \beta > 0$). This potential has a local minimum at $x=0$ and a potential barrier. Sketch the inverted potential and describe the "bounce" solution qualitatively. What are the boundary conditions for the bounce solution at $\tau \to \pm \infty$?
+
+::: {.nav-buttons}
+[← Previous Module](10_euclidean_path_integral.qmd){.btn .btn-outline-secondary}
+[Next: Module 12 →](12_statistical_mechanics.qmd){.btn .btn-success}
+:::

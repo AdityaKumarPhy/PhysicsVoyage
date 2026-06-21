@@ -1,0 +1,302 @@
+---
+title: "Module 13: Path Integrals in Quantum Field Theory"
+subtitle: "From Particle Trajectories to Field Configurations"
+description: "Generalizing the path integral formalism from zero-dimensional fields (QM) to four-dimensional fields (QFT)."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 14 →](14_applications.qmd)
+
+Welcome to Module 13! So far in this course, we have used the path integral to describe the quantum mechanics of particles. But the true power of the path integral—the arena where it becomes the absolute standard language of modern physics—is **Quantum Field Theory (QFT)**. 
+
+In this module, we will generalize the sum over histories from particle trajectories $x(t)$ to continuous field configurations $\phi(x,t)$. We will see that the path integral formulation elegantly handles the infinities of fields, provides a natural origin story for Feynman diagrams, and beautifully unifies quantum field theory with statistical mechanics.
+
+---
+
+## 13.1 From Particles to Fields
+
+In quantum mechanics, the fundamental dynamical variable is the position of a particle as a function of time, $x(t)$. The path integral computes the transition amplitude by summing over all possible paths $x(t)$ connecting the initial and final states.
+
+In quantum field theory, the fundamental entity is no longer a particle, but a **field** that permeates all of space and time. Let's consider a simple scalar field, $\phi(x^\mu) = \phi(t, \mathbf{x})$. 
+
+::: {.callout-tip}
+### Space is just a label!
+In QFT, the spatial coordinate $\mathbf{x}$ is demoted from being a dynamical operator (as it is in QM) to merely being a continuous index or label. Just as we asked "what is the position $x$ at time $t$?" in QM, in QFT we ask "what is the field value $\phi$ at spacetime point $(t, \mathbf{x})$?".
+:::
+
+Therefore, instead of summing over all particle trajectories $x(t)$, the path integral in QFT instructs us to sum over all possible **field configurations** $\phi(x^\mu)$ over all of spacetime.
+
+::: {.callout-warning}
+## 🤔 Quick Question
+In QM, we sum over all possible paths a particle can take. In QFT, what exactly are we summing over, and why does this make the math so much harder?
+:::
+::: {.callout-note collapse="true"}
+## Answer
+We are summing over all possible *field configurations* on all of spacetime. In QM, the integration variables were the positions $x$ at each time slice $t_i$. In QFT, the integration variables are the values of the field $\phi$ at every point in *space and time* $(t_i, \mathbf{x}_j)$. The space of fields is uncountably infinite-dimensional. Even if we regularize by putting spacetime on a finite discrete lattice, the number of integration variables is exponentially larger than in QM.
+:::
+
+## 13.2 The QFT Path Integral
+
+Let the classical action of our field theory be $S[\phi]$, which is the spacetime integral of the Lagrangian density $\mathcal{L}$:
+
+$$ S[\phi] = \int d^4x \, \mathcal{L}(\phi, \partial_\mu \phi) $$
+
+The fundamental postulate of the path integral formulation of QFT is that the vacuum-to-vacuum transition amplitude (or the generating functional) is given by the functional integral over all field configurations:
+
+$$ Z = \int \mathcal{D}\phi \, e^{i S[\phi] / \hbar} $$
+
+What does the measure $\mathcal{D}\phi$ mean? 
+To make mathematical sense of it, imagine dividing four-dimensional spacetime into an incredibly fine hypercubic lattice with spacing $\epsilon$. At each lattice site $x_i$, the field takes a value $\phi_i = \phi(x_i)$. The measure is then an ordinary (but infinite-dimensional) multiple integral:
+
+$$ \mathcal{D}\phi = \lim_{\epsilon \to 0} \prod_{i} d\phi_i $$
+
+::: {.callout-intuition}
+Imagine a huge grid of springs and masses filling all space. To perform the path integral, you must freeze time, pull every single mass to some arbitrary position, calculate the action, exponentiate it, and add it to your running total. Then you must do this for *every conceivable* arrangement of the masses, at *every instant* in time. This unimaginably vast sum incorporates the quantum interference of all possible ways the field can fluctuate.
+:::
+
+## 13.3 The Free Scalar Field
+
+Let's start with the simplest possible QFT: the free, massive, non-interacting real scalar field (the Klein-Gordon field). The Lagrangian density is:
+
+$$ \mathcal{L} = \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - \frac{1}{2}m^2 \phi^2 $$
+
+We can rewrite the action by integrating the kinetic term by parts (assuming the field vanishes at infinity so the boundary term is zero):
+
+$$ \int d^4x \, (\partial_\mu \phi)(\partial^\mu \phi) = \int d^4x \left[ \partial_\mu (\phi \partial^\mu \phi) - \phi \partial_\mu \partial^\mu \phi \right] = - \int d^4x \, \phi (\partial^2) \phi $$
+
+where $\partial^2 \equiv \partial_\mu \partial^\mu = \partial_t^2 - \nabla^2$ is the d'Alembertian operator. Thus, the action becomes:
+
+$$ S_0[\phi] = -\frac{1}{2} \int d^4x \, \phi(x) (\partial^2 + m^2) \phi(x) $$
+
+Notice something crucial: the action is strictly **quadratic** in the field $\phi(x)$. 
+This means the path integral $Z = \int \mathcal{D}\phi \, e^{i S_0[\phi]}$ is a generalization of a standard **Gaussian integral**! As we know from Module 7, Gaussian integrals are exactly solvable.
+
+## 13.4 The Generating Functional for QFT
+
+In QFT, we extract physical observables (correlation functions) by introducing an external, fictitious "source" field $J(x)$. The source couples linearly to our field $\phi(x)$. We define the **generating functional** $Z[J]$ as:
+
+$$ Z[J] = \int \mathcal{D}\phi \exp\left[ i \int d^4x \left( \mathcal{L} + J(x)\phi(x) \right) \right] $$
+*(Setting $\hbar = 1$ from here on, as is customary in QFT).*
+
+For the free scalar theory, the exponent is:
+$$ i S_0[\phi] + i \int d^4x \, J(x)\phi(x) = i \int d^4x \left[ -\frac{1}{2} \phi(x) (\partial^2 + m^2) \phi(x) + J(x)\phi(x) \right] $$
+
+Because this exponent is quadratic in $\phi$, we can evaluate the path integral by "completing the square."
+
+### 📝 Worked Example 1: Deriving the Feynman Propagator
+
+**Problem:** Complete the square in the generating functional to evaluate $Z[J]$ for the free scalar field, and define the Feynman propagator.
+
+**Solution:**
+We want to shift the integration variable $\phi(x)$ to a new variable $\phi'(x)$ such that the linear term $J(x)\phi(x)$ cancels out, exactly as we do for $\int dx \, e^{-\frac{1}{2}ax^2 + Jx}$.
+
+Let's define the shift as:
+$$ \phi(x) = \phi'(x) + \int d^4y \, G_F(x-y) J(y) $$
+where $G_F(x-y)$ is a mysterious function we will choose momentarily.
+The integration measure is invariant under shifts, so $\mathcal{D}\phi = \mathcal{D}\phi'$.
+
+Substitute this into the action:
+$$ \int d^4x \left[ -\frac{1}{2} \left( \phi' + \int G_F J \right) (\partial^2 + m^2) \left( \phi' + \int G_F J \right) + J \left( \phi' + \int G_F J \right) \right] $$
+
+Expanding this out, we get terms quadratic in $\phi'$, terms quadratic in $J$, and cross-terms. The cross-terms (linear in $\phi'$) are:
+$$ \int d^4x \, \phi'(x) \left[ -\frac{1}{2}(\partial^2 + m^2) \int d^4y \, G_F(x-y) J(y) - \frac{1}{2} \int d^4y \, G_F(x-y) (\partial^2 + m^2) J(y) + J(x) \right] $$
+
+Integrating by parts on the second term to move the operator off $J$ and onto $G_F$ reveals that the two cross terms are identical. To make the cross-terms vanish entirely, we demand:
+$$ -(\partial^2 + m^2)_x G_F(x-y) J(y) = -J(x) $$
+
+Since $J(x) = \int d^4y \, \delta^{(4)}(x-y) J(y)$, this requires that $G_F(x-y)$ is the Green's function of the Klein-Gordon operator:
+$$ \boxed{ (\partial^2 + m^2)_x G_F(x-y) = -\delta^{(4)}(x-y) } $$
+
+With the cross-terms gone, the action becomes cleanly separated into a piece depending only on $\phi'$ and a piece depending only on $J$:
+$$ Z[J] = \int \mathcal{D}\phi' e^{i S_0[\phi']} \exp\left[ -\frac{i}{2} \int d^4x d^4y \, J(x) G_F(x-y) J(y) \right] $$
+
+The integral over $\phi'$ is just the vacuum bubble $Z[0]$. Therefore:
+$$ \boxed{ Z_0[J] = Z_0[0] \exp\left[ -\frac{1}{2} \int d^4x d^4y \, J(x) \big(-iG_F(x-y)\big) J(y) \right] } $$
+We have successfully evaluated the free field path integral! The function $G_F(x-y)$ is the **Feynman propagator**, representing the amplitude for a particle to propagate from $y$ to $x$.
+
+## 13.5 The Feynman Propagator in Momentum Space
+
+In Worked Example 1, we defined $G_F(x-y)$ via the differential equation $(\partial^2 + m^2)G_F(x) = -\delta^{(4)}(x)$. 
+It is much easier to solve this in momentum space using Fourier transforms:
+
+$$ G_F(x) = \int \frac{d^4p}{(2\pi)^4} \, e^{-ip \cdot x} \tilde{G}_F(p) $$
+$$ \delta^{(4)}(x) = \int \frac{d^4p}{(2\pi)^4} \, e^{-ip \cdot x} $$
+
+Plugging these in, the derivative $\partial_\mu$ pulls down a factor of $-ip_\mu$. So $\partial^2 \to (-ip)^2 = -p^2$.
+$$ (-p^2 + m^2) \tilde{G}_F(p) = -1 \implies \tilde{G}_F(p) = \frac{1}{p^2 - m^2} $$
+
+There's a subtle but massive problem here: there are poles when $p^2 = m^2$ (on-shell particles). How do we integrate past these poles?
+We recall that for the highly oscillatory path integral $\int \mathcal{D}\phi \, e^{iS}$ to be well-defined, we need a small damping factor. We add a tiny imaginary piece $+i\epsilon\phi^2/2$ to the action, which effectively changes $m^2 \to m^2 - i\epsilon$. 
+This translates to shifting the poles off the real axis, giving the famous momentum-space Feynman propagator:
+
+$$ \boxed{ \tilde{G}_F(p) = \frac{i}{p^2 - m^2 + i\epsilon} } $$
+> **Textbook reference**: Peskin & Schroeder, Ch. 9.2.
+
+## 13.6 Euclidean QFT and Statistical Mechanics
+
+The $i\epsilon$ prescription isn't the only way to make the path integral converge. We can perform a **Wick rotation**, mapping real time $t$ to imaginary time $\tau$ via $t = -i\tau$.
+
+In this Euclidean space, the metric signature changes from $(+,-,-,-)$ to $(+,+,+,+)$. 
+The action becomes purely imaginary: $iS[\phi] \to -S_E[\phi]$, where $S_E$ is the Euclidean action:
+$$ S_E[\phi] = \int d^4x_E \left[ \frac{1}{2}(\partial_\mu \phi)^2 + \frac{1}{2}m^2 \phi^2 \right] $$
+*(Note: no minus signs in the kinetic term anymore!)*
+
+The path integral becomes a strictly damped exponential:
+$$ Z_E = \int \mathcal{D}\phi \, e^{-S_E[\phi]} $$
+
+::: {.callout-tip}
+### The Grand Unification
+Look closely at the Euclidean path integral. It is mathematically identical to the classical partition function in statistical mechanics:
+$$ Z_{stat} = \sum_{\text{states}} e^{-E / k_B T} $$
+Here, $\hbar$ plays the role of temperature $k_B T$, and the Euclidean action $S_E$ plays the role of the Energy. 
+Quantum fluctuations of fields in 4D Minkowski spacetime are mathematically equivalent to thermal fluctuations of fields in 4D Euclidean space. This profound duality forms the bedrock of modern condensed matter physics and Lattice QCD.
+:::
+
+## 13.7 Interactions and Perturbation Theory
+
+Free fields are boring—they just propagate forever. The real world has interactions. Let's add a self-interaction term to our Lagrangian, such as a $\phi^4$ interaction:
+
+$$ \mathcal{L} = \mathcal{L}_0 + \mathcal{L}_{int} = \mathcal{L}_0 - \frac{\lambda}{4!} \phi^4 $$
+
+The full path integral is now:
+$$ Z[J] = \int \mathcal{D}\phi \, \exp\left[ i \int d^4x \left( \mathcal{L}_0 - \frac{\lambda}{4!}\phi^4 + J\phi \right) \right] $$
+
+This integral is no longer Gaussian. It cannot be evaluated exactly. 
+However, if $\lambda$ is small, we can treat the interaction as a perturbation. We pull the interaction term out of the integral by replacing $\phi(x)$ with a functional derivative with respect to the source $J(x)$:
+
+$$ \phi(x) \leftrightarrow -i \frac{\delta}{\delta J(x)} $$
+
+We can then pull the entire interaction exponent outside the integral:
+$$ Z[J] = \exp\left[ -i \frac{\lambda}{4!} \int d^4x \left(-i \frac{\delta}{\delta J(x)}\right)^4 \right] Z_0[J] $$
+
+We then Taylor expand the exponential. Each term in the Taylor expansion will involve taking derivatives of the free-field generating functional $Z_0[J]$. 
+
+## 13.8 Feynman Diagrams from Path Integrals
+
+When we carry out this perturbative expansion and compute correlation functions (like the two-point function $\langle \Omega | T\{\phi(x)\phi(y)\} | \Omega \rangle$), we generate a mess of terms involving integrals over the Feynman propagator.
+
+A beautiful realization occurs: we can map every mathematical term in the expansion to a picture. 
+- Every derivative hitting a $J$ pulls down a propagator $G_F$ (represented as a **line**).
+- Every interaction point $x$ brings down a factor of $-i\lambda$ and is integrated over all spacetime (represented as a **vertex**).
+- The integration over spacetime points naturally yields momentum-conserving delta functions at each vertex.
+
+This proves that **Feynman diagrams are not heuristic guesses or ad-hoc rules**. They are the rigorous graphical bookkeeping method for the Taylor expansion of the path integral!
+
+### 📝 Worked Example 2: First-Order Correction to the Two-Point Function
+
+**Problem:** Using the path integral formulation, write down the $O(\lambda)$ correction to the two-point correlation function in $\phi^4$ theory.
+
+**Solution:**
+The unnormalized two-point function is given by taking two functional derivatives of $Z[J]$ and setting $J=0$:
+$$ \langle \phi(x_1)\phi(x_2) \rangle = \left. \frac{(-i)^2 \delta^2 Z[J]}{\delta J(x_1) \delta J(x_2)} \right|_{J=0} $$
+
+Expanding $Z[J]$ to first order in $\lambda$:
+$$ Z[J] \approx \left[ 1 - i \frac{\lambda}{4!} \int d^4z \left(-i \frac{\delta}{\delta J(z)}\right)^4 \right] Z_0[J] $$
+
+The $O(\lambda)$ correction to the correlator requires evaluating:
+$$ \Delta^{(1)} \langle \phi(x_1)\phi(x_2) \rangle = -i \frac{\lambda}{4!} \int d^4z \left. \frac{\delta^2}{\delta J(x_1) \delta J(x_2)} \frac{\delta^4}{\delta J(z)^4} Z_0[J] \right|_{J=0} $$
+
+When taking these six derivatives of the Gaussian exponential in $Z_0[J]$, we must pair up the derivatives in all possible combinations (this is the path integral derivation of **Wick's Theorem**). 
+One non-zero contraction pairs $x_1$ with $z$, $x_2$ with $z$, and pairs the remaining two $z$'s together. This gives:
+$$ \Delta^{(1)} = \frac{-i\lambda}{2} \int d^4z \, G_F(x_1 - z) G_F(z - x_2) G_F(z - z) $$
+
+Graphically, this is a particle traveling from $x_1$ to $z$, interacting with a loop that starts and ends at $z$, and then traveling from $z$ to $x_2$. This is the famous "tadpole" diagram!
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Where do "virtual particles" appear in the path integral formalism?
+:::
+::: {.callout-note collapse="true"}
+## Answer
+They don't! The path integral only talks about continuous classical fields $\phi(x)$. "Virtual particles" are just a picturesque, heuristic name given to the internal lines in Feynman diagrams ($G_F$). These internal lines are purely mathematical artifacts of Taylor-expanding the non-Gaussian part of the path integral. The path integral shows us that fields are fundamental, while particles (especially virtual ones) are just a language we use to describe perturbative expansions.
+:::
+
+---
+
+## Summary: QM vs QFT Dictionary
+
+| Concept | Quantum Mechanics | Quantum Field Theory |
+| :--- | :--- | :--- |
+| **Dynamical Variable** | Position $x(t)$ | Field $\phi(x,t)$ |
+| **Index / Label** | Time $t$ | Spacetime $x^\mu = (t, \mathbf{x})$ |
+| **Path Integral Sums Over**| All trajectories $x(t)$ | All field configs $\phi(x^\mu)$ |
+| **Action $S$** | $\int dt \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right]$ | $\int d^4x \left[ \frac{1}{2}(\partial_\mu\phi)^2 - V(\phi) \right]$ |
+| **Source Term** | $J(t) x(t)$ | $J(x^\mu) \phi(x^\mu)$ |
+| **Correlation Function** | $\langle x(t_1) x(t_2) \rangle$ | $\langle \phi(x_1) \phi(x_2) \rangle$ |
+
+---
+
+::: {.checkpoint}
+Before moving on to the practice problems, ensure you understand:
+1. Why the path integral in QFT requires summing over infinite-dimensional field configurations.
+2. Why a quadratic action leads to an exact Gaussian integral and gives the free theory.
+3. How introducing a source $J(x)$ allows us to "pull down" field values.
+4. How interactions force us to use Taylor expansions, naturally birthing Feynman diagrams.
+:::
+
+---
+
+## Practice Problems
+
+1. **(Easy)** Write down the Lagrangian density for a *complex* free scalar field $\phi$ and $\phi^*$. Identify the differential operator matrix that dictates the Gaussian path integral for this theory.
+2. **(Easy)** The generating functional for the free scalar field is proportional to $\exp[-\frac{1}{2}\int J G_F J]$. Using the functional derivative $\phi(x) = -i \delta / \delta J(x)$, explicitly compute the 2-point function $\langle 0 | T \phi(x_1)\phi(x_2) | 0 \rangle$ and verify it equals $G_F(x_1-x_2)$.
+3. **(Medium)** The Dirac delta function in momentum space is $(2\pi)^4\delta^{(4)}(p) = \int d^4x e^{ip\cdot x}$. Use this to show that the coordinate-space integral $\int d^4z \, G_F(x_1-z)G_F(z-x_2)$ translates in momentum space to a single propagator squared, $\tilde{G}_F(p)^2$.
+4. **(Hard)** Consider a QFT with interaction $\mathcal{L}_{int} = -\frac{g}{3!} \phi^3$. Using the functional derivative method, compute the $O(g^2)$ correction to the two-point function. Draw the corresponding Feynman diagrams.
+5. **(Hard)** Perform a Wick rotation on the free scalar field path integral. Show step-by-step how the Minkowski action $i\int d^4x [\frac{1}{2}(\partial_t\phi)^2 - \frac{1}{2}(\nabla\phi)^2 - \frac{1}{2}m^2\phi^2]$ transforms into the exponentially damped Euclidean action $-S_E$.
+
+::: {.nav-buttons}
+[← Previous: Module 12](12_statistical_mechanics.qmd){.btn .btn-outline-secondary}
+[Next: Module 14 →](14_applications.qmd){.btn .btn-success}
+:::

@@ -1,0 +1,847 @@
+---
+title: "Module 1: Propagators & Transition Amplitudes"
+subtitle: "The Fundamental Question of Quantum Mechanics — How Does a Particle Get from A to B?"
+description: "We define the propagator $K(x_b, t_b; x_a, t_a)$, derive its key properties from the time evolution operator, prove the composition law, connect it to wavefunctions and Green's functions, and compute the free particle propagator explicitly."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+```
+
+[← Back to Course](index.qmd) | [Next: Module 2 — The Sum-Over-Paths Idea →](02_sum_over_paths.qmd)
+
+---
+
+Every formulation of quantum mechanics — Schrödinger's wave mechanics, Heisenberg's matrix mechanics, Dirac's abstract operator formalism — ultimately needs to answer one deceptively simple question:
+
+> *If a particle is at position $x_a$ at time $t_a$, what is the probability amplitude to find it at position $x_b$ at time $t_b$?*
+
+The object that answers this question is called the **propagator**, and it is the central character of the entire path integral story. In this module, we'll build up the propagator from scratch — starting with the physical motivation, deriving it from the time evolution operator, uncovering its remarkable composition property, and computing it explicitly for the free particle.
+
+By the end of this module, you will understand that knowing the propagator is equivalent to knowing *everything* about a quantum system.
+
+
+# The Central Question of Quantum Mechanics
+
+## Why This Question Matters
+
+Let's start with the most basic scenario you can imagine. A particle sits at position $x_a$ at some initial time $t_a$. You wait. At a later time $t_b$, you measure its position. What is the probability of finding it at position $x_b$?
+
+In **classical mechanics**, this question has a definite answer: solve Newton's equations with the given initial conditions, and the particle follows a unique trajectory $x(t)$. At time $t_b$, it's at one specific position. No ambiguity. No probability.
+
+In **quantum mechanics**, the answer is fundamentally different. The particle doesn't follow a single path. Instead, we can only compute a **probability amplitude** — a complex number whose squared modulus gives the probability. The object that encodes this amplitude is what we call the **propagator**.
+
+## The Double-Slit Experiment as Motivation
+
+The double-slit experiment captures the essence of why propagators are so important. Consider an electron source at position $x_a$, a screen with two slits, and a detection screen at position $x_b$.
+
+Classically, the electron goes through slit 1 *or* slit 2. The total intensity at the detector would be:
+
+$$
+I_{\text{classical}} = I_1 + I_2
+$$
+
+But experimentally, we observe an **interference pattern**:
+
+$$
+I_{\text{quantum}} = |A_1 + A_2|^2 = |A_1|^2 + |A_2|^2 + 2\,\text{Re}(A_1^* A_2)
+$$
+
+where $A_1$ and $A_2$ are complex **amplitudes** for the particle to travel through each slit. The cross term $2\,\text{Re}(A_1^* A_2)$ is the interference term — it's what makes quantum mechanics quantum.
+
+::: {.callout-intuition}
+The double-slit experiment tells us that quantum mechanics works with **amplitudes**, not probabilities. To find the total amplitude for going from $A$ to $B$, we must **sum amplitudes over all possible intermediate states**. This is the seed of the entire path integral formulation — and the propagator is the mathematical object that encodes these amplitudes.
+:::
+
+## The Propagator: An Overview
+
+The **propagator** $K(x_b, t_b; x_a, t_a)$ is defined as the quantum mechanical amplitude for a particle to travel from position $x_a$ at time $t_a$ to position $x_b$ at time $t_b$. The probability of this transition is:
+
+$$
+P(x_a, t_a \to x_b, t_b) = |K(x_b, t_b;\, x_a, t_a)|^2
+$$
+
+This single object contains **all** the dynamical information about a quantum system. Once you know $K$, you can:
+
+- Evolve any initial wavefunction forward in time
+- Compute transition probabilities between any two states
+- Extract energy eigenvalues and eigenstates
+- Calculate expectation values of any observable
+
+The rest of this module is devoted to building this object rigorously.
+
+> **Textbook reference**: Shankar, *Principles of Quantum Mechanics*, Ch. 5.1–5.3; Feynman & Hibbs, Ch. 3.
+
+
+# The Time Evolution Operator
+
+## Definition and Meaning
+
+In quantum mechanics, the state of a system at time $t_b$ is related to its state at time $t_a$ by the **time evolution operator** $\hat{U}(t_b, t_a)$:
+
+$$
+\boxed{|\psi(t_b)\rangle = \hat{U}(t_b, t_a)\,|\psi(t_a)\rangle}
+$$
+
+For a time-independent Hamiltonian $\hat{H}$ (which we'll assume throughout most of this course), the time evolution operator takes the explicit form:
+
+$$
+\boxed{\hat{U}(t_b, t_a) = e^{-i\hat{H}(t_b - t_a)/\hbar}}
+$$
+
+Let's understand where this comes from. The Schrödinger equation tells us:
+
+$$
+i\hbar \frac{\partial}{\partial t}|\psi(t)\rangle = \hat{H}|\psi(t)\rangle
+$$
+
+This is a first-order ODE in time. For a time-independent $\hat{H}$, we can integrate it directly. Let $T = t_b - t_a$. Then:
+
+$$
+\frac{\partial}{\partial t}|\psi(t)\rangle = -\frac{i}{\hbar}\hat{H}|\psi(t)\rangle
+$$
+
+The solution is the operator exponential:
+
+$$
+|\psi(t_a + T)\rangle = e^{-i\hat{H}T/\hbar}\,|\psi(t_a)\rangle
+$$
+
+This is completely analogous to solving $\dot{x} = ax$ to get $x(t) = e^{at}x(0)$, except now $a$ is replaced by the operator $-i\hat{H}/\hbar$.
+
+## Proof of Unitarity
+
+One of the most important properties of $\hat{U}$ is that it is **unitary**: $\hat{U}^\dagger \hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}$. This is absolutely essential — it guarantees that probabilities are conserved under time evolution.
+
+**Proof.** Since $\hat{H}$ is Hermitian ($\hat{H}^\dagger = \hat{H}$), we have:
+
+$$
+\hat{U}^\dagger(t_b, t_a) = \left(e^{-i\hat{H}(t_b - t_a)/\hbar}\right)^\dagger = e^{+i\hat{H}^\dagger(t_b - t_a)/\hbar} = e^{+i\hat{H}(t_b - t_a)/\hbar}
+$$
+
+where in the last step we used $\hat{H}^\dagger = \hat{H}$. Now compute the product:
+
+$$
+\hat{U}^\dagger \hat{U} = e^{+i\hat{H}T/\hbar}\,e^{-i\hat{H}T/\hbar}
+$$
+
+Since both exponentials involve the *same* operator $\hat{H}$, they commute with each other, and we can combine the exponents:
+
+$$
+\hat{U}^\dagger \hat{U} = e^{+i\hat{H}T/\hbar - i\hat{H}T/\hbar} = e^{0} = \hat{I} \qquad \checkmark
+$$
+
+Similarly, $\hat{U}\hat{U}^\dagger = \hat{I}$. Therefore $\hat{U}$ is unitary. $\blacksquare$
+
+::: {.callout-tip}
+## Why unitarity matters
+Unitarity guarantees $\langle \psi(t_b)|\psi(t_b)\rangle = \langle \psi(t_a)|\hat{U}^\dagger \hat{U}|\psi(t_a)\rangle = \langle \psi(t_a)|\psi(t_a)\rangle$. So if the state is normalized at time $t_a$, it stays normalized at all later times. **Probability is conserved.** This is a non-negotiable requirement of quantum mechanics.
+:::
+
+## The Composition (Group) Property
+
+The time evolution operator satisfies a crucial **composition law**: evolving from $t_1$ to $t_3$ is the same as first evolving from $t_1$ to $t_2$, then from $t_2$ to $t_3$:
+
+$$
+\boxed{\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1)}
+$$
+
+**Proof.** For a time-independent Hamiltonian, let $T_{31} = t_3 - t_1$, $T_{32} = t_3 - t_2$, and $T_{21} = t_2 - t_1$. Clearly $T_{31} = T_{32} + T_{21}$. Then:
+
+$$
+\hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1) = e^{-i\hat{H}T_{32}/\hbar}\,e^{-i\hat{H}T_{21}/\hbar} = e^{-i\hat{H}(T_{32} + T_{21})/\hbar} = e^{-i\hat{H}T_{31}/\hbar} = \hat{U}(t_3, t_1) \qquad \checkmark
+$$
+
+Again, combining the exponents is valid because both involve the same operator $\hat{H}$. $\blacksquare$
+
+Together with $\hat{U}(t, t) = \hat{I}$ and $\hat{U}^{-1}(t_b, t_a) = \hat{U}(t_a, t_b) = \hat{U}^\dagger(t_b, t_a)$, these properties tell us that the set of time evolution operators forms a **one-parameter unitary group** parametrized by the elapsed time $T = t_b - t_a$.
+
+::: {.callout-note}
+## Additional properties of $\hat{U}$
+Here is a summary of all the key properties of the time evolution operator:
+
+| Property | Statement |
+|:--|:--|
+| **Definition** | $\hat{U}(t_b, t_a) = e^{-i\hat{H}(t_b - t_a)/\hbar}$ |
+| **Unitarity** | $\hat{U}^\dagger \hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}$ |
+| **Composition** | $\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1)$ |
+| **Identity** | $\hat{U}(t, t) = \hat{I}$ |
+| **Inverse** | $\hat{U}^{-1}(t_b, t_a) = \hat{U}(t_a, t_b) = \hat{U}^\dagger(t_b, t_a)$ |
+| **Schrödinger eq.** | $i\hbar\,\partial_t\,\hat{U}(t, t_a) = \hat{H}\,\hat{U}(t, t_a)$ |
+:::
+
+> **Textbook reference**: Sakurai & Napolitano, *Modern Quantum Mechanics*, Ch. 2.1; Shankar, Ch. 4.3.
+
+
+# The Propagator (Kernel)
+
+## Definition
+
+Now we arrive at the star of our show. The **propagator** (also called the **kernel** or **transition amplitude**) is obtained by sandwiching the time evolution operator between position eigenstates:
+
+$$
+\boxed{K(x_b, t_b;\, x_a, t_a) \equiv \langle x_b|\,\hat{U}(t_b, t_a)\,|x_a\rangle = \langle x_b|\,e^{-i\hat{H}(t_b - t_a)/\hbar}\,|x_a\rangle}
+$$
+
+Let's parse this carefully. The ket $|x_a\rangle$ represents a particle localized at position $x_a$. The operator $\hat{U}(t_b, t_a)$ evolves this state forward in time by an amount $T = t_b - t_a$. The bra $\langle x_b|$ then projects the result onto the position eigenstate at $x_b$. The resulting complex number $K(x_b, t_b; x_a, t_a)$ is the **amplitude** for the particle to go from $(x_a, t_a)$ to $(x_b, t_b)$.
+
+::: {.callout-intuition}
+Think of the propagator as the quantum mechanical "travel guide." If you tell it where the particle starts (position $x_a$, time $t_a$) and where you'd like it to end up (position $x_b$, time $t_b$), it gives you a complex number whose magnitude squared tells you the probability of that journey. Unlike a classical travel guide, this one doesn't give you *a* route — it implicitly accounts for *all possible* routes simultaneously.
+:::
+
+## Notation Conventions
+
+Different textbooks use different notations. Here's a quick translation table:
+
+| This course | Feynman & Hibbs | Shankar | Sakurai |
+|:--|:--|:--|:--|
+| $K(x_b, t_b; x_a, t_a)$ | $K(b, a)$ | $U(x_b, t_b; x_a, t_a)$ | $\langle x_b, t_b | x_a, t_a\rangle$ |
+
+Sakurai's notation $\langle x_b, t_b | x_a, t_a\rangle$ is compact and suggestive — it literally reads as "the amplitude to go from $(x_a, t_a)$ to $(x_b, t_b)$." We'll mostly stick with the explicit notation $K(x_b, t_b; x_a, t_a)$ since it keeps the arguments clear.
+
+## Initial Condition
+
+At equal times ($t_b = t_a$), the time evolution operator is the identity $\hat{U}(t_a, t_a) = \hat{I}$. Therefore:
+
+$$
+K(x_b, t_a;\, x_a, t_a) = \langle x_b|\hat{I}|x_a\rangle = \langle x_b|x_a\rangle = \delta(x_b - x_a)
+$$
+
+This makes perfect physical sense: at $t = t_a$, the particle is definitely at $x_a$, so the amplitude to find it at $x_b$ is nonzero only if $x_b = x_a$.
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Why must the propagator satisfy a **composition property**? That is, why must we be able to write:
+$$
+K(x_c, t_c;\, x_a, t_a) = \int dx_b\, K(x_c, t_c;\, x_b, t_b)\,K(x_b, t_b;\, x_a, t_a)?
+$$
+What physical principle would be violated if this property failed?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+The composition property follows from the **completeness of position eigenstates** — the fact that $\int dx_b\,|x_b\rangle\langle x_b| = \hat{I}$. Physically, it means that inserting a "fictitious intermediate measurement" at time $t_b$ (and summing over all possible outcomes $x_b$) shouldn't change the total amplitude. If this property failed, it would mean that the resolution of the identity is violated, i.e., position eigenstates don't form a complete basis. This would destroy the entire mathematical framework of quantum mechanics. It would also violate the composition law of the time evolution operator: $\hat{U}(t_c, t_a) = \hat{U}(t_c, t_b)\hat{U}(t_b, t_a)$.
+:::
+
+
+# Completeness and the Composition Property
+
+## Derivation of the Composition Law
+
+The composition property of the propagator is one of the most important results in this entire course. It's the mathematical seed from which the path integral will grow. Let's derive it carefully.
+
+We want to compute $K(x_c, t_c; x_a, t_a) = \langle x_c|\hat{U}(t_c, t_a)|x_a\rangle$. We know that $\hat{U}$ satisfies the composition law:
+
+$$
+\hat{U}(t_c, t_a) = \hat{U}(t_c, t_b)\,\hat{U}(t_b, t_a)
+$$
+
+for any intermediate time $t_a < t_b < t_c$. Substituting:
+
+$$
+K(x_c, t_c;\, x_a, t_a) = \langle x_c|\,\hat{U}(t_c, t_b)\,\hat{U}(t_b, t_a)\,|x_a\rangle
+$$
+
+Now comes the key step. We insert a **complete set of position eigenstates** at time $t_b$ between the two evolution operators. The completeness relation (also called the resolution of the identity) states:
+
+$$
+\int_{-\infty}^{\infty} dx_b\,|x_b\rangle\langle x_b| = \hat{I}
+$$
+
+Inserting this identity operator between $\hat{U}(t_c, t_b)$ and $\hat{U}(t_b, t_a)$:
+
+$$
+K(x_c, t_c;\, x_a, t_a) = \langle x_c|\,\hat{U}(t_c, t_b)\,\left(\int dx_b\,|x_b\rangle\langle x_b|\right)\,\hat{U}(t_b, t_a)\,|x_a\rangle
+$$
+
+Since the integral is over a c-number variable $x_b$, we can pull it outside the bra-ket structure:
+
+$$
+K(x_c, t_c;\, x_a, t_a) = \int dx_b\,\langle x_c|\hat{U}(t_c, t_b)|x_b\rangle\,\langle x_b|\hat{U}(t_b, t_a)|x_a\rangle
+$$
+
+But each of these matrix elements is just a propagator! We recognize:
+
+$$
+\boxed{K(x_c, t_c;\, x_a, t_a) = \int_{-\infty}^{\infty} dx_b\,K(x_c, t_c;\, x_b, t_b)\,K(x_b, t_b;\, x_a, t_a)}
+$$
+
+This is the **composition property** (or **Chapman–Kolmogorov equation** for the propagator). $\blacksquare$
+
+## Physical Interpretation
+
+Let's really unpack what this equation says. To find the amplitude for a particle to go from $(x_a, t_a)$ to $(x_c, t_c)$, you can:
+
+1. **Pick any intermediate time** $t_b$ between $t_a$ and $t_c$.
+2. For each possible intermediate position $x_b$, compute the amplitude to go from $(x_a, t_a) \to (x_b, t_b)$ and then from $(x_b, t_b) \to (x_c, t_c)$.
+3. **Multiply** these two amplitudes (because they are sequential processes).
+4. **Sum (integrate)** over all possible intermediate positions $x_b$.
+
+::: {.callout-intuition}
+This is the quantum analog of a relay race. The particle "passes through" every possible intermediate position $x_b$ at time $t_b$, and the total amplitude is the sum of contributions from all these intermediate points. **No single intermediate position is preferred** — the particle's amplitude receives contributions from all of them. This is profoundly different from classical mechanics, where the particle passes through exactly one intermediate position.
+:::
+
+## The Seed of the Path Integral
+
+Here is the crucial observation that will lead us to the path integral in Module 2: we can insert **not just one**, but **many** complete sets of states at intermediate times.
+
+For example, with two intermediate times $t_1$ and $t_2$ ($t_a < t_1 < t_2 < t_b$):
+
+$$
+K(x_b, t_b;\, x_a, t_a) = \int dx_1 \int dx_2\,K(x_b, t_b;\, x_2, t_2)\,K(x_2, t_2;\, x_1, t_1)\,K(x_1, t_1;\, x_a, t_a)
+$$
+
+With $N-1$ intermediate times:
+
+$$
+K(x_b, t_b;\, x_a, t_a) = \int dx_1\,dx_2\,\cdots\,dx_{N-1}\;\prod_{j=0}^{N-1} K(x_{j+1}, t_{j+1};\, x_j, t_j)
+$$
+
+where $x_0 = x_a$, $x_N = x_b$, and we integrate over all intermediate positions $x_1, x_2, \ldots, x_{N-1}$. In the limit $N \to \infty$, the set of intermediate positions traces out a **path** $x(t)$ — and the integral becomes a **sum over all paths**. This is Feynman's path integral, which we'll develop fully in Module 2.
+
+> **Textbook reference**: Feynman & Hibbs, Ch. 2.5; Shankar, Ch. 21.1.
+
+
+# Connection to Wavefunctions
+
+## Propagating the Wavefunction
+
+The propagator directly tells us how to evolve a wavefunction forward in time. Suppose we know the wavefunction $\psi(x_a, t_a)$ at time $t_a$. Then the wavefunction at a later time $t_b$ is:
+
+$$
+\boxed{\psi(x_b, t_b) = \int_{-\infty}^{\infty} dx_a\,K(x_b, t_b;\, x_a, t_a)\,\psi(x_a, t_a)}
+$$
+
+**Derivation.** Start with $|\psi(t_b)\rangle = \hat{U}(t_b, t_a)|\psi(t_a)\rangle$. Project onto position eigenstates:
+
+$$
+\psi(x_b, t_b) = \langle x_b|\psi(t_b)\rangle = \langle x_b|\hat{U}(t_b, t_a)|\psi(t_a)\rangle
+$$
+
+Insert a complete set of position states $\int dx_a\,|x_a\rangle\langle x_a| = \hat{I}$:
+
+$$
+\psi(x_b, t_b) = \int dx_a\,\langle x_b|\hat{U}(t_b, t_a)|x_a\rangle\,\langle x_a|\psi(t_a)\rangle = \int dx_a\,K(x_b, t_b;\, x_a, t_a)\,\psi(x_a, t_a) \quad \blacksquare
+$$
+
+## What This Equation Tells Us
+
+This is a beautiful and powerful result. It says: the propagator acts as an **integral kernel** (like a matrix element in a continuous basis) that takes the initial wavefunction and "propagates" it forward to give the final wavefunction.
+
+Think of $K$ as an operator in disguise. In discrete quantum mechanics (with a finite-dimensional Hilbert space), the time evolution operator $\hat{U}$ is a matrix, and the equation $|\psi(t_b)\rangle = \hat{U}|\psi(t_a)\rangle$ is matrix multiplication. In the continuous position basis, matrix multiplication becomes integration:
+
+$$
+\psi(x_b, t_b) = \sum_{x_a} U_{x_b x_a}\,\psi(x_a, t_a) \quad \longrightarrow \quad \psi(x_b, t_b) = \int dx_a\,K(x_b, t_b;\, x_a, t_a)\,\psi(x_a, t_a)
+$$
+
+The propagator $K(x_b, t_b; x_a, t_a)$ is simply the "matrix element" $U_{x_b x_a}$ in the position basis.
+
+::: {.callout-tip}
+## The propagator knows everything
+If you know the propagator $K$, you can evolve **any** initial wavefunction forward in time using the integral above. Different initial states $\psi(x_a, t_a)$ give different final states $\psi(x_b, t_b)$, but the propagator $K$ is the same for all of them — it depends only on the Hamiltonian, not on the state. This is why $K$ contains all the dynamical information of the quantum system.
+:::
+
+::: {.callout-warning}
+## 🤔 Quick Question
+The propagator $K$ contains ALL information about the quantum system. Why is that true? What specific knowledge does $K$ give you access to?
+:::
+
+::: {.callout-note collapse="true"}
+## Answer
+Knowing the propagator $K(x_b, t_b; x_a, t_a) = \langle x_b|e^{-i\hat{H}T/\hbar}|x_a\rangle$ means knowing the matrix elements of the time evolution operator $\hat{U}$ in the position basis. Since position eigenstates form a **complete basis**, knowing all matrix elements of $\hat{U}$ in this basis is equivalent to knowing $\hat{U}$ itself. And knowing $\hat{U}$ means knowing $\hat{H}$ (take the time derivative at $T = 0$), which determines the complete time evolution of **any** state. Concretely, from $K$ you can:
+
+- Evolve any wavefunction: $\psi(x_b, t_b) = \int dx_a\, K \, \psi(x_a, t_a)$
+- Extract energy eigenvalues from the spectral representation (see Section 7)
+- Compute transition probabilities: $P = |K|^2$
+- Obtain Green's functions and response functions
+:::
+
+> **Textbook reference**: Shankar, Ch. 5.1; Sakurai, Ch. 2.6.
+
+
+# Propagator as a Green's Function
+
+## The Differential Equation for K
+
+The propagator $K(x_b, t_b; x_a, t_a)$ satisfies a differential equation that reveals its role as a **Green's function** of the Schrödinger equation. Let us derive this.
+
+We know that the time evolution operator satisfies:
+
+$$
+i\hbar\frac{\partial}{\partial t_b}\hat{U}(t_b, t_a) = \hat{H}\,\hat{U}(t_b, t_a)
+$$
+
+Take the matrix element $\langle x_b|(\cdots)|x_a\rangle$ of both sides:
+
+$$
+i\hbar\frac{\partial}{\partial t_b}\langle x_b|\hat{U}(t_b, t_a)|x_a\rangle = \langle x_b|\hat{H}\,\hat{U}(t_b, t_a)|x_a\rangle
+$$
+
+The left side is just $i\hbar\,\partial K/\partial t_b$. On the right side, $\hat{H}$ acts on $\langle x_b|$. For a Hamiltonian of the standard form $\hat{H} = \hat{p}^2/2m + V(\hat{x})$, we have:
+
+$$
+\langle x_b|\hat{H} = \left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2} + V(x_b)\right)\langle x_b|
+$$
+
+Therefore, the propagator satisfies the **Schrödinger equation** as a function of the final coordinates $(x_b, t_b)$:
+
+$$
+\boxed{i\hbar\frac{\partial}{\partial t_b}K(x_b, t_b;\, x_a, t_a) = \hat{H}_{x_b}\,K(x_b, t_b;\, x_a, t_a)}
+$$
+
+where $\hat{H}_{x_b} = -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_b^2} + V(x_b)$ acts on the $x_b$ variable.
+
+## The Initial Condition and Green's Function Interpretation
+
+Combined with the initial condition $K(x_b, t_a; x_a, t_a) = \delta(x_b - x_a)$, we see that the propagator is the **Green's function** of the time-dependent Schrödinger equation. More precisely:
+
+$$
+\left(i\hbar\frac{\partial}{\partial t} - \hat{H}_x\right)K(x, t;\, x', t') = i\hbar\,\delta(x - x')\,\delta(t - t')
+$$
+
+where we impose $K = 0$ for $t < t'$ (the **retarded** Green's function, reflecting causality — no propagation backward in time).
+
+::: {.callout-intuition}
+Why does the propagator play the role of a Green's function? Remember from classical electromagnetism: the Green's function $G(\mathbf{r}, \mathbf{r}')$ of Poisson's equation gives the potential at $\mathbf{r}$ due to a point charge at $\mathbf{r}'$. The full potential for an arbitrary charge distribution is obtained by integrating $G$ against the charge density. Similarly, the propagator $K$ is the "response" to a delta-function initial condition — a particle perfectly localized at $x'$ at time $t'$. The general solution for any initial wavefunction is obtained by integrating $K$ against $\psi(x', t')$.
+:::
+
+::: {.callout-note}
+## Causality and the retarded propagator
+The condition $K(x_b, t_b; x_a, t_a) = 0$ for $t_b < t_a$ is the statement that effects cannot precede causes. In practice, we often write:
+
+$$
+G^+(x_b, t_b;\, x_a, t_a) = -\frac{i}{\hbar}\,\theta(t_b - t_a)\,K(x_b, t_b;\, x_a, t_a)
+$$
+
+where $\theta$ is the Heaviside step function. The factor of $-i/\hbar$ is a convention chosen so that $G^+$ satisfies the inhomogeneous equation with a simple $\delta$-function source.
+:::
+
+> **Textbook reference**: Sakurai, Ch. 2.6; Shankar, Ch. 5.4.
+
+
+# Spectral Representation of the Propagator
+
+## Derivation
+
+One of the most useful ways to express the propagator is through the **spectral representation** — an expansion in energy eigenstates. This connects the propagator directly to the energy spectrum of the system.
+
+Let $\{|n\rangle\}$ be the complete set of energy eigenstates with $\hat{H}|n\rangle = E_n|n\rangle$. Completeness says:
+
+$$
+\sum_n |n\rangle\langle n| = \hat{I}
+$$
+
+(For continuous spectra, the sum becomes an integral, but the logic is the same.)
+
+Insert this into the definition of the propagator:
+
+$$
+K(x_b, t_b;\, x_a, t_a) = \langle x_b|\,e^{-i\hat{H}T/\hbar}\,|x_a\rangle
+$$
+
+where $T = t_b - t_a$. Inserting the resolution of identity:
+
+$$
+K = \langle x_b|\,e^{-i\hat{H}T/\hbar}\,\left(\sum_n |n\rangle\langle n|\right)\,|x_a\rangle = \sum_n \langle x_b|\,e^{-i\hat{H}T/\hbar}\,|n\rangle\,\langle n|x_a\rangle
+$$
+
+Since $|n\rangle$ is an eigenstate of $\hat{H}$ with eigenvalue $E_n$:
+
+$$
+e^{-i\hat{H}T/\hbar}|n\rangle = e^{-iE_n T/\hbar}|n\rangle
+$$
+
+Therefore:
+
+$$
+K = \sum_n \langle x_b|n\rangle\,e^{-iE_n T/\hbar}\,\langle n|x_a\rangle
+$$
+
+Writing $\langle x_b|n\rangle = \psi_n(x_b)$ and $\langle n|x_a\rangle = \psi_n^*(x_a)$, we obtain the **spectral representation**:
+
+$$
+\boxed{K(x_b, t_b;\, x_a, t_a) = \sum_n \psi_n(x_b)\,\psi_n^*(x_a)\,e^{-iE_n(t_b - t_a)/\hbar}}
+$$
+
+## Physical Content
+
+This formula is remarkably informative. Let's unpack it:
+
+- Each term in the sum corresponds to one energy eigenstate $|n\rangle$.
+- The factor $\psi_n(x_b)\,\psi_n^*(x_a)$ describes the spatial overlap: the particle is "created" at $x_a$ with amplitude $\psi_n^*(x_a)$ and "detected" at $x_b$ with amplitude $\psi_n(x_b)$.
+- The phase factor $e^{-iE_n T/\hbar}$ provides the time evolution — each energy eigenstate oscillates at its own frequency $\omega_n = E_n/\hbar$.
+
+::: {.callout-tip}
+## Extracting energy eigenvalues from the propagator
+If you know the propagator $K$, you can extract the energy spectrum by examining how $K$ oscillates in time. Each frequency component corresponds to an energy eigenvalue $E_n$. This will become especially powerful in the Euclidean (imaginary time) formulation (Module 10), where the oscillating phases become decaying exponentials, and the ground state energy can be extracted by taking the $T \to \infty$ limit.
+:::
+
+> **Textbook reference**: Shankar, Ch. 5.2; Sakurai, Ch. 2.6.
+
+
+# Worked Example 1: The Free Particle Propagator {.unnumbered}
+
+Let's compute the propagator for the simplest possible system: a **free particle** in one dimension, with Hamiltonian $\hat{H} = \hat{p}^2/2m$.
+
+## Strategy: Use the Spectral/Plane-Wave Method {.unnumbered}
+
+For a free particle, the energy eigenstates are **plane waves**. The momentum eigenstates $|p\rangle$ satisfy $\hat{H}|p\rangle = \frac{p^2}{2m}|p\rangle$, and the position-space wavefunctions are:
+
+$$
+\langle x|p\rangle = \frac{1}{\sqrt{2\pi\hbar}}\,e^{ipx/\hbar}
+$$
+
+The spectrum is continuous, so the spectral sum becomes an integral over momenta:
+
+$$
+K_0(x_b, t_b;\, x_a, t_a) = \int_{-\infty}^{\infty}\frac{dp}{2\pi\hbar}\,e^{ip x_b/\hbar}\,e^{-ip^2 T/2m\hbar}\,e^{-ip x_a/\hbar}
+$$
+
+where $T = t_b - t_a$. Combining the exponentials:
+
+$$
+K_0 = \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty} dp\;\exp\left[\frac{i}{\hbar}\left(p(x_b - x_a) - \frac{p^2 T}{2m}\right)\right]
+$$
+
+## Evaluating the Gaussian Integral {.unnumbered}
+
+Let $\Delta x = x_b - x_a$. The exponent is:
+
+$$
+\frac{i}{\hbar}\left(p\,\Delta x - \frac{p^2 T}{2m}\right) = -\frac{iT}{2m\hbar}\left(p^2 - \frac{2m\,\Delta x}{T}\,p\right)
+$$
+
+Complete the square in $p$:
+
+$$
+p^2 - \frac{2m\,\Delta x}{T}\,p = \left(p - \frac{m\,\Delta x}{T}\right)^2 - \frac{m^2\,\Delta x^2}{T^2}
+$$
+
+Substituting back:
+
+$$
+K_0 = \frac{1}{2\pi\hbar}\exp\left[\frac{i}{\hbar}\cdot\frac{m\,\Delta x^2}{2T}\right]\int_{-\infty}^{\infty}dp\;\exp\left[-\frac{iT}{2m\hbar}\left(p - \frac{m\,\Delta x}{T}\right)^2\right]
+$$
+
+The remaining integral is a Gaussian. Let $q = p - m\Delta x/T$:
+
+$$
+\int_{-\infty}^{\infty}dq\;\exp\left[-\frac{iT}{2m\hbar}\,q^2\right] = \sqrt{\frac{2\pi m\hbar}{iT}} = \sqrt{\frac{2\pi m\hbar}{iT}}
+$$
+
+Here we used the Gaussian integral formula $\int_{-\infty}^{\infty}dq\,e^{-\alpha q^2} = \sqrt{\pi/\alpha}$ with $\alpha = iT/(2m\hbar)$. (The convergence is ensured by giving $T$ a small positive imaginary part — a prescription we'll understand deeply when we study Wick rotation in Module 9.)
+
+## The Result {.unnumbered}
+
+Putting everything together:
+
+$$
+\boxed{K_0(x_b, t_b;\, x_a, t_a) = \sqrt{\frac{m}{2\pi i\hbar T}}\;\exp\left[\frac{im(x_b - x_a)^2}{2\hbar T}\right]}
+$$
+
+where $T = t_b - t_a > 0$.
+
+## Checking the Result {.unnumbered}
+
+Let's verify that this makes physical sense:
+
+1. **Initial condition**: As $T \to 0^+$, the prefactor $\sqrt{m/(2\pi i\hbar T)}$ diverges and the exponential oscillates infinitely rapidly except at $x_b = x_a$. This combination gives $K_0 \to \delta(x_b - x_a)$, as required. ✓
+
+2. **Dimensions**: $m/(\hbar T)$ has dimensions of $1/\text{length}^2$, so the exponent is dimensionless. The prefactor has dimensions of $1/\text{length}$, which is correct for $K$ (since $\int dx_b\,|K|^2$ should be dimensionless). ✓
+
+3. **Classical phase**: The exponent $im\Delta x^2/(2\hbar T)$ can be rewritten as $iS_{\text{cl}}/\hbar$, where $S_{\text{cl}} = m\Delta x^2/(2T)$ is the classical action for a free particle traveling from $x_a$ to $x_b$ in time $T$. (The classical free particle moves at constant velocity $v = \Delta x/T$, and $S = \int_0^T \frac{1}{2}mv^2\,dt = \frac{1}{2}m v^2 T = m\Delta x^2/(2T)$.) This connection to the classical action is the first hint of the deep relationship we'll explore in Module 8. ✓
+
+::: {.callout-tip}
+## The classical action makes an appearance!
+Notice that the free particle propagator has the form $K \propto e^{iS_{\text{cl}}/\hbar}$, where $S_{\text{cl}}$ is the classical action. This is **not** a coincidence — it's the beginning of the connection between quantum amplitudes and classical mechanics that forms the backbone of the path integral formulation.
+:::
+
+
+# Worked Example 2: Verifying the Composition Property {.unnumbered}
+
+Let's explicitly verify that the free particle propagator satisfies the composition property. We need to check:
+
+$$
+K_0(x_c, t_c;\, x_a, t_a) = \int_{-\infty}^{\infty}dx_b\;K_0(x_c, t_c;\, x_b, t_b)\;K_0(x_b, t_b;\, x_a, t_a)
+$$
+
+## Setting Up the Integral {.unnumbered}
+
+Let $T_1 = t_b - t_a$ and $T_2 = t_c - t_b$, so $T = t_c - t_a = T_1 + T_2$. The right-hand side is:
+
+$$
+\text{RHS} = \int dx_b\;\sqrt{\frac{m}{2\pi i\hbar T_2}}\exp\left[\frac{im(x_c - x_b)^2}{2\hbar T_2}\right]\;\sqrt{\frac{m}{2\pi i\hbar T_1}}\exp\left[\frac{im(x_b - x_a)^2}{2\hbar T_1}\right]
+$$
+
+Pull out the prefactors:
+
+$$
+\text{RHS} = \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\int dx_b\;\exp\left[\frac{im}{2\hbar}\left(\frac{(x_c - x_b)^2}{T_2} + \frac{(x_b - x_a)^2}{T_1}\right)\right]
+$$
+
+## Evaluating the Gaussian {.unnumbered}
+
+The exponent is quadratic in $x_b$. Let's expand and collect terms. Define $f(x_b)$ as the content of the exponential (without $im/2\hbar$):
+
+$$
+f(x_b) = \frac{x_c^2 - 2x_c x_b + x_b^2}{T_2} + \frac{x_b^2 - 2x_a x_b + x_a^2}{T_1}
+$$
+
+Collecting powers of $x_b$:
+
+$$
+f(x_b) = \underbrace{\left(\frac{1}{T_1} + \frac{1}{T_2}\right)}_{= T/(T_1 T_2)}x_b^2 - 2\left(\frac{x_a}{T_1} + \frac{x_c}{T_2}\right)x_b + \frac{x_a^2}{T_1} + \frac{x_c^2}{T_2}
+$$
+
+This is a quadratic $Ax_b^2 - 2Bx_b + C$ with:
+
+$$
+A = \frac{T}{T_1 T_2}, \qquad B = \frac{x_a}{T_1} + \frac{x_c}{T_2}, \qquad C = \frac{x_a^2}{T_1} + \frac{x_c^2}{T_2}
+$$
+
+Completing the square: $Ax_b^2 - 2Bx_b + C = A(x_b - B/A)^2 + C - B^2/A$.
+
+The Gaussian integral gives:
+
+$$
+\int dx_b\;\exp\left[\frac{im}{2\hbar}\left(A x_b^2 - 2Bx_b + C\right)\right] = \sqrt{\frac{2\pi\hbar}{imA}}\;\exp\left[\frac{im}{2\hbar}\left(C - \frac{B^2}{A}\right)\right]
+$$
+
+## Computing the Leftover Exponent {.unnumbered}
+
+We need $C - B^2/A$:
+
+$$
+C - \frac{B^2}{A} = \frac{x_a^2}{T_1} + \frac{x_c^2}{T_2} - \frac{T_1 T_2}{T}\left(\frac{x_a}{T_1} + \frac{x_c}{T_2}\right)^2
+$$
+
+Expanding the square:
+
+$$
+\left(\frac{x_a}{T_1} + \frac{x_c}{T_2}\right)^2 = \frac{x_a^2}{T_1^2} + \frac{2x_a x_c}{T_1 T_2} + \frac{x_c^2}{T_2^2}
+$$
+
+So:
+
+$$
+\frac{T_1 T_2}{T}\left(\frac{x_a^2}{T_1^2} + \frac{2x_a x_c}{T_1 T_2} + \frac{x_c^2}{T_2^2}\right) = \frac{x_a^2 T_2}{T T_1} + \frac{2 x_a x_c}{T} + \frac{x_c^2 T_1}{T T_2}
+$$
+
+Therefore:
+
+$$
+C - \frac{B^2}{A} = x_a^2\left(\frac{1}{T_1} - \frac{T_2}{T T_1}\right) + x_c^2\left(\frac{1}{T_2} - \frac{T_1}{T T_2}\right) - \frac{2x_a x_c}{T}
+$$
+
+For the $x_a^2$ coefficient: $\frac{1}{T_1} - \frac{T_2}{TT_1} = \frac{T - T_2}{TT_1} = \frac{T_1}{TT_1} = \frac{1}{T}$. Similarly, the $x_c^2$ coefficient is $1/T$.
+
+So:
+
+$$
+C - \frac{B^2}{A} = \frac{x_a^2 + x_c^2 - 2x_a x_c}{T} = \frac{(x_c - x_a)^2}{T}
+$$
+
+## Assembling the Result {.unnumbered}
+
+The full RHS becomes:
+
+$$
+\text{RHS} = \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\;\sqrt{\frac{2\pi\hbar}{im \cdot T/(T_1 T_2)}}\;\exp\left[\frac{im(x_c - x_a)^2}{2\hbar T}\right]
+$$
+
+Simplifying the prefactor:
+
+$$
+\frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\;\sqrt{\frac{2\pi\hbar T_1 T_2}{imT}} = \frac{m}{2\pi i\hbar\sqrt{T_1 T_2}}\;\frac{\sqrt{T_1 T_2}}{\sqrt{T}}\;\sqrt{\frac{2\pi\hbar}{im}} = \frac{m}{2\pi i\hbar}\;\frac{1}{\sqrt{T}}\;\sqrt{\frac{2\pi\hbar}{im}}
+$$
+
+$$
+= \frac{1}{\sqrt{T}}\;\frac{m}{2\pi i\hbar}\;\sqrt{\frac{2\pi\hbar}{im}} = \frac{1}{\sqrt{T}}\;\sqrt{\frac{m^2}{(2\pi i\hbar)^2}\;\frac{2\pi\hbar}{im}} = \frac{1}{\sqrt{T}}\;\sqrt{\frac{m}{2\pi i\hbar}} = \sqrt{\frac{m}{2\pi i\hbar T}}
+$$
+
+Therefore:
+
+$$
+\text{RHS} = \sqrt{\frac{m}{2\pi i\hbar T}}\;\exp\left[\frac{im(x_c - x_a)^2}{2\hbar T}\right] = K_0(x_c, t_c;\, x_a, t_a) = \text{LHS} \qquad \checkmark
+$$
+
+The composition property is verified! The key mathematical mechanism was that the Gaussian integral over the intermediate position $x_b$ "telescoped" the two short-time propagators into a single long-time propagator. This will happen again and again in the path integral formulation. $\blacksquare$
+
+
+# Summary of Key Formulas
+
+Here is a complete reference table for everything we derived in this module:
+
+| Concept | Formula |
+|:--|:--|
+| **Time evolution operator** | $\hat{U}(t_b, t_a) = e^{-i\hat{H}(t_b - t_a)/\hbar}$ |
+| **Unitarity** | $\hat{U}^\dagger\hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}$ |
+| **Composition law** ($\hat{U}$) | $\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\,\hat{U}(t_2, t_1)$ |
+| **Propagator definition** | $K(x_b, t_b;\, x_a, t_a) = \langle x_b|e^{-i\hat{H}T/\hbar}|x_a\rangle$ |
+| **Initial condition** | $K(x_b, t_a;\, x_a, t_a) = \delta(x_b - x_a)$ |
+| **Composition law** ($K$) | $K(x_c, t_c;\, x_a, t_a) = \int dx_b\, K(x_c, t_c;\, x_b, t_b)\, K(x_b, t_b;\, x_a, t_a)$ |
+| **Wavefunction evolution** | $\psi(x_b, t_b) = \int dx_a\, K(x_b, t_b;\, x_a, t_a)\, \psi(x_a, t_a)$ |
+| **Schrödinger equation for** $K$ | $i\hbar\,\partial_{t_b} K = \hat{H}_{x_b}\, K$ |
+| **Spectral representation** | $K = \sum_n \psi_n(x_b)\,\psi_n^*(x_a)\,e^{-iE_n T/\hbar}$ |
+| **Free particle propagator** | $K_0 = \sqrt{\dfrac{m}{2\pi i\hbar T}}\;\exp\!\left[\dfrac{im(x_b - x_a)^2}{2\hbar T}\right]$ |
+
+
+# Self-Check
+
+::: {.checkpoint}
+Before moving on to Module 2, make sure you can answer these questions:
+
+1. **Define the propagator** in words and in symbols. What are its arguments, and what does it physically represent?
+
+2. **Derive the composition property** of the propagator starting from $\hat{U}(t_3, t_1) = \hat{U}(t_3, t_2)\hat{U}(t_2, t_1)$ and the completeness relation. Do this without looking at your notes.
+
+3. **Write down the spectral representation** of the propagator in terms of energy eigenstates. How would you use it to extract the ground state energy?
+
+4. **Reproduce the free particle propagator** from scratch, starting from the plane-wave expansion. Make sure you can do the Gaussian integral.
+:::
+
+
+# Practice Problems
+
+**Problem 1** (Warm-up) ⭐
+
+Show that the free particle propagator $K_0 = \sqrt{m/(2\pi i\hbar T)}\exp[im\Delta x^2/(2\hbar T)]$ satisfies the initial condition:
+
+$$
+\lim_{T \to 0^+} K_0(x_b, t_b;\, x_a, t_a) = \delta(x_b - x_a)
+$$
+
+*Hint*: Use the nascent delta function representation $\delta(x) = \lim_{\epsilon \to 0^+}\frac{1}{\sqrt{2\pi\epsilon}}e^{-x^2/(2\epsilon)}$, and identify $\epsilon$ with an appropriate combination of parameters. Be careful with the factor of $i$!
+
+---
+
+**Problem 2** (Standard) ⭐⭐
+
+Verify that the free particle propagator satisfies the free-particle Schrödinger equation:
+
+$$
+i\hbar\frac{\partial K_0}{\partial t_b} = -\frac{\hbar^2}{2m}\frac{\partial^2 K_0}{\partial x_b^2}
+$$
+
+by explicitly computing both sides and showing they are equal.
+
+---
+
+**Problem 3** (Standard) ⭐⭐
+
+A particle in one dimension is initially described by a Gaussian wave packet:
+
+$$
+\psi(x, 0) = \left(\frac{1}{2\pi\sigma^2}\right)^{1/4}\exp\left(-\frac{x^2}{4\sigma^2}\right)
+$$
+
+Using the free particle propagator, compute $\psi(x, t)$ at a later time $t$. Show that the wave packet remains Gaussian but its width grows as:
+
+$$
+\sigma(t) = \sigma\sqrt{1 + \frac{\hbar^2 t^2}{4m^2\sigma^4}}
+$$
+
+*Hint*: Use $\psi(x, t) = \int dx'\, K_0(x, t; x', 0)\,\psi(x', 0)$ and evaluate the Gaussian integral in $x'$.
+
+---
+
+**Problem 4** (Intermediate) ⭐⭐⭐
+
+**(a)** Write down the spectral representation of the propagator for the infinite square well (particle in a box of width $L$), using the known energy eigenstates $\psi_n(x) = \sqrt{2/L}\sin(n\pi x/L)$ and energies $E_n = n^2\pi^2\hbar^2/(2mL^2)$.
+
+**(b)** Verify that your expression satisfies $K(x_b, 0; x_a, 0) = \delta(x_b - x_a)$ by using the completeness relation for the eigenstates.
+
+**(c)** What happens to $K$ in the limit $T \to \infty$? Can you interpret this physically?
+
+---
+
+**Problem 5** (Advanced) ⭐⭐⭐⭐
+
+The **free particle propagator in $d$ spatial dimensions** generalizes to:
+
+$$
+K_0^{(d)}(\mathbf{x}_b, t_b;\, \mathbf{x}_a, t_a) = \left(\frac{m}{2\pi i\hbar T}\right)^{d/2}\exp\left[\frac{im|\mathbf{x}_b - \mathbf{x}_a|^2}{2\hbar T}\right]
+$$
+
+**(a)** Derive this from the $d$-dimensional momentum integral.
+
+**(b)** Verify the composition property in $d$ dimensions.
+
+**(c)** Show that in $d = 3$, the propagator can be written as a function of $r = |\mathbf{x}_b - \mathbf{x}_a|$ only (i.e., it is spherically symmetric). Explain why this must be the case on physical grounds.
+
+---
+
+**Problem 6** (Challenge) ⭐⭐⭐⭐⭐
+
+**(a)** Starting from the spectral representation of the propagator, derive the **trace formula**:
+
+$$
+\text{Tr}[\hat{U}(T)] \equiv \int dx\, K(x, T;\, x, 0) = \sum_n e^{-iE_n T/\hbar}
+$$
+
+**(b)** Evaluate this trace for the free particle. You will find a divergent result — explain why this divergence is expected physically.
+
+**(c)** For the harmonic oscillator, use the known energy spectrum $E_n = (n + 1/2)\hbar\omega$ to compute $\text{Tr}[\hat{U}(T)]$ and show it equals:
+
+$$
+\text{Tr}[\hat{U}(T)] = \frac{1}{2i\sin(\omega T/2)}
+$$
+
+*Hint*: Sum the geometric series. This result will be important in Module 5.
+
+---
+
+::: {.nav-buttons}
+[← Back to Course](index.qmd){.btn .btn-outline-secondary}
+[Next: Module 2 — The Sum-Over-Paths Idea →](02_sum_over_paths.qmd){.btn .btn-success}
+:::

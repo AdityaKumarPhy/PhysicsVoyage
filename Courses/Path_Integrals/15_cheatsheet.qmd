@@ -1,0 +1,343 @@
+---
+title: "Module 15: Master Cheat Sheet & Further Reading"
+subtitle: "The Ultimate Path Integral Reference Guide"
+description: "A comprehensive summary of all key formulas, concepts, and textbook references to conclude the Path Integrals course."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Previous: Module 14 ←](14_applications.qmd)
+
+# Introduction
+
+Welcome to the final module of our Path Integrals course! You have traveled a long way from the foundational double-slit experiment all the way to Euclidean field theory and instantons. This module serves as your ultimate master cheat sheet. Bookmark this page, as it compiles the most important formulas, definitions, and classical references you'll need when applying path integrals in your future research.
+
+# Propagators
+
+The propagator $K(x_b, t_b; x_a, t_a)$ is the probability amplitude for a particle to travel from position $x_a$ at time $t_a$ to position $x_b$ at time $t_b$.
+
+## Definition and Properties
+**Definition:**
+$$ K(x_b, t_b; x_a, t_a) = \langle x_b | e^{-\frac{i}{\hbar} \hat{H} (t_b - t_a)} | x_a \rangle $$
+
+**Composition Property (Chapman-Kolmogorov):**
+$$ K(x_b, t_b; x_a, t_a) = \int_{-\infty}^{\infty} dx_1 \, K(x_b, t_b; x_1, t_1) K(x_1, t_1; x_a, t_a) $$
+
+**Wave Function Evolution:**
+$$ \psi(x, t) = \int_{-\infty}^{\infty} dx' \, K(x, t; x', t') \psi(x', t') $$
+
+## Exact Propagators
+
+**Free Particle ($V(x) = 0$):**
+$$ \boxed{ K_{\text{free}}(x_b, t_b; x_a, t_a) = \sqrt{\frac{m}{2\pi i \hbar (t_b - t_a)}} \exp\left( \frac{i m (x_b - x_a)^2}{2\hbar (t_b - t_a)} \right) } $$
+
+**Harmonic Oscillator ($V(x) = \frac{1}{2}m\omega^2 x^2$):**
+Let $T = t_b - t_a$.
+$$ \boxed{ K_{\text{HO}}(x_b, t_b; x_a, t_a) = \sqrt{\frac{m\omega}{2\pi i \hbar \sin(\omega T)}} \exp\left\{ \frac{i m \omega}{2\hbar \sin(\omega T)} \left[ (x_b^2 + x_a^2)\cos(\omega T) - 2x_b x_a \right] \right\} } $$
+
+::: {.callout-tip}
+In the limit $\omega \to 0$, we have $\sin(\omega T) \approx \omega T$ and $\cos(\omega T) \approx 1$. Plugging these into the harmonic oscillator propagator perfectly recovers the free particle propagator!
+:::
+
+# Path Integral Formulas
+
+The path integral provides an alternative formulation of quantum mechanics, summing over all possible classical and non-classical trajectories.
+
+## Lagrangian Path Integral
+For a Hamiltonian of the form $\hat{H} = \frac{\hat{p}^2}{2m} + V(\hat{x})$, we can write the propagator as a sum over paths in configuration space:
+$$ K(x_b, t_b; x_a, t_a) = \int_{x(t_a)=x_a}^{x(t_b)=x_b} \mathcal{D}x(t) \, e^{\frac{i}{\hbar} S[x(t)]} $$
+where the classical action is $S[x(t)] = \int_{t_a}^{t_b} dt \, \left( \frac{1}{2}m\dot{x}^2 - V(x) \right)$ and the measure is defined via infinite time-slicing.
+
+## Phase Space Path Integral
+The more fundamental formulation, valid for any generic Hamiltonian, is the phase space path integral:
+$$ K(x_b, t_b; x_a, t_a) = \int \mathcal{D}x \int \mathcal{D}p \, \exp\left\{ \frac{i}{\hbar} \int_{t_a}^{t_b} dt \left[ p(t)\dot{x}(t) - H(x(t), p(t)) \right] \right\} $$
+
+## Trotter Formula
+The mathematical backbone of time-slicing is the Trotter product formula for non-commuting operators $\hat{A}$ and $\hat{B}$:
+$$ \boxed{ e^{\hat{A} + \hat{B}} = \lim_{N \to \infty} \left( e^{\frac{\hat{A}}{N}} e^{\frac{\hat{B}}{N}} \right)^N } $$
+
+| Formulation | Action / Hamiltonian Weight | Measure |
+| :--- | :--- | :--- |
+| **Lagrangian** | $S = \int ( \frac{1}{2}m\dot{x}^2 - V(x) ) dt$ | $\int \mathcal{D}x(t)$ |
+| **Phase Space** | $\int ( p\dot{x} - H(x,p) ) dt$ | $\int \mathcal{D}x \int \mathcal{D}p$ |
+
+# Gaussian Integrals
+
+Gaussian integrals are the only functional integrals we can broadly solve exactly, making them the most important mathematical tool in quantum field theory.
+
+## 1D and N-Dimensional Real Integrals
+**1D Real:**
+$$ \int_{-\infty}^{\infty} dx \, e^{-\frac{1}{2} a x^2 + Jx} = \sqrt{\frac{2\pi}{a}} e^{\frac{J^2}{2a}} $$
+
+**N-Dimensional Real** (for a symmetric, positive-definite $N \times N$ matrix $A$):
+$$ \int d^N\mathbf{x} \, e^{-\frac{1}{2} \mathbf{x}^T A \mathbf{x} + \mathbf{J}^T \mathbf{x}} = \sqrt{\frac{(2\pi)^N}{\det A}} e^{\frac{1}{2} \mathbf{J}^T A^{-1} \mathbf{J}} $$
+
+## Complex and Functional Determinants
+**N-Dimensional Complex** (for a Hermitian matrix $M$):
+$$ \int d^N\mathbf{z}^* d^N\mathbf{z} \, e^{-\mathbf{z}^\dagger M \mathbf{z} + \mathbf{w}^\dagger \mathbf{z} + \mathbf{z}^\dagger \mathbf{v}} = \frac{\pi^N}{\det M} e^{\mathbf{w}^\dagger M^{-1} \mathbf{v}} $$
+
+**The Van Vleck Determinant** is the fluctuation determinant around a classical path:
+$$ \det\left( -\frac{d^2}{dt^2} + V''(x_{\text{cl}}) \right) \implies \text{Prefactor depends on } \frac{\partial^2 S_{\text{cl}}}{\partial x_b \partial x_a} $$
+
+### 📝 Worked Example 1: Multidimensional Gaussian Integral
+Let's evaluate the exact value of the following 2D Gaussian integral:
+$$ I = \int_{-\infty}^\infty dx \int_{-\infty}^\infty dy \, \exp\left(-\frac{1}{2}(2x^2 + 2xy + y^2) + J_x x + J_y y\right) $$
+
+**Step 1: Identify the matrix $A$ and vector $J$.**
+We can rewrite the quadratic part as $-\frac{1}{2} \mathbf{v}^T A \mathbf{v}$, where $\mathbf{v} = \begin{pmatrix} x \\ y \end{pmatrix}$.
+Expanding $-\frac{1}{2} \mathbf{v}^T A \mathbf{v} = -\frac{1}{2} (A_{11}x^2 + A_{12}xy + A_{21}yx + A_{22}y^2)$.
+Matching coefficients, we require a symmetric matrix $A$:
+$A_{11} = 2$, $A_{22} = 1$, and $A_{12} + A_{21} = 2A_{12} = 2 \implies A_{12} = A_{21} = 1$.
+So, $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ and $\mathbf{J} = \begin{pmatrix} J_x \\ J_y \end{pmatrix}$.
+
+**Step 2: Compute $\det A$ and $A^{-1}$.**
+Determinant: $\det A = (2)(1) - (1)(1) = 1$.
+Inverse matrix formula for a $2 \times 2$:
+$$ A^{-1} = \frac{1}{\det A} \begin{pmatrix} A_{22} & -A_{12} \\ -A_{21} & A_{11} \end{pmatrix} = \frac{1}{1} \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} $$
+
+**Step 3: Apply the $N$-dimensional formula.**
+The formula gives:
+$$ I = \sqrt{\frac{(2\pi)^2}{\det A}} \exp\left( \frac{1}{2} \mathbf{J}^T A^{-1} \mathbf{J} \right) $$
+Compute the argument of the exponential:
+$$ \mathbf{J}^T A^{-1} \mathbf{J} = \begin{pmatrix} J_x & J_y \end{pmatrix} \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} \begin{pmatrix} J_x \\ J_y \end{pmatrix} = \begin{pmatrix} J_x & J_y \end{pmatrix} \begin{pmatrix} J_x - J_y \\ -J_x + 2J_y \end{pmatrix} $$
+$$ = J_x(J_x - J_y) + J_y(-J_x + 2J_y) = J_x^2 - 2J_x J_y + 2J_y^2 $$
+Thus, the final integral evaluates to:
+$$ \boxed{ I = 2\pi \exp\left( \frac{1}{2}(J_x^2 - 2J_x J_y + 2J_y^2) \right) } $$
+
+# Functional Calculus
+
+Calculus of variations translates standard calculus to the infinite-dimensional space of functions.
+
+## The Fundamental Derivative
+The defining relation of functional differentiation is:
+$$ \boxed{ \frac{\delta x(t_1)}{\delta x(t_2)} = \delta(t_1 - t_2) } $$
+
+## Euler-Lagrange Equations
+Using functional derivatives on the action $S = \int L(x, \dot{x}) dt$:
+$$ \frac{\delta S}{\delta x(t)} = \frac{\partial L}{\partial x} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} \right) = 0 $$
+This effortlessly yields the classical equations of motion.
+
+## Generating Functional and Correlation Functions
+We add a source term $J(t)$ to the Lagrangian. The generating functional is:
+$$ Z[J] = \int \mathcal{D}x \, e^{\frac{i}{\hbar} S[x] + \frac{i}{\hbar} \int dt \, J(t) x(t)} $$
+
+Time-ordered correlation functions are obtained by taking functional derivatives with respect to the source:
+$$ \langle \Omega | \hat{T} \{ \hat{x}(t_1) \hat{x}(t_2) \} | \Omega \rangle = \frac{(-i\hbar)^2}{Z[0]} \left. \frac{\delta^2 Z[J]}{\delta J(t_1) \delta J(t_2)} \right|_{J=0} $$
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Why does the path integral naturally produce **time-ordered** expectation values rather than normal or anti-time-ordered ones?
+:::
+::: {.callout-note collapse="true"}
+## Answer
+The path integral is constructed by time-slicing the evolution operator $e^{-i\hat{H}T}$. The integration variables $x(t_i)$ correspond to specific time slices $t_0 < t_1 < t_2 < \dots < t_N$. When we insert an operator $\hat{x}$ at time $t_1$ and $\hat{x}$ at time $t_2$, they are automatically evaluated at their respective time slices. When assembling the full matrix element via time-slicing, the slice occurring at the later time intrinsically appears to the left of the earlier time, naturally enforcing $\hat{T}$-ordering.
+:::
+
+# Classical Limit & Semiclassical Approximation
+
+The classical limit corresponds to $\hbar \to 0$. In this limit, the path integral is overwhelmingly dominated by the path of stationary phase, which happens to be exactly the classical path.
+
+::: {.callout-intuition}
+Think of the path integral as Huygens' principle in optics. Light propagates by exploring all possible paths (wavelets). When the wavelength is very small compared to macroscopic objects ($\lambda \to 0$), the paths away from the straight line severely destructively interfere, yielding geometric ray optics. In QM, $\hbar$ plays the role of the wavelength. When $\hbar \to 0$, paths away from the classical action $S_{\text{cl}}$ destructively interfere, yielding classical mechanics!
+:::
+
+## Semiclassical Expansion Formula
+Expand the action around the classical path $x(t) = x_{\text{cl}}(t) + \eta(t)$, where $\eta(t)$ are small quantum fluctuations.
+$$ S[x] \approx S[x_{\text{cl}}] + \frac{1}{2} \int dt \, \eta(t) \left( -\frac{d^2}{dt^2} - V''(x_{\text{cl}}) \right) \eta(t) $$
+The first order term vanishes because $x_{\text{cl}}$ satisfies the Euler-Lagrange equations. Integrating over the fluctuations yields the WKB-like result:
+$$ \boxed{ K(x_b, t_b; x_a, t_a) \approx \sqrt{ \frac{i}{2\pi\hbar} \frac{\partial^2 S_{\text{cl}}}{\partial x_b \partial x_a} } e^{\frac{i}{\hbar} S_{\text{cl}}} } $$
+
+> **Textbook reference**: Shankar, Ch. 8 section 8.6 for a detailed WKB connection.
+
+# Wick Rotation Dictionary
+
+Wick rotation maps quantum mechanics in real time to statistical mechanics in imaginary time by making the analytical substitution $t \to -i\tau$.
+
+| Minkowski (Real Time) | Euclidean (Imaginary Time) |
+| :--- | :--- |
+| **Time:** $t$ | **Imaginary Time:** $\tau = it$ |
+| **Lagrangian:** $L = \frac{1}{2}m\dot{x}^2 - V(x)$ | **Euclidean Lag.:** $L_E = \frac{1}{2}m\left(\frac{dx}{d\tau}\right)^2 + V(x)$ |
+| **Action:** $S = \int L \, dt$ | **Euclidean Action:** $S_E = \int L_E \, d\tau$ |
+| **Weight:** $e^{iS/\hbar}$ | **Weight:** $e^{-S_E/\hbar}$ |
+| **Propagator:** $K(x_b, t; x_a, 0)$ | **Thermal density matrix:** $\rho(x_b, x_a; \beta\hbar)$ |
+| **Time duration:** $T$ | **Inverse temperature:** $\beta\hbar$ |
+| **Ground state:** Oscillates $e^{-iE_0 T/\hbar}$ | **Ground state:** Dominates $e^{-E_0 \tau/\hbar}$ |
+
+# Euclidean Results
+
+Working in imaginary time turns highly oscillatory integrals into well-behaved decaying exponentials, making numerical and non-perturbative calculations possible.
+
+## Ground State Projection
+As $\tau \to \infty$, the Euclidean propagator is dominated strictly by the lowest energy state:
+$$ K_E(x_b, x_a; \tau) = \sum_n \psi_n(x_b) \psi_n^*(x_a) e^{-E_n \tau / \hbar} \xrightarrow{\tau \to \infty} \psi_0(x_b) \psi_0^*(x_a) e^{-E_0 \tau / \hbar} $$
+
+## Partition Function
+By setting $x_a = x_b = x$ and integrating over $x$, we sum over all periodic paths. This gives the quantum statistical partition function:
+$$ Z(\beta) = \int dx \, K_E(x, x; \beta\hbar) = \sum_n e^{-\beta E_n} = \int_{x(0)=x(\beta\hbar)} \mathcal{D}x(\tau) \, e^{-S_E[x]/\hbar} $$
+
+## Instantons
+Instantons are classical solutions to the Euclidean equations of motion that tunnel between degenerate classical vacua. The tunneling amplitude is proportional to $e^{-S_0 / \hbar}$, where $S_0$ is the action of the instanton path.
+
+::: {.callout-warning}
+## 🤔 Quick Question
+In the Wick-rotated Euclidean path integral, what happens to paths that have very large Euclidean action $S_E \gg \hbar$?
+:::
+::: {.callout-note collapse="true"}
+## Answer
+In Euclidean space, the weight of a path is strictly real and given by $e^{-S_E/\hbar}$. Paths with $S_E \gg \hbar$ have an exponentially tiny weight and are severely suppressed. This is unlike Minkowski space, where a large action just means the weight $e^{iS/\hbar}$ oscillates very rapidly. This exponential suppression makes Euclidean path integrals mathematically rigorous and convergent.
+:::
+
+# QFT Extension
+
+The concepts from QM map beautifully into Quantum Field Theory by replacing particle positions $x(t)$ with continuous fields $\phi(x)$.
+
+## Scalar Field Generating Functional
+For a free scalar field theory, the generating functional in Minkowski spacetime is:
+$$ Z_0[J] = \int \mathcal{D}\phi \, \exp\left\{ i \int d^4x \left( \frac{1}{2}(\partial_\mu\phi)^2 - \frac{1}{2}m^2\phi^2 + J(x)\phi(x) \right) \right\} $$
+Completing the square in the exponent allows us to evaluate this exactly.
+
+::: {.callout-note}
+Notice that the Feynman propagator $\Delta_F(x-y)$ is mathematically a Green's function for the Klein-Gordon operator $(\partial^2 + m^2)$. The path integral effortlessly recovers Green's function techniques from classical differential equations!
+:::
+
+### 📝 Worked Example 2: Deriving the Free Scalar Propagator
+Let's show how the 2-point correlation function is related to the Feynman propagator.
+By completing the square for the Gaussian functional integral, the exact result for the free scalar generating functional is known to be:
+$$ Z_0[J] = Z_0[0] \exp\left\{ -\frac{1}{2} \int d^4x d^4y \, J(x) \Delta_F(x-y) J(y) \right\} $$
+We wish to compute the time-ordered 2-point function:
+$$ \langle 0 | \hat{T} \phi(x_1) \phi(x_2) | 0 \rangle = \frac{(-i)^2}{Z_0[0]} \left. \frac{\delta^2 Z_0[J]}{\delta J(x_1) \delta J(x_2)} \right|_{J=0} $$
+
+**Step 1: First functional derivative.**
+We differentiate $Z_0[J]$ with respect to $J(x_2)$.
+Let the exponent be $W[J] = -\frac{1}{2} \int d^4x d^4y \, J(x) \Delta_F(x-y) J(y)$.
+Using the product rule and the symmetry $\Delta_F(x-y) = \Delta_F(y-x)$:
+$$ \frac{\delta W}{\delta J(x_2)} = -\frac{1}{2} \int d^4x d^4y \left( \delta^{(4)}(x-x_2) \Delta_F(x-y) J(y) + J(x) \Delta_F(x-y) \delta^{(4)}(y-x_2) \right) $$
+$$ = -\frac{1}{2} \left( \int d^4y \, \Delta_F(x_2-y) J(y) + \int d^4x \, J(x) \Delta_F(x-x_2) \right) $$
+By relabeling dummy variables, these two terms are identical:
+$$ \frac{\delta W}{\delta J(x_2)} = -\int d^4y \, \Delta_F(x_2-y) J(y) $$
+So, $\frac{\delta Z_0[J]}{\delta J(x_2)} = Z_0[J] \left( -\int d^4y \, \Delta_F(x_2-y) J(y) \right)$.
+
+**Step 2: Second functional derivative.**
+Now we differentiate with respect to $J(x_1)$:
+$$ \frac{\delta^2 Z_0[J]}{\delta J(x_1) \delta J(x_2)} = \frac{\delta Z_0[J]}{\delta J(x_1)} \left( -\int d^4y \, \Delta_F(x_2-y) J(y) \right) + Z_0[J] \frac{\delta}{\delta J(x_1)} \left( -\int d^4y \, \Delta_F(x_2-y) J(y) \right) $$
+The derivative in the second term is simply:
+$$ -\int d^4y \, \Delta_F(x_2-y) \delta^{(4)}(y-x_1) = -\Delta_F(x_2-x_1) $$
+So we have:
+$$ \frac{\delta^2 Z_0[J]}{\delta J(x_1) \delta J(x_2)} = Z_0[J] \left( \dots \text{terms with } J \dots \right) - Z_0[J] \Delta_F(x_2-x_1) $$
+
+**Step 3: Set $J=0$.**
+Setting $J=0$ kills the first term entirely. Since $Z_0[0]$ factors out, we get:
+$$ \left. \frac{\delta^2 Z_0[J]}{\delta J(x_1) \delta J(x_2)} \right|_{J=0} = -Z_0[0] \Delta_F(x_2-x_1) $$
+
+**Step 4: Final Result.**
+Substitute back into our correlation formula (and use $\Delta_F(x_2-x_1) = \Delta_F(x_1-x_2)$):
+$$ \langle 0 | \hat{T} \phi(x_1) \phi(x_2) | 0 \rangle = \frac{(-i)^2}{Z_0[0]} \left( -Z_0[0] \Delta_F(x_1-x_2) \right) = (-1)(- \Delta_F(x_1-x_2)) = \boxed{ \Delta_F(x_1-x_2) } $$
+The time-ordered 2-point function is precisely the Feynman propagator!
+
+# Recommended Textbooks
+
+To continue your journey, here is an annotated bibliography of the absolute best resources available.
+
+1. **Feynman, R.P., & Hibbs, A.R., "Quantum Mechanics and Path Integrals"**
+   *Why read it?* This is the historical text written by the inventor himself. It focuses heavily on physical intuition and is unmatched in its conceptual explanations, even if the notation is slightly dated.
+
+2. **Shankar, R., "Principles of Quantum Mechanics"**
+   *Why read it?* Chapters 8 and 21 provide the best pedagogical introduction for students just bridging the gap from Schrödinger's equation to path integrals.
+
+3. **Zinn-Justin, J., "Quantum Field Theory and Critical Phenomena"**
+   *Why read it?* Rigorous and comprehensive. If you want a deep dive into Euclidean path integrals, statistical mechanics, and renormalization, this is the gold standard.
+
+4. **Kleinert, H., "Path Integrals in Quantum Mechanics, Statistics, Polymer Physics, and Financial Markets"**
+   *Why read it?* The encyclopedia of path integrals. If an exact path integral solution exists for a potential, it is in this massive book.
+
+5. **Altland, A., & Simons, B., "Condensed Matter Field Theory"**
+   *Why read it?* Fantastic for seeing how path integrals are applied to many-body physics, including coherent states and statistical mechanics.
+
+6. **Coleman, S., "Aspects of Symmetry"**
+   *Why read it?* Chapter 7 ("The Uses of Instantons") is widely considered the absolute best explanation of instantons, false vacuum decay, and semiclassical tunneling in existence. Masterful pedagogical writing.
+
+# Classic Papers
+
+Read the masters in their original words:
+
+- **Dirac, P. A. M. (1933).** "The Lagrangian in Quantum Mechanics" *Physikalische Zeitschrift der Sowjetunion*. The paper where Dirac first suggested that $e^{iS/\hbar}$ relates to the propagator.
+- **Feynman, R. P. (1948).** "Space-Time Approach to Non-Relativistic Quantum Mechanics" *Reviews of Modern Physics*. Feynman takes Dirac's suggestion and formulates the complete path integral theory.
+
+::: {.checkpoint}
+**Final Sanity Check!**
+Before closing this tab, make sure you can confidently answer:
+1. What is the fundamental difference between the weight of a path in Minkowski space vs. Euclidean space?
+2. How does the path integral manifest the principle of least action in the limit $\hbar \to 0$?
+3. Can you write down the free particle propagator from memory?
+If yes, you have successfully mastered the fundamentals of Path Integrals!
+:::
+
+# Final Practice Problems
+
+These problems synthesize knowledge from the entire course.
+
+1. **Gaussian Wave Packet Evolution:** Use the exact free particle propagator to find the time evolution of an initial Gaussian wave packet $\psi(x,0) = (2\pi \sigma^2)^{-1/4} \exp(-x^2 / 4\sigma^2)$. Verify that the wave packet spreads over time.
+2. **Wick's Theorem:** Given the exact generating functional $Z[J]$ for a free scalar field, calculate the 4-point correlation function $\langle 0 | \hat{T} \phi(x_1) \phi(x_2) \phi(x_3) \phi(x_4) | 0 \rangle$ and show that it neatly breaks down into a sum of products of 2-point functions.
+3. **Harmonic Oscillator Energy:** Analytically continue the harmonic oscillator propagator to imaginary time ($\tau = it$). Take the limit $\tau \to \infty$ and extract the exact ground state energy.
+4. **Functional Determinant:** Calculate the functional determinant for a free particle in 1D over a time interval $T$. Show that it correctly reproduces the prefactor $\sqrt{m / 2\pi i \hbar T}$.
+5. **Double-Well Instanton:** Semiclassically evaluate the Euclidean path integral for a double-well potential $V(x) = \lambda(x^2 - a^2)^2$. Find the classical instanton path that connects $x = -a$ to $x = a$ and compute its Euclidean action $S_0$.
+
+***
+
+**Congratulations on completing the Path Integrals course!** You now possess one of the most powerful and unifying mathematical tools in modern theoretical physics. Whether you head into condensed matter, high energy physics, or quantum gravity, the sum over histories will light your path. Safe travels on your physics voyage!
+
+::: {.nav-buttons}
+[← Previous Module](14_applications.qmd){.btn .btn-outline-secondary}
+[Course Home](index.qmd){.btn .btn-success}
+:::

@@ -2,6 +2,7 @@
   {
     "listing": "/courses.html",
     "items": [
+      "/Courses/Path_Integrals/index.html",
       "/Courses/Comp_Physics/index.html",
       "/Courses/QHO/index.html"
     ]
@@ -27,9 +28,10 @@
   {
     "listing": "/feed.html",
     "items": [
+      "/Blog/Random_Physics/quartic_double_well.html",
+      "/Blog/Random_Physics/Quantum Dynamics.html",
       "/Blog/Random_Physics/Wavefunction.html",
-      "/Blog/Subjects/Intro_Comp_Physics/index.html",
-      "/Blog/Random_Physics/Quantum Dynamics.html"
+      "/Blog/Subjects/Intro_Comp_Physics/index.html"
     ]
   }
 ]

@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="The particle takes ALL paths simultaneously. Feynman’s three postulates, the action principle, why the phase is e^{iS/ℏ}, and a sneak peek at how classical mechanics emerges from destructive interference.">
+
+<title>Physics Voyage - Module 2: The Sum-Over-Paths Idea</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-feynman-claim" id="toc-sec-feynman-claim" class="nav-link active" data-scroll-target="#sec-feynman-claim"><span class="header-section-number">1</span> Feynman’s Bold Claim</a>
+  <ul class="collapse">
+  <li><a href="#the-story" id="toc-the-story" class="nav-link" data-scroll-target="#the-story"><span class="header-section-number">1.1</span> The Story</a></li>
+  <li><a href="#the-claim" id="toc-the-claim" class="nav-link" data-scroll-target="#the-claim"><span class="header-section-number">1.2</span> The Claim</a></li>
+  </ul></li>
+  <li><a href="#sec-double-slit" id="toc-sec-double-slit" class="nav-link" data-scroll-target="#sec-double-slit"><span class="header-section-number">2</span> The Double-Slit Experiment Revisited</a>
+  <ul class="collapse">
+  <li><a href="#two-slits-two-paths" id="toc-two-slits-two-paths" class="nav-link" data-scroll-target="#two-slits-two-paths"><span class="header-section-number">2.1</span> Two Slits: Two Paths</a></li>
+  <li><a href="#three-slits-three-paths" id="toc-three-slits-three-paths" class="nav-link" data-scroll-target="#three-slits-three-paths"><span class="header-section-number">2.2</span> Three Slits: Three Paths</a></li>
+  <li><a href="#n-slits" id="toc-n-slits" class="nav-link" data-scroll-target="#n-slits"><span class="header-section-number">2.3</span> <span class="math inline">\(N\)</span> Slits</a></li>
+  <li><a href="#infinitely-many-slits-no-barrier" id="toc-infinitely-many-slits-no-barrier" class="nav-link" data-scroll-target="#infinitely-many-slits-no-barrier"><span class="header-section-number">2.4</span> Infinitely Many Slits = No Barrier!</a></li>
+  </ul></li>
+  <li><a href="#sec-action-principle" id="toc-sec-action-principle" class="nav-link" data-scroll-target="#sec-action-principle"><span class="header-section-number">3</span> The Action Principle: A Classical Review</a>
+  <ul class="collapse">
+  <li><a href="#the-lagrangian" id="toc-the-lagrangian" class="nav-link" data-scroll-target="#the-lagrangian"><span class="header-section-number">3.1</span> The Lagrangian</a></li>
+  <li><a href="#the-action-functional" id="toc-the-action-functional" class="nav-link" data-scroll-target="#the-action-functional"><span class="header-section-number">3.2</span> The Action Functional</a></li>
+  <li><a href="#hamiltons-principle-delta-s-0" id="toc-hamiltons-principle-delta-s-0" class="nav-link" data-scroll-target="#hamiltons-principle-delta-s-0"><span class="header-section-number">3.3</span> Hamilton’s Principle: <span class="math inline">\(\delta S = 0\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-feynman-postulates" id="toc-sec-feynman-postulates" class="nav-link" data-scroll-target="#sec-feynman-postulates"><span class="header-section-number">4</span> Feynman’s Three Postulates</a>
+  <ul class="collapse">
+  <li><a href="#postulate-1-each-path-gets-an-amplitude" id="toc-postulate-1-each-path-gets-an-amplitude" class="nav-link" data-scroll-target="#postulate-1-each-path-gets-an-amplitude"><span class="header-section-number">4.1</span> Postulate 1: Each Path Gets an Amplitude</a></li>
+  <li><a href="#postulate-2-sum-over-all-paths" id="toc-postulate-2-sum-over-all-paths" class="nav-link" data-scroll-target="#postulate-2-sum-over-all-paths"><span class="header-section-number">4.2</span> Postulate 2: Sum Over All Paths</a></li>
+  <li><a href="#postulate-3-these-two-rules-reproduce-all-of-quantum-mechanics" id="toc-postulate-3-these-two-rules-reproduce-all-of-quantum-mechanics" class="nav-link" data-scroll-target="#postulate-3-these-two-rules-reproduce-all-of-quantum-mechanics"><span class="header-section-number">4.3</span> Postulate 3: These Two Rules Reproduce All of Quantum Mechanics</a></li>
+  </ul></li>
+  <li><a href="#sec-why-eis" id="toc-sec-why-eis" class="nav-link" data-scroll-target="#sec-why-eis"><span class="header-section-number">5</span> Why <span class="math inline">\(e^{iS/\hbar}\)</span>?</a>
+  <ul class="collapse">
+  <li><a href="#dimensional-analysis" id="toc-dimensional-analysis" class="nav-link" data-scroll-target="#dimensional-analysis"><span class="header-section-number">5.1</span> Dimensional Analysis</a></li>
+  <li><a href="#connection-to-de-broglie-waves" id="toc-connection-to-de-broglie-waves" class="nav-link" data-scroll-target="#connection-to-de-broglie-waves"><span class="header-section-number">5.2</span> Connection to de Broglie Waves</a></li>
+  <li><a href="#why-is-the-phase-real" id="toc-why-is-the-phase-real" class="nav-link" data-scroll-target="#why-is-the-phase-real"><span class="header-section-number">5.3</span> Why Is the Phase Real?</a></li>
+  <li><a href="#why-not-e-shbar-a-real-exponential" id="toc-why-not-e-shbar-a-real-exponential" class="nav-link" data-scroll-target="#why-not-e-shbar-a-real-exponential"><span class="header-section-number">5.4</span> Why Not <span class="math inline">\(e^{-S/\hbar}\)</span> (a Real Exponential)?</a></li>
+  </ul></li>
+  <li><a href="#sec-classical-limit" id="toc-sec-classical-limit" class="nav-link" data-scroll-target="#sec-classical-limit"><span class="header-section-number">6</span> The Classical Limit: A Sneak Peek</a>
+  <ul class="collapse">
+  <li><a href="#the-stationary-phase-argument" id="toc-the-stationary-phase-argument" class="nav-link" data-scroll-target="#the-stationary-phase-argument"><span class="header-section-number">6.1</span> The Stationary Phase Argument</a></li>
+  <li><a href="#a-concrete-numerical-example" id="toc-a-concrete-numerical-example" class="nav-link" data-scroll-target="#a-concrete-numerical-example"><span class="header-section-number">6.2</span> A Concrete Numerical Example</a></li>
+  <li><a href="#the-mathematical-statement" id="toc-the-mathematical-statement" class="nav-link" data-scroll-target="#the-mathematical-statement"><span class="header-section-number">6.3</span> The Mathematical Statement</a></li>
+  </ul></li>
+  <li><a href="#sec-three-formulations" id="toc-sec-three-formulations" class="nav-link" data-scroll-target="#sec-three-formulations"><span class="header-section-number">7</span> Comparison of Three Formulations of QM</a>
+  <ul class="collapse">
+  <li><a href="#schrödingers-wave-mechanics-1926" id="toc-schrödingers-wave-mechanics-1926" class="nav-link" data-scroll-target="#schrödingers-wave-mechanics-1926"><span class="header-section-number">7.1</span> Schrödinger’s Wave Mechanics (1926)</a></li>
+  <li><a href="#heisenbergs-matrix-mechanics-1925" id="toc-heisenbergs-matrix-mechanics-1925" class="nav-link" data-scroll-target="#heisenbergs-matrix-mechanics-1925"><span class="header-section-number">7.2</span> Heisenberg’s Matrix Mechanics (1925)</a></li>
+  <li><a href="#feynmans-path-integral-1948" id="toc-feynmans-path-integral-1948" class="nav-link" data-scroll-target="#feynmans-path-integral-1948"><span class="header-section-number">7.3</span> Feynman’s Path Integral (1948)</a></li>
+  </ul></li>
+  <li><a href="#sec-worked-examples" id="toc-sec-worked-examples" class="nav-link" data-scroll-target="#sec-worked-examples"><span class="header-section-number">8</span> Worked Examples</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-1-action-for-a-free-particle-classical-vs.-zigzag-path" id="toc-worked-example-1-action-for-a-free-particle-classical-vs.-zigzag-path" class="nav-link" data-scroll-target="#worked-example-1-action-for-a-free-particle-classical-vs.-zigzag-path"><span class="header-section-number">8.1</span> Worked Example 1: Action for a Free Particle — Classical vs.&nbsp;Zigzag Path</a>
+  <ul class="collapse">
+  <li><a href="#part-a-the-classical-straight-line-path" id="toc-part-a-the-classical-straight-line-path" class="nav-link" data-scroll-target="#part-a-the-classical-straight-line-path"><span class="header-section-number">8.1.1</span> Part (a): The Classical Straight-Line Path</a></li>
+  <li><a href="#part-b-a-zigzag-path" id="toc-part-b-a-zigzag-path" class="nav-link" data-scroll-target="#part-b-a-zigzag-path"><span class="header-section-number">8.1.2</span> Part (b): A Zigzag Path</a></li>
+  <li><a href="#comparing-the-phases" id="toc-comparing-the-phases" class="nav-link" data-scroll-target="#comparing-the-phases"><span class="header-section-number">8.1.3</span> Comparing the Phases</a></li>
+  </ul></li>
+  <li><a href="#worked-example-2-action-for-a-particle-in-a-gravitational-field" id="toc-worked-example-2-action-for-a-particle-in-a-gravitational-field" class="nav-link" data-scroll-target="#worked-example-2-action-for-a-particle-in-a-gravitational-field"><span class="header-section-number">8.2</span> Worked Example 2: Action for a Particle in a Gravitational Field</a></li>
+  </ul></li>
+  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">9</span> Summary</a></li>
+  <li><a href="#sec-practice" id="toc-sec-practice" class="nav-link" data-scroll-target="#sec-practice"><span class="header-section-number">10</span> Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 2: The Sum-Over-Paths Idea</h1>
+        <p class="subtitle lead">Feynman’s Revolutionary Insight — Every Path Contributes</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      The particle takes ALL paths simultaneously. Feynman’s three postulates, the action principle, why the phase is e^{iS/ℏ}, and a sneak peek at how classical mechanics emerges from destructive interference.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Path Integrals Course</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 21, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/03_free_particle.html">Next: Module 3 — Free Particle Propagator →</a></p>
+<hr>
+<p>This module contains the <strong>big idea</strong> — the conceptual heart of the entire course. Before we do any heavy calculations (that starts in Module 3), we need to understand <em>what</em> Feynman claimed, <em>why</em> it’s plausible, and <em>how</em> it connects to everything you already know from classical and quantum mechanics.</p>
+<p>By the end of this module, you will understand Feynman’s three postulates of quantum mechanics, why the phase of each path is <span class="math inline">\(e^{iS/\hbar}\)</span>, and how classical mechanics emerges as a limiting case. You’ll also see why the path integral formulation is often considered the most powerful of the three formulations of quantum mechanics.</p>
+<section id="sec-feynman-claim" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Feynman’s Bold Claim</h1>
+<section id="the-story" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-story"><span class="header-section-number">1.1</span> The Story</h2>
+<p>In 1933, Paul Dirac published a remarkable paper titled <em>“The Lagrangian in Quantum Mechanics.”</em> In it, he noted a suggestive analogy: the quantum mechanical transition amplitude between two position states, separated by a small time interval <span class="math inline">\(\epsilon\)</span>, is somehow <em>“analogous to”</em> the quantity</p>
+<p><span class="math display">\[
+\exp\!\left(\frac{i}{\hbar}\, L\, \epsilon\right)
+\]</span></p>
+<p>where <span class="math inline">\(L\)</span> is the classical Lagrangian. Dirac never spelled out exactly what “analogous to” meant. He left the idea as a tantalizing hint — a half-opened door.</p>
+<p>Nearly a decade later, in 1941, a young graduate student at Princeton named <strong>Richard Feynman</strong> walked through that door. His advisor, <strong>John Archibald Wheeler</strong>, had pointed him to Dirac’s paper and asked: “What did Dirac mean by ‘analogous’? Did he mean ‘equal to’? Or ‘proportional to’?”</p>
+<p>Feynman decided to find out. He worked out the consequences of taking Dirac’s hint literally — and discovered that if you take it to mean “proportional to,” you can reconstruct <em>all</em> of quantum mechanics from a single, breathtaking idea.</p>
+</section>
+<section id="the-claim" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-claim"><span class="header-section-number">1.2</span> The Claim</h2>
+<p>Here is Feynman’s claim, stated as plainly as possible:</p>
+<blockquote class="blockquote">
+<p><strong>A quantum particle going from point <span class="math inline">\(A\)</span> to point <span class="math inline">\(B\)</span> takes every possible path simultaneously. Each path contributes a complex amplitude <span class="math inline">\(e^{iS[\text{path}]/\hbar}\)</span>, where <span class="math inline">\(S\)</span> is the classical action along that path. The total transition amplitude is the sum over ALL paths.</strong></p>
+</blockquote>
+<p>Let that sink in. Not just the shortest path. Not just the classical path. <em>Every</em> path — straight lines, zigzags, loops, paths that go to the moon and back — they all contribute.</p>
+<div class="callout-intuition">
+<p>Think of it this way: in classical mechanics, a particle “knows” which path to take (the one that minimizes the action). In quantum mechanics, the particle is <em>not that smart</em>. It explores every possibility. The classical path only emerges because, for macroscopic objects, the crazy paths cancel each other out through destructive interference.</p>
+</div>
+<p>Feynman’s 1942 PhD thesis, later published with A. R. Hibbs as the classic textbook <em>Quantum Mechanics and Path Integrals</em> (1965), laid out this formulation in full. It was a third way of doing quantum mechanics — alongside Schrödinger’s wave equation (1926) and Heisenberg’s matrix mechanics (1925).</p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Feynman &amp; Hibbs, <em>Quantum Mechanics and Path Integrals</em>, Ch. 2. Also see Dirac’s 1933 paper: <em>Physikalische Zeitschrift der Sowjetunion</em>, <strong>3</strong>, 64–72.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-double-slit" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Double-Slit Experiment Revisited</h1>
+<p>Let’s build intuition for the “sum over all paths” idea by starting from something familiar: the <strong>double-slit experiment</strong>.</p>
+<section id="two-slits-two-paths" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="two-slits-two-paths"><span class="header-section-number">2.1</span> Two Slits: Two Paths</h2>
+<p>In the standard double-slit experiment, a particle travels from a source <span class="math inline">\(A\)</span> to a detector <span class="math inline">\(B\)</span> on a screen. There are two slits, so there are essentially two distinct paths the particle can take: one through slit 1, and one through slit 2.</p>
+<p>Each path accumulates a phase. The total amplitude at the detector is:</p>
+<p><span class="math display">\[
+\mathcal{A}(A \to B) = \mathcal{A}_1 + \mathcal{A}_2
+\]</span></p>
+<p>The probability of detecting the particle at <span class="math inline">\(B\)</span> is:</p>
+<p><span class="math display">\[
+P(B) = |\mathcal{A}_1 + \mathcal{A}_2|^2 = |\mathcal{A}_1|^2 + |\mathcal{A}_2|^2 + 2\,\text{Re}(\mathcal{A}_1^* \mathcal{A}_2)
+\]</span></p>
+<p>That last term — the <strong>cross term</strong> — is what produces the famous interference pattern. This is old news from undergraduate quantum mechanics.</p>
+</section>
+<section id="three-slits-three-paths" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="three-slits-three-paths"><span class="header-section-number">2.2</span> Three Slits: Three Paths</h2>
+<p>Now imagine a barrier with <strong>three</strong> slits. The particle can take three paths, and the total amplitude becomes:</p>
+<p><span class="math display">\[
+\mathcal{A}(A \to B) = \mathcal{A}_1 + \mathcal{A}_2 + \mathcal{A}_3
+\]</span></p>
+<p>The interference pattern becomes richer and more complex, but the principle is the same: add amplitudes, <em>then</em> square.</p>
+</section>
+<section id="n-slits" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="n-slits"><span class="header-section-number">2.3</span> <span class="math inline">\(N\)</span> Slits</h2>
+<p>With <span class="math inline">\(N\)</span> slits, we sum over <span class="math inline">\(N\)</span> paths:</p>
+<p><span class="math display">\[
+\mathcal{A}(A \to B) = \sum_{k=1}^{N} \mathcal{A}_k
+\]</span></p>
+</section>
+<section id="infinitely-many-slits-no-barrier" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="infinitely-many-slits-no-barrier"><span class="header-section-number">2.4</span> Infinitely Many Slits = No Barrier!</h2>
+<p>Here’s the key insight. What happens as <span class="math inline">\(N \to \infty\)</span>? If you have infinitely many slits, infinitely close together… you’ve removed the barrier entirely! There’s no obstacle at all — just free space between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
+<p>And yet, the rule is the same: <strong>sum the amplitude over all paths</strong>.</p>
+<p><span class="math display">\[
+\boxed{\mathcal{A}(A \to B) = \sum_{\text{all paths}} \mathcal{A}[\text{path}]}
+\]</span></p>
+<p>This is the <strong>path integral</strong>. The double-slit experiment, generalized to infinitely many slits, gives you Feynman’s formulation of quantum mechanics.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Double-Slit as a Gateway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The path integral isn’t some abstract mathematical trick. It’s the natural generalization of the double-slit experiment. If interference works for 2 paths, and for 3, and for <span class="math inline">\(N\)</span>… then it must work for all paths. That’s Feynman’s insight.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If every path contributes, why don’t we see particles taking crazy zigzag paths in daily life?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For macroscopic objects, the action <span class="math inline">\(S\)</span> is <em>enormous</em> compared to <span class="math inline">\(\hbar\)</span>. A thrown baseball has <span class="math inline">\(S/\hbar \sim 10^{30}\)</span>. This means the phase <span class="math inline">\(e^{iS/\hbar}\)</span> oscillates <strong>incredibly rapidly</strong> as we vary the path even slightly. Neighboring paths have wildly different phases and cancel each other through destructive interference.</p>
+<p>The <em>only</em> paths that survive this cancellation are those in the <strong>neighborhood of the classical path</strong> — where <span class="math inline">\(\delta S = 0\)</span> and the phase varies slowly. So the particle effectively takes only the classical trajectory.</p>
+<p>We’ll make this precise with the <strong>stationary phase approximation</strong> in <a href="#sec-classical-limit" class="quarto-xref">Section&nbsp;6</a> and in much greater detail in Module 8.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Feynman &amp; Hibbs, Ch. 2, §2-1 to §2-3.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-action-principle" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> The Action Principle: A Classical Review</h1>
+<p>Before we state Feynman’s postulates, we need to be crystal clear about the concept of the <strong>action</strong>, since it’s the foundation of everything that follows.</p>
+<section id="the-lagrangian" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-lagrangian"><span class="header-section-number">3.1</span> The Lagrangian</h2>
+<p>In classical mechanics, the dynamics of a system is encoded in the <strong>Lagrangian</strong>:</p>
+<p><span class="math display">\[
+L(x, \dot{x}, t) = T - V = \frac{1}{2}m\dot{x}^2 - V(x)
+\]</span></p>
+<p>where <span class="math inline">\(T\)</span> is the kinetic energy and <span class="math inline">\(V\)</span> is the potential energy. (We’ll work in one dimension for simplicity, but everything generalizes straightforwardly.)</p>
+<p>The Lagrangian is a function of the position <span class="math inline">\(x\)</span>, the velocity <span class="math inline">\(\dot{x} = dx/dt\)</span>, and possibly time <span class="math inline">\(t\)</span>.</p>
+</section>
+<section id="the-action-functional" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-action-functional"><span class="header-section-number">3.2</span> The Action Functional</h2>
+<p>The <strong>action</strong> is not a function — it’s a <strong>functional</strong>. It takes an <em>entire path</em> <span class="math inline">\(x(t)\)</span> as input and spits out a single number:</p>
+<p><span class="math display">\[
+\boxed{S[x(t)] = \int_{t_a}^{t_b} L\big(x(t),\, \dot{x}(t),\, t\big)\, dt}
+\]</span></p>
+<p>Notice the square brackets: <span class="math inline">\(S[x(t)]\)</span> means “<span class="math inline">\(S\)</span> is a functional of the function <span class="math inline">\(x(t)\)</span>.” Different paths connecting the same endpoints <span class="math inline">\((x_a, t_a)\)</span> and <span class="math inline">\((x_b, t_b)\)</span> give different values of <span class="math inline">\(S\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Functions vs.&nbsp;Functionals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>function</strong> takes a number and returns a number: <span class="math inline">\(f(x) = x^2\)</span>.</p>
+<p>A <strong>functional</strong> takes a <em>function</em> and returns a number: <span class="math inline">\(S[x(t)] = \int_0^T \frac{1}{2}m\dot{x}^2\, dt\)</span>.</p>
+<p>Think of a functional as a “function of a function.” We’ll develop the mathematics of functionals (functional calculus) in Module 6.</p>
+</div>
+</div>
+</section>
+<section id="hamiltons-principle-delta-s-0" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="hamiltons-principle-delta-s-0"><span class="header-section-number">3.3</span> Hamilton’s Principle: <span class="math inline">\(\delta S = 0\)</span></h2>
+<p>The central principle of classical mechanics is <strong>Hamilton’s principle</strong> (also called the <strong>principle of least action</strong>, though “stationary action” is more accurate):</p>
+<blockquote class="blockquote">
+<p><strong>The physical path taken by a classical particle is the one for which the action is stationary: <span class="math inline">\(\delta S = 0\)</span>.</strong></p>
+</blockquote>
+<p>Let’s derive what this means. Consider the true classical path <span class="math inline">\(x_{\text{cl}}(t)\)</span>, and a nearby path:</p>
+<p><span class="math display">\[
+x(t) = x_{\text{cl}}(t) + \eta(t)
+\]</span></p>
+<p>where <span class="math inline">\(\eta(t)\)</span> is a small deviation that vanishes at the endpoints: <span class="math inline">\(\eta(t_a) = \eta(t_b) = 0\)</span> (since all paths must connect the same starting and ending points).</p>
+<p>The action along the varied path is:</p>
+<p><span class="math display">\[
+S[x_{\text{cl}} + \eta] = \int_{t_a}^{t_b} L(x_{\text{cl}} + \eta,\, \dot{x}_{\text{cl}} + \dot{\eta},\, t)\, dt
+\]</span></p>
+<p>Taylor-expanding the Lagrangian to first order in <span class="math inline">\(\eta\)</span>:</p>
+<p><span class="math display">\[
+L(x_{\text{cl}} + \eta,\, \dot{x}_{\text{cl}} + \dot{\eta}) \approx L(x_{\text{cl}}, \dot{x}_{\text{cl}}) + \frac{\partial L}{\partial x}\,\eta + \frac{\partial L}{\partial \dot{x}}\,\dot{\eta}
+\]</span></p>
+<p>So the variation of the action is:</p>
+<p><span class="math display">\[
+\delta S = S[x_{\text{cl}} + \eta] - S[x_{\text{cl}}] = \int_{t_a}^{t_b} \left(\frac{\partial L}{\partial x}\,\eta + \frac{\partial L}{\partial \dot{x}}\,\dot{\eta}\right) dt
+\]</span></p>
+<p>Now we integrate the second term by parts. Recall that:</p>
+<p><span class="math display">\[
+\int_{t_a}^{t_b} \frac{\partial L}{\partial \dot{x}}\,\dot{\eta}\, dt = \left[\frac{\partial L}{\partial \dot{x}}\,\eta\right]_{t_a}^{t_b} - \int_{t_a}^{t_b} \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}}\right)\eta\, dt
+\]</span></p>
+<p>The boundary term vanishes because <span class="math inline">\(\eta(t_a) = \eta(t_b) = 0\)</span>. So:</p>
+<p><span class="math display">\[
+\delta S = \int_{t_a}^{t_b} \left[\frac{\partial L}{\partial x} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}}\right)\right] \eta(t)\, dt
+\]</span></p>
+<p>For <span class="math inline">\(\delta S = 0\)</span> for <em>all</em> possible variations <span class="math inline">\(\eta(t)\)</span>, the integrand must vanish identically:</p>
+<p><span class="math display">\[
+\boxed{\frac{\partial L}{\partial x} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}}\right) = 0 \qquad \text{(Euler-Lagrange equation)}}
+\]</span></p>
+<p>This is the <strong>Euler-Lagrange equation</strong> — the equation of motion in Lagrangian mechanics. For <span class="math inline">\(L = \frac{1}{2}m\dot{x}^2 - V(x)\)</span>, it gives:</p>
+<p><span class="math display">\[
+-\frac{dV}{dx} - m\ddot{x} = 0 \quad \Longrightarrow \quad m\ddot{x} = -\frac{dV}{dx} = F(x)
+\]</span></p>
+<p>which is just Newton’s second law! The action principle is a <em>reformulation</em> of <span class="math inline">\(F = ma\)</span>.</p>
+<div class="callout-intuition">
+<p>In classical mechanics, nature “selects” the path where <span class="math inline">\(\delta S = 0\)</span>. In quantum mechanics, nature doesn’t select — it sums over <em>all</em> paths. But paths near <span class="math inline">\(\delta S = 0\)</span> get preferential treatment because their phases add up constructively. Classical mechanics is the limit where this preference becomes absolute.</p>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, <em>Principles of Quantum Mechanics</em>, §2.1; Goldstein, <em>Classical Mechanics</em>, Ch. 2.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-feynman-postulates" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Feynman’s Three Postulates</h1>
+<p>We now have all the ingredients to state Feynman’s formulation of quantum mechanics. It rests on <strong>three postulates</strong>:</p>
+<section id="postulate-1-each-path-gets-an-amplitude" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="postulate-1-each-path-gets-an-amplitude"><span class="header-section-number">4.1</span> Postulate 1: Each Path Gets an Amplitude</h2>
+<p><strong>Every path <span class="math inline">\(x(t)\)</span> connecting <span class="math inline">\((x_a, t_a)\)</span> to <span class="math inline">\((x_b, t_b)\)</span> is assigned a probability amplitude proportional to:</strong></p>
+<p><span class="math display">\[
+\boxed{\phi[\text{path}] = A\, e^{i\, S[\text{path}]/\hbar}}
+\]</span></p>
+<p>where <span class="math inline">\(S[\text{path}]\)</span> is the classical action along that path, and <span class="math inline">\(A\)</span> is a normalization constant (the same for all paths).</p>
+<p>This is the core of the formulation. The phase of the amplitude is determined by the classical action. We’ll explain <em>why</em> it must be <span class="math inline">\(e^{iS/\hbar}\)</span> in <a href="#sec-why-eis" class="quarto-xref">Section&nbsp;5</a>.</p>
+</section>
+<section id="postulate-2-sum-over-all-paths" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="postulate-2-sum-over-all-paths"><span class="header-section-number">4.2</span> Postulate 2: Sum Over All Paths</h2>
+<p><strong>The total transition amplitude (propagator) from <span class="math inline">\((x_a, t_a)\)</span> to <span class="math inline">\((x_b, t_b)\)</span> is the sum over all paths:</strong></p>
+<p><span class="math display">\[
+\boxed{K(x_b, t_b;\, x_a, t_a) = \int \mathcal{D}[x(t)]\; e^{i\, S[x(t)]/\hbar}}
+\]</span></p>
+<p>The symbol <span class="math inline">\(\int \mathcal{D}[x(t)]\)</span> means “sum (integrate) over all paths <span class="math inline">\(x(t)\)</span> that start at <span class="math inline">\(x_a\)</span> and end at <span class="math inline">\(x_b\)</span>.” This is a <strong>functional integral</strong> — an integral over a space of functions, not numbers.</p>
+<p>We haven’t yet defined what this integral <em>means</em> precisely (that’s the content of Module 4). For now, think of it as the continuum limit of summing over a discrete set of paths, just like how a regular integral is the limit of a Riemann sum.</p>
+</section>
+<section id="postulate-3-these-two-rules-reproduce-all-of-quantum-mechanics" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="postulate-3-these-two-rules-reproduce-all-of-quantum-mechanics"><span class="header-section-number">4.3</span> Postulate 3: These Two Rules Reproduce All of Quantum Mechanics</h2>
+<p><strong>Postulates 1 and 2, together with the standard rules for combining amplitudes (the probability of an event is <span class="math inline">\(|\text{amplitude}|^2\)</span>, amplitudes for sequential events multiply, amplitudes for alternative events add), are sufficient to reproduce all predictions of non-relativistic quantum mechanics.</strong></p>
+<p>This is the remarkable claim. From these simple rules, one can derive:</p>
+<ul>
+<li>The Schrödinger equation</li>
+<li>The Heisenberg uncertainty principle<br>
+</li>
+<li>The energy spectrum of bound systems</li>
+<li>Tunneling phenomena</li>
+<li>Everything else you learned in undergraduate QM</li>
+</ul>
+<p>We’ll verify some of these in later modules.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Minimalism of the Postulates
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Feynman’s formulation is shockingly minimal. There’s no mention of operators, Hilbert spaces, commutation relations, or wavefunctions. Those objects <em>emerge</em> as consequences. The price you pay is that you need to deal with functional integrals — but that’s a mathematical challenge, not a conceptual one.</p>
+</div>
+</div>
+<table class="table-striped table-hover caption-top table">
+<caption>Feynman’s three postulates of quantum mechanics</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Postulate</th>
+<th>Statement</th>
+<th>Key Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Each path gets amplitude <span class="math inline">\(\propto e^{iS/\hbar}\)</span></td>
+<td>Action <span class="math inline">\(S[x(t)]\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Total amplitude = sum over all paths</td>
+<td><span class="math inline">\(\int \mathcal{D}[x(t)]\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Rules 1 &amp; 2 reproduce all of QM</td>
+<td>Standard probability rules</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Feynman &amp; Hibbs, Ch. 2, §2-1. Also Shankar, §8.1 and §21.1.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-why-eis" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Why <span class="math inline">\(e^{iS/\hbar}\)</span>?</h1>
+<p>Postulate 1 says the phase of each path is <span class="math inline">\(S/\hbar\)</span>. But <em>why</em>? Why not <span class="math inline">\(S^2/\hbar\)</span>, or <span class="math inline">\(\sqrt{S/\hbar}\)</span>, or something else entirely? Let’s understand this from multiple angles.</p>
+<section id="dimensional-analysis" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="dimensional-analysis"><span class="header-section-number">5.1</span> Dimensional Analysis</h2>
+<p>The action <span class="math inline">\(S\)</span> has dimensions of <span class="math inline">\([\text{energy}] \times [\text{time}] = \text{J} \cdot \text{s}\)</span>. These are the same dimensions as <span class="math inline">\(\hbar\)</span>. So <span class="math inline">\(S/\hbar\)</span> is <strong>dimensionless</strong> — exactly what you need for the argument of an exponential.</p>
+<p>This is already highly constraining. The only natural dimensionless combination of <span class="math inline">\(S\)</span> and <span class="math inline">\(\hbar\)</span> is <span class="math inline">\(S/\hbar\)</span> (or some power of it, but linearity turns out to be required by the composition property of the propagator — see Module 4).</p>
+</section>
+<section id="connection-to-de-broglie-waves" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="connection-to-de-broglie-waves"><span class="header-section-number">5.2</span> Connection to de Broglie Waves</h2>
+<p>Consider a <strong>free particle</strong> with momentum <span class="math inline">\(p\)</span> moving from <span class="math inline">\(x_a\)</span> to <span class="math inline">\(x_b\)</span> in time <span class="math inline">\(T = t_b - t_a\)</span>. The de Broglie relation tells us the wavevector is <span class="math inline">\(k = p/\hbar\)</span>, and the angular frequency is <span class="math inline">\(\omega = E/\hbar\)</span> where <span class="math inline">\(E = p^2/2m\)</span>.</p>
+<p>The phase accumulated by the de Broglie wave is:</p>
+<p><span class="math display">\[
+\text{phase} = k \cdot (x_b - x_a) - \omega \cdot T = \frac{p(x_b - x_a)}{\hbar} - \frac{ET}{\hbar}
+\]</span></p>
+<p>Now let’s compute the classical action for a free particle traveling at constant velocity <span class="math inline">\(v = (x_b - x_a)/T\)</span>:</p>
+<p><span class="math display">\[
+S = \int_0^T \frac{1}{2}mv^2\, dt = \frac{1}{2}mv^2 T = \frac{1}{2}m \cdot \frac{(x_b - x_a)^2}{T^2} \cdot T = \frac{m(x_b - x_a)^2}{2T}
+\]</span></p>
+<p>Since <span class="math inline">\(p = mv = m(x_b - x_a)/T\)</span>, we can write:</p>
+<p><span class="math display">\[
+S = \frac{p^2 T}{2m} = \frac{p \cdot (x_b - x_a)}{2} + \frac{p \cdot (x_b - x_a)}{2}
+\]</span></p>
+<p>Wait, let’s be more careful. We have:</p>
+<p><span class="math display">\[
+p(x_b - x_a) - ET = p \cdot vT - \frac{p^2}{2m} T = \frac{p^2}{m}T - \frac{p^2}{2m}T = \frac{p^2}{2m}T = \frac{1}{2}mv^2 T = S
+\]</span></p>
+<p>So the de Broglie phase is:</p>
+<p><span class="math display">\[
+\text{phase} = \frac{p(x_b - x_a) - ET}{\hbar} = \frac{S}{\hbar}
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+De Broglie Phase = Action/ℏ
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a free particle, the phase accumulated by the de Broglie wave is exactly <span class="math inline">\(S/\hbar\)</span>. Feynman’s postulate generalizes this to <em>arbitrary</em> potentials and paths: the phase along any path is always <span class="math inline">\(S[\text{path}]/\hbar\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="why-is-the-phase-real" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="why-is-the-phase-real"><span class="header-section-number">5.3</span> Why Is the Phase Real?</h2>
+<p>You might wonder: why does every path have the same <em>magnitude</em> of amplitude, with only the <em>phase</em> differing? This is sometimes called the <strong>democracy of paths</strong> — every path is equally “likely” in terms of magnitude; they differ only in their phase angles.</p>
+<p>This is actually a deep requirement. If some paths had larger amplitudes than others (independent of their action), we’d be introducing a <em>weighting</em> on path space that goes beyond the classical action. The simplest, most symmetric choice is: all paths contribute equally in magnitude, and the only thing that distinguishes them is their phase.</p>
+<p>Mathematically, the amplitude for each path is:</p>
+<p><span class="math display">\[
+\phi[\text{path}] = \frac{1}{\mathcal{N}} \cdot e^{iS[\text{path}]/\hbar}
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{N}\)</span> is a normalization constant that’s the same for all paths. The modulus is <span class="math inline">\(|\phi| = 1/\mathcal{N}\)</span> for every path — true democracy.</p>
+</section>
+<section id="why-not-e-shbar-a-real-exponential" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="why-not-e-shbar-a-real-exponential"><span class="header-section-number">5.4</span> Why Not <span class="math inline">\(e^{-S/\hbar}\)</span> (a Real Exponential)?</h2>
+<p>If we used <span class="math inline">\(e^{-S/\hbar}\)</span> (without the <span class="math inline">\(i\)</span>), the path integral would be dominated by paths that <em>minimize</em> <span class="math inline">\(S\)</span> — we’d get classical mechanics, not quantum mechanics. There would be no interference, no superposition, no quantum effects.</p>
+<p>It’s the factor of <span class="math inline">\(i\)</span> that makes the amplitude <em>oscillate</em> rather than decay. Oscillation means interference, and interference is the essence of quantum mechanics.</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Why the phase is <span class="math inline">\(e^{iS/\hbar}\)</span> — answers to common questions</caption>
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Why <span class="math inline">\(S/\hbar\)</span>?</td>
+<td>Dimensional analysis — it’s the unique dimensionless ratio</td>
+</tr>
+<tr class="even">
+<td>Why linear in <span class="math inline">\(S\)</span>?</td>
+<td>Required by the composition property of the propagator</td>
+</tr>
+<tr class="odd">
+<td>Why equal magnitude for all paths?</td>
+<td>Democracy — paths differ only in phase</td>
+</tr>
+<tr class="even">
+<td>Why <span class="math inline">\(e^{i(\ldots)}\)</span> not <span class="math inline">\(e^{-(\ldots)}\)</span>?</td>
+<td>Oscillation gives interference (quantum); decay gives minimization (classical)</td>
+</tr>
+<tr class="odd">
+<td>Connection to de Broglie?</td>
+<td>For a free particle, <span class="math inline">\(\text{phase} = S/\hbar\)</span> exactly</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, §21.1; Feynman &amp; Hibbs, §2-2.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-classical-limit" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> The Classical Limit: A Sneak Peek</h1>
+<p>One of the most beautiful features of the path integral is how naturally it explains the emergence of classical mechanics. Let’s see this in action.</p>
+<section id="the-stationary-phase-argument" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-stationary-phase-argument"><span class="header-section-number">6.1</span> The Stationary Phase Argument</h2>
+<p>Consider the path integral:</p>
+<p><span class="math display">\[
+K = \int \mathcal{D}[x(t)]\; e^{iS[x(t)]/\hbar}
+\]</span></p>
+<p>Each path contributes a phase <span class="math inline">\(\theta = S/\hbar\)</span>. Now think about what happens when <span class="math inline">\(S \gg \hbar\)</span>, which is the <strong>classical regime</strong>.</p>
+<p>In this regime, <span class="math inline">\(\theta = S/\hbar\)</span> is a <em>huge</em> number. Even a tiny change in the path causes a large change in <span class="math inline">\(S\)</span>, and therefore a large change in the phase. The contributions from neighboring paths point in wildly different directions in the complex plane and <strong>cancel each other out</strong> — this is destructive interference.</p>
+<p>The exception is near the <strong>classical path</strong> <span class="math inline">\(x_{\text{cl}}(t)\)</span>, where <span class="math inline">\(\delta S = 0\)</span>. Near this path, the action is stationary: small variations in the path produce negligible changes in <span class="math inline">\(S\)</span> (and hence in the phase). These contributions all point in roughly the same direction and <strong>add up constructively</strong>.</p>
+<div class="callout-intuition">
+<p>Imagine adding up thousands of unit vectors <span class="math inline">\(e^{i\theta_k}\)</span> on the complex plane. If the angles <span class="math inline">\(\theta_k\)</span> are random, the vectors point in all directions and cancel — the sum is essentially zero. But if the angles are all approximately equal (as they are near the stationary phase point), the vectors line up and the sum is large. This is exactly what happens in the path integral!</p>
+</div>
+<p>The result: when <span class="math inline">\(S \gg \hbar\)</span>, the path integral is <strong>dominated by the classical path and its neighbors</strong>. The particle effectively follows Newton’s laws.</p>
+</section>
+<section id="a-concrete-numerical-example" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="a-concrete-numerical-example"><span class="header-section-number">6.2</span> A Concrete Numerical Example</h2>
+<p>Let’s make this vivid with numbers. How big is <span class="math inline">\(S/\hbar\)</span> for everyday objects versus quantum particles?</p>
+<p><strong>A thrown baseball:</strong></p>
+<ul>
+<li>Mass: <span class="math inline">\(m = 0.15\;\text{kg}\)</span></li>
+<li>Speed: <span class="math inline">\(v = 30\;\text{m/s}\)</span> (about 108 km/h)</li>
+<li>Travel time: <span class="math inline">\(T = 1\;\text{s}\)</span></li>
+<li>Action: <span class="math inline">\(S = \frac{1}{2}mv^2 T = \frac{1}{2}(0.15)(30)^2(1) = 67.5\;\text{J}\cdot\text{s}\)</span></li>
+<li>Ratio: <span class="math inline">\(S/\hbar = 67.5 / (1.055 \times 10^{-34}) \approx 6.4 \times 10^{35}\)</span></li>
+</ul>
+<p>That’s <span class="math inline">\(10^{35}\)</span>! The phase oscillates so rapidly that only an <em>unimaginably tiny</em> neighborhood of the classical path contributes. The baseball follows Newton’s laws with absurd precision.</p>
+<p><strong>An electron in a hydrogen atom:</strong></p>
+<ul>
+<li>Mass: <span class="math inline">\(m = 9.1 \times 10^{-31}\;\text{kg}\)</span></li>
+<li>Speed: <span class="math inline">\(v \approx 2.2 \times 10^6\;\text{m/s}\)</span> (Bohr velocity)</li>
+<li>Orbital period: <span class="math inline">\(T \approx 1.5 \times 10^{-16}\;\text{s}\)</span></li>
+<li>Action: <span class="math inline">\(S \approx \frac{1}{2}(9.1 \times 10^{-31})(2.2 \times 10^6)^2(1.5 \times 10^{-16}) \approx 3.3 \times 10^{-34}\;\text{J}\cdot\text{s}\)</span></li>
+<li>Ratio: <span class="math inline">\(S/\hbar \approx 3.3 \times 10^{-34} / 1.055 \times 10^{-34} \approx 3.1\)</span></li>
+</ul>
+<p><span class="math inline">\(S/\hbar \sim 3\)</span>! The phase changes by order <span class="math inline">\(1\)</span> as we move between paths. There’s no rapid oscillation, so <em>many different paths contribute significantly</em>. The particle exhibits fully quantum behavior — there’s no well-defined trajectory.</p>
+<table class="table-striped table-hover caption-top table">
+<caption>The classical–quantum boundary in terms of <span class="math inline">\(S/\hbar\)</span></caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System</th>
+<th><span class="math inline">\(S\)</span> (J·s)</th>
+<th><span class="math inline">\(S/\hbar\)</span></th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseball</td>
+<td><span class="math inline">\(\sim 68\)</span></td>
+<td><span class="math inline">\(\sim 10^{35}\)</span></td>
+<td>Perfectly classical</td>
+</tr>
+<tr class="even">
+<td>Dust grain (<span class="math inline">\(1\;\mu\text{m}\)</span>)</td>
+<td><span class="math inline">\(\sim 10^{-19}\)</span></td>
+<td><span class="math inline">\(\sim 10^{15}\)</span></td>
+<td>Still classical</td>
+</tr>
+<tr class="odd">
+<td>Large molecule (C₆₀)</td>
+<td><span class="math inline">\(\sim 10^{-30}\)</span></td>
+<td><span class="math inline">\(\sim 10^{4}\)</span></td>
+<td>Marginally quantum</td>
+</tr>
+<tr class="even">
+<td>Electron in atom</td>
+<td><span class="math inline">\(\sim 10^{-34}\)</span></td>
+<td><span class="math inline">\(\sim 1\text{–}10\)</span></td>
+<td>Fully quantum</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-mathematical-statement" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-mathematical-statement"><span class="header-section-number">6.3</span> The Mathematical Statement</h2>
+<p>The precise mathematical tool here is the <strong>stationary phase approximation</strong> (also called the <strong>method of steepest descent</strong> in the complex plane). For a highly oscillatory integral:</p>
+<p><span class="math display">\[
+I = \int dx\; e^{i f(x)/\epsilon}
+\]</span></p>
+<p>when <span class="math inline">\(\epsilon \to 0\)</span>, the integral is dominated by points where <span class="math inline">\(f'(x_0) = 0\)</span> (the stationary points), and the leading approximation is:</p>
+<p><span class="math display">\[
+I \approx \sqrt{\frac{2\pi i\epsilon}{f''(x_0)}}\; e^{i f(x_0)/\epsilon}
+\]</span></p>
+<p>Applied to the path integral with <span class="math inline">\(\epsilon \to \hbar \to 0\)</span>:</p>
+<ul>
+<li>The stationary “point” is the classical path: <span class="math inline">\(\delta S[x_{\text{cl}}] = 0\)</span></li>
+<li>The leading contribution is <span class="math inline">\(e^{iS[x_{\text{cl}}]/\hbar}\)</span></li>
+<li>The correction comes from the second variation (Gaussian fluctuations around the classical path)</li>
+</ul>
+<p>We’ll work this out rigorously in Module 8. For now, the physical picture is clear: <strong>classical mechanics emerges from the path integral as the <span class="math inline">\(\hbar \to 0\)</span> limit via destructive interference</strong>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What happens to the path integral if we set <span class="math inline">\(\hbar \to 0\)</span>?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>As <span class="math inline">\(\hbar \to 0\)</span>, the phase <span class="math inline">\(S/\hbar \to \infty\)</span> for all paths, causing extreme oscillation and near-total cancellation. The stationary phase approximation becomes exact, and <strong>only the classical path contributes</strong> — the one satisfying <span class="math inline">\(\delta S = 0\)</span> (Euler-Lagrange equations).</p>
+<p>In this limit, the path integral reduces to:</p>
+<p><span class="math display">\[
+K \xrightarrow{\hbar \to 0} (\text{prefactor}) \times e^{iS_{\text{cl}}/\hbar}
+\]</span></p>
+<p>We recover classical mechanics. The path integral thus provides a smooth interpolation between quantum and classical mechanics, with <span class="math inline">\(\hbar\)</span> as the dial.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, §21.1, “The Path Integral Recipe”; Zee, <em>QFT in a Nutshell</em>, §I.2.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-three-formulations" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Comparison of Three Formulations of QM</h1>
+<p>Quantum mechanics can be formulated in three equivalent ways. Each has its strengths and weaknesses. Let’s compare them.</p>
+<section id="schrödingers-wave-mechanics-1926" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="schrödingers-wave-mechanics-1926"><span class="header-section-number">7.1</span> Schrödinger’s Wave Mechanics (1926)</h2>
+<p>The central object is the <strong>wavefunction</strong> <span class="math inline">\(\psi(x, t)\)</span>, which obeys the Schrödinger equation:</p>
+<p><span class="math display">\[
+i\hbar \frac{\partial \psi}{\partial t} = \hat{H}\psi
+\]</span></p>
+<p>This is a <strong>differential equation</strong> approach. You solve it to find <span class="math inline">\(\psi\)</span>, then extract probabilities via <span class="math inline">\(|\psi|^2\)</span>.</p>
+<p><strong>Strengths</strong>: Intuitive (waves!), well-suited for bound states and energy eigenvalues, easily handles stationary problems.</p>
+<p><strong>Weaknesses</strong>: Hard to generalize to relativistic systems, doesn’t directly show the connection to classical mechanics, struggles with many-body systems and gauge theories.</p>
+</section>
+<section id="heisenbergs-matrix-mechanics-1925" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="heisenbergs-matrix-mechanics-1925"><span class="header-section-number">7.2</span> Heisenberg’s Matrix Mechanics (1925)</h2>
+<p>The central objects are <strong>operators</strong> <span class="math inline">\(\hat{x}(t)\)</span>, <span class="math inline">\(\hat{p}(t)\)</span> that evolve in time (the <em>Heisenberg picture</em>), obeying:</p>
+<p><span class="math display">\[
+\frac{d\hat{A}}{dt} = \frac{i}{\hbar}[\hat{H}, \hat{A}]
+\]</span></p>
+<p>This is an <strong>algebraic</strong> approach. Physical quantities are matrices (operators), and you work with commutation relations.</p>
+<p><strong>Strengths</strong>: Elegant, naturally generalizes to quantum field theory (creation and annihilation operators), cleanly separates kinematics from dynamics.</p>
+<p><strong>Weaknesses</strong>: Abstract, less intuitive for beginners, harder to visualize.</p>
+</section>
+<section id="feynmans-path-integral-1948" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="feynmans-path-integral-1948"><span class="header-section-number">7.3</span> Feynman’s Path Integral (1948)</h2>
+<p>The central object is the <strong>propagator</strong> <span class="math inline">\(K\)</span>, computed as a sum over all paths:</p>
+<p><span class="math display">\[
+K = \int \mathcal{D}[x(t)]\; e^{iS/\hbar}
+\]</span></p>
+<p>This is a <strong>global</strong> approach. Instead of solving a differential equation step by step, you sum over all possible histories.</p>
+<p><strong>Strengths</strong>: Most natural connection to classical mechanics (via <span class="math inline">\(\hbar \to 0\)</span>), easily generalizes to QFT and gauge theories, naturally handles topological effects (instantons, anomalies), the Lagrangian (not the Hamiltonian) is front and center — which is good because Lorentz invariance is manifest in the Lagrangian.</p>
+<p><strong>Weaknesses</strong>: Functional integrals are mathematically tricky (rigorous measure theory issues), not the most efficient for simple bound-state problems, harder for computing energy eigenvalues directly.</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Comparison of the three formulations of quantum mechanics</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 30%">
+<col style="width: 27%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Schrödinger</th>
+<th>Heisenberg</th>
+<th>Feynman</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Central object</td>
+<td><span class="math inline">\(\psi(x,t)\)</span></td>
+<td><span class="math inline">\(\hat{A}(t)\)</span></td>
+<td><span class="math inline">\(K(x_b, t_b; x_a, t_a)\)</span></td>
+</tr>
+<tr class="even">
+<td>Central equation</td>
+<td><span class="math inline">\(i\hbar\partial_t\psi = \hat{H}\psi\)</span></td>
+<td><span class="math inline">\(\dot{\hat{A}} = \frac{i}{\hbar}[\hat{H},\hat{A}]\)</span></td>
+<td><span class="math inline">\(K = \int \mathcal{D}x\; e^{iS/\hbar}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nature of approach</td>
+<td>Differential equation</td>
+<td>Algebraic</td>
+<td>Integral (global)</td>
+</tr>
+<tr class="even">
+<td>Key input</td>
+<td>Hamiltonian <span class="math inline">\(\hat{H}\)</span></td>
+<td>Hamiltonian <span class="math inline">\(\hat{H}\)</span></td>
+<td>Lagrangian <span class="math inline">\(L\)</span></td>
+</tr>
+<tr class="odd">
+<td>Connection to classical limit</td>
+<td>Via WKB approx.</td>
+<td>Via Ehrenfest thm.</td>
+<td>Direct (<span class="math inline">\(\hbar \to 0\)</span>)</td>
+</tr>
+<tr class="even">
+<td>Generalizes to QFT?</td>
+<td>Awkwardly</td>
+<td>Yes (via operators)</td>
+<td>Most naturally</td>
+</tr>
+<tr class="odd">
+<td>Handles gauge symmetry?</td>
+<td>With difficulty</td>
+<td>With care</td>
+<td>Most naturally</td>
+</tr>
+<tr class="even">
+<td>Best for…</td>
+<td>Bound states, 1-body</td>
+<td>Operator algebra, QFT</td>
+<td>Symmetries, QFT, topology</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is the path integral formulation more fundamental than Schrödinger’s? Or are they equivalent?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For standard non-relativistic quantum mechanics, <strong>they are mathematically equivalent</strong>. You can derive the Schrödinger equation from the path integral (we’ll do this in Module 4), and vice versa. They make identical predictions.</p>
+<p>However, the path integral <strong>generalizes more naturally</strong> to:</p>
+<ul>
+<li><strong>Quantum field theory</strong> (QFT): The path integral over fields, <span class="math inline">\(\int \mathcal{D}\phi\; e^{iS[\phi]/\hbar}\)</span>, is the standard starting point</li>
+<li><strong>Gauge theories</strong>: Gauge fixing, Faddeev-Popov ghosts, and BRST symmetry are most naturally expressed via path integrals</li>
+<li><strong>Quantum gravity</strong>: The path integral over metrics, <span class="math inline">\(\int \mathcal{D}g_{\mu\nu}\; e^{iS[g]/\hbar}\)</span>, is one of the few approaches we have</li>
+<li><strong>Topological effects</strong>: Instantons, anomalies, and topological field theories are path integral phenomena</li>
+</ul>
+<p>So while “more fundamental” is debatable, the path integral is certainly “more general” and is the language of choice for modern theoretical physics.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, §8.1; Sakurai, §2.5 and §2.6.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-worked-examples" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Worked Examples</h1>
+<section id="worked-example-1-action-for-a-free-particle-classical-vs.-zigzag-path" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="worked-example-1-action-for-a-free-particle-classical-vs.-zigzag-path"><span class="header-section-number">8.1</span> Worked Example 1: Action for a Free Particle — Classical vs.&nbsp;Zigzag Path</h2>
+<p>Let’s compute the action for a free particle (no potential, <span class="math inline">\(V = 0\)</span>) along two different paths, and see how their phases compare.</p>
+<p><strong>Setup</strong>: A particle of mass <span class="math inline">\(m\)</span> travels from <span class="math inline">\(x_a = 0\)</span> at time <span class="math inline">\(t = 0\)</span> to <span class="math inline">\(x_b = d\)</span> at time <span class="math inline">\(t = T\)</span>.</p>
+<section id="part-a-the-classical-straight-line-path" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="part-a-the-classical-straight-line-path"><span class="header-section-number">8.1.1</span> Part (a): The Classical Straight-Line Path</h3>
+<p>The classical path is a straight line with constant velocity:</p>
+<p><span class="math display">\[
+x_{\text{cl}}(t) = \frac{d}{T}\, t, \qquad \dot{x}_{\text{cl}} = \frac{d}{T}
+\]</span></p>
+<p>The Lagrangian along this path is:</p>
+<p><span class="math display">\[
+L = \frac{1}{2}m\dot{x}_{\text{cl}}^2 = \frac{1}{2}m\frac{d^2}{T^2}
+\]</span></p>
+<p>This is constant in time, so the action is simply:</p>
+<p><span class="math display">\[
+S_{\text{cl}} = \int_0^T L\, dt = \frac{1}{2}m\frac{d^2}{T^2} \cdot T = \boxed{\frac{md^2}{2T}}
+\]</span></p>
+</section>
+<section id="part-b-a-zigzag-path" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="part-b-a-zigzag-path"><span class="header-section-number">8.1.2</span> Part (b): A Zigzag Path</h3>
+<p>Now consider a zigzag path where the particle goes from <span class="math inline">\(x = 0\)</span> to <span class="math inline">\(x = 2d\)</span> in the first half of the journey, then back to <span class="math inline">\(x = d\)</span> in the second half:</p>
+<p><span class="math display">\[
+x_{\text{zig}}(t) = \begin{cases} \frac{2d}{T/2}\, t = \frac{4d}{T}\, t &amp; 0 \leq t \leq T/2 \\ 2d - \frac{2d}{T/2}\, (t - T/2) = 4d - \frac{4d}{T}\,t + \frac{2d}{T}\,t &amp; T/2 \leq t \leq T \end{cases}
+\]</span></p>
+<p>Let’s simplify. In the first half (<span class="math inline">\(0 \leq t \leq T/2\)</span>):</p>
+<p><span class="math display">\[
+\dot{x} = \frac{4d}{T}, \qquad L_1 = \frac{1}{2}m\left(\frac{4d}{T}\right)^2 = \frac{8md^2}{T^2}
+\]</span></p>
+<p>In the second half (<span class="math inline">\(T/2 \leq t \leq T\)</span>), the particle must go from <span class="math inline">\(2d\)</span> back to <span class="math inline">\(d\)</span>, so the velocity is:</p>
+<p><span class="math display">\[
+\dot{x} = \frac{d - 2d}{T/2} = \frac{-d}{T/2} = \frac{-2d}{T}, \qquad L_2 = \frac{1}{2}m\left(\frac{2d}{T}\right)^2 = \frac{2md^2}{T^2}
+\]</span></p>
+<p>The total action is:</p>
+<p><span class="math display">\[
+S_{\text{zig}} = L_1 \cdot \frac{T}{2} + L_2 \cdot \frac{T}{2} = \frac{8md^2}{T^2} \cdot \frac{T}{2} + \frac{2md^2}{T^2} \cdot \frac{T}{2}
+\]</span></p>
+<p><span class="math display">\[
+S_{\text{zig}} = \frac{4md^2}{T} + \frac{md^2}{T} = \boxed{\frac{5md^2}{T}}
+\]</span></p>
+</section>
+<section id="comparing-the-phases" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="comparing-the-phases"><span class="header-section-number">8.1.3</span> Comparing the Phases</h3>
+<p>The ratio of actions is:</p>
+<p><span class="math display">\[
+\frac{S_{\text{zig}}}{S_{\text{cl}}} = \frac{5md^2/T}{md^2/(2T)} = 10
+\]</span></p>
+<p>The zigzag path has <strong>10 times</strong> the action of the classical path! The phase difference between the two paths is:</p>
+<p><span class="math display">\[
+\Delta\theta = \frac{S_{\text{zig}} - S_{\text{cl}}}{\hbar} = \frac{9md^2/2T}{\hbar} = \frac{9md^2}{2T\hbar}
+\]</span></p>
+<p>For a macroscopic particle (<span class="math inline">\(m = 1\;\text{kg}\)</span>, <span class="math inline">\(d = 1\;\text{m}\)</span>, <span class="math inline">\(T = 1\;\text{s}\)</span>):</p>
+<p><span class="math display">\[
+\Delta\theta \sim \frac{9 \times 1 \times 1}{2 \times 1 \times 10^{-34}} \sim 10^{34}\;\text{rad}
+\]</span></p>
+<p>This enormous phase difference means the zigzag path and the classical path are completely out of phase. In fact, paths even <em>slightly</em> different from the classical path have huge phase differences at the macroscopic scale, leading to massive destructive interference.</p>
+<p>For an electron (<span class="math inline">\(m = 10^{-30}\;\text{kg}\)</span>, <span class="math inline">\(d = 10^{-10}\;\text{m}\)</span>, <span class="math inline">\(T = 10^{-16}\;\text{s}\)</span>):</p>
+<p><span class="math display">\[
+\Delta\theta \sim \frac{9 \times 10^{-30} \times 10^{-20}}{2 \times 10^{-16} \times 10^{-34}} \sim \frac{10^{-50}}{10^{-50}} \sim 1\;\text{rad}
+\]</span></p>
+<p>Now the phase difference is of order 1. Both paths contribute significantly! This is why electrons exhibit quantum behavior.</p>
+</section>
+</section>
+<section id="worked-example-2-action-for-a-particle-in-a-gravitational-field" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="worked-example-2-action-for-a-particle-in-a-gravitational-field"><span class="header-section-number">8.2</span> Worked Example 2: Action for a Particle in a Gravitational Field</h2>
+<p><strong>Setup</strong>: A particle of mass <span class="math inline">\(m\)</span> moves vertically in a uniform gravitational field. It starts at height <span class="math inline">\(y_a = 0\)</span> at time <span class="math inline">\(t = 0\)</span> and arrives at height <span class="math inline">\(y_b = h\)</span> at time <span class="math inline">\(t = T\)</span>.</p>
+<p><strong>Step 1: Write the Lagrangian.</strong></p>
+<p><span class="math display">\[
+L = \frac{1}{2}m\dot{y}^2 - mgy
+\]</span></p>
+<p>where <span class="math inline">\(g\)</span> is the gravitational acceleration and we take <span class="math inline">\(V(y) = mgy\)</span> with <span class="math inline">\(y\)</span> measured upward.</p>
+<p><strong>Step 2: Find the classical path.</strong></p>
+<p>The Euler-Lagrange equation gives:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial y} - \frac{d}{dt}\frac{\partial L}{\partial \dot{y}} = -mg - m\ddot{y} = 0 \quad \Rightarrow \quad \ddot{y} = -g
+\]</span></p>
+<p>This is just the familiar equation for free fall. The solution with boundary conditions <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y(T) = h\)</span> is:</p>
+<p><span class="math display">\[
+y_{\text{cl}}(t) = \frac{h}{T}\,t + \frac{1}{2}g\,t(T - t) \cdot \frac{1}{T}\;\;?
+\]</span></p>
+<p>Let’s be more careful. We need <span class="math inline">\(y(0) = 0\)</span> and <span class="math inline">\(y(T) = h\)</span>. The general solution to <span class="math inline">\(\ddot{y} = -g\)</span> is:</p>
+<p><span class="math display">\[
+y(t) = -\frac{1}{2}gt^2 + v_0 t + y_0
+\]</span></p>
+<p>With <span class="math inline">\(y(0) = 0\)</span>: <span class="math inline">\(y_0 = 0\)</span>.</p>
+<p>With <span class="math inline">\(y(T) = h\)</span>: <span class="math inline">\(h = -\frac{1}{2}gT^2 + v_0 T\)</span>, so <span class="math inline">\(v_0 = \frac{h}{T} + \frac{1}{2}gT\)</span>.</p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+y_{\text{cl}}(t) = \left(\frac{h}{T} + \frac{gT}{2}\right)t - \frac{1}{2}gt^2
+\]</span></p>
+<p>and the velocity is:</p>
+<p><span class="math display">\[
+\dot{y}_{\text{cl}}(t) = \frac{h}{T} + \frac{gT}{2} - gt
+\]</span></p>
+<p><strong>Step 3: Compute the action.</strong></p>
+<p><span class="math display">\[
+S_{\text{cl}} = \int_0^T \left[\frac{1}{2}m\dot{y}_{\text{cl}}^2 - mg\,y_{\text{cl}}\right] dt
+\]</span></p>
+<p>Let’s define <span class="math inline">\(v_0 = h/T + gT/2\)</span> for brevity. Then <span class="math inline">\(\dot{y} = v_0 - gt\)</span> and <span class="math inline">\(y = v_0 t - \frac{1}{2}gt^2\)</span>.</p>
+<p><strong>Kinetic energy integral:</strong></p>
+<p><span class="math display">\[
+\int_0^T \frac{1}{2}m(v_0 - gt)^2\, dt = \frac{m}{2}\int_0^T (v_0^2 - 2v_0 gt + g^2 t^2)\, dt
+\]</span></p>
+<p><span class="math display">\[
+= \frac{m}{2}\left[v_0^2 T - 2v_0 g \cdot \frac{T^2}{2} + g^2 \cdot \frac{T^3}{3}\right] = \frac{m}{2}\left[v_0^2 T - v_0 g T^2 + \frac{g^2 T^3}{3}\right]
+\]</span></p>
+<p><strong>Potential energy integral:</strong></p>
+<p><span class="math display">\[
+\int_0^T mg\left(v_0 t - \frac{1}{2}gt^2\right) dt = mg\left[v_0 \cdot \frac{T^2}{2} - \frac{g T^3}{6}\right]
+\]</span></p>
+<p><strong>Combining</strong> ($S = $ kinetic <span class="math inline">\(-\)</span> potential):</p>
+<p><span class="math display">\[
+S_{\text{cl}} = \frac{m}{2}\left[v_0^2 T - v_0 g T^2 + \frac{g^2 T^3}{3}\right] - mg\left[\frac{v_0 T^2}{2} - \frac{g T^3}{6}\right]
+\]</span></p>
+<p><span class="math display">\[
+= \frac{m}{2}v_0^2 T - \frac{m}{2}v_0 g T^2 + \frac{mg^2 T^3}{6} - \frac{mgv_0 T^2}{2} + \frac{mg^2 T^3}{6}
+\]</span></p>
+<p><span class="math display">\[
+= \frac{m}{2}v_0^2 T - mgv_0 T^2 + \frac{mg^2 T^3}{3}
+\]</span></p>
+<p>Now substitute <span class="math inline">\(v_0 = h/T + gT/2\)</span>:</p>
+<p><span class="math display">\[
+v_0^2 = \frac{h^2}{T^2} + \frac{gh}{1} + \frac{g^2 T^2}{4}
+\]</span></p>
+<p><span class="math display">\[
+\frac{m}{2}v_0^2 T = \frac{mh^2}{2T} + \frac{mghT}{2} + \frac{mg^2 T^3}{8}
+\]</span></p>
+<p><span class="math display">\[
+mgv_0 T^2 = mg\left(\frac{h}{T} + \frac{gT}{2}\right)T^2 = mghT + \frac{mg^2 T^3}{2}
+\]</span></p>
+<p>Putting it all together:</p>
+<p><span class="math display">\[
+S_{\text{cl}} = \frac{mh^2}{2T} + \frac{mghT}{2} + \frac{mg^2 T^3}{8} - mghT - \frac{mg^2 T^3}{2} + \frac{mg^2 T^3}{3}
+\]</span></p>
+<p><span class="math display">\[
+= \frac{mh^2}{2T} - \frac{mghT}{2} + mg^2 T^3 \left(\frac{1}{8} - \frac{1}{2} + \frac{1}{3}\right)
+\]</span></p>
+<p>The coefficient in the parenthesis: <span class="math inline">\(\frac{1}{8} - \frac{1}{2} + \frac{1}{3} = \frac{3 - 12 + 8}{24} = \frac{-1}{24}\)</span></p>
+<p><span class="math display">\[
+\boxed{S_{\text{cl}} = \frac{mh^2}{2T} - \frac{mghT}{2} - \frac{mg^2 T^3}{24}}
+\]</span></p>
+<p><strong>Physical interpretation</strong>: The three terms have clear meanings:</p>
+<ol type="1">
+<li><span class="math inline">\(\frac{mh^2}{2T}\)</span>: This is just the free-particle action — the cost of traveling a distance <span class="math inline">\(h\)</span> in time <span class="math inline">\(T\)</span> with no gravity</li>
+<li><span class="math inline">\(-\frac{mghT}{2}\)</span>: The leading gravitational correction, proportional to the field strength <span class="math inline">\(g\)</span> and the height <span class="math inline">\(h\)</span></li>
+<li><span class="math inline">\(-\frac{mg^2T^3}{24}\)</span>: A purely gravitational term (independent of <span class="math inline">\(h\)</span>), representing the effect of the gravitational field even when the particle returns to its starting height</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This result will be useful when we compute the propagator in a gravitational field. The phase <span class="math inline">\(e^{iS_{\text{cl}}/\hbar}\)</span> gives the dominant contribution to the propagator in the semiclassical limit.</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Feynman &amp; Hibbs, Ch. 3, Problem 3-3; Shankar, §8.6.</p>
+</blockquote>
+</section>
+</section>
+<section id="sec-summary" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Summary</h1>
+<p>Let’s collect the key ideas from this module:</p>
+<table class="table-striped table-hover caption-top table">
+<caption>Key results from Module 2</caption>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Key Formula / Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Feynman’s claim</td>
+<td>The particle takes ALL paths simultaneously</td>
+</tr>
+<tr class="even">
+<td>Path integral</td>
+<td><span class="math inline">\(K = \int \mathcal{D}[x(t)]\; e^{iS/\hbar}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Action functional</td>
+<td><span class="math inline">\(S[x(t)] = \int_{t_a}^{t_b} L(x, \dot{x}, t)\, dt\)</span></td>
+</tr>
+<tr class="even">
+<td>Euler-Lagrange equation</td>
+<td><span class="math inline">\(\frac{\partial L}{\partial x} - \frac{d}{dt}\frac{\partial L}{\partial \dot{x}} = 0\)</span></td>
+</tr>
+<tr class="odd">
+<td>Phase per path</td>
+<td><span class="math inline">\(\theta = S[\text{path}]/\hbar\)</span></td>
+</tr>
+<tr class="even">
+<td>Democracy of paths</td>
+<td>All paths have equal magnitude; differ only in phase</td>
+</tr>
+<tr class="odd">
+<td>Classical limit</td>
+<td><span class="math inline">\(S \gg \hbar \Rightarrow\)</span> stationary phase <span class="math inline">\(\Rightarrow\)</span> only <span class="math inline">\(\delta S = 0\)</span> path survives</td>
+</tr>
+<tr class="even">
+<td>Free particle action</td>
+<td><span class="math inline">\(S_{\text{cl}} = \frac{m(x_b - x_a)^2}{2(t_b - t_a)}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Gravitational field action</td>
+<td><span class="math inline">\(S_{\text{cl}} = \frac{mh^2}{2T} - \frac{mghT}{2} - \frac{mg^2T^3}{24}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="checkpoint">
+<p>Before moving to Module 3, make sure you can:</p>
+<ol type="1">
+<li><strong>State</strong> Feynman’s three postulates of quantum mechanics from memory</li>
+<li><strong>Explain</strong> why the phase is <span class="math inline">\(e^{iS/\hbar}\)</span> using dimensional analysis and the de Broglie relation</li>
+<li><strong>Derive</strong> the Euler-Lagrange equation from <span class="math inline">\(\delta S = 0\)</span></li>
+<li><strong>Compute</strong> the action for a free particle along any specified path</li>
+<li><strong>Explain</strong> how classical mechanics emerges from the path integral via stationary phase</li>
+<li><strong>Estimate</strong> <span class="math inline">\(S/\hbar\)</span> for a macroscopic vs.&nbsp;microscopic system and interpret the result</li>
+<li><strong>Compare</strong> the strengths of the Schrödinger, Heisenberg, and Feynman formulations</li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the double-slit analogy, we argued that “infinitely many slits = no barrier.” But in the double-slit experiment, the slits constrain the paths. In free space, what constrains the paths?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Nothing constrains the paths — and that’s the point! In free space, the particle can take <em>any</em> continuous path from <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>, no matter how wild. The “constraint” comes not from barriers but from <strong>interference</strong>: the phases <span class="math inline">\(e^{iS/\hbar}\)</span> cause most paths to cancel. The surviving paths are those near the classical trajectory (where <span class="math inline">\(\delta S = 0\)</span>).</p>
+<p>In the double-slit experiment, the barrier physically restricts which paths are available. In the path integral for free space, all paths are available, but physics (via interference) effectively selects a narrow bundle around the classical path — at least in the classical limit.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-practice" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Practice Problems</h1>
+<p><strong>Problem 1</strong> (Warm-up) ⭐</p>
+<p>Compute the action <span class="math inline">\(S\)</span> for a free particle of mass <span class="math inline">\(m\)</span> traveling from <span class="math inline">\(x = 0\)</span> to <span class="math inline">\(x = L\)</span> in time <span class="math inline">\(T\)</span> along the parabolic path <span class="math inline">\(x(t) = L(t/T)^2\)</span>. Compare it to the action along the classical (straight-line) path and show that <span class="math inline">\(S_{\text{parabola}} &gt; S_{\text{classical}}\)</span>.</p>
+<p><strong>Problem 2</strong> (Dimensional analysis) ⭐</p>
+<p>The action has dimensions of <span class="math inline">\([\text{energy}] \times [\text{time}]\)</span>. Using the uncertainty relation <span class="math inline">\(\Delta E \cdot \Delta t \gtrsim \hbar\)</span>, argue that quantum effects become important when <span class="math inline">\(S \sim \hbar\)</span>.</p>
+<p><strong>Problem 3</strong> (Action for SHO) ⭐⭐</p>
+<p>A particle of mass <span class="math inline">\(m\)</span> is attached to a spring with spring constant <span class="math inline">\(k\)</span> (a simple harmonic oscillator with <span class="math inline">\(\omega = \sqrt{k/m}\)</span>). The Lagrangian is <span class="math inline">\(L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2\)</span>. Compute the action along the classical trajectory <span class="math inline">\(x_{\text{cl}}(t) = A\cos(\omega t)\)</span> over one full period <span class="math inline">\(T = 2\pi/\omega\)</span>. <em>Hint</em>: You should find <span class="math inline">\(S_{\text{cl}} = 0\)</span>. Can you explain why?</p>
+<p><strong>Problem 4</strong> (Multiple classical paths) ⭐⭐</p>
+<p>Consider a particle moving on a ring of circumference <span class="math inline">\(L\)</span> (i.e., <span class="math inline">\(x\)</span> and <span class="math inline">\(x + L\)</span> are identified). A free particle going from <span class="math inline">\(x = 0\)</span> to <span class="math inline">\(x = 0\)</span> in time <span class="math inline">\(T\)</span> can take infinitely many classical paths: it can wind around the ring <span class="math inline">\(n = 0, 1, 2, \ldots\)</span> times. Compute the action <span class="math inline">\(S_n\)</span> for each winding path. What does this imply for the path integral?</p>
+<p><strong>Problem 5</strong> (Stationary phase) ⭐⭐⭐</p>
+<p>Consider the one-dimensional integral:</p>
+<p><span class="math display">\[
+I(\lambda) = \int_{-\infty}^{\infty} dx\; e^{i\lambda(x^2 - x^4/12)}
+\]</span></p>
+<ol type="a">
+<li><p>Find the stationary phase points (where <span class="math inline">\(d/dx\)</span> of the exponent vanishes).</p></li>
+<li><p>For large <span class="math inline">\(\lambda\)</span>, which stationary point dominates? Estimate <span class="math inline">\(I(\lambda)\)</span> in the <span class="math inline">\(\lambda \to \infty\)</span> limit using the stationary phase approximation.</p></li>
+<li><p>Relate this to the path integral: <span class="math inline">\(\lambda\)</span> plays the role of <span class="math inline">\(1/\hbar\)</span>, and the exponent plays the role of <span class="math inline">\(S[\text{path}]/\hbar\)</span>.</p></li>
+</ol>
+<p><strong>Problem 6</strong> (From the path integral to the Schrödinger equation — preview) ⭐⭐⭐</p>
+<p>This problem foreshadows Module 4. Consider the path integral over a <em>single</em> time step <span class="math inline">\(\epsilon\)</span>. The propagator from <span class="math inline">\((x, t)\)</span> to <span class="math inline">\((x', t + \epsilon)\)</span> is:</p>
+<p><span class="math display">\[
+K(x', t+\epsilon;\, x, t) \approx A\, \exp\!\left[\frac{i}{\hbar}\left(\frac{m(x'-x)^2}{2\epsilon} - V\!\left(\frac{x+x'}{2}\right)\epsilon\right)\right]
+\]</span></p>
+<p>Using <span class="math inline">\(\psi(x', t+\epsilon) = \int K(x', t+\epsilon; x, t)\, \psi(x, t)\, dx\)</span>, and expanding to first order in <span class="math inline">\(\epsilon\)</span>, show that you get the Schrödinger equation:</p>
+<p><span class="math display">\[
+i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2 \psi}{\partial x^2} + V(x)\psi
+\]</span></p>
+<p><em>Hint</em>: Set <span class="math inline">\(x' = x + \xi\)</span>, expand everything in powers of <span class="math inline">\(\xi\)</span> and <span class="math inline">\(\epsilon\)</span>, perform the Gaussian integral over <span class="math inline">\(\xi\)</span>, and match terms order by order.</p>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/Path_Integrals/01_propagators.html" class="btn btn-outline-secondary">← Previous: Propagators &amp; Transition Amplitudes</a> <a href="../../Courses/Path_Integrals/03_free_particle.html" class="btn btn-success">Next: Module 3 — Free Particle Propagator →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

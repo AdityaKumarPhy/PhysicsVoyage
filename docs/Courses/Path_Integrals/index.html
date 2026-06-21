@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aditya Kumar">
-<meta name="dcterms.date" content="2026-05-26">
-<meta name="description" content="We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="The ultimate beginner-friendly course on Feynman’s path integral formulation — from propagators and the sum-over-paths idea, through functional integrals and Wick rotation, to Euclidean equations of motion, instantons, and the bridge to quantum field theory. Every derivation shown, every concept motivated, zero hand-waving.">
 
-<title>Physics Voyage - Module 5: Time Evolution</title>
+<title>Physics Voyage - Path Integrals in Quantum Mechanics &amp; Quantum Field Theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -211,54 +211,25 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#sec-tdse" id="toc-sec-tdse" class="nav-link active" data-scroll-target="#sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</a></li>
-  <li><a href="#sec-energy-eigenstates" id="toc-sec-energy-eigenstates" class="nav-link" data-scroll-target="#sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</a></li>
-  <li><a href="#sec-time-operator" id="toc-sec-time-operator" class="nav-link" data-scroll-target="#sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</a></li>
-  <li><a href="#sec-superposition" id="toc-sec-superposition" class="nav-link" data-scroll-target="#sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</a>
-  <ul class="collapse">
-  <li><a href="#example-superposition-of-0rangle-and-1rangle" id="toc-example-superposition-of-0rangle-and-1rangle" class="nav-link" data-scroll-target="#example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></a></li>
-  </ul></li>
-  <li><a href="#sec-ehrenfest" id="toc-sec-ehrenfest" class="nav-link" data-scroll-target="#sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</a>
-  <ul class="collapse">
-  <li><a href="#general-statement" id="toc-general-statement" class="nav-link" data-scroll-target="#general-statement"><span class="header-section-number">5.1</span> General Statement</a></li>
-  <li><a href="#ehrenfest-in-the-heisenberg-picture" id="toc-ehrenfest-in-the-heisenberg-picture" class="nav-link" data-scroll-target="#ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</a></li>
-  </ul></li>
-  <li><a href="#sec-revivals" id="toc-sec-revivals" class="nav-link" data-scroll-target="#sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</a>
-  <ul class="collapse">
-  <li><a href="#when-superpositions-come-back" id="toc-when-superpositions-come-back" class="nav-link" data-scroll-target="#when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</a></li>
-  </ul></li>
-  <li><a href="#sec-heisenberg" id="toc-sec-heisenberg" class="nav-link" data-scroll-target="#sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</a></li>
-  <li><a href="#sec-wigner" id="toc-sec-wigner" class="nav-link" data-scroll-target="#sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</a>
-  <ul class="collapse">
-  <li><a href="#what-is-the-wigner-function" id="toc-what-is-the-wigner-function" class="nav-link" data-scroll-target="#what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</a></li>
-  <li><a href="#wigner-function-of-the-ground-state" id="toc-wigner-function-of-the-ground-state" class="nav-link" data-scroll-target="#wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</a></li>
-  <li><a href="#wigner-function-of-excited-states" id="toc-wigner-function-of-excited-states" class="nav-link" data-scroll-target="#wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</a></li>
-  </ul></li>
-  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
   <div class="quarto-title">
-    <h1 class="title">Module 5: Time Evolution</h1>
-        <p class="subtitle lead">Nothing is Static in Quantum Mechanics</p>
+    <h1 class="title">Path Integrals in Quantum Mechanics &amp; Quantum Field Theory</h1>
+        <p class="subtitle lead">From Propagators to Euclidean Field Theory — A Complete Journey</p>
             <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
-      We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.
+      The ultimate beginner-friendly course on Feynman’s path integral formulation — from propagators and the sum-over-paths idea, through functional integrals and Wick rotation, to Euclidean equations of motion, instantons, and the bridge to quantum field theory. Every derivation shown, every concept motivated, zero hand-waving.
     </div>
             <div class="quarto-categories" style="margin-top: 20px;">
             <div class="quarto-category">Quantum Mechanics</div>
-            <div class="quarto-category">QHO Course</div>
+            <div class="quarto-category">Quantum Field Theory</div>
+            <div class="quarto-category">Physics</div>
+            <div class="quarto-category">Active</div>
           </div>
       </div>
 
@@ -387,7 +358,7 @@ window.Quarto = {
       </div>
                   <div>
         <span class="meta-heading">Published</span>
-        <span class="meta-value">May 26, 2026</span>
+        <span class="meta-value">June 21, 2026</span>
       </div>
           </div>
 
@@ -415,6 +386,9 @@ window.Quarto = {
     </div>
   </div>
 
+    <div class="featured-image-container">
+    <img src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1782005094/Github%20Blog/path_integrals_hero.jpg" alt="Featured image for Path Integrals in Quantum Mechanics &amp; Quantum Field Theory">
+  </div>
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -443,336 +417,554 @@ window.Quarto = {
 
 
 <style>
-.callout-intuition {
-  border-left: 4px solid #10b981;
-  background: #ecfdf511;
-  border-radius: 0 8px 8px 0;
-  padding: 1rem 1.4rem;
-  margin: 1.2rem 0;
-}
-.callout-intuition::before {
-  content: "💡 Physical Intuition";
-  display: block;
-  font-weight: 700;
-  color: #10b981;
-  margin-bottom: 0.5rem;
-}
-.checkpoint {
-  border: 2px solid #f59e0b;
-  border-radius: 8px;
-  padding: 1rem 1.4rem;
-  background: #fffbeb;
-  margin: 1.5rem 0;
-}
-.checkpoint::before {
-  content: "🎯 Checkpoint";
-  display: block;
-  font-weight: 700;
-  color: #d97706;
-  margin-bottom: 0.5rem;
-}
-.derivation-box {
-  border: 1.5px solid #6366f1;
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
-  background: #eef2ff;
-  margin: 1.5rem 0;
-}
-.derivation-box::before {
-  content: "✏️ Derivation";
-  display: block;
-  font-weight: 700;
-  color: #4f46e5;
-  margin-bottom: 0.5rem;
-}
-.result-box {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+/* ── Hero Banner ───────────────────────────────────────────── */
+.pi-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1a365d 70%, #2d1b69 100%);
+  border-radius: 16px;
+  padding: 2.8rem 2.5rem 2.2rem;
   color: white;
-  border-radius: 10px;
-  padding: 1.2rem 1.5rem;
-  margin: 1.5rem 0;
-  text-align: center;
+  margin-bottom: 2.4rem;
+  border: 2px solid rgba(56,189,248,0.25);
+  box-shadow: 0 8px 32px rgba(30,58,95,0.35);
+  position: relative;
+  overflow: hidden;
 }
-.result-box p { color: #c4b5fd; margin-bottom: 0; }
-.nav-buttons {
+.pi-hero::before {
+  content: "∫𝒟x";
+  position: absolute;
+  right: 1.5rem; top: 0.8rem;
+  font-size: 5.5rem;
+  opacity: 0.06;
+  line-height: 1;
+  pointer-events: none;
+  font-style: italic;
+  font-family: 'Times New Roman', serif;
+}
+.pi-hero h2 {
+  color: #7dd3fc;
+  margin: 0 0 0.5rem;
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+.pi-hero p {
+  color: #bae6fd;
+  font-size: 1.05rem;
+  margin: 0;
+  max-width: 740px;
+  line-height: 1.6;
+}
+.hero-badges {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1.2rem;
+}
+.hero-badge {
+  background: rgba(56,189,248,0.18);
+  border: 1px solid rgba(56,189,248,0.4);
+  color: #e0f2fe;
+  border-radius: 6px;
+  padding: 3px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Stats Row ─────────────────────────────────────────────── */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  flex: 1 1 120px;
+  background: var(--bs-body-bg, #fff);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0px var(--bs-body-color, #212529);
+}
+.stat-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0284c7;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bs-secondary-color, #6c757d);
+  font-weight: 600;
+}
+
+/* ── Section Headers ───────────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bs-body-color, #212529);
+}
+.section-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* ── Module Cards ──────────────────────────────────────────── */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 2rem;
+}
+.module-card {
+  background: var(--bs-body-bg, #fff);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, #0284c7, #38bdf8);
+  border-radius: 12px 0 0 12px;
+}
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0px var(--bs-body-color, #212529);
+  border-color: #0284c7;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.module-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0284c7;
+}
+.module-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bs-heading-color, inherit);
+  line-height: 1.3;
+  margin: 0;
+}
+.module-desc {
+  font-size: 0.82rem;
+  color: var(--bs-secondary-color, #6c757d);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+.module-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+.module-tag {
+  background: rgba(2,132,199,0.1);
+  color: #0284c7;
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.module-arrow {
+  position: absolute;
+  bottom: 1rem; right: 1.2rem;
+  font-size: 1.1rem;
+  color: #38bdf8;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.module-card:hover .module-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ── Prereq Box ────────────────────────────────────────────── */
+.prereq-box {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(148,163,184,0.2);
+}
+.prereq-box h4 { color: #38bdf8; margin-top: 0; font-size: 1rem; }
+.prereq-box ul { color: #cbd5e1; margin: 0; padding-left: 1.3rem; }
+.prereq-box li { margin-bottom: 4px; font-size: 0.9rem; }
+
+/* ── Book Cards ────────────────────────────────────────────── */
+.books-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.book-pill {
+  background: #0284c7;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.book-pill span { display: block; font-weight: 400; font-size: 0.72rem; opacity: 0.82; }
+
+/* ── CTA Buttons ───────────────────────────────────────────── */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+/* ── Roadmap ───────────────────────────────────────────────── */
+.roadmap-box {
+  background: linear-gradient(135deg, #1a2332 0%, #1e3a5f 100%);
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(56,189,248,0.2);
+}
+.roadmap-box h4 { color: #7dd3fc; margin-top: 0; font-size: 1.05rem; }
+.roadmap-box ol { color: #bae6fd; margin: 0; padding-left: 1.3rem; }
+.roadmap-box li { margin-bottom: 6px; font-size: 0.9rem; }
+.roadmap-box li strong { color: #e0f2fe; }
+
+/* ── Cheat Sheet Banner ────────────────────────────────────── */
+.cheatsheet-banner {
+  background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+  border-radius: 12px;
+  padding: 1.4rem 1.8rem;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(52,211,153,0.3);
+}
+.cheatsheet-banner p { color: #d1fae5; margin: 0; font-size: 0.9rem; }
+.cheatsheet-banner h4 { color: #a7f3d0; margin: 0 0 4px; font-size: 1.05rem; }
+
+/* ── Dark-mode fixes ───────────────────────────────────────── */
+[data-bs-theme="dark"] .module-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+[data-bs-theme="dark"] .stat-card {
+  background: #1e293b;
+  border-color: #334155;
 }
 </style>
-<p><a href="../../Courses/QHO/04_wavefunctions.html">← Module 4</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/06_coherent_states.html">Module 6 →</a></p>
-<hr>
-<section id="sec-tdse" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</h2>
-<p>Everything we’ve done so far found the <em>stationary</em> states — the energy eigenstates <span class="math inline">\(|n\rangle\)</span> that don’t change shape over time (only their phase oscillates). But a general quantum state is a <strong>superposition</strong>, and it <em>does</em> change over time.</p>
-<p>The full time-dependent Schrödinger equation (TDSE) is:</p>
-<p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|\Psi(t)\rangle = \hat{H}|\Psi(t)\rangle
-\]</span></p>
-<blockquote class="blockquote">
-<p><strong>Textbook reference</strong>: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III.</p>
-</blockquote>
-<hr>
-</section>
-<section id="sec-energy-eigenstates" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</h2>
-<p>For an energy eigenstate <span class="math inline">\(|n\rangle\)</span>:</p>
-<p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|n,t\rangle = E_n|n,t\rangle
-\]</span></p>
-<p>This integrates immediately:</p>
-<p><span class="math display">\[
-|n,t\rangle = e^{-iE_nt/\hbar}|n\rangle = e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>The <strong>only effect</strong> of time evolution on an energy eigenstate is a <strong>global phase</strong> <span class="math inline">\(e^{-i\omega(n+1/2)t}\)</span>. Global phases have no physical consequence: <span class="math inline">\(|\psi(t)|^2 = |\psi(0)|^2\)</span> for all <span class="math inline">\(t\)</span>.</p>
-<div class="callout-intuition">
-<p>This is why energy eigenstates are called <strong>stationary states</strong> — all observable quantities are time-independent in these states. The energy eigenstate doesn’t “do anything.”</p>
-<p>This doesn’t mean nothing is happening — the wavefunction is rotating in the complex plane at frequency <span class="math inline">\((n + \frac{1}{2})\omega\)</span>. But since we only measure <span class="math inline">\(|\psi|^2\)</span>, we can’t see this rotation.</p>
-</div>
-<hr>
-</section>
-<section id="sec-time-operator" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</h2>
-<p>The formal solution to the TDSE is:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \hat{U}(t)|\Psi(0)\rangle, \quad \hat{U}(t) = e^{-i\hat{H}t/\hbar}
-\]</span></p>
-<p>For the QHO, we can write this in the Fock basis:</p>
-<p><span class="math display">\[
-\hat{U}(t) = e^{-i\omega(\hat{N}+1/2)t} = e^{-i\omega t/2}\, e^{-i\omega t\hat{N}}
-\]</span></p>
-<p>Since <span class="math inline">\(\hat{N}|n\rangle = n|n\rangle\)</span>:</p>
-<p><span class="math display">\[
-\hat{U}(t)|n\rangle = e^{-i\omega t(n+1/2)}|n\rangle
-\]</span></p>
-<p>The key identity: <span class="math inline">\(e^{-i\omega t\hat{N}}\hat{a} = \hat{a}e^{-i\omega t(\hat{N}-1)} = e^{-i\omega t}\hat{a}e^{-i\omega t\hat{N}}\)</span>, or:</p>
-<p><span class="math display">\[
-\hat{U}(t)\hat{a}\hat{U}^\dagger(t) = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p>This means the ladder operators in the <strong>Heisenberg picture</strong> rotate:</p>
-<p><span class="math display">\[
-\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}^\dagger(t) = e^{+i\omega t}\hat{a}^\dagger(0)
-\]</span></p>
-<hr>
-</section>
-<section id="sec-superposition" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</h2>
-<p>A general initial state is a superposition:</p>
-<p><span class="math display">\[
-|\Psi(0)\rangle = \sum_{n=0}^{\infty} c_n|n\rangle, \quad \sum_n |c_n|^2 = 1
-\]</span></p>
-<p>Time evolution:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>In position space:</p>
-<p><span class="math display">\[
-\Psi(x,t) = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}\psi_n(x)
-\]</span></p>
-<section id="example-superposition-of-0rangle-and-1rangle" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></h3>
-<p>Consider: <span class="math display">\[
-|\Psi(0)\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)
-\]</span></p>
-<p>Time evolution: <span class="math display">\[
-|\Psi(t)\rangle = \frac{e^{-i\omega t/2}}{\sqrt{2}}\left(|0\rangle + e^{-i\omega t}|1\rangle\right)
-\]</span></p>
-<p>The expectation value of position:</p>
-<div class="derivation-box">
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\langle\Psi(t)|(\hat{a} + \hat{a}^\dagger)|\Psi(t)\rangle
-\]</span></p>
-<p>The cross terms survive: <span class="math inline">\(\langle 0|\hat{a}|1\rangle = 1\)</span>, <span class="math inline">\(\langle 1|\hat{a}^\dagger|0\rangle = 1\)</span>.</p>
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\cdot\frac{1}{2}\cdot 2\cos(\omega t) = \frac{x_0}{\sqrt{2}}\cos(\omega t)
-\]</span></p>
-</div>
-<p>The expectation value of position <strong>oscillates</strong> at frequency <span class="math inline">\(\omega\)</span> — like a classical oscillator!</p>
-<hr>
-</section>
-</section>
-<section id="sec-ehrenfest" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</h2>
-<section id="general-statement" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="general-statement"><span class="header-section-number">5.1</span> General Statement</h3>
-<p>Ehrenfest’s theorem says that expectation values obey classical equations of motion:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{A}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{A}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
-\]</span></p>
-<p>For time-independent operators in the QHO:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{x}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{x}]\rangle = \frac{\langle\hat{p}\rangle}{m}
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{p}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{p}]\rangle = -m\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>Combined: <span class="math display">\[
-\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>This is <strong>exactly Newton’s law</strong> for the harmonic oscillator! The center of the wavepacket <span class="math inline">\(\langle\hat{x}\rangle\)</span> oscillates like a classical particle.</p>
-<div class="result-box">
-<p><strong>Ehrenfest’s Theorem for the QHO:</strong></p>
-<p><span class="math display">\[\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle\]</span></p>
-<p>The quantum expectation value always satisfies the classical equation of motion — for <strong>any</strong> quantum state!</p>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="path-integrals-in-quantum-mechanics-qft" class="level2 pi-hero">
+<h2 class="anchored" data-anchor-id="path-integrals-in-quantum-mechanics-qft">🛤️ Path Integrals in Quantum Mechanics &amp; QFT</h2>
+<p>A complete, pedagogically rigorous journey through Feynman’s path integral formulation — from the simple question <em>“how does a particle get from A to B?”</em> all the way to Euclidean field theory, instantons, and the bridge to statistical mechanics. Every derivation is shown, every concept is motivated, every “why” is answered.</p>
+<div class="hero-badges">
+<p><span class="hero-badge">📖 Feynman &amp; Hibbs</span> <span class="hero-badge">📖 Shankar</span> <span class="hero-badge">📖 Zinn-Justin</span> <span class="hero-badge">📖 Kleinert</span> <span class="hero-badge">🔬 15 Modules</span> <span class="hero-badge">🎯 Wick Rotation</span> <span class="hero-badge">🌀 Instantons</span> <span class="hero-badge">⚛ QFT Bridge</span></p>
 </div>
 </section>
-<section id="ehrenfest-in-the-heisenberg-picture" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</h3>
-<p>In the Heisenberg picture, operators evolve:</p>
-<p><span class="math display">\[
-\hat{x}(t) = x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p><span class="math display">\[
-\hat{p}(t) = -m\omega\sin(\omega t)\,\hat{x}(0) + \cos(\omega t)\,\hat{p}(0)
-\]</span></p>
-<p>This is exactly the classical solution <span class="math inline">\(x(t) = x_0\cos\omega t + \frac{p_0}{m\omega}\sin\omega t\)</span> promoted to operators. The QHO Heisenberg equations are <strong>linear</strong>, which is why they have exact classical analogs.</p>
-<hr>
-</section>
-</section>
-<section id="sec-revivals" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</h2>
-<section id="when-superpositions-come-back" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</h3>
-<p>For a general superposition <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-in\omega t}|n\rangle\)</span> (dropping the common phase <span class="math inline">\(e^{-i\omega t/2}\)</span>):</p>
-<p>The state <strong>returns exactly</strong> to itself when all phases complete full rotations:</p>
-<p><span class="math display">\[
-e^{-in\omega T} = 1 \text{ for all } n \quad \Rightarrow \quad T = \frac{2\pi}{\omega}
-\]</span></p>
-<p>This is the <strong>classical period</strong> — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time <span class="math inline">\(T = 2\pi/\omega\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- STATS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-number">15</div>
+    <div class="stat-label">Modules</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">80+</div>
+    <div class="stat-label">Practice Problems</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">7</div>
+    <div class="stat-label">Textbooks</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">0</div>
+    <div class="stat-label">Hand-Waving</div>
+  </div>
 </div>
-<div class="callout-title-container flex-fill">
-This is Special to the QHO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For a particle in a box, the energy levels go as <span class="math inline">\(n^2\)</span>, so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period.</p>
-<p>The QHO is special: its equally spaced energy levels (spacing <span class="math inline">\(\hbar\omega\)</span>) mean all phase factors are integer multiples of <span class="math inline">\(e^{-i\omega t}\)</span>, guaranteeing exact periodicity.</p>
-</div>
-</div>
-<hr>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- COURSE OVERVIEW -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="what-you-will-learn" class="level4 roadmap-box">
+<h4 class="anchored" data-anchor-id="what-you-will-learn">🗺️ What You Will Learn</h4>
+<p>This course takes you on a complete journey through the <strong>path integral formulation of quantum mechanics</strong>:</p>
+<ol type="1">
+<li><strong>Foundation</strong> (Modules 1–3): What propagators are, Feynman’s “sum over all paths” idea, and your first complete path integral — the free particle</li>
+<li><strong>The Machine</strong> (Modules 4–7): Rigorous derivation of the path integral from operators, the harmonic oscillator, functional calculus, and Gaussian integrals — the mathematical toolkit</li>
+<li><strong>Classical Meets Quantum</strong> (Module 8): How classical mechanics <em>emerges</em> from the path integral via stationary phase</li>
+<li><strong>Into Euclidean Territory</strong> (Modules 9–11): Wick rotation, Euclidean path integrals, Euclidean equations of motion, and the spectacular physics of <strong>instantons</strong> and tunneling</li>
+<li><strong>The Big Connections</strong> (Modules 12–13): The deep bridge to statistical mechanics and the extension to quantum field theory</li>
+<li><strong>Frontiers</strong> (Modules 14–15): Applications to lattice QCD, quantum gravity, condensed matter, and a complete cheat sheet</li>
+</ol>
+<p>By the end, you will understand <strong>why path integrals are the language of modern theoretical physics</strong>.</p>
 </section>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- MODULES -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="course-modules" class="level3 section-header">
+<h3 class="anchored" data-anchor-id="course-modules">📐 Course Modules</h3>
 </section>
-<section id="sec-heisenberg" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</h2>
-<p>In the Heisenberg picture, the time dependence is placed on <strong>operators</strong> rather than states:</p>
-<p><span class="math display">\[
-\hat{a}_H(t) = e^{i\hat{H}t/\hbar}\,\hat{a}\,e^{-i\hat{H}t/\hbar} = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p><span class="math display">\[
-\hat{a}^\dagger_H(t) = e^{+i\omega t}\hat{a}^\dagger
-\]</span></p>
-<p>The position and momentum operators: <span class="math display">\[
-\hat{x}_H(t) = \frac{x_0}{\sqrt{2}}\left(e^{-i\omega t}\hat{a} + e^{+i\omega t}\hat{a}^\dagger\right)
-\]</span> <span class="math display">\[
-= x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p>This is the <strong>quantum oscillator in the Heisenberg picture</strong> — it oscillates exactly like the classical oscillator.</p>
-<hr>
+<div class="module-grid">
+<a class="module-card" href="01_propagators.html">
+  <span class="module-num">Module 1</span>
+  <p class="module-title">Propagators &amp; Transition Amplitudes</p>
+  <p class="module-desc">How does a quantum particle get from A to B? The time evolution operator, the propagator K(x_b, t_b; x_a, t_a), the composition property, and the connection to wavefunctions and Green's functions.</p>
+  <div class="module-tags">
+    <span class="module-tag">Time Evolution</span>
+    <span class="module-tag">Propagator</span>
+    <span class="module-tag">Green's Function</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="02_sum_over_paths.html">
+  <span class="module-num">Module 2</span>
+  <p class="module-title">The Sum-Over-Paths Idea</p>
+  <p class="module-desc">Feynman's revolutionary insight: the particle takes ALL paths simultaneously. The action principle, the phase e^{iS/ℏ}, why crazy paths cancel, and a sneak peek at the classical limit.</p>
+  <div class="module-tags">
+    <span class="module-tag">Feynman's Postulates</span>
+    <span class="module-tag">Action Principle</span>
+    <span class="module-tag">Interference</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="03_free_particle.html">
+  <span class="module-num">Module 3</span>
+  <p class="module-title">Free Particle Propagator</p>
+  <p class="module-desc">Your first complete path integral calculation. Time-slicing, discretizing the action, doing the Gaussian integrals one by one, the continuum limit, and verification against the Schrödinger equation.</p>
+  <div class="module-tags">
+    <span class="module-tag">Time-Slicing</span>
+    <span class="module-tag">Gaussian Integrals</span>
+    <span class="module-tag">Continuum Limit</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="04_path_integral_derivation.html">
+  <span class="module-num">Module 4</span>
+  <p class="module-title">Deriving the Path Integral</p>
+  <p class="module-desc">The rigorous construction: Trotter product formula, inserting complete sets of position and momentum states, the phase-space path integral, integrating out momenta to get Feynman's Lagrangian formula.</p>
+  <div class="module-tags">
+    <span class="module-tag">Trotter Formula</span>
+    <span class="module-tag">Phase Space PI</span>
+    <span class="module-tag">Operator → Path</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="05_harmonic_oscillator.html">
+  <span class="module-num">Module 5</span>
+  <p class="module-title">Path Integral for the Harmonic Oscillator</p>
+  <p class="module-desc">The second exactly solvable case. Classical path + fluctuations, the fluctuation determinant, the exact propagator, recovering E_n = (n+½)ℏω, and the connection to the QHO course.</p>
+  <div class="module-tags">
+    <span class="module-tag">Classical + Fluctuations</span>
+    <span class="module-tag">Exact Propagator</span>
+    <span class="module-tag">Energy Spectrum</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="06_functional_calculus.html">
+  <span class="module-num">Module 6</span>
+  <p class="module-title">Functional Integrals &amp; Functional Calculus</p>
+  <p class="module-desc">The mathematical language of path integrals. Functionals, functional derivatives, the Euler-Lagrange equation revisited, generating functionals Z[J], and correlation functions.</p>
+  <div class="module-tags">
+    <span class="module-tag">Functionals</span>
+    <span class="module-tag">δ/δx(t)</span>
+    <span class="module-tag">Z[J]</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="07_gaussian_integrals.html">
+  <span class="module-num">Module 7</span>
+  <p class="module-title">Gaussian Integrals &amp; Functional Determinants</p>
+  <p class="module-desc">The computational workhorse. Finite and infinite-dimensional Gaussian integrals, functional determinants, eigenvalue methods, zeta-function regularization, and the Van Vleck–Morette formula.</p>
+  <div class="module-tags">
+    <span class="module-tag">Gaussian PI</span>
+    <span class="module-tag">det(Ô)</span>
+    <span class="module-tag">Regularization</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="08_classical_limit.html">
+  <span class="module-num">Module 8</span>
+  <p class="module-title">The Classical Limit &amp; Stationary Phase</p>
+  <p class="module-desc">How does classical mechanics emerge from quantum mechanics? The stationary phase approximation, ℏ → 0, the semiclassical (WKB) connection, multiple classical paths, and the correspondence principle.</p>
+  <div class="module-tags">
+    <span class="module-tag">Stationary Phase</span>
+    <span class="module-tag">ℏ → 0</span>
+    <span class="module-tag">WKB</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="09_wick_rotation.html">
+  <span class="module-num">Module 9</span>
+  <p class="module-title">Wick Rotation &amp; Imaginary Time</p>
+  <p class="module-desc">The profound trick: rotate time to the imaginary axis. Why oscillating integrals become convergent, the Minkowski → Euclidean dictionary, complex analysis justification, and the physical interpretation.</p>
+  <div class="module-tags">
+    <span class="module-tag">t → −iτ</span>
+    <span class="module-tag">Convergence</span>
+    <span class="module-tag">Analytic Continuation</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="10_euclidean_path_integral.html">
+  <span class="module-num">Module 10</span>
+  <p class="module-title">Euclidean Path Integrals</p>
+  <p class="module-desc">Full theory in imaginary time. Ground-state projection, extracting energies and energy gaps, the Euclidean generating functional, periodic paths, and the partition function.</p>
+  <div class="module-tags">
+    <span class="module-tag">Ground State</span>
+    <span class="module-tag">Partition Function</span>
+    <span class="module-tag">Periodic Paths</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="11_euclidean_eom.html">
+  <span class="module-num">Module 11</span>
+  <p class="module-title">Euclidean Equations of Motion &amp; Instantons</p>
+  <p class="module-desc">Motion in the inverted potential! The Euclidean EOM, the double-well problem, the instanton (kink) solution, tunneling amplitudes, the dilute instanton gas, and ground-state splitting.</p>
+  <div class="module-tags">
+    <span class="module-tag">Inverted Potential</span>
+    <span class="module-tag">Instantons</span>
+    <span class="module-tag">Tunneling</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="12_statistical_mechanics.html">
+  <span class="module-num">Module 12</span>
+  <p class="module-title">Connection to Statistical Mechanics</p>
+  <p class="module-desc">The deepest analogy in physics. Quantum partition function as Euclidean path integral, thermal expectation values, the transfer matrix, and the quantum-classical dimensional mapping.</p>
+  <div class="module-tags">
+    <span class="module-tag">QM ↔ Stat Mech</span>
+    <span class="module-tag">Transfer Matrix</span>
+    <span class="module-tag">Thermal Circle</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="13_qft_path_integral.html">
+  <span class="module-num">Module 13</span>
+  <p class="module-title">Path Integrals in Quantum Field Theory</p>
+  <p class="module-desc">From particles to fields. The QFT path integral, free scalar field propagator, Euclidean QFT, interactions, perturbation theory, and Feynman diagrams as a consequence of the path integral.</p>
+  <div class="module-tags">
+    <span class="module-tag">Scalar Fields</span>
+    <span class="module-tag">Feynman Diagrams</span>
+    <span class="module-tag">∫𝒟φ</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="14_applications.html">
+  <span class="module-num">Module 14</span>
+  <p class="module-title">Applications &amp; Research Frontiers</p>
+  <p class="module-desc">Where path integrals are used today: lattice QCD, condensed matter, quantum gravity, black hole thermodynamics, topological field theory, quantum computing, and open problems.</p>
+  <div class="module-tags">
+    <span class="module-tag">Lattice QCD</span>
+    <span class="module-tag">Quantum Gravity</span>
+    <span class="module-tag">Open Problems</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+
+<a class="module-card" href="15_cheatsheet.html">
+  <span class="module-num">Module 15</span>
+  <p class="module-title">Master Cheat Sheet &amp; Further Reading</p>
+  <p class="module-desc">Every formula from the course in one place. Complete Minkowski ↔ Euclidean dictionary, Gaussian integral reference, concept map, annotated bibliography, and classic papers.</p>
+  <div class="module-tags">
+    <span class="module-tag">All Formulas</span>
+    <span class="module-tag">Concept Map</span>
+    <span class="module-tag">Bibliography</span>
+  </div>
+  <span class="module-arrow">→</span>
+</a>
+</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PREREQS + BOOKS -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="prerequisites-textbooks" class="level3 section-header">
+<h3 class="anchored" data-anchor-id="prerequisites-textbooks">📚 Prerequisites &amp; Textbooks</h3>
 </section>
-<section id="sec-wigner" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</h2>
-<section id="what-is-the-wigner-function" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</h3>
-<p>In classical mechanics, we can define a probability distribution in phase space <span class="math inline">\(f(x, p)\)</span>. In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the <strong>Wigner function</strong>:</p>
-<p><span class="math display">\[
-W(x, p) = \frac{1}{\pi\hbar}\int_{-\infty}^{\infty} \psi^*\!\left(x + y\right)\psi\left(x - y\right) e^{2ipy/\hbar}\,dy
-\]</span></p>
-<p>Properties of <span class="math inline">\(W(x,p)\)</span>:</p>
+<section id="what-you-should-know-before-starting" class="level4 prereq-box">
+<h4 class="anchored" data-anchor-id="what-you-should-know-before-starting">🧩 What You Should Know Before Starting</h4>
 <ul>
-<li><strong>Real</strong>: <span class="math inline">\(W(x,p)\)</span> is always real</li>
-<li><strong>Marginals</strong>: <span class="math inline">\(\int W\,dp = |\psi(x)|^2\)</span> and <span class="math inline">\(\int W\,dx = |\phi(p)|^2\)</span></li>
-<li><strong>Not always positive</strong>: <span class="math inline">\(W\)</span> can be negative in some regions (a signature of quantum behavior)</li>
-<li><strong>Area normalization</strong>: <span class="math inline">\(\int\!\!\int W(x,p)\,dx\,dp = 1\)</span></li>
+<li><strong>Quantum Mechanics</strong>: The Schrödinger equation, Dirac notation <span class="math inline">\(|x\rangle\)</span>, <span class="math inline">\(\langle x | p \rangle\)</span>, time evolution operator <span class="math inline">\(\hat{U} = e^{-i\hat{H}t/\hbar}\)</span></li>
+<li><strong>Classical Mechanics</strong>: Lagrangian <span class="math inline">\(L = T - V\)</span>, the action <span class="math inline">\(S = \int L\, dt\)</span>, Euler-Lagrange equations, Hamilton’s principle</li>
+<li><strong>Mathematics</strong>: Multivariable calculus, Gaussian integrals, Taylor series, linear algebra (eigenvalues), basic complex analysis</li>
+<li><strong>Helpful but not required</strong>: <a href="../../Courses/QHO/index.html">Quantum Harmonic Oscillator course</a> on this site, statistical mechanics basics</li>
 </ul>
 </section>
-<section id="wigner-function-of-the-ground-state" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</h3>
-<p>For <span class="math inline">\(\psi_0 = (\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}\)</span>:</p>
-<p><span class="math display">\[
-W_0(x,p) = \frac{1}{\pi\hbar}\,e^{-x^2/x_0^2 - p^2 x_0^2/\hbar^2}
-\]</span></p>
-<p>This is a <strong>Gaussian</strong> in phase space — entirely positive! The ground state is the most classical-looking quantum state.</p>
-</section>
-<section id="wigner-function-of-excited-states" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</h3>
-<p>For excited states <span class="math inline">\(|n\rangle\)</span>, the Wigner function is:</p>
-<p><span class="math display">\[
-W_n(x,p) = \frac{(-1)^n}{\pi\hbar}\,L_n\!\left(\frac{2r^2}{x_0^2}\right)\,e^{-r^2/x_0^2}
-\]</span></p>
-<p>where <span class="math inline">\(r^2 = x^2 + p^2 x_0^2/\hbar^2\)</span> and <span class="math inline">\(L_n\)</span> are Laguerre polynomials.</p>
-<p>Key feature: for <span class="math inline">\(n \geq 1\)</span>, <span class="math inline">\(W_n\)</span> takes <strong>negative values</strong> — a purely quantum signature. The negative regions appear as rings (for <span class="math inline">\(n = 1\)</span>) or more complex structures for higher <span class="math inline">\(n\)</span>.</p>
-<div class="callout-intuition">
-<p>The Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via <strong>homodyne tomography</strong>) is a standard experimental technique. Negative values of <span class="math inline">\(W\)</span> are direct evidence of non-classical states.</p>
+<div class="books-row">
+<div class="book-pill">
+📖 Feynman &amp; Hibbs<span>Quantum Mechanics and Path Integrals (original source)</span>
 </div>
-<hr>
-</section>
-</section>
-<section id="sec-summary" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</h2>
-<p>For a general state <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-i\omega(n+1/2)t}|n\rangle\)</span>:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Quantity</th>
-<th>Time dependence</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\langle\hat{p}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span>, <span class="math inline">\(90°\)</span> out of phase</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}^2\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(2\omega\)</span> and constant</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\langle\hat{H}\rangle\)</span></td>
-<td>Constant (energy conservation)</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\langle\hat{N}\rangle\)</span></td>
-<td>Constant</td>
-</tr>
-<tr class="even">
-<td>Period of full return</td>
-<td><span class="math inline">\(T = 2\pi/\omega\)</span></td>
-</tr>
-</tbody>
-</table>
-<div class="checkpoint">
-<p><strong>Before moving on, make sure you can:</strong></p>
-<ol type="1">
-<li>Write the time evolution of an energy eigenstate <span class="math inline">\(|n\rangle\)</span>.</li>
-<li>Prove that <span class="math inline">\(\langle\hat{x}\rangle(t)\)</span> oscillates classically for any state.</li>
-<li>State Ehrenfest’s theorem for the QHO and verify it gives Newton’s law.</li>
-<li>Explain why the QHO state returns exactly after <span class="math inline">\(T = 2\pi/\omega\)</span>.</li>
-<li>Define the Wigner function and state its key properties.</li>
-<li>Why can the Wigner function be negative? What does this mean physically?</li>
-</ol>
-<p><strong>Advanced</strong>: Compute the Wigner function for <span class="math inline">\(|1\rangle\)</span> and show it has negative values.</p>
+<div class="book-pill">
+📖 Shankar<span>Principles of QM, Chapters 8 &amp; 21</span>
 </div>
-<hr>
-<div class="nav-buttons">
-<p><a href="../../Courses/QHO/04_wavefunctions.html" class="btn btn-outline-secondary">← Module 4: Wavefunctions</a> <a href="../../Courses/QHO/06_coherent_states.html" class="btn btn-success">Next: Module 6 — Coherent States →</a></p>
+<div class="book-pill">
+📖 Zinn-Justin<span>QFT and Critical Phenomena</span>
+</div>
+<div class="book-pill">
+📖 Kleinert<span>Path Integrals in QM, Statistics &amp; Polymer Physics</span>
+</div>
+<div class="book-pill">
+📖 Altland &amp; Simons<span>Condensed Matter Field Theory</span>
+</div>
+<div class="book-pill">
+📖 Coleman<span>Aspects of Symmetry, Ch. 7 (Instantons)</span>
+</div>
+<div class="book-pill">
+📖 Peskin &amp; Schroeder<span>An Introduction to QFT</span>
+</div>
+</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CTA -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="cta-row">
+<p><a href="01_propagators.html" class="btn btn-success btn-lg">▶ Start Module 1</a> <a href="../../courses.html" class="btn btn-outline-secondary">← All Courses</a></p>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

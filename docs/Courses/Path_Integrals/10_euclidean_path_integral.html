@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aditya Kumar">
-<meta name="dcterms.date" content="2026-05-26">
-<meta name="description" content="We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="In this module, we construct and analyze the Euclidean path integral, revealing how imaginary time isolates ground state properties and seamlessly transforms quantum dynamics into thermal equilibrium.">
 
-<title>Physics Voyage - Module 5: Time Evolution</title>
+<title>Physics Voyage - Module 10: Euclidean Path Integrals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -219,30 +219,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-tdse" id="toc-sec-tdse" class="nav-link active" data-scroll-target="#sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</a></li>
-  <li><a href="#sec-energy-eigenstates" id="toc-sec-energy-eigenstates" class="nav-link" data-scroll-target="#sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</a></li>
-  <li><a href="#sec-time-operator" id="toc-sec-time-operator" class="nav-link" data-scroll-target="#sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</a></li>
-  <li><a href="#sec-superposition" id="toc-sec-superposition" class="nav-link" data-scroll-target="#sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#the-euclidean-propagator" id="toc-the-euclidean-propagator" class="nav-link" data-scroll-target="#the-euclidean-propagator"><span class="header-section-number">2</span> 10.1 The Euclidean Propagator</a></li>
+  <li><a href="#spectral-representation" id="toc-spectral-representation" class="nav-link" data-scroll-target="#spectral-representation"><span class="header-section-number">3</span> 10.2 Spectral Representation</a></li>
+  <li><a href="#ground-state-projection-the-magic-of-large-tau" id="toc-ground-state-projection-the-magic-of-large-tau" class="nav-link" data-scroll-target="#ground-state-projection-the-magic-of-large-tau"><span class="header-section-number">4</span> 10.3 Ground-State Projection — The Magic of Large <span class="math inline">\(\tau\)</span></a></li>
+  <li><a href="#extracting-the-ground-state-energy" id="toc-extracting-the-ground-state-energy" class="nav-link" data-scroll-target="#extracting-the-ground-state-energy"><span class="header-section-number">5</span> 10.4 Extracting the Ground-State Energy</a></li>
+  <li><a href="#extracting-the-energy-gap" id="toc-extracting-the-energy-gap" class="nav-link" data-scroll-target="#extracting-the-energy-gap"><span class="header-section-number">6</span> 10.5 Extracting the Energy Gap</a></li>
+  <li><a href="#the-euclidean-generating-functional" id="toc-the-euclidean-generating-functional" class="nav-link" data-scroll-target="#the-euclidean-generating-functional"><span class="header-section-number">7</span> 10.6 The Euclidean Generating Functional</a></li>
+  <li><a href="#the-partition-function-periodic-paths" id="toc-the-partition-function-periodic-paths" class="nav-link" data-scroll-target="#the-partition-function-periodic-paths"><span class="header-section-number">8</span> 10.7 The Partition Function &amp; Periodic Paths</a></li>
+  <li><a href="#the-thermal-circle" id="toc-the-thermal-circle" class="nav-link" data-scroll-target="#the-thermal-circle"><span class="header-section-number">9</span> 10.8 The Thermal Circle</a></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">10</span> 📝 Worked Examples</a>
   <ul class="collapse">
-  <li><a href="#example-superposition-of-0rangle-and-1rangle" id="toc-example-superposition-of-0rangle-and-1rangle" class="nav-link" data-scroll-target="#example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></a></li>
+  <li><a href="#worked-example-1-harmonic-oscillator-partition-function" id="toc-worked-example-1-harmonic-oscillator-partition-function" class="nav-link" data-scroll-target="#worked-example-1-harmonic-oscillator-partition-function"><span class="header-section-number">10.0.1</span> Worked Example 1: Harmonic Oscillator Partition Function</a></li>
+  <li><a href="#worked-example-2-extracting-energy-gaps" id="toc-worked-example-2-extracting-energy-gaps" class="nav-link" data-scroll-target="#worked-example-2-extracting-energy-gaps"><span class="header-section-number">10.0.2</span> Worked Example 2: Extracting Energy Gaps</a></li>
+  <li><a href="#quick-question-1" id="toc-quick-question-1" class="nav-link" data-scroll-target="#quick-question-1"><span class="header-section-number">10.1</span> 🤔 Quick Question 1</a></li>
+  <li><a href="#quick-question-2" id="toc-quick-question-2" class="nav-link" data-scroll-target="#quick-question-2"><span class="header-section-number">10.2</span> 🤔 Quick Question 2</a></li>
   </ul></li>
-  <li><a href="#sec-ehrenfest" id="toc-sec-ehrenfest" class="nav-link" data-scroll-target="#sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</a>
-  <ul class="collapse">
-  <li><a href="#general-statement" id="toc-general-statement" class="nav-link" data-scroll-target="#general-statement"><span class="header-section-number">5.1</span> General Statement</a></li>
-  <li><a href="#ehrenfest-in-the-heisenberg-picture" id="toc-ehrenfest-in-the-heisenberg-picture" class="nav-link" data-scroll-target="#ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</a></li>
-  </ul></li>
-  <li><a href="#sec-revivals" id="toc-sec-revivals" class="nav-link" data-scroll-target="#sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</a>
-  <ul class="collapse">
-  <li><a href="#when-superpositions-come-back" id="toc-when-superpositions-come-back" class="nav-link" data-scroll-target="#when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</a></li>
-  </ul></li>
-  <li><a href="#sec-heisenberg" id="toc-sec-heisenberg" class="nav-link" data-scroll-target="#sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</a></li>
-  <li><a href="#sec-wigner" id="toc-sec-wigner" class="nav-link" data-scroll-target="#sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</a>
-  <ul class="collapse">
-  <li><a href="#what-is-the-wigner-function" id="toc-what-is-the-wigner-function" class="nav-link" data-scroll-target="#what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</a></li>
-  <li><a href="#wigner-function-of-the-ground-state" id="toc-wigner-function-of-the-ground-state" class="nav-link" data-scroll-target="#wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</a></li>
-  <li><a href="#wigner-function-of-excited-states" id="toc-wigner-function-of-excited-states" class="nav-link" data-scroll-target="#wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</a></li>
-  </ul></li>
-  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</a></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">11</span> Summary Table</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">12</span> Practice Problems</a></li>
   </ul>
 </nav>
     </div>
@@ -251,14 +245,14 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
   <div class="quarto-title">
-    <h1 class="title">Module 5: Time Evolution</h1>
-        <p class="subtitle lead">Nothing is Static in Quantum Mechanics</p>
+    <h1 class="title">Module 10: Euclidean Path Integrals</h1>
+        <p class="subtitle lead">Unveiling the Deep Connection Between Quantum Mechanics and Statistical Physics</p>
             <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
-      We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.
+      In this module, we construct and analyze the Euclidean path integral, revealing how imaginary time isolates ground state properties and seamlessly transforms quantum dynamics into thermal equilibrium.
     </div>
             <div class="quarto-categories" style="margin-top: 20px;">
             <div class="quarto-category">Quantum Mechanics</div>
-            <div class="quarto-category">QHO Course</div>
+            <div class="quarto-category">Path Integrals Course</div>
           </div>
       </div>
 
@@ -387,7 +381,7 @@ window.Quarto = {
       </div>
                   <div>
         <span class="meta-heading">Published</span>
-        <span class="meta-value">May 26, 2026</span>
+        <span class="meta-value">June 21, 2026</span>
       </div>
           </div>
 
@@ -442,6 +436,7 @@ window.Quarto = {
 </header>
 
 
+{=html}
 <style>
 .callout-intuition {
   border-left: 4px solid #10b981;
@@ -471,29 +466,6 @@ window.Quarto = {
   color: #d97706;
   margin-bottom: 0.5rem;
 }
-.derivation-box {
-  border: 1.5px solid #6366f1;
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
-  background: #eef2ff;
-  margin: 1.5rem 0;
-}
-.derivation-box::before {
-  content: "✏️ Derivation";
-  display: block;
-  font-weight: 700;
-  color: #4f46e5;
-  margin-bottom: 0.5rem;
-}
-.result-box {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-  color: white;
-  border-radius: 10px;
-  padding: 1.2rem 1.5rem;
-  margin: 1.5rem 0;
-  text-align: center;
-}
-.result-box p { color: #c4b5fd; margin-bottom: 0; }
 .nav-buttons {
   display: flex;
   justify-content: space-between;
@@ -501,274 +473,260 @@ window.Quarto = {
   padding-top: 1rem;
   border-top: 1px solid #e5e7eb;
 }
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
 </style>
-<p><a href="../../Courses/QHO/04_wavefunctions.html">← Module 4</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/06_coherent_states.html">Module 6 →</a></p>
-<hr>
-<section id="sec-tdse" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</h2>
-<p>Everything we’ve done so far found the <em>stationary</em> states — the energy eigenstates <span class="math inline">\(|n\rangle\)</span> that don’t change shape over time (only their phase oscillates). But a general quantum state is a <strong>superposition</strong>, and it <em>does</em> change over time.</p>
-<p>The full time-dependent Schrödinger equation (TDSE) is:</p>
-<p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|\Psi(t)\rangle = \hat{H}|\Psi(t)\rangle
-\]</span></p>
-<blockquote class="blockquote">
-<p><strong>Textbook reference</strong>: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III.</p>
-</blockquote>
-<hr>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/11_euclidean_eom.html">Next: Module 11 →</a></p>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In our previous module, we introduced the concept of <strong>Wick rotation</strong>—the analytical continuation of time to purely imaginary values, <span class="math inline">\(t = -i\tau\)</span>. Now, it is time to fully exploit this transformation.</p>
+<p>By defining the <strong>Euclidean path integral</strong>, we will discover a remarkable mapping between quantum mechanics and classical statistical mechanics. In Minkowski space (real time), paths interfere with oscillating phases, <span class="math inline">\(e^{iS/\hbar}\)</span>. In Euclidean space (imaginary time), paths are suppressed by decaying exponential weights, <span class="math inline">\(e^{-S_E/\hbar}\)</span>. This lack of oscillation might seem like a loss of quantum “magic”, but it provides us with an unparalleled tool to extract the hardest-to-reach information about a quantum system: its ground state and lowest-lying excitations.</p>
+<p>Let’s embark on this journey into the profound interplay of imaginary time, ground states, and thermodynamics!</p>
 </section>
-<section id="sec-energy-eigenstates" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</h2>
-<p>For an energy eigenstate <span class="math inline">\(|n\rangle\)</span>:</p>
-<p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|n,t\rangle = E_n|n,t\rangle
-\]</span></p>
-<p>This integrates immediately:</p>
-<p><span class="math display">\[
-|n,t\rangle = e^{-iE_nt/\hbar}|n\rangle = e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>The <strong>only effect</strong> of time evolution on an energy eigenstate is a <strong>global phase</strong> <span class="math inline">\(e^{-i\omega(n+1/2)t}\)</span>. Global phases have no physical consequence: <span class="math inline">\(|\psi(t)|^2 = |\psi(0)|^2\)</span> for all <span class="math inline">\(t\)</span>.</p>
+<section id="the-euclidean-propagator" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 10.1 The Euclidean Propagator</h1>
+<p>Recall the standard propagator in real time <span class="math inline">\(t\)</span>, which is the coordinate representation of the time-evolution operator: <span class="math display">\[ K(x_b, t_b; x_a, t_a) = \langle x_b | e^{-i\hat{H}(t_b - t_a)/\hbar} | x_a \rangle \]</span></p>
+<p>If we perform a Wick rotation to imaginary time <span class="math inline">\(t = -i\tau\)</span>, the evolution operator becomes <span class="math inline">\(e^{-\hat{H}(\tau_b - \tau_a)/\hbar}\)</span>. This leads us to define the <strong>Euclidean propagator</strong>: <span class="math display">\[ K_E(x_b, \tau_b; x_a, \tau_a) = \langle x_b | e^{-\hat{H}(\tau_b - \tau_a)/\hbar} | x_a \rangle \]</span></p>
+<p>Notice the dramatic change! The real-time propagator is generally complex and describes oscillatory quantum interference. In stark contrast, the Euclidean propagator is strictly <strong>real and positive</strong> (assuming real boundary conditions <span class="math inline">\(x_a, x_b\)</span>). It represents the matrix elements of the imaginary-time evolution operator, which is purely a damping factor rather than a unitary rotation.</p>
 <div class="callout-intuition">
-<p>This is why energy eigenstates are called <strong>stationary states</strong> — all observable quantities are time-independent in these states. The energy eigenstate doesn’t “do anything.”</p>
-<p>This doesn’t mean nothing is happening — the wavefunction is rotating in the complex plane at frequency <span class="math inline">\((n + \frac{1}{2})\omega\)</span>. But since we only measure <span class="math inline">\(|\psi|^2\)</span>, we can’t see this rotation.</p>
-</div>
-<hr>
-</section>
-<section id="sec-time-operator" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</h2>
-<p>The formal solution to the TDSE is:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \hat{U}(t)|\Psi(0)\rangle, \quad \hat{U}(t) = e^{-i\hat{H}t/\hbar}
-\]</span></p>
-<p>For the QHO, we can write this in the Fock basis:</p>
-<p><span class="math display">\[
-\hat{U}(t) = e^{-i\omega(\hat{N}+1/2)t} = e^{-i\omega t/2}\, e^{-i\omega t\hat{N}}
-\]</span></p>
-<p>Since <span class="math inline">\(\hat{N}|n\rangle = n|n\rangle\)</span>:</p>
-<p><span class="math display">\[
-\hat{U}(t)|n\rangle = e^{-i\omega t(n+1/2)}|n\rangle
-\]</span></p>
-<p>The key identity: <span class="math inline">\(e^{-i\omega t\hat{N}}\hat{a} = \hat{a}e^{-i\omega t(\hat{N}-1)} = e^{-i\omega t}\hat{a}e^{-i\omega t\hat{N}}\)</span>, or:</p>
-<p><span class="math display">\[
-\hat{U}(t)\hat{a}\hat{U}^\dagger(t) = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p>This means the ladder operators in the <strong>Heisenberg picture</strong> rotate:</p>
-<p><span class="math display">\[
-\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}^\dagger(t) = e^{+i\omega t}\hat{a}^\dagger(0)
-\]</span></p>
-<hr>
-</section>
-<section id="sec-superposition" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</h2>
-<p>A general initial state is a superposition:</p>
-<p><span class="math display">\[
-|\Psi(0)\rangle = \sum_{n=0}^{\infty} c_n|n\rangle, \quad \sum_n |c_n|^2 = 1
-\]</span></p>
-<p>Time evolution:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>In position space:</p>
-<p><span class="math display">\[
-\Psi(x,t) = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}\psi_n(x)
-\]</span></p>
-<section id="example-superposition-of-0rangle-and-1rangle" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></h3>
-<p>Consider: <span class="math display">\[
-|\Psi(0)\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)
-\]</span></p>
-<p>Time evolution: <span class="math display">\[
-|\Psi(t)\rangle = \frac{e^{-i\omega t/2}}{\sqrt{2}}\left(|0\rangle + e^{-i\omega t}|1\rangle\right)
-\]</span></p>
-<p>The expectation value of position:</p>
-<div class="derivation-box">
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\langle\Psi(t)|(\hat{a} + \hat{a}^\dagger)|\Psi(t)\rangle
-\]</span></p>
-<p>The cross terms survive: <span class="math inline">\(\langle 0|\hat{a}|1\rangle = 1\)</span>, <span class="math inline">\(\langle 1|\hat{a}^\dagger|0\rangle = 1\)</span>.</p>
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\cdot\frac{1}{2}\cdot 2\cos(\omega t) = \frac{x_0}{\sqrt{2}}\cos(\omega t)
-\]</span></p>
-</div>
-<p>The expectation value of position <strong>oscillates</strong> at frequency <span class="math inline">\(\omega\)</span> — like a classical oscillator!</p>
-<hr>
-</section>
-</section>
-<section id="sec-ehrenfest" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</h2>
-<section id="general-statement" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="general-statement"><span class="header-section-number">5.1</span> General Statement</h3>
-<p>Ehrenfest’s theorem says that expectation values obey classical equations of motion:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{A}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{A}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
-\]</span></p>
-<p>For time-independent operators in the QHO:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{x}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{x}]\rangle = \frac{\langle\hat{p}\rangle}{m}
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{p}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{p}]\rangle = -m\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>Combined: <span class="math display">\[
-\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>This is <strong>exactly Newton’s law</strong> for the harmonic oscillator! The center of the wavepacket <span class="math inline">\(\langle\hat{x}\rangle\)</span> oscillates like a classical particle.</p>
-<div class="result-box">
-<p><strong>Ehrenfest’s Theorem for the QHO:</strong></p>
-<p><span class="math display">\[\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle\]</span></p>
-<p>The quantum expectation value always satisfies the classical equation of motion — for <strong>any</strong> quantum state!</p>
+<p>Because the weight of each path is exactly <span class="math inline">\(e^{-S_E/\hbar}\)</span>, and since the Euclidean action <span class="math inline">\(S_E\)</span> is real and bounded from below, the Euclidean propagator acts like a diffusion process. Instead of waves traveling and interfering, “probability” smoothly diffuses and settles into the lowest energy configuration.</p>
 </div>
 </section>
-<section id="ehrenfest-in-the-heisenberg-picture" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</h3>
-<p>In the Heisenberg picture, operators evolve:</p>
-<p><span class="math display">\[
-\hat{x}(t) = x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p><span class="math display">\[
-\hat{p}(t) = -m\omega\sin(\omega t)\,\hat{x}(0) + \cos(\omega t)\,\hat{p}(0)
-\]</span></p>
-<p>This is exactly the classical solution <span class="math inline">\(x(t) = x_0\cos\omega t + \frac{p_0}{m\omega}\sin\omega t\)</span> promoted to operators. The QHO Heisenberg equations are <strong>linear</strong>, which is why they have exact classical analogs.</p>
-<hr>
-</section>
-</section>
-<section id="sec-revivals" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</h2>
-<section id="when-superpositions-come-back" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</h3>
-<p>For a general superposition <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-in\omega t}|n\rangle\)</span> (dropping the common phase <span class="math inline">\(e^{-i\omega t/2}\)</span>):</p>
-<p>The state <strong>returns exactly</strong> to itself when all phases complete full rotations:</p>
-<p><span class="math display">\[
-e^{-in\omega T} = 1 \text{ for all } n \quad \Rightarrow \quad T = \frac{2\pi}{\omega}
-\]</span></p>
-<p>This is the <strong>classical period</strong> — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time <span class="math inline">\(T = 2\pi/\omega\)</span>.</p>
+<section id="spectral-representation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 10.2 Spectral Representation</h1>
+<p>To see exactly why the Euclidean propagator is so useful, let’s express it in terms of the energy eigenstates of the system. Let the states <span class="math inline">\(|n\rangle\)</span> be the eigenstates of the Hamiltonian with eigenvalues <span class="math inline">\(E_n\)</span>: <span class="math display">\[ \hat{H}|n\rangle = E_n|n\rangle \]</span> We assume the spectrum is bounded from below, with <span class="math inline">\(E_0 \le E_1 \le E_2 \le \dots\)</span>.</p>
+<p>We can insert a complete set of these energy eigenstates, <span class="math inline">\(\sum_n |n\rangle \langle n| = \mathbb{I}\)</span>, into the definition of the Euclidean propagator. Let <span class="math inline">\(\tau = \tau_b - \tau_a\)</span>. Then: <span class="math display">\[ K_E(x_b, \tau; x_a, 0) = \langle x_b | e^{-\hat{H}\tau/\hbar} \left( \sum_n |n\rangle\langle n| \right) | x_a \rangle \]</span> <span class="math display">\[ K_E(x_b, \tau; x_a, 0) = \sum_n \langle x_b | n \rangle \langle n | x_a \rangle e^{-E_n\tau/\hbar} \]</span> Since <span class="math inline">\(\langle x_b | n \rangle = \psi_n(x_b)\)</span> and <span class="math inline">\(\langle n | x_a \rangle = \psi_n^*(x_a)\)</span>, we obtain the <strong>spectral representation</strong>: <span class="math display">\[ \boxed{ K_E(x_b, \tau; x_a, 0) = \sum_{n=0}^{\infty} \psi_n(x_b)\psi_n^*(x_a) e^{-E_n\tau/\hbar} } \]</span></p>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: Shankar, <em>Principles of Quantum Mechanics</em>, Ch. 8.</p>
+</blockquote>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-This is Special to the QHO
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For a particle in a box, the energy levels go as <span class="math inline">\(n^2\)</span>, so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period.</p>
-<p>The QHO is special: its equally spaced energy levels (spacing <span class="math inline">\(\hbar\omega\)</span>) mean all phase factors are integer multiples of <span class="math inline">\(e^{-i\omega t}\)</span>, guaranteeing exact periodicity.</p>
+<p>Notice that these are <strong>real exponentials, not oscillating phases!</strong> In real time, the terms would be <span class="math inline">\(e^{-iE_nt/\hbar}\)</span>, keeping all states “alive” forever. In imaginary time, each term decays exponentially at a rate determined by its energy <span class="math inline">\(E_n\)</span>. The higher the energy, the faster it vanishes.</p>
+</div>
+</div>
+</section>
+<section id="ground-state-projection-the-magic-of-large-tau" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 10.3 Ground-State Projection — The Magic of Large <span class="math inline">\(\tau\)</span></h1>
+<p>What happens if we take the limit of very large imaginary time, <span class="math inline">\(\tau \to \infty\)</span>? Let’s factor out the term corresponding to the ground state energy, <span class="math inline">\(E_0\)</span>: <span class="math display">\[ K_E(x_b, \tau; x_a, 0) = e^{-E_0\tau/\hbar} \left[ \psi_0(x_b)\psi_0^*(x_a) + \sum_{n=1}^{\infty} \psi_n(x_b)\psi_n^*(x_a) e^{-(E_n-E_0)\tau/\hbar} \right] \]</span></p>
+<p>As <span class="math inline">\(\tau\)</span> grows very large, the exponential factors in the sum, <span class="math inline">\(e^{-(E_n-E_0)\tau/\hbar}\)</span>, will strongly tend to zero because <span class="math inline">\(E_n &gt; E_0\)</span> for all <span class="math inline">\(n \ge 1\)</span>. Consequently, all excited-state contributions are exponentially suppressed relative to the ground state.</p>
+<p>In the strict limit <span class="math inline">\(\tau \to \infty\)</span>, only the ground state survives: <span class="math display">\[ \boxed{ \lim_{\tau \to \infty} K_E(x_b, \tau; x_a, 0) = \psi_0(x_b)\psi_0^*(x_a) e^{-E_0\tau/\hbar} } \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Power of Ground-State Projection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>THIS IS INCREDIBLY POWERFUL. If we have a complicated interacting theory where we do not know the exact eigenstates, we can simply construct the Euclidean path integral, evaluate it for large <span class="math inline">\(\tau\)</span>, and it will automatically filter out all excited states and hand us the ground state wave function and energy! This is the primary workhorse technique in <strong>Lattice Quantum Chromodynamics (LQCD)</strong> to extract the masses of protons, neutrons, and other hadrons.</p>
+</div>
+</div>
+</section>
+<section id="extracting-the-ground-state-energy" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 10.4 Extracting the Ground-State Energy</h1>
+<p>We can extract the exact numerical value of the ground-state energy directly from the asymptotic behavior of the Euclidean propagator. Rearranging the large-<span class="math inline">\(\tau\)</span> limit: <span class="math display">\[ \ln K_E(x_b, \tau; x_a, 0) \approx -\frac{E_0\tau}{\hbar} + \ln(\psi_0(x_b)\psi_0^*(x_a)) \]</span> If we divide by <span class="math inline">\(\tau\)</span> and take the limit, the second term vanishes: <span class="math display">\[ \boxed{ E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \ln K_E(x_b, \tau; x_a, 0) } \]</span></p>
+<p>An even more elegant way to do this, without depending on the boundary coordinates <span class="math inline">\(x_a\)</span> and <span class="math inline">\(x_b\)</span>, is to set <span class="math inline">\(x_b = x_a = x\)</span> and integrate over all space. This defines an object <span class="math inline">\(Z(\tau)\)</span>: <span class="math display">\[ Z(\tau) = \int dx K_E(x, \tau; x, 0) = \int dx \sum_{n} |\psi_n(x)|^2 e^{-E_n\tau/\hbar} \]</span> Using the normalization of the wavefunctions <span class="math inline">\(\int dx |\psi_n(x)|^2 = 1\)</span>, we get: <span class="math display">\[ Z(\tau) = \sum_n e^{-E_n\tau/\hbar} \]</span> Taking the large-<span class="math inline">\(\tau\)</span> limit here gives <span class="math inline">\(Z(\tau) \approx e^{-E_0\tau/\hbar}\)</span>. Thus: <span class="math display">\[ \boxed{ E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \ln Z(\tau) } \]</span></p>
+</section>
+<section id="extracting-the-energy-gap" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 10.5 Extracting the Energy Gap</h1>
+<p>What if we want to know the first excited state, or more specifically, the energy gap <span class="math inline">\(E_1 - E_0\)</span>? We look at the <strong>Euclidean two-point correlation function</strong>: <span class="math display">\[ C(\tau_1 - \tau_2) = \langle x(\tau_1) x(\tau_2) \rangle_E = \frac{1}{Z} \int \mathcal{D}x \, x(\tau_1) x(\tau_2) e^{-S_E/\hbar} \]</span> In the operator formalism, assuming <span class="math inline">\(\tau_1 &gt; \tau_2\)</span> and evaluating in the ground state (which we obtain implicitly by taking the total time interval <span class="math inline">\(T \to \infty\)</span>), this correlation function is: <span class="math display">\[ C(\tau_1 - \tau_2) = \langle 0 | \hat{x}(\tau_1) \hat{x}(\tau_2) | 0 \rangle \]</span> We use the imaginary-time Heisenberg picture: <span class="math inline">\(\hat{x}(\tau) = e^{\hat{H}\tau/\hbar} \hat{x}(0) e^{-\hat{H}\tau/\hbar}\)</span>. <span class="math display">\[ C(\tau_1 - \tau_2) = \langle 0 | e^{\hat{H}\tau_1/\hbar} \hat{x} e^{-\hat{H}\tau_1/\hbar} e^{\hat{H}\tau_2/\hbar} \hat{x} e^{-\hat{H}\tau_2/\hbar} | 0 \rangle \]</span> Since <span class="math inline">\(\hat{H}|0\rangle = E_0|0\rangle\)</span>, the outer operators give <span class="math inline">\(e^{E_0\tau_1/\hbar}\)</span> and <span class="math inline">\(e^{-E_0\tau_2/\hbar}\)</span>: <span class="math display">\[ C(\tau_1 - \tau_2) = \langle 0 | e^{E_0\tau_1/\hbar} \hat{x} e^{-\hat{H}(\tau_1-\tau_2)/\hbar} \hat{x} e^{-E_0\tau_2/\hbar} | 0 \rangle \]</span> Now, we boldly insert a complete set of energy eigenstates <span class="math inline">\(\sum_n |n\rangle \langle n| = \mathbb{I}\)</span> between the two <span class="math inline">\(\hat{x}\)</span> operators: <span class="math display">\[ C(\tau_1 - \tau_2) = \sum_n e^{E_0\tau_1/\hbar} \langle 0 | \hat{x} | n \rangle e^{-E_n(\tau_1-\tau_2)/\hbar} \langle n | \hat{x} | 0 \rangle e^{-E_0\tau_2/\hbar} \]</span> <span class="math display">\[ C(\tau_1 - \tau_2) = \sum_n |\langle 0|\hat{x}|n\rangle|^2 e^{-(E_n - E_0)(\tau_1 - \tau_2)/\hbar} \]</span> Let <span class="math inline">\(\Delta\tau = \tau_1 - \tau_2\)</span>. For large separations <span class="math inline">\(|\Delta\tau| \to \infty\)</span>, the dominant term comes from the lowest energy level for which the matrix element <span class="math inline">\(\langle 0|\hat{x}|n\rangle\)</span> is non-zero. For a symmetric potential, <span class="math inline">\(\langle 0|\hat{x}|0\rangle = 0\)</span>. Thus, the lowest surviving state is <span class="math inline">\(n=1\)</span>. <span class="math display">\[ \boxed{ C(\Delta\tau) \xrightarrow{|\Delta\tau| \to \infty} |\langle 0|\hat{x}|1\rangle|^2 e^{-(E_1 - E_0)|\Delta\tau|/\hbar} } \]</span> The exponential decay rate of the correlation function explicitly gives the <strong>energy gap</strong> <span class="math inline">\(E_1 - E_0\)</span>!</p>
+</section>
+<section id="the-euclidean-generating-functional" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 10.6 The Euclidean Generating Functional</h1>
+<p>To systematically compute these correlation functions, we construct the <strong>Euclidean Generating Functional</strong>: <span class="math display">\[ \boxed{ Z_E[J] = \int \mathcal{D}x \, \exp\left[ -\frac{S_E[x]}{\hbar} + \int J(\tau)x(\tau)d\tau \right] } \]</span></p>
+<p>Compare this to the Minkowski version, where we had <span class="math inline">\(e^{iS/\hbar + i \int Jx dt}\)</span>. In Euclidean space, the <span class="math inline">\(i\)</span>’s vanish, making this purely a statistical weighting function. We can generate arbitrary <span class="math inline">\(n\)</span>-point Euclidean correlation functions through functional differentiation: <span class="math display">\[ \langle x(\tau_1) \dots x(\tau_n) \rangle_E = \frac{1}{Z_E[0]} \frac{\delta^n Z_E[J]}{\delta J(\tau_1) \dots \delta J(\tau_n)} \Bigg|_{J=0} \]</span></p>
+</section>
+<section id="the-partition-function-periodic-paths" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 10.7 The Partition Function &amp; Periodic Paths</h1>
+<p>Now we reach THE BIG RESULT of this module. What happens if we take the integral we defined earlier, <span class="math inline">\(Z(\beta\hbar) = \int dx K_E(x, \beta\hbar; x, 0)\)</span>? We have already shown that: <span class="math display">\[ \int dx K_E(x, \beta\hbar; x, 0) = \sum_n e^{-\beta E_n} \]</span> But wait… <span class="math inline">\(\sum_n e^{-\beta E_n}\)</span> is exactly the <strong>canonical partition function</strong> from statistical mechanics, provided we identify <span class="math inline">\(\beta\)</span> with <span class="math inline">\(1 / (k_B T)\)</span>!</p>
+<p>Let’s look at this from the path integral side. The propagator <span class="math inline">\(K_E(x, \beta\hbar; x, 0)\)</span> is the sum over all paths that start at <span class="math inline">\(x\)</span> at <span class="math inline">\(\tau=0\)</span> and end at the <em>same</em> <span class="math inline">\(x\)</span> at <span class="math inline">\(\tau=\beta\hbar\)</span>. Integrating over all starting/ending points <span class="math inline">\(x\)</span> means we are summing over <strong>all possible periodic paths</strong>. <span class="math display">\[ \boxed{ Z(\beta) = \text{Tr}(e^{-\beta\hat{H}}) = \oint \mathcal{D}x \, e^{-S_E/\hbar} } \]</span> Here, the symbol <span class="math inline">\(\oint \mathcal{D}x\)</span> specifically denotes integration over paths that satisfy the periodic boundary condition: <span class="math display">\[ x(0) = x(\beta\hbar) \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quantum Mechanics is Thermal Mechanics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is one of the most beautiful connections in theoretical physics. A quantum mechanical system in thermal equilibrium at temperature <span class="math inline">\(T\)</span> is mathematically completely equivalent to the same quantum system evolving in imaginary time over a bounded interval of length <span class="math inline">\(\beta\hbar = \hbar/(k_B T)\)</span> with periodic boundary conditions!</p>
+</div>
+</div>
+</section>
+<section id="the-thermal-circle" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 10.8 The Thermal Circle</h1>
+<p>Because of the periodic boundary condition <span class="math inline">\(x(0) = x(\beta\hbar)\)</span>, the imaginary time coordinate <span class="math inline">\(\tau\)</span> ceases to be a straight infinite line. Instead, it is topologically compactified into a <strong>circle of circumference <span class="math inline">\(\beta\hbar\)</span></strong>.</p>
+<p>Imagine a cylinder. The spatial coordinates run along the length of the cylinder, while the imaginary time coordinate wraps around the circumference. - At <span class="math inline">\(T \to 0\)</span> (<span class="math inline">\(\beta \to \infty\)</span>), the circumference becomes infinitely large, and the cylinder unrolls into an infinite flat sheet (recovering zero-temperature quantum mechanics). - At high temperatures <span class="math inline">\(T \to \infty\)</span> (<span class="math inline">\(\beta \to 0\)</span>), the cylinder squashes down into an infinitesimally thin loop. The paths have no “room” to fluctuate in imaginary time, and the system collapses entirely into classical mechanics!</p>
+<hr>
+</section>
+<section id="worked-examples" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> 📝 Worked Examples</h1>
+<section id="worked-example-1-harmonic-oscillator-partition-function" class="level3" data-number="10.0.1">
+<h3 data-number="10.0.1" class="anchored" data-anchor-id="worked-example-1-harmonic-oscillator-partition-function"><span class="header-section-number">10.0.1</span> Worked Example 1: Harmonic Oscillator Partition Function</h3>
+<p><strong>Problem:</strong> Compute the canonical partition function <span class="math inline">\(Z(\beta)\)</span> for the quantum harmonic oscillator directly from the Euclidean path integral.</p>
+<p><strong>Solution:</strong> From Module 9, the Euclidean propagator for the harmonic oscillator is: <span class="math display">\[ K_E(x_b, \tau; x_a, 0) = \sqrt{\frac{m\omega}{2\pi\hbar\sinh(\omega\tau)}} \exp\left[ -\frac{m\omega}{2\hbar\sinh(\omega\tau)} \left( (x_a^2+x_b^2)\cosh(\omega\tau) - 2x_a x_b \right) \right] \]</span></p>
+<p>To find the partition function, we set <span class="math inline">\(x_a = x_b = x\)</span>, <span class="math inline">\(\tau = \beta\hbar\)</span>, and integrate over <span class="math inline">\(x\)</span>: <span class="math display">\[ Z(\beta) = \int_{-\infty}^{\infty} dx K_E(x, \beta\hbar; x, 0) \]</span> <span class="math display">\[ Z(\beta) = \int_{-\infty}^{\infty} dx \sqrt{\frac{m\omega}{2\pi\hbar\sinh(\beta\hbar\omega)}} \exp\left[ -\frac{m\omega}{2\hbar\sinh(\beta\hbar\omega)} x^2 \left( 2\cosh(\beta\hbar\omega) - 2 \right) \right] \]</span></p>
+<p>We use the half-angle identity <span class="math inline">\(\cosh(\theta) - 1 = 2\sinh^2(\theta/2)\)</span> to simplify the term in the parentheses: <span class="math display">\[ 2\cosh(\beta\hbar\omega) - 2 = 4\sinh^2\left(\frac{\beta\hbar\omega}{2}\right) \]</span> And the double-angle identity for the denominator: <span class="math inline">\(\sinh(\beta\hbar\omega) = 2\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})\)</span>. Substituting these into the exponent: <span class="math display">\[ -\frac{m\omega}{2\hbar \left( 2\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2}) \right)} \left[ 4\sinh^2\left(\frac{\beta\hbar\omega}{2}\right) x^2 \right] = -\frac{m\omega}{\hbar} \frac{\sinh(\frac{\beta\hbar\omega}{2})}{\cosh(\frac{\beta\hbar\omega}{2})} x^2 = -\frac{m\omega}{\hbar} \tanh\left(\frac{\beta\hbar\omega}{2}\right) x^2 \]</span></p>
+<p>This leaves us with a standard Gaussian integral <span class="math inline">\(\int e^{-ax^2} dx = \sqrt{\pi/a}\)</span>: <span class="math display">\[ Z(\beta) = \sqrt{\frac{m\omega}{4\pi\hbar\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})}} \int_{-\infty}^{\infty} dx \exp\left[ -\frac{m\omega}{\hbar} \tanh\left(\frac{\beta\hbar\omega}{2}\right) x^2 \right] \]</span> <span class="math display">\[ Z(\beta) = \sqrt{\frac{m\omega}{4\pi\hbar\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})}} \sqrt{\frac{\pi\hbar}{m\omega \tanh(\frac{\beta\hbar\omega}{2})}} \]</span> Notice how the <span class="math inline">\(m, \omega, \pi\)</span>, and <span class="math inline">\(\hbar\)</span> neatly cancel out inside the combined square root: <span class="math display">\[ Z(\beta) = \sqrt{\frac{1}{4\sinh(\frac{\beta\hbar\omega}{2})\cosh(\frac{\beta\hbar\omega}{2})} \times \frac{\cosh(\frac{\beta\hbar\omega}{2})}{\sinh(\frac{\beta\hbar\omega}{2})}} = \sqrt{\frac{1}{4\sinh^2(\frac{\beta\hbar\omega}{2})}} = \frac{1}{2\sinh(\frac{\beta\hbar\omega}{2})} \]</span></p>
+<p>To verify this, we expand using <span class="math inline">\(2\sinh(y) = e^y - e^{-y}\)</span>: <span class="math display">\[ Z(\beta) = \frac{1}{e^{\beta\hbar\omega/2} - e^{-\beta\hbar\omega/2}} = \frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}} = e^{-\beta\hbar\omega/2} \sum_{n=0}^{\infty} (e^{-\beta\hbar\omega})^n = \sum_{n=0}^{\infty} e^{-\beta\hbar\omega(n+1/2)} \]</span> This precisely matches the known partition function <span class="math inline">\(\sum_n e^{-\beta E_n}\)</span> with <span class="math inline">\(E_n = \hbar\omega(n+1/2)\)</span>.</p>
+</section>
+<section id="worked-example-2-extracting-energy-gaps" class="level3" data-number="10.0.2">
+<h3 data-number="10.0.2" class="anchored" data-anchor-id="worked-example-2-extracting-energy-gaps"><span class="header-section-number">10.0.2</span> Worked Example 2: Extracting Energy Gaps</h3>
+<p><strong>Problem:</strong> Use the results of the harmonic oscillator to extract <span class="math inline">\(E_0\)</span> and the gap <span class="math inline">\(E_1 - E_0\)</span>.</p>
+<p><strong>Solution:</strong> From Section 10.4, <span class="math inline">\(E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \ln Z(\tau)\)</span>. Using our result from above with <span class="math inline">\(\beta\hbar \to \tau\)</span>: <span class="math display">\[ Z(\tau) = \frac{e^{-\omega\tau/2}}{1 - e^{-\omega\tau}} \]</span> <span class="math display">\[ \ln Z(\tau) = -\frac{\omega\tau}{2} - \ln(1 - e^{-\omega\tau}) \]</span> In the limit <span class="math inline">\(\tau \to \infty\)</span>, <span class="math inline">\(e^{-\omega\tau} \to 0\)</span>, so the logarithmic term vanishes. <span class="math display">\[ E_0 = -\lim_{\tau\to\infty} \frac{\hbar}{\tau} \left( -\frac{\omega\tau}{2} \right) = \frac{\hbar\omega}{2} \]</span> This is the correct zero-point energy!</p>
+<p>For the gap, recall the continuous Euclidean correlation function for the HO (which we derive from <span class="math inline">\(Z_E[J]\)</span>): <span class="math display">\[ C(\tau) = \frac{\hbar}{2m\omega} e^{-\omega|\tau|} \]</span> Comparing this to the general asymptotic form <span class="math inline">\(C(\tau) \propto e^{-(E_1 - E_0)|\tau|/\hbar}\)</span>, we immediately see that: <span class="math display">\[ \frac{E_1 - E_0}{\hbar} = \omega \implies E_1 - E_0 = \hbar\omega \]</span> The energy gap is exactly <span class="math inline">\(\hbar\omega\)</span>, as expected.</p>
+<hr>
+</section>
+<section id="quick-question-1" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="quick-question-1"><span class="header-section-number">10.1</span> 🤔 Quick Question 1</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why do periodic boundary conditions give the thermal partition function?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We forced the paths to end exactly where they started, <span class="math inline">\(x(\beta\hbar) = x(0)\)</span>. Why does this particular geometry have anything to do with temperature?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Setting the endpoints to be equal (<span class="math inline">\(x_a = x_b = x\)</span>) and integrating over all <span class="math inline">\(x\)</span> is the continuous coordinate representation of the <strong>Trace</strong> operation in linear algebra: <span class="math inline">\(\int \langle x | \hat{O} | x \rangle dx = \text{Tr}(\hat{O})\)</span>. The canonical partition function from statistical mechanics is fundamentally defined as the trace of the Boltzmann weight: <span class="math inline">\(Z = \text{Tr}(e^{-\beta\hat{H}})\)</span>. Thus, making the paths periodic and integrating is the path integral’s way of executing the trace operation required by thermal physics.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quick-question-2" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="quick-question-2"><span class="header-section-number">10.2</span> 🤔 Quick Question 2</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Can we extract ALL energy levels from the Euclidean path integral, not just <span class="math inline">\(E_0\)</span> and <span class="math inline">\(E_1\)</span>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We saw how <span class="math inline">\(E_0\)</span> dominates at very large <span class="math inline">\(\tau\)</span>, and <span class="math inline">\(E_1\)</span> dominates the decay of the correlation function. Are higher excited states like <span class="math inline">\(E_2, E_3\)</span> lost forever?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Yes, they can be extracted! While <span class="math inline">\(E_0\)</span> and <span class="math inline">\(E_1\)</span> dominate the asymptotic (<span class="math inline">\(\tau \to \infty\)</span>) limits, the full correlation function contains a sum over all states: <span class="math inline">\(\sum_n |c_n|^2 e^{-(E_n-E_0)\tau/\hbar}\)</span>. By carefully measuring (or simulating) the correlation function at <em>intermediate</em> values of <span class="math inline">\(\tau\)</span>, and fitting it to a sum of multiple decaying exponentials, one can systematically extract <span class="math inline">\(E_2, E_3\)</span>, etc. This requires high precision, but it is routinely done in lattice QCD.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <hr>
 </section>
 </section>
-<section id="sec-heisenberg" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</h2>
-<p>In the Heisenberg picture, the time dependence is placed on <strong>operators</strong> rather than states:</p>
-<p><span class="math display">\[
-\hat{a}_H(t) = e^{i\hat{H}t/\hbar}\,\hat{a}\,e^{-i\hat{H}t/\hbar} = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p><span class="math display">\[
-\hat{a}^\dagger_H(t) = e^{+i\omega t}\hat{a}^\dagger
-\]</span></p>
-<p>The position and momentum operators: <span class="math display">\[
-\hat{x}_H(t) = \frac{x_0}{\sqrt{2}}\left(e^{-i\omega t}\hat{a} + e^{+i\omega t}\hat{a}^\dagger\right)
-\]</span> <span class="math display">\[
-= x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p>This is the <strong>quantum oscillator in the Heisenberg picture</strong> — it oscillates exactly like the classical oscillator.</p>
-<hr>
-</section>
-<section id="sec-wigner" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</h2>
-<section id="what-is-the-wigner-function" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</h3>
-<p>In classical mechanics, we can define a probability distribution in phase space <span class="math inline">\(f(x, p)\)</span>. In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the <strong>Wigner function</strong>:</p>
-<p><span class="math display">\[
-W(x, p) = \frac{1}{\pi\hbar}\int_{-\infty}^{\infty} \psi^*\!\left(x + y\right)\psi\left(x - y\right) e^{2ipy/\hbar}\,dy
-\]</span></p>
-<p>Properties of <span class="math inline">\(W(x,p)\)</span>:</p>
-<ul>
-<li><strong>Real</strong>: <span class="math inline">\(W(x,p)\)</span> is always real</li>
-<li><strong>Marginals</strong>: <span class="math inline">\(\int W\,dp = |\psi(x)|^2\)</span> and <span class="math inline">\(\int W\,dx = |\phi(p)|^2\)</span></li>
-<li><strong>Not always positive</strong>: <span class="math inline">\(W\)</span> can be negative in some regions (a signature of quantum behavior)</li>
-<li><strong>Area normalization</strong>: <span class="math inline">\(\int\!\!\int W(x,p)\,dx\,dp = 1\)</span></li>
-</ul>
-</section>
-<section id="wigner-function-of-the-ground-state" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</h3>
-<p>For <span class="math inline">\(\psi_0 = (\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}\)</span>:</p>
-<p><span class="math display">\[
-W_0(x,p) = \frac{1}{\pi\hbar}\,e^{-x^2/x_0^2 - p^2 x_0^2/\hbar^2}
-\]</span></p>
-<p>This is a <strong>Gaussian</strong> in phase space — entirely positive! The ground state is the most classical-looking quantum state.</p>
-</section>
-<section id="wigner-function-of-excited-states" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</h3>
-<p>For excited states <span class="math inline">\(|n\rangle\)</span>, the Wigner function is:</p>
-<p><span class="math display">\[
-W_n(x,p) = \frac{(-1)^n}{\pi\hbar}\,L_n\!\left(\frac{2r^2}{x_0^2}\right)\,e^{-r^2/x_0^2}
-\]</span></p>
-<p>where <span class="math inline">\(r^2 = x^2 + p^2 x_0^2/\hbar^2\)</span> and <span class="math inline">\(L_n\)</span> are Laguerre polynomials.</p>
-<p>Key feature: for <span class="math inline">\(n \geq 1\)</span>, <span class="math inline">\(W_n\)</span> takes <strong>negative values</strong> — a purely quantum signature. The negative regions appear as rings (for <span class="math inline">\(n = 1\)</span>) or more complex structures for higher <span class="math inline">\(n\)</span>.</p>
-<div class="callout-intuition">
-<p>The Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via <strong>homodyne tomography</strong>) is a standard experimental technique. Negative values of <span class="math inline">\(W\)</span> are direct evidence of non-classical states.</p>
-</div>
-<hr>
-</section>
-</section>
-<section id="sec-summary" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</h2>
-<p>For a general state <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-i\omega(n+1/2)t}|n\rangle\)</span>:</p>
+<section id="summary-table" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Summary Table</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>Time dependence</th>
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Minkowski (Real Time, <span class="math inline">\(t\)</span>)</th>
+<th style="text-align: left;">Euclidean (Imaginary Time, <span class="math inline">\(\tau\)</span>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span></td>
+<td style="text-align: left;"><strong>Time Variable</strong></td>
+<td style="text-align: left;"><span class="math inline">\(t\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\tau = i t\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\langle\hat{p}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span>, <span class="math inline">\(90°\)</span> out of phase</td>
+<td style="text-align: left;"><strong>Action</strong></td>
+<td style="text-align: left;"><span class="math inline">\(S = \int (\frac{1}{2}m\dot{x}^2 - V(x))dt\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(S_E = \int (\frac{1}{2}m\dot{x}^2 + V(x))d\tau\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}^2\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(2\omega\)</span> and constant</td>
+<td style="text-align: left;"><strong>Path Weight</strong></td>
+<td style="text-align: left;"><span class="math inline">\(e^{iS/\hbar}\)</span> (Oscillating phase)</td>
+<td style="text-align: left;"><span class="math inline">\(e^{-S_E/\hbar}\)</span> (Exponential damping)</td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\langle\hat{H}\rangle\)</span></td>
-<td>Constant (energy conservation)</td>
+<td style="text-align: left;"><strong>Evolution Op.</strong></td>
+<td style="text-align: left;"><span class="math inline">\(e^{-i\hat{H}t/\hbar}\)</span> (Unitary rotation)</td>
+<td style="text-align: left;"><span class="math inline">\(e^{-\hat{H}\tau/\hbar}\)</span> (Hermitian decay)</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{N}\rangle\)</span></td>
-<td>Constant</td>
+<td style="text-align: left;"><strong>Asymptotic (<span class="math inline">\(\infty\)</span>)</strong></td>
+<td style="text-align: left;">Highly oscillatory, hard to define</td>
+<td style="text-align: left;">Projects completely onto the Ground State <span class="math inline">\(E_0\)</span></td>
 </tr>
 <tr class="even">
-<td>Period of full return</td>
-<td><span class="math inline">\(T = 2\pi/\omega\)</span></td>
+<td style="text-align: left;"><strong>Trace <span class="math inline">\(\to\)</span> Physics</strong></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Canonical Partition Function at <span class="math inline">\(T = \frac{\hbar}{k_B \beta}\)</span></td>
 </tr>
 </tbody>
 </table>
-<div class="checkpoint">
-<p><strong>Before moving on, make sure you can:</strong></p>
-<ol type="1">
-<li>Write the time evolution of an energy eigenstate <span class="math inline">\(|n\rangle\)</span>.</li>
-<li>Prove that <span class="math inline">\(\langle\hat{x}\rangle(t)\)</span> oscillates classically for any state.</li>
-<li>State Ehrenfest’s theorem for the QHO and verify it gives Newton’s law.</li>
-<li>Explain why the QHO state returns exactly after <span class="math inline">\(T = 2\pi/\omega\)</span>.</li>
-<li>Define the Wigner function and state its key properties.</li>
-<li>Why can the Wigner function be negative? What does this mean physically?</li>
-</ol>
-<p><strong>Advanced</strong>: Compute the Wigner function for <span class="math inline">\(|1\rangle\)</span> and show it has negative values.</p>
-</div>
 <hr>
+<section id="checkpoint" class="level4 checkpoint" data-number="11.0.0.1">
+<h4 data-number="11.0.0.1" class="anchored" data-anchor-id="checkpoint"><span class="header-section-number">11.0.0.1</span> 🎯 Checkpoint</h4>
+<p>Before moving on, verify that you understand: 1. Why the limit <span class="math inline">\(\tau \to \infty\)</span> filters out all excited states and leaves only the ground state. 2. The mathematical steps showing that inserting complete sets of states into <span class="math inline">\(\langle x(\tau_1)x(\tau_2)\rangle_E\)</span> leads to an exponential decay controlled by <span class="math inline">\(E_1 - E_0\)</span>. 3. The topological distinction between zero-temperature QFT (an infinite imaginary time axis) and finite-temperature QFT (a circular imaginary time axis).</p>
+</section>
+<hr>
+</section>
+<section id="practice-problems" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Practice Problems</h1>
+<ol type="1">
+<li><strong>The Double Well Potential</strong>: Suppose a particle is in a double well potential. At large <span class="math inline">\(\tau\)</span>, the correlation function <span class="math inline">\(C(\tau)\)</span> is measured to decay as <span class="math inline">\(A e^{-\Delta E \tau/\hbar}\)</span>. Physically, what does <span class="math inline">\(\Delta E\)</span> represent in this specific system, and why is it very small?</li>
+<li><strong>Euclidean Propagator of a Free Particle</strong>: Perform a Wick rotation on the real-time free particle propagator. Verify that it satisfies the diffusion equation rather than the Schrödinger equation.</li>
+<li><strong>High Temperature Limit</strong>: Start with the path integral expression for <span class="math inline">\(Z(\beta)\)</span>. Take the limit <span class="math inline">\(\beta \to 0\)</span> (high temperature). Argue that the kinetic energy term strictly enforces that the only contributing paths are constants <span class="math inline">\(x(\tau) = x_0\)</span>. Show that this recovers the classical partition function <span class="math inline">\(Z \propto \int dx_0 e^{-\beta V(x_0)}\)</span>.</li>
+<li><strong>Parity and Energy Gaps</strong>: In Section 10.5, we assumed <span class="math inline">\(\langle 0 | \hat{x} | 0 \rangle = 0\)</span> because of symmetry, which led to the leading term being <span class="math inline">\(n=1\)</span>. If we had an asymmetric potential where <span class="math inline">\(\langle 0 | \hat{x} | 0 \rangle \ne 0\)</span>, how would you modify the observable to correctly extract the gap <span class="math inline">\(E_1 - E_0\)</span>? <em>(Hint: Consider the connected correlation function <span class="math inline">\(\langle x(\tau_1)x(\tau_2)\rangle - \langle x \rangle^2\)</span>)</em>.</li>
+<li><strong>Finite Temperature Correlation</strong>: At finite temperature <span class="math inline">\(T = 1/(k_B\beta)\)</span>, the time direction is a circle. Re-derive the two point correlation function expansion, but this time trace over all states instead of just taking the ground state expectation. Show that the correlation function <span class="math inline">\(C(\tau)\)</span> must be periodic in <span class="math inline">\(\tau\)</span> with period <span class="math inline">\(\beta\hbar\)</span>.</li>
+</ol>
 <div class="nav-buttons">
-<p><a href="../../Courses/QHO/04_wavefunctions.html" class="btn btn-outline-secondary">← Module 4: Wavefunctions</a> <a href="../../Courses/QHO/06_coherent_states.html" class="btn btn-success">Next: Module 6 — Coherent States →</a></p>
+<p><a href="../../Courses/Path_Integrals/09_wick_rotation.html" class="btn btn-outline-secondary">← Previous Module</a> <a href="../../Courses/Path_Integrals/11_euclidean_eom.html" class="btn btn-success">Next: Module 11 →</a></p>
 </div>
 
 

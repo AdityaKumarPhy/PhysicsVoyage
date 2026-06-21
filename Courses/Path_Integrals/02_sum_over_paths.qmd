@@ -1,0 +1,914 @@
+---
+title: "Module 2: The Sum-Over-Paths Idea"
+subtitle: "Feynman's Revolutionary Insight — Every Path Contributes"
+description: "The particle takes ALL paths simultaneously. Feynman's three postulates, the action principle, why the phase is e^{iS/ℏ}, and a sneak peek at how classical mechanics emerges from destructive interference."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+```{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+```
+
+[← Back to Course](index.qmd) | [Next: Module 3 — Free Particle Propagator →](03_free_particle.qmd)
+
+---
+
+This module contains the **big idea** — the conceptual heart of the entire course. Before we do any heavy calculations (that starts in Module 3), we need to understand *what* Feynman claimed, *why* it's plausible, and *how* it connects to everything you already know from classical and quantum mechanics.
+
+By the end of this module, you will understand Feynman's three postulates of quantum mechanics, why the phase of each path is $e^{iS/\hbar}$, and how classical mechanics emerges as a limiting case. You'll also see why the path integral formulation is often considered the most powerful of the three formulations of quantum mechanics.
+
+# Feynman's Bold Claim {#sec-feynman-claim}
+
+## The Story
+
+In 1933, Paul Dirac published a remarkable paper titled *"The Lagrangian in Quantum Mechanics."* In it, he noted a suggestive analogy: the quantum mechanical transition amplitude between two position states, separated by a small time interval $\epsilon$, is somehow *"analogous to"* the quantity
+
+$$
+\exp\!\left(\frac{i}{\hbar}\, L\, \epsilon\right)
+$$
+
+where $L$ is the classical Lagrangian. Dirac never spelled out exactly what "analogous to" meant. He left the idea as a tantalizing hint — a half-opened door.
+
+Nearly a decade later, in 1941, a young graduate student at Princeton named **Richard Feynman** walked through that door. His advisor, **John Archibald Wheeler**, had pointed him to Dirac's paper and asked: "What did Dirac mean by 'analogous'? Did he mean 'equal to'? Or 'proportional to'?"
+
+Feynman decided to find out. He worked out the consequences of taking Dirac's hint literally — and discovered that if you take it to mean "proportional to," you can reconstruct *all* of quantum mechanics from a single, breathtaking idea.
+
+## The Claim
+
+Here is Feynman's claim, stated as plainly as possible:
+
+> **A quantum particle going from point $A$ to point $B$ takes every possible path simultaneously. Each path contributes a complex amplitude $e^{iS[\text{path}]/\hbar}$, where $S$ is the classical action along that path. The total transition amplitude is the sum over ALL paths.**
+
+Let that sink in. Not just the shortest path. Not just the classical path. *Every* path — straight lines, zigzags, loops, paths that go to the moon and back — they all contribute.
+
+::: {.callout-intuition}
+Think of it this way: in classical mechanics, a particle "knows" which path to take (the one that minimizes the action). In quantum mechanics, the particle is *not that smart*. It explores every possibility. The classical path only emerges because, for macroscopic objects, the crazy paths cancel each other out through destructive interference.
+:::
+
+Feynman's 1942 PhD thesis, later published with A. R. Hibbs as the classic textbook *Quantum Mechanics and Path Integrals* (1965), laid out this formulation in full. It was a third way of doing quantum mechanics — alongside Schrödinger's wave equation (1926) and Heisenberg's matrix mechanics (1925).
+
+> **Textbook reference**: Feynman & Hibbs, *Quantum Mechanics and Path Integrals*, Ch. 2. Also see Dirac's 1933 paper: *Physikalische Zeitschrift der Sowjetunion*, **3**, 64–72.
+
+
+# The Double-Slit Experiment Revisited {#sec-double-slit}
+
+Let's build intuition for the "sum over all paths" idea by starting from something familiar: the **double-slit experiment**.
+
+## Two Slits: Two Paths
+
+In the standard double-slit experiment, a particle travels from a source $A$ to a detector $B$ on a screen. There are two slits, so there are essentially two distinct paths the particle can take: one through slit 1, and one through slit 2.
+
+Each path accumulates a phase. The total amplitude at the detector is:
+
+$$
+\mathcal{A}(A \to B) = \mathcal{A}_1 + \mathcal{A}_2
+$$
+
+The probability of detecting the particle at $B$ is:
+
+$$
+P(B) = |\mathcal{A}_1 + \mathcal{A}_2|^2 = |\mathcal{A}_1|^2 + |\mathcal{A}_2|^2 + 2\,\text{Re}(\mathcal{A}_1^* \mathcal{A}_2)
+$$
+
+That last term — the **cross term** — is what produces the famous interference pattern. This is old news from undergraduate quantum mechanics.
+
+## Three Slits: Three Paths
+
+Now imagine a barrier with **three** slits. The particle can take three paths, and the total amplitude becomes:
+
+$$
+\mathcal{A}(A \to B) = \mathcal{A}_1 + \mathcal{A}_2 + \mathcal{A}_3
+$$
+
+The interference pattern becomes richer and more complex, but the principle is the same: add amplitudes, *then* square.
+
+## $N$ Slits
+
+With $N$ slits, we sum over $N$ paths:
+
+$$
+\mathcal{A}(A \to B) = \sum_{k=1}^{N} \mathcal{A}_k
+$$
+
+## Infinitely Many Slits = No Barrier!
+
+Here's the key insight. What happens as $N \to \infty$? If you have infinitely many slits, infinitely close together... you've removed the barrier entirely! There's no obstacle at all — just free space between $A$ and $B$.
+
+And yet, the rule is the same: **sum the amplitude over all paths**.
+
+$$
+\boxed{\mathcal{A}(A \to B) = \sum_{\text{all paths}} \mathcal{A}[\text{path}]}
+$$
+
+This is the **path integral**. The double-slit experiment, generalized to infinitely many slits, gives you Feynman's formulation of quantum mechanics.
+
+::: {.callout-tip}
+## The Double-Slit as a Gateway
+The path integral isn't some abstract mathematical trick. It's the natural generalization of the double-slit experiment. If interference works for 2 paths, and for 3, and for $N$... then it must work for all paths. That's Feynman's insight.
+:::
+
+::: {.callout-warning}
+## 🤔 Quick Question
+If every path contributes, why don't we see particles taking crazy zigzag paths in daily life?
+
+::: {.callout-note collapse="true"}
+## Answer
+For macroscopic objects, the action $S$ is *enormous* compared to $\hbar$. A thrown baseball has $S/\hbar \sim 10^{30}$. This means the phase $e^{iS/\hbar}$ oscillates **incredibly rapidly** as we vary the path even slightly. Neighboring paths have wildly different phases and cancel each other through destructive interference.
+
+The *only* paths that survive this cancellation are those in the **neighborhood of the classical path** — where $\delta S = 0$ and the phase varies slowly. So the particle effectively takes only the classical trajectory.
+
+We'll make this precise with the **stationary phase approximation** in @sec-classical-limit and in much greater detail in Module 8.
+:::
+:::
+
+> **Textbook reference**: Feynman & Hibbs, Ch. 2, §2-1 to §2-3.
+
+
+# The Action Principle: A Classical Review {#sec-action-principle}
+
+Before we state Feynman's postulates, we need to be crystal clear about the concept of the **action**, since it's the foundation of everything that follows.
+
+## The Lagrangian
+
+In classical mechanics, the dynamics of a system is encoded in the **Lagrangian**:
+
+$$
+L(x, \dot{x}, t) = T - V = \frac{1}{2}m\dot{x}^2 - V(x)
+$$
+
+where $T$ is the kinetic energy and $V$ is the potential energy. (We'll work in one dimension for simplicity, but everything generalizes straightforwardly.)
+
+The Lagrangian is a function of the position $x$, the velocity $\dot{x} = dx/dt$, and possibly time $t$.
+
+## The Action Functional
+
+The **action** is not a function — it's a **functional**. It takes an *entire path* $x(t)$ as input and spits out a single number:
+
+$$
+\boxed{S[x(t)] = \int_{t_a}^{t_b} L\big(x(t),\, \dot{x}(t),\, t\big)\, dt}
+$$
+
+Notice the square brackets: $S[x(t)]$ means "$S$ is a functional of the function $x(t)$." Different paths connecting the same endpoints $(x_a, t_a)$ and $(x_b, t_b)$ give different values of $S$.
+
+::: {.callout-note}
+## Functions vs. Functionals
+A **function** takes a number and returns a number: $f(x) = x^2$.
+
+A **functional** takes a *function* and returns a number: $S[x(t)] = \int_0^T \frac{1}{2}m\dot{x}^2\, dt$.
+
+Think of a functional as a "function of a function." We'll develop the mathematics of functionals (functional calculus) in Module 6.
+:::
+
+## Hamilton's Principle: $\delta S = 0$
+
+The central principle of classical mechanics is **Hamilton's principle** (also called the **principle of least action**, though "stationary action" is more accurate):
+
+> **The physical path taken by a classical particle is the one for which the action is stationary: $\delta S = 0$.**
+
+Let's derive what this means. Consider the true classical path $x_{\text{cl}}(t)$, and a nearby path:
+
+$$
+x(t) = x_{\text{cl}}(t) + \eta(t)
+$$
+
+where $\eta(t)$ is a small deviation that vanishes at the endpoints: $\eta(t_a) = \eta(t_b) = 0$ (since all paths must connect the same starting and ending points).
+
+The action along the varied path is:
+
+$$
+S[x_{\text{cl}} + \eta] = \int_{t_a}^{t_b} L(x_{\text{cl}} + \eta,\, \dot{x}_{\text{cl}} + \dot{\eta},\, t)\, dt
+$$
+
+Taylor-expanding the Lagrangian to first order in $\eta$:
+
+$$
+L(x_{\text{cl}} + \eta,\, \dot{x}_{\text{cl}} + \dot{\eta}) \approx L(x_{\text{cl}}, \dot{x}_{\text{cl}}) + \frac{\partial L}{\partial x}\,\eta + \frac{\partial L}{\partial \dot{x}}\,\dot{\eta}
+$$
+
+So the variation of the action is:
+
+$$
+\delta S = S[x_{\text{cl}} + \eta] - S[x_{\text{cl}}] = \int_{t_a}^{t_b} \left(\frac{\partial L}{\partial x}\,\eta + \frac{\partial L}{\partial \dot{x}}\,\dot{\eta}\right) dt
+$$
+
+Now we integrate the second term by parts. Recall that:
+
+$$
+\int_{t_a}^{t_b} \frac{\partial L}{\partial \dot{x}}\,\dot{\eta}\, dt = \left[\frac{\partial L}{\partial \dot{x}}\,\eta\right]_{t_a}^{t_b} - \int_{t_a}^{t_b} \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}}\right)\eta\, dt
+$$
+
+The boundary term vanishes because $\eta(t_a) = \eta(t_b) = 0$. So:
+
+$$
+\delta S = \int_{t_a}^{t_b} \left[\frac{\partial L}{\partial x} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}}\right)\right] \eta(t)\, dt
+$$
+
+For $\delta S = 0$ for *all* possible variations $\eta(t)$, the integrand must vanish identically:
+
+$$
+\boxed{\frac{\partial L}{\partial x} - \frac{d}{dt}\!\left(\frac{\partial L}{\partial \dot{x}}\right) = 0 \qquad \text{(Euler-Lagrange equation)}}
+$$
+
+This is the **Euler-Lagrange equation** — the equation of motion in Lagrangian mechanics. For $L = \frac{1}{2}m\dot{x}^2 - V(x)$, it gives:
+
+$$
+-\frac{dV}{dx} - m\ddot{x} = 0 \quad \Longrightarrow \quad m\ddot{x} = -\frac{dV}{dx} = F(x)
+$$
+
+which is just Newton's second law! The action principle is a *reformulation* of $F = ma$.
+
+::: {.callout-intuition}
+In classical mechanics, nature "selects" the path where $\delta S = 0$. In quantum mechanics, nature doesn't select — it sums over *all* paths. But paths near $\delta S = 0$ get preferential treatment because their phases add up constructively. Classical mechanics is the limit where this preference becomes absolute.
+:::
+
+> **Textbook reference**: Shankar, *Principles of Quantum Mechanics*, §2.1; Goldstein, *Classical Mechanics*, Ch. 2.
+
+
+# Feynman's Three Postulates {#sec-feynman-postulates}
+
+We now have all the ingredients to state Feynman's formulation of quantum mechanics. It rests on **three postulates**:
+
+## Postulate 1: Each Path Gets an Amplitude
+
+**Every path $x(t)$ connecting $(x_a, t_a)$ to $(x_b, t_b)$ is assigned a probability amplitude proportional to:**
+
+$$
+\boxed{\phi[\text{path}] = A\, e^{i\, S[\text{path}]/\hbar}}
+$$
+
+where $S[\text{path}]$ is the classical action along that path, and $A$ is a normalization constant (the same for all paths).
+
+This is the core of the formulation. The phase of the amplitude is determined by the classical action. We'll explain *why* it must be $e^{iS/\hbar}$ in @sec-why-eis.
+
+## Postulate 2: Sum Over All Paths
+
+**The total transition amplitude (propagator) from $(x_a, t_a)$ to $(x_b, t_b)$ is the sum over all paths:**
+
+$$
+\boxed{K(x_b, t_b;\, x_a, t_a) = \int \mathcal{D}[x(t)]\; e^{i\, S[x(t)]/\hbar}}
+$$
+
+The symbol $\int \mathcal{D}[x(t)]$ means "sum (integrate) over all paths $x(t)$ that start at $x_a$ and end at $x_b$." This is a **functional integral** — an integral over a space of functions, not numbers.
+
+We haven't yet defined what this integral *means* precisely (that's the content of Module 4). For now, think of it as the continuum limit of summing over a discrete set of paths, just like how a regular integral is the limit of a Riemann sum.
+
+## Postulate 3: These Two Rules Reproduce All of Quantum Mechanics
+
+**Postulates 1 and 2, together with the standard rules for combining amplitudes (the probability of an event is $|\text{amplitude}|^2$, amplitudes for sequential events multiply, amplitudes for alternative events add), are sufficient to reproduce all predictions of non-relativistic quantum mechanics.**
+
+This is the remarkable claim. From these simple rules, one can derive:
+
+- The Schrödinger equation
+- The Heisenberg uncertainty principle  
+- The energy spectrum of bound systems
+- Tunneling phenomena
+- Everything else you learned in undergraduate QM
+
+We'll verify some of these in later modules.
+
+::: {.callout-tip}
+## Minimalism of the Postulates
+Feynman's formulation is shockingly minimal. There's no mention of operators, Hilbert spaces, commutation relations, or wavefunctions. Those objects *emerge* as consequences. The price you pay is that you need to deal with functional integrals — but that's a mathematical challenge, not a conceptual one.
+:::
+
+| Postulate | Statement | Key Quantity |
+|-----------|-----------|--------------|
+| 1 | Each path gets amplitude $\propto e^{iS/\hbar}$ | Action $S[x(t)]$ |
+| 2 | Total amplitude = sum over all paths | $\int \mathcal{D}[x(t)]$ |
+| 3 | Rules 1 & 2 reproduce all of QM | Standard probability rules |
+
+: Feynman's three postulates of quantum mechanics {.striped .hover}
+
+> **Textbook reference**: Feynman & Hibbs, Ch. 2, §2-1. Also Shankar, §8.1 and §21.1.
+
+
+# Why $e^{iS/\hbar}$? {#sec-why-eis}
+
+Postulate 1 says the phase of each path is $S/\hbar$. But *why*? Why not $S^2/\hbar$, or $\sqrt{S/\hbar}$, or something else entirely? Let's understand this from multiple angles.
+
+## Dimensional Analysis
+
+The action $S$ has dimensions of $[\text{energy}] \times [\text{time}] = \text{J} \cdot \text{s}$. These are the same dimensions as $\hbar$. So $S/\hbar$ is **dimensionless** — exactly what you need for the argument of an exponential.
+
+This is already highly constraining. The only natural dimensionless combination of $S$ and $\hbar$ is $S/\hbar$ (or some power of it, but linearity turns out to be required by the composition property of the propagator — see Module 4).
+
+## Connection to de Broglie Waves
+
+Consider a **free particle** with momentum $p$ moving from $x_a$ to $x_b$ in time $T = t_b - t_a$. The de Broglie relation tells us the wavevector is $k = p/\hbar$, and the angular frequency is $\omega = E/\hbar$ where $E = p^2/2m$.
+
+The phase accumulated by the de Broglie wave is:
+
+$$
+\text{phase} = k \cdot (x_b - x_a) - \omega \cdot T = \frac{p(x_b - x_a)}{\hbar} - \frac{ET}{\hbar}
+$$
+
+Now let's compute the classical action for a free particle traveling at constant velocity $v = (x_b - x_a)/T$:
+
+$$
+S = \int_0^T \frac{1}{2}mv^2\, dt = \frac{1}{2}mv^2 T = \frac{1}{2}m \cdot \frac{(x_b - x_a)^2}{T^2} \cdot T = \frac{m(x_b - x_a)^2}{2T}
+$$
+
+Since $p = mv = m(x_b - x_a)/T$, we can write:
+
+$$
+S = \frac{p^2 T}{2m} = \frac{p \cdot (x_b - x_a)}{2} + \frac{p \cdot (x_b - x_a)}{2}
+$$
+
+Wait, let's be more careful. We have:
+
+$$
+p(x_b - x_a) - ET = p \cdot vT - \frac{p^2}{2m} T = \frac{p^2}{m}T - \frac{p^2}{2m}T = \frac{p^2}{2m}T = \frac{1}{2}mv^2 T = S
+$$
+
+So the de Broglie phase is:
+
+$$
+\text{phase} = \frac{p(x_b - x_a) - ET}{\hbar} = \frac{S}{\hbar}
+$$
+
+::: {.callout-tip}
+## De Broglie Phase = Action/ℏ
+For a free particle, the phase accumulated by the de Broglie wave is exactly $S/\hbar$. Feynman's postulate generalizes this to *arbitrary* potentials and paths: the phase along any path is always $S[\text{path}]/\hbar$.
+:::
+
+## Why Is the Phase Real?
+
+You might wonder: why does every path have the same *magnitude* of amplitude, with only the *phase* differing? This is sometimes called the **democracy of paths** — every path is equally "likely" in terms of magnitude; they differ only in their phase angles.
+
+This is actually a deep requirement. If some paths had larger amplitudes than others (independent of their action), we'd be introducing a *weighting* on path space that goes beyond the classical action. The simplest, most symmetric choice is: all paths contribute equally in magnitude, and the only thing that distinguishes them is their phase.
+
+Mathematically, the amplitude for each path is:
+
+$$
+\phi[\text{path}] = \frac{1}{\mathcal{N}} \cdot e^{iS[\text{path}]/\hbar}
+$$
+
+where $\mathcal{N}$ is a normalization constant that's the same for all paths. The modulus is $|\phi| = 1/\mathcal{N}$ for every path — true democracy.
+
+## Why Not $e^{-S/\hbar}$ (a Real Exponential)?
+
+If we used $e^{-S/\hbar}$ (without the $i$), the path integral would be dominated by paths that *minimize* $S$ — we'd get classical mechanics, not quantum mechanics. There would be no interference, no superposition, no quantum effects.
+
+It's the factor of $i$ that makes the amplitude *oscillate* rather than decay. Oscillation means interference, and interference is the essence of quantum mechanics.
+
+| Question | Answer |
+|----------|--------|
+| Why $S/\hbar$? | Dimensional analysis — it's the unique dimensionless ratio |
+| Why linear in $S$? | Required by the composition property of the propagator |
+| Why equal magnitude for all paths? | Democracy — paths differ only in phase |
+| Why $e^{i(\ldots)}$ not $e^{-(\ldots)}$? | Oscillation gives interference (quantum); decay gives minimization (classical) |
+| Connection to de Broglie? | For a free particle, $\text{phase} = S/\hbar$ exactly |
+
+: Why the phase is $e^{iS/\hbar}$ — answers to common questions {.striped .hover}
+
+> **Textbook reference**: Shankar, §21.1; Feynman & Hibbs, §2-2.
+
+
+# The Classical Limit: A Sneak Peek {#sec-classical-limit}
+
+One of the most beautiful features of the path integral is how naturally it explains the emergence of classical mechanics. Let's see this in action.
+
+## The Stationary Phase Argument
+
+Consider the path integral:
+
+$$
+K = \int \mathcal{D}[x(t)]\; e^{iS[x(t)]/\hbar}
+$$
+
+Each path contributes a phase $\theta = S/\hbar$. Now think about what happens when $S \gg \hbar$, which is the **classical regime**.
+
+In this regime, $\theta = S/\hbar$ is a *huge* number. Even a tiny change in the path causes a large change in $S$, and therefore a large change in the phase. The contributions from neighboring paths point in wildly different directions in the complex plane and **cancel each other out** — this is destructive interference.
+
+The exception is near the **classical path** $x_{\text{cl}}(t)$, where $\delta S = 0$. Near this path, the action is stationary: small variations in the path produce negligible changes in $S$ (and hence in the phase). These contributions all point in roughly the same direction and **add up constructively**.
+
+::: {.callout-intuition}
+Imagine adding up thousands of unit vectors $e^{i\theta_k}$ on the complex plane. If the angles $\theta_k$ are random, the vectors point in all directions and cancel — the sum is essentially zero. But if the angles are all approximately equal (as they are near the stationary phase point), the vectors line up and the sum is large. This is exactly what happens in the path integral!
+:::
+
+The result: when $S \gg \hbar$, the path integral is **dominated by the classical path and its neighbors**. The particle effectively follows Newton's laws.
+
+## A Concrete Numerical Example
+
+Let's make this vivid with numbers. How big is $S/\hbar$ for everyday objects versus quantum particles?
+
+**A thrown baseball:**
+
+- Mass: $m = 0.15\;\text{kg}$
+- Speed: $v = 30\;\text{m/s}$ (about 108 km/h)
+- Travel time: $T = 1\;\text{s}$
+- Action: $S = \frac{1}{2}mv^2 T = \frac{1}{2}(0.15)(30)^2(1) = 67.5\;\text{J}\cdot\text{s}$
+- Ratio: $S/\hbar = 67.5 / (1.055 \times 10^{-34}) \approx 6.4 \times 10^{35}$
+
+That's $10^{35}$! The phase oscillates so rapidly that only an *unimaginably tiny* neighborhood of the classical path contributes. The baseball follows Newton's laws with absurd precision.
+
+**An electron in a hydrogen atom:**
+
+- Mass: $m = 9.1 \times 10^{-31}\;\text{kg}$
+- Speed: $v \approx 2.2 \times 10^6\;\text{m/s}$ (Bohr velocity)
+- Orbital period: $T \approx 1.5 \times 10^{-16}\;\text{s}$
+- Action: $S \approx \frac{1}{2}(9.1 \times 10^{-31})(2.2 \times 10^6)^2(1.5 \times 10^{-16}) \approx 3.3 \times 10^{-34}\;\text{J}\cdot\text{s}$
+- Ratio: $S/\hbar \approx 3.3 \times 10^{-34} / 1.055 \times 10^{-34} \approx 3.1$
+
+$S/\hbar \sim 3$! The phase changes by order $1$ as we move between paths. There's no rapid oscillation, so *many different paths contribute significantly*. The particle exhibits fully quantum behavior — there's no well-defined trajectory.
+
+| System | $S$ (J·s) | $S/\hbar$ | Behavior |
+|--------|-----------|-----------|----------|
+| Baseball | $\sim 68$ | $\sim 10^{35}$ | Perfectly classical |
+| Dust grain ($1\;\mu\text{m}$) | $\sim 10^{-19}$ | $\sim 10^{15}$ | Still classical |
+| Large molecule (C₆₀) | $\sim 10^{-30}$ | $\sim 10^{4}$ | Marginally quantum |
+| Electron in atom | $\sim 10^{-34}$ | $\sim 1\text{–}10$ | Fully quantum |
+
+: The classical–quantum boundary in terms of $S/\hbar$ {.striped .hover}
+
+## The Mathematical Statement
+
+The precise mathematical tool here is the **stationary phase approximation** (also called the **method of steepest descent** in the complex plane). For a highly oscillatory integral:
+
+$$
+I = \int dx\; e^{i f(x)/\epsilon}
+$$
+
+when $\epsilon \to 0$, the integral is dominated by points where $f'(x_0) = 0$ (the stationary points), and the leading approximation is:
+
+$$
+I \approx \sqrt{\frac{2\pi i\epsilon}{f''(x_0)}}\; e^{i f(x_0)/\epsilon}
+$$
+
+Applied to the path integral with $\epsilon \to \hbar \to 0$:
+
+- The stationary "point" is the classical path: $\delta S[x_{\text{cl}}] = 0$
+- The leading contribution is $e^{iS[x_{\text{cl}}]/\hbar}$
+- The correction comes from the second variation (Gaussian fluctuations around the classical path)
+
+We'll work this out rigorously in Module 8. For now, the physical picture is clear: **classical mechanics emerges from the path integral as the $\hbar \to 0$ limit via destructive interference**.
+
+::: {.callout-warning}
+## 🤔 Quick Question
+What happens to the path integral if we set $\hbar \to 0$?
+
+::: {.callout-note collapse="true"}
+## Answer
+As $\hbar \to 0$, the phase $S/\hbar \to \infty$ for all paths, causing extreme oscillation and near-total cancellation. The stationary phase approximation becomes exact, and **only the classical path contributes** — the one satisfying $\delta S = 0$ (Euler-Lagrange equations).
+
+In this limit, the path integral reduces to:
+
+$$
+K \xrightarrow{\hbar \to 0} (\text{prefactor}) \times e^{iS_{\text{cl}}/\hbar}
+$$
+
+We recover classical mechanics. The path integral thus provides a smooth interpolation between quantum and classical mechanics, with $\hbar$ as the dial.
+:::
+:::
+
+> **Textbook reference**: Shankar, §21.1, "The Path Integral Recipe"; Zee, *QFT in a Nutshell*, §I.2.
+
+
+# Comparison of Three Formulations of QM {#sec-three-formulations}
+
+Quantum mechanics can be formulated in three equivalent ways. Each has its strengths and weaknesses. Let's compare them.
+
+## Schrödinger's Wave Mechanics (1926)
+
+The central object is the **wavefunction** $\psi(x, t)$, which obeys the Schrödinger equation:
+
+$$
+i\hbar \frac{\partial \psi}{\partial t} = \hat{H}\psi
+$$
+
+This is a **differential equation** approach. You solve it to find $\psi$, then extract probabilities via $|\psi|^2$.
+
+**Strengths**: Intuitive (waves!), well-suited for bound states and energy eigenvalues, easily handles stationary problems.
+
+**Weaknesses**: Hard to generalize to relativistic systems, doesn't directly show the connection to classical mechanics, struggles with many-body systems and gauge theories.
+
+## Heisenberg's Matrix Mechanics (1925)
+
+The central objects are **operators** $\hat{x}(t)$, $\hat{p}(t)$ that evolve in time (the *Heisenberg picture*), obeying:
+
+$$
+\frac{d\hat{A}}{dt} = \frac{i}{\hbar}[\hat{H}, \hat{A}]
+$$
+
+This is an **algebraic** approach. Physical quantities are matrices (operators), and you work with commutation relations.
+
+**Strengths**: Elegant, naturally generalizes to quantum field theory (creation and annihilation operators), cleanly separates kinematics from dynamics.
+
+**Weaknesses**: Abstract, less intuitive for beginners, harder to visualize.
+
+## Feynman's Path Integral (1948)
+
+The central object is the **propagator** $K$, computed as a sum over all paths:
+
+$$
+K = \int \mathcal{D}[x(t)]\; e^{iS/\hbar}
+$$
+
+This is a **global** approach. Instead of solving a differential equation step by step, you sum over all possible histories.
+
+**Strengths**: Most natural connection to classical mechanics (via $\hbar \to 0$), easily generalizes to QFT and gauge theories, naturally handles topological effects (instantons, anomalies), the Lagrangian (not the Hamiltonian) is front and center — which is good because Lorentz invariance is manifest in the Lagrangian.
+
+**Weaknesses**: Functional integrals are mathematically tricky (rigorous measure theory issues), not the most efficient for simple bound-state problems, harder for computing energy eigenvalues directly.
+
+| Feature | Schrödinger | Heisenberg | Feynman |
+|---------|-------------|------------|---------|
+| Central object | $\psi(x,t)$ | $\hat{A}(t)$ | $K(x_b, t_b; x_a, t_a)$ |
+| Central equation | $i\hbar\partial_t\psi = \hat{H}\psi$ | $\dot{\hat{A}} = \frac{i}{\hbar}[\hat{H},\hat{A}]$ | $K = \int \mathcal{D}x\; e^{iS/\hbar}$ |
+| Nature of approach | Differential equation | Algebraic | Integral (global) |
+| Key input | Hamiltonian $\hat{H}$ | Hamiltonian $\hat{H}$ | Lagrangian $L$ |
+| Connection to classical limit | Via WKB approx. | Via Ehrenfest thm. | Direct ($\hbar \to 0$) |
+| Generalizes to QFT? | Awkwardly | Yes (via operators) | Most naturally |
+| Handles gauge symmetry? | With difficulty | With care | Most naturally |
+| Best for... | Bound states, 1-body | Operator algebra, QFT | Symmetries, QFT, topology |
+
+: Comparison of the three formulations of quantum mechanics {.striped .hover}
+
+::: {.callout-warning}
+## 🤔 Quick Question
+Is the path integral formulation more fundamental than Schrödinger's? Or are they equivalent?
+
+::: {.callout-note collapse="true"}
+## Answer
+For standard non-relativistic quantum mechanics, **they are mathematically equivalent**. You can derive the Schrödinger equation from the path integral (we'll do this in Module 4), and vice versa. They make identical predictions.
+
+However, the path integral **generalizes more naturally** to:
+
+- **Quantum field theory** (QFT): The path integral over fields, $\int \mathcal{D}\phi\; e^{iS[\phi]/\hbar}$, is the standard starting point
+- **Gauge theories**: Gauge fixing, Faddeev-Popov ghosts, and BRST symmetry are most naturally expressed via path integrals
+- **Quantum gravity**: The path integral over metrics, $\int \mathcal{D}g_{\mu\nu}\; e^{iS[g]/\hbar}$, is one of the few approaches we have
+- **Topological effects**: Instantons, anomalies, and topological field theories are path integral phenomena
+
+So while "more fundamental" is debatable, the path integral is certainly "more general" and is the language of choice for modern theoretical physics.
+:::
+:::
+
+> **Textbook reference**: Shankar, §8.1; Sakurai, §2.5 and §2.6.
+
+
+# Worked Examples {#sec-worked-examples}
+
+## Worked Example 1: Action for a Free Particle — Classical vs. Zigzag Path
+
+Let's compute the action for a free particle (no potential, $V = 0$) along two different paths, and see how their phases compare.
+
+**Setup**: A particle of mass $m$ travels from $x_a = 0$ at time $t = 0$ to $x_b = d$ at time $t = T$.
+
+### Part (a): The Classical Straight-Line Path
+
+The classical path is a straight line with constant velocity:
+
+$$
+x_{\text{cl}}(t) = \frac{d}{T}\, t, \qquad \dot{x}_{\text{cl}} = \frac{d}{T}
+$$
+
+The Lagrangian along this path is:
+
+$$
+L = \frac{1}{2}m\dot{x}_{\text{cl}}^2 = \frac{1}{2}m\frac{d^2}{T^2}
+$$
+
+This is constant in time, so the action is simply:
+
+$$
+S_{\text{cl}} = \int_0^T L\, dt = \frac{1}{2}m\frac{d^2}{T^2} \cdot T = \boxed{\frac{md^2}{2T}}
+$$
+
+### Part (b): A Zigzag Path
+
+Now consider a zigzag path where the particle goes from $x = 0$ to $x = 2d$ in the first half of the journey, then back to $x = d$ in the second half:
+
+$$
+x_{\text{zig}}(t) = \begin{cases} \frac{2d}{T/2}\, t = \frac{4d}{T}\, t & 0 \leq t \leq T/2 \\ 2d - \frac{2d}{T/2}\, (t - T/2) = 4d - \frac{4d}{T}\,t + \frac{2d}{T}\,t & T/2 \leq t \leq T \end{cases}
+$$
+
+Let's simplify. In the first half ($0 \leq t \leq T/2$):
+
+$$
+\dot{x} = \frac{4d}{T}, \qquad L_1 = \frac{1}{2}m\left(\frac{4d}{T}\right)^2 = \frac{8md^2}{T^2}
+$$
+
+In the second half ($T/2 \leq t \leq T$), the particle must go from $2d$ back to $d$, so the velocity is:
+
+$$
+\dot{x} = \frac{d - 2d}{T/2} = \frac{-d}{T/2} = \frac{-2d}{T}, \qquad L_2 = \frac{1}{2}m\left(\frac{2d}{T}\right)^2 = \frac{2md^2}{T^2}
+$$
+
+The total action is:
+
+$$
+S_{\text{zig}} = L_1 \cdot \frac{T}{2} + L_2 \cdot \frac{T}{2} = \frac{8md^2}{T^2} \cdot \frac{T}{2} + \frac{2md^2}{T^2} \cdot \frac{T}{2}
+$$
+
+$$
+S_{\text{zig}} = \frac{4md^2}{T} + \frac{md^2}{T} = \boxed{\frac{5md^2}{T}}
+$$
+
+### Comparing the Phases
+
+The ratio of actions is:
+
+$$
+\frac{S_{\text{zig}}}{S_{\text{cl}}} = \frac{5md^2/T}{md^2/(2T)} = 10
+$$
+
+The zigzag path has **10 times** the action of the classical path! The phase difference between the two paths is:
+
+$$
+\Delta\theta = \frac{S_{\text{zig}} - S_{\text{cl}}}{\hbar} = \frac{9md^2/2T}{\hbar} = \frac{9md^2}{2T\hbar}
+$$
+
+For a macroscopic particle ($m = 1\;\text{kg}$, $d = 1\;\text{m}$, $T = 1\;\text{s}$):
+
+$$
+\Delta\theta \sim \frac{9 \times 1 \times 1}{2 \times 1 \times 10^{-34}} \sim 10^{34}\;\text{rad}
+$$
+
+This enormous phase difference means the zigzag path and the classical path are completely out of phase. In fact, paths even *slightly* different from the classical path have huge phase differences at the macroscopic scale, leading to massive destructive interference.
+
+For an electron ($m = 10^{-30}\;\text{kg}$, $d = 10^{-10}\;\text{m}$, $T = 10^{-16}\;\text{s}$):
+
+$$
+\Delta\theta \sim \frac{9 \times 10^{-30} \times 10^{-20}}{2 \times 10^{-16} \times 10^{-34}} \sim \frac{10^{-50}}{10^{-50}} \sim 1\;\text{rad}
+$$
+
+Now the phase difference is of order 1. Both paths contribute significantly! This is why electrons exhibit quantum behavior.
+
+
+## Worked Example 2: Action for a Particle in a Gravitational Field
+
+**Setup**: A particle of mass $m$ moves vertically in a uniform gravitational field. It starts at height $y_a = 0$ at time $t = 0$ and arrives at height $y_b = h$ at time $t = T$.
+
+**Step 1: Write the Lagrangian.**
+
+$$
+L = \frac{1}{2}m\dot{y}^2 - mgy
+$$
+
+where $g$ is the gravitational acceleration and we take $V(y) = mgy$ with $y$ measured upward.
+
+**Step 2: Find the classical path.**
+
+The Euler-Lagrange equation gives:
+
+$$
+\frac{\partial L}{\partial y} - \frac{d}{dt}\frac{\partial L}{\partial \dot{y}} = -mg - m\ddot{y} = 0 \quad \Rightarrow \quad \ddot{y} = -g
+$$
+
+This is just the familiar equation for free fall. The solution with boundary conditions $y(0) = 0$ and $y(T) = h$ is:
+
+$$
+y_{\text{cl}}(t) = \frac{h}{T}\,t + \frac{1}{2}g\,t(T - t) \cdot \frac{1}{T}\;\;?
+$$
+
+Let's be more careful. We need $y(0) = 0$ and $y(T) = h$. The general solution to $\ddot{y} = -g$ is:
+
+$$
+y(t) = -\frac{1}{2}gt^2 + v_0 t + y_0
+$$
+
+With $y(0) = 0$: $y_0 = 0$.
+
+With $y(T) = h$: $h = -\frac{1}{2}gT^2 + v_0 T$, so $v_0 = \frac{h}{T} + \frac{1}{2}gT$.
+
+Therefore:
+
+$$
+y_{\text{cl}}(t) = \left(\frac{h}{T} + \frac{gT}{2}\right)t - \frac{1}{2}gt^2
+$$
+
+and the velocity is:
+
+$$
+\dot{y}_{\text{cl}}(t) = \frac{h}{T} + \frac{gT}{2} - gt
+$$
+
+**Step 3: Compute the action.**
+
+$$
+S_{\text{cl}} = \int_0^T \left[\frac{1}{2}m\dot{y}_{\text{cl}}^2 - mg\,y_{\text{cl}}\right] dt
+$$
+
+Let's define $v_0 = h/T + gT/2$ for brevity. Then $\dot{y} = v_0 - gt$ and $y = v_0 t - \frac{1}{2}gt^2$.
+
+**Kinetic energy integral:**
+
+$$
+\int_0^T \frac{1}{2}m(v_0 - gt)^2\, dt = \frac{m}{2}\int_0^T (v_0^2 - 2v_0 gt + g^2 t^2)\, dt
+$$
+
+$$
+= \frac{m}{2}\left[v_0^2 T - 2v_0 g \cdot \frac{T^2}{2} + g^2 \cdot \frac{T^3}{3}\right] = \frac{m}{2}\left[v_0^2 T - v_0 g T^2 + \frac{g^2 T^3}{3}\right]
+$$
+
+**Potential energy integral:**
+
+$$
+\int_0^T mg\left(v_0 t - \frac{1}{2}gt^2\right) dt = mg\left[v_0 \cdot \frac{T^2}{2} - \frac{g T^3}{6}\right]
+$$
+
+**Combining** ($S = $ kinetic $-$ potential):
+
+$$
+S_{\text{cl}} = \frac{m}{2}\left[v_0^2 T - v_0 g T^2 + \frac{g^2 T^3}{3}\right] - mg\left[\frac{v_0 T^2}{2} - \frac{g T^3}{6}\right]
+$$
+
+$$
+= \frac{m}{2}v_0^2 T - \frac{m}{2}v_0 g T^2 + \frac{mg^2 T^3}{6} - \frac{mgv_0 T^2}{2} + \frac{mg^2 T^3}{6}
+$$
+
+$$
+= \frac{m}{2}v_0^2 T - mgv_0 T^2 + \frac{mg^2 T^3}{3}
+$$
+
+Now substitute $v_0 = h/T + gT/2$:
+
+$$
+v_0^2 = \frac{h^2}{T^2} + \frac{gh}{1} + \frac{g^2 T^2}{4}
+$$
+
+$$
+\frac{m}{2}v_0^2 T = \frac{mh^2}{2T} + \frac{mghT}{2} + \frac{mg^2 T^3}{8}
+$$
+
+$$
+mgv_0 T^2 = mg\left(\frac{h}{T} + \frac{gT}{2}\right)T^2 = mghT + \frac{mg^2 T^3}{2}
+$$
+
+Putting it all together:
+
+$$
+S_{\text{cl}} = \frac{mh^2}{2T} + \frac{mghT}{2} + \frac{mg^2 T^3}{8} - mghT - \frac{mg^2 T^3}{2} + \frac{mg^2 T^3}{3}
+$$
+
+$$
+= \frac{mh^2}{2T} - \frac{mghT}{2} + mg^2 T^3 \left(\frac{1}{8} - \frac{1}{2} + \frac{1}{3}\right)
+$$
+
+The coefficient in the parenthesis: $\frac{1}{8} - \frac{1}{2} + \frac{1}{3} = \frac{3 - 12 + 8}{24} = \frac{-1}{24}$
+
+$$
+\boxed{S_{\text{cl}} = \frac{mh^2}{2T} - \frac{mghT}{2} - \frac{mg^2 T^3}{24}}
+$$
+
+**Physical interpretation**: The three terms have clear meanings:
+
+1. $\frac{mh^2}{2T}$: This is just the free-particle action — the cost of traveling a distance $h$ in time $T$ with no gravity
+2. $-\frac{mghT}{2}$: The leading gravitational correction, proportional to the field strength $g$ and the height $h$
+3. $-\frac{mg^2T^3}{24}$: A purely gravitational term (independent of $h$), representing the effect of the gravitational field even when the particle returns to its starting height
+
+::: {.callout-note}
+This result will be useful when we compute the propagator in a gravitational field. The phase $e^{iS_{\text{cl}}/\hbar}$ gives the dominant contribution to the propagator in the semiclassical limit.
+:::
+
+> **Textbook reference**: Feynman & Hibbs, Ch. 3, Problem 3-3; Shankar, §8.6.
+
+
+# Summary {#sec-summary}
+
+Let's collect the key ideas from this module:
+
+| Concept | Key Formula / Statement |
+|---------|------------------------|
+| Feynman's claim | The particle takes ALL paths simultaneously |
+| Path integral | $K = \int \mathcal{D}[x(t)]\; e^{iS/\hbar}$ |
+| Action functional | $S[x(t)] = \int_{t_a}^{t_b} L(x, \dot{x}, t)\, dt$ |
+| Euler-Lagrange equation | $\frac{\partial L}{\partial x} - \frac{d}{dt}\frac{\partial L}{\partial \dot{x}} = 0$ |
+| Phase per path | $\theta = S[\text{path}]/\hbar$ |
+| Democracy of paths | All paths have equal magnitude; differ only in phase |
+| Classical limit | $S \gg \hbar \Rightarrow$ stationary phase $\Rightarrow$ only $\delta S = 0$ path survives |
+| Free particle action | $S_{\text{cl}} = \frac{m(x_b - x_a)^2}{2(t_b - t_a)}$ |
+| Gravitational field action | $S_{\text{cl}} = \frac{mh^2}{2T} - \frac{mghT}{2} - \frac{mg^2T^3}{24}$ |
+
+: Key results from Module 2 {.striped .hover}
+
+
+::: {.checkpoint}
+Before moving to Module 3, make sure you can:
+
+1. **State** Feynman's three postulates of quantum mechanics from memory
+2. **Explain** why the phase is $e^{iS/\hbar}$ using dimensional analysis and the de Broglie relation
+3. **Derive** the Euler-Lagrange equation from $\delta S = 0$
+4. **Compute** the action for a free particle along any specified path
+5. **Explain** how classical mechanics emerges from the path integral via stationary phase
+6. **Estimate** $S/\hbar$ for a macroscopic vs. microscopic system and interpret the result
+7. **Compare** the strengths of the Schrödinger, Heisenberg, and Feynman formulations
+:::
+
+
+::: {.callout-warning}
+## 🤔 Quick Question
+In the double-slit analogy, we argued that "infinitely many slits = no barrier." But in the double-slit experiment, the slits constrain the paths. In free space, what constrains the paths?
+
+::: {.callout-note collapse="true"}
+## Answer
+Nothing constrains the paths — and that's the point! In free space, the particle can take *any* continuous path from $A$ to $B$, no matter how wild. The "constraint" comes not from barriers but from **interference**: the phases $e^{iS/\hbar}$ cause most paths to cancel. The surviving paths are those near the classical trajectory (where $\delta S = 0$).
+
+In the double-slit experiment, the barrier physically restricts which paths are available. In the path integral for free space, all paths are available, but physics (via interference) effectively selects a narrow bundle around the classical path — at least in the classical limit.
+:::
+:::
+
+
+# Practice Problems {#sec-practice}
+
+**Problem 1** (Warm-up) ⭐
+
+Compute the action $S$ for a free particle of mass $m$ traveling from $x = 0$ to $x = L$ in time $T$ along the parabolic path $x(t) = L(t/T)^2$. Compare it to the action along the classical (straight-line) path and show that $S_{\text{parabola}} > S_{\text{classical}}$.
+
+**Problem 2** (Dimensional analysis) ⭐
+
+The action has dimensions of $[\text{energy}] \times [\text{time}]$. Using the uncertainty relation $\Delta E \cdot \Delta t \gtrsim \hbar$, argue that quantum effects become important when $S \sim \hbar$.
+
+**Problem 3** (Action for SHO) ⭐⭐
+
+A particle of mass $m$ is attached to a spring with spring constant $k$ (a simple harmonic oscillator with $\omega = \sqrt{k/m}$). The Lagrangian is $L = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2 x^2$. Compute the action along the classical trajectory $x_{\text{cl}}(t) = A\cos(\omega t)$ over one full period $T = 2\pi/\omega$. *Hint*: You should find $S_{\text{cl}} = 0$. Can you explain why?
+
+**Problem 4** (Multiple classical paths) ⭐⭐
+
+Consider a particle moving on a ring of circumference $L$ (i.e., $x$ and $x + L$ are identified). A free particle going from $x = 0$ to $x = 0$ in time $T$ can take infinitely many classical paths: it can wind around the ring $n = 0, 1, 2, \ldots$ times. Compute the action $S_n$ for each winding path. What does this imply for the path integral?
+
+**Problem 5** (Stationary phase) ⭐⭐⭐
+
+Consider the one-dimensional integral:
+
+$$
+I(\lambda) = \int_{-\infty}^{\infty} dx\; e^{i\lambda(x^2 - x^4/12)}
+$$
+
+(a) Find the stationary phase points (where $d/dx$ of the exponent vanishes).
+
+(b) For large $\lambda$, which stationary point dominates? Estimate $I(\lambda)$ in the $\lambda \to \infty$ limit using the stationary phase approximation.
+
+(c) Relate this to the path integral: $\lambda$ plays the role of $1/\hbar$, and the exponent plays the role of $S[\text{path}]/\hbar$.
+
+**Problem 6** (From the path integral to the Schrödinger equation — preview) ⭐⭐⭐
+
+This problem foreshadows Module 4. Consider the path integral over a *single* time step $\epsilon$. The propagator from $(x, t)$ to $(x', t + \epsilon)$ is:
+
+$$
+K(x', t+\epsilon;\, x, t) \approx A\, \exp\!\left[\frac{i}{\hbar}\left(\frac{m(x'-x)^2}{2\epsilon} - V\!\left(\frac{x+x'}{2}\right)\epsilon\right)\right]
+$$
+
+Using $\psi(x', t+\epsilon) = \int K(x', t+\epsilon; x, t)\, \psi(x, t)\, dx$, and expanding to first order in $\epsilon$, show that you get the Schrödinger equation:
+
+$$
+i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2 \psi}{\partial x^2} + V(x)\psi
+$$
+
+*Hint*: Set $x' = x + \xi$, expand everything in powers of $\xi$ and $\epsilon$, perform the Gaussian integral over $\xi$, and match terms order by order.
+
+
+---
+
+::: {.nav-buttons}
+[← Previous: Propagators & Transition Amplitudes](01_propagators.qmd){.btn .btn-outline-secondary}
+[Next: Module 3 — Free Particle Propagator →](03_free_particle.qmd){.btn .btn-success}
+:::

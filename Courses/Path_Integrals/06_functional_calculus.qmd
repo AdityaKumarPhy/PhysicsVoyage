@@ -1,0 +1,334 @@
+---
+title: "Module 6: Functional Integrals & Functional Calculus"
+subtitle: "The Mathematics of Infinite Dimensions"
+description: "Mastering functional derivatives, Taylor expansions, and generating functionals."
+author: "Aditya Kumar"
+date: "2026-06-21"
+categories: [Quantum Mechanics, Path Integrals Course]
+toc: true
+number-sections: true
+---
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+
+[← Back to Course](index.qmd) | [Next: Module 7 →](07_gaussian_integrals.qmd)
+
+To deeply understand path integrals, we need to transition from the mathematics of finite-dimensional spaces to the mathematics of infinite-dimensional spaces. In classical mechanics and standard quantum mechanics, we usually deal with functions: mathematical objects that map a number (like time $t$) to another number (like position $x(t)$). 
+
+However, in the path integral formalism, the central object is the action $S[x]$, which maps an entire *function* (a path $x(t)$) to a single number. This requires us to generalize the rules of calculus. We must learn how to differentiate and Taylor-expand with respect to entire functions rather than simple variables. This machinery is known as **functional calculus**, and it is the universal language of modern Quantum Field Theory (QFT) and advanced statistical mechanics. Let's build this toolkit from the ground up!
+
+## 1. What is a Functional?
+
+A standard function, $f(x)$, takes a number $x$ and returns another number $f(x)$. A **functional**, denoted with square brackets as $F[x(t)]$, takes an *entire function* $x(t)$ and returns a single real or complex number.
+
+::: {.callout-intuition}
+Imagine a function as a simple machine: you drop a single coin (a number) into the slot, and it spits out a ticket (another number). 
+A functional, on the other hand, is a much larger machine. You must feed it an entire strip of film (a full continuous trajectory $x(t)$ over some time interval). Only after scanning the whole strip does the machine spit out a single ticket (a number).
+:::
+
+### Common Examples of Functionals
+
+1.  **The Action Functional:**
+    The most famous functional in physics is the classical action:
+    $$ S[x] = \int_{t_a}^{t_b} L(x(t), \dot{x}(t), t) \, dt $$
+    You plug in a path $x(t)$, evaluate the Lagrangian $L$ at every instant, integrate over time, and get a single number $S$.
+
+2.  **Arc Length:**
+    The length of a curve $y(x)$ between $x_1$ and $x_2$ in 2D space:
+    $$ L[y] = \int_{x_1}^{x_2} \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx $$
+
+3.  **Local Evaluation Functional:**
+    A functional that simply evaluates the function at a specific point $t_0$:
+    $$ E_{t_0}[x] = x(t_0) $$
+    This can be rewritten using the Dirac delta function, transforming it into an integral form:
+    $$ E_{t_0}[x] = \int x(t) \delta(t - t_0) \, dt $$
+
+## 2. Functional Derivatives
+
+In ordinary calculus, the derivative $df/dx$ tells us how the number $f$ changes when we slightly vary the number $x$. For a functional $F[x]$, we want to know how the number $F$ changes when we slightly vary the *entire function* $x(t)$ by a small amount $\delta x(t)$.
+
+By analogy with the multivariable chain rule $df = \sum_i (\partial f/\partial x_i) dx_i$, the variation of a functional is defined as:
+$$ \delta F = F[x + \delta x] - F[x] = \int \frac{\delta F[x]}{\delta x(t)} \delta x(t) \, dt $$
+
+Here, $\frac{\delta F[x]}{\delta x(t)}$ is the **functional derivative**. It tells us the sensitivity of $F$ to a localized change in the function $x$ at the specific time $t$.
+
+### Formal Definition
+
+To make this rigorous, we introduce a small parameter $\epsilon$ and an arbitrary "test function" $\eta(t)$. We define the functional derivative via the first-order Taylor expansion in $\epsilon$:
+$$ F[x + \epsilon \eta] = F[x] + \epsilon \int \frac{\delta F[x]}{\delta x(t)} \eta(t) \, dt + \mathcal{O}(\epsilon^2) $$
+
+Let's compute some explicit examples to build intuition.
+
+### Example A: The Evaluation Functional
+Let $F[x] = x(t')$. We want to find its functional derivative with respect to $x(t)$.
+$$ F[x + \epsilon \eta] = x(t') + \epsilon \eta(t') $$
+Using the Dirac delta function, we can rewrite $\eta(t')$ as an integral:
+$$ F[x + \epsilon \eta] = F[x] + \epsilon \int \delta(t - t') \eta(t) \, dt $$
+Comparing this with the formal definition, we immediately read off:
+$$ \boxed{ \frac{\delta x(t')}{\delta x(t)} = \delta(t - t') } $$
+This is the functional analog of the ordinary calculus rule $\frac{\partial x_i}{\partial x_j} = \delta_{ij}$.
+
+### Example B: A Quadratic Functional
+Let $F[x] = \int x(t')^2 \, dt'$.
+$$ F[x + \epsilon \eta] = \int \left( x(t') + \epsilon \eta(t') \right)^2 \, dt' $$
+$$ F[x + \epsilon \eta] = \int \left( x(t')^2 + 2\epsilon x(t')\eta(t') + \epsilon^2 \eta(t')^2 \right) \, dt' $$
+Dropping the $\mathcal{O}(\epsilon^2)$ term, we have:
+$$ F[x + \epsilon \eta] \approx F[x] + \epsilon \int \left[ 2 x(t') \right] \eta(t') \, dt' $$
+Changing the dummy variable $t'$ to $t$ in the integral, we identify:
+$$ \boxed{ \frac{\delta}{\delta x(t)} \int x(t')^2 \, dt' = 2x(t) } $$
+
+### Example C: Derivative of the Kinetic Energy (Integration by Parts!)
+Let $F[x] = \int_{t_a}^{t_b} \frac{1}{2} m \dot{x}(t')^2 \, dt'$. 
+$$ F[x + \epsilon \eta] = \int_{t_a}^{t_b} \frac{1}{2} m \left( \dot{x}(t') + \epsilon \dot{\eta}(t') \right)^2 \, dt' $$
+$$ F[x + \epsilon \eta] \approx F[x] + \epsilon \int_{t_a}^{t_b} m \dot{x}(t') \dot{\eta}(t') \, dt' $$
+Notice that the variation involves $\dot{\eta}(t')$, but our definition of the functional derivative requires the integral to be of the form $\int (\cdots) \eta(t') \, dt'$. We must move the derivative off of $\eta(t')$ and onto $x(t')$. We do this using **integration by parts**:
+$$ \int_{t_a}^{t_b} m \dot{x}(t') \dot{\eta}(t') \, dt' = \left[ m \dot{x}(t') \eta(t') \right]_{t_a}^{t_b} - \int_{t_a}^{t_b} m \ddot{x}(t') \eta(t') \, dt' $$
+Assuming the variation $\eta(t')$ vanishes at the boundaries $t_a$ and $t_b$ (as is standard in the calculus of variations since the endpoints of the path are fixed), the boundary term drops out. We are left with:
+$$ F[x + \epsilon \eta] \approx F[x] + \epsilon \int_{t_a}^{t_b} \left[ -m \ddot{x}(t') \right] \eta(t') \, dt' $$
+Thus, swapping the dummy variable $t'$ for $t$:
+$$ \boxed{ \frac{\delta}{\delta x(t)} \int \frac{1}{2} m \dot{x}(t')^2 \, dt' = -m \ddot{x}(t) } $$
+
+::: {.callout-tip}
+Whenever the functional contains time derivatives of $x(t)$, computing the functional derivative will almost always require integration by parts to isolate the arbitrary variation $\eta(t)$. Always pay attention to the boundary terms!
+:::
+
+## 3. Key Identities
+
+The rules of functional calculus beautifully mirror those of ordinary calculus.
+
+1.  **Linearity:**
+    $$ \frac{\delta}{\delta x(t)} \left( a F[x] + b G[x] \right) = a \frac{\delta F[x]}{\delta x(t)} + b \frac{\delta G[x]}{\delta x(t)} $$
+
+2.  **Product Rule (Leibniz Rule):**
+    $$ \frac{\delta}{\delta x(t)} \left( F[x] G[x] \right) = \frac{\delta F[x]}{\delta x(t)} G[x] + F[x] \frac{\delta G[x]}{\delta x(t)} $$
+
+3.  **Chain Rule:**
+    If $F$ depends on $x$ through another function $y(t)$, where $y$ is a local function of $x$:
+    $$ \frac{\delta F[y(x)]}{\delta x(t)} = \int \frac{\delta F[y]}{\delta y(t')} \frac{\delta y(t')}{\delta x(t)} \, dt' $$
+    Notice that the sum from the multivariable chain rule $\sum_i$ becomes an integral $\int dt'$ in the functional case.
+
+::: {.callout-note}
+Higher-order functional derivatives are symmetric, just like partial derivatives. That is, $\frac{\delta^2 F}{\delta x(t_1) \delta x(t_2)} = \frac{\delta^2 F}{\delta x(t_2) \delta x(t_1)}$, assuming the functional is sufficiently smooth.
+:::
+
+## 4. Euler-Lagrange from Functionals
+
+We are now equipped to derive the Euler-Lagrange equations using our compact functional derivative notation. The principle of least action states that the classical path $x_{cl}(t)$ is an extremum of the action $S[x]$. In functional language, this means the functional derivative of $S[x]$ evaluated at $x_{cl}$ must vanish exactly:
+$$ \left. \frac{\delta S[x]}{\delta x(t)} \right|_{x = x_{cl}} = 0 $$
+
+Let's derive this for a general action $S[x] = \int_{t_a}^{t_b} L(x(t'), \dot{x}(t')) \, dt'$. We vary $x$ by $\epsilon \eta(t')$:
+$$ S[x + \epsilon \eta] = \int_{t_a}^{t_b} L(x(t') + \epsilon \eta(t'), \dot{x}(t') + \epsilon \dot{\eta}(t')) \, dt' $$
+Taylor expanding the Lagrangian to first order in $\epsilon$:
+$$ S[x + \epsilon \eta] \approx \int_{t_a}^{t_b} \left[ L(x, \dot{x}) + \epsilon \frac{\partial L}{\partial x}\eta(t') + \epsilon \frac{\partial L}{\partial \dot{x}}\dot{\eta}(t') \right] dt' $$
+$$ = S[x] + \epsilon \int_{t_a}^{t_b} \left[ \frac{\partial L}{\partial x}\eta(t') + \frac{\partial L}{\partial \dot{x}}\dot{\eta}(t') \right] dt' $$
+To isolate $\eta(t')$, we integrate the second term by parts:
+$$ \int_{t_a}^{t_b} \frac{\partial L}{\partial \dot{x}}\dot{\eta}(t') \, dt' = \left[ \frac{\partial L}{\partial \dot{x}}\eta(t') \right]_{t_a}^{t_b} - \int_{t_a}^{t_b} \frac{d}{dt'}\left( \frac{\partial L}{\partial \dot{x}} \right) \eta(t') \, dt' $$
+Since the endpoints are fixed, $\eta(t_a) = \eta(t_b) = 0$, the boundary term vanishes. Substituting this back:
+$$ S[x + \epsilon \eta] \approx S[x] + \epsilon \int_{t_a}^{t_b} \left[ \frac{\partial L}{\partial x} - \frac{d}{dt'}\left( \frac{\partial L}{\partial \dot{x}} \right) \right] \eta(t') \, dt' $$
+Comparing this to the formal definition $S[x + \epsilon \eta] = S[x] + \epsilon \int \frac{\delta S}{\delta x(t')} \eta(t') \, dt'$, we identify the functional derivative:
+$$ \boxed{ \frac{\delta S[x]}{\delta x(t)} = \frac{\partial L}{\partial x} - \frac{d}{dt}\left( \frac{\partial L}{\partial \dot{x}} \right) } $$
+Setting this functional derivative to zero precisely yields the celebrated **Euler-Lagrange equation**.
+
+### 🌟 Worked Example 1: Action for a particle in a potential
+**Problem:** Compute $\frac{\delta S}{\delta x(t)}$ for the action $S = \int \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right] dt$, and show that setting it to zero gives Newton's Second Law.
+
+**Solution:**
+We can use the general formula we just derived, or compute it directly from scratch. Let's do it directly to build muscle memory.
+Vary $x \to x + \epsilon \eta$:
+$$ S[x + \epsilon \eta] = \int \left[ \frac{1}{2}m(\dot{x} + \epsilon \dot{\eta})^2 - V(x + \epsilon \eta) \right] dt $$
+Expand to first order in $\epsilon$:
+$$ \approx \int \left[ \frac{1}{2}m\dot{x}^2 + \epsilon m\dot{x}\dot{\eta} - V(x) - \epsilon V'(x)\eta \right] dt $$
+$$ = S[x] + \epsilon \int \left[ m\dot{x}\dot{\eta} - V'(x)\eta \right] dt $$
+Integrate the $m\dot{x}\dot{\eta}$ term by parts:
+$$ \int m\dot{x}\dot{\eta} \, dt = \left[ m\dot{x}\eta \right] - \int m\ddot{x}\eta \, dt = - \int m\ddot{x}\eta \, dt $$
+Substitute back:
+$$ S[x + \epsilon \eta] \approx S[x] + \epsilon \int \left[ -m\ddot{x} - V'(x) \right] \eta(t) \, dt $$
+We extract the functional derivative:
+$$ \frac{\delta S}{\delta x(t)} = -m\ddot{x} - V'(x) $$
+Setting this to zero yields $-m\ddot{x} - V'(x) = 0 \implies m\ddot{x} = -V'(x)$, which is precisely $F = ma$.
+
+## 5. Functional Taylor Expansion
+
+Just as a function $f(x)$ can be expanded around a point $x_0$, a functional $F[x]$ can be expanded around a specific function $x_0(t)$. Let's write the variation as $y(t)$, so we are evaluating $F[x_0 + y]$. 
+
+The **Functional Taylor Expansion** is given by:
+$$ F[x_0 + y] = F[x_0] + \int dt \left. \frac{\delta F}{\delta x(t)} \right|_{x_0} y(t) + \frac{1}{2!} \int dt \int dt' \left. \frac{\delta^2 F}{\delta x(t) \delta x(t')} \right|_{x_0} y(t) y(t') + \dots $$
+
+This is profoundly useful when $F[x]$ is the action $S[x]$ and we expand around the classical path $x_{cl}(t)$:
+$$ S[x_{cl} + y] = S[x_{cl}] + \int dt \left. \frac{\delta S}{\delta x(t)} \right|_{x_{cl}} y(t) + \frac{1}{2!} \int dt \int dt' \left. \frac{\delta^2 S}{\delta x(t) \delta x(t')} \right|_{x_{cl}} y(t) y(t') + \dots $$
+
+Because $x_{cl}$ satisfies the Euler-Lagrange equations, the first functional derivative is zero! Therefore, the linear term in $y(t)$ vanishes entirely:
+$$ \left. \frac{\delta S}{\delta x(t)} \right|_{x_{cl}} = 0 $$
+
+We are left with:
+$$ S[x_{cl} + y] = S[x_{cl}] + S_{fluct}[y] + \mathcal{O}(y^3) $$
+where the quadratic term represents the action of the quantum fluctuations $y(t)$ around the classical path. This provides the rigorous mathematical justification for the semiclassical decomposition we used in Module 5 for the Harmonic Oscillator!
+
+::: {.callout-warning}
+## 🤔 Quick Question 1
+What is the functional derivative of the action with respect to $x(t)$? What does it equal when evaluated exactly on the classical path?
+
+::: {.callout-note collapse="true"}
+## Answer
+The functional derivative $\frac{\delta S}{\delta x(t)}$ gives the Euler-Lagrange expression: $\frac{\partial L}{\partial x} - \frac{d}{dt}(\frac{\partial L}{\partial \dot{x}})$. When evaluated on the classical path $x_{cl}$, this functional derivative is identically zero, which simply means that the action is stationary at the classical path.
+:::
+:::
+
+## 6. Generating Functionals & Source Terms
+
+In ordinary probability theory, to compute the moments $\langle x \rangle, \langle x^2 \rangle, \dots$ of a probability distribution $P(x)$, we introduce a moment-generating function:
+$$ Z(J) = \int e^{J x} P(x) \, dx $$
+By taking derivatives with respect to $J$ and setting $J=0$, we easily pull down factors of $x$:
+$$ \langle x^n \rangle = \left. \frac{d^n Z(J)}{dJ^n} \right|_{J=0} $$
+
+In the path integral formulation of quantum mechanics and QFT, we construct a **generating functional**, $Z[J]$. We modify the standard path integral by adding a "source term" $J(t)x(t)$ to the action. Here, $J(t)$ is an arbitrary external driving force.
+
+$$ \boxed{ Z[J] = \int \mathcal{D}x \, \exp\left\{ \frac{i}{\hbar} S[x] + i \int J(t) x(t) \, dt \right\} } $$
+
+> **Textbook reference**: Shankar, Ch. 8. Also widely covered in Zee, QFT in a Nutshell, Ch. I.3.
+
+This $Z[J]$ is the master object of Quantum Field Theory. If you know $Z[J]$, you mathematically know absolutely everything there is to know about the quantum system!
+
+::: {.callout-intuition}
+Why add $J(t)$? Think of $J(t)$ as an artificial external hand poking and prodding the quantum system at different times $t$. By observing how the system's "vacuum" (the sum over paths) reacts to this prodding (by taking functional derivatives with respect to $J$), we can deduce the internal dynamics and correlations of the particle itself. Once we have our answers, we set $J=0$ to turn the prodding off.
+:::
+
+## 7. Correlation Functions from Z[J]
+
+How do we use $Z[J]$? Suppose we want to compute the expectation value of the particle's position at time $t_1$, known as a 1-point correlation function $\langle x(t_1) \rangle$.
+
+Let's take the functional derivative of $Z[J]$ with respect to the source $J(t_1)$:
+$$ \frac{\delta Z[J]}{\delta J(t_1)} = \int \mathcal{D}x \, \frac{\delta}{\delta J(t_1)} \exp\left\{ \frac{i}{\hbar} S[x] + i \int J(t) x(t) \, dt \right\} $$
+Using the chain rule and the fact that $\frac{\delta}{\delta J(t_1)} \int J(t)x(t)dt = x(t_1)$:
+$$ \frac{\delta Z[J]}{\delta J(t_1)} = \int \mathcal{D}x \, \left( i x(t_1) \right) \exp\left\{ \frac{i}{\hbar} S[x] + i \int J(t) x(t) \, dt \right\} $$
+If we multiply by $-i$ and then set the artificial source $J=0$, the exponential just becomes the standard amplitude $e^{iS/\hbar}$:
+$$ \left. -i \frac{\delta Z[J]}{\delta J(t_1)} \right|_{J=0} = \int \mathcal{D}x \, x(t_1) e^{\frac{i}{\hbar}S[x]} $$
+To get the normalized expectation value, we must divide by $Z[0] = \int \mathcal{D}x \, e^{iS/\hbar}$:
+$$ \boxed{ \langle x(t_1) \rangle = \frac{1}{Z[0]} \left. \left( -i \frac{\delta}{\delta J(t_1)} \right) Z[J] \right|_{J=0} } $$
+
+We can extend this to find the expectation value of the product of positions at two different times, the **2-point correlation function** (or Green's function):
+$$ \langle x(t_1) x(t_2) \rangle = \frac{\int \mathcal{D}x \, x(t_1) x(t_2) e^{\frac{i}{\hbar}S[x]}}{\int \mathcal{D}x \, e^{\frac{i}{\hbar}S[x]}} $$
+This is generated by taking two functional derivatives:
+$$ \boxed{ \langle x(t_1) x(t_2) \rangle = \frac{1}{Z[0]} \left. \left( -i \frac{\delta}{\delta J(t_1)} \right) \left( -i \frac{\delta}{\delta J(t_2)} \right) Z[J] \right|_{J=0} } $$
+
+In general, an $n$-point correlation function is given by taking $n$ functional derivatives of $Z[J]$. The physical meaning of $\langle x(t_1) x(t_2) \rangle$ is the probability amplitude for a particle to propagate from $x(t_2)$ to $x(t_1)$; it characterizes how fluctuations at time $t_2$ influence the particle at time $t_1$.
+
+::: {.callout-warning}
+## 🤔 Quick Question 2
+Why is $Z[J]$ called a 'generating functional'? What exactly does it generate?
+
+::: {.callout-note collapse="true"}
+## Answer
+$Z[J]$ is called a generating functional because it generates all possible correlation functions (expectation values of products like $x(t_1)x(t_2)\dots x(t_n)$) of the quantum theory. By repeatedly applying the functional derivative $\delta/\delta J(t)$ and then setting the source $J$ to zero, we "pull down" variables into the path integral, generating the entire family of $n$-point correlation functions, exactly like a moment generating function generates statistical moments.
+:::
+:::
+
+### 🌟 Worked Example 2: The Free Particle Correlator
+**Problem:** Compute $Z[J]$ for a free particle where the action is $S_0 = \int \frac{1}{2}m\dot{x}^2 dt$ plus a source term $\int Jx dt$. Then use it to find $\langle x(t_1)x(t_2) \rangle$.
+
+**Solution:**
+We will use units where $\hbar = 1$ for simplicity. The total exponent is:
+$$ iS_{tot} = i \int \left[ \frac{1}{2}m\dot{x}^2 + J(t)x(t) \right] dt $$
+Integrating the kinetic term by parts (assuming boundary terms vanish as usual):
+$$ \int \frac{1}{2}m\dot{x}^2 dt = -\int \frac{1}{2} x(t) m\frac{d^2}{dt^2} x(t) dt $$
+Let's define the differential operator $O = -m \frac{d^2}{dt^2}$. The exponent is a quadratic form:
+$$ iS_{tot} = \frac{i}{2} \int x(t) O x(t) dt + i \int J(t)x(t) dt $$
+By "completing the square" for functional integrals (which we will rigorously prove step-by-step in Module 7), we can shift variables $x \to x + x_0$ to perform the integral. The result for the generating functional is an exponential of a quadratic in $J$:
+$$ Z[J] = Z[0] \exp\left\{ -\frac{i}{2} \int \int J(t) G(t, t') J(t') \, dt \, dt' \right\} $$
+Here, $G(t, t')$ is the Green's function, which is the inverse of our differential operator $O$:
+$$ -m \frac{d^2}{dt^2} G(t, t') = \delta(t - t') $$
+
+Now, let's extract the 2-point correlator!
+$$ \langle x(t_1) x(t_2) \rangle = \frac{1}{Z[0]} \left. (-i)^2 \frac{\delta^2 Z[J]}{\delta J(t_1) \delta J(t_2)} \right|_{J=0} $$
+Let $W[J] = -\frac{i}{2} \int \int J(t) G(t, t') J(t') dt dt'$ so that $Z[J] = Z[0] e^{W[J]}$.
+First derivative (using the chain rule and the symmetric property $G(t,t') = G(t',t)$):
+$$ \frac{\delta Z}{\delta J(t_2)} = Z[0] e^{W[J]} \frac{\delta W}{\delta J(t_2)} = Z[J] \left( -i \int G(t_2, t') J(t') dt' \right) $$
+Second derivative with respect to $J(t_1)$:
+$$ \frac{\delta^2 Z}{\delta J(t_1) \delta J(t_2)} = \frac{\delta Z}{\delta J(t_1)} \left( -i \int G(t_2, t') J(t') dt' \right) + Z[J] \left( -i G(t_2, t_1) \right) $$
+Now, evaluate at $J=0$. The first term vanishes entirely because the integral over $J$ is zero. We are left with just the second term:
+$$ \left. \frac{\delta^2 Z}{\delta J(t_1) \delta J(t_2)} \right|_{J=0} = Z[0] ( -i G(t_2, t_1) ) $$
+Plug this into the correlator formula:
+$$ \langle x(t_1) x(t_2) \rangle = \frac{1}{Z[0]} (-1) Z[0] (-i G(t_2, t_1)) = i G(t_1, t_2) $$
+This beautiful result shows that the 2-point correlation function of a free particle is exactly proportional to its Green's function!
+
+## 8. Dictionary: Ordinary Calculus vs Functional Calculus
+
+To consolidate your learning, keep this translation dictionary handy as we move deeper into the course:
+
+| Concept | Ordinary Calculus (Finite $N$) | Functional Calculus (Infinite Dim) |
+| :--- | :--- | :--- |
+| **Index / Coordinate** | Discrete index $i$ | Continuous time $t$ |
+| **Variable** | Vector $\vec{x} = \{x_1, x_2, \dots, x_N\}$ | Function $x(t)$ |
+| **Function(al)** | Function $f(\vec{x})$ | Functional $F[x(t)]$ |
+| **Summation** | Sum $\sum_i (\dots)$ | Integral $\int dt (\dots)$ |
+| **Identity Matrix** | Kronecker delta $\delta_{ij}$ | Dirac delta $\delta(t - t')$ |
+| **Derivative** | Partial derivative $\frac{\partial}{\partial x_i}$ | Functional derivative $\frac{\delta}{\delta x(t)}$ |
+| **Chain Rule** | $\frac{\partial f}{\partial y_i} = \sum_j \frac{\partial f}{\partial x_j} \frac{\partial x_j}{\partial y_i}$ | $\frac{\delta F}{\delta y(t)} = \int dt' \frac{\delta F}{\delta x(t')} \frac{\delta x(t')}{\delta y(t)}$ |
+| **Taylor Series** | $f(\vec{x}_0 + \vec{y}) = f(\vec{x}_0) + \sum_i \frac{\partial f}{\partial x_i} y_i + \dots$ | $F[x_0 + y] = F[x_0] + \int dt \frac{\delta F}{\delta x(t)} y(t) + \dots$ |
+
+::: {.checkpoint}
+**Review Checklist**
+- Can you explain the difference between a function and a functional in your own words?
+- Do you understand why integration by parts is essential when computing functional derivatives of Lagrangians with $\dot{x}$?
+- Can you write down the general formula for extracting an expectation value $\langle x(t) \rangle$ from the generating functional $Z[J]$?
+:::
+
+## Practice Problems
+
+1. **Easy:** Compute the functional derivative of $F[x] = \int_{0}^{T} x(t)^3 \, dt$ with respect to $x(t')$.
+2. **Easy:** For the functional $G[x] = \int x(t) y(t) \, dt$ where $y(t)$ is a fixed function, what is $\frac{\delta G}{\delta x(t')}$?
+3. **Medium:** Let $F[x] = \exp\left( \int x(t)^2 dt \right)$. Compute $\frac{\delta F}{\delta x(t')}$ using the functional chain rule.
+4. **Medium:** The length of a string hanging between two posts is given by the functional $L[y] = \int \sqrt{1 + y'(x)^2} dx$. Compute $\frac{\delta L}{\delta y(x)}$. Set it to zero to find the differential equation for the curve of minimum length (which you should recognize as a straight line if there are no other forces).
+5. **Hard:** Given the Lagrangian for a particle in an electromagnetic field, $L = \frac{1}{2}m\dot{x}^2 + \frac{e}{c} \dot{x} A(x) - e \phi(x)$, use functional differentiation of the action $\frac{\delta S}{\delta x(t)} = 0$ to derive the Lorentz force law. (Assume 1D for simplicity, but treat $A$ and $\phi$ as functions of $x$).
+6. **Hard:** Using the expression for $Z[J]$ from Worked Example 2, perform the functional derivatives to find the explicit form of the 4-point correlation function $\langle x(t_1) x(t_2) x(t_3) x(t_4) \rangle$ in terms of the Green's function $G(t, t')$. (This is your first glimpse of Wick's Theorem!).
+
+::: {.nav-buttons}
+[← Previous Module](05_harmonic_oscillator.qmd){.btn .btn-outline-secondary}
+[Next: Module 7 →](07_gaussian_integrals.qmd){.btn .btn-success}
+:::

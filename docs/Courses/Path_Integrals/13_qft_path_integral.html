@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aditya Kumar">
-<meta name="dcterms.date" content="2026-05-26">
-<meta name="description" content="We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="Generalizing the path integral formalism from zero-dimensional fields (QM) to four-dimensional fields (QFT).">
 
-<title>Physics Voyage - Module 5: Time Evolution</title>
+<title>Physics Voyage - Module 13: Path Integrals in Quantum Field Theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -219,30 +219,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-tdse" id="toc-sec-tdse" class="nav-link active" data-scroll-target="#sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</a></li>
-  <li><a href="#sec-energy-eigenstates" id="toc-sec-energy-eigenstates" class="nav-link" data-scroll-target="#sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</a></li>
-  <li><a href="#sec-time-operator" id="toc-sec-time-operator" class="nav-link" data-scroll-target="#sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</a></li>
-  <li><a href="#sec-superposition" id="toc-sec-superposition" class="nav-link" data-scroll-target="#sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</a>
+  <li><a href="#from-particles-to-fields" id="toc-from-particles-to-fields" class="nav-link active" data-scroll-target="#from-particles-to-fields"><span class="header-section-number">1</span> 13.1 From Particles to Fields</a></li>
+  <li><a href="#the-qft-path-integral" id="toc-the-qft-path-integral" class="nav-link" data-scroll-target="#the-qft-path-integral"><span class="header-section-number">2</span> 13.2 The QFT Path Integral</a></li>
+  <li><a href="#the-free-scalar-field" id="toc-the-free-scalar-field" class="nav-link" data-scroll-target="#the-free-scalar-field"><span class="header-section-number">3</span> 13.3 The Free Scalar Field</a></li>
+  <li><a href="#the-generating-functional-for-qft" id="toc-the-generating-functional-for-qft" class="nav-link" data-scroll-target="#the-generating-functional-for-qft"><span class="header-section-number">4</span> 13.4 The Generating Functional for QFT</a>
   <ul class="collapse">
-  <li><a href="#example-superposition-of-0rangle-and-1rangle" id="toc-example-superposition-of-0rangle-and-1rangle" class="nav-link" data-scroll-target="#example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></a></li>
+  <li><a href="#worked-example-1-deriving-the-feynman-propagator" id="toc-worked-example-1-deriving-the-feynman-propagator" class="nav-link" data-scroll-target="#worked-example-1-deriving-the-feynman-propagator"><span class="header-section-number">4.1</span> 📝 Worked Example 1: Deriving the Feynman Propagator</a></li>
   </ul></li>
-  <li><a href="#sec-ehrenfest" id="toc-sec-ehrenfest" class="nav-link" data-scroll-target="#sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</a>
+  <li><a href="#the-feynman-propagator-in-momentum-space" id="toc-the-feynman-propagator-in-momentum-space" class="nav-link" data-scroll-target="#the-feynman-propagator-in-momentum-space"><span class="header-section-number">5</span> 13.5 The Feynman Propagator in Momentum Space</a></li>
+  <li><a href="#euclidean-qft-and-statistical-mechanics" id="toc-euclidean-qft-and-statistical-mechanics" class="nav-link" data-scroll-target="#euclidean-qft-and-statistical-mechanics"><span class="header-section-number">6</span> 13.6 Euclidean QFT and Statistical Mechanics</a></li>
+  <li><a href="#interactions-and-perturbation-theory" id="toc-interactions-and-perturbation-theory" class="nav-link" data-scroll-target="#interactions-and-perturbation-theory"><span class="header-section-number">7</span> 13.7 Interactions and Perturbation Theory</a></li>
+  <li><a href="#feynman-diagrams-from-path-integrals" id="toc-feynman-diagrams-from-path-integrals" class="nav-link" data-scroll-target="#feynman-diagrams-from-path-integrals"><span class="header-section-number">8</span> 13.8 Feynman Diagrams from Path Integrals</a>
   <ul class="collapse">
-  <li><a href="#general-statement" id="toc-general-statement" class="nav-link" data-scroll-target="#general-statement"><span class="header-section-number">5.1</span> General Statement</a></li>
-  <li><a href="#ehrenfest-in-the-heisenberg-picture" id="toc-ehrenfest-in-the-heisenberg-picture" class="nav-link" data-scroll-target="#ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</a></li>
+  <li><a href="#worked-example-2-first-order-correction-to-the-two-point-function" id="toc-worked-example-2-first-order-correction-to-the-two-point-function" class="nav-link" data-scroll-target="#worked-example-2-first-order-correction-to-the-two-point-function"><span class="header-section-number">8.1</span> 📝 Worked Example 2: First-Order Correction to the Two-Point Function</a></li>
   </ul></li>
-  <li><a href="#sec-revivals" id="toc-sec-revivals" class="nav-link" data-scroll-target="#sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</a>
-  <ul class="collapse">
-  <li><a href="#when-superpositions-come-back" id="toc-when-superpositions-come-back" class="nav-link" data-scroll-target="#when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</a></li>
-  </ul></li>
-  <li><a href="#sec-heisenberg" id="toc-sec-heisenberg" class="nav-link" data-scroll-target="#sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</a></li>
-  <li><a href="#sec-wigner" id="toc-sec-wigner" class="nav-link" data-scroll-target="#sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</a>
-  <ul class="collapse">
-  <li><a href="#what-is-the-wigner-function" id="toc-what-is-the-wigner-function" class="nav-link" data-scroll-target="#what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</a></li>
-  <li><a href="#wigner-function-of-the-ground-state" id="toc-wigner-function-of-the-ground-state" class="nav-link" data-scroll-target="#wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</a></li>
-  <li><a href="#wigner-function-of-excited-states" id="toc-wigner-function-of-excited-states" class="nav-link" data-scroll-target="#wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</a></li>
-  </ul></li>
-  <li><a href="#sec-summary" id="toc-sec-summary" class="nav-link" data-scroll-target="#sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</a></li>
+  <li><a href="#summary-qm-vs-qft-dictionary" id="toc-summary-qm-vs-qft-dictionary" class="nav-link" data-scroll-target="#summary-qm-vs-qft-dictionary"><span class="header-section-number">9</span> Summary: QM vs QFT Dictionary</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">10</span> Practice Problems</a></li>
   </ul>
 </nav>
     </div>
@@ -251,14 +243,14 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
   <div class="quarto-title">
-    <h1 class="title">Module 5: Time Evolution</h1>
-        <p class="subtitle lead">Nothing is Static in Quantum Mechanics</p>
+    <h1 class="title">Module 13: Path Integrals in Quantum Field Theory</h1>
+        <p class="subtitle lead">From Particle Trajectories to Field Configurations</p>
             <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
-      We study how quantum states of the harmonic oscillator evolve in time. We analyze superposition states, derive Ehrenfest’s theorem, introduce the Wigner function for phase-space visualization, and see the quantum-classical correspondence in action.
+      Generalizing the path integral formalism from zero-dimensional fields (QM) to four-dimensional fields (QFT).
     </div>
             <div class="quarto-categories" style="margin-top: 20px;">
             <div class="quarto-category">Quantum Mechanics</div>
-            <div class="quarto-category">QHO Course</div>
+            <div class="quarto-category">Path Integrals Course</div>
           </div>
       </div>
 
@@ -387,7 +379,7 @@ window.Quarto = {
       </div>
                   <div>
         <span class="meta-heading">Published</span>
-        <span class="meta-value">May 26, 2026</span>
+        <span class="meta-value">June 21, 2026</span>
       </div>
           </div>
 
@@ -442,6 +434,7 @@ window.Quarto = {
 </header>
 
 
+{=html}
 <style>
 .callout-intuition {
   border-left: 4px solid #10b981;
@@ -471,29 +464,6 @@ window.Quarto = {
   color: #d97706;
   margin-bottom: 0.5rem;
 }
-.derivation-box {
-  border: 1.5px solid #6366f1;
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
-  background: #eef2ff;
-  margin: 1.5rem 0;
-}
-.derivation-box::before {
-  content: "✏️ Derivation";
-  display: block;
-  font-weight: 700;
-  color: #4f46e5;
-  margin-bottom: 0.5rem;
-}
-.result-box {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-  color: white;
-  border-radius: 10px;
-  padding: 1.2rem 1.5rem;
-  margin: 1.5rem 0;
-  text-align: center;
-}
-.result-box p { color: #c4b5fd; margin-bottom: 0; }
 .nav-buttons {
   display: flex;
   justify-content: space-between;
@@ -501,274 +471,256 @@ window.Quarto = {
   padding-top: 1rem;
   border-top: 1px solid #e5e7eb;
 }
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
 </style>
-<p><a href="../../Courses/QHO/04_wavefunctions.html">← Module 4</a> | <a href="../../Courses/QHO/index.html">↑ Course Index</a> | <a href="../../Courses/QHO/06_coherent_states.html">Module 6 →</a></p>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/14_applications.html">Next: Module 14 →</a></p>
+<p>Welcome to Module 13! So far in this course, we have used the path integral to describe the quantum mechanics of particles. But the true power of the path integral—the arena where it becomes the absolute standard language of modern physics—is <strong>Quantum Field Theory (QFT)</strong>.</p>
+<p>In this module, we will generalize the sum over histories from particle trajectories <span class="math inline">\(x(t)\)</span> to continuous field configurations <span class="math inline">\(\phi(x,t)\)</span>. We will see that the path integral formulation elegantly handles the infinities of fields, provides a natural origin story for Feynman diagrams, and beautifully unifies quantum field theory with statistical mechanics.</p>
 <hr>
-<section id="sec-tdse" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-tdse"><span class="header-section-number">1</span> The Time-Dependent Schrödinger Equation</h2>
-<p>Everything we’ve done so far found the <em>stationary</em> states — the energy eigenstates <span class="math inline">\(|n\rangle\)</span> that don’t change shape over time (only their phase oscillates). But a general quantum state is a <strong>superposition</strong>, and it <em>does</em> change over time.</p>
-<p>The full time-dependent Schrödinger equation (TDSE) is:</p>
-<p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|\Psi(t)\rangle = \hat{H}|\Psi(t)\rangle
-\]</span></p>
-<blockquote class="blockquote">
-<p><strong>Textbook reference</strong>: Shankar Section 4.3; Griffiths Section 2.1; Cohen-Tannoudji Vol. 1, Chapter III.</p>
-</blockquote>
-<hr>
-</section>
-<section id="sec-energy-eigenstates" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="sec-energy-eigenstates"><span class="header-section-number">2</span> Time Evolution of Energy Eigenstates</h2>
-<p>For an energy eigenstate <span class="math inline">\(|n\rangle\)</span>:</p>
-<p><span class="math display">\[
-i\hbar\frac{\partial}{\partial t}|n,t\rangle = E_n|n,t\rangle
-\]</span></p>
-<p>This integrates immediately:</p>
-<p><span class="math display">\[
-|n,t\rangle = e^{-iE_nt/\hbar}|n\rangle = e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>The <strong>only effect</strong> of time evolution on an energy eigenstate is a <strong>global phase</strong> <span class="math inline">\(e^{-i\omega(n+1/2)t}\)</span>. Global phases have no physical consequence: <span class="math inline">\(|\psi(t)|^2 = |\psi(0)|^2\)</span> for all <span class="math inline">\(t\)</span>.</p>
-<div class="callout-intuition">
-<p>This is why energy eigenstates are called <strong>stationary states</strong> — all observable quantities are time-independent in these states. The energy eigenstate doesn’t “do anything.”</p>
-<p>This doesn’t mean nothing is happening — the wavefunction is rotating in the complex plane at frequency <span class="math inline">\((n + \frac{1}{2})\omega\)</span>. But since we only measure <span class="math inline">\(|\psi|^2\)</span>, we can’t see this rotation.</p>
-</div>
-<hr>
-</section>
-<section id="sec-time-operator" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="sec-time-operator"><span class="header-section-number">3</span> The Time Evolution Operator</h2>
-<p>The formal solution to the TDSE is:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \hat{U}(t)|\Psi(0)\rangle, \quad \hat{U}(t) = e^{-i\hat{H}t/\hbar}
-\]</span></p>
-<p>For the QHO, we can write this in the Fock basis:</p>
-<p><span class="math display">\[
-\hat{U}(t) = e^{-i\omega(\hat{N}+1/2)t} = e^{-i\omega t/2}\, e^{-i\omega t\hat{N}}
-\]</span></p>
-<p>Since <span class="math inline">\(\hat{N}|n\rangle = n|n\rangle\)</span>:</p>
-<p><span class="math display">\[
-\hat{U}(t)|n\rangle = e^{-i\omega t(n+1/2)}|n\rangle
-\]</span></p>
-<p>The key identity: <span class="math inline">\(e^{-i\omega t\hat{N}}\hat{a} = \hat{a}e^{-i\omega t(\hat{N}-1)} = e^{-i\omega t}\hat{a}e^{-i\omega t\hat{N}}\)</span>, or:</p>
-<p><span class="math display">\[
-\hat{U}(t)\hat{a}\hat{U}^\dagger(t) = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p>This means the ladder operators in the <strong>Heisenberg picture</strong> rotate:</p>
-<p><span class="math display">\[
-\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}^\dagger(t) = e^{+i\omega t}\hat{a}^\dagger(0)
-\]</span></p>
-<hr>
-</section>
-<section id="sec-superposition" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="sec-superposition"><span class="header-section-number">4</span> Time Evolution of Superposition States</h2>
-<p>A general initial state is a superposition:</p>
-<p><span class="math display">\[
-|\Psi(0)\rangle = \sum_{n=0}^{\infty} c_n|n\rangle, \quad \sum_n |c_n|^2 = 1
-\]</span></p>
-<p>Time evolution:</p>
-<p><span class="math display">\[
-|\Psi(t)\rangle = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}|n\rangle
-\]</span></p>
-<p>In position space:</p>
-<p><span class="math display">\[
-\Psi(x,t) = \sum_{n=0}^{\infty} c_n e^{-i\omega(n+1/2)t}\psi_n(x)
-\]</span></p>
-<section id="example-superposition-of-0rangle-and-1rangle" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="example-superposition-of-0rangle-and-1rangle"><span class="header-section-number">4.1</span> Example: Superposition of <span class="math inline">\(|0\rangle\)</span> and <span class="math inline">\(|1\rangle\)</span></h3>
-<p>Consider: <span class="math display">\[
-|\Psi(0)\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle + |1\rangle\right)
-\]</span></p>
-<p>Time evolution: <span class="math display">\[
-|\Psi(t)\rangle = \frac{e^{-i\omega t/2}}{\sqrt{2}}\left(|0\rangle + e^{-i\omega t}|1\rangle\right)
-\]</span></p>
-<p>The expectation value of position:</p>
-<div class="derivation-box">
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\langle\Psi(t)|(\hat{a} + \hat{a}^\dagger)|\Psi(t)\rangle
-\]</span></p>
-<p>The cross terms survive: <span class="math inline">\(\langle 0|\hat{a}|1\rangle = 1\)</span>, <span class="math inline">\(\langle 1|\hat{a}^\dagger|0\rangle = 1\)</span>.</p>
-<p><span class="math display">\[
-\langle\hat{x}\rangle(t) = \frac{x_0}{\sqrt{2}}\cdot\frac{1}{2}\cdot 2\cos(\omega t) = \frac{x_0}{\sqrt{2}}\cos(\omega t)
-\]</span></p>
-</div>
-<p>The expectation value of position <strong>oscillates</strong> at frequency <span class="math inline">\(\omega\)</span> — like a classical oscillator!</p>
-<hr>
-</section>
-</section>
-<section id="sec-ehrenfest" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sec-ehrenfest"><span class="header-section-number">5</span> Ehrenfest’s Theorem</h2>
-<section id="general-statement" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="general-statement"><span class="header-section-number">5.1</span> General Statement</h3>
-<p>Ehrenfest’s theorem says that expectation values obey classical equations of motion:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{A}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{A}]\rangle + \left\langle\frac{\partial\hat{A}}{\partial t}\right\rangle
-\]</span></p>
-<p>For time-independent operators in the QHO:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{x}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{x}]\rangle = \frac{\langle\hat{p}\rangle}{m}
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dt}\langle\hat{p}\rangle = \frac{i}{\hbar}\langle[\hat{H}, \hat{p}]\rangle = -m\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>Combined: <span class="math display">\[
-\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle
-\]</span></p>
-<p>This is <strong>exactly Newton’s law</strong> for the harmonic oscillator! The center of the wavepacket <span class="math inline">\(\langle\hat{x}\rangle\)</span> oscillates like a classical particle.</p>
-<div class="result-box">
-<p><strong>Ehrenfest’s Theorem for the QHO:</strong></p>
-<p><span class="math display">\[\frac{d^2}{dt^2}\langle\hat{x}\rangle = -\omega^2\langle\hat{x}\rangle\]</span></p>
-<p>The quantum expectation value always satisfies the classical equation of motion — for <strong>any</strong> quantum state!</p>
-</div>
-</section>
-<section id="ehrenfest-in-the-heisenberg-picture" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="ehrenfest-in-the-heisenberg-picture"><span class="header-section-number">5.2</span> Ehrenfest in the Heisenberg Picture</h3>
-<p>In the Heisenberg picture, operators evolve:</p>
-<p><span class="math display">\[
-\hat{x}(t) = x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p><span class="math display">\[
-\hat{p}(t) = -m\omega\sin(\omega t)\,\hat{x}(0) + \cos(\omega t)\,\hat{p}(0)
-\]</span></p>
-<p>This is exactly the classical solution <span class="math inline">\(x(t) = x_0\cos\omega t + \frac{p_0}{m\omega}\sin\omega t\)</span> promoted to operators. The QHO Heisenberg equations are <strong>linear</strong>, which is why they have exact classical analogs.</p>
-<hr>
-</section>
-</section>
-<section id="sec-revivals" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="sec-revivals"><span class="header-section-number">6</span> Quantum Revivals</h2>
-<section id="when-superpositions-come-back" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="when-superpositions-come-back"><span class="header-section-number">6.1</span> When Superpositions Come Back</h3>
-<p>For a general superposition <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-in\omega t}|n\rangle\)</span> (dropping the common phase <span class="math inline">\(e^{-i\omega t/2}\)</span>):</p>
-<p>The state <strong>returns exactly</strong> to itself when all phases complete full rotations:</p>
-<p><span class="math display">\[
-e^{-in\omega T} = 1 \text{ for all } n \quad \Rightarrow \quad T = \frac{2\pi}{\omega}
-\]</span></p>
-<p>This is the <strong>classical period</strong> — the QHO is exactly periodic! Every state (not just energy eigenstates) returns to itself after time <span class="math inline">\(T = 2\pi/\omega\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="from-particles-to-fields" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="from-particles-to-fields"><span class="header-section-number">1</span> 13.1 From Particles to Fields</h2>
+<p>In quantum mechanics, the fundamental dynamical variable is the position of a particle as a function of time, <span class="math inline">\(x(t)\)</span>. The path integral computes the transition amplitude by summing over all possible paths <span class="math inline">\(x(t)\)</span> connecting the initial and final states.</p>
+<p>In quantum field theory, the fundamental entity is no longer a particle, but a <strong>field</strong> that permeates all of space and time. Let’s consider a simple scalar field, <span class="math inline">\(\phi(x^\mu) = \phi(t, \mathbf{x})\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-This is Special to the QHO
+Space is just a label!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For a particle in a box, the energy levels go as <span class="math inline">\(n^2\)</span>, so different Fourier components have incommensurable periods. The wavepacket does NOT return exactly after one period.</p>
-<p>The QHO is special: its equally spaced energy levels (spacing <span class="math inline">\(\hbar\omega\)</span>) mean all phase factors are integer multiples of <span class="math inline">\(e^{-i\omega t}\)</span>, guaranteeing exact periodicity.</p>
+<p>In QFT, the spatial coordinate <span class="math inline">\(\mathbf{x}\)</span> is demoted from being a dynamical operator (as it is in QM) to merely being a continuous index or label. Just as we asked “what is the position <span class="math inline">\(x\)</span> at time <span class="math inline">\(t\)</span>?” in QM, in QFT we ask “what is the field value <span class="math inline">\(\phi\)</span> at spacetime point <span class="math inline">\((t, \mathbf{x})\)</span>?”.</p>
 </div>
 </div>
-<hr>
+<p>Therefore, instead of summing over all particle trajectories <span class="math inline">\(x(t)\)</span>, the path integral in QFT instructs us to sum over all possible <strong>field configurations</strong> <span class="math inline">\(\phi(x^\mu)\)</span> over all of spacetime.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In QM, we sum over all possible paths a particle can take. In QFT, what exactly are we summing over, and why does this make the math so much harder?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We are summing over all possible <em>field configurations</em> on all of spacetime. In QM, the integration variables were the positions <span class="math inline">\(x\)</span> at each time slice <span class="math inline">\(t_i\)</span>. In QFT, the integration variables are the values of the field <span class="math inline">\(\phi\)</span> at every point in <em>space and time</em> <span class="math inline">\((t_i, \mathbf{x}_j)\)</span>. The space of fields is uncountably infinite-dimensional. Even if we regularize by putting spacetime on a finite discrete lattice, the number of integration variables is exponentially larger than in QM.</p>
+</div>
+</div>
+</div>
 </section>
-</section>
-<section id="sec-heisenberg" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="sec-heisenberg"><span class="header-section-number">7</span> The Heisenberg Picture: Operators Evolve, States Don’t</h2>
-<p>In the Heisenberg picture, the time dependence is placed on <strong>operators</strong> rather than states:</p>
-<p><span class="math display">\[
-\hat{a}_H(t) = e^{i\hat{H}t/\hbar}\,\hat{a}\,e^{-i\hat{H}t/\hbar} = e^{-i\omega t}\hat{a}
-\]</span></p>
-<p><span class="math display">\[
-\hat{a}^\dagger_H(t) = e^{+i\omega t}\hat{a}^\dagger
-\]</span></p>
-<p>The position and momentum operators: <span class="math display">\[
-\hat{x}_H(t) = \frac{x_0}{\sqrt{2}}\left(e^{-i\omega t}\hat{a} + e^{+i\omega t}\hat{a}^\dagger\right)
-\]</span> <span class="math display">\[
-= x_0\cos(\omega t)\,\hat{x}(0) + \frac{\sin(\omega t)}{m\omega}\hat{p}(0)
-\]</span></p>
-<p>This is the <strong>quantum oscillator in the Heisenberg picture</strong> — it oscillates exactly like the classical oscillator.</p>
-<hr>
-</section>
-<section id="sec-wigner" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sec-wigner"><span class="header-section-number">8</span> The Wigner Function: Phase-Space Quantum Mechanics</h2>
-<section id="what-is-the-wigner-function" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="what-is-the-wigner-function"><span class="header-section-number">8.1</span> What Is the Wigner Function?</h3>
-<p>In classical mechanics, we can define a probability distribution in phase space <span class="math inline">\(f(x, p)\)</span>. In quantum mechanics, the uncertainty principle forbids a true joint probability distribution. But we can define the <strong>Wigner function</strong>:</p>
-<p><span class="math display">\[
-W(x, p) = \frac{1}{\pi\hbar}\int_{-\infty}^{\infty} \psi^*\!\left(x + y\right)\psi\left(x - y\right) e^{2ipy/\hbar}\,dy
-\]</span></p>
-<p>Properties of <span class="math inline">\(W(x,p)\)</span>:</p>
-<ul>
-<li><strong>Real</strong>: <span class="math inline">\(W(x,p)\)</span> is always real</li>
-<li><strong>Marginals</strong>: <span class="math inline">\(\int W\,dp = |\psi(x)|^2\)</span> and <span class="math inline">\(\int W\,dx = |\phi(p)|^2\)</span></li>
-<li><strong>Not always positive</strong>: <span class="math inline">\(W\)</span> can be negative in some regions (a signature of quantum behavior)</li>
-<li><strong>Area normalization</strong>: <span class="math inline">\(\int\!\!\int W(x,p)\,dx\,dp = 1\)</span></li>
-</ul>
-</section>
-<section id="wigner-function-of-the-ground-state" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="wigner-function-of-the-ground-state"><span class="header-section-number">8.2</span> Wigner Function of the Ground State</h3>
-<p>For <span class="math inline">\(\psi_0 = (\pi x_0^2)^{-1/4}e^{-x^2/2x_0^2}\)</span>:</p>
-<p><span class="math display">\[
-W_0(x,p) = \frac{1}{\pi\hbar}\,e^{-x^2/x_0^2 - p^2 x_0^2/\hbar^2}
-\]</span></p>
-<p>This is a <strong>Gaussian</strong> in phase space — entirely positive! The ground state is the most classical-looking quantum state.</p>
-</section>
-<section id="wigner-function-of-excited-states" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="wigner-function-of-excited-states"><span class="header-section-number">8.3</span> Wigner Function of Excited States</h3>
-<p>For excited states <span class="math inline">\(|n\rangle\)</span>, the Wigner function is:</p>
-<p><span class="math display">\[
-W_n(x,p) = \frac{(-1)^n}{\pi\hbar}\,L_n\!\left(\frac{2r^2}{x_0^2}\right)\,e^{-r^2/x_0^2}
-\]</span></p>
-<p>where <span class="math inline">\(r^2 = x^2 + p^2 x_0^2/\hbar^2\)</span> and <span class="math inline">\(L_n\)</span> are Laguerre polynomials.</p>
-<p>Key feature: for <span class="math inline">\(n \geq 1\)</span>, <span class="math inline">\(W_n\)</span> takes <strong>negative values</strong> — a purely quantum signature. The negative regions appear as rings (for <span class="math inline">\(n = 1\)</span>) or more complex structures for higher <span class="math inline">\(n\)</span>.</p>
+<section id="the-qft-path-integral" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-qft-path-integral"><span class="header-section-number">2</span> 13.2 The QFT Path Integral</h2>
+<p>Let the classical action of our field theory be <span class="math inline">\(S[\phi]\)</span>, which is the spacetime integral of the Lagrangian density <span class="math inline">\(\mathcal{L}\)</span>:</p>
+<p><span class="math display">\[ S[\phi] = \int d^4x \, \mathcal{L}(\phi, \partial_\mu \phi) \]</span></p>
+<p>The fundamental postulate of the path integral formulation of QFT is that the vacuum-to-vacuum transition amplitude (or the generating functional) is given by the functional integral over all field configurations:</p>
+<p><span class="math display">\[ Z = \int \mathcal{D}\phi \, e^{i S[\phi] / \hbar} \]</span></p>
+<p>What does the measure <span class="math inline">\(\mathcal{D}\phi\)</span> mean? To make mathematical sense of it, imagine dividing four-dimensional spacetime into an incredibly fine hypercubic lattice with spacing <span class="math inline">\(\epsilon\)</span>. At each lattice site <span class="math inline">\(x_i\)</span>, the field takes a value <span class="math inline">\(\phi_i = \phi(x_i)\)</span>. The measure is then an ordinary (but infinite-dimensional) multiple integral:</p>
+<p><span class="math display">\[ \mathcal{D}\phi = \lim_{\epsilon \to 0} \prod_{i} d\phi_i \]</span></p>
 <div class="callout-intuition">
-<p>The Wigner function is the closest thing quantum mechanics has to a phase-space probability distribution. In quantum optics, measuring the Wigner function (via <strong>homodyne tomography</strong>) is a standard experimental technique. Negative values of <span class="math inline">\(W\)</span> are direct evidence of non-classical states.</p>
+<p>Imagine a huge grid of springs and masses filling all space. To perform the path integral, you must freeze time, pull every single mass to some arbitrary position, calculate the action, exponentiate it, and add it to your running total. Then you must do this for <em>every conceivable</em> arrangement of the masses, at <em>every instant</em> in time. This unimaginably vast sum incorporates the quantum interference of all possible ways the field can fluctuate.</p>
+</div>
+</section>
+<section id="the-free-scalar-field" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-free-scalar-field"><span class="header-section-number">3</span> 13.3 The Free Scalar Field</h2>
+<p>Let’s start with the simplest possible QFT: the free, massive, non-interacting real scalar field (the Klein-Gordon field). The Lagrangian density is:</p>
+<p><span class="math display">\[ \mathcal{L} = \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - \frac{1}{2}m^2 \phi^2 \]</span></p>
+<p>We can rewrite the action by integrating the kinetic term by parts (assuming the field vanishes at infinity so the boundary term is zero):</p>
+<p><span class="math display">\[ \int d^4x \, (\partial_\mu \phi)(\partial^\mu \phi) = \int d^4x \left[ \partial_\mu (\phi \partial^\mu \phi) - \phi \partial_\mu \partial^\mu \phi \right] = - \int d^4x \, \phi (\partial^2) \phi \]</span></p>
+<p>where <span class="math inline">\(\partial^2 \equiv \partial_\mu \partial^\mu = \partial_t^2 - \nabla^2\)</span> is the d’Alembertian operator. Thus, the action becomes:</p>
+<p><span class="math display">\[ S_0[\phi] = -\frac{1}{2} \int d^4x \, \phi(x) (\partial^2 + m^2) \phi(x) \]</span></p>
+<p>Notice something crucial: the action is strictly <strong>quadratic</strong> in the field <span class="math inline">\(\phi(x)\)</span>. This means the path integral <span class="math inline">\(Z = \int \mathcal{D}\phi \, e^{i S_0[\phi]}\)</span> is a generalization of a standard <strong>Gaussian integral</strong>! As we know from Module 7, Gaussian integrals are exactly solvable.</p>
+</section>
+<section id="the-generating-functional-for-qft" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="the-generating-functional-for-qft"><span class="header-section-number">4</span> 13.4 The Generating Functional for QFT</h2>
+<p>In QFT, we extract physical observables (correlation functions) by introducing an external, fictitious “source” field <span class="math inline">\(J(x)\)</span>. The source couples linearly to our field <span class="math inline">\(\phi(x)\)</span>. We define the <strong>generating functional</strong> <span class="math inline">\(Z[J]\)</span> as:</p>
+<p><span class="math display">\[ Z[J] = \int \mathcal{D}\phi \exp\left[ i \int d^4x \left( \mathcal{L} + J(x)\phi(x) \right) \right] \]</span> <em>(Setting <span class="math inline">\(\hbar = 1\)</span> from here on, as is customary in QFT).</em></p>
+<p>For the free scalar theory, the exponent is: <span class="math display">\[ i S_0[\phi] + i \int d^4x \, J(x)\phi(x) = i \int d^4x \left[ -\frac{1}{2} \phi(x) (\partial^2 + m^2) \phi(x) + J(x)\phi(x) \right] \]</span></p>
+<p>Because this exponent is quadratic in <span class="math inline">\(\phi\)</span>, we can evaluate the path integral by “completing the square.”</p>
+<section id="worked-example-1-deriving-the-feynman-propagator" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="worked-example-1-deriving-the-feynman-propagator"><span class="header-section-number">4.1</span> 📝 Worked Example 1: Deriving the Feynman Propagator</h3>
+<p><strong>Problem:</strong> Complete the square in the generating functional to evaluate <span class="math inline">\(Z[J]\)</span> for the free scalar field, and define the Feynman propagator.</p>
+<p><strong>Solution:</strong> We want to shift the integration variable <span class="math inline">\(\phi(x)\)</span> to a new variable <span class="math inline">\(\phi'(x)\)</span> such that the linear term <span class="math inline">\(J(x)\phi(x)\)</span> cancels out, exactly as we do for <span class="math inline">\(\int dx \, e^{-\frac{1}{2}ax^2 + Jx}\)</span>.</p>
+<p>Let’s define the shift as: <span class="math display">\[ \phi(x) = \phi'(x) + \int d^4y \, G_F(x-y) J(y) \]</span> where <span class="math inline">\(G_F(x-y)\)</span> is a mysterious function we will choose momentarily. The integration measure is invariant under shifts, so <span class="math inline">\(\mathcal{D}\phi = \mathcal{D}\phi'\)</span>.</p>
+<p>Substitute this into the action: <span class="math display">\[ \int d^4x \left[ -\frac{1}{2} \left( \phi' + \int G_F J \right) (\partial^2 + m^2) \left( \phi' + \int G_F J \right) + J \left( \phi' + \int G_F J \right) \right] \]</span></p>
+<p>Expanding this out, we get terms quadratic in <span class="math inline">\(\phi'\)</span>, terms quadratic in <span class="math inline">\(J\)</span>, and cross-terms. The cross-terms (linear in <span class="math inline">\(\phi'\)</span>) are: <span class="math display">\[ \int d^4x \, \phi'(x) \left[ -\frac{1}{2}(\partial^2 + m^2) \int d^4y \, G_F(x-y) J(y) - \frac{1}{2} \int d^4y \, G_F(x-y) (\partial^2 + m^2) J(y) + J(x) \right] \]</span></p>
+<p>Integrating by parts on the second term to move the operator off <span class="math inline">\(J\)</span> and onto <span class="math inline">\(G_F\)</span> reveals that the two cross terms are identical. To make the cross-terms vanish entirely, we demand: <span class="math display">\[ -(\partial^2 + m^2)_x G_F(x-y) J(y) = -J(x) \]</span></p>
+<p>Since <span class="math inline">\(J(x) = \int d^4y \, \delta^{(4)}(x-y) J(y)\)</span>, this requires that <span class="math inline">\(G_F(x-y)\)</span> is the Green’s function of the Klein-Gordon operator: <span class="math display">\[ \boxed{ (\partial^2 + m^2)_x G_F(x-y) = -\delta^{(4)}(x-y) } \]</span></p>
+<p>With the cross-terms gone, the action becomes cleanly separated into a piece depending only on <span class="math inline">\(\phi'\)</span> and a piece depending only on <span class="math inline">\(J\)</span>: <span class="math display">\[ Z[J] = \int \mathcal{D}\phi' e^{i S_0[\phi']} \exp\left[ -\frac{i}{2} \int d^4x d^4y \, J(x) G_F(x-y) J(y) \right] \]</span></p>
+<p>The integral over <span class="math inline">\(\phi'\)</span> is just the vacuum bubble <span class="math inline">\(Z[0]\)</span>. Therefore: <span class="math display">\[ \boxed{ Z_0[J] = Z_0[0] \exp\left[ -\frac{1}{2} \int d^4x d^4y \, J(x) \big(-iG_F(x-y)\big) J(y) \right] } \]</span> We have successfully evaluated the free field path integral! The function <span class="math inline">\(G_F(x-y)\)</span> is the <strong>Feynman propagator</strong>, representing the amplitude for a particle to propagate from <span class="math inline">\(y\)</span> to <span class="math inline">\(x\)</span>.</p>
+</section>
+</section>
+<section id="the-feynman-propagator-in-momentum-space" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-feynman-propagator-in-momentum-space"><span class="header-section-number">5</span> 13.5 The Feynman Propagator in Momentum Space</h2>
+<p>In Worked Example 1, we defined <span class="math inline">\(G_F(x-y)\)</span> via the differential equation <span class="math inline">\((\partial^2 + m^2)G_F(x) = -\delta^{(4)}(x)\)</span>. It is much easier to solve this in momentum space using Fourier transforms:</p>
+<p><span class="math display">\[ G_F(x) = \int \frac{d^4p}{(2\pi)^4} \, e^{-ip \cdot x} \tilde{G}_F(p) \]</span> <span class="math display">\[ \delta^{(4)}(x) = \int \frac{d^4p}{(2\pi)^4} \, e^{-ip \cdot x} \]</span></p>
+<p>Plugging these in, the derivative <span class="math inline">\(\partial_\mu\)</span> pulls down a factor of <span class="math inline">\(-ip_\mu\)</span>. So <span class="math inline">\(\partial^2 \to (-ip)^2 = -p^2\)</span>. <span class="math display">\[ (-p^2 + m^2) \tilde{G}_F(p) = -1 \implies \tilde{G}_F(p) = \frac{1}{p^2 - m^2} \]</span></p>
+<p>There’s a subtle but massive problem here: there are poles when <span class="math inline">\(p^2 = m^2\)</span> (on-shell particles). How do we integrate past these poles? We recall that for the highly oscillatory path integral <span class="math inline">\(\int \mathcal{D}\phi \, e^{iS}\)</span> to be well-defined, we need a small damping factor. We add a tiny imaginary piece <span class="math inline">\(+i\epsilon\phi^2/2\)</span> to the action, which effectively changes <span class="math inline">\(m^2 \to m^2 - i\epsilon\)</span>. This translates to shifting the poles off the real axis, giving the famous momentum-space Feynman propagator:</p>
+<p><span class="math display">\[ \boxed{ \tilde{G}_F(p) = \frac{i}{p^2 - m^2 + i\epsilon} } \]</span> &gt; <strong>Textbook reference</strong>: Peskin &amp; Schroeder, Ch. 9.2.</p>
+</section>
+<section id="euclidean-qft-and-statistical-mechanics" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="euclidean-qft-and-statistical-mechanics"><span class="header-section-number">6</span> 13.6 Euclidean QFT and Statistical Mechanics</h2>
+<p>The <span class="math inline">\(i\epsilon\)</span> prescription isn’t the only way to make the path integral converge. We can perform a <strong>Wick rotation</strong>, mapping real time <span class="math inline">\(t\)</span> to imaginary time <span class="math inline">\(\tau\)</span> via <span class="math inline">\(t = -i\tau\)</span>.</p>
+<p>In this Euclidean space, the metric signature changes from <span class="math inline">\((+,-,-,-)\)</span> to <span class="math inline">\((+,+,+,+)\)</span>. The action becomes purely imaginary: <span class="math inline">\(iS[\phi] \to -S_E[\phi]\)</span>, where <span class="math inline">\(S_E\)</span> is the Euclidean action: <span class="math display">\[ S_E[\phi] = \int d^4x_E \left[ \frac{1}{2}(\partial_\mu \phi)^2 + \frac{1}{2}m^2 \phi^2 \right] \]</span> <em>(Note: no minus signs in the kinetic term anymore!)</em></p>
+<p>The path integral becomes a strictly damped exponential: <span class="math display">\[ Z_E = \int \mathcal{D}\phi \, e^{-S_E[\phi]} \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Grand Unification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look closely at the Euclidean path integral. It is mathematically identical to the classical partition function in statistical mechanics: <span class="math display">\[ Z_{stat} = \sum_{\text{states}} e^{-E / k_B T} \]</span> Here, <span class="math inline">\(\hbar\)</span> plays the role of temperature <span class="math inline">\(k_B T\)</span>, and the Euclidean action <span class="math inline">\(S_E\)</span> plays the role of the Energy. Quantum fluctuations of fields in 4D Minkowski spacetime are mathematically equivalent to thermal fluctuations of fields in 4D Euclidean space. This profound duality forms the bedrock of modern condensed matter physics and Lattice QCD.</p>
+</div>
+</div>
+</section>
+<section id="interactions-and-perturbation-theory" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="interactions-and-perturbation-theory"><span class="header-section-number">7</span> 13.7 Interactions and Perturbation Theory</h2>
+<p>Free fields are boring—they just propagate forever. The real world has interactions. Let’s add a self-interaction term to our Lagrangian, such as a <span class="math inline">\(\phi^4\)</span> interaction:</p>
+<p><span class="math display">\[ \mathcal{L} = \mathcal{L}_0 + \mathcal{L}_{int} = \mathcal{L}_0 - \frac{\lambda}{4!} \phi^4 \]</span></p>
+<p>The full path integral is now: <span class="math display">\[ Z[J] = \int \mathcal{D}\phi \, \exp\left[ i \int d^4x \left( \mathcal{L}_0 - \frac{\lambda}{4!}\phi^4 + J\phi \right) \right] \]</span></p>
+<p>This integral is no longer Gaussian. It cannot be evaluated exactly. However, if <span class="math inline">\(\lambda\)</span> is small, we can treat the interaction as a perturbation. We pull the interaction term out of the integral by replacing <span class="math inline">\(\phi(x)\)</span> with a functional derivative with respect to the source <span class="math inline">\(J(x)\)</span>:</p>
+<p><span class="math display">\[ \phi(x) \leftrightarrow -i \frac{\delta}{\delta J(x)} \]</span></p>
+<p>We can then pull the entire interaction exponent outside the integral: <span class="math display">\[ Z[J] = \exp\left[ -i \frac{\lambda}{4!} \int d^4x \left(-i \frac{\delta}{\delta J(x)}\right)^4 \right] Z_0[J] \]</span></p>
+<p>We then Taylor expand the exponential. Each term in the Taylor expansion will involve taking derivatives of the free-field generating functional <span class="math inline">\(Z_0[J]\)</span>.</p>
+</section>
+<section id="feynman-diagrams-from-path-integrals" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="feynman-diagrams-from-path-integrals"><span class="header-section-number">8</span> 13.8 Feynman Diagrams from Path Integrals</h2>
+<p>When we carry out this perturbative expansion and compute correlation functions (like the two-point function <span class="math inline">\(\langle \Omega | T\{\phi(x)\phi(y)\} | \Omega \rangle\)</span>), we generate a mess of terms involving integrals over the Feynman propagator.</p>
+<p>A beautiful realization occurs: we can map every mathematical term in the expansion to a picture. - Every derivative hitting a <span class="math inline">\(J\)</span> pulls down a propagator <span class="math inline">\(G_F\)</span> (represented as a <strong>line</strong>). - Every interaction point <span class="math inline">\(x\)</span> brings down a factor of <span class="math inline">\(-i\lambda\)</span> and is integrated over all spacetime (represented as a <strong>vertex</strong>). - The integration over spacetime points naturally yields momentum-conserving delta functions at each vertex.</p>
+<p>This proves that <strong>Feynman diagrams are not heuristic guesses or ad-hoc rules</strong>. They are the rigorous graphical bookkeeping method for the Taylor expansion of the path integral!</p>
+<section id="worked-example-2-first-order-correction-to-the-two-point-function" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="worked-example-2-first-order-correction-to-the-two-point-function"><span class="header-section-number">8.1</span> 📝 Worked Example 2: First-Order Correction to the Two-Point Function</h3>
+<p><strong>Problem:</strong> Using the path integral formulation, write down the <span class="math inline">\(O(\lambda)\)</span> correction to the two-point correlation function in <span class="math inline">\(\phi^4\)</span> theory.</p>
+<p><strong>Solution:</strong> The unnormalized two-point function is given by taking two functional derivatives of <span class="math inline">\(Z[J]\)</span> and setting <span class="math inline">\(J=0\)</span>: <span class="math display">\[ \langle \phi(x_1)\phi(x_2) \rangle = \left. \frac{(-i)^2 \delta^2 Z[J]}{\delta J(x_1) \delta J(x_2)} \right|_{J=0} \]</span></p>
+<p>Expanding <span class="math inline">\(Z[J]\)</span> to first order in <span class="math inline">\(\lambda\)</span>: <span class="math display">\[ Z[J] \approx \left[ 1 - i \frac{\lambda}{4!} \int d^4z \left(-i \frac{\delta}{\delta J(z)}\right)^4 \right] Z_0[J] \]</span></p>
+<p>The <span class="math inline">\(O(\lambda)\)</span> correction to the correlator requires evaluating: <span class="math display">\[ \Delta^{(1)} \langle \phi(x_1)\phi(x_2) \rangle = -i \frac{\lambda}{4!} \int d^4z \left. \frac{\delta^2}{\delta J(x_1) \delta J(x_2)} \frac{\delta^4}{\delta J(z)^4} Z_0[J] \right|_{J=0} \]</span></p>
+<p>When taking these six derivatives of the Gaussian exponential in <span class="math inline">\(Z_0[J]\)</span>, we must pair up the derivatives in all possible combinations (this is the path integral derivation of <strong>Wick’s Theorem</strong>). One non-zero contraction pairs <span class="math inline">\(x_1\)</span> with <span class="math inline">\(z\)</span>, <span class="math inline">\(x_2\)</span> with <span class="math inline">\(z\)</span>, and pairs the remaining two <span class="math inline">\(z\)</span>’s together. This gives: <span class="math display">\[ \Delta^{(1)} = \frac{-i\lambda}{2} \int d^4z \, G_F(x_1 - z) G_F(z - x_2) G_F(z - z) \]</span></p>
+<p>Graphically, this is a particle traveling from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(z\)</span>, interacting with a loop that starts and ends at <span class="math inline">\(z\)</span>, and then traveling from <span class="math inline">\(z\)</span> to <span class="math inline">\(x_2\)</span>. This is the famous “tadpole” diagram!</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Where do “virtual particles” appear in the path integral formalism?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>They don’t! The path integral only talks about continuous classical fields <span class="math inline">\(\phi(x)\)</span>. “Virtual particles” are just a picturesque, heuristic name given to the internal lines in Feynman diagrams (<span class="math inline">\(G_F\)</span>). These internal lines are purely mathematical artifacts of Taylor-expanding the non-Gaussian part of the path integral. The path integral shows us that fields are fundamental, while particles (especially virtual ones) are just a language we use to describe perturbative expansions.</p>
+</div>
+</div>
 </div>
 <hr>
 </section>
 </section>
-<section id="sec-summary" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="sec-summary"><span class="header-section-number">9</span> Time Evolution of Expectation Values: Summary</h2>
-<p>For a general state <span class="math inline">\(|\Psi(t)\rangle = \sum_n c_n e^{-i\omega(n+1/2)t}|n\rangle\)</span>:</p>
+<section id="summary-qm-vs-qft-dictionary" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="summary-qm-vs-qft-dictionary"><span class="header-section-number">9</span> Summary: QM vs QFT Dictionary</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>Time dependence</th>
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Quantum Mechanics</th>
+<th style="text-align: left;">Quantum Field Theory</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span></td>
+<td style="text-align: left;"><strong>Dynamical Variable</strong></td>
+<td style="text-align: left;">Position <span class="math inline">\(x(t)\)</span></td>
+<td style="text-align: left;">Field <span class="math inline">\(\phi(x,t)\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\langle\hat{p}\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(\omega\)</span>, <span class="math inline">\(90°\)</span> out of phase</td>
+<td style="text-align: left;"><strong>Index / Label</strong></td>
+<td style="text-align: left;">Time <span class="math inline">\(t\)</span></td>
+<td style="text-align: left;">Spacetime <span class="math inline">\(x^\mu = (t, \mathbf{x})\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{x}^2\rangle(t)\)</span></td>
-<td>Oscillates at <span class="math inline">\(2\omega\)</span> and constant</td>
+<td style="text-align: left;"><strong>Path Integral Sums Over</strong></td>
+<td style="text-align: left;">All trajectories <span class="math inline">\(x(t)\)</span></td>
+<td style="text-align: left;">All field configs <span class="math inline">\(\phi(x^\mu)\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\langle\hat{H}\rangle\)</span></td>
-<td>Constant (energy conservation)</td>
+<td style="text-align: left;"><strong>Action <span class="math inline">\(S\)</span></strong></td>
+<td style="text-align: left;"><span class="math inline">\(\int dt \left[ \frac{1}{2}m\dot{x}^2 - V(x) \right]\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\int d^4x \left[ \frac{1}{2}(\partial_\mu\phi)^2 - V(\phi) \right]\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\langle\hat{N}\rangle\)</span></td>
-<td>Constant</td>
+<td style="text-align: left;"><strong>Source Term</strong></td>
+<td style="text-align: left;"><span class="math inline">\(J(t) x(t)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(J(x^\mu) \phi(x^\mu)\)</span></td>
 </tr>
 <tr class="even">
-<td>Period of full return</td>
-<td><span class="math inline">\(T = 2\pi/\omega\)</span></td>
+<td style="text-align: left;"><strong>Correlation Function</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\langle x(t_1) x(t_2) \rangle\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\langle \phi(x_1) \phi(x_2) \rangle\)</span></td>
 </tr>
 </tbody>
 </table>
+<hr>
 <div class="checkpoint">
-<p><strong>Before moving on, make sure you can:</strong></p>
-<ol type="1">
-<li>Write the time evolution of an energy eigenstate <span class="math inline">\(|n\rangle\)</span>.</li>
-<li>Prove that <span class="math inline">\(\langle\hat{x}\rangle(t)\)</span> oscillates classically for any state.</li>
-<li>State Ehrenfest’s theorem for the QHO and verify it gives Newton’s law.</li>
-<li>Explain why the QHO state returns exactly after <span class="math inline">\(T = 2\pi/\omega\)</span>.</li>
-<li>Define the Wigner function and state its key properties.</li>
-<li>Why can the Wigner function be negative? What does this mean physically?</li>
-</ol>
-<p><strong>Advanced</strong>: Compute the Wigner function for <span class="math inline">\(|1\rangle\)</span> and show it has negative values.</p>
+<p>Before moving on to the practice problems, ensure you understand: 1. Why the path integral in QFT requires summing over infinite-dimensional field configurations. 2. Why a quadratic action leads to an exact Gaussian integral and gives the free theory. 3. How introducing a source <span class="math inline">\(J(x)\)</span> allows us to “pull down” field values. 4. How interactions force us to use Taylor expansions, naturally birthing Feynman diagrams.</p>
 </div>
 <hr>
+</section>
+<section id="practice-problems" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="practice-problems"><span class="header-section-number">10</span> Practice Problems</h2>
+<ol type="1">
+<li><strong>(Easy)</strong> Write down the Lagrangian density for a <em>complex</em> free scalar field <span class="math inline">\(\phi\)</span> and <span class="math inline">\(\phi^*\)</span>. Identify the differential operator matrix that dictates the Gaussian path integral for this theory.</li>
+<li><strong>(Easy)</strong> The generating functional for the free scalar field is proportional to <span class="math inline">\(\exp[-\frac{1}{2}\int J G_F J]\)</span>. Using the functional derivative <span class="math inline">\(\phi(x) = -i \delta / \delta J(x)\)</span>, explicitly compute the 2-point function <span class="math inline">\(\langle 0 | T \phi(x_1)\phi(x_2) | 0 \rangle\)</span> and verify it equals <span class="math inline">\(G_F(x_1-x_2)\)</span>.</li>
+<li><strong>(Medium)</strong> The Dirac delta function in momentum space is <span class="math inline">\((2\pi)^4\delta^{(4)}(p) = \int d^4x e^{ip\cdot x}\)</span>. Use this to show that the coordinate-space integral <span class="math inline">\(\int d^4z \, G_F(x_1-z)G_F(z-x_2)\)</span> translates in momentum space to a single propagator squared, <span class="math inline">\(\tilde{G}_F(p)^2\)</span>.</li>
+<li><strong>(Hard)</strong> Consider a QFT with interaction <span class="math inline">\(\mathcal{L}_{int} = -\frac{g}{3!} \phi^3\)</span>. Using the functional derivative method, compute the <span class="math inline">\(O(g^2)\)</span> correction to the two-point function. Draw the corresponding Feynman diagrams.</li>
+<li><strong>(Hard)</strong> Perform a Wick rotation on the free scalar field path integral. Show step-by-step how the Minkowski action <span class="math inline">\(i\int d^4x [\frac{1}{2}(\partial_t\phi)^2 - \frac{1}{2}(\nabla\phi)^2 - \frac{1}{2}m^2\phi^2]\)</span> transforms into the exponentially damped Euclidean action <span class="math inline">\(-S_E\)</span>.</li>
+</ol>
 <div class="nav-buttons">
-<p><a href="../../Courses/QHO/04_wavefunctions.html" class="btn btn-outline-secondary">← Module 4: Wavefunctions</a> <a href="../../Courses/QHO/06_coherent_states.html" class="btn btn-success">Next: Module 6 — Coherent States →</a></p>
+<p><a href="../../Courses/Path_Integrals/12_statistical_mechanics.html" class="btn btn-outline-secondary">← Previous: Module 12</a> <a href="../../Courses/Path_Integrals/14_applications.html" class="btn btn-success">Next: Module 14 →</a></p>
 </div>
 
 

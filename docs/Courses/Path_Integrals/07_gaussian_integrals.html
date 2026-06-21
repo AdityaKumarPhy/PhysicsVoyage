@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-06-21">
+<meta name="description" content="Master the mathematical tools to exactly evaluate path integrals for quadratic actions using functional determinants, zeta-function regularization, and the Gel’fand-Yaglom method.">
+
+<title>Physics Voyage - Module 7: Gaussian Integrals &amp; Functional Determinants</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed"><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">Your Story</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#mission">
+ <span class="dropdown-text">Mission</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#team-members">
+ <span class="dropdown-text">Team Members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contributors">
+ <span class="dropdown-text">Contributors</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#finite-dimensional-gaussian-integrals" id="toc-finite-dimensional-gaussian-integrals" class="nav-link" data-scroll-target="#finite-dimensional-gaussian-integrals"><span class="header-section-number">2</span> 1. Finite-Dimensional Gaussian Integrals</a>
+  <ul class="collapse">
+  <li><a href="#the-one-dimensional-gaussian" id="toc-the-one-dimensional-gaussian" class="nav-link" data-scroll-target="#the-one-dimensional-gaussian"><span class="header-section-number">2.1</span> 1.1 The One-Dimensional Gaussian</a></li>
+  <li><a href="#the-n-dimensional-real-gaussian" id="toc-the-n-dimensional-real-gaussian" class="nav-link" data-scroll-target="#the-n-dimensional-real-gaussian"><span class="header-section-number">2.2</span> 1.2 The <span class="math inline">\(n\)</span>-Dimensional Real Gaussian</a></li>
+  <li><a href="#complex-gaussian-integrals" id="toc-complex-gaussian-integrals" class="nav-link" data-scroll-target="#complex-gaussian-integrals"><span class="header-section-number">2.3</span> 1.3 Complex Gaussian Integrals</a></li>
+  <li><a href="#gaussian-with-imaginary-exponent" id="toc-gaussian-with-imaginary-exponent" class="nav-link" data-scroll-target="#gaussian-with-imaginary-exponent"><span class="header-section-number">2.4</span> 1.4 Gaussian with Imaginary Exponent</a></li>
+  </ul></li>
+  <li><a href="#infinite-dimensions-gaussian-path-integrals" id="toc-infinite-dimensions-gaussian-path-integrals" class="nav-link" data-scroll-target="#infinite-dimensions-gaussian-path-integrals"><span class="header-section-number">3</span> 2. Infinite Dimensions: Gaussian Path Integrals</a>
+  <ul class="collapse">
+  <li><a href="#the-general-gaussian-path-integral" id="toc-the-general-gaussian-path-integral" class="nav-link" data-scroll-target="#the-general-gaussian-path-integral"><span class="header-section-number">3.1</span> 2.1 The General Gaussian Path Integral</a></li>
+  <li><a href="#computing-functional-determinants-eigenvalue-method" id="toc-computing-functional-determinants-eigenvalue-method" class="nav-link" data-scroll-target="#computing-functional-determinants-eigenvalue-method"><span class="header-section-number">3.2</span> 2.2 Computing Functional Determinants: Eigenvalue Method</a></li>
+  </ul></li>
+  <li><a href="#computing-functional-determinants" id="toc-computing-functional-determinants" class="nav-link" data-scroll-target="#computing-functional-determinants"><span class="header-section-number">4</span> 3. Computing Functional Determinants</a>
+  <ul class="collapse">
+  <li><a href="#example-det-d²dt²-with-dirichlet-bcs" id="toc-example-det-d²dt²-with-dirichlet-bcs" class="nav-link" data-scroll-target="#example-det-d²dt²-with-dirichlet-bcs"><span class="header-section-number">4.1</span> 3.1 Example: det(-d²/dt²) with Dirichlet BCs</a></li>
+  <li><a href="#example-det-d²dt²---ω²-with-dirichlet-bcs" id="toc-example-det-d²dt²---ω²-with-dirichlet-bcs" class="nav-link" data-scroll-target="#example-det-d²dt²---ω²-with-dirichlet-bcs"><span class="header-section-number">4.2</span> 3.2 Example: det(-d²/dt² - ω²) with Dirichlet BCs</a></li>
+  <li><a href="#zeta-function-regularization" id="toc-zeta-function-regularization" class="nav-link" data-scroll-target="#zeta-function-regularization"><span class="header-section-number">4.3</span> 3.3 Zeta-Function Regularization</a></li>
+  </ul></li>
+  <li><a href="#advanced-evaluation-techniques" id="toc-advanced-evaluation-techniques" class="nav-link" data-scroll-target="#advanced-evaluation-techniques"><span class="header-section-number">5</span> 4. Advanced Evaluation Techniques</a>
+  <ul class="collapse">
+  <li><a href="#the-gelfand-yaglom-method" id="toc-the-gelfand-yaglom-method" class="nav-link" data-scroll-target="#the-gelfand-yaglom-method"><span class="header-section-number">5.1</span> 4.1 The Gel’fand-Yaglom Method</a></li>
+  <li><a href="#the-van-vleck-morette-formula" id="toc-the-van-vleck-morette-formula" class="nav-link" data-scroll-target="#the-van-vleck-morette-formula"><span class="header-section-number">5.2</span> 4.2 The Van Vleck-Morette Formula</a></li>
+  </ul></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">6</span> 5. Worked Examples</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-1-full-computation-of-the-ho-propagator-prefactor" id="toc-worked-example-1-full-computation-of-the-ho-propagator-prefactor" class="nav-link" data-scroll-target="#worked-example-1-full-computation-of-the-ho-propagator-prefactor"><span class="header-section-number">6.1</span> Worked Example 1: Full computation of the HO Propagator Prefactor</a></li>
+  <li><a href="#worked-example-2-using-gelfand-yaglom-for-the-harmonic-oscillator" id="toc-worked-example-2-using-gelfand-yaglom-for-the-harmonic-oscillator" class="nav-link" data-scroll-target="#worked-example-2-using-gelfand-yaglom-for-the-harmonic-oscillator"><span class="header-section-number">6.2</span> Worked Example 2: Using Gel’fand-Yaglom for the Harmonic Oscillator</a></li>
+  </ul></li>
+  <li><a href="#comprehensive-gaussian-integral-cheat-sheet" id="toc-comprehensive-gaussian-integral-cheat-sheet" class="nav-link" data-scroll-target="#comprehensive-gaussian-integral-cheat-sheet"><span class="header-section-number">7</span> 6. Comprehensive Gaussian Integral Cheat Sheet</a></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems"><span class="header-section-number">8</span> 7. Practice Problems</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 7: Gaussian Integrals &amp; Functional Determinants</h1>
+        <p class="subtitle lead">The Computational Workhorse of Path Integrals</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      Master the mathematical tools to exactly evaluate path integrals for quadratic actions using functional determinants, zeta-function regularization, and the Gel’fand-Yaglom method.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Quantum Mechanics</div>
+            <div class="quarto-category">Path Integrals Course</div>
+          </div>
+      </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">June 21, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+{=html}
+<style>
+.callout-intuition {
+  border-left: 4px solid #10b981;
+  background: #ecfdf511;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.callout-intuition::before {
+  content: "💡 Physical Intuition";
+  display: block;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 0.5rem;
+}
+.checkpoint {
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem 1.4rem;
+  background: #fffbeb;
+  margin: 1.5rem 0;
+}
+.checkpoint::before {
+  content: "🎯 Checkpoint";
+  display: block;
+  font-weight: 700;
+  color: #d97706;
+  margin-bottom: 0.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.book-ref {
+  background: #0284c7;
+  color: white !important;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+</style>
+<p>{/html}</p>
+<p><a href="../../Courses/Path_Integrals/index.html">← Back to Course</a> | <a href="../../Courses/Path_Integrals/08_classical_limit.html">Next: Module 8 →</a></p>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In previous modules, we discovered that computing a path integral boils down to summing over all possible paths <span class="math inline">\(x(t)\)</span> weighted by <span class="math inline">\(e^{iS[x]/\hbar}\)</span>. But how do we <em>actually evaluate</em> this infinite-dimensional sum? It turns out that there is essentially only one class of integrals we can compute exactly in closed form: <strong>Gaussian integrals</strong>.</p>
+<p>Remarkably, this isn’t a severe limitation. For the free particle and the harmonic oscillator, the action is exactly quadratic, making their path integrals perfectly Gaussian. More profoundly, in any system, the path integral near the classical trajectory can be approximated by a Gaussian via Taylor expansion. Gaussian integrals are the universal engine driving calculations in Quantum Mechanics, Quantum Field Theory, and Statistical Mechanics. Let’s build this engine from the ground up.</p>
+<hr>
+</section>
+<section id="finite-dimensional-gaussian-integrals" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 1. Finite-Dimensional Gaussian Integrals</h1>
+<p>Before tackling infinite-dimensional path integrals, we must absolutely master finite-dimensional Gaussian integrals. We will never skip derivation steps here; understanding the finite-dimensional mechanics makes the infinite-dimensional leap straightforward.</p>
+<section id="the-one-dimensional-gaussian" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="the-one-dimensional-gaussian"><span class="header-section-number">2.1</span> 1.1 The One-Dimensional Gaussian</h2>
+<p>The fundamental building block is the 1D Gaussian integral. For <span class="math inline">\(a &gt; 0\)</span>, we want to evaluate: <span class="math display">\[ I = \int_{-\infty}^{\infty} e^{-ax^2} dx \]</span></p>
+<p>To evaluate this exactly, we use the famous “polar coordinates trick.” We square the integral, writing the second copy with a dummy variable <span class="math inline">\(y\)</span>: <span class="math display">\[ I^2 = \left( \int_{-\infty}^{\infty} e^{-ax^2} dx \right) \left( \int_{-\infty}^{\infty} e^{-ay^2} dy \right) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-a(x^2 + y^2)} dx\, dy \]</span></p>
+<p>Now, transform to polar coordinates (<span class="math inline">\(x = r\cos\theta, y = r\sin\theta\)</span>), where the area element becomes <span class="math inline">\(dx\, dy = r\, dr\, d\theta\)</span>, and <span class="math inline">\(x^2 + y^2 = r^2\)</span>: <span class="math display">\[ I^2 = \int_0^{2\pi} d\theta \int_0^\infty e^{-ar^2} r\, dr \]</span></p>
+<p>The angular integral evaluates simply to <span class="math inline">\(2\pi\)</span>. The radial integral is easily done via a substitution <span class="math inline">\(u = ar^2\)</span>, so <span class="math inline">\(du = 2ar\, dr\)</span>, meaning <span class="math inline">\(r\, dr = \frac{du}{2a}\)</span>: <span class="math display">\[ I^2 = 2\pi \int_0^\infty e^{-u} \frac{du}{2a} = \frac{\pi}{a} \left[ -e^{-u} \right]_0^\infty = \frac{\pi}{a} (0 - (-1)) = \frac{\pi}{a} \]</span></p>
+<p>Taking the square root, we get our most important result: <span class="math display">\[ \boxed{ \int_{-\infty}^{\infty} e^{-ax^2} dx = \sqrt{\frac{\pi}{a}} } \]</span></p>
+<p><strong>Adding a Linear Term:</strong> What if our exponent has a linear term? Consider <span class="math inline">\(\int e^{-ax^2 + bx} dx\)</span>. We solve this by <strong>completing the square</strong> in the exponent: <span class="math display">\[ -ax^2 + bx = -a\left(x^2 - \frac{b}{a}x\right) = -a\left(x - \frac{b}{2a}\right)^2 + \frac{b^2}{4a} \]</span></p>
+<p>Substitute this back into the integral: <span class="math display">\[ \int_{-\infty}^{\infty} e^{-ax^2 + bx} dx = e^{b^2/(4a)} \int_{-\infty}^{\infty} e^{-a\left(x - \frac{b}{2a}\right)^2} dx \]</span></p>
+<p>We make a simple shift of variables <span class="math inline">\(y = x - \frac{b}{2a}\)</span> (where <span class="math inline">\(dy = dx\)</span>). The limits of integration remain unchanged. The integral evaluates exactly to our standard result: <span class="math display">\[ \boxed{ \int_{-\infty}^{\infty} e^{-ax^2 + bx} dx = \sqrt{\frac{\pi}{a}} \exp\left(\frac{b^2}{4a}\right) } \]</span></p>
+</section>
+<section id="the-n-dimensional-real-gaussian" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-n-dimensional-real-gaussian"><span class="header-section-number">2.2</span> 1.2 The <span class="math inline">\(n\)</span>-Dimensional Real Gaussian</h2>
+<p>Now, let’s generalize to <span class="math inline">\(n\)</span> dimensions. Consider an <span class="math inline">\(n\)</span>-component vector <span class="math inline">\(x\)</span> and a real, symmetric <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(A\)</span>. The generalized Gaussian integral with a “source” vector <span class="math inline">\(J\)</span> is: <span class="math display">\[ Z_n(J) = \int d^n x \exp\left(-\frac{1}{2} x^T A x + J^T x\right) \]</span></p>
+<p>For this integral to converge, the matrix <span class="math inline">\(A\)</span> must be <strong>positive definite</strong> (all its eigenvalues must be strictly positive).</p>
+<p>First, let’s look at the case where <span class="math inline">\(J = 0\)</span>. Since <span class="math inline">\(A\)</span> is real and symmetric, the spectral theorem guarantees we can diagonalize it with an orthogonal matrix <span class="math inline">\(O\)</span> (where <span class="math inline">\(O^T O = \mathbb{I}\)</span> and <span class="math inline">\(\det O = 1\)</span>): <span class="math display">\[ A = O D O^T \]</span> where <span class="math inline">\(D = \text{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)\)</span> contains the positive eigenvalues of <span class="math inline">\(A\)</span>.</p>
+<p>Let’s change our integration variables from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span> such that <span class="math inline">\(x = O y\)</span>. The measure transforms via the Jacobian: <span class="math inline">\(d^n x = |\det O| d^n y = d^n y\)</span>. The quadratic form simplifies: <span class="math inline">\(x^T A x = (Oy)^T A (Oy) = y^T (O^T A O) y = y^T D y = \sum_{i=1}^n \lambda_i y_i^2\)</span>.</p>
+<p>The <span class="math inline">\(n\)</span>-dimensional integral neatly factorizes into <span class="math inline">\(n\)</span> independent 1D integrals: <span class="math display">\[ Z_n(0) = \int d^n y \exp\left(-\frac{1}{2} \sum_{i=1}^n \lambda_i y_i^2\right) = \prod_{i=1}^n \left( \int_{-\infty}^{\infty} dy_i e^{-\frac{1}{2} \lambda_i y_i^2} \right) \]</span></p>
+<p>Using our 1D result (with <span class="math inline">\(a = \lambda_i / 2\)</span>): <span class="math display">\[ Z_n(0) = \prod_{i=1}^n \sqrt{\frac{2\pi}{\lambda_i}} = \frac{(2\pi)^{n/2}}{\sqrt{\prod_{i=1}^n \lambda_i}} \]</span></p>
+<p>Since the determinant of a matrix is the product of its eigenvalues (<span class="math inline">\(\det A = \prod_{i=1}^n \lambda_i\)</span>), we arrive at a beautiful result: <span class="math display">\[ \int d^n x \exp\left(-\frac{1}{2} x^T A x\right) = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} \]</span></p>
+<p>To include the source term <span class="math inline">\(J\)</span>, we complete the square in <span class="math inline">\(n\)</span> dimensions, generalizing our 1D trick. <span class="math display">\[ -\frac{1}{2} x^T A x + J^T x = -\frac{1}{2} (x - A^{-1} J)^T A (x - A^{-1} J) + \frac{1}{2} J^T A^{-1} J \]</span> By shifting variables <span class="math inline">\(y = x - A^{-1} J\)</span>, the integral evaluating the first term yields the non-source result, giving us the full generalized formula: <span class="math display">\[ \boxed{ \int d^n x \exp\left(-\frac{1}{2} x^T A x + J^T x\right) = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} \exp\left(\frac{1}{2} J^T A^{-1} J\right) } \]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question 1: The Ubiquity of Gaussians
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why do Gaussian integrals appear everywhere in physics, especially in path integrals?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Because the path integral for any linear or quadratic system (like free particles, harmonic oscillators, or free quantum fields) is exactly Gaussian. Furthermore, near a classical path (which is a minimum of the action), EVERY physical action is approximately quadratic when Taylor expanded (since the first derivative vanishes). Thus, Gaussian integrals are the universal computational tool for both exact systems and perturbative expansions of interacting systems.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="complex-gaussian-integrals" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="complex-gaussian-integrals"><span class="header-section-number">2.3</span> 1.3 Complex Gaussian Integrals</h2>
+<p>In quantum mechanics, we often integrate over complex variables. Consider an integration over <span class="math inline">\(n\)</span> complex variables <span class="math inline">\(z_k\)</span> and their complex conjugates <span class="math inline">\(\bar{z}_k\)</span>. Let <span class="math inline">\(A\)</span> be a Hermitian, positive-definite matrix. The integral is: <span class="math display">\[ Z_C = \int d^n z\, d^n \bar{z}\, \exp\left(-\bar{z}^T A z\right) \]</span></p>
+<p>To evaluate this, we break <span class="math inline">\(z\)</span> into its real and imaginary parts: <span class="math inline">\(z_k = x_k + i y_k\)</span>. The measure is defined as <span class="math inline">\(d^n z\, d^n \bar{z} \equiv \prod_{k=1}^n dx_k\, dy_k\)</span>. Let’s see what happens in 1D (<span class="math inline">\(n=1\)</span>) where <span class="math inline">\(A\)</span> is just a positive number <span class="math inline">\(a\)</span>: <span class="math display">\[ \bar{z} a z = (x - iy) a (x + iy) = a(x^2 + y^2) \]</span> The integral splits into two real Gaussians: <span class="math display">\[ \int dx\, dy\, \exp[-a(x^2 + y^2)] = \left( \int dx\, e^{-ax^2} \right) \left( \int dy\, e^{-ay^2} \right) = \sqrt{\frac{\pi}{a}} \sqrt{\frac{\pi}{a}} = \frac{\pi}{a} \]</span></p>
+<p>Generalizing to <span class="math inline">\(n\)</span> dimensions by diagonalizing the Hermitian matrix <span class="math inline">\(A\)</span>, we get: <span class="math display">\[ \boxed{ \int d^n z\, d^n \bar{z}\, \exp\left(-\bar{z}^T A z\right) = \frac{\pi^n}{\det A} } \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Where did the square root go?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that the complex Gaussian formula has <span class="math inline">\(\det A\)</span> in the denominator, NOT <span class="math inline">\(\sqrt{\det A}\)</span>. Why? Because an integration over <span class="math inline">\(n\)</span> complex variables is effectively an integration over <span class="math inline">\(2n\)</span> real variables. The “two real copies” (real and imaginary parts) multiply together, squaring the result and eliminating the square root.</p>
+</div>
+</div>
+</section>
+<section id="gaussian-with-imaginary-exponent" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="gaussian-with-imaginary-exponent"><span class="header-section-number">2.4</span> 1.4 Gaussian with Imaginary Exponent</h2>
+<p>In quantum mechanics, the action exponentiates with an <span class="math inline">\(i\)</span>: <span class="math inline">\(e^{iS/\hbar}\)</span>. We must handle integrals with strictly imaginary exponents (known as <strong>Fresnel integrals</strong>): <span class="math display">\[ \int_{-\infty}^{\infty} dx \exp\left(i \frac{a}{2} x^2\right) \]</span></p>
+<p>This integral is formally conditionally convergent because the integrand continuously oscillates without decaying. To rigorously define it, we employ <strong>analytic continuation</strong>. We add a tiny positive imaginary component to <span class="math inline">\(a\)</span>, sending <span class="math inline">\(a \to a + i\epsilon\)</span> (where <span class="math inline">\(\epsilon \to 0^+\)</span>). This transforms the exponent to <span class="math inline">\(i \frac{1}{2}(a + i\epsilon) x^2 = \frac{1}{2}(ia - \epsilon) x^2 = -\frac{1}{2}(\epsilon - ia) x^2\)</span>.</p>
+<p>Now, the <span class="math inline">\(\epsilon\)</span> term provides exponential decay, guaranteeing convergence. Applying our standard 1D formula (where the coefficient of <span class="math inline">\(x^2\)</span> is <span class="math inline">\(\frac{\epsilon - ia}{2}\)</span>): <span class="math display">\[ \int_{-\infty}^{\infty} dx \dots = \sqrt{\frac{2\pi}{\epsilon - ia}} \]</span> Taking the limit <span class="math inline">\(\epsilon \to 0\)</span>, we find <span class="math inline">\(\sqrt{\frac{2\pi}{-ia}}\)</span>. Since <span class="math inline">\(-i = e^{-i\pi/2}\)</span>, we have <span class="math inline">\(\sqrt{-i} = e^{-i\pi/4}\)</span>, or we can write it simply as: <span class="math display">\[ \int_{-\infty}^{\infty} dx \exp\left(i \frac{a}{2} x^2\right) = \sqrt{\frac{2\pi i}{a}} \quad \text{(for } a&gt;0) \]</span></p>
+<p>For <span class="math inline">\(n\)</span>-dimensions with a matrix <span class="math inline">\(A\)</span>: <span class="math display">\[ \boxed{ \int d^n x \exp\left(i \frac{1}{2} x^T A x\right) = \frac{(2\pi i)^{n/2}}{\sqrt{\det A}} } \]</span></p>
+<hr>
+</section>
+</section>
+<section id="infinite-dimensions-gaussian-path-integrals" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 2. Infinite Dimensions: Gaussian Path Integrals</h1>
+<p>Now we make the magnificent leap from finite <span class="math inline">\(n\)</span>-dimensional integration to the infinite-dimensional continuous path integral.</p>
+<section id="the-general-gaussian-path-integral" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-general-gaussian-path-integral"><span class="header-section-number">3.1</span> 2.1 The General Gaussian Path Integral</h2>
+<p>Recall our finite <span class="math inline">\(n\)</span>-dimensional formula for <span class="math inline">\(J=0\)</span>: <span class="math display">\[ \int d^n x \exp\left(-\frac{1}{2} \sum_{i,j} x_i A_{ij} x_j\right) = \frac{(2\pi)^{n/2}}{\sqrt{\det A}} \]</span></p>
+<p>In a path integral, the discrete index <span class="math inline">\(i\)</span> becomes a continuous time variable <span class="math inline">\(t\)</span>. The vector <span class="math inline">\(x_i\)</span> becomes a path <span class="math inline">\(x(t)\)</span>. The matrix <span class="math inline">\(A_{ij}\)</span> becomes a differential operator <span class="math inline">\(\hat{O}(t,t')\)</span> acting on the paths. The discrete sum over <span class="math inline">\(i,j\)</span> becomes a double integration over <span class="math inline">\(t,t'\)</span>.</p>
+<p><span class="math display">\[ \frac{1}{2} \sum_{i,j} x_i A_{ij} x_j \quad \xrightarrow{\text{continuum}} \quad \frac{1}{2} \int_0^T dt \int_0^T dt' \, x(t) \hat{O}(t,t') x(t') \]</span></p>
+<p>In physical cases (like the free particle or harmonic oscillator), the operator is localized in time, meaning <span class="math inline">\(\hat{O}(t,t') = \delta(t-t') \hat{O}_t\)</span>. The double integral collapses to a single integral: <span class="math inline">\(\frac{1}{2} \int_0^T x(t) \hat{O}_t x(t) dt\)</span>.</p>
+<p>Following the exact same structure as the finite-dimensional case, we define the infinite-dimensional <strong>Gaussian path integral</strong>: <span class="math display">\[ \boxed{ \int \mathcal{D}x \exp\left\{ -\frac{1}{2} \int dt\, x(t) \hat{O} x(t) \right\} = \frac{\mathcal{N}}{\sqrt{\det \hat{O}}} } \]</span></p>
+<p>Here, <span class="math inline">\(\mathcal{N}\)</span> is a normalization constant arising from the continuous analog of <span class="math inline">\((2\pi)^{n/2}\)</span> and the measure <span class="math inline">\(\mathcal{D}x\)</span>. The critical physical information resides entirely in the <strong>functional determinant</strong>: <span class="math inline">\(\det \hat{O}\)</span>.</p>
+<div class="callout-intuition">
+<p>A matrix determinant measures the “volume” scaling of a linear transformation. A functional determinant generalizes this: it measures how the differential operator <span class="math inline">\(\hat{O}\)</span> scales the infinite-dimensional “volume” of the space of paths. Computing a path integral exactly reduces entirely to computing <span class="math inline">\(\det \hat{O}\)</span>.</p>
+</div>
+</section>
+<section id="computing-functional-determinants-eigenvalue-method" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="computing-functional-determinants-eigenvalue-method"><span class="header-section-number">3.2</span> 2.2 Computing Functional Determinants: Eigenvalue Method</h2>
+<p>How do we compute the determinant of a differential operator? We use the spectral theorem. For a self-adjoint operator <span class="math inline">\(\hat{O}\)</span> acting on functions <span class="math inline">\(x(t)\)</span> with specific boundary conditions (e.g., <span class="math inline">\(x(0)=x(T)=0\)</span>), there exists a complete set of orthonormal eigenfunctions <span class="math inline">\(\phi_n(t)\)</span> and eigenvalues <span class="math inline">\(\lambda_n\)</span>: <span class="math display">\[ \hat{O} \phi_n(t) = \lambda_n \phi_n(t) \]</span></p>
+<p>Any path satisfying the boundary conditions can be expanded in this basis: <span class="math display">\[ x(t) = \sum_{n=1}^{\infty} c_n \phi_n(t) \]</span> where the <span class="math inline">\(c_n\)</span> are the expansion coefficients. The measure <span class="math inline">\(\mathcal{D}x\)</span> mathematically translates to integrating over all possible coefficients: <span class="math inline">\(\mathcal{D}x \sim \prod_{n} dc_n\)</span>.</p>
+<p>Let’s plug the expansion into the quadratic form, using the orthonormality <span class="math inline">\(\int \phi_n \phi_m dt = \delta_{nm}\)</span>: <span class="math display">\[ \int_0^T x(t) \hat{O} x(t) dt = \int_0^T \left( \sum_m c_m \phi_m(t) \right) \hat{O} \left( \sum_n c_n \phi_n(t) \right) dt = \sum_n \lambda_n c_n^2 \]</span></p>
+<p>The path integral beautifully diagonalizes into an infinite product of 1D Gaussians! <span class="math display">\[ \int \mathcal{D}x \dots = \prod_{n=1}^\infty \int_{-\infty}^\infty dc_n \exp\left(-\frac{1}{2} \lambda_n c_n^2\right) = \prod_{n=1}^\infty \sqrt{\frac{2\pi}{\lambda_n}} \propto \frac{1}{\sqrt{\prod_{n=1}^\infty \lambda_n}} \]</span></p>
+<p>Since the determinant of a matrix is the product of its eigenvalues, we formally define the <strong>functional determinant</strong> as the infinite product of its eigenvalues: <span class="math display">\[ \boxed{ \det \hat{O} \equiv \prod_{n=1}^\infty \lambda_n } \]</span></p>
+<hr>
+</section>
+</section>
+<section id="computing-functional-determinants" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 3. Computing Functional Determinants</h1>
+<p>Let’s put this into practice by evaluating the determinants for our two favorite systems.</p>
+<section id="example-det-d²dt²-with-dirichlet-bcs" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="example-det-d²dt²-with-dirichlet-bcs"><span class="header-section-number">4.1</span> 3.1 Example: det(-d²/dt²) with Dirichlet BCs</h2>
+<p>Consider a free particle. After an integration by parts (and applying Dirichlet boundary conditions <span class="math inline">\(x(0)=x(T)=0\)</span>), the action operator is: <span class="math display">\[ \hat{O}_{free} = -\frac{d^2}{dt^2} \]</span> We need to solve the eigenvalue equation: <span class="math inline">\(-\frac{d^2\phi_n}{dt^2} = \lambda_n \phi_n\)</span>. The solutions satisfying <span class="math inline">\(\phi_n(0) = \phi_n(T) = 0\)</span> are <span class="math inline">\(\phi_n(t) = \sin(n\pi t / T)\)</span> for <span class="math inline">\(n = 1, 2, 3, \dots\)</span>. The corresponding eigenvalues are: <span class="math display">\[ \lambda_n = \left(\frac{n\pi}{T}\right)^2 \]</span></p>
+<p>The functional determinant is thus: <span class="math display">\[ \det \hat{O}_{free} = \prod_{n=1}^\infty \left(\frac{n\pi}{T}\right)^2 \]</span> This infinite product clearly goes to infinity! The determinant formally diverges. Does this mean our path integral is useless?</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🤔 Quick Question 2: Taming Infinities
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The functional determinant <span class="math inline">\(\det(\hat{O}) = \prod_n \lambda_n\)</span> is an infinite product of eigenvalues that generally grow with <span class="math inline">\(n\)</span>. So the determinant is infinite! How can this possibly give a finite physical answer?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Individual functional determinants formally diverge, but in physical observables (like transition amplitudes), we always compute <strong>RATIOS</strong> of determinants (e.g., comparing an interacting system to a reference free particle). In these ratios, the divergent high-energy constants cancel out completely, yielding a finite and physically meaningful result. This is our first encounter with the concept of <strong>regularization</strong>!</p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-det-d²dt²---ω²-with-dirichlet-bcs" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="example-det-d²dt²---ω²-with-dirichlet-bcs"><span class="header-section-number">4.2</span> 3.2 Example: det(-d²/dt² - ω²) with Dirichlet BCs</h2>
+<p>Now consider the harmonic oscillator. The operator is: <span class="math display">\[ \hat{O}_{HO} = -\frac{d^2}{dt^2} - \omega^2 \]</span> The eigenfunctions are identical to the free particle (sines), but the eigenvalues are shifted: <span class="math display">\[ \lambda_n^{HO} = \left(\frac{n\pi}{T}\right)^2 - \omega^2 \]</span></p>
+<p>To compute a physically meaningful result, we look at the ratio of the HO determinant to the free particle determinant: <span class="math display">\[ \frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \prod_{n=1}^\infty \frac{\lambda_n^{HO}}{\lambda_n^{free}} = \prod_{n=1}^\infty \frac{(n\pi/T)^2 - \omega^2}{(n\pi/T)^2} = \prod_{n=1}^\infty \left( 1 - \frac{\omega^2 T^2}{n^2\pi^2} \right) \]</span></p>
+<p>To evaluate this infinite product, we rely on Euler’s famous infinite product formula for the sine function: <span class="math display">\[ \frac{\sin(z)}{z} = \prod_{n=1}^\infty \left( 1 - \frac{z^2}{n^2\pi^2} \right) \]</span> Setting <span class="math inline">\(z = \omega T\)</span>, we arrive at the exact ratio: <span class="math display">\[ \frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \frac{\sin(\omega T)}{\omega T} \]</span></p>
+<p>This perfectly reproduces the mysterious prefactor we encountered in Module 5!</p>
+</section>
+<section id="zeta-function-regularization" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="zeta-function-regularization"><span class="header-section-number">4.3</span> 3.3 Zeta-Function Regularization</h2>
+<blockquote class="blockquote">
+<p><strong>Textbook reference</strong>: For an in-depth look at zeta regularization, refer to <em>Path Integrals in Quantum Mechanics</em> by Zinn-Justin, Chapter 2.</p>
+</blockquote>
+<p>What if we want to assign a finite value to a <em>single</em> divergent determinant without forming a ratio? We use <strong>Zeta-Function Regularization</strong>, a powerful technique heavily used in Quantum Field Theory and String Theory.</p>
+<p>We define a generalized zeta function for the operator <span class="math inline">\(\hat{O}\)</span> by summing over the inverse powers of its eigenvalues: <span class="math display">\[ \zeta_{\hat{O}}(s) = \sum_{n=1}^\infty \frac{1}{\lambda_n^s} \]</span> For large positive <span class="math inline">\(s\)</span>, this sum converges. We then analytically continue this function to <span class="math inline">\(s=0\)</span>.</p>
+<p>Taking the derivative with respect to <span class="math inline">\(s\)</span>: <span class="math display">\[ \zeta_{\hat{O}}'(s) = \frac{d}{ds} \sum_{n=1}^\infty e^{-s \ln \lambda_n} = -\sum_{n=1}^\infty \frac{\ln \lambda_n}{\lambda_n^s} \]</span> Evaluate this at <span class="math inline">\(s=0\)</span>: <span class="math display">\[ \zeta_{\hat{O}}'(0) = -\sum_{n=1}^\infty \ln \lambda_n = -\ln \left( \prod_{n=1}^\infty \lambda_n \right) = -\ln(\det \hat{O}) \]</span></p>
+<p>We can thus formally (and finitely) define the determinant as: <span class="math display">\[ \boxed{ \det \hat{O} \equiv e^{-\zeta_{\hat{O}}'(0)} } \]</span> This mathematically rigorous technique cleanly drops the infinite divergent parts, leaving only the finite physical residue.</p>
+<hr>
+</section>
+</section>
+<section id="advanced-evaluation-techniques" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 4. Advanced Evaluation Techniques</h1>
+<p>While expanding in eigenvalues is conceptually clear, it is often practically difficult for complicated potentials. Here are two massive shortcuts.</p>
+<section id="the-gelfand-yaglom-method" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-gelfand-yaglom-method"><span class="header-section-number">5.1</span> 4.1 The Gel’fand-Yaglom Method</h2>
+<p>The <strong>Gel’fand-Yaglom Theorem</strong> is arguably the most powerful method for computing ratios of 1D functional determinants.</p>
+<p>Consider an operator <span class="math inline">\(\hat{O} = -\frac{d^2}{dt^2} + V(t)\)</span> with Dirichlet boundary conditions <span class="math inline">\(x(0)=x(T)=0\)</span>. The theorem states that the ratio of the determinants of <span class="math inline">\(\hat{O}\)</span> and the free operator <span class="math inline">\(\hat{O}_{free} = -\frac{d^2}{dt^2}\)</span> is simply given by the ratio of the solutions to their corresponding initial value problems at time <span class="math inline">\(T\)</span>:</p>
+<p><span class="math display">\[ \boxed{ \frac{\det \hat{O}}{\det \hat{O}_{free}} = \frac{y(T)}{y_0(T)} } \]</span></p>
+<p>Where <span class="math inline">\(y(t)\)</span> satisfies the classical equation of motion with highly specific initial conditions: <span class="math display">\[ \hat{O} y(t) = 0, \quad \text{with} \quad y(0) = 0, \quad y'(0) = 1 \]</span> And <span class="math inline">\(y_0(t)\)</span> is the corresponding solution for the free particle: <span class="math display">\[ \hat{O}_{free} y_0(t) = 0, \quad \text{with} \quad y_0(0) = 0, \quad y_0'(0) = 1 \]</span></p>
+<p>By solving a simple second-order classical differential equation, you entirely bypass the infinite product of eigenvalues!</p>
+</section>
+<section id="the-van-vleck-morette-formula" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-van-vleck-morette-formula"><span class="header-section-number">5.2</span> 4.2 The Van Vleck-Morette Formula</h2>
+<p>The Van Vleck-Morette formula provides a beautiful connection between the exact quantum propagator (for quadratic systems) and the classical action <span class="math inline">\(S_{cl}\)</span>. It states that the propagator takes the form:</p>
+<p><span class="math display">\[ K(x_b, T; x_a, 0) = \left( -\frac{1}{2\pi i \hbar} \frac{\partial^2 S_{cl}}{\partial x_a \partial x_b} \right)^{1/2} e^{i S_{cl} / \hbar} \]</span></p>
+<p>The prefactor (which we know is <span class="math inline">\(1/\sqrt{\det \hat{O}}\)</span>) is expressed entirely as a mixed partial derivative of the classical action evaluated on the classical boundary coordinates.</p>
+<div class="callout-intuition">
+<p>The second derivative <span class="math inline">\(\frac{\partial^2 S_{cl}}{\partial x_a \partial x_b}\)</span> measures how sensitively the final momentum depends on the initial position. Physically, it measures the density of classical trajectories—how much the classical paths “spread out” or “focus” as they travel from <span class="math inline">\(x_a\)</span> to <span class="math inline">\(x_b\)</span>.</p>
+</div>
+<hr>
+</section>
+</section>
+<section id="worked-examples" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 5. Worked Examples</h1>
+<section id="worked-example-1-full-computation-of-the-ho-propagator-prefactor" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="worked-example-1-full-computation-of-the-ho-propagator-prefactor"><span class="header-section-number">6.1</span> Worked Example 1: Full computation of the HO Propagator Prefactor</h2>
+<p>Let’s rigorously assemble the prefactor for the harmonic oscillator using our eigenvalue product ratio.</p>
+<ol type="1">
+<li>The exact propagator takes the form <span class="math inline">\(K = A(T) e^{i S_{cl}/\hbar}\)</span>.</li>
+<li>The prefactor <span class="math inline">\(A(T)\)</span> is proportional to <span class="math inline">\(1/\sqrt{\det \hat{O}_{HO}}\)</span>.</li>
+<li>From our free particle knowledge, <span class="math inline">\(A_{free}(T) = \sqrt{\frac{m}{2\pi i \hbar T}}\)</span>.</li>
+<li>We know that <span class="math inline">\(\frac{A_{HO}(T)}{A_{free}(T)} = \sqrt{\frac{\det \hat{O}_{free}}{\det \hat{O}_{HO}}}\)</span>.</li>
+<li>From Section 3.2, we found <span class="math inline">\(\frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \frac{\sin(\omega T)}{\omega T}\)</span>.</li>
+<li>Therefore, <span class="math inline">\(\sqrt{\frac{\det \hat{O}_{free}}{\det \hat{O}_{HO}}} = \sqrt{\frac{\omega T}{\sin(\omega T)}}\)</span>.</li>
+</ol>
+<p>Multiplying the free prefactor by this ratio: <span class="math display">\[ A_{HO}(T) = \sqrt{\frac{m}{2\pi i \hbar T}} \sqrt{\frac{\omega T}{\sin(\omega T)}} = \sqrt{\frac{m \omega}{2\pi i \hbar \sin(\omega T)}} \]</span> This perfectly matches the result we cited without proof in Module 5!</p>
+</section>
+<section id="worked-example-2-using-gelfand-yaglom-for-the-harmonic-oscillator" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="worked-example-2-using-gelfand-yaglom-for-the-harmonic-oscillator"><span class="header-section-number">6.2</span> Worked Example 2: Using Gel’fand-Yaglom for the Harmonic Oscillator</h2>
+<p>Let’s compute the same ratio <span class="math inline">\(\frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}}\)</span> using the Gel’fand-Yaglom method.</p>
+<p><strong>Step 1: Solve the free particle equation.</strong> <span class="math display">\[ -\frac{d^2 y_0}{dt^2} = 0 \implies y_0(t) = C_1 t + C_2 \]</span> Applying initial conditions: <span class="math inline">\(y_0(0) = 0 \implies C_2 = 0\)</span>. <span class="math inline">\(y_0'(0) = 1 \implies C_1 = 1\)</span>. Thus, <span class="math inline">\(y_0(t) = t\)</span>. At time <span class="math inline">\(T\)</span>, we have <span class="math inline">\(y_0(T) = T\)</span>.</p>
+<p><strong>Step 2: Solve the Harmonic Oscillator equation.</strong> <span class="math display">\[ \left(-\frac{d^2}{dt^2} - \omega^2\right) y(t) = 0 \implies y(t) = A \sin(\omega t) + B \cos(\omega t) \]</span> Applying initial conditions: <span class="math inline">\(y(0) = 0 \implies B = 0\)</span>. <span class="math inline">\(y'(t) = A\omega \cos(\omega t)\)</span>. <span class="math inline">\(y'(0) = 1 \implies A\omega = 1 \implies A = 1/\omega\)</span>. Thus, <span class="math inline">\(y(t) = \frac{1}{\omega} \sin(\omega t)\)</span>. At time <span class="math inline">\(T\)</span>, we have <span class="math inline">\(y(T) = \frac{\sin(\omega T)}{\omega}\)</span>.</p>
+<p><strong>Step 3: Take the ratio.</strong> <span class="math display">\[ \frac{\det \hat{O}_{HO}}{\det \hat{O}_{free}} = \frac{y(T)}{y_0(T)} = \frac{\frac{\sin(\omega T)}{\omega}}{T} = \frac{\sin(\omega T)}{\omega T} \]</span> In just 5 lines of basic classical differential equations, we reproduced an infinite product of eigenvalues!</p>
+<hr>
+</section>
+</section>
+<section id="comprehensive-gaussian-integral-cheat-sheet" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 6. Comprehensive Gaussian Integral Cheat Sheet</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 30%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Integral Type</th>
+<th>Expression</th>
+<th>Exact Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1D Real</strong></td>
+<td><span class="math inline">\(\int_{-\infty}^{\infty} e^{-ax^2} dx\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{\pi}{a}}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>1D Real with Linear Term</strong></td>
+<td><span class="math inline">\(\int_{-\infty}^{\infty} e^{-ax^2 + bx} dx\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{\pi}{a}} e^{b^2/(4a)}\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(n\)</span>-D Real</strong></td>
+<td><span class="math inline">\(\int d^n x \exp\left(-\frac{1}{2} x^T A x\right)\)</span></td>
+<td><span class="math inline">\(\frac{(2\pi)^{n/2}}{\sqrt{\det A}}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(n\)</span>-D Real with Source</strong></td>
+<td><span class="math inline">\(\int d^n x \exp\left(-\frac{1}{2} x^T A x + J^T x\right)\)</span></td>
+<td><span class="math inline">\(\frac{(2\pi)^{n/2}}{\sqrt{\det A}} \exp\left(\frac{1}{2} J^T A^{-1} J\right)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(n\)</span>-D Complex</strong></td>
+<td><span class="math inline">\(\int d^n z d^n \bar{z} \exp\left(-\bar{z}^T A z\right)\)</span></td>
+<td><span class="math inline">\(\frac{\pi^n}{\det A}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>1D Imaginary</strong></td>
+<td><span class="math inline">\(\int_{-\infty}^{\infty} dx \exp\left(i \frac{a}{2} x^2\right)\)</span></td>
+<td><span class="math inline">\(\sqrt{\frac{2\pi i}{a}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong><span class="math inline">\(n\)</span>-D Imaginary</strong></td>
+<td><span class="math inline">\(\int d^n x \exp\left(i \frac{1}{2} x^T A x\right)\)</span></td>
+<td><span class="math inline">\(\frac{(2\pi i)^{n/2}}{\sqrt{\det A}}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Path Integral</strong></td>
+<td><span class="math inline">\(\int \mathcal{D}x \exp\left(-\frac{1}{2} \int x \hat{O} x\, dt\right)\)</span></td>
+<td><span class="math inline">\(\propto \frac{1}{\sqrt{\det \hat{O}}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="checkpoint">
+<p>Before proceeding to the classical limit, ensure you are comfortable with: 1. Completing the square to evaluate Gaussian integrals with linear source terms. 2. The logic behind why <span class="math inline">\(n\)</span>-dimensional Gaussians produce a <span class="math inline">\(1/\sqrt{\det A}\)</span> factor. 3. Why complex integrations drop the square root. 4. The definition of a functional determinant as an infinite product of eigenvalues. 5. The practical usage of the Gel’fand-Yaglom initial-value theorem.</p>
+</div>
+<hr>
+</section>
+<section id="practice-problems" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 7. Practice Problems</h1>
+<p><strong>Problem 1:</strong> Evaluate the integral <span class="math inline">\(\int_{-\infty}^{\infty} x^2 e^{-ax^2} dx\)</span> by differentiating the standard 1D Gaussian formula with respect to the parameter <span class="math inline">\(a\)</span>. This trick (differentiating under the integral sign) is ubiquitous in field theory.</p>
+<p><strong>Problem 2:</strong> Consider the <span class="math inline">\(n\)</span>-dimensional Gaussian integral with a source <span class="math inline">\(J\)</span>. Show that by taking derivatives of the generating function <span class="math inline">\(Z_n(J)\)</span> with respect to <span class="math inline">\(J_i\)</span> and <span class="math inline">\(J_j\)</span>, and then setting <span class="math inline">\(J=0\)</span>, you can easily compute <span class="math inline">\(\int d^n x\, x_i x_j \exp(-\frac{1}{2} x^T A x)\)</span>. What is the result in terms of the matrix <span class="math inline">\(A\)</span>?</p>
+<p><strong>Problem 3:</strong> Compute the functional determinant ratio for a particle in an inverted harmonic oscillator potential, where <span class="math inline">\(V(x) = -\frac{1}{2}m\gamma^2 x^2\)</span>. Hint: Replace <span class="math inline">\(\omega^2\)</span> with <span class="math inline">\(-\gamma^2\)</span> and trace through the Gel’fand-Yaglom method.</p>
+<p><strong>Problem 4:</strong> Verify the Van Vleck-Morette formula directly for the free particle. Compute the classical action <span class="math inline">\(S_{cl}\)</span>, take the mixed partial derivative with respect to <span class="math inline">\(x_a\)</span> and <span class="math inline">\(x_b\)</span>, and show that it yields the correct <span class="math inline">\(1/\sqrt{t}\)</span> prefactor.</p>
+<p><strong>Problem 5:</strong> (Hard) Use Zeta-function regularization to formally evaluate <span class="math inline">\(\det(-d^2/dt^2)\)</span>. You will need to use the properties of the Riemann zeta function <span class="math inline">\(\zeta(s) = \sum_{n=1}^\infty n^{-s}\)</span>, specifically its derivative at <span class="math inline">\(s=0\)</span>, which is <span class="math inline">\(\zeta'(0) = -1/2 \ln(2\pi)\)</span>.</p>
+<hr>
+<div class="nav-buttons">
+<p><a href="../../Courses/Path_Integrals/06_functional_calculus.html" class="btn btn-outline-secondary">← Previous: Module 6</a> <a href="../../Courses/Path_Integrals/08_classical_limit.html" class="btn btn-success">Next: Module 8 →</a></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
