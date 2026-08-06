@@ -36,6 +36,7 @@ listing:
 
 <div class="card-body text-center">
   <h3 class="name">[Aditya Kumar]{.smallcaps}</h3>
+  <p class="subtitle">IIT(ISM) Dhanbad</p>
   <p class="subtitle">MSc Physics</p>
 </div>
 
