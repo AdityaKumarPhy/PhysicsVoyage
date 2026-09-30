@@ -1,4 +1,213 @@
 ---
-title: "About Us"
+title: "About Me"
+page-layout: full
+toc: true
 ---
 
+<!-- 
+======================================================================
+  HERO SECTION
+====================================================================== 
+-->
+
+::: {.container-fluid .mt-5}
+
+::: {.grid .align-items-center}
+
+::: {.g-col-12 .g-col-lg-4 .text-center}
+![](https://avatars.githubusercontent.com/u/219771298?v=4){.rounded-circle width="250" height="250" style="object-fit: cover; border: 4px solid #6c757d; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"}
+
+<div class="mt-4">
+  <h2 style="font-weight: 700;">Aditya Kumar</h2>
+  <p class="text-muted" style="font-size: 1.1rem;">MSc Physics | Quantum Hardware Enthusiast</p>
+</div>
+:::
+
+::: {.g-col-12 .g-col-lg-8}
+# Hello, I'm Aditya. {#your-story}
+
+I am a physicist in training, currently pursuing my **M.Sc. in Physics** at the **Indian Institute of Technology (Indian School of Mines), Dhanbad**. 
+
+My voyage in physics is deeply rooted in **computational and quantum physics**, specifically aimed at the practical realization of **quantum hardware**. From superconducting qubits to circuit QED and spintronics, I am passionate about the simulation-driven design of next-generation quantum chips and materials.
+
+My goal is to bridge the gap between theoretical many-body physics and the computational frameworks necessary to make the cosmos, and quantum devices, computable.
+
+:::
+:::
+
+:::
+
+<hr class="my-5">
+
+<!-- 
+======================================================================
+  RESEARCH INTERESTS & SKILLS
+====================================================================== 
+-->
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-lg-6}
+## <i class="bi bi-lightbulb" style="color: #f39c12;"></i> Research Interests {#research}
+- **Quantum Hardware:** Superconducting qubits and circuit QED. \newline
+- **Computational Physics:** Simulation-driven design of quantum chips and materials.
+- **Spintronics & Many-Body Physics:** Exploring advanced material properties and theoretical modeling.
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+## <i class="bi bi-tools" style="color: #6c757d;"></i> Technical Skills
+- **Programming:** Python (NumPy, SciPy, Matplotlib), C++, Bash, SciLab
+- **Scientific Tools:** COMSOL Multiphysics, LaTeX, Jupyter, Git/GitHub, Markdown, Quarto
+- **Video & Design:** DaVinci Resolve, Adobe Premiere Pro, After Effects, Canva, Tinkercad
+- **Hardware/Systems:** Linux (Ubuntu, Fedora), macOS, Windows; Arduino UNO R3, 8085 microprocessor
+:::
+
+:::
+
+<hr class="my-5">
+
+<!-- 
+======================================================================
+  RESEARCH EXPERIENCE
+====================================================================== 
+-->
+
+## <i class="bi bi-journal-code" style="color: #0d6efd;"></i> Research Experience
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-lg-6}
+::: {.card .h-100 .shadow-sm .border-0 style="background: rgba(13, 110, 253, 0.03);"}
+::: {.card-body}
+<h5 class="card-title fw-bold">Superconducting Quantum Chip Design</h5>
+<h6 class="card-subtitle mb-3 text-muted">Aug 2026 – Present | IIT (ISM), Dhanbad</h6>
+**Supervisor:** Asst. Prof. Rahul Gupta  
+
+Designing a superconducting quantum chip layout built around microwave resonators for circuit QED, modelled and simulated in **COMSOL Multiphysics**. 
+
+Iterating on resonator geometry through simulation to improve the Q-factor, reducing photon loss to support longer-lived, higher-fidelity qubit readout.
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+::: {.card .h-100 .shadow-sm .border-0 style="background: rgba(13, 110, 253, 0.03);"}
+::: {.card-body}
+<h5 class="card-title fw-bold">Quantum Simulator Development</h5>
+<h6 class="card-subtitle mb-3 text-muted">May 2026 – Jun 2026 | Remote</h6>
+**Supervisor:** Prof. Pinaki Majumdar  
+
+Built a Python quantum simulator solving the Schrödinger equation for the harmonic oscillator and quartic double-well potential, validating numerical eigenvalues and wave functions against analytic results.
+
+
+Simulated quantum tunnelling by time-evolving a Gaussian wave packet and tracking its spreading and barrier transmission, released open-source as a reusable tool for studying bound states and tunnelling.
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+::: {.card .h-100 .shadow-sm .border-0 style="background: rgba(13, 110, 253, 0.03);"}
+::: {.card-body}
+<h5 class="card-title fw-bold">Lab Technician, Virtual Lab</h5>
+<h6 class="card-subtitle mb-3 text-muted">Jan 2022 – 2022 | Acharya Narendra Dev College, Delhi</h6>
+- Developed pages of the college Virtual Lab website (in collaboration with IIT Delhi) using HTML and CSS.
+- Designed computer-science experiments with step-by-step guidance, enabling first-time users to perform lab exercises remotely without supervision.
+:::
+:::
+:::
+
+::: {.g-col-12 .g-col-lg-6}
+::: {.card .h-100 .shadow-sm .border-0 style="background: rgba(13, 110, 253, 0.03);"}
+::: {.card-body}
+<h5 class="card-title fw-bold">Increasing Solar Panel Efficiency</h5>
+<h6 class="card-subtitle mb-3 text-muted">Jul 2020 – Oct 2021 | SPIE Student Chapter, Delhi</h6>
+- Contributed to a group experiment testing water cooling as a method to counter heat-driven efficiency loss in photovoltaic panels.
+- Compared panel output with and without cooling to assess water cooling as a low-cost way to raise solar power yield.
+:::
+:::
+:::
+
+:::
+
+<hr class="my-5">
+
+<!-- 
+======================================================================
+  EDUCATION
+====================================================================== 
+-->
+
+## <i class="bi bi-mortarboard" style="color: #198754;"></i> Education {#education}
+
+<style>
+.timeline {
+    position: relative;
+    padding: 1rem 0;
+    list-style: none;
+}
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background: #dee2e6;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 50px;
+}
+.timeline-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #0d6efd;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #0d6efd;
+    transition: background 0.3s ease;
+}
+.timeline-item:hover:before {
+    background: #198754;
+    box-shadow: 0 0 0 2px #198754;
+}
+</style>
+
+<ul class="timeline">
+  <li class="timeline-item">
+    <h4 class="fw-bold">M.Sc. Physics</h4>
+    <p class="text-muted mb-2"><strong>Indian Institute of Technology (Indian School of Mines), Dhanbad</strong> | Jul 2026 – Jun 2028 (expected)</p>
+  </li>
+  <li class="timeline-item">
+    <h4 class="fw-bold">B.Sc. (Hons.) Physics</h4>
+    <p class="text-muted mb-2"><strong>Acharya Narendra Dev College, University of Delhi</strong> | Oct 2020 – May 2023</p>
+  </li>
+</ul>
+
+<hr class="my-5">
+
+## <i class="bi bi-file-earmark-person" style="color: #6f42c1;"></i> Resume & Contact {#contact}
+
+Interested in collaboration, or want to discuss physics and computational modelling? Feel free to reach out.
+
+<div class="text-center my-5">
+  <a href="CV_Aditya_Kumar.pdf" target="_blank" class="btn btn-lg btn-outline-primary shadow-sm" style="border-radius: 50px; padding: 10px 30px;">
+    <i class="bi bi-download"></i> Download Full Resume
+  </a>
+</div>
+
+<div class="d-flex justify-content-center gap-5 flex-wrap mt-4 text-muted">
+  <span class="d-flex align-items-center gap-2">
+    <i class="bi bi-envelope fs-4"></i> 
+    <a href="mailto:adityakumarphy@protonmail.com" class="text-reset text-decoration-none">adityakumarphy@protonmail.com</a>
+  </span>
+  <span class="d-flex align-items-center gap-2">
+    <i class="bi bi-geo-alt fs-4"></i> 
+    India
+  </span>
+</div>

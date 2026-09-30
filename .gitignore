@@ -6,3 +6,5 @@
 # Only the cache (which holds Cloudinary URLs) is committed to git
 /assets/Media/*
 !/assets/Media/.cloudinary_cache.json
+
+**/*.quarto_ipynb

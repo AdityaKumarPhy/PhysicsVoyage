@@ -8,6 +8,7 @@ project:
   resources:
     - assets/scripts/youtube-data.json
     - assets/pdfs/
+    - CV_Aditya_Kumar.pdf
 
 website:
   title: "Physics Voyage"
@@ -27,14 +28,12 @@ website:
 
       - text: About
         menu:
-          - text: Your Story
+          - text: About Me
             href: about.qmd#your-story
-          - text: Mission
-            href: about.qmd#mission
-          - text: Team Members
-            href: about.qmd#team-members
-          - text: Contributors
-            href: about.qmd#contributors
+          - text: Research & Skills
+            href: about.qmd#research
+          - text: Education
+            href: about.qmd#education
           - text: Contact
             href: about.qmd#contact
   reader-mode: true
