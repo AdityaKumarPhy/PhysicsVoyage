@@ -163,8 +163,6 @@ plt.show()
 ```{python}
 #| label: fig-gauss
 #| fig-cap: "Gauss Elimination Matrix State Visualization"
-import seaborn as sns
-
 A = np.array([[3.0, -0.1, -0.2],
               [0.1,  7.0, -0.3],
               [0.3, -0.2, 10.0]])
@@ -175,10 +173,17 @@ A_step1 = np.array([[3.0, -0.1, -0.2],
                     [0.0, -0.19, 10.02]])
 
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-sns.heatmap(A, annot=True, cmap='viridis', ax=axes[0], cbar=False)
+
+axes[0].matshow(A, cmap='viridis')
+for (i, j), z in np.ndenumerate(A):
+    axes[0].text(j, i, f'{z:0.1f}', ha='center', va='center', color='white')
 axes[0].set_title("Initial Matrix A")
-sns.heatmap(A_step1, annot=True, cmap='viridis', ax=axes[1], cbar=False)
+
+axes[1].matshow(A_step1, cmap='viridis')
+for (i, j), z in np.ndenumerate(A_step1):
+    axes[1].text(j, i, f'{z:0.2f}', ha='center', va='center', color='white')
 axes[1].set_title("After Column 1 Elimination")
+
 plt.show()
 ```
 

@@ -693,9 +693,7 @@ window.Quarto = {
 <p>Let’s visualize the concepts of truncation error, accuracy vs.&nbsp;precision, and error propagation using Python.</p>
 <section id="truncation-error-in-taylor-series" class="level3">
 <h3 class="anchored" data-anchor-id="truncation-error-in-taylor-series">3.1 Truncation Error in Taylor Series</h3>
-<div id="fig-taylor-series" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-taylor-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-taylor-series" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -720,18 +718,23 @@ window.Quarto = {
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-taylor-series" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-taylor-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01_approximations_errors_files/figure-html/fig-taylor-series-output-1.png" width="822" height="525" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-taylor-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-taylor-series-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Convergence of Maclaurin series for <span class="math inline">\(e^x\)</span> as the number of terms increases. The truncation error decreases as more terms are added.
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="accuracy-vs-precision-dartboard-analogy" class="level3">
 <h3 class="anchored" data-anchor-id="accuracy-vs-precision-dartboard-analogy">3.2 Accuracy vs Precision (Dartboard Analogy)</h3>
-<div id="fig-accuracy-precision" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-accuracy-precision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-accuracy-precision" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_dartboard(ax, title):</span>
@@ -765,18 +768,23 @@ Figure&nbsp;1
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-accuracy-precision" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-accuracy-precision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01_approximations_errors_files/figure-html/fig-accuracy-precision-output-1.png" width="991" height="950" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-accuracy-precision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-accuracy-precision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Scatter plots illustrating the difference between Accuracy (proximity to the center/truth) and Precision (tightness of the cluster).
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="error-propagation-round-off-accumulation" class="level3">
 <h3 class="anchored" data-anchor-id="error-propagation-round-off-accumulation">3.3 Error Propagation (Round-off Accumulation)</h3>
-<div id="fig-error-propagation" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-error-propagation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-error-propagation" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100000</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>true_value <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> N</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>approx_sum <span class="op">=</span> <span class="fl">0.0</span></span>
@@ -795,18 +803,25 @@ Figure&nbsp;2
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.ticklabel_format(axis<span class="op">=</span><span class="st">'y'</span>, style<span class="op">=</span><span class="st">'sci'</span>, scilimits<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-error-propagation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-error-propagation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="01_approximations_errors_files/figure-html/fig-error-propagation-output-1.png" width="824" height="451" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-error-propagation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-error-propagation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Accumulation of round-off error when successively adding <span class="math inline">\(0.1\)</span> to a sum <span class="math inline">\(100{,}000\)</span> times.
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 </section>
 <section id="python-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="python-implementation">4. Python Implementation</h2>
 <p>The following Python code demonstrates how to iteratively compute a Taylor series until a desired approximate relative error tolerance is met.</p>
-<div id="d4cbb29a" class="cell">
+<div id="1e5b3f24" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exp_maclaurin(x, es<span class="op">=</span><span class="fl">0.0001</span>, max_iter<span class="op">=</span><span class="dv">50</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Approximates e^x using the Maclaurin series.</span></span>
@@ -846,6 +861,11 @@ Figure&nbsp;3
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Approximation of e^1.5: </span><span class="sc">{</span>val<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True value of e^1.5: </span><span class="sc">{</span>math<span class="sc">.</span>exp(<span class="fl">1.5</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Iterations required: </span><span class="sc">{</span>iters<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Approximation of e^1.5: 4.48156476702009
+True value of e^1.5: 4.4816890703380645
+Iterations required: 8</code></pre>
+</div>
 </div>
 </section>
 <section id="solved-examples" class="level2">
@@ -926,24 +946,30 @@ Figure&nbsp;3
 <p><strong>Problem:</strong> Consider the quadratic equation <span class="math inline">\(x^2 - 100000.00001x + 1 = 0\)</span>. Use the standard quadratic formula to find the roots, and demonstrate subtractive cancellation for the smaller root. Show how to mathematically reformulate the calculation to avoid this error.</p>
 <p><strong>Solution:</strong></p>
 <p>The roots are given by <span class="math inline">\(x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</span>. Here, <span class="math inline">\(a = 1\)</span>, <span class="math inline">\(b = -100000.00001\)</span>, <span class="math inline">\(c = 1\)</span>.</p>
-<div id="c887f074" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">100000.00001</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Formula</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>discriminant <span class="op">=</span> math.sqrt(b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>x1_std <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> discriminant) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>x2_std <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> discriminant) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)  <span class="co"># Subtractive cancellation occurs here!</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Standard Formula x1: </span><span class="sc">{</span>x1_std<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Standard Formula x2 (loss of precision): </span><span class="sc">{</span>x2_std<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformulated Formula to avoid cancellation for the smaller root</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>x2_alt <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> c) <span class="op">/</span> (<span class="op">-</span>b <span class="op">+</span> discriminant)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Reformulated Formula x2 (accurate): </span><span class="sc">{</span>x2_alt<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Check x1 * x2 = c/a: </span><span class="sc">{</span>x1_std <span class="op">*</span> x2_alt <span class="op">==</span> c<span class="op">/</span>a<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="738a6580" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">100000.00001</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Formula</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>discriminant <span class="op">=</span> math.sqrt(b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>a<span class="op">*</span>c)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>x1_std <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> discriminant) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>x2_std <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> discriminant) <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>a)  <span class="co"># Subtractive cancellation occurs here!</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Standard Formula x1: </span><span class="sc">{</span>x1_std<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Standard Formula x2 (loss of precision): </span><span class="sc">{</span>x2_std<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformulated Formula to avoid cancellation for the smaller root</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>x2_alt <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> c) <span class="op">/</span> (<span class="op">-</span>b <span class="op">+</span> discriminant)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Reformulated Formula x2 (accurate): </span><span class="sc">{</span>x2_alt<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Check x1 * x2 = c/a: </span><span class="sc">{</span>x1_std <span class="op">*</span> x2_alt <span class="op">==</span> c<span class="op">/</span>a<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Standard Formula x1: 100000.0
+Standard Formula x2 (loss of precision): 1.0000003385357559e-05
+Reformulated Formula x2 (accurate): 1e-05
+Check x1 * x2 = c/a: True</code></pre>
+</div>
 </div>
 <p><em>Insight:</em> In calculating <span class="math inline">\(x_2\)</span> with the standard formula, we subtracted two nearly identical large numbers (<span class="math inline">\(-b\)</span> and <span class="math inline">\(\sqrt{b^2-4ac}\)</span>). This stripped away significant digits. By rationalizing the numerator, we converted the problematic subtraction into an addition, completely mitigating the catastrophic cancellation.</p>
 </section>

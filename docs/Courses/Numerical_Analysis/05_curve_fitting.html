@@ -687,9 +687,7 @@ window.Quarto = {
 </section>
 <section id="geometricvisual-explanation" class="level1">
 <h1>Geometric/Visual Explanation</h1>
-<div id="fig-linear-residuals" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-linear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-linear-residuals" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -715,15 +713,20 @@ window.Quarto = {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-linear-residuals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05_curve_fitting_files/figure-html/fig-linear-residuals-output-1.png" width="659" height="450" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-linear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Scatter plot with linear regression line and residuals.
 </figcaption>
 </figure>
 </div>
-<div id="fig-poly-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-poly-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+</div>
+<div id="cell-fig-poly-comparison" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">20</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x2 <span class="op">+</span> <span class="dv">2</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, size<span class="op">=</span><span class="bu">len</span>(x2))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x_smooth <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
@@ -742,15 +745,20 @@ Figure&nbsp;1
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-poly-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poly-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05_curve_fitting_files/figure-html/fig-poly-comparison-output-1.png" width="1431" height="374" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-poly-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-poly-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Comparison of linear, quadratic, and cubic polynomial fits on noisy data.
 </figcaption>
 </figure>
 </div>
-<div id="fig-exponential-linearization" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-exponential-linearization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+</div>
+<div id="cell-fig-exponential-linearization" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x_exp <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y_exp <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.8</span> <span class="op">*</span> x_exp) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span><span class="bu">len</span>(x_exp))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y_exp <span class="op">=</span> np.<span class="bu">abs</span>(y_exp) <span class="co"># Prevent negative values for log</span></span>
@@ -783,15 +791,20 @@ Figure&nbsp;2
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-exponential-linearization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exponential-linearization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05_curve_fitting_files/figure-html/fig-exponential-linearization-output-1.png" width="1143" height="470" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-exponential-linearization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exponential-linearization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Exponential data fitted using linearization (side-by-side comparison).
 </figcaption>
 </figure>
 </div>
-<div id="fig-overfitting" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+</div>
+<div id="cell-fig-overfitting" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x_sparse <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">8</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y_sparse <span class="op">=</span> np.sin(x_sparse) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.3</span>, size<span class="op">=</span><span class="bu">len</span>(x_sparse))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -816,17 +829,24 @@ Figure&nbsp;3
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-overfitting" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05_curve_fitting_files/figure-html/fig-overfitting-output-1.png" width="1144" height="470" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Demonstration of overfitting: A high-degree polynomial fitting the noise perfectly but failing to capture the underlying trend.
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="python-implementation" class="level1">
 <h1>Python Implementation</h1>
 <p>Here is a robust Python class to perform various types of regression, compute <span class="math inline">\(R^2\)</span>, and generate polynomial fits.</p>
-<div id="e210cd1a" class="cell">
+<div id="cbcf2f2c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CurveFitter:</span>
@@ -886,6 +906,9 @@ Figure&nbsp;4
 <span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>fitter <span class="op">=</span> CurveFitter(x_demo, y_demo)</span>
 <span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>a0, a1, r2 <span class="op">=</span> fitter.linear_fit()</span>
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Linear Fit: y = </span><span class="sc">{</span>a0<span class="sc">:.3f}</span><span class="ss"> + </span><span class="sc">{</span>a1<span class="sc">:.3f}</span><span class="ss">x (R^2 = </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear Fit: y = 0.150 + 1.970x (R^2 = 0.9989)</code></pre>
+</div>
 </div>
 </section>
 <section id="solved-examples" class="level1">
@@ -912,17 +935,22 @@ Figure&nbsp;4
 <p><strong>Problem:</strong> Heat capacity <span class="math inline">\(C_p\)</span> of a gas is measured at various temperatures <span class="math inline">\(T\)</span>. Compare linear, quadratic, and cubic fits, compute <span class="math inline">\(R^2\)</span> for each, and identify the most appropriate model.</p>
 <p>Data: <span class="math inline">\(T\)</span> (K): 300, 400, 500, 600, 700, 800, 900 <span class="math inline">\(C_p\)</span> (J/mol-K): 29.1, 29.8, 30.7, 31.8, 33.1, 34.6, 36.3</p>
 <p><strong>Solution:</strong> Let’s use Python to compute the models and <span class="math inline">\(R^2\)</span>.</p>
-<div id="3c9e16e3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.array([<span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">700</span>, <span class="dv">800</span>, <span class="dv">900</span>])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Cp <span class="op">=</span> np.array([<span class="fl">29.1</span>, <span class="fl">29.8</span>, <span class="fl">30.7</span>, <span class="fl">31.8</span>, <span class="fl">33.1</span>, <span class="fl">34.6</span>, <span class="fl">36.3</span>])</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>S_t <span class="op">=</span> np.<span class="bu">sum</span>((Cp <span class="op">-</span> np.mean(Cp))<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> deg <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> np.polyfit(T, Cp, deg)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    Cp_pred <span class="op">=</span> np.polyval(coeffs, T)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    S_r <span class="op">=</span> np.<span class="bu">sum</span>((Cp <span class="op">-</span> Cp_pred)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    r2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (S_r <span class="op">/</span> S_t)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Degree </span><span class="sc">{</span>deg<span class="sc">}</span><span class="ss">: R^2 = </span><span class="sc">{</span>r2<span class="sc">:.5f}</span><span class="ss">, Coefficients = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(coeffs, <span class="dv">6</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e73e1341" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.array([<span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">700</span>, <span class="dv">800</span>, <span class="dv">900</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Cp <span class="op">=</span> np.array([<span class="fl">29.1</span>, <span class="fl">29.8</span>, <span class="fl">30.7</span>, <span class="fl">31.8</span>, <span class="fl">33.1</span>, <span class="fl">34.6</span>, <span class="fl">36.3</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>S_t <span class="op">=</span> np.<span class="bu">sum</span>((Cp <span class="op">-</span> np.mean(Cp))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> deg <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> np.polyfit(T, Cp, deg)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    Cp_pred <span class="op">=</span> np.polyval(coeffs, T)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    S_r <span class="op">=</span> np.<span class="bu">sum</span>((Cp <span class="op">-</span> Cp_pred)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    r2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (S_r <span class="op">/</span> S_t)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Degree </span><span class="sc">{</span>deg<span class="sc">}</span><span class="ss">: R^2 = </span><span class="sc">{</span>r2<span class="sc">:.5f}</span><span class="ss">, Coefficients = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(coeffs, <span class="dv">6</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Degree 1: R^2 = 0.97959, Coefficients = [1.2e-02 2.5e+01]
+Degree 2: R^2 = 1.00000, Coefficients = [1.00e-05 0.00e+00 2.82e+01]
+Degree 3: R^2 = 1.00000, Coefficients = [0.00e+00 1.00e-05 0.00e+00 2.82e+01]</code></pre>
+</div>
 </div>
 <p><strong>Conclusion:</strong> - The linear model has an <span class="math inline">\(R^2\)</span> around 0.94, which is decent but shows systematic deviation. - The quadratic model has an <span class="math inline">\(R^2\)</span> of nearly 1.00000, indicating an excellent fit. - The cubic model marginally improves the fit over the quadratic, but the improvement is minimal. Because physical laws (like the empirical Shomate equation for heat capacity) typically rely on lower-order polynomials and we wish to avoid overfitting, the <strong>quadratic model</strong> is the most appropriate and parsimonious choice.</p>
 </section>

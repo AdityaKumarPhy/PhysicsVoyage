@@ -673,9 +673,7 @@ window.Quarto = {
 <section id="geometricvisual-explanation" class="level1">
 <h1>3. Geometric/Visual Explanation</h1>
 <p>Let’s visualize these concepts using Python.</p>
-<div id="fig-interpolation-viz" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-interpolation-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-interpolation-viz" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> interp1d</span>
@@ -746,17 +744,24 @@ window.Quarto = {
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-interpolation-viz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-interpolation-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06_interpolation_files/figure-html/fig-interpolation-viz-output-1.png" width="1337" height="950" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-interpolation-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interpolation-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Visualizing Lagrange Interpolation, Newton Interpolation, Runge’s Phenomenon, and Piecewise Linear Interpolation
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="python-implementation" class="level1">
 <h1>4. Python Implementation</h1>
 <p>Here is the clean, pedagogical implementation of Lagrange and Newton interpolation from scratch.</p>
-<div id="ee2dd9e5" class="cell">
+<div id="228b4deb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lagrange_interpolation(x_points, y_points, x):</span>
@@ -818,6 +823,10 @@ Figure&nbsp;1
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Lagrange estimate at x=</span><span class="sc">{</span>x_val<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>lagrange_interpolation(x_pts, y_pts, x_val)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Newton estimate at x=</span><span class="sc">{</span>x_val<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>newton_interpolation(x_pts, y_pts, x_val)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lagrange estimate at x=2.5: 6.25
+Newton estimate at x=2.5: 6.25</code></pre>
+</div>
 </div>
 </section>
 <section id="solved-examples" class="level1">
@@ -928,18 +937,23 @@ Figure&nbsp;1
 <p><strong>Problem</strong>: Demonstrate and quantify Runge’s phenomenon by comparing interpolation of <span class="math inline">\(f(x) = \frac{1}{1+25x^2}\)</span> on <span class="math inline">\([-1, 1]\)</span> using 5, 11, and 21 equally spaced nodes. Evaluate the maximum error at <span class="math inline">\(x = 0.9\)</span>.</p>
 <p><strong>Solution</strong>: The true value is <span class="math inline">\(f(0.9) = \frac{1}{1 + 25(0.81)} = \frac{1}{1 + 20.25} = \frac{1}{21.25} \approx 0.04705\)</span>.</p>
 <p>Let’s use the Python code to compute the exact errors.</p>
-<div id="aab89fa8" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_runge_error(n, eval_pt):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    nodes <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> runge(nodes)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    poly <span class="op">=</span> lagrange(nodes, vals)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    approx <span class="op">=</span> poly(eval_pt)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    true_val <span class="op">=</span> runge(eval_pt)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(approx <span class="op">-</span> true_val)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error for n=5 : </span><span class="sc">{</span>get_runge_error(<span class="dv">5</span>, <span class="fl">0.9</span>)<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error for n=11: </span><span class="sc">{</span>get_runge_error(<span class="dv">11</span>, <span class="fl">0.9</span>)<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error for n=21: </span><span class="sc">{</span>get_runge_error(<span class="dv">21</span>, <span class="fl">0.9</span>)<span class="sc">:.5e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="55f5b317" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_runge_error(n, eval_pt):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    nodes <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> runge(nodes)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    poly <span class="op">=</span> lagrange(nodes, vals)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    approx <span class="op">=</span> poly(eval_pt)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    true_val <span class="op">=</span> runge(eval_pt)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(approx <span class="op">-</span> true_val)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error for n=5 : </span><span class="sc">{</span>get_runge_error(<span class="dv">5</span>, <span class="fl">0.9</span>)<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error for n=11: </span><span class="sc">{</span>get_runge_error(<span class="dv">11</span>, <span class="fl">0.9</span>)<span class="sc">:.5f}</span><span class="ss">"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Error for n=21: </span><span class="sc">{</span>get_runge_error(<span class="dv">21</span>, <span class="fl">0.9</span>)<span class="sc">:.5e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error for n=5 : 0.33618
+Error for n=11: 1.53166
+Error for n=21: 1.19621e-09</code></pre>
+</div>
 </div>
 <p>As <span class="math inline">\(n\)</span> increases from 5 to 11 to 21, instead of converging to the true value at <span class="math inline">\(x=0.9\)</span> (which is near the edge of the domain), the error drastically increases due to wild polynomial oscillations. This definitively proves that high-degree global polynomials fail for certain functions.</p>
 </section>

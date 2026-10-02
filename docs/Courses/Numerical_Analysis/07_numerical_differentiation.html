@@ -670,9 +670,7 @@ window.Quarto = {
 </section>
 <section id="geometricvisual-explanation" class="level1">
 <h1>3. Geometric/Visual Explanation</h1>
-<div id="fig-finite-differences" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-finite-differences-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-finite-differences" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -722,15 +720,20 @@ window.Quarto = {
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-finite-differences" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-finite-differences-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07_numerical_differentiation_files/figure-html/fig-finite-differences-output-1.png" width="809" height="524" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-finite-differences-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-finite-differences-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Geometric representation of Finite Differences.
 </figcaption>
 </figure>
 </div>
-<div id="fig-error-analysis" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-error-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</div>
+</div>
+<div id="cell-fig-error-analysis" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -761,11 +764,18 @@ Figure&nbsp;1
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, which<span class="op">=</span><span class="st">"both"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-error-analysis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-error-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07_numerical_differentiation_files/figure-html/fig-error-analysis-output-1.png" width="680" height="453" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-error-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-error-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Log-log plot of truncation errors for Forward vs Central Differences.
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="python-implementation" class="level1">
@@ -818,9 +828,7 @@ Figure&nbsp;2
 <h3 class="anchored" data-anchor-id="hard-the-optimal-step-size-for-ex">🔴 Hard: The Optimal Step Size for <span class="math inline">\(e^x\)</span></h3>
 <p><strong>Problem</strong>: Compute the central difference derivative of <span class="math inline">\(f(x) = e^x\)</span> at <span class="math inline">\(x=1\)</span> for <span class="math inline">\(h\)</span> ranging from <span class="math inline">\(10^{-1}\)</span> down to <span class="math inline">\(10^{-16}\)</span>. Plot the error and find the optimal step size <span class="math inline">\(h_{\text{opt}}\)</span>.</p>
 <p><strong>Solution</strong>:</p>
-<div id="fig-optimal-h" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-optimal-h-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-optimal-h" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -844,11 +852,18 @@ Figure&nbsp;2
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span><span class="fl">1e-5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Approx Optimal h'</span>)</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-optimal-h" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optimal-h-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07_numerical_differentiation_files/figure-html/fig-optimal-h-output-1.png" width="680" height="453" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-optimal-h-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optimal-h-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Trade-off between truncation error and round-off error.
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>The plot clearly demonstrates the “U-curve”. As <span class="math inline">\(h\)</span> decreases from <span class="math inline">\(10^{-1}\)</span>, the error drops because the mathematical truncation error <span class="math inline">\(\mathcal{O}(h^2)\)</span> decreases. However, around <span class="math inline">\(h = 10^{-5}\)</span>, the error hits a minimum. For <span class="math inline">\(h &lt; 10^{-5}\)</span>, the error rapidly increases due to the round-off error dominating the subtractive cancellation in floating-point arithmetic.</p>
 </section>

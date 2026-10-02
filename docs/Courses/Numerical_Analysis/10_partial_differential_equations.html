@@ -671,9 +671,7 @@ window.Quarto = {
 </section>
 <section id="geometricvisual-explanation" class="level1">
 <h1>3. Geometric/Visual Explanation</h1>
-<div id="fig-pde-visuals" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pde-visuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="cell-fig-pde-visuals" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -746,17 +744,24 @@ window.Quarto = {
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-pde-visuals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pde-visuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10_partial_differential_equations_files/figure-html/fig-pde-visuals-output-1.png" width="1432" height="950" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pde-visuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pde-visuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Visualizing the components and solutions of PDEs
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 </section>
 <section id="python-implementation" class="level1">
 <h1>4. Python Implementation</h1>
 <p>Here is a clean implementation of the 1D Heat Equation solver using the explicit FTCS scheme.</p>
-<div id="d827f8cf" class="cell">
+<div id="7aac24a5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -820,7 +825,7 @@ Figure&nbsp;1
 <h2 class="anchored" data-anchor-id="hard-laplaces-equation-via-gauss-seidel-iteration">🔴 Hard: Laplace’s Equation via Gauss-Seidel Iteration</h2>
 <p><strong>Problem:</strong> Solve Laplace’s equation on a <span class="math inline">\(20 \times 20\)</span> grid using Gauss-Seidel iteration. The top edge is held at 100V, while the left, right, and bottom edges are at 0V. Visualize the result.</p>
 <p><strong>Solution:</strong> Unlike the Jacobi method which uses old values for all updates, Gauss-Seidel uses the newly updated values immediately, which accelerates convergence.</p>
-<div id="2831051a" class="cell">
+<div id="7d0b2270" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -858,6 +863,16 @@ Figure&nbsp;1
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"X grid"</span>)</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Y grid"</span>)</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Converged after 344 iterations.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10_partial_differential_equations_files/figure-html/cell-4-output-2.png" width="521" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 </section>
