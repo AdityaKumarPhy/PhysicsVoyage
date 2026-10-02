@@ -1,0 +1,147 @@
+---
+title: "Numerical Analysis"
+subtitle: "From Errors and Approximations to PDEs and Fourier Transforms"
+description: "A comprehensive course covering the theory, implementation (with code), and practical applications of Numerical Analysis."
+image: "../../assets/Media/Numerical_Analysis_Thumbnail.jpg"
+author: "Aditya Kumar"
+date: "2026-10-01"
+categories: [Computational Physics, Numerical Analysis, Active]
+toc: false
+page-layout: full
+format:
+  html:
+    template-partials: []
+    include-in-header: []
+---
+
+```{=html}
+<style>
+.na-hero {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 45%, #2c5364 100%);
+  border-radius: 16px;
+  padding: 2.8rem 2.5rem 2.2rem;
+  color: white;
+  margin-bottom: 2.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.na-title { font-weight: 800; font-size: 2.8rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+.na-subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.9; margin-bottom: 1.5rem; }
+.course-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 4px solid #203a43;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.chapter-number {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c5364;
+}
+</style>
+```
+
+::: {.na-hero}
+<h1 class="na-title">Numerical Analysis</h1>
+<p class="na-subtitle">Theory, Implementation, and Practice Problems</p>
+<p style="max-width: 800px; line-height: 1.6; opacity: 0.85;">
+This course covers everything from basic error approximations to solving Partial Differential Equations and performing Fast Fourier Transforms. Each chapter includes rigorous mathematical theory, practical code examples, and practice problems to solidify your understanding.
+</p>
+:::
+
+## Course Syllabus
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 01</span>
+<h5 class="mt-2 fw-bold"><a href="01_approximations_errors.qmd" class="text-decoration-none text-reset stretched-link">Methods of Approximation and Errors</a></h5>
+<p class="text-muted small mb-0">Truncation and round-off errors, accuracy, and precision.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 02</span>
+<h5 class="mt-2 fw-bold"><a href="02_computer_programming.qmd" class="text-decoration-none text-reset stretched-link">Computer Programming</a></h5>
+<p class="text-muted small mb-0">Programming fundamentals required for implementing numerical methods.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 03</span>
+<h5 class="mt-2 fw-bold"><a href="03_roots_equations.qmd" class="text-decoration-none text-reset stretched-link">Roots of Equations</a></h5>
+<p class="text-muted small mb-0">Bracketing methods (Bisection, False Position), Newton-Raphson, and Linear Algebraic Equations.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 04</span>
+<h5 class="mt-2 fw-bold"><a href="04_system_nonlinear.qmd" class="text-decoration-none text-reset stretched-link">System of Nonlinear Equations</a></h5>
+<p class="text-muted small mb-0">Bisection, Newton's method, and Fixed-point iteration for non-linear systems.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 05</span>
+<h5 class="mt-2 fw-bold"><a href="05_curve_fitting.qmd" class="text-decoration-none text-reset stretched-link">Curve Fitting</a></h5>
+<p class="text-muted small mb-0">Least squares regression, linear regression, and nonlinear regression.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 06</span>
+<h5 class="mt-2 fw-bold"><a href="06_interpolation.qmd" class="text-decoration-none text-reset stretched-link">Interpolation Methods</a></h5>
+<p class="text-muted small mb-0">Interpolating polynomials and Newton's divided difference.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 07</span>
+<h5 class="mt-2 fw-bold"><a href="07_numerical_differentiation.qmd" class="text-decoration-none text-reset stretched-link">Numerical Differentiation</a></h5>
+<p class="text-muted small mb-0">Finite difference approximation (Taylor series) and differentiation using curve fitting.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 08</span>
+<h5 class="mt-2 fw-bold"><a href="08_numerical_integration.qmd" class="text-decoration-none text-reset stretched-link">Numerical Integration</a></h5>
+<p class="text-muted small mb-0">Rectangle, midpoint, Trapezoidal, Simpson's methods, and Gauss quadrature.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 09</span>
+<h5 class="mt-2 fw-bold"><a href="09_ordinary_differential_equations.qmd" class="text-decoration-none text-reset stretched-link">Ordinary Differential Equations</a></h5>
+<p class="text-muted small mb-0">Euler's method, Runge-Kutta methods, boundary value, and eigenvalue problems.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 10</span>
+<h5 class="mt-2 fw-bold"><a href="10_partial_differential_equations.qmd" class="text-decoration-none text-reset stretched-link">Partial Differential Equations</a></h5>
+<p class="text-muted small mb-0">Laplace's equation solutions and practical applications.</p>
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: {.card .h-100 .course-card .p-3}
+<span class="chapter-number">Module 11</span>
+<h5 class="mt-2 fw-bold"><a href="11_fourier_approximation.qmd" class="text-decoration-none text-reset stretched-link">Fourier Approximation</a></h5>
+<p class="text-muted small mb-0">Introduction, Discrete Fourier Transform (DFT), and Fast Fourier Transform (FFT).</p>
+:::
+:::
+
+:::

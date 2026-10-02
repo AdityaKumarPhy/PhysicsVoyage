@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 5: Curve Fitting – Physics Voyage</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-53dc85963c67a221f6f2030af840abbe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-439935389e492bce342c92d4b72ba577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">About Me</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#research">
+ <span class="dropdown-text">Research &amp; Skills</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#education">
+ <span class="dropdown-text">Education</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory">Theory</a>
+  <ul class="collapse">
+  <li><a href="#interpolation-vs.-curve-fitting" id="toc-interpolation-vs.-curve-fitting" class="nav-link" data-scroll-target="#interpolation-vs.-curve-fitting">Interpolation vs.&nbsp;Curve Fitting</a></li>
+  <li><a href="#least-squares-regression" id="toc-least-squares-regression" class="nav-link" data-scroll-target="#least-squares-regression">Least Squares Regression</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a>
+  <ul class="collapse">
+  <li><a href="#coefficient-of-determination-r2" id="toc-coefficient-of-determination-r2" class="nav-link" data-scroll-target="#coefficient-of-determination-r2">Coefficient of Determination (<span class="math inline">\(R^2\)</span>)</a></li>
+  </ul></li>
+  <li><a href="#polynomial-regression" id="toc-polynomial-regression" class="nav-link" data-scroll-target="#polynomial-regression">Polynomial Regression</a></li>
+  <li><a href="#nonlinear-regression-linearization" id="toc-nonlinear-regression-linearization" class="nav-link" data-scroll-target="#nonlinear-regression-linearization">Nonlinear Regression &amp; Linearization</a></li>
+  <li><a href="#overfitting-and-underfitting" id="toc-overfitting-and-underfitting" class="nav-link" data-scroll-target="#overfitting-and-underfitting">Overfitting and Underfitting</a></li>
+  </ul></li>
+  <li><a href="#geometricvisual-explanation" id="toc-geometricvisual-explanation" class="nav-link" data-scroll-target="#geometricvisual-explanation">Geometric/Visual Explanation</a></li>
+  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python Implementation</a></li>
+  <li><a href="#solved-examples" id="toc-solved-examples" class="nav-link" data-scroll-target="#solved-examples">Solved Examples</a>
+  <ul class="collapse">
+  <li><a href="#easy-hand-calculation-of-linear-regression" id="toc-easy-hand-calculation-of-linear-regression" class="nav-link" data-scroll-target="#easy-hand-calculation-of-linear-regression">🟢 Easy: Hand-calculation of Linear Regression</a></li>
+  <li><a href="#medium-exponential-fit-for-radioactive-decay" id="toc-medium-exponential-fit-for-radioactive-decay" class="nav-link" data-scroll-target="#medium-exponential-fit-for-radioactive-decay">🟡 Medium: Exponential Fit for Radioactive Decay</a></li>
+  <li><a href="#hard-polynomial-selection-and-goodness-of-fit" id="toc-hard-polynomial-selection-and-goodness-of-fit" class="nav-link" data-scroll-target="#hard-polynomial-selection-and-goodness-of-fit">🔴 Hard: Polynomial Selection and Goodness of Fit</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 5: Curve Fitting</h1>
+              </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+                </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In physical sciences and engineering, we frequently encounter experimental data containing noise or random errors. Unlike interpolation, where we seek a function that passes <em>exactly</em> through every data point, <strong>curve fitting</strong> aims to find a mathematical function that captures the general trend of the data without necessarily passing through any specific point.</p>
+<p>Curve fitting is crucial for: - Calibrating instruments - Validating theoretical models against experimental data - Extracting physical constants (e.g., determining the decay constant from radioactive decay data, or Planck’s constant from photoelectric effect experiments) - Predicting future behavior from past trends</p>
+<p>This module explores the principles of least squares regression, starting from simple linear models to polynomial and nonlinear fits, and discusses the fundamental trade-off between underfitting and overfitting.</p>
+</section>
+<section id="theory" class="level1">
+<h1>Theory</h1>
+<section id="interpolation-vs.-curve-fitting" class="level2">
+<h2 class="anchored" data-anchor-id="interpolation-vs.-curve-fitting">Interpolation vs.&nbsp;Curve Fitting</h2>
+<ul>
+<li><strong>Interpolation</strong>: The approximating function <span class="math inline">\(f(x)\)</span> matches the data exactly: <span class="math inline">\(f(x_i) = y_i\)</span> for all <span class="math inline">\(i = 1, \dots, n\)</span>. It assumes data is exact and error-free.</li>
+<li><strong>Curve Fitting (Regression)</strong>: The function <span class="math inline">\(f(x)\)</span> does not necessarily pass through any <span class="math inline">\(y_i\)</span>. Instead, it minimizes the discrepancy between the data and the model. This is used when data contains uncertainty or noise.</li>
+</ul>
+</section>
+<section id="least-squares-regression" class="level2">
+<h2 class="anchored" data-anchor-id="least-squares-regression">Least Squares Regression</h2>
+<p>Suppose we have <span class="math inline">\(n\)</span> data points <span class="math inline">\((x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)\)</span>. We want to fit a model function <span class="math inline">\(f(x)\)</span> with some parameters.</p>
+<p>The <strong>residual</strong> (or error) at the <span class="math inline">\(i\)</span>-th point is the difference between the observed value and the model’s predicted value: <span class="math display">\[ e_i = y_i - f(x_i) \]</span></p>
+<p>The <strong>Method of Least Squares</strong> seeks to find the parameters of <span class="math inline">\(f(x)\)</span> that minimize the sum of the squares of the residuals: <span class="math display">\[ S_r = \sum_{i=1}^n e_i^2 = \sum_{i=1}^n (y_i - f(x_i))^2 \]</span></p>
+</section>
+<section id="linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression">Linear Regression</h2>
+<p>For a straight line model, <span class="math inline">\(f(x) = a_0 + a_1 x\)</span>, where <span class="math inline">\(a_0\)</span> is the intercept and <span class="math inline">\(a_1\)</span> is the slope. The sum of squared errors is: <span class="math display">\[ S_r = \sum_{i=1}^n (y_i - a_0 - a_1 x_i)^2 \]</span></p>
+<p>To minimize <span class="math inline">\(S_r\)</span>, we take the partial derivatives with respect to <span class="math inline">\(a_0\)</span> and <span class="math inline">\(a_1\)</span> and set them to zero: <span class="math display">\[ \frac{\partial S_r}{\partial a_0} = -2 \sum_{i=1}^n (y_i - a_0 - a_1 x_i) = 0 \]</span> <span class="math display">\[ \frac{\partial S_r}{\partial a_1} = -2 \sum_{i=1}^n x_i(y_i - a_0 - a_1 x_i) = 0 \]</span></p>
+<p>Rearranging these yields the <strong>Normal Equations</strong>: <span class="math display">\[ n a_0 + \left(\sum x_i\right) a_1 = \sum y_i \]</span> <span class="math display">\[ \left(\sum x_i\right) a_0 + \left(\sum x_i^2\right) a_1 = \sum x_i y_i \]</span></p>
+<p>Solving this system gives the formulas for the slope and intercept: <span class="math display">\[ a_1 = \frac{n \sum x_i y_i - \sum x_i \sum y_i}{n \sum x_i^2 - (\sum x_i)^2} \]</span> <span class="math display">\[ a_0 = \bar{y} - a_1 \bar{x} \]</span> where <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> are the sample means of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<section id="coefficient-of-determination-r2" class="level3">
+<h3 class="anchored" data-anchor-id="coefficient-of-determination-r2">Coefficient of Determination (<span class="math inline">\(R^2\)</span>)</h3>
+<p>To quantify the goodness of fit, we use the coefficient of determination, <span class="math inline">\(R^2\)</span>: <span class="math display">\[ R^2 = \frac{S_t - S_r}{S_t} \]</span> where <span class="math inline">\(S_t = \sum (y_i - \bar{y})^2\)</span> is the total sum of squares (variance of the data around its mean), and <span class="math inline">\(S_r\)</span> is the residual sum of squares. <span class="math inline">\(R^2\)</span> ranges from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span>, where <span class="math inline">\(1\)</span> indicates a perfect fit.</p>
+</section>
+</section>
+<section id="polynomial-regression" class="level2">
+<h2 class="anchored" data-anchor-id="polynomial-regression">Polynomial Regression</h2>
+<p>To fit a polynomial of degree <span class="math inline">\(m\)</span>, <span class="math inline">\(f(x) = a_0 + a_1 x + a_2 x^2 + \dots + a_m x^m\)</span>. The residual sum of squares is <span class="math inline">\(S_r = \sum_{i=1}^n (y_i - \sum_{j=0}^m a_j x_i^j)^2\)</span>. Taking partial derivatives with respect to each <span class="math inline">\(a_k\)</span> yields a system of <span class="math inline">\(m+1\)</span> normal equations, which can be written in matrix form as: <span class="math display">\[ \begin{bmatrix} n &amp; \sum x_i &amp; \dots &amp; \sum x_i^m \\ \sum x_i &amp; \sum x_i^2 &amp; \dots &amp; \sum x_i^{m+1} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \sum x_i^m &amp; \sum x_i^{m+1} &amp; \dots &amp; \sum x_i^{2m} \end{bmatrix} \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_m \end{bmatrix} = \begin{bmatrix} \sum y_i \\ \sum x_i y_i \\ \vdots \\ \sum x_i^m y_i \end{bmatrix} \]</span></p>
+</section>
+<section id="nonlinear-regression-linearization" class="level2">
+<h2 class="anchored" data-anchor-id="nonlinear-regression-linearization">Nonlinear Regression &amp; Linearization</h2>
+<p>Many physical processes follow non-linear models like exponential decay or power laws. We can often transform these into linear models.</p>
+<p><strong>Exponential Model</strong>: <span class="math inline">\(y = \alpha e^{\beta x}\)</span> Taking the natural logarithm of both sides: <span class="math display">\[ \ln y = \ln \alpha + \beta x \]</span> This is a linear equation <span class="math inline">\(Y = a_0 + a_1 X\)</span> where <span class="math inline">\(Y = \ln y\)</span>, <span class="math inline">\(X = x\)</span>, <span class="math inline">\(a_0 = \ln \alpha\)</span>, and <span class="math inline">\(a_1 = \beta\)</span>.</p>
+<p><strong>Power Model</strong>: <span class="math inline">\(y = \alpha x^{\beta}\)</span> Taking the base-10 logarithm: <span class="math display">\[ \log y = \log \alpha + \beta \log x \]</span> This is linear where <span class="math inline">\(Y = \log y\)</span>, <span class="math inline">\(X = \log x\)</span>, <span class="math inline">\(a_0 = \log \alpha\)</span>, and <span class="math inline">\(a_1 = \beta\)</span>.</p>
+</section>
+<section id="overfitting-and-underfitting" class="level2">
+<h2 class="anchored" data-anchor-id="overfitting-and-underfitting">Overfitting and Underfitting</h2>
+<ul>
+<li><strong>Underfitting</strong>: Choosing a model that is too simple (e.g., a line for quadratic data). It fails to capture the underlying physics.</li>
+<li><strong>Overfitting</strong>: Choosing a model that is too complex (e.g., a high-degree polynomial for sparse, noisy data). It fits the noise rather than the signal and performs poorly on new data.</li>
+</ul>
+</section>
+</section>
+<section id="geometricvisual-explanation" class="level1">
+<h1>Geometric/Visual Explanation</h1>
+<div id="fig-linear-residuals" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">15</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">2.5</span> <span class="op">*</span> x <span class="op">+</span> <span class="dv">5</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, size<span class="op">=</span><span class="bu">len</span>(x))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear fit</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>coeffs <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y_fit <span class="op">=</span> np.polyval(coeffs, x)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_fit, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Linear Fit'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw residuals</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    plt.plot([x[i], x[i]], [y[i], y_fit[i]], color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Linear Regression and Residuals'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-linear-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<div id="fig-poly-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-poly-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">20</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> x2<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x2 <span class="op">+</span> <span class="dv">2</span> <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, size<span class="op">=</span><span class="bu">len</span>(x2))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x_smooth <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">100</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>titles <span class="op">=</span> [<span class="st">'Linear Fit (m=1)'</span>, <span class="st">'Quadratic Fit (m=2)'</span>, <span class="st">'Cubic Fit (m=3)'</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, deg <span class="kw">in</span> <span class="bu">enumerate</span>(degrees):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.polyfit(x2, y2, deg)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    y_p <span class="op">=</span> np.polyval(p, x_smooth)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    axes[i].scatter(x2, y2, color<span class="op">=</span><span class="st">'black'</span>, s<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    axes[i].plot(x_smooth, y_p, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(titles[i])</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    axes[i].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-poly-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+<div id="fig-exponential-linearization" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exponential-linearization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x_exp <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y_exp <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.8</span> <span class="op">*</span> x_exp) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span><span class="bu">len</span>(x_exp))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y_exp <span class="op">=</span> np.<span class="bu">abs</span>(y_exp) <span class="co"># Prevent negative values for log</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Log transform</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ln_y <span class="op">=</span> np.log(y_exp)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>p_exp <span class="op">=</span> np.polyfit(x_exp, ln_y, <span class="dv">1</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> np.exp(p_exp[<span class="dv">1</span>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> p_exp[<span class="dv">0</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Original space</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax1.scatter(x_exp, y_exp, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax1.plot(x_exp, alpha <span class="op">*</span> np.exp(beta <span class="op">*</span> x_exp), color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="ss">f'Fit: y=</span><span class="sc">{</span>alpha<span class="sc">:.2f}</span><span class="ss">e^(</span><span class="sc">{</span>beta<span class="sc">:.2f}</span><span class="ss">x)'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Original Data Space'</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'y'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Log space</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax2.scatter(x_exp, ln_y, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Transformed Data'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax2.plot(x_exp, np.polyval(p_exp, x_exp), color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Linear Fit'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Log-Transformed Space (Linearized)'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'ln(y)'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-exponential-linearization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+<div id="fig-overfitting" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x_sparse <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">8</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y_sparse <span class="op">=</span> np.sin(x_sparse) <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="fl">0.3</span>, size<span class="op">=</span><span class="bu">len</span>(x_sparse))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>x_fine <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>p_low <span class="op">=</span> np.polyfit(x_sparse, y_sparse, <span class="dv">3</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>p_high <span class="op">=</span> np.polyfit(x_sparse, y_sparse, <span class="dv">7</span>) <span class="co"># Degree 7 perfectly fits 8 points</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax1.scatter(x_sparse, y_sparse, color<span class="op">=</span><span class="st">'black'</span>, s<span class="op">=</span><span class="dv">40</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax1.plot(x_fine, np.polyval(p_low, x_fine), color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Appropriate Fit (Degree 3)'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax2.scatter(x_sparse, y_sparse, color<span class="op">=</span><span class="st">'black'</span>, s<span class="op">=</span><span class="dv">40</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax2.plot(x_fine, np.polyval(p_high, x_fine), color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Overfitting (Degree 7)'</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="python-implementation" class="level1">
+<h1>Python Implementation</h1>
+<p>Here is a robust Python class to perform various types of regression, compute <span class="math inline">\(R^2\)</span>, and generate polynomial fits.</p>
+<div id="e210cd1a" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CurveFitter:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> np.array(x)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> np.array(y)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.x)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.S_t <span class="op">=</span> np.<span class="bu">sum</span>((<span class="va">self</span>.y <span class="op">-</span> np.mean(<span class="va">self</span>.y))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> linear_fit(<span class="va">self</span>):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Fit y = a_0 + a_1 x"""</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        sum_x <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.x)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        sum_y <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.y)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        sum_x2 <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        sum_xy <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.x <span class="op">*</span> <span class="va">self</span>.y)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        denom <span class="op">=</span> <span class="va">self</span>.n <span class="op">*</span> sum_x2 <span class="op">-</span> sum_x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        a_1 <span class="op">=</span> (<span class="va">self</span>.n <span class="op">*</span> sum_xy <span class="op">-</span> sum_x <span class="op">*</span> sum_y) <span class="op">/</span> denom</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        a_0 <span class="op">=</span> (sum_y <span class="op">-</span> a_1 <span class="op">*</span> sum_x) <span class="op">/</span> <span class="va">self</span>.n</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        y_pred <span class="op">=</span> a_0 <span class="op">+</span> a_1 <span class="op">*</span> <span class="va">self</span>.x</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        r2 <span class="op">=</span> <span class="va">self</span>._calc_r2(y_pred)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> a_0, a_1, r2</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> polynomial_fit(<span class="va">self</span>, degree):</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Fit polynomial of specified degree"""</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Using numpy's built-in polyfit for numerical stability</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        coeffs <span class="op">=</span> np.polyfit(<span class="va">self</span>.x, <span class="va">self</span>.y, degree)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        y_pred <span class="op">=</span> np.polyval(coeffs, <span class="va">self</span>.x)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        r2 <span class="op">=</span> <span class="va">self</span>._calc_r2(y_pred)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> coeffs, r2</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exponential_fit(<span class="va">self</span>):</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Fit y = alpha * e^(beta * x) using linearization"""</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        ln_y <span class="op">=</span> np.log(<span class="va">self</span>.y)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        sum_x <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.x)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        sum_lny <span class="op">=</span> np.<span class="bu">sum</span>(ln_y)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        sum_x2 <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        sum_xlny <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.x <span class="op">*</span> ln_y)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        denom <span class="op">=</span> <span class="va">self</span>.n <span class="op">*</span> sum_x2 <span class="op">-</span> sum_x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> (<span class="va">self</span>.n <span class="op">*</span> sum_xlny <span class="op">-</span> sum_x <span class="op">*</span> sum_lny) <span class="op">/</span> denom</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        ln_alpha <span class="op">=</span> (sum_lny <span class="op">-</span> beta <span class="op">*</span> sum_x) <span class="op">/</span> <span class="va">self</span>.n</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        alpha <span class="op">=</span> np.exp(ln_alpha)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        y_pred <span class="op">=</span> alpha <span class="op">*</span> np.exp(beta <span class="op">*</span> <span class="va">self</span>.x)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>        r2 <span class="op">=</span> <span class="va">self</span>._calc_r2(y_pred)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> alpha, beta, r2</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _calc_r2(<span class="va">self</span>, y_pred):</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>        S_r <span class="op">=</span> np.<span class="bu">sum</span>((<span class="va">self</span>.y <span class="op">-</span> y_pred)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span> <span class="op">-</span> (S_r <span class="op">/</span> <span class="va">self</span>.S_t)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick demonstration</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>x_demo <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>y_demo <span class="op">=</span> [<span class="fl">2.1</span>, <span class="fl">4.0</span>, <span class="fl">6.2</span>, <span class="fl">8.1</span>, <span class="fl">9.9</span>]</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>fitter <span class="op">=</span> CurveFitter(x_demo, y_demo)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>a0, a1, r2 <span class="op">=</span> fitter.linear_fit()</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Linear Fit: y = </span><span class="sc">{</span>a0<span class="sc">:.3f}</span><span class="ss"> + </span><span class="sc">{</span>a1<span class="sc">:.3f}</span><span class="ss">x (R^2 = </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="solved-examples" class="level1">
+<h1>Solved Examples</h1>
+<section id="easy-hand-calculation-of-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="easy-hand-calculation-of-linear-regression">🟢 Easy: Hand-calculation of Linear Regression</h2>
+<p><strong>Problem:</strong> Fit a straight line <span class="math inline">\(y = a_0 + a_1 x\)</span> to the data points <span class="math inline">\((1, 3), (2, 5), (3, 7), (4, 10), (5, 12)\)</span> using the normal equations.</p>
+<p><strong>Solution:</strong> We have <span class="math inline">\(n = 5\)</span>. We compute the necessary sums: <span class="math inline">\(x_i\)</span>: 1, 2, 3, 4, 5 <span class="math inline">\(\rightarrow \sum x_i = 15\)</span> <span class="math inline">\(y_i\)</span>: 3, 5, 7, 10, 12 <span class="math inline">\(\rightarrow \sum y_i = 37\)</span> <span class="math inline">\(x_i^2\)</span>: 1, 4, 9, 16, 25 <span class="math inline">\(\rightarrow \sum x_i^2 = 55\)</span> <span class="math inline">\(x_i y_i\)</span>: 3, 10, 21, 40, 60 <span class="math inline">\(\rightarrow \sum x_i y_i = 134\)</span></p>
+<p>Using the formulas: <span class="math display">\[ a_1 = \frac{n \sum x_i y_i - \sum x_i \sum y_i}{n \sum x_i^2 - (\sum x_i)^2} = \frac{5(134) - (15)(37)}{5(55) - 15^2} = \frac{670 - 555}{275 - 225} = \frac{115}{50} = 2.3 \]</span> <span class="math display">\[ a_0 = \frac{\sum y_i}{n} - a_1 \frac{\sum x_i}{n} = \frac{37}{5} - 2.3 \left(\frac{15}{5}\right) = 7.4 - 2.3(3) = 7.4 - 6.9 = 0.5 \]</span></p>
+<p>The fitted line is: <span class="math inline">\(y = 0.5 + 2.3x\)</span>.</p>
+</section>
+<section id="medium-exponential-fit-for-radioactive-decay" class="level2">
+<h2 class="anchored" data-anchor-id="medium-exponential-fit-for-radioactive-decay">🟡 Medium: Exponential Fit for Radioactive Decay</h2>
+<p><strong>Problem:</strong> The activity <span class="math inline">\(A\)</span> of a radioactive isotope is measured over time <span class="math inline">\(t\)</span>. Fit an exponential curve <span class="math inline">\(A(t) = A_0 e^{-\lambda t}\)</span> to the data using linearization. Determine <span class="math inline">\(A_0\)</span> and the decay constant <span class="math inline">\(\lambda\)</span>.</p>
+<p>Data: <span class="math inline">\(t\)</span> (hours): 0, 2, 4, 6, 8 <span class="math inline">\(A\)</span> (MBq): 100, 70, 50, 35, 25</p>
+<p><strong>Solution:</strong> Transform the model: <span class="math inline">\(\ln A = \ln A_0 - \lambda t\)</span>. Let <span class="math inline">\(Y = \ln A\)</span> and <span class="math inline">\(X = t\)</span>. We fit a line <span class="math inline">\(Y = a_0 + a_1 X\)</span>.</p>
+<p><span class="math inline">\(X\)</span>: 0, 2, 4, 6, 8 <span class="math inline">\(\rightarrow \sum X = 20\)</span> <span class="math inline">\(Y\)</span>: <span class="math inline">\(\ln(100) \approx 4.605\)</span>, <span class="math inline">\(\ln(70) \approx 4.248\)</span>, <span class="math inline">\(\ln(50) \approx 3.912\)</span>, <span class="math inline">\(\ln(35) \approx 3.555\)</span>, <span class="math inline">\(\ln(25) \approx 3.219\)</span> <span class="math inline">\(\rightarrow \sum Y = 19.539\)</span> <span class="math inline">\(X^2\)</span>: 0, 4, 16, 36, 64 <span class="math inline">\(\rightarrow \sum X^2 = 120\)</span> <span class="math inline">\(XY\)</span>: 0, 8.496, 15.648, 21.330, 25.752 <span class="math inline">\(\rightarrow \sum XY = 71.226\)</span></p>
+<p><span class="math inline">\(n=5\)</span>. <span class="math display">\[ a_1 = \frac{5(71.226) - (20)(19.539)}{5(120) - 20^2} = \frac{356.13 - 390.78}{600 - 400} = \frac{-34.65}{200} = -0.17325 \]</span> <span class="math display">\[ a_0 = \frac{19.539}{5} - (-0.17325) \frac{20}{5} = 3.9078 + 0.693 = 4.6008 \]</span></p>
+<p>Transforming back: <span class="math inline">\(A_0 = e^{a_0} = e^{4.6008} \approx 99.56\)</span> MBq <span class="math inline">\(\lambda = -a_1 \approx 0.173\)</span> hour<span class="math inline">\(^{-1}\)</span></p>
+<p>Fitted model: <span class="math inline">\(A(t) = 99.56 e^{-0.173 t}\)</span></p>
+</section>
+<section id="hard-polynomial-selection-and-goodness-of-fit" class="level2">
+<h2 class="anchored" data-anchor-id="hard-polynomial-selection-and-goodness-of-fit">🔴 Hard: Polynomial Selection and Goodness of Fit</h2>
+<p><strong>Problem:</strong> Heat capacity <span class="math inline">\(C_p\)</span> of a gas is measured at various temperatures <span class="math inline">\(T\)</span>. Compare linear, quadratic, and cubic fits, compute <span class="math inline">\(R^2\)</span> for each, and identify the most appropriate model.</p>
+<p>Data: <span class="math inline">\(T\)</span> (K): 300, 400, 500, 600, 700, 800, 900 <span class="math inline">\(C_p\)</span> (J/mol-K): 29.1, 29.8, 30.7, 31.8, 33.1, 34.6, 36.3</p>
+<p><strong>Solution:</strong> Let’s use Python to compute the models and <span class="math inline">\(R^2\)</span>.</p>
+<div id="3c9e16e3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.array([<span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">700</span>, <span class="dv">800</span>, <span class="dv">900</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Cp <span class="op">=</span> np.array([<span class="fl">29.1</span>, <span class="fl">29.8</span>, <span class="fl">30.7</span>, <span class="fl">31.8</span>, <span class="fl">33.1</span>, <span class="fl">34.6</span>, <span class="fl">36.3</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>S_t <span class="op">=</span> np.<span class="bu">sum</span>((Cp <span class="op">-</span> np.mean(Cp))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> deg <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> np.polyfit(T, Cp, deg)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    Cp_pred <span class="op">=</span> np.polyval(coeffs, T)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    S_r <span class="op">=</span> np.<span class="bu">sum</span>((Cp <span class="op">-</span> Cp_pred)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    r2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (S_r <span class="op">/</span> S_t)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Degree </span><span class="sc">{</span>deg<span class="sc">}</span><span class="ss">: R^2 = </span><span class="sc">{</span>r2<span class="sc">:.5f}</span><span class="ss">, Coefficients = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(coeffs, <span class="dv">6</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Conclusion:</strong> - The linear model has an <span class="math inline">\(R^2\)</span> around 0.94, which is decent but shows systematic deviation. - The quadratic model has an <span class="math inline">\(R^2\)</span> of nearly 1.00000, indicating an excellent fit. - The cubic model marginally improves the fit over the quadratic, but the improvement is minimal. Because physical laws (like the empirical Shomate equation for heat capacity) typically rely on lower-order polynomials and we wish to avoid overfitting, the <strong>quadratic model</strong> is the most appropriate and parsimonious choice.</p>
+</section>
+</section>
+<section id="practice-problems" class="level1">
+<h1>Practice Problems</h1>
+<ol type="1">
+<li><strong>Linear Regression:</strong> Fit a straight line to the data points <span class="math inline">\((1, 1), (2, 1.5), (3, 2.8), (4, 3.5), (5, 4.1)\)</span>. Compute the slope, intercept, and the <span class="math inline">\(R^2\)</span> value.</li>
+<li><strong>Power Law Fit:</strong> The current <span class="math inline">\(I\)</span> through a non-ohmic device varies with voltage <span class="math inline">\(V\)</span> according to <span class="math inline">\(I = C V^n\)</span>. Use linearization to determine <span class="math inline">\(C\)</span> and <span class="math inline">\(n\)</span> given the data: <span class="math inline">\((V, I) = (1, 0.5), (2, 1.7), (3, 3.8), (4, 6.7), (5, 10.3)\)</span>.</li>
+<li><strong>Saturation Growth Rate:</strong> The specific growth rate <span class="math inline">\(\mu\)</span> of a bacteria follows Monod kinetics: <span class="math inline">\(\mu = \frac{\mu_{max} S}{K_s + S}\)</span>. By taking the reciprocal, <span class="math inline">\(\frac{1}{\mu} = \frac{K_s}{\mu_{max}} \frac{1}{S} + \frac{1}{\mu_{max}}\)</span> (Lineweaver-Burk plot). Fit this linear model to determine <span class="math inline">\(\mu_{max}\)</span> and <span class="math inline">\(K_s\)</span> for provided experimental data.</li>
+<li><strong>Polynomial Fitting:</strong> Using a programming language of choice, write a function that takes arrays <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and computes the normal equations matrix for a cubic polynomial, solving it using a linear algebra solver (e.g., <code>np.linalg.solve</code>).</li>
+<li><strong>Overfitting Analysis:</strong> Create a dataset of 10 points generated from a quadratic function plus random noise. Fit polynomials of degree 2, 5, and 9 to this data. Plot the results and explain the behavior of the degree 9 polynomial between the data points.</li>
+</ol>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<div class="callout callout-style-default callout-note callout-titled" title="Key Takeaways">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Interpolation vs.&nbsp;Curve Fitting</strong>: Interpolation matches data exactly; curve fitting minimizes error to find trends in noisy data.</li>
+<li><strong>Least Squares Principle</strong>: The best fit is achieved by minimizing the sum of the squared residuals <span class="math inline">\(S_r = \sum (y_i - f(x_i))^2\)</span>.</li>
+<li><strong>Linear Regression formulas</strong>: <span class="math display">\[ a_1 = \frac{n \sum x_i y_i - \sum x_i \sum y_i}{n \sum x_i^2 - (\sum x_i)^2}, \quad a_0 = \bar{y} - a_1 \bar{x} \]</span></li>
+<li><strong>Goodness of Fit (<span class="math inline">\(R^2\)</span>)</strong>: Measures the proportion of variance in the dependent variable explained by the model. Values close to 1 indicate a good fit.</li>
+<li><strong>Linearization</strong>: Non-linear models like <span class="math inline">\(y = \alpha e^{\beta x}\)</span> can be transformed into linear forms using logarithms to apply standard least squares techniques.</li>
+<li><strong>Underfitting/Overfitting</strong>: Balancing model complexity is critical. Overly complex models fit noise instead of physics, reducing predictive power.</li>
+</ul>
+</div>
+</div>
+<p><a href="../../Courses/Numerical_Analysis/index.html">← Back to Course Index</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

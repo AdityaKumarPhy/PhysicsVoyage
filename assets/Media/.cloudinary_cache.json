@@ -9,5 +9,13 @@
     "resource_type": "image",
     "format": "png",
     "uploaded_at": "2026-05-25T12:48:25.233836+00:00"
+  },
+  "Numerical_Analysis_Thumbnail.jpg": {
+    "sha256": "7d14340b4a79e438d91dac5236a22c1898b954c2a2ff6c2d12ae13d2201e2917",
+    "cloudinary_url": "https://res.cloudinary.com/dy3qzey1n/image/upload/v1790901644/Github%20Blog/numerical_analysis_thumbnail.jpg",
+    "public_id": "Github Blog/numerical_analysis_thumbnail",
+    "resource_type": "image",
+    "format": "jpg",
+    "uploaded_at": "2026-10-02T00:40:45.254320+00:00"
   }
 }

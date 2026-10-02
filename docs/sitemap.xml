@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://physicsvoyage-github-io.pages.dev/courses.html</loc>
-    <lastmod>2026-06-21T01:24:42.000Z</lastmod>
+    <lastmod>2026-09-30T23:41:45.929Z</lastmod>
   </url>
   <url>
     <loc>https://physicsvoyage-github-io.pages.dev/resources.html</loc>
@@ -143,5 +143,53 @@
   <url>
     <loc>https://physicsvoyage-github-io.pages.dev/feed.html</loc>
     <lastmod>2026-05-23T01:15:36.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/03_roots_equations.html</loc>
+    <lastmod>2026-10-01T01:20:53.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/01_approximations_errors.html</loc>
+    <lastmod>2026-10-01T01:51:20.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/10_partial_differential_equations.html</loc>
+    <lastmod>2026-10-01T01:20:53.892Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/09_ordinary_differential_equations.html</loc>
+    <lastmod>2026-10-01T02:02:12.799Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/06_interpolation.html</loc>
+    <lastmod>2026-10-01T01:20:53.889Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/11_fourier_approximation.html</loc>
+    <lastmod>2026-10-01T01:20:53.894Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/02_computer_programming.html</loc>
+    <lastmod>2026-10-01T02:02:12.793Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/index.html</loc>
+    <lastmod>2026-10-02T00:40:39.871Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/05_curve_fitting.html</loc>
+    <lastmod>2026-10-01T01:20:53.887Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/07_numerical_differentiation.html</loc>
+    <lastmod>2026-10-01T01:20:53.890Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/08_numerical_integration.html</loc>
+    <lastmod>2026-10-01T02:16:11.381Z</lastmod>
+  </url>
+  <url>
+    <loc>https://physicsvoyage-github-io.pages.dev/Courses/Numerical_Analysis/04_system_nonlinear.html</loc>
+    <lastmod>2026-10-01T02:16:11.381Z</lastmod>
   </url>
 </urlset>

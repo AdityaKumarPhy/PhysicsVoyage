@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 3: Roots of Equations and Systems of Linear Algebraic Equations – Physics Voyage</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-53dc85963c67a221f6f2030af840abbe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-439935389e492bce342c92d4b72ba577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">About Me</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#research">
+ <span class="dropdown-text">Research &amp; Skills</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#education">
+ <span class="dropdown-text">Education</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory">2. Theory</a>
+  <ul class="collapse">
+  <li><a href="#bracketing-methods" id="toc-bracketing-methods" class="nav-link" data-scroll-target="#bracketing-methods">2.1 Bracketing Methods</a>
+  <ul class="collapse">
+  <li><a href="#bisection-method" id="toc-bisection-method" class="nav-link" data-scroll-target="#bisection-method">Bisection Method</a></li>
+  <li><a href="#false-position-regula-falsi-method" id="toc-false-position-regula-falsi-method" class="nav-link" data-scroll-target="#false-position-regula-falsi-method">False Position (Regula Falsi) Method</a></li>
+  </ul></li>
+  <li><a href="#open-methods" id="toc-open-methods" class="nav-link" data-scroll-target="#open-methods">2.2 Open Methods</a>
+  <ul class="collapse">
+  <li><a href="#newton-raphson-method" id="toc-newton-raphson-method" class="nav-link" data-scroll-target="#newton-raphson-method">Newton-Raphson Method</a></li>
+  </ul></li>
+  <li><a href="#systems-of-linear-algebraic-equations" id="toc-systems-of-linear-algebraic-equations" class="nav-link" data-scroll-target="#systems-of-linear-algebraic-equations">2.3 Systems of Linear Algebraic Equations</a>
+  <ul class="collapse">
+  <li><a href="#gauss-elimination-with-partial-pivoting" id="toc-gauss-elimination-with-partial-pivoting" class="nav-link" data-scroll-target="#gauss-elimination-with-partial-pivoting">Gauss Elimination with Partial Pivoting</a></li>
+  <li><a href="#lu-decomposition-doolittles-method" id="toc-lu-decomposition-doolittles-method" class="nav-link" data-scroll-target="#lu-decomposition-doolittles-method">LU Decomposition (Doolittle’s Method)</a></li>
+  <li><a href="#matrix-inversion-via-lu" id="toc-matrix-inversion-via-lu" class="nav-link" data-scroll-target="#matrix-inversion-via-lu">Matrix Inversion via LU</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#geometricvisual-explanation" id="toc-geometricvisual-explanation" class="nav-link" data-scroll-target="#geometricvisual-explanation">3. Geometric/Visual Explanation</a></li>
+  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">4. Python Implementation</a></li>
+  <li><a href="#solved-examples" id="toc-solved-examples" class="nav-link" data-scroll-target="#solved-examples">5. Solved Examples</a>
+  <ul class="collapse">
+  <li><a href="#easy-bisection-method-by-hand" id="toc-easy-bisection-method-by-hand" class="nav-link" data-scroll-target="#easy-bisection-method-by-hand">🟢 Easy: Bisection Method by Hand</a></li>
+  <li><a href="#medium-newton-raphson-method" id="toc-medium-newton-raphson-method" class="nav-link" data-scroll-target="#medium-newton-raphson-method">🟡 Medium: Newton-Raphson Method</a></li>
+  <li><a href="#hard-lu-decomposition" id="toc-hard-lu-decomposition" class="nav-link" data-scroll-target="#hard-lu-decomposition">🔴 Hard: LU Decomposition</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">6. Practice Problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">7. Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 3: Roots of Equations and Systems of Linear Algebraic Equations</h1>
+              </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+                </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>Finding the roots of equations—values of <span class="math inline">\(x\)</span> for which <span class="math inline">\(f(x) = 0\)</span>—is one of the oldest and most fundamental problems in computational physics and engineering. From calculating the trajectory of a projectile to determining the energy levels in a quantum well, solving nonlinear equations is ubiquitous.</p>
+<p>Similarly, systems of linear algebraic equations are the backbone of numerical analysis. They arise naturally when solving differential equations, fitting curves to data, or analyzing complex electrical circuits.</p>
+<p>In this module, we explore methods to solve both single nonlinear equations (bracketing and open methods) and large systems of linear equations (direct methods).</p>
+</section>
+<section id="theory" class="level1">
+<h1>2. Theory</h1>
+<section id="bracketing-methods" class="level2">
+<h2 class="anchored" data-anchor-id="bracketing-methods">2.1 Bracketing Methods</h2>
+<p>Bracketing methods rely on the Intermediate Value Theorem. If a continuous function <span class="math inline">\(f(x)\)</span> has opposite signs at the endpoints of an interval <span class="math inline">\([a, b]\)</span> (i.e., <span class="math inline">\(f(a)f(b) &lt; 0\)</span>), then there exists at least one root <span class="math inline">\(c \in [a, b]\)</span> such that <span class="math inline">\(f(c) = 0\)</span>.</p>
+<section id="bisection-method" class="level3">
+<h3 class="anchored" data-anchor-id="bisection-method">Bisection Method</h3>
+<p>The bisection method systematically halves the interval containing the root. <strong>Algorithm</strong>: 1. Choose lower <span class="math inline">\(x_l\)</span> and upper <span class="math inline">\(x_u\)</span> guesses such that <span class="math inline">\(f(x_l)f(x_u) &lt; 0\)</span>. 2. Estimate the root <span class="math inline">\(x_r = \frac{x_l + x_u}{2}\)</span>. 3. Determine the subinterval for the next step: - If <span class="math inline">\(f(x_l)f(x_r) &lt; 0\)</span>, the root lies in the lower subinterval. Set <span class="math inline">\(x_u = x_r\)</span>. - If <span class="math inline">\(f(x_l)f(x_r) &gt; 0\)</span>, the root lies in the upper subinterval. Set <span class="math inline">\(x_l = x_r\)</span>. - If <span class="math inline">\(f(x_l)f(x_r) = 0\)</span>, the root equals <span class="math inline">\(x_r\)</span>. 4. Repeat until the approximate error is below a tolerance.</p>
+<p><strong>Convergence and Error</strong>: The absolute error after <span class="math inline">\(n\)</span> iterations is bounded by <span class="math inline">\(E_n \le \frac{x_u^0 - x_l^0}{2^n}\)</span>. Thus, it has linear convergence.</p>
+</section>
+<section id="false-position-regula-falsi-method" class="level3">
+<h3 class="anchored" data-anchor-id="false-position-regula-falsi-method">False Position (Regula Falsi) Method</h3>
+<p>Instead of blindly bisecting the interval, False Position connects the points <span class="math inline">\((x_l, f(x_l))\)</span> and <span class="math inline">\((x_u, f(x_u))\)</span> with a straight line. The intersection of this line with the x-axis is the new root estimate. <span class="math display">\[x_r = x_u - \frac{f(x_u)(x_l - x_u)}{f(x_l) - f(x_u)}\]</span> <strong>Pros/Cons</strong>: Often faster than bisection for smooth curves, but can be much slower (one-sided convergence) for functions with significant curvature near the root.</p>
+</section>
+</section>
+<section id="open-methods" class="level2">
+<h2 class="anchored" data-anchor-id="open-methods">2.2 Open Methods</h2>
+<p>Open methods require only a single starting value or two values that do not necessarily bracket the root. They can diverge but typically converge much faster than bracketing methods.</p>
+<section id="newton-raphson-method" class="level3">
+<h3 class="anchored" data-anchor-id="newton-raphson-method">Newton-Raphson Method</h3>
+<p>Derived from the first-order Taylor series expansion: <span class="math inline">\(f(x_{i+1}) \approx f(x_i) + f'(x_i)(x_{i+1} - x_i) = 0\)</span>. Solving for <span class="math inline">\(x_{i+1}\)</span>: <span class="math display">\[x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}\]</span> <strong>Convergence</strong>: Quadratic convergence for simple roots (error at step <span class="math inline">\(i+1\)</span> is proportional to the square of the error at step <span class="math inline">\(i\)</span>). <strong>Pitfalls</strong>: Can diverge if the initial guess is far from the root, or if <span class="math inline">\(f'(x_i) \approx 0\)</span> (inflection points, local extrema).</p>
+</section>
+</section>
+<section id="systems-of-linear-algebraic-equations" class="level2">
+<h2 class="anchored" data-anchor-id="systems-of-linear-algebraic-equations">2.3 Systems of Linear Algebraic Equations</h2>
+<p>A system of <span class="math inline">\(n\)</span> linear equations can be represented as <span class="math inline">\(Ax = b\)</span>.</p>
+<section id="gauss-elimination-with-partial-pivoting" class="level3">
+<h3 class="anchored" data-anchor-id="gauss-elimination-with-partial-pivoting">Gauss Elimination with Partial Pivoting</h3>
+<p>A direct method that transforms the matrix <span class="math inline">\(A\)</span> into an upper triangular matrix using row operations, followed by backward substitution. <em>Partial pivoting</em> involves swapping rows to place the largest available absolute value on the diagonal to minimize round-off errors.</p>
+</section>
+<section id="lu-decomposition-doolittles-method" class="level3">
+<h3 class="anchored" data-anchor-id="lu-decomposition-doolittles-method">LU Decomposition (Doolittle’s Method)</h3>
+<p>Decomposes <span class="math inline">\(A = LU\)</span>, where <span class="math inline">\(L\)</span> is a lower triangular matrix with 1s on the diagonal, and <span class="math inline">\(U\)</span> is an upper triangular matrix. Once decomposed, <span class="math inline">\(Ax=b \implies LUx = b\)</span>. 1. Solve <span class="math inline">\(Ly = b\)</span> (forward substitution). 2. Solve <span class="math inline">\(Ux = y\)</span> (backward substitution).</p>
+</section>
+<section id="matrix-inversion-via-lu" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-inversion-via-lu">Matrix Inversion via LU</h3>
+<p>The inverse of <span class="math inline">\(A\)</span> can be found column by column by solving <span class="math inline">\(Ax_i = e_i\)</span>, where <span class="math inline">\(e_i\)</span> is the <span class="math inline">\(i\)</span>-th column of the identity matrix.</p>
+</section>
+</section>
+</section>
+<section id="geometricvisual-explanation" class="level1">
+<h1>3. Geometric/Visual Explanation</h1>
+<div id="fig-bisection" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bisection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">6</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">11</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">6</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="dv">400</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(x)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'f(x)'</span>, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>xl, xu <span class="op">=</span> <span class="fl">1.6</span>, <span class="fl">2.4</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'red'</span>, <span class="st">'blue'</span>, <span class="st">'green'</span>, <span class="st">'orange'</span>, <span class="st">'purple'</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    xr <span class="op">=</span> (xl <span class="op">+</span> xu) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    plt.plot([xl, xu], [<span class="dv">0</span>, <span class="dv">0</span>], marker<span class="op">=</span><span class="st">'|'</span>, color<span class="op">=</span>colors[i], markersize<span class="op">=</span><span class="dv">15</span>, </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>             linewidth<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="ss">f'Iter </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: xr=</span><span class="sc">{</span>xr<span class="sc">:.3f}</span><span class="ss">'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>             linestyle<span class="op">=</span><span class="st">'-'</span> <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span> <span class="cf">else</span> (<span class="dv">0</span>, (<span class="dv">5</span>, <span class="dv">10</span>)))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> f(xl) <span class="op">*</span> f(xr) <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        xu <span class="op">=</span> xr</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        xl <span class="op">=</span> xr</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bisection Method - 5 Iterations'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bisection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<div id="fig-false-position" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-false-position-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'f(x)'</span>, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>xl, xu <span class="op">=</span> <span class="fl">1.6</span>, <span class="fl">2.4</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>yl, yu <span class="op">=</span> f(xl), f(xu)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.plot([xl, xu], [yl, yu], <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">'Secant Line'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>xr <span class="op">=</span> xu <span class="op">-</span> (yu <span class="op">*</span> (xl <span class="op">-</span> xu)) <span class="op">/</span> (yl <span class="op">-</span> yu)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.plot(xr, <span class="dv">0</span>, <span class="st">'go'</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="ss">f'False Position xr=</span><span class="sc">{</span>xr<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'False Position Method'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-false-position-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+<div id="fig-newton" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-newton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> df(x):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">12</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">11</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">'f(x)'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> <span class="fl">2.4</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    yi <span class="op">=</span> f(xi)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    slope <span class="op">=</span> df(xi)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    xnext <span class="op">=</span> xi <span class="op">-</span> yi<span class="op">/</span>slope</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    plt.plot([xi, xi], [<span class="dv">0</span>, yi], <span class="st">'k:'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(xi, yi, <span class="st">'ro'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tangent line</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    x_tangent <span class="op">=</span> np.linspace(<span class="bu">min</span>(xi, xnext)<span class="op">-</span><span class="fl">0.1</span>, <span class="bu">max</span>(xi, xnext)<span class="op">+</span><span class="fl">0.1</span>, <span class="dv">10</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    y_tangent <span class="op">=</span> slope <span class="op">*</span> (x_tangent <span class="op">-</span> xi) <span class="op">+</span> yi</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_tangent, y_tangent, <span class="st">'r--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="ss">f'x_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span>, (xi, <span class="dv">0</span>), xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="op">-</span><span class="dv">15</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    xi <span class="op">=</span> xnext</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="ss">f'x_3'</span>, (xi, <span class="dv">0</span>), xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="op">-</span><span class="dv">15</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.plot(xi, <span class="dv">0</span>, <span class="st">'go'</span>, label<span class="op">=</span><span class="st">'Root estimate'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Newton-Raphson Method Steps'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-newton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+<div id="fig-gauss" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gauss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.2</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>              [<span class="fl">0.1</span>,  <span class="fl">7.0</span>, <span class="op">-</span><span class="fl">0.3</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>              [<span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.2</span>, <span class="fl">10.0</span>]])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># After one elimination step roughly</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>A_step1 <span class="op">=</span> np.array([[<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.2</span>],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                    [<span class="fl">0.0</span>, <span class="fl">7.0033</span>, <span class="op">-</span><span class="fl">0.2933</span>],</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                    [<span class="fl">0.0</span>, <span class="op">-</span><span class="fl">0.19</span>, <span class="fl">10.02</span>]])</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>sns.heatmap(A, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], cbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Initial Matrix A"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>sns.heatmap(A_step1, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], cbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"After Column 1 Elimination"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gauss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="python-implementation" class="level1">
+<h1>4. Python Implementation</h1>
+<div id="python-code" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bisection(func, xl, xu, tol<span class="op">=</span><span class="fl">1e-5</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Bisection method for finding root of func."""</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> func(xl) <span class="op">*</span> func(xu) <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Root is not bracketed."</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        xr <span class="op">=</span> (xl <span class="op">+</span> xu) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(func(xr)) <span class="op">&lt;</span> tol <span class="kw">or</span> (xu <span class="op">-</span> xl) <span class="op">/</span> <span class="dv">2</span> <span class="op">&lt;</span> tol:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> xr</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> func(xl) <span class="op">*</span> func(xr) <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            xu <span class="op">=</span> xr</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            xl <span class="op">=</span> xr</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xr</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> false_position(func, xl, xu, tol<span class="op">=</span><span class="fl">1e-5</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""False Position method for finding root of func."""</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> func(xl) <span class="op">*</span> func(xu) <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Root is not bracketed."</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        yl, yu <span class="op">=</span> func(xl), func(xu)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        xr <span class="op">=</span> xu <span class="op">-</span> (yu <span class="op">*</span> (xl <span class="op">-</span> xu)) <span class="op">/</span> (yl <span class="op">-</span> yu)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(func(xr)) <span class="op">&lt;</span> tol:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> xr</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> func(xl) <span class="op">*</span> func(xr) <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            xu <span class="op">=</span> xr</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>            xl <span class="op">=</span> xr</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xr</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton_raphson(func, dfunc, x0, tol<span class="op">=</span><span class="fl">1e-5</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Newton-Raphson method for finding root."""</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x0</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        fx <span class="op">=</span> func(x)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(fx) <span class="op">&lt;</span> tol:</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        dfx <span class="op">=</span> dfunc(x)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> dfx <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Derivative is zero. Newton-Raphson fails."</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">-</span> fx <span class="op">/</span> dfx</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lu_decomposition(A):</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Doolittle's LU Decomposition."""</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(A)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.zeros((n, n))</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> np.zeros((n, n))</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        L[i][i] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(i, n):</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>            sum_val <span class="op">=</span> <span class="bu">sum</span>(L[i][j] <span class="op">*</span> U[j][k] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i))</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>            U[i][k] <span class="op">=</span> A[i][k] <span class="op">-</span> sum_val</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>            sum_val <span class="op">=</span> <span class="bu">sum</span>(L[k][j] <span class="op">*</span> U[j][i] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i))</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            L[k][i] <span class="op">=</span> (A[k][i] <span class="op">-</span> sum_val) <span class="op">/</span> U[i][i]</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> L, U</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="solved-examples" class="level1">
+<h1>5. Solved Examples</h1>
+<section id="easy-bisection-method-by-hand" class="level2">
+<h2 class="anchored" data-anchor-id="easy-bisection-method-by-hand">🟢 Easy: Bisection Method by Hand</h2>
+<p><strong>Problem:</strong> Find the root of <span class="math inline">\(f(x) = x^2 - 4 = 0\)</span> using the bisection method in the interval <span class="math inline">\([1, 3]\)</span> for 3 iterations.</p>
+<p><strong>Solution:</strong> - <strong>Initial Bracket:</strong> <span class="math inline">\(x_l = 1\)</span>, <span class="math inline">\(x_u = 3\)</span>. <span class="math inline">\(f(1) = -3\)</span>, <span class="math inline">\(f(3) = 5\)</span>. Root is bracketed. - <strong>Iteration 1:</strong> - <span class="math inline">\(x_r = \frac{1+3}{2} = 2\)</span>. - <span class="math inline">\(f(2) = 2^2 - 4 = 0\)</span>. - Exact root found in one iteration!</p>
+<p>Let’s modify the interval to <span class="math inline">\([1, 4]\)</span> to see more steps. <span class="math inline">\(f(1)=-3, f(4)=12\)</span>. - <strong>Iteration 1:</strong> - <span class="math inline">\(x_r = 2.5\)</span>. <span class="math inline">\(f(2.5) = 2.5^2 - 4 = 2.25 &gt; 0\)</span>. - Root lies in <span class="math inline">\([1, 2.5]\)</span>. <span class="math inline">\(x_u = 2.5\)</span>. - <strong>Iteration 2:</strong> - <span class="math inline">\(x_r = 1.75\)</span>. <span class="math inline">\(f(1.75) = 1.75^2 - 4 = -0.9375 &lt; 0\)</span>. - Root lies in <span class="math inline">\([1.75, 2.5]\)</span>. <span class="math inline">\(x_l = 1.75\)</span>. - <strong>Iteration 3:</strong> - <span class="math inline">\(x_r = 2.125\)</span>. <span class="math inline">\(f(2.125) = 0.5156 &gt; 0\)</span>. - Root lies in <span class="math inline">\([1.75, 2.125]\)</span>.</p>
+</section>
+<section id="medium-newton-raphson-method" class="level2">
+<h2 class="anchored" data-anchor-id="medium-newton-raphson-method">🟡 Medium: Newton-Raphson Method</h2>
+<p><strong>Problem:</strong> Solve <span class="math inline">\(f(x) = x e^x - 1 = 0\)</span> starting from <span class="math inline">\(x_0 = 0.5\)</span>.</p>
+<p><strong>Solution:</strong> Derivative: <span class="math inline">\(f'(x) = e^x + x e^x = e^x(1 + x)\)</span>. - <strong>Iter 0:</strong> <span class="math inline">\(x_0 = 0.5\)</span>. - <span class="math inline">\(f(0.5) = 0.5 e^{0.5} - 1 = -0.1756\)</span> - <span class="math inline">\(f'(0.5) = e^{0.5}(1.5) = 2.4731\)</span> - <span class="math inline">\(x_1 = 0.5 - \frac{-0.1756}{2.4731} = 0.5710\)</span> - <strong>Iter 1:</strong> <span class="math inline">\(x_1 = 0.5710\)</span>. - <span class="math inline">\(f(0.5710) = 0.5710 e^{0.5710} - 1 = 0.0105\)</span> - <span class="math inline">\(f'(0.5710) = e^{0.5710}(1.5710) = 2.7801\)</span> - <span class="math inline">\(x_2 = 0.5710 - \frac{0.0105}{2.7801} = 0.5672\)</span> - <strong>Iter 2:</strong> <span class="math inline">\(x_2 = 0.5672\)</span>. - <span class="math inline">\(f(0.5672) \approx 0.0000\)</span></p>
+<p>Root is approximately <span class="math inline">\(x = 0.567\)</span>.</p>
+</section>
+<section id="hard-lu-decomposition" class="level2">
+<h2 class="anchored" data-anchor-id="hard-lu-decomposition">🔴 Hard: LU Decomposition</h2>
+<p><strong>Problem:</strong> Solve the 3x3 system using LU Decomposition. <span class="math display">\[ 2x_1 + 3x_2 + x_3 = 9 \]</span> <span class="math display">\[ x_1 + 2x_2 + 3x_3 = 6 \]</span> <span class="math display">\[ 3x_1 + x_2 + 2x_3 = 8 \]</span></p>
+<p><strong>Solution (Hand Calc &amp; Code):</strong> Matrix <span class="math inline">\(A = \begin{bmatrix} 2 &amp; 3 &amp; 1 \\ 1 &amp; 2 &amp; 3 \\ 3 &amp; 1 &amp; 2 \end{bmatrix}\)</span>.</p>
+<div id="hard-example" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A_sys <span class="op">=</span> np.array([[<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">1.0</span>], </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                  [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                  [<span class="fl">3.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>]])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>b_sys <span class="op">=</span> np.array([<span class="fl">9.0</span>, <span class="fl">6.0</span>, <span class="fl">8.0</span>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>L, U <span class="op">=</span> lu_decomposition(A_sys)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"L:</span><span class="ch">\n</span><span class="st">"</span>, L)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"U:</span><span class="ch">\n</span><span class="st">"</span>, U)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify with numpy</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linalg.solve(A_sys, b_sys)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solution x:"</span>, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>By hand, <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> are derived systematically row by row, resulting in the matrices printed above. Then solving <span class="math inline">\(Ly = b\)</span> and <span class="math inline">\(Ux = y\)</span> gives <span class="math inline">\(x_1=1.94, x_2=1.39, x_3=0.94\)</span>.</p>
+</section>
+</section>
+<section id="practice-problems" class="level1">
+<h1>6. Practice Problems</h1>
+<ol type="1">
+<li>Use the bisection method to find the root of <span class="math inline">\(f(x) = \cos(x) - x = 0\)</span> in <span class="math inline">\([0, 1]\)</span> to 3 decimal places.</li>
+<li>Compare the number of iterations required to solve <span class="math inline">\(x^3 - 0.165x^2 + 3.993 \times 10^{-4} = 0\)</span> using Bisection and False Position on <span class="math inline">\([0, 0.11]\)</span>.</li>
+<li>Apply the Newton-Raphson method to <span class="math inline">\(f(x) = x^3 - 2x - 5 = 0\)</span> starting with <span class="math inline">\(x_0 = 2\)</span>. What is the absolute relative error after 2 iterations?</li>
+<li>Solve a 4x4 matrix system using Gauss Elimination with partial pivoting. Construct the matrix and RHS vector arbitrarily.</li>
+<li>Compute the inverse of <span class="math inline">\(\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}\)</span> manually using LU decomposition.</li>
+</ol>
+</section>
+<section id="summary" class="level1">
+<h1>7. Summary</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Formulas &amp; Convergence Rates
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Bisection</strong>: <span class="math inline">\(x_r = \frac{x_l + x_u}{2}\)</span> | Linear Convergence <span class="math inline">\(O(2^{-n})\)</span></li>
+<li><strong>False Position</strong>: <span class="math inline">\(x_r = x_u - \frac{f(x_u)(x_l - x_u)}{f(x_l) - f(x_u)}\)</span> | Superlinear typically, but can be slow</li>
+<li><strong>Newton-Raphson</strong>: <span class="math inline">\(x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}\)</span> | Quadratic Convergence <span class="math inline">\(O(E^2)\)</span></li>
+<li><strong>Gauss Elimination</strong>: Direct solver for <span class="math inline">\(Ax=b\)</span> using row reductions. Time complexity <span class="math inline">\(O(n^3)\)</span>. Partial pivoting is crucial for numerical stability.</li>
+<li><strong>LU Decomposition</strong>: Factors <span class="math inline">\(A=LU\)</span>. Efficient when solving <span class="math inline">\(Ax=b\)</span> for multiple <span class="math inline">\(b\)</span> vectors.</li>
+</ul>
+</div>
+</div>
+<p><a href="../../Courses/Numerical_Analysis/index.html">← Back to Course Index</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

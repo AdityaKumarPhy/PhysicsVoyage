@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aditya Kumar">
+<meta name="dcterms.date" content="2026-10-01">
+<meta name="description" content="A comprehensive course covering the theory, implementation (with code), and practical applications of Numerical Analysis.">
 
-<title>Courses – Physics Voyage</title>
+<title>Numerical Analysis – Physics Voyage</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,30 +32,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-53dc85963c67a221f6f2030af840abbe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-439935389e492bce342c92d4b72ba577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-53dc85963c67a221f6f2030af840abbe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-439935389e492bce342c92d4b72ba577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,98 +81,25 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-list-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-list-view'] = new List('listing-list-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-grid-view .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-grid-view'] = new List('listing-grid-view', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
 }
-window.Quarto = {
-  typesetMath
-};
-</script>
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
 
-<link rel="stylesheet" href="assets/styles/styles.css">
-</head>
-
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+</head><body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -342,14 +270,34 @@ window.Quarto = {
     } else {
       toggleColorMode(false);
     }
-  </script>
+  </script><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Physics Voyage</span>
     </a>
   </div>
@@ -360,19 +308,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./courses.html" aria-current="page"> 
+    <a class="nav-link" href="../../courses.html"> 
 <span class="menu-text">Learn</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./project.html"> 
+    <a class="nav-link" href="../../project.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -381,19 +329,19 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
         <li>
-    <a class="dropdown-item" href="./about.html#your-story">
+    <a class="dropdown-item" href="../../about.html#your-story">
  <span class="dropdown-text">About Me</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./about.html#research">
+    <a class="dropdown-item" href="../../about.html#research">
  <span class="dropdown-text">Research &amp; Skills</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./about.html#education">
+    <a class="dropdown-item" href="../../about.html#education">
  <span class="dropdown-text">Education</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./about.html#contact">
+    <a class="dropdown-item" href="../../about.html#contact">
  <span class="dropdown-text">Contact</span></a>
   </li>  
     </ul>
@@ -415,377 +363,374 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#physics-courses" id="toc-physics-courses" class="nav-link active" data-scroll-target="#physics-courses">🎓 Physics Courses</a></li>
-  </ul>
-</nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="QWN0aXZl">Active <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Q29tcHV0YXRpb25hbCUyMFBoeXNpY3M=">Computational Physics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TnVtZXJpY2FsJTIwQW5hbHlzaXM=">Numerical Analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UGh5c2ljcw==">Physics <span class="quarto-category-count">(6)</span></div><div class="category" data-category="UXVhbnR1bSUyMEZpZWxkJTIwVGhlb3J5">Quantum Field Theory <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UXVhbnR1bSUyME1lY2hhbmljcw==">Quantum Mechanics <span class="quarto-category-count">(4)</span></div><div class="category" data-category="VXBjb21pbmc=">Upcoming <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Courses</h1>
-</div>
+  <div class="quarto-title">
+    <h1 class="title">Numerical Analysis</h1>
+        <p class="subtitle lead">From Errors and Approximations to PDEs and Fourier Transforms</p>
+            <div class="description" style="margin-top: 15px; font-size: 1.15rem; color: var(--bs-secondary-color, #666);">
+      A comprehensive course covering the theory, implementation (with code), and practical applications of Numerical Analysis.
+    </div>
+            <div class="quarto-categories" style="margin-top: 20px;">
+            <div class="quarto-category">Computational Physics</div>
+            <div class="quarto-category">Numerical Analysis</div>
+            <div class="quarto-category">Active</div>
+          </div>
+      </div>
 
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
 
-
-<div class="quarto-title-meta column-page-left">
-
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
     
-  
-    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+            <div>
+        <span class="meta-heading">Author</span>
+        <span class="meta-value">
+                      Aditya Kumar         </span>
+      </div>
+                  <div>
+        <span class="meta-heading">Published</span>
+        <span class="meta-value">October 1, 2026</span>
+      </div>
+          </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+    <div class="featured-image-container">
+    <img src="../../assets/Media/Numerical_Analysis_Thumbnail.jpg" alt="Featured image for Numerical Analysis">
   </div>
   
-
-
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
 </header>
 
 
 <style>
-/* ── Page Header ─────────────────────────────────────── */
-.courses-page-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+.na-hero {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 45%, #2c5364 100%);
   border-radius: 16px;
-  padding: 2.2rem 2.5rem;
+  padding: 2.8rem 2.5rem 2.2rem;
   color: white;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(167,139,250,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin-bottom: 2.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
-.courses-page-header h2 {
-  color: #c4b5fd;
-  margin: 0 0 0.4rem;
-  font-size: 1.5rem;
+.na-title { font-weight: 800; font-size: 2.8rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+.na-subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.9; margin-bottom: 1.5rem; }
+.course-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 4px solid #203a43;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.chapter-number {
+  font-size: 1.2rem;
   font-weight: 700;
-}
-.courses-page-header p {
-  color: #ddd6fe;
-  margin: 0;
-  font-size: 0.95rem;
-  max-width: 560px;
-}
-
-/* ── Grid item hover (matches blog) ─────────────────── */
-#grid-view .quarto-grid-item {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--bs-border-color, #dee2e6) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-}
-#grid-view .quarto-grid-item:hover {
-  transform: translateY(-5px) !important;
-  box-shadow: 6px 6px 0px var(--bs-body-color, #212529) !important;
-}
-#grid-view .quarto-grid-item .thumbnail-image,
-#grid-view .quarto-grid-item .card-img-top {
-  aspect-ratio: 16 / 9 !important;
-  object-fit: cover !important;
-  width: 100% !important;
-}
-#grid-view .quarto-grid-item .listing-title {
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-
-/* ── List item hover (matches blog) ─────────────────── */
-#list-view .quarto-post {
-  border-radius: 10px;
-  padding: 0.8rem;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-#list-view .quarto-post:hover {
-  background: rgba(124,58,237,0.04);
-  transform: translateX(4px);
+  color: #2c5364;
 }
 </style>
-<div class="courses-page-header">
-<section id="physics-courses" class="level2">
-<h2 class="anchored" data-anchor-id="physics-courses">🎓 Physics Courses</h2>
-<p>Structured, rigorous, zero-handwaving courses — built from first principles. Every derivation is shown, every concept is motivated.</p>
-</section>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Grid View</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">List View</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div id="listing-grid-view" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-grid-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-grid-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Q29tcHV0YXRpb25hbCUyMFBoeXNpY3MlMkNOdW1lcmljYWwlMjBBbmFseXNpcyUyQ0FjdGl2ZQ==" data-listing-date-sort="1790793000000" data-listing-file-modified-sort="1790901639871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="422">
-<a href="./Courses/Numerical_Analysis/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./assets/Media/Numerical_Analysis_Thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
+<div class="na-hero">
+<h1 class="na-title">
 Numerical Analysis
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29tcHV0YXRpb25hbCUyMFBoeXNpY3M='); return false;">Computational Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtZXJpY2FsJTIwQW5hbHlzaXM='); return false;">Numerical Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWN0aXZl'); return false;">Active</div>
-
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="UXVhbnR1bSUyME1lY2hhbmljcyUyQ1F1YW50dW0lMjBGaWVsZCUyMFRoZW9yeSUyQ1BoeXNpY3MlMkNBY3RpdmU=" data-listing-date-sort="1781980200000" data-listing-file-modified-sort="1782006217000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2252">
-<a href="./Courses/Path_Integrals/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1782005094/Github%20Blog/path_integrals_hero.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</h1>
+<p class="na-subtitle">
+Theory, Implementation, and Practice Problems
 </p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Path Integrals in Quantum Mechanics &amp; Quantum Field Theory
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhbnR1bSUyME1lY2hhbmljcw=='); return false;">Quantum Mechanics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhbnR1bSUyMEZpZWxkJTIwVGhlb3J5'); return false;">Quantum Field Theory</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWN0aXZl'); return false;">Active</div>
-
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="UGh5c2ljcyUyQ1VwY29taW5n" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<a href="./Courses/Comp_Physics/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image card-img" style="height: 150px;">
+<p style="max-width: 800px; line-height: 1.6; opacity: 0.85;">
+This course covers everything from basic error approximations to solving Partial Differential Equations and performing Fast Fourier Transforms. Each chapter includes rigorous mathematical theory, practical code examples, and practice problems to solidify your understanding.
 </p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Computational Physics Course
+</div>
+<section id="course-syllabus" class="level2">
+<h2 class="anchored" data-anchor-id="course-syllabus">Course Syllabus</h2>
+<div class="grid">
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 01</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/01_approximations_errors.html" class="text-decoration-none text-reset stretched-link">Methods of Approximation and Errors</a>
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VXBjb21pbmc='); return false;">Upcoming</div>
-
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UXVhbnR1bSUyME1lY2hhbmljcyUyQ1BoeXNpY3MlMkNBY3RpdmU=" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<a href="./Courses/QHO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<p class="text-muted small mb-0">
+Truncation and round-off errors, accuracy, and precision.
 </p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Quantum Harmonic Oscillator
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 02</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/02_computer_programming.html" class="text-decoration-none text-reset stretched-link">Computer Programming</a>
 </h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhbnR1bSUyME1lY2hhbmljcw=='); return false;">Quantum Mechanics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWN0aXZl'); return false;">Active</div>
-
+<p class="text-muted small mb-0">
+Programming fundamentals required for implementing numerical methods.
+</p>
 </div>
 </div>
-</div></a>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 03</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/03_roots_equations.html" class="text-decoration-none text-reset stretched-link">Roots of Equations</a>
+</h5>
+<p class="text-muted small mb-0">
+Bracketing methods (Bisection, False Position), Newton-Raphson, and Linear Algebraic Equations.
+</p>
 </div>
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 04</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/04_system_nonlinear.html" class="text-decoration-none text-reset stretched-link">System of Nonlinear Equations</a>
+</h5>
+<p class="text-muted small mb-0">
+Bisection, Newton’s method, and Fixed-point iteration for non-linear systems.
+</p>
 </div>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div id="listing-list-view" class="quarto-listing quarto-listing-container-default">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-list-view-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-list-view'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q29tcHV0YXRpb25hbCUyMFBoeXNpY3MlMkNOdW1lcmljYWwlMjBBbmFseXNpcyUyQ0FjdGl2ZQ==" data-listing-date-sort="1790793000000" data-listing-file-modified-sort="1790901639871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="422">
-<div class="thumbnail"><a href="./Courses/Numerical_Analysis/index.html" class="no-external">
-
-<img loading="lazy" src="./assets/Media/Numerical_Analysis_Thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Numerical_Analysis/index.html" class="no-external">Numerical Analysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29tcHV0YXRpb25hbCUyMFBoeXNpY3M='); return false;">Computational Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TnVtZXJpY2FsJTIwQW5hbHlzaXM='); return false;">Numerical Analysis</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWN0aXZl'); return false;">Active</div>
-
-</div>
-<div class="delink listing-description"><a href="./Courses/Numerical_Analysis/index.html" class="no-external">
-<p>A comprehensive course covering the theory, implementation (with code), and practical applications of Numerical Analysis.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./Courses/Numerical_Analysis/index.html" class="no-external">
-<div class="listing-date">
-Oct 1, 2026
-</div>
-</a>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 05</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/05_curve_fitting.html" class="text-decoration-none text-reset stretched-link">Curve Fitting</a>
+</h5>
+<p class="text-muted small mb-0">
+Least squares regression, linear regression, and nonlinear regression.
+</p>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="UXVhbnR1bSUyME1lY2hhbmljcyUyQ1F1YW50dW0lMjBGaWVsZCUyMFRoZW9yeSUyQ1BoeXNpY3MlMkNBY3RpdmU=" data-listing-date-sort="1781980200000" data-listing-file-modified-sort="1782006217000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2252">
-<div class="thumbnail"><a href="./Courses/Path_Integrals/index.html" class="no-external">
-
-<img loading="lazy" src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1782005094/Github%20Blog/path_integrals_hero.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Path_Integrals/index.html" class="no-external">Path Integrals in Quantum Mechanics &amp; Quantum Field Theory</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhbnR1bSUyME1lY2hhbmljcw=='); return false;">Quantum Mechanics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhbnR1bSUyMEZpZWxkJTIwVGhlb3J5'); return false;">Quantum Field Theory</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWN0aXZl'); return false;">Active</div>
-
-</div>
-<div class="delink listing-description"><a href="./Courses/Path_Integrals/index.html" class="no-external">
-<p>The ultimate beginner-friendly course on Feynman’s path integral formulation — from propagators and the sum-over-paths idea, through functional integrals and Wick rotation, to Euclidean equations of motion, instantons, and the bridge to quantum field theory. Every derivation shown, every concept motivated, zero hand-waving.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./Courses/Path_Integrals/index.html" class="no-external">
-<div class="listing-date">
-Jun 21, 2026
-</div>
-</a>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 06</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/06_interpolation.html" class="text-decoration-none text-reset stretched-link">Interpolation Methods</a>
+</h5>
+<p class="text-muted small mb-0">
+Interpolating polynomials and Newton’s divided difference.
+</p>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="UGh5c2ljcyUyQ1VwY29taW5n" data-listing-date-sort="1780252200000" data-listing-file-modified-sort="1779466695000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail"><a href="./Courses/Comp_Physics/index.html" class="no-external">
-
-<img loading="lazy" src="https://placehold.co/600x400/222222/FFFFFF?text=Course+1" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">Computational Physics Course</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VXBjb21pbmc='); return false;">Upcoming</div>
-
-</div>
-<div class="delink listing-description"><a href="./Courses/Comp_Physics/index.html" class="no-external">
-<p>Detailed breakdown of your syllabus, link resources, repository assignments, or slides for your students.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./Courses/Comp_Physics/index.html" class="no-external">
-<div class="listing-date">
-Jun 1, 2026
-</div>
-</a>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 07</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/07_numerical_differentiation.html" class="text-decoration-none text-reset stretched-link">Numerical Differentiation</a>
+</h5>
+<p class="text-muted small mb-0">
+Finite difference approximation (Taylor series) and differentiation using curve fitting.
+</p>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="UXVhbnR1bSUyME1lY2hhbmljcyUyQ1BoeXNpY3MlMkNBY3RpdmU=" data-listing-date-sort="1779733800000" data-listing-file-modified-sort="1779805462000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1543">
-<div class="thumbnail"><a href="./Courses/QHO/index.html" class="no-external">
-
-<img loading="lazy" src="https://res.cloudinary.com/dy3qzey1n/image/upload/v1779804125/Github%20Blog/thumbnail.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./Courses/QHO/index.html" class="no-external">Quantum Harmonic Oscillator</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UXVhbnR1bSUyME1lY2hhbmljcw=='); return false;">Quantum Mechanics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWN0aXZl'); return false;">Active</div>
-
-</div>
-<div class="delink listing-description"><a href="./Courses/QHO/index.html" class="no-external">
-<p>A complete, pedagogically rigorous journey through the quantum harmonic oscillator — from Taylor expansion to ladder operators, coherent states, squeezed states, and gravitational wave detection. Drawn from Shankar, Cohen-Tannoudji, and Griffiths.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./Courses/QHO/index.html" class="no-external">
-<div class="listing-date">
-May 26, 2026
-</div>
-</a>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 08</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/08_numerical_integration.html" class="text-decoration-none text-reset stretched-link">Numerical Integration</a>
+</h5>
+<p class="text-muted small mb-0">
+Rectangle, midpoint, Trapezoidal, Simpson’s methods, and Gauss quadrature.
+</p>
 </div>
 </div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 09</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/09_ordinary_differential_equations.html" class="text-decoration-none text-reset stretched-link">Ordinary Differential Equations</a>
+</h5>
+<p class="text-muted small mb-0">
+Euler’s method, Runge-Kutta methods, boundary value, and eigenvalue problems.
+</p>
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
 </div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 10</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/10_partial_differential_equations.html" class="text-decoration-none text-reset stretched-link">Partial Differential Equations</a>
+</h5>
+<p class="text-muted small mb-0">
+Laplace’s equation solutions and practical applications.
+</p>
+</div>
+</div>
+<div class="g-col-12 g-col-md-6">
+<div class="card h-100 course-card p-3">
+<span class="chapter-number">Module 11</span>
+<h5 class="mt-2 fw-bold anchored">
+<a href="../../Courses/Numerical_Analysis/11_fourier_approximation.html" class="text-decoration-none text-reset stretched-link">Fourier Approximation</a>
+</h5>
+<p class="text-muted small mb-0">
+Introduction, Discrete Fourier Transform (DFT), and Fast Fourier Transform (FFT).
+</p>
 </div>
 </div>
 </div>
 
 
-
+</section>
 
 </main> <!-- /main -->
 <div id="newsletter-modal" class="newsletter-modal">

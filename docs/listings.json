@@ -11,6 +11,7 @@
   {
     "listing": "/courses.html",
     "items": [
+      "/Courses/Numerical_Analysis/index.html",
       "/Courses/Path_Integrals/index.html",
       "/Courses/Comp_Physics/index.html",
       "/Courses/QHO/index.html"

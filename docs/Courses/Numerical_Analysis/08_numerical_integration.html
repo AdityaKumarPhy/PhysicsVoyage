@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 8: Numerical Integration – Physics Voyage</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-53dc85963c67a221f6f2030af840abbe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-439935389e492bce342c92d4b72ba577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-cf866dfebe2e54df764a2827f769ca2d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+#reading-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+  z-index: 9999;
+}
+#reading-progress-bar {
+  height: 100%;
+  background-color: #06bc67; /* Dark color for Sketchy theme */
+  width: 0%;
+  transition: width 0.1s ease;
+}
+</style>
+
+</head><body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script><div id="reading-progress-container">
+  <div id="reading-progress-bar"></div>
+</div>
+
+<script>
+document.addEventListener("scroll", function() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  var bar = document.getElementById("reading-progress-bar");
+  if (bar) {
+    bar.style.width = scrolled + "%";
+  }
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Physics Voyage</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../courses.html"> 
+<span class="menu-text">Learn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../about.html#your-story">
+ <span class="dropdown-text">About Me</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#research">
+ <span class="dropdown-text">Research &amp; Skills</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#education">
+ <span class="dropdown-text">Education</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../about.html#contact">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory">Theory</a>
+  <ul class="collapse">
+  <li><a href="#newton-cotes-formulas" id="toc-newton-cotes-formulas" class="nav-link" data-scroll-target="#newton-cotes-formulas">1. Newton-Cotes Formulas</a>
+  <ul class="collapse">
+  <li><a href="#rectangle-and-midpoint-methods-degree-0" id="toc-rectangle-and-midpoint-methods-degree-0" class="nav-link" data-scroll-target="#rectangle-and-midpoint-methods-degree-0">Rectangle and Midpoint Methods (Degree 0)</a></li>
+  <li><a href="#trapezoidal-rule-degree-1" id="toc-trapezoidal-rule-degree-1" class="nav-link" data-scroll-target="#trapezoidal-rule-degree-1">Trapezoidal Rule (Degree 1)</a></li>
+  <li><a href="#simpsons-13-rule-degree-2" id="toc-simpsons-13-rule-degree-2" class="nav-link" data-scroll-target="#simpsons-13-rule-degree-2">Simpson’s 1/3 Rule (Degree 2)</a></li>
+  <li><a href="#simpsons-38-rule-degree-3" id="toc-simpsons-38-rule-degree-3" class="nav-link" data-scroll-target="#simpsons-38-rule-degree-3">Simpson’s 3/8 Rule (Degree 3)</a></li>
+  </ul></li>
+  <li><a href="#gauss-quadrature" id="toc-gauss-quadrature" class="nav-link" data-scroll-target="#gauss-quadrature">2. Gauss Quadrature</a></li>
+  </ul></li>
+  <li><a href="#geometric-visual-explanation" id="toc-geometric-visual-explanation" class="nav-link" data-scroll-target="#geometric-visual-explanation">Geometric / Visual Explanation</a></li>
+  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python Implementation</a></li>
+  <li><a href="#solved-examples" id="toc-solved-examples" class="nav-link" data-scroll-target="#solved-examples">Solved Examples</a>
+  <ul class="collapse">
+  <li><a href="#easy-trapezoidal-rule" id="toc-easy-trapezoidal-rule" class="nav-link" data-scroll-target="#easy-trapezoidal-rule">🟢 Easy: Trapezoidal Rule</a></li>
+  <li><a href="#medium-simpsons-rule" id="toc-medium-simpsons-rule" class="nav-link" data-scroll-target="#medium-simpsons-rule">🟡 Medium: Simpson’s Rule</a></li>
+  <li><a href="#hard-gauss-quadrature-vs-trapezoidal" id="toc-hard-gauss-quadrature-vs-trapezoidal" class="nav-link" data-scroll-target="#hard-gauss-quadrature-vs-trapezoidal">🔴 Hard: Gauss Quadrature vs Trapezoidal</a></li>
+  </ul></li>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link" data-scroll-target="#practice-problems">Practice Problems</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title">
+    <h1 class="title">Module 8: Numerical Integration</h1>
+              </div>
+
+  <style>
+    .custom-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-top: 2px solid var(--bs-body-color, #333);
+      border-bottom: 2px solid var(--bs-body-color, #333);
+    }
+    .meta-author-date {
+      display: flex;
+      gap: 40px;
+      font-size: 1.05rem;
+    }
+    .meta-author-date > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .meta-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--bs-secondary-color, #666);
+    }
+    .meta-value {
+      font-weight: 600;
+      color: var(--bs-body-color, #222);
+    }
+    .meta-value p {
+      margin-bottom: 0;
+    }
+
+    /* Social Buttons - Sketchy Native */
+    .social-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      position: relative;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: var(--bs-body-color, #333);
+      background-color: transparent;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: 2px solid currentColor;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    }
+    .social-btn:hover {
+      transform: translateY(-2px) rotate(3deg);
+    }
+    .social-btn.twitter:hover { background-color: #1DA1F2; color: #fff; border-color: #1DA1F2; }
+    .social-btn.linkedin:hover { background-color: #0077b5; color: #fff; border-color: #0077b5; }
+    .social-btn.copy:hover { background-color: #6c757d; color: #fff; border-color: #6c757d; }
+    .social-btn.pdf {
+      width: auto;
+      padding: 0 15px;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .social-btn.pdf:hover { background-color: #e25555; color: #fff; border-color: #e25555; }
+    
+    .social-btn i {
+      font-size: 1.15rem;
+    }
+    .social-btn.copy svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    #copy-tooltip {
+      font-size: 0.85rem;
+      color: var(--bs-success, #28a745);
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      position: absolute;
+      top: -25px;
+      right: 50px;
+    }
+
+    .featured-image-container {
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--bs-body-color, #333);
+      border-radius: 25px 5px 25px 5px/5px 25px 5px 25px;
+      width: 100%;
+    }
+    .featured-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+
+  <div class="custom-meta-row">
+    <div class="meta-author-date">
+                </div>
+
+    <div class="social-actions">
+      <span id="copy-tooltip">Copied!</span>
+      <!-- Twitter -->
+      <a class="social-btn twitter" id="share-twitter" target="_blank" rel="noopener" title="Share on Twitter">
+        <i class="bi bi-twitter"></i>
+      </a>
+      
+      <!-- LinkedIn Original Icon (from Bootstrap Icons) -->
+      <a class="social-btn linkedin" id="share-linkedin" target="_blank" rel="noopener" title="Share on LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      
+      <!-- Copy Link -->
+      <button class="social-btn copy" id="share-copy" title="Copy Link">
+        <svg viewbox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      </button>
+
+      <!-- PDF Download -->
+      <button class="social-btn pdf" onclick="window.print()" title="Download PDF">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </button>
+    </div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+      
+      const tw = document.getElementById('share-twitter');
+      if(tw) tw.href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      
+      const li = document.getElementById('share-linkedin');
+      if(li) li.href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl + '&title=' + pageTitle;
+      
+      const copyBtn = document.getElementById('share-copy');
+      const tooltip = document.getElementById('copy-tooltip');
+      if(copyBtn && tooltip) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(window.location.href).then(() => {
+            tooltip.style.opacity = '1';
+            setTimeout(() => { tooltip.style.opacity = '0'; }, 2000);
+          });
+        });
+      }
+    });
+  </script>
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Numerical integration, often called <strong>quadrature</strong>, is the process of approximating the definite integral of a function: <span class="math display">\[ I = \int_a^b f(x) dx \]</span> In physics and engineering, integration is required to calculate work done by a variable force, center of mass, total charge, magnetic flux, and probabilities. When analytical integration is impossible or the function is only known at discrete data points, numerical methods are essential.</p>
+<hr>
+</section>
+<section id="theory" class="level1">
+<h1>Theory</h1>
+<section id="newton-cotes-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="newton-cotes-formulas">1. Newton-Cotes Formulas</h2>
+<p>Newton-Cotes formulas approximate the integrand <span class="math inline">\(f(x)\)</span> with a polynomial of degree <span class="math inline">\(n\)</span> that passes through equally spaced points, and then integrate the polynomial exactly.</p>
+<section id="rectangle-and-midpoint-methods-degree-0" class="level3">
+<h3 class="anchored" data-anchor-id="rectangle-and-midpoint-methods-degree-0">Rectangle and Midpoint Methods (Degree 0)</h3>
+<p>Approximates the area as a series of rectangles. - <strong>Left Rectangle</strong>: <span class="math inline">\(I \approx \sum f(x_i) \Delta x\)</span> - <strong>Midpoint</strong>: <span class="math inline">\(I \approx \sum f(\frac{x_i + x_{i+1}}{2}) \Delta x\)</span></p>
+</section>
+<section id="trapezoidal-rule-degree-1" class="level3">
+<h3 class="anchored" data-anchor-id="trapezoidal-rule-degree-1">Trapezoidal Rule (Degree 1)</h3>
+<p>Approximates the function with a straight line between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. <span class="math display">\[ \int_a^b f(x) dx \approx (b - a) \frac{f(a) + f(b)}{2} \]</span> <strong>Composite Trapezoidal Rule:</strong> Divide <span class="math inline">\([a,b]\)</span> into <span class="math inline">\(n\)</span> segments of width <span class="math inline">\(h = \frac{b-a}{n}\)</span>. <span class="math display">\[ I \approx \frac{h}{2} \left[ f(x_0) + 2 \sum_{i=1}^{n-1} f(x_i) + f(x_n) \right] \]</span> <strong>Error:</strong> <span class="math inline">\(O(h^2)\)</span>.</p>
+</section>
+<section id="simpsons-13-rule-degree-2" class="level3">
+<h3 class="anchored" data-anchor-id="simpsons-13-rule-degree-2">Simpson’s 1/3 Rule (Degree 2)</h3>
+<p>Approximates the function using a parabola passing through 3 points. <span class="math display">\[ \int_a^b f(x) dx \approx \frac{b-a}{6} \left[ f(a) + 4f\left(\frac{a+b}{2}\right) + f(b) \right] \]</span> <strong>Composite Simpson’s 1/3 Rule:</strong> (Requires an even number of segments <span class="math inline">\(n\)</span>) <span class="math display">\[ I \approx \frac{h}{3} \left[ f(x_0) + 4\sum_{i=1,3,5}^{n-1} f(x_i) + 2\sum_{j=2,4,6}^{n-2} f(x_j) + f(x_n) \right] \]</span> <strong>Error:</strong> <span class="math inline">\(O(h^4)\)</span>. Significantly more accurate than trapezoidal.</p>
+</section>
+<section id="simpsons-38-rule-degree-3" class="level3">
+<h3 class="anchored" data-anchor-id="simpsons-38-rule-degree-3">Simpson’s 3/8 Rule (Degree 3)</h3>
+<p>Uses a cubic polynomial through 4 points. Useful when the number of segments is a multiple of 3. <span class="math display">\[ I \approx \frac{3h}{8} [f(x_0) + 3f(x_1) + 3f(x_2) + f(x_3)] \]</span></p>
+</section>
+</section>
+<section id="gauss-quadrature" class="level2">
+<h2 class="anchored" data-anchor-id="gauss-quadrature">2. Gauss Quadrature</h2>
+<p>Newton-Cotes formulas use <em>equally spaced</em> points. <strong>Gauss Quadrature</strong> optimizes both the <em>weights</em> and the <em>locations</em> of the evaluation points (nodes) to achieve the highest possible accuracy for a given number of points. An <span class="math inline">\(n\)</span>-point Gaussian quadrature rule integrates polynomials of degree up to <span class="math inline">\(2n-1\)</span> exactly. <span class="math display">\[ \int_{-1}^1 f(x) dx \approx \sum_{i=1}^n w_i f(x_i) \]</span> Where <span class="math inline">\(x_i\)</span> are the roots of Legendre polynomials, and <span class="math inline">\(w_i\)</span> are specific weights. For a general interval <span class="math inline">\([a,b]\)</span>, a coordinate transformation is applied: <span class="math inline">\(x = \frac{b-a}{2}t + \frac{b+a}{2}\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="geometric-visual-explanation" class="level1">
+<h1>Geometric / Visual Explanation</h1>
+<p>Let’s visualize how these methods approximate the area under a curve.</p>
+<div id="fig-integration-visuals" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integration-visuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x): <span class="cf">return</span> np.sin(x) <span class="op">+</span> <span class="fl">1.5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(x)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">9</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x_trap <span class="op">=</span> np.linspace(a, b, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>y_trap <span class="op">=</span> f(x_trap)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Left Rectangle</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    plt.gca().add_patch(plt.Rectangle((x_trap[i], <span class="dv">0</span>), x_trap[i<span class="op">+</span><span class="dv">1</span>]<span class="op">-</span>x_trap[i], y_trap[i], </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                                      facecolor<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Left Rectangle Method"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">10</span>)<span class="op">;</span> plt.ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Trapezoidal</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    plt.fill_between([x_trap[i], x_trap[i<span class="op">+</span><span class="dv">1</span>]], [<span class="dv">0</span>, <span class="dv">0</span>], [y_trap[i], y_trap[i<span class="op">+</span><span class="dv">1</span>]], </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                     color<span class="op">=</span><span class="st">'orange'</span>, edgecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Trapezoidal Rule"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">10</span>)<span class="op">;</span> plt.ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Simpson's (Parabolas)</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, <span class="st">'k-'</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>x_simp <span class="op">=</span> np.linspace(a, b, <span class="dv">2</span>) <span class="co"># n=2 for visual simplicity</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(x_trap)<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> np.linspace(x_trap[i], x_trap[i<span class="op">+</span><span class="dv">2</span>], <span class="dv">50</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    coeffs <span class="op">=</span> np.polyfit([x_trap[i], x_trap[i<span class="op">+</span><span class="dv">1</span>], x_trap[i<span class="op">+</span><span class="dv">2</span>]], </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>                        [y_trap[i], y_trap[i<span class="op">+</span><span class="dv">1</span>], y_trap[i<span class="op">+</span><span class="dv">2</span>]], <span class="dv">2</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    ys <span class="op">=</span> np.polyval(coeffs, xs)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    plt.fill_between(xs, <span class="dv">0</span>, ys, color<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simpson's Rule (Parabolic Fit)"</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">10</span>)<span class="op">;</span> plt.ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-integration-visuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="python-implementation" class="level1">
+<h1>Python Implementation</h1>
+<div id="cbccb107" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trapezoidal(f, a, b, n):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(a, b, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> f(x)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (h<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span> (y[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">sum</span>(y[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]) <span class="op">+</span> y[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simpson13(f, a, b, n):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"n must be even for Simpson's 1/3 rule"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(a, b, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> f(x)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (h<span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> (y[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>np.<span class="bu">sum</span>(y[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>:<span class="dv">2</span>]) <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">sum</span>(y[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>:<span class="dv">2</span>]) <span class="op">+</span> y[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gauss_quadrature_2pt(f, a, b):</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Transformation</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transform(t):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ((b<span class="op">-</span>a)<span class="op">*</span>t <span class="op">+</span> a<span class="op">+</span>b)<span class="op">/</span><span class="fl">2.0</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2-point nodes and weights</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    t1, t2 <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>), <span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">3</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    w1, w2 <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">1.0</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    integral <span class="op">=</span> w1 <span class="op">*</span> f(transform(t1)) <span class="op">+</span> w2 <span class="op">*</span> f(transform(t2))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integral <span class="op">*</span> (b<span class="op">-</span>a)<span class="op">/</span><span class="fl">2.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="solved-examples" class="level1">
+<h1>Solved Examples</h1>
+<section id="easy-trapezoidal-rule" class="level2">
+<h2 class="anchored" data-anchor-id="easy-trapezoidal-rule">🟢 Easy: Trapezoidal Rule</h2>
+<p><strong>Problem:</strong> Compute <span class="math inline">\(\int_0^2 x^2 dx\)</span> using the trapezoidal rule with <span class="math inline">\(n=4\)</span>. <strong>Solution:</strong> <span class="math inline">\(h = \frac{2-0}{4} = 0.5\)</span>. Points: <span class="math inline">\(x = [0, 0.5, 1.0, 1.5, 2.0]\)</span>. Values: <span class="math inline">\(y = [0, 0.25, 1.0, 2.25, 4.0]\)</span>. <span class="math inline">\(I \approx \frac{0.5}{2} [0 + 2(0.25 + 1.0 + 2.25) + 4.0] = 0.25 [0 + 7.0 + 4.0] = 0.25 \times 11 = 2.75\)</span>. (Exact is <span class="math inline">\(8/3 \approx 2.667\)</span>).</p>
+</section>
+<section id="medium-simpsons-rule" class="level2">
+<h2 class="anchored" data-anchor-id="medium-simpsons-rule">🟡 Medium: Simpson’s Rule</h2>
+<p><strong>Problem:</strong> Compute <span class="math inline">\(\int_0^\pi \sin(x) dx\)</span> using Simpson’s 1/3 rule with <span class="math inline">\(n=6\)</span>. <strong>Solution:</strong> <span class="math inline">\(h = \pi/6\)</span>. <span class="math inline">\(I \approx \frac{\pi/18}{3} [ \sin(0) + 4(\sin(\pi/6) + \sin(3\pi/6) + \sin(5\pi/6)) + 2(\sin(2\pi/6) + \sin(4\pi/6)) + \sin(\pi) ]\)</span>. <span class="math inline">\(I \approx \frac{\pi}{18} [ 0 + 4(0.5 + 1 + 0.5) + 2(0.866 + 0.866) + 0 ] \approx 2.00086\)</span>. (Exact is 2.0).</p>
+</section>
+<section id="hard-gauss-quadrature-vs-trapezoidal" class="level2">
+<h2 class="anchored" data-anchor-id="hard-gauss-quadrature-vs-trapezoidal">🔴 Hard: Gauss Quadrature vs Trapezoidal</h2>
+<p><strong>Problem:</strong> Compare Trapezoidal (<span class="math inline">\(n=2\)</span>) and 2-point Gauss Quadrature on <span class="math inline">\(\int_0^1 e^{-x^2} dx\)</span>. <strong>Solution:</strong> Trapezoidal (<span class="math inline">\(n=2, h=0.5\)</span>): <span class="math inline">\(I_T = \frac{0.5}{2}[1 + 2(e^{-0.25}) + e^{-1}] \approx 0.25[1 + 1.5576 + 0.3678] \approx 0.731\)</span>. Gauss (2-point): Transform <span class="math inline">\(t\)</span> to <span class="math inline">\(x\)</span>: <span class="math inline">\(x = 0.5t + 0.5\)</span>. <span class="math inline">\(I_G = 0.5 [ e^{-(0.5(-1/\sqrt{3})+0.5)^2} + e^{-(0.5(1/\sqrt{3})+0.5)^2} ] \approx 0.7468\)</span>. (Exact is <span class="math inline">\(\approx 0.746824\)</span>). Gauss quadrature is astoundingly more accurate for the same number of evaluations!</p>
+<hr>
+</section>
+</section>
+<section id="practice-problems" class="level1">
+<h1>Practice Problems</h1>
+<ol type="1">
+<li>Compute <span class="math inline">\(\int_1^3 \frac{1}{x} dx\)</span> using the Midpoint rule with <span class="math inline">\(n=4\)</span>.</li>
+<li>Derive the error bound formula for the Composite Trapezoidal Rule.</li>
+<li>Why does Simpson’s 1/3 rule require an even number of intervals?</li>
+<li>Write a Python function for 3-point Gauss Quadrature.</li>
+<li>Compare the convergence rates of Trapezoidal and Simpson’s methods as <span class="math inline">\(n \to \infty\)</span>.</li>
+</ol>
+<hr>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Key Formulas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Trapezoidal Rule (<span class="math inline">\(O(h^2)\)</span>):</strong> <span class="math inline">\(I \approx \frac{h}{2}[f_0 + 2\sum f_i + f_n]\)</span></li>
+<li><strong>Simpson’s 1/3 Rule (<span class="math inline">\(O(h^4)\)</span>):</strong> <span class="math inline">\(I \approx \frac{h}{3}[f_0 + 4\sum_{odd} f_i + 2\sum_{even} f_i + f_n]\)</span></li>
+<li><strong>Gauss Quadrature:</strong> Uses optimal roots of Legendre polynomials to maximize polynomial exactness. Extremely efficient.</li>
+</ul>
+</div>
+</div>
+<p><a href="../../Courses/Numerical_Analysis/index.html">← Back to Course Index</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<div id="newsletter-modal" class="newsletter-modal">
+  <div class="newsletter-modal-content">
+    <span class="newsletter-close">×</span>
+    <div class="newsletter-header">
+      <h2>Stay Updated!</h2>
+      <p>Join the Physics Voyage newsletter to get the latest articles and courses delivered straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form">
+      <input type="email" id="newsletter-email" name="Email" placeholder="Your email address" required="">
+      <button type="submit" id="newsletter-submit">Subscribe</button>
+    </form>
+    <div id="newsletter-message" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("newsletter-modal");
+  const closeBtn = document.querySelector(".newsletter-close");
+  const form = document.getElementById("newsletter-form");
+  const messageDiv = document.getElementById("newsletter-message");
+  
+  // Check if user already dismissed or subscribed
+  if (!localStorage.getItem("newsletterDismissed")) {
+    // Show after 5 seconds
+    setTimeout(() => {
+      modal.classList.add("show");
+    }, 5000);
+  }
+
+  const closeModal = () => {
+    modal.classList.remove("show");
+    localStorage.setItem("newsletterDismissed", "true");
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("newsletter-email").value;
+    const submitBtn = document.getElementById("newsletter-submit");
+    
+    submitBtn.textContent = "Subscribing...";
+    submitBtn.disabled = true;
+
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznnRrkbY3P0rTduyWB28U_8F_8auH1T2pu7yG_PCODFH3DSWpnGQgl5NpMcVuA1LQN/exec";
+    
+    const formData = new FormData();
+    formData.append("Email", email);
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          form.style.display = "none";
+          messageDiv.style.display = "block";
+          messageDiv.textContent = "Thank you for subscribing!";
+          messageDiv.style.color = "#2e7d32";
+          localStorage.setItem("newsletterDismissed", "true");
+          setTimeout(() => {
+            modal.classList.remove("show");
+          }, 3000);
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "Oops! Something went wrong. Please try again.";
+        messageDiv.style.color = "#d32f2f";
+        submitBtn.textContent = "Subscribe";
+        submitBtn.disabled = false;
+      });
+  });
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="bi bi-chevron-up"></i>
+</button>
+
+<style>
+/* Back to top button styling */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #212529);
+  border: 2px solid var(--bs-body-color, #212529);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-3px);
+  background-color: var(--bs-body-color, #212529);
+  color: var(--bs-body-bg, #fff);
+  box-shadow: 3px 4px 0px var(--bs-body-color, #212529);
+}
+
+.back-to-top:active {
+  transform: scale(0.95) translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backToTopBtn = document.getElementById("back-to-top");
+  
+  if (backToTopBtn) {
+    // Show or hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/physicsvoyage-github-io\.pages\.dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Physics Voyage</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

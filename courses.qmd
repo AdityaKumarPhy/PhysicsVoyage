@@ -4,6 +4,7 @@ page-layout: full
 listing:
   - id: list-view
     contents:
+      - Courses/Numerical_Analysis/index.qmd
       - Courses/Comp_Physics/index.qmd
       - Courses/QHO/index.qmd
       - Courses/Path_Integrals/index.qmd
@@ -15,6 +16,7 @@ listing:
     fields: [image, date, title, description, categories]
   - id: grid-view
     contents:
+      - Courses/Numerical_Analysis/index.qmd
       - Courses/Comp_Physics/index.qmd
       - Courses/QHO/index.qmd
       - Courses/Path_Integrals/index.qmd
