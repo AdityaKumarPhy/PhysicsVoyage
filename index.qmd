@@ -93,17 +93,17 @@ This site is my open notebook — structured courses, project write-ups, and a b
 
 ::: {.grid}
 
-<!-- Course Card 1 -->
+<!-- Course Card 1 — Numerical Analysis (LATEST / BEST) -->
 ::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
-**Computational Physics** <span class="badge bg-secondary float-end">Upcoming</span>
+**Numerical Analysis** <span class="badge bg-warning text-dark float-end">Best</span>
 :::
 ::: {.card-body}
-Building numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.
+From Errors and Approximations to PDEs and Fourier Transforms. A comprehensive course covering theory, geometry, and full Python implementations.
 
 <br>
-[Coming soon](courses.qmd){.btn .btn-sm .btn-outline-dark .mt-2}
+[Start →](Courses/Numerical_Analysis/index.qmd){.btn .btn-success .mt-2}
 :::
 :::
 :::
@@ -127,10 +127,10 @@ From classical springs to coherent states and squeezed light. The most important
 ::: {.g-col-12 .g-col-sm-6 .g-col-lg-4}
 ::: {.card .h-100}
 ::: {.card-header}
-**Many-Body Physics** <span class="badge bg-secondary float-end">Upcoming</span>
+**Computational Physics** <span class="badge bg-secondary float-end">Upcoming</span>
 :::
 ::: {.card-body}
-Second quantisation, Hubbard models, tensor networks. The course I wish existed when I started my MSc.
+Building numerical methods from scratch — ODE integrators, PDE solvers, matrix diagonalisation. Full Python code included.
 
 <br>
 [Coming soon](courses.qmd){.btn .btn-sm .btn-outline-dark .mt-2}
