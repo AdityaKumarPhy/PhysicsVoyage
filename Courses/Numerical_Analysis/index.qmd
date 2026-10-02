@@ -2,7 +2,7 @@
 title: "Numerical Analysis"
 subtitle: "From Errors and Approximations to PDEs and Fourier Transforms"
 description: "A comprehensive course covering the theory, implementation (with code), and practical applications of Numerical Analysis."
-image: "../../assets/Media/Numerical_Analysis_Thumbnail.jpg"
+image: "https://res.cloudinary.com/dy3qzey1n/image/upload/v1790901644/Github%20Blog/numerical_analysis_thumbnail.jpg"
 author: "Aditya Kumar"
 date: "2026-10-01"
 categories: [Computational Physics, Numerical Analysis, Active]
